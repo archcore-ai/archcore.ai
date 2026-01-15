@@ -1,0 +1,129 @@
+import { useState } from 'react'
+import { ArrowRight, Loader2 } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+interface OpenDemoDialogProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  demoUrl: string
+  formspreeId?: string
+}
+
+export function OpenDemoDialog({
+  open,
+  onOpenChange,
+  demoUrl,
+  formspreeId,
+}: OpenDemoDialogProps) {
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const isValidEmail = email.includes('@') && email.trim().length > 3
+
+  const submitEmail = async () => {
+    if (formspreeId) {
+      try {
+        await fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email,
+            _subject: 'Demo Access Request from Archcore Landing',
+            source: 'open-demo-dialog',
+          }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        })
+      } catch {
+        // Silently fail - don't block demo access
+        console.error('Failed to submit email')
+      }
+    } else {
+      // Demo mode
+      console.log('Demo email capture:', email)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!email.trim()) {
+      setError('Email is required')
+      return
+    }
+    if (!isValidEmail) {
+      setError('Please enter a valid work email')
+      return
+    }
+
+    setIsSubmitting(true)
+    await submitEmail()
+    window.location.href = demoUrl
+  }
+
+  const handleClose = () => {
+    onOpenChange(false)
+    setEmail('')
+    setError('')
+    setIsSubmitting(false)
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Explore Archcore on a real architecture</DialogTitle>
+          <DialogDescription>
+            Enter your work email to access the interactive demo.
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 pt-2">
+          <div className="space-y-2">
+            <Input
+              type="email"
+              placeholder="Work email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (error) setError('')
+              }}
+              disabled={isSubmitting}
+              aria-invalid={!!error}
+            />
+            {error ? (
+              <p className="text-xs text-destructive">{error}</p>
+            ) : (
+              <p className="text-xs font-medium text-muted-foreground">No registration. The demo will open immediately.</p>
+            )}
+          </div>
+
+          <Button
+            type="submit"
+            className="w-full gap-2"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Opening Demo...
+              </>
+            ) : (
+              <>
+                Open Demo
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
