@@ -1,85 +1,73 @@
-import { useState } from 'react'
-import { Check, Loader2 } from 'lucide-react'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useState } from "react";
+import { Check, Loader2 } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface ContactDialogProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  formspreeId?: string
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 interface ContactFormProps {
-  formspreeId?: string
-  onClose: () => void
+  onClose: () => void;
 }
 
-function ContactForm({ formspreeId, onClose }: ContactFormProps) {
+function ContactForm({ onClose }: ContactFormProps) {
   const [formData, setFormData] = useState({
-    email: '',
-    company: '',
-    message: '',
-  })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errors, setErrors] = useState<Record<string, string>>({})
+    email: "",
+    company: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {}
+    const newErrors: Record<string, string> = {};
 
     if (!formData.email) {
-      newErrors.email = 'Email is required'
-    } else if (!formData.email.includes('@')) {
-      newErrors.email = 'Please enter a valid work email'
+      newErrors.email = "Email is required";
+    } else if (!formData.email.includes("@")) {
+      newErrors.email = "Please enter a valid work email";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const submitForm = async () => {
-    if (formspreeId) {
-      try {
-        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email: formData.email,
-            company: formData.company,
-            message: formData.message,
-            _subject: 'Contact from Archcore Landing',
-          }),
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        })
+    try {
+      const submitData = new FormData();
+      submitData.append("access_key", "471081aa-576f-454f-8b23-d151db2bd7aa");
+      submitData.append("email", formData.email);
+      submitData.append("company", formData.company);
+      submitData.append("message", formData.message);
+      submitData.append("subject", "Contact from Archcore Landing");
 
-        if (response.ok) {
-          setStatus('success')
-        } else {
-          setStatus('error')
-        }
-      } catch {
-        setStatus('error')
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submitData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
       }
-    } else {
-      // Demo mode
-      console.log('Contact form submission:', formData)
-      setTimeout(() => setStatus('success'), 500)
+    } catch {
+      setStatus("error");
     }
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validateForm()) return
-    setStatus('loading')
-    void submitForm()
-  }
+    e.preventDefault();
+    if (!validateForm()) return;
+    setStatus("loading");
+    void submitForm();
+  };
 
-  if (status === 'success') {
+  if (status === "success") {
     return (
       <div className="py-8 text-center space-y-4">
         <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -95,16 +83,14 @@ function ContactForm({ formspreeId, onClose }: ContactFormProps) {
           Close
         </Button>
       </div>
-    )
+    );
   }
 
   return (
     <>
       <DialogHeader>
         <DialogTitle>Contact Us</DialogTitle>
-        <DialogDescription>
-          Have questions about Archcore? Our team is here to help.
-        </DialogDescription>
+        <DialogDescription>Have questions about Archcore? Our team is here to help.</DialogDescription>
       </DialogHeader>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -118,14 +104,12 @@ function ContactForm({ formspreeId, onClose }: ContactFormProps) {
             placeholder="you@company.com"
             value={formData.email}
             onChange={(e) => {
-              setFormData({ ...formData, email: e.target.value })
-              if (errors.email) setErrors({ ...errors, email: '' })
+              setFormData({ ...formData, email: e.target.value });
+              if (errors.email) setErrors({ ...errors, email: "" });
             }}
             aria-invalid={!!errors.email}
           />
-          {errors.email && (
-            <p className="text-xs text-destructive">{errors.email}</p>
-          )}
+          {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
         </div>
 
         <div className="space-y-2">
@@ -155,48 +139,34 @@ function ContactForm({ formspreeId, onClose }: ContactFormProps) {
           />
         </div>
 
-        {status === 'error' && (
-          <p className="text-sm text-destructive">
-            Something went wrong. Please try again.
-          </p>
-        )}
+        {status === "error" && <p className="text-sm text-destructive">Something went wrong. Please try again.</p>}
 
-        <Button type="submit" className="w-full" disabled={status === 'loading'}>
-          {status === 'loading' ? (
+        <Button type="submit" className="w-full" disabled={status === "loading"}>
+          {status === "loading" ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
               Sending...
             </>
           ) : (
-            'Send Message'
+            "Send Message"
           )}
         </Button>
       </form>
     </>
-  )
+  );
 }
 
-export function ContactDialog({
-  open,
-  onOpenChange,
-  formspreeId,
-}: ContactDialogProps) {
+export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
   const handleClose = () => {
-    onOpenChange(false)
-  }
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         {/* Key forces re-mount when dialog opens, resetting form state */}
-        {open && (
-          <ContactForm
-            key="contact-form"
-            formspreeId={formspreeId}
-            onClose={handleClose}
-          />
-        )}
+        {open && <ContactForm key="contact-form" onClose={handleClose} />}
       </DialogContent>
     </Dialog>
-  )
+  );
 }
