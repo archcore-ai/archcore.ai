@@ -83,16 +83,16 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
 
         <div className="hidden md:flex items-center gap-1">
           <Button variant="ghost" size="sm" asChild>
-            <a href="#problem">Why?</a>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
             <a href="#use-cases">Use Cases</a>
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <a href="#workflows">Workflows</a>
           </Button>
           <Button variant="ghost" size="sm" asChild>
-            <a href="#privacy">Privacy</a>
+            <a href="#problem">Challenges</a>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <a href="#privacy">Self-Hosted</a>
           </Button>
           <Button variant="ghost" size="sm" onClick={onContactClick}>
             Contact Us
@@ -115,15 +115,6 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
         <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
           <nav className="px-6 py-4 space-y-2">
             <a
-              href="#problem"
-              className="block py-2 text-sm"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
-            >
-              Why?
-            </a>
-            <a
               href="#use-cases"
               className="block py-2 text-sm"
               onClick={() => {
@@ -142,13 +133,22 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
               Workflows
             </a>
             <a
+              href="#problem"
+              className="block py-2 text-sm"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
+            >
+              Challenges
+            </a>
+            <a
               href="#privacy"
               className="block py-2 text-sm"
               onClick={() => {
                 setMobileMenuOpen(false);
               }}
             >
-              Privacy
+              Self-Hosted
             </a>
             <button
               className="block py-2 text-sm w-full text-left"
