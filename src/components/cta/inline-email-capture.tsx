@@ -10,6 +10,10 @@ interface InlineEmailCaptureProps {
   className?: string;
 }
 
+interface Web3FormsResponse {
+  success: boolean;
+}
+
 export function InlineEmailCapture({
   placeholder = "Enter your work email",
   buttonLabel = "Get Updates",
@@ -32,7 +36,7 @@ export function InlineEmailCapture({
         body: formData,
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as Web3FormsResponse;
       if (data.success) {
         setStatus("success");
         setEmail("");

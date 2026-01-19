@@ -13,6 +13,10 @@ interface ContactFormProps {
   onClose: () => void;
 }
 
+interface Web3FormsResponse {
+  success: boolean;
+}
+
 function ContactForm({ onClose }: ContactFormProps) {
   const [formData, setFormData] = useState({
     email: "",
@@ -49,7 +53,7 @@ function ContactForm({ onClose }: ContactFormProps) {
         body: submitData,
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as Web3FormsResponse;
       if (data.success) {
         setStatus("success");
       } else {
