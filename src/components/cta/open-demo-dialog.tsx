@@ -62,15 +62,15 @@ export function OpenDemoDialog({ open, onOpenChange, demoUrl }: OpenDemoDialogPr
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Explore Archcore on a real architecture</DialogTitle>
-          <DialogDescription>Enter your work email to access the interactive demo.</DialogDescription>
+          <DialogTitle>Explore Archcore on a real application</DialogTitle>
+          <DialogDescription>Enter your email to access the interactive demo.</DialogDescription>
         </DialogHeader>
 
         <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 pt-2">
           <div className="space-y-2">
             <Input
               type="email"
-              placeholder="Work email"
+              placeholder="user@mail.com"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

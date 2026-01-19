@@ -1,27 +1,27 @@
-import { ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface DualCTAProps {
-  primaryLabel?: string
-  primaryHref?: string
-  secondaryLabel?: string
-  secondaryHref?: string
-  onPrimaryClick?: () => void
-  onSecondaryClick?: () => void
-  className?: string
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  onPrimaryClick?: () => void;
+  onSecondaryClick?: () => void;
+  className?: string;
 }
 
 export function DualCTA({
-  primaryLabel = 'Book a Demo',
+  primaryLabel = "Book a Demo",
   primaryHref,
-  secondaryLabel = 'View Docs',
-  secondaryHref,
+  // secondaryLabel = "View Docs",
+  // secondaryHref,
   onPrimaryClick,
-  onSecondaryClick,
+  // onSecondaryClick,
   className,
 }: DualCTAProps) {
   return (
-    <div className={`flex flex-col sm:flex-row gap-4 ${className ?? ''}`}>
+    <div className={`flex flex-col sm:flex-row gap-4 ${className ?? ""}`}>
       {primaryHref ? (
         <Button size="lg" className="gap-2" asChild>
           <a href={primaryHref}>
@@ -36,7 +36,7 @@ export function DualCTA({
         </Button>
       )}
 
-      {secondaryHref ? (
+      {/* {secondaryHref ? (
         <Button size="lg" variant="outline" asChild>
           <a href={secondaryHref}>{secondaryLabel}</a>
         </Button>
@@ -44,7 +44,7 @@ export function DualCTA({
         <Button size="lg" variant="outline" onClick={onSecondaryClick}>
           {secondaryLabel}
         </Button>
-      )}
+      )} */}
     </div>
-  )
+  );
 }

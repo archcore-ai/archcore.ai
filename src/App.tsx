@@ -14,6 +14,10 @@ import {
   Box,
   Container,
   Sparkles,
+  GitPullRequest,
+  MessageSquare,
+  Lightbulb,
+  RefreshCw,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -28,12 +32,10 @@ import {
   OpenDemoDialog,
   SectionCTACard,
   StickyCTABar,
-  ExitIntentBanner,
 } from "@/components/cta";
 import { useCTAState } from "@/hooks/use-cta-state";
 import { useTheme } from "@/hooks/use-theme";
 
-const DOCS_URL = "https://github.com/archcore-ai";
 const DEMO_URL = "https://demo.archcore.ai"; // Configure this
 
 function SectionContainer({ children, className, id }: { children: React.ReactNode; className?: string; id?: string }) {
@@ -71,7 +73,7 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
-        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent",
       )}
     >
       <div className="max-w-6xl mx-auto px-6 md:px-0 h-16 flex items-center justify-between">
@@ -85,6 +87,9 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <a href="#use-cases">Use Cases</a>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <a href="#workflows">Workflows</a>
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <a href="#privacy">Privacy</a>
@@ -128,6 +133,15 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
               Use Cases
             </a>
             <a
+              href="#workflows"
+              className="block py-2 text-sm"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
+            >
+              Workflows
+            </a>
+            <a
               href="#privacy"
               className="block py-2 text-sm"
               onClick={() => {
@@ -154,75 +168,74 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
 
 function HeroSection({ onOpenDemo, onContactClick }: { onOpenDemo?: () => void; onContactClick?: () => void }) {
   return (
-    <section id="top" className="relative py-24 pt-28 px-6">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
-              linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
+    <section id="top" className="relative py-24 pt-28 px-6 min-h-[600px] lg:min-h-[700px] overflow-hidden">
+      {/* Large decorative background image on right side - desktop only */}
+      {/* Both theme images rendered, CSS controls visibility to prevent flash */}
+      <div className="absolute top-0 right-0 w-[55%] h-full pointer-events-none hidden lg:block" style={{ zIndex: 1 }}>
+        <img
+          src="/images/main-page-light.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] h-auto max-w-none opacity-80 object-contain dark:hidden"
+          loading="eager"
+          decoding="async"
+        />
+        <img
+          src="/images/main-page-dark.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] h-auto max-w-none opacity-70 object-contain hidden dark:block"
+          loading="eager"
+          decoding="async"
         />
       </div>
 
+      {/* Content layer */}
       <div className="relative z-10 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
-                <span className="text-primary">Context engineering</span> for deterministic AI-assisted development.
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Architectural decisions, engineering rules, and playbooks — delivered to IDEs and tools via MCP as a
-                verified, read-only context layer.
-              </p>
-            </div>
-
-            <DualCTA
-              primaryLabel="Open Demo"
-              onPrimaryClick={onOpenDemo}
-              secondaryLabel="Contact Us"
-              onSecondaryClick={onContactClick}
-            />
-
-            <div className="flex flex-wrap gap-2">
-              {["Self-hosted", "MCP-native"].map((chip) => (
-                <Badge key={chip} variant="secondary" className="px-2 py-0.5 text-xs">
-                  {chip}
-                </Badge>
-              ))}
-            </div>
+        <div className="max-w-lg lg:max-w-[38%] space-y-8 mx-auto text-center lg:mx-0 lg:text-left">
+          <div className="space-y-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
+              <span className="text-primary">Context engineering</span> for deterministic AI-assisted development.
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Archcore helps teams share a clear understanding of how their systems work — across humans, AI, and time
+            </p>
           </div>
 
-          <div className="w-full overflow-hidden text-center lg:text-right" style={{ perspective: "1000px" }}>
-            <img
-              src="/images/layers.png"
-              alt="Archcore architectural context layers: Decisions, Rules and guides, Documentation, Verified engineering context"
-              width={800}
-              height={800}
-              className="inline-block h-auto max-h-80 object-contain"
-              loading="eager"
-              decoding="async"
-              style={{
-                animation: "zoomOut 10s ease-out forwards",
-                transformOrigin: "bottom right",
-              }}
-            />
-            <style>{`
-              @keyframes zoomOut {
-                0% {
-                  transform: scale(3);
-                  opacity: 0.5;
-                }
-                100% {
-                  transform: scale(1);
-                  opacity: 1;
-                }
-              }
-            `}</style>
+          <DualCTA
+            primaryLabel="Open Demo"
+            onPrimaryClick={onOpenDemo}
+            secondaryLabel="Contact Us"
+            onSecondaryClick={onContactClick}
+            className="justify-center lg:justify-start"
+          />
+
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            {["Self-hosted", "MCP-native"].map((chip) => (
+              <Badge key={chip} variant="secondary" className="px-2 py-0.5 text-xs">
+                {chip}
+              </Badge>
+            ))}
           </div>
+        </div>
+
+        {/* Mobile/tablet image - shown at bottom */}
+        {/* Both theme images rendered, CSS controls visibility to prevent flash */}
+        <div className="mt-12 lg:hidden">
+          <img
+            src="/images/main-page-light.png"
+            alt="Archcore platform interface"
+            className="w-full h-auto max-w-xl mx-auto object-contain dark:hidden"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            src="/images/main-page-dark.png"
+            alt="Archcore platform interface"
+            className="w-full h-auto max-w-xl mx-auto object-contain hidden dark:block"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -247,22 +260,22 @@ const painPoints = [
   {
     icon: Shuffle,
     title: "Scattered decisions",
-    description: "Architecture choices lost in Slack, docs, and tribal memory.",
+    description: "Architectural decisions scattered across Slack, docs, and tribal memory.",
   },
   {
     icon: AlertTriangle,
     title: "Implicit architectural constraints",
-    description: "AI operates without access to explicit architectural rules, invariants, and decisions.",
+    description: "Architectural constraints remain implicit — invisible to both humans and AI.",
   },
   {
     icon: Compass,
     title: "Untraceable decisions",
-    description: "Architectural and technical decisions are not recorded as first-class artifacts.",
+    description: "Architectural and technical decisions lack clear traceability over time.",
   },
   {
     icon: Target,
     title: "Decision drift",
-    description: "Documented intent diverges from actual system behavior over time.",
+    description: "Documented intent gradually diverges from how the system actually behaves.",
   },
 ];
 
@@ -271,7 +284,7 @@ function ProblemSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
     <SectionContainer id="problem" className="bg-muted/30 border-b border-border">
       <div className="text-center space-y-6 mb-12">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          AI is powerful. <span className="text-muted-foreground">Without structure, it creates chaos.</span>
+          AI is powerful. <span className="text-muted-foreground">Without structure, understanding breaks down.</span>
         </h2>
       </div>
 
@@ -292,8 +305,8 @@ function ProblemSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
       <SectionCTACard
         variant="featured"
         icon={Sparkles}
-        title="See how Archcore solves this"
-        description="Structure your AI-assisted development with explicit architectural context."
+        title="See how Archcore works in practice"
+        description="Build shared architectural understanding for humans and AI."
         buttonLabel="Open Demo"
         onButtonClick={onOpenDemo}
         className="mt-10"
@@ -311,17 +324,17 @@ const useCases = [
   {
     icon: Layers,
     title: "Platform standards",
-    description: "Rules and playbooks for multi-service ecosystems.",
+    description: "Shared rules and playbooks that keep systems consistent at scale.",
   },
   {
     icon: Users,
     title: "Onboarding at scale",
-    description: "Guides and playbooks that survive team growth.",
+    description: "A shared understanding that survives team growth.",
   },
   {
     icon: History,
     title: "Audit-ready history",
-    description: "Trace what changed, when, and why.",
+    description: "Preserve how and why architectural understanding changed over time.",
   },
 ];
 
@@ -354,11 +367,107 @@ function UseCasesSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
       <SectionCTACard
         variant="featured"
         title="Start shipping with confidence"
-        description="Deploy Archcore in minutes. Keep your AI agents aligned with your architecture."
+        description="Keep architectural understanding aligned — across teams and AI."
         buttonLabel="Try Demo"
         onButtonClick={onOpenDemo}
         className="mt-10"
       />
+    </SectionContainer>
+  );
+}
+
+interface WorkflowItem {
+  icon: typeof GitPullRequest;
+  title: string;
+  description: string;
+  imageLight?: string;
+  imageDark?: string;
+}
+
+const workflowItems: WorkflowItem[] = [
+  {
+    icon: GitPullRequest,
+    title: "Architecture-aware code reviews",
+    description:
+      "Pull requests are evaluated not only against style or tests, but against explicit architectural decisions, constraints, and intent.",
+    imageLight: "/images/documents-list-light.png",
+    imageDark: "/images/documents-list-dark.png",
+  },
+  {
+    icon: MessageSquare,
+    title: "LLM conversations grounded in architectural reality",
+    description:
+      "Instead of generic answers, AI agents reason over your system's actual architectural context — decisions, rules, and historical intent.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Explainability beyond code",
+    description:
+      "Understand not just how the system works, but why it was designed this way — even months or years after decisions were made.",
+    imageLight: "/images/editor-zoom-light.png",
+    imageDark: "/images/editor-zoom-dark.png",
+  },
+  {
+    icon: RefreshCw,
+    title: "Human and AI alignment over time",
+    description:
+      "As systems evolve, Archcore helps ensure that human understanding and AI reasoning stay aligned with the same architectural source of truth.",
+    imageLight: "/images/analytics-light.png",
+    imageDark: "/images/analytics-dark.png",
+  },
+];
+
+function WorkflowsSection() {
+  return (
+    <SectionContainer id="workflows" className="border-b border-border">
+      <SectionHeader
+        title="Where architectural intent meets daily workflows"
+        description="Architectural intent stops living in documents — and starts shaping how code is reviewed, discussed, and generated."
+      />
+
+      <div className="space-y-16">
+        {workflowItems.map((item, index) => {
+          const isReversed = index % 2 === 1;
+          return (
+            <div
+              key={item.title}
+              className={cn(
+                "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start",
+                isReversed && "lg:[direction:rtl]",
+              )}
+            >
+              <div className={cn("space-y-4", isReversed && "lg:[direction:ltr]")}>
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-primary/10">
+                    <item.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+              </div>
+
+              <div className="lg:[direction:ltr]">
+                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+                  <img
+                    src={item.imageLight ?? "/images/mcp-dark.png"}
+                    alt={item.title}
+                    className="w-full h-auto dark:hidden"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src={item.imageDark ?? "/images/mcp-light.png"}
+                    alt={item.title}
+                    className="w-full h-auto hidden dark:block"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </SectionContainer>
   );
 }
@@ -373,7 +482,7 @@ const trustBullets = [
   "Data sovereignty",
   "No vendor lock-in",
   "Data stays on your infrastructure",
-  "Designed for regulated environments",
+  "Designed for environments with strict architectural and data controls",
 ];
 
 function EnterpriseSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
@@ -383,7 +492,10 @@ function EnterpriseSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
         <div className="space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Private. Self-hosted. Yours.</h2>
           <p className="text-lg text-muted-foreground">
-            archcore runs entirely on your infrastructure -- no SaaS, no data export.
+            archcore runs entirely on your infrastructure — no SaaS, no data export.
+          </p>
+          <p className="text-base text-muted-foreground">
+            Architectural understanding remains local, explicit, and under your control.
           </p>
 
           <div className="grid grid-cols-2 gap-4">
@@ -409,8 +521,8 @@ function EnterpriseSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
           <DualCTA
             primaryLabel="Open Demo"
             onPrimaryClick={onOpenDemo}
-            secondaryLabel="View Architecture Docs"
-            secondaryHref={DOCS_URL}
+            // secondaryLabel="Explore the Architecture Layer"
+            // secondaryHref={DOCS_URL}
             className="pt-2"
           />
         </div>
@@ -495,13 +607,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <ExitIntentBanner buttonLabel="Contact us" onButtonClick={openContactDialog} />
       <StickyHeader onContactClick={openContactDialog} />
       <main>
         <HeroSection onOpenDemo={openDemoDialog} onContactClick={openContactDialog} />
         <TrustStrip />
-        <ProblemSection onOpenDemo={openDemoDialog} />
         <UseCasesSection onOpenDemo={openDemoDialog} />
+        <WorkflowsSection />
+        <ProblemSection onOpenDemo={openDemoDialog} />
         <EnterpriseSection onOpenDemo={openDemoDialog} />
       </main>
       <FooterSection onContactClick={openContactDialog} />
