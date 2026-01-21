@@ -14,15 +14,12 @@ import {
   Box,
   Container,
   Sparkles,
-  GitPullRequest,
-  MessageSquare,
-  Lightbulb,
-  RefreshCw,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import {
@@ -38,6 +35,13 @@ import { useTheme } from "@/hooks/use-theme";
 
 const DEMO_URL = "https://demo.archcore.ai"; // Configure this
 
+const navItems = [
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#use-cases", label: "Use Cases" },
+  { href: "#problem", label: "Challenges" },
+  { href: "#privacy", label: "Self-Hosted" },
+];
+
 function SectionContainer({ children, className, id }: { children: React.ReactNode; className?: string; id?: string }) {
   return (
     <section id={id} className={cn("px-6 py-20 md:py-24", className)}>
@@ -51,6 +55,18 @@ function SectionHeader({ title, description, className }: { title: string; descr
     <div className={cn("text-center space-y-4 mb-12", className)}>
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{title}</h2>
       {description && <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>}
+    </div>
+  );
+}
+
+function CheckListItem({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+      <div>
+        <p className="font-medium">{title}</p>
+        <p className="text-sm text-muted-foreground">{description}</p>
+      </div>
     </div>
   );
 }
@@ -82,18 +98,11 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
         </a>
 
         <div className="hidden md:flex items-center gap-1">
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#use-cases">Use Cases</a>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#workflows">Workflows</a>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#problem">Challenges</a>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#privacy">Self-Hosted</a>
-          </Button>
+          {navItems.map((item) => (
+            <Button key={item.href} variant="ghost" size="sm" asChild>
+              <a href={item.href}>{item.label}</a>
+            </Button>
+          ))}
           <Button variant="ghost" size="sm" onClick={onContactClick}>
             Contact Us
           </Button>
@@ -114,42 +123,18 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
           <nav className="px-6 py-4 space-y-2">
-            <a
-              href="#use-cases"
-              className="block py-2 text-sm"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
-            >
-              Use Cases
-            </a>
-            <a
-              href="#workflows"
-              className="block py-2 text-sm"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
-            >
-              Workflows
-            </a>
-            <a
-              href="#problem"
-              className="block py-2 text-sm"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
-            >
-              Challenges
-            </a>
-            <a
-              href="#privacy"
-              className="block py-2 text-sm"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
-            >
-              Self-Hosted
-            </a>
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="block py-2 text-sm"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
             <button
               className="block py-2 text-sm w-full text-left"
               onClick={() => {
@@ -253,6 +238,142 @@ function TrustStrip() {
         </p>
       </div>
     </section>
+  );
+}
+
+function HowItWorksSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
+  return (
+    <SectionContainer id="how-it-works" className="border-b border-border">
+      <SectionHeader
+        title="How Archcore works in practice"
+        description="Context engineering that shapes real development workflows — from review to generation to evolving understanding."
+      />
+
+      <Tabs defaultValue="questions" className="w-full">
+        <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-12">
+          <TabsTrigger value="questions">Q/A, onboarding</TabsTrigger>
+          <TabsTrigger value="review">Code Review</TabsTrigger>
+          <TabsTrigger value="generation">Code Generation</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="questions" className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold">Understand historical context, evolution, and intent</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Teams evolve — and so do their systems. With Archcore, you don't just inspect code: you interrogate why
+                it exists and how it evolved. This accelerates onboarding, reduces technical ambiguity, and embeds
+                tribal knowledge into a searchable lineage.
+              </p>
+              <div className="space-y-3">
+                <CheckListItem
+                  title='"Why does this exist?"'
+                  description="Trace any part of your codebase back to the decisions and constraints that shaped it"
+                />
+                <CheckListItem
+                  title='"What happens if I change X?"'
+                  description="Understand the architectural impact before touching the code"
+                />
+                <CheckListItem
+                  title="Historical understanding"
+                  description="Institutional knowledge stays visible as teams grow and evolve, not buried in Slack or repos"
+                />
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+              <img
+                src="/chat-mcp.gif"
+                alt="Chat with Archcore MCP to understand architectural evolution"
+                className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="review" className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold">Control code review with explicit architectural context</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                AI code reviewers evaluate pull requests not just against syntax or tests, but with structural knowledge
+                about your system — reducing uncertainty and surfacing architectural intent in every review.
+              </p>
+              <div className="space-y-3">
+                <CheckListItem
+                  title="Architecture-aware reviews"
+                  description="PR evaluations reference documented decisions and architectural principles, not guesswork"
+                />
+                <CheckListItem
+                  title="Traceable reasoning"
+                  description="Every comment links back to a preserved decision, ADR, or rule — no undocumented assumptions"
+                />
+                <CheckListItem
+                  title="Faster, clearer outcomes"
+                  description="Reviews resolve faster when the context of why a design exists is right there"
+                />
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+              <img
+                src="/images/review-mcp.gif"
+                alt="AI code review with architectural context from Archcore"
+                className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="generation" className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold">Empower code generation with real architectural direction</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                When your tools generate new code, they shouldn't treat architecture as an afterthought. Archcore
+                ensures that agents and LLM-powered tools produce code that obeys your real architectural context, not
+                generic AI patterns.
+              </p>
+              <div className="space-y-3">
+                <CheckListItem
+                  title="Context-aware generation"
+                  description="LLMs and agents work from your architectural record as the source of truth, not just code tokens"
+                />
+                <CheckListItem
+                  title="Integration-ready workflow"
+                  description="Archcore fits naturally into code generation pipelines and development tools"
+                />
+                <CheckListItem
+                  title="Constraint-aligned output"
+                  description="AI code suggestions are bounded by your documented constraints and design principles"
+                />
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
+              <img
+                src="/images/code-generation.gif"
+                alt="Claude using Archcore MCP for context-aware code generation"
+                className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
+
+      <div className="mt-12 flex flex-col items-center gap-3">
+        <Button variant="outline" size="lg" onClick={onOpenDemo} className="gap-2">
+          <Sparkles className="h-4 w-4" />
+          Explore source of thruth
+        </Button>
+      </div>
+    </SectionContainer>
   );
 }
 
@@ -372,102 +493,6 @@ function UseCasesSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
         onButtonClick={onOpenDemo}
         className="mt-10"
       />
-    </SectionContainer>
-  );
-}
-
-interface WorkflowItem {
-  icon: typeof GitPullRequest;
-  title: string;
-  description: string;
-  imageLight?: string;
-  imageDark?: string;
-}
-
-const workflowItems: WorkflowItem[] = [
-  {
-    icon: GitPullRequest,
-    title: "Architecture-aware code reviews",
-    description:
-      "Pull requests are evaluated not only against style or tests, but against explicit architectural decisions, constraints, and intent.",
-    imageLight: "/images/documents-list-light.png",
-    imageDark: "/images/documents-list-dark.png",
-  },
-  {
-    icon: MessageSquare,
-    title: "LLM conversations grounded in architectural reality",
-    description:
-      "Instead of generic answers, AI agents reason over your system's actual architectural context — decisions, rules, and historical intent.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Explainability beyond code",
-    description:
-      "Understand not just how the system works, but why it was designed this way — even months or years after decisions were made.",
-    imageLight: "/images/editor-zoom-light.png",
-    imageDark: "/images/editor-zoom-dark.png",
-  },
-  {
-    icon: RefreshCw,
-    title: "Human and AI alignment over time",
-    description:
-      "As systems evolve, Archcore helps ensure that human understanding and AI reasoning stay aligned with the same architectural source of truth.",
-    imageLight: "/images/analytics-light.png",
-    imageDark: "/images/analytics-dark.png",
-  },
-];
-
-function WorkflowsSection() {
-  return (
-    <SectionContainer id="workflows" className="border-b border-border">
-      <SectionHeader
-        title="Where architectural intent meets daily workflows"
-        description="Architectural intent stops living in documents — and starts shaping how code is reviewed, discussed, and generated."
-      />
-
-      <div className="space-y-16">
-        {workflowItems.map((item, index) => {
-          const isReversed = index % 2 === 1;
-          return (
-            <div
-              key={item.title}
-              className={cn(
-                "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start",
-                isReversed && "lg:[direction:rtl]",
-              )}
-            >
-              <div className={cn("space-y-4", isReversed && "lg:[direction:ltr]")}>
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-primary/10">
-                    <item.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{item.title}</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
-
-              <div className="lg:[direction:ltr]">
-                <div className="rounded-xl border border-border overflow-hidden bg-muted/30">
-                  <img
-                    src={item.imageLight ?? "/images/mcp-dark.png"}
-                    alt={item.title}
-                    className="w-full h-auto dark:hidden"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src={item.imageDark ?? "/images/mcp-light.png"}
-                    alt={item.title}
-                    className="w-full h-auto hidden dark:block"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
     </SectionContainer>
   );
 }
@@ -611,8 +636,8 @@ export default function App() {
       <main>
         <HeroSection onOpenDemo={openDemoDialog} onContactClick={openContactDialog} />
         <TrustStrip />
+        <HowItWorksSection onOpenDemo={openDemoDialog} />
         <UseCasesSection onOpenDemo={openDemoDialog} />
-        <WorkflowsSection />
         <ProblemSection onOpenDemo={openDemoDialog} />
         <EnterpriseSection onOpenDemo={openDemoDialog} />
       </main>
