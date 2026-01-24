@@ -156,14 +156,14 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
 
 function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
   return (
-    <section id="top" className="relative py-24 pt-28 px-6 min-h-[600px] lg:min-h-[700px] overflow-hidden">
+    <section id="top" className="relative py-16 pt-20 lg:py-24 lg:pt-28 px-4 md:px-6 lg:px-8 min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
       {/* Interactive demo GIF on right side - desktop only */}
-      <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:block" style={{ zIndex: 20 }}>
+      <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:block z-20">
         <a
           href={DEMO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] block cursor-pointer"
+          className="group absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[90%] max-w-[650px] xl:max-w-[800px] block cursor-pointer"
         >
           {/* GIF */}
           <img
@@ -186,7 +186,7 @@ function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
 
       {/* Content layer */}
       <div className="relative z-10 max-w-6xl mx-auto w-full">
-        <div className="max-w-lg lg:max-w-[38%] space-y-8 mx-auto text-center lg:mx-0 lg:text-left">
+        <div className="max-w-lg md:max-w-xl lg:max-w-[480px] xl:max-w-[520px] space-y-8 mx-auto text-center lg:mx-0 lg:text-left">
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
               <span className="text-primary">Context engineering</span> for deterministic AI-assisted development.
@@ -201,17 +201,20 @@ function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
             <DualCTA
               primaryLabel="Open Demo"
               primaryHref={DEMO_URL}
-              secondaryLabel="Contact Us"
-              onSecondaryClick={onContactClick}
+              secondaryLabel="How it works?"
+              secondaryHref="#how-it-works"
               className="justify-start"
             />
           </div>
 
-          {/* Mobile: Only show Contact Us button (demo is in GIF overlay) */}
+          {/* Mobile: Show both buttons in a row, centered */}
           <div className="flex lg:hidden justify-center">
-            <Button size="lg" variant="outline" onClick={onContactClick}>
-              Contact Us
-            </Button>
+            <DualCTA
+              primaryLabel="Open Demo"
+              primaryHref={DEMO_URL}
+              secondaryLabel="How it works?"
+              secondaryHref="#how-it-works"
+            />
           </div>
 
           <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
@@ -224,7 +227,7 @@ function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
         </div>
 
         {/* Interactive demo GIF - shown at bottom on mobile/tablet */}
-        <div className="mt-12 lg:hidden">
+        <div className="mt-8 lg:hidden">
           <a
             href={DEMO_URL}
             target="_blank"
