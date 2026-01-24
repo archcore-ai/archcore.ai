@@ -154,7 +154,7 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
   );
 }
 
-function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
+function HeroSection() {
   return (
     <section id="top" className="relative py-16 pt-20 lg:py-24 lg:pt-28 px-4 md:px-6 lg:px-8 min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
       {/* Interactive demo GIF on right side - desktop only */}
@@ -666,7 +666,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-foreground">
       <StickyHeader onContactClick={openContactDialog} />
       <main>
-        <HeroSection onContactClick={openContactDialog} />
+        <HeroSection />
         <TrustStrip />
         <HowItWorksSection />
         <UseCasesSection />
