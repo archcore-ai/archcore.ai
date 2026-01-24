@@ -14,6 +14,7 @@ import {
   Box,
   Container,
   Sparkles,
+  PlayCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -153,25 +154,31 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
 function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
   return (
     <section id="top" className="relative py-24 pt-28 px-6 min-h-[600px] lg:min-h-[700px] overflow-hidden">
-      {/* Large decorative background image on right side - desktop only */}
-      {/* Both theme images rendered, CSS controls visibility to prevent flash */}
-      <div className="absolute top-0 right-0 w-[55%] h-full pointer-events-none hidden lg:block" style={{ zIndex: 1 }}>
-        <img
-          src="/images/main-page-light.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] h-auto max-w-none opacity-80 object-contain dark:hidden"
-          loading="eager"
-          decoding="async"
-        />
-        <img
-          src="/images/main-page-dark.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] h-auto max-w-none opacity-70 object-contain hidden dark:block"
-          loading="eager"
-          decoding="async"
-        />
+      {/* Interactive demo GIF on right side - desktop only */}
+      <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:block" style={{ zIndex: 20 }}>
+        <a
+          href={DEMO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group absolute top-1/2 right-0 -translate-y-1/2 translate-x-[10%] w-[650px] xl:w-[800px] block cursor-pointer"
+        >
+          {/* GIF */}
+          <img
+            src="/images/archcore-demo.gif"
+            alt="Archcore platform demo"
+            className="w-full h-auto max-w-none object-contain rounded-lg border border-border/50 shadow-lg cursor-pointer"
+            loading="eager"
+            decoding="async"
+          />
+
+          {/* Always-visible overlay */}
+          <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center cursor-pointer">
+            <div className="flex flex-col items-center gap-3 text-white transition-transform duration-200 group-hover:scale-110">
+              <PlayCircle className="h-16 w-16" strokeWidth={1.5} />
+              <span className="text-lg font-semibold">Run Demo</span>
+            </div>
+          </div>
+        </a>
       </div>
 
       {/* Content layer */}
@@ -186,13 +193,23 @@ function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
             </p>
           </div>
 
-          <DualCTA
-            primaryLabel="Open Demo"
-            primaryHref={DEMO_URL}
-            secondaryLabel="Contact Us"
-            onSecondaryClick={onContactClick}
-            className="justify-center lg:justify-start"
-          />
+          {/* Desktop: Show both buttons */}
+          <div className="hidden lg:flex">
+            <DualCTA
+              primaryLabel="Open Demo"
+              primaryHref={DEMO_URL}
+              secondaryLabel="Contact Us"
+              onSecondaryClick={onContactClick}
+              className="justify-start"
+            />
+          </div>
+
+          {/* Mobile: Only show Contact Us button (demo is in GIF overlay) */}
+          <div className="flex lg:hidden justify-center">
+            <Button size="lg" variant="outline" onClick={onContactClick}>
+              Contact Us
+            </Button>
+          </div>
 
           <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
             {["Self-hosted", "MCP-native"].map((chip) => (
@@ -203,23 +220,31 @@ function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
           </div>
         </div>
 
-        {/* Mobile/tablet image - shown at bottom */}
-        {/* Both theme images rendered, CSS controls visibility to prevent flash */}
+        {/* Interactive demo GIF - shown at bottom on mobile/tablet */}
         <div className="mt-12 lg:hidden">
-          <img
-            src="/images/main-page-light.png"
-            alt="Archcore platform interface"
-            className="w-full h-auto max-w-xl mx-auto object-contain dark:hidden"
-            loading="eager"
-            decoding="async"
-          />
-          <img
-            src="/images/main-page-dark.png"
-            alt="Archcore platform interface"
-            className="w-full h-auto max-w-xl mx-auto object-contain hidden dark:block"
-            loading="eager"
-            decoding="async"
-          />
+          <a
+            href={DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block relative max-w-xl mx-auto cursor-pointer"
+          >
+            {/* GIF */}
+            <img
+              src="/images/archcore-demo.gif"
+              alt="Archcore platform demo"
+              className="w-full h-auto object-contain rounded-lg border border-border/50 shadow-md cursor-pointer"
+              loading="eager"
+              decoding="async"
+            />
+
+            {/* Always-visible overlay on mobile */}
+            <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center cursor-pointer">
+              <div className="flex flex-col items-center gap-2 text-white transition-transform duration-200 active:scale-95">
+                <PlayCircle className="h-12 w-12" strokeWidth={1.5} />
+                <span className="text-base font-semibold">Run Demo</span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
