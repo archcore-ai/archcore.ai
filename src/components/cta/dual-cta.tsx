@@ -20,21 +20,20 @@ export function DualCTA({
   // onSecondaryClick,
   className,
 }: DualCTAProps) {
+  const handlePrimaryClick = () => {
+    if (primaryHref) {
+      window.open(primaryHref, "_blank", "noopener,noreferrer");
+    } else if (onPrimaryClick) {
+      onPrimaryClick();
+    }
+  };
+
   return (
     <div className={`flex flex-col sm:flex-row gap-4 ${className ?? ""}`}>
-      {primaryHref ? (
-        <Button size="lg" className="gap-2" asChild>
-          <a href={primaryHref}>
-            {primaryLabel}
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </Button>
-      ) : (
-        <Button size="lg" className="gap-2" onClick={onPrimaryClick}>
-          {primaryLabel}
-          <ArrowRight className="h-4 w-4" />
-        </Button>
-      )}
+      <Button size="lg" className="gap-2" onClick={handlePrimaryClick}>
+        {primaryLabel}
+        <ArrowRight className="h-4 w-4" />
+      </Button>
 
       {/* {secondaryHref ? (
         <Button size="lg" variant="outline" asChild>

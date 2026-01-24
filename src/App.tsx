@@ -26,7 +26,6 @@ import {
   DualCTA,
   InlineEmailCapture,
   ContactDialog,
-  OpenDemoDialog,
   SectionCTACard,
   StickyCTABar,
 } from "@/components/cta";
@@ -151,7 +150,7 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
   );
 }
 
-function HeroSection({ onOpenDemo, onContactClick }: { onOpenDemo?: () => void; onContactClick?: () => void }) {
+function HeroSection({ onContactClick }: { onContactClick?: () => void }) {
   return (
     <section id="top" className="relative py-24 pt-28 px-6 min-h-[600px] lg:min-h-[700px] overflow-hidden">
       {/* Large decorative background image on right side - desktop only */}
@@ -189,7 +188,7 @@ function HeroSection({ onOpenDemo, onContactClick }: { onOpenDemo?: () => void; 
 
           <DualCTA
             primaryLabel="Open Demo"
-            onPrimaryClick={onOpenDemo}
+            primaryHref={DEMO_URL}
             secondaryLabel="Contact Us"
             onSecondaryClick={onContactClick}
             className="justify-center lg:justify-start"
@@ -241,7 +240,7 @@ function TrustStrip() {
   );
 }
 
-function HowItWorksSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
+function HowItWorksSection() {
   return (
     <SectionContainer id="how-it-works" className="border-b border-border">
       <SectionHeader
@@ -368,7 +367,12 @@ function HowItWorksSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
       </Tabs>
 
       <div className="mt-12 flex flex-col items-center gap-3">
-        <Button variant="outline" size="lg" onClick={onOpenDemo} className="gap-2">
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={() => window.open(DEMO_URL, "_blank", "noopener,noreferrer")}
+          className="gap-2"
+        >
           <Sparkles className="h-4 w-4" />
           Explore source of thruth
         </Button>
@@ -400,7 +404,7 @@ const painPoints = [
   },
 ];
 
-function ProblemSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
+function ProblemSection() {
   return (
     <SectionContainer id="problem" className="bg-muted/30 border-b border-border">
       <div className="text-center space-y-6 mb-12">
@@ -429,7 +433,7 @@ function ProblemSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
         title="See how Archcore works in practice"
         description="Build shared architectural understanding for humans and AI."
         buttonLabel="Open Demo"
-        onButtonClick={onOpenDemo}
+        buttonHref={DEMO_URL}
         className="mt-10"
       />
     </SectionContainer>
@@ -459,7 +463,7 @@ const useCases = [
   },
 ];
 
-function UseCasesSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
+function UseCasesSection() {
   return (
     <SectionContainer id="use-cases" className="border-b border-border">
       <SectionHeader
@@ -490,7 +494,7 @@ function UseCasesSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
         title="Start shipping with confidence"
         description="Keep architectural understanding aligned — across teams and AI."
         buttonLabel="Try Demo"
-        onButtonClick={onOpenDemo}
+        buttonHref={DEMO_URL}
         className="mt-10"
       />
     </SectionContainer>
@@ -510,7 +514,7 @@ const trustBullets = [
   "Designed for environments with strict architectural and data controls",
 ];
 
-function EnterpriseSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
+function EnterpriseSection() {
   return (
     <SectionContainer id="privacy" className="bg-muted/30 border-b border-border">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -545,7 +549,7 @@ function EnterpriseSection({ onOpenDemo }: { onOpenDemo?: () => void }) {
 
           <DualCTA
             primaryLabel="Open Demo"
-            onPrimaryClick={onOpenDemo}
+            primaryHref={DEMO_URL}
             // secondaryLabel="Explore the Architecture Layer"
             // secondaryHref={DOCS_URL}
             className="pt-2"
@@ -625,26 +629,22 @@ export default function App() {
     contactDialogOpen,
     setContactDialogOpen,
     openContactDialog,
-    openDemoDialogOpen,
-    setOpenDemoDialogOpen,
-    openDemoDialog,
   } = useCTAState();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <StickyHeader onContactClick={openContactDialog} />
       <main>
-        <HeroSection onOpenDemo={openDemoDialog} onContactClick={openContactDialog} />
+        <HeroSection onContactClick={openContactDialog} />
         <TrustStrip />
-        <HowItWorksSection onOpenDemo={openDemoDialog} />
-        <UseCasesSection onOpenDemo={openDemoDialog} />
-        <ProblemSection onOpenDemo={openDemoDialog} />
-        <EnterpriseSection onOpenDemo={openDemoDialog} />
+        <HowItWorksSection />
+        <UseCasesSection />
+        <ProblemSection />
+        <EnterpriseSection />
       </main>
       <FooterSection onContactClick={openContactDialog} />
       <StickyCTABar message="Questions about Archcore?" buttonLabel="Contact us" onButtonClick={openContactDialog} />
       <ContactDialog open={contactDialogOpen} onOpenChange={setContactDialogOpen} />
-      <OpenDemoDialog open={openDemoDialogOpen} onOpenChange={setOpenDemoDialogOpen} demoUrl={DEMO_URL} />
     </div>
   );
 }

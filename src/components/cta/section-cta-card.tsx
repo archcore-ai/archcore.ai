@@ -8,6 +8,7 @@ interface SectionCTACardProps {
   title: string
   description: string
   buttonLabel?: string
+  buttonHref?: string
   onButtonClick?: () => void
   className?: string
   /** Use 'featured' for the main conversion CTA with enhanced styling */
@@ -19,10 +20,18 @@ export function SectionCTACard({
   title,
   description,
   buttonLabel = 'Learn More',
+  buttonHref,
   onButtonClick,
   className,
   variant = 'default',
 }: SectionCTACardProps) {
+  const handleButtonClick = () => {
+    if (buttonHref) {
+      window.open(buttonHref, "_blank", "noopener,noreferrer");
+    } else if (onButtonClick) {
+      onButtonClick();
+    }
+  };
   if (variant === 'featured') {
     return (
       <div
@@ -46,7 +55,7 @@ export function SectionCTACard({
               </p>
             </div>
             <Button
-              onClick={onButtonClick}
+              onClick={handleButtonClick}
               className="gap-2 flex-shrink-0"
             >
               {buttonLabel}
@@ -106,7 +115,7 @@ export function SectionCTACard({
             <h3 className="text-lg font-semibold">{title}</h3>
             <p className="text-muted-foreground">{description}</p>
           </div>
-          <Button onClick={onButtonClick} className="gap-2 flex-shrink-0">
+          <Button onClick={handleButtonClick} className="gap-2 flex-shrink-0">
             {buttonLabel}
             <ArrowRight className="h-4 w-4" />
           </Button>
