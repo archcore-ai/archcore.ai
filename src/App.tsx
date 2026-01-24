@@ -92,42 +92,45 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
         isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent",
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-0 h-16 flex items-center justify-between">
-        <a href="#top">
-          <Logo size="md" loading="eager" />
-        </a>
+      <div className="px-6">
+        <div className="max-w-6xl mx-auto h-16 flex items-center justify-between">
+          <a href="#top">
+            <Logo size="md" loading="eager" />
+          </a>
 
-        <div className="hidden md:flex items-center gap-1">
-          {navItems.map((item) => (
-            <Button key={item.href} variant="ghost" size="sm" asChild>
-              <a href={item.href}>{item.label}</a>
+          <nav className="hidden md:flex items-center gap-2">
+            {navItems.map((item) => (
+              <Button key={item.href} variant="ghost" size="sm" asChild>
+                <a href={item.href}>{item.label}</a>
+              </Button>
+            ))}
+            <Button variant="ghost" size="sm" onClick={onContactClick}>
+              Contact Us
             </Button>
-          ))}
-          <Button variant="ghost" size="sm" onClick={onContactClick}>
-            Contact Us
+          </nav>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => {
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => {
-            setMobileMenuOpen(!mobileMenuOpen);
-          }}
-        >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </Button>
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
-          <nav className="px-6 py-4 space-y-2">
+        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md px-6">
+          <nav className="max-w-6xl mx-auto py-4 space-y-1">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-sm"
+                className="block py-2.5 text-sm hover:text-primary transition-colors"
                 onClick={() => {
                   setMobileMenuOpen(false);
                 }}
@@ -136,7 +139,7 @@ function StickyHeader({ onContactClick }: { onContactClick?: () => void }) {
               </a>
             ))}
             <button
-              className="block py-2 text-sm w-full text-left"
+              className="block py-2.5 text-sm w-full text-left hover:text-primary transition-colors"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onContactClick?.();
