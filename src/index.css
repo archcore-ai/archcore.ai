@@ -32,6 +32,28 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Accordion animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 /*
@@ -86,7 +108,87 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply overflow-x-hidden;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+/* Hero section background pattern - Square grid with Solarized Light colors */
+.hero-pattern {
+  background:
+    linear-gradient(rgba(147, 161, 161, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(147, 161, 161, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #FDF6E3 0%, #F8F6EB 100%);
+  background-size: 70px 70px, 70px 70px, 100% 100%;
+}
+
+.dark .hero-pattern {
+  background-color: oklch(0.16 0.02 95);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+/* Hero typography styles */
+.hero-title {
+  background: linear-gradient(135deg,
+    oklch(0.145 0 0) 0%,
+    oklch(0.25 0.05 95) 50%,
+    oklch(0.145 0 0) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 8s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dark .hero-title {
+  background: linear-gradient(135deg,
+    oklch(0.95 0.02 95) 0%,
+    oklch(0.75 0.08 95) 50%,
+    oklch(0.95 0.02 95) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes shine {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.hero-description {
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  white-space: pre-line;
+}
+
+.dark .hero-description {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title {
+    animation: none;
+    background: oklch(0.145 0 0);
+    -webkit-text-fill-color: initial;
+  }
+
+  .dark .hero-title {
+    background: oklch(0.95 0.02 95);
+    -webkit-text-fill-color: initial;
   }
 }

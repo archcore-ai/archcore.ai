@@ -1,0 +1,901 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-01-27 12:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ru\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/determinism-visual.tsx:17
+msgid "\"Why microservices?\""
+msgstr "\"Почему микросервисы?\""
+
+#: src/components/comparison-table.tsx:36
+msgid "✓ AI follows architectural rules"
+msgstr "✓ ИИ следует архитектурным правилам"
+
+#: src/components/comparison-table.tsx:34
+msgid "✓ Deterministic retrieval"
+msgstr "✓ Детерминированное извлечение"
+
+#: src/components/comparison-table.tsx:17
+msgid "✓ Finds information across apps"
+msgstr "✓ Находит информацию across приложений"
+
+#: src/components/comparison-table.tsx:18
+msgid "✓ Great for \"what did we discuss?\""
+msgstr "✓ Отлично для \"что мы обсуждали?\""
+
+#: src/components/comparison-table.tsx:32
+msgid "✓ Makes intent an enforceable contract"
+msgstr "✓ Превращает намерения в исполняемый контракт"
+
+#: src/components/comparison-table.tsx:33
+msgid "✓ Structured, governed, versioned"
+msgstr "✓ Структурировано, управляемо, версионировано"
+
+#: src/components/comparison-table.tsx:35
+msgid "✓ Traceable to sources"
+msgstr "✓ Отслеживаемо до источников"
+
+#: src/components/comparison-table.tsx:21
+msgid "✗ Can't enforce constraints"
+msgstr "✗ Не может обеспечить соблюдение ограничений"
+
+#: src/components/comparison-table.tsx:19
+msgid "✗ No architectural structure"
+msgstr "✗ Нет архитектурной структуры"
+
+#: src/components/comparison-table.tsx:20
+msgid "✗ Results vary by query phrasing"
+msgstr "✗ Результаты зависят от формулировки запроса"
+
+#: src/components/sections/problem-section.tsx:26
+#~ msgid "15-20% of PRs introduce violations"
+#~ msgstr "15-20% PR нарушают архитектуру"
+
+#: src/components/sections/problem-section.tsx:22
+#~ msgid "15-20% of PRs violate constraints"
+#~ msgstr "15-20% PR нарушают ограничения"
+
+#: src/components/sections/problem-section.tsx:19
+#~ msgid "3-4 weeks onboarding per engineer"
+#~ msgstr "3-4 недели онбординга на инженера"
+
+#: src/components/faq-section.tsx:35
+msgid "30 minutes to deploy the binary. 1-2 days to ingest initial sources and configure connectors. Context building is incremental from there."
+msgstr "30 минут на развёртывание бинарника. 1-2 дня на начальную индексацию источников и настройку коннекторов. Построение контекста происходит инкрементально."
+
+#: src/components/sections/use-cases-section.tsx:28
+msgid "60% fewer architecture violations reach main"
+msgstr "На 60% меньше нарушений архитектуры попадает в main"
+
+#: src/components/sections/use-cases-section.tsx:36
+msgid "75% reduction in architectural rework cycles"
+msgstr "Снижение переделок архитектуры на 75%"
+
+#: src/components/sections/problem-section.tsx:16
+#~ msgid "80% of architectural knowledge undocumented"
+#~ msgstr "80% архитектурных знаний не документированы"
+
+#: src/components/determinism-visual.tsx:33
+msgid "Access policy, versioning"
+msgstr "Политики доступа, версионирование"
+
+#: src/components/sections/integrations-section.tsx:38
+#~ msgid "ADR"
+#~ msgstr "ADR"
+
+#: src/components/determinism-visual.tsx:25
+msgid "ADR-042, RFC-15"
+msgstr "ADR-042, RFC-15"
+
+#: src/components/sections/integrations-section.tsx:39
+#~ msgid "ADRs, RFCs, diagrams, runbooks"
+#~ msgstr "ADR, RFC, диаграммы, runbook"
+
+#: src/components/sections/use-cases-section.tsx:35
+msgid "Agent uses Archcore context, generates code following current OAuth2 standard"
+msgstr "Агент использует контекст Archcore и генерирует код по текущему стандарту OAuth2"
+
+#: src/components/sections/problem-section.tsx:11
+msgid "AI sees fragments, not the system. Impossible to understand how pieces connect."
+msgstr "ИИ видит куски, а не систему. Невозможно понять, как части связаны друг с другом."
+
+#: src/components/solution-diagram.tsx:67
+msgid "AI Tools"
+msgstr "ИИ-инструменты"
+
+#: src/components/sections/problem-section.tsx:40
+#~ msgid "AI-generated code often needs arch rework"
+#~ msgstr "ИИ-код часто требует архитектурных переделок"
+
+#: src/components/determinism-visual.tsx:40
+msgid "Answer"
+msgstr "Ответ"
+
+#: src/components/sections/solution-section.tsx:36
+msgid "Answers with citations to specific decisions"
+msgstr "Ответы с цитатами на конкретные решения"
+
+#: src/components/sections/solution-section.tsx:30
+msgid "Apply"
+msgstr "Применять"
+
+#: src/components/comparison-table.tsx:29
+msgid "Archcore"
+msgstr "Archcore"
+
+#: src/components/sections/hero-section.tsx:50
+#~ msgid "Archcore captures architectural decisions, constraints, and system relationships — then feeds them to chat, code review, and coding agents with traceable sources."
+#~ msgstr "Archcore фиксирует архитектурные решения, ограничения и связи между системами — и передаёт их в чат, код-ревью и агентов с отслеживаемыми источниками."
+
+#: src/components/sections/hero-section.tsx:25
+msgid "Archcore gathers architectural decisions from code, ADRs, and discussions, transforms them into an Architecture Record (versioned contract), and delivers it to IDEs/chats/agents via MCP — with traceable sources."
+msgstr ""
+"Archcore помогает командам строить точный технический контекст\n"
+"для улучшения работы AI агентов"
+
+#: src/components/sections/use-cases-section.tsx:19
+msgid "Archcore provides ADR with decision rationale, constraints, and current state"
+msgstr "Archcore предоставляет ADR с обоснованием решений, ограничениями и текущим состоянием"
+
+#: src/components/sections/enterprise-section.tsx:32
+msgid "Archcore runs entirely on your infrastructure — no SaaS, no data export, no third-party AI vendors required. Keep your code and architectural knowledge inside your security perimeter."
+msgstr "Archcore работает полностью на вашей инфраструктуре — без SaaS, без экспорта данных, без сторонних ИИ-провайдеров. Храните код и архитектурные знания внутри вашего периметра безопасности."
+
+#: src/components/faq-section.tsx:31
+msgid "Archcore works with Claude, GPT, and local models via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can use your Architecture Record."
+msgstr "Archcore работает с Claude, GPT и локальными моделями через Ollama или LM Studio. Он нативно поддерживает MCP, поэтому любой MCP-совместимый ИИ-инструмент может использовать ваш Architecture Record."
+
+#: src/components/sections/use-cases-section.tsx:27
+msgid "Archcore-powered review flags violation of connection pooling rules (links to ADR)"
+msgstr "Ревью на основе Archcore обнаруживает нарушение правил пулинга подключений (со ссылкой на ADR)"
+
+#: src/components/sections/problem-section.tsx:18
+#~ msgid "Architectural decisions live in Slack threads, meeting notes, and tribal memory. New engineers can't find them. AI definitely can't."
+#~ msgstr "Архитектурные решения живут в Slack-тредах, записях встреч и коллективной памяти. Новые инженеры не могут их найти. ИИ точно не может."
+
+#: src/components/sections/architecture-record-section.tsx:15
+msgid "Architectural decisions with rationale: why this approach, what were alternatives."
+msgstr "Архитектурные решения с обоснованием: почему выбрали этот подход, какие были альтернативы."
+
+#: src/components/sections/problem-section.tsx:25
+#~ msgid "Architectural invariants are implicit. Teams discover them when prod breaks, not before."
+#~ msgstr "Архитектурные инварианты неявные. Команды узнают о них, когда прод ломается, а не заранее."
+
+#: src/components/sections/solution-section.tsx:53
+#~ msgid "Architectural rules that AI must follow, not suggestions it can ignore"
+#~ msgstr "Архитектурные правила, которым ИИ должен следовать, а не предложения, которые можно игнорировать"
+
+#: src/components/sections/enterprise-section.tsx:35
+msgid "Architectural understanding remains local, explicit, and under your control."
+msgstr "Понимание архитектуры остаётся локальным, явным и под вашим контролем."
+
+#: src/components/sections/integrations-section.tsx:41
+#~ msgid "Architecture Decision Records from markdown files"
+#~ msgstr "Architecture Decision Records из markdown-файлов"
+
+#: src/components/sections/integrations-section.tsx:37
+#~ msgid "Architecture Docs"
+#~ msgstr "Архитектурная документация"
+
+#: src/components/solution-diagram.tsx:56
+msgid "Architecture Record"
+msgstr "Архитектурная запись"
+
+#: src/components/sections/solution-section.tsx:26
+msgid "Architecture Record as enforceable contract"
+msgstr "Архитектурная запись как исполняемый контракт"
+
+#: src/components/sections/integrations-section.tsx:46
+#: src/components/sections/integrations-section.tsx:53
+#: src/components/sections/integrations-section.tsx:60
+#~ msgid "Beta"
+#~ msgstr "Бета"
+
+#: src/App.tsx:43
+#: src/components/sections/use-cases-section.tsx:59
+msgid "Book a Demo"
+msgstr "Заказать демо"
+
+#: src/components/sections/architecture-record-section.tsx:24
+msgid "Boundaries"
+msgstr "Границы"
+
+#: src/components/sections/problem-section.tsx:78
+#~ msgid "Build shared architectural understanding for humans and AI."
+#~ msgstr "Создайте общее понимание архитектуры для людей и ИИ."
+
+#: src/components/sections/integrations-section.tsx:46
+#~ msgid "Build Your Architecture Record from existing sources"
+#~ msgstr "Создайте свою архитектурную запись из существующих источников"
+
+#: src/components/sections/trust-strip.tsx:8
+#~ msgid "Built for <0>engineering teams</0> who need architecture that AI can follow"
+#~ msgstr "Создано для <0>инженерных команд</0>, которым нужна архитектура, которую ИИ может соблюдать"
+
+#: src/components/faq-section.tsx:38
+msgid "Can we control what context AI tools see?"
+msgstr "Можем ли мы контролировать, какой контекст видят ИИ-инструменты?"
+
+#: src/components/sections/demo-section.tsx:22
+msgid "Check PR for architectural constraint violations"
+msgstr "Проверь PR на нарушения архитектурных ограничений"
+
+#: src/components/sections/integrations-section.tsx:31
+#~ msgid "Code"
+#~ msgstr "Код"
+
+#: src/components/sections/solution-section.tsx:21
+msgid "Code + ADRs + discussions"
+msgstr "Код + ADR + обсуждения"
+
+#: src/components/sections/architecture-record-section.tsx:40
+msgid "Code review criteria for architectural compliance."
+msgstr "Критерии проверки кода на соответствие архитектурным требованиям."
+
+#: src/components/sections/use-cases-section.tsx:33
+msgid "Coding agent generates REST endpoint using deprecated auth pattern"
+msgstr "Агент генерирует REST-эндпоинт с устаревшим паттерном аутентификации"
+
+#: src/components/faq-section.tsx:55
+msgid "Common questions about Architecture Record and how Archcore works"
+msgstr "Часто задаваемые вопросы об Architecture Record и том, как работает Archcore"
+
+#: src/components/sections/problem-section.tsx:20
+#~ msgid "Commonly $15-20K in lost productivity"
+#~ msgstr "Обычно $15-20K потерянной производительности"
+
+#: src/components/faq-section.tsx:47
+msgid "Compliance certifications are on our roadmap. Archcore is self-hosted, so you control the infrastructure and can map it to your existing compliance frameworks."
+msgstr "Сертификаты соответствия в нашем roadmap. Archcore self-hosted, поэтому вы контролируете инфраструктуру и можете сопоставить её с вашими существующими фреймворками соответствия."
+
+#: src/components/sections/stories-section.tsx:46
+#~ msgid "Concrete examples of how enforceable context changes development workflows"
+#~ msgstr "Конкретные примеры того, как исполняемый контекст меняет рабочие процессы разработки"
+
+#: src/components/sections/integrations-section.tsx:59
+#~ msgid "Confluence"
+#~ msgstr "Confluence"
+
+#: src/components/sections/integrations-section.tsx:27
+#~ msgid "Confluence, Notion, Google Docs"
+#~ msgstr "Confluence, Notion, Google Docs"
+
+#: src/components/sections/integrations-section.tsx:48
+#~ msgid "Confluence, Notion, markdown documentation"
+#~ msgstr "Confluence, Notion, markdown-документация"
+
+#: src/components/sections/integrations-section.tsx:111
+#~ msgid "Connect your sources"
+#~ msgstr "Подключите свои источники"
+
+#: src/components/sections/integrations-section.tsx:12
+msgid "Connects to Your Architecture Sources"
+msgstr "Платформа контекстной инженерии"
+
+#: src/components/sections/architecture-record-section.tsx:19
+msgid "Constraints (must/never)"
+msgstr "Ограничения (must/never)"
+
+#: src/components/faq-section.tsx:73
+#: src/components/sections/footer-section.tsx:52
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+#: src/components/sections/problem-section.tsx:32
+msgid "Context fragmentation is the root cause of AI hallucinations and architectural drift."
+msgstr "Фрагментация контекста — это основная причина галлюцинаций ИИ и архитектурного дрейфа."
+
+#: src/components/sections/problem-section.tsx:10
+msgid "Context scattered across code, docs, and chats"
+msgstr "Контекст рассыпан по коду, докам и чатам"
+
+#: src/components/sections/problem-section.tsx:16
+msgid "Conventions are easily ignored when not structured. No automatic validation."
+msgstr "Соглашения легко игнорируются, когда они не структурированы. Нет автоматической проверки."
+
+#: src/components/faq-section.tsx:23
+msgid "Copilot and Cursor generate code from patterns in public repos. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance, not just generation."
+msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь о управлении, а не только генерации."
+
+#: src/components/sections/problem-section.tsx:17
+#~ msgid "Critical decisions disappear"
+#~ msgstr "Критические решения исчезают"
+
+#: src/components/sections/enterprise-section.tsx:20
+msgid "Data sovereignty"
+msgstr "Суверенитет данных"
+
+#: src/components/sections/enterprise-section.tsx:22
+msgid "Data stays on your infrastructure"
+msgstr "Данные остаются на вашей инфраструктуре"
+
+#: src/components/sections/architecture-record-section.tsx:14
+msgid "Decisions (ADR)"
+msgstr "Решения (ADR)"
+
+#: src/components/sections/sticky-header.tsx:20
+msgid "Demo"
+msgstr "Демо"
+
+#: src/components/sections/hero-section.tsx:88
+msgid "Demo is read-only. Creating/editing records available in self-hosted installation."
+msgstr "Демо — только просмотр. Создание/изменение записей доступно в self-hosted установке."
+
+#: src/components/sections/enterprise-section.tsx:23
+msgid "Designed for environments with strict architectural and data controls"
+msgstr "Разработано для сред со строгими архитектурными и data-контролями"
+
+#: src/components/sections/solution-section.tsx:41
+#~ msgid "Deterministic retrieval"
+#~ msgstr "Детерминированное извлечение"
+
+#: src/components/faq-section.tsx:26
+msgid "Do I need to rewrite our documentation?"
+msgstr "Нужно ли переписывать нашу документацию?"
+
+#: src/components/sections/enterprise-section.tsx:15
+msgid "Docker-ready"
+msgstr "Готово к Docker"
+
+#: src/components/sections/integrations-section.tsx:45
+#~ msgid "Docs"
+#~ msgstr "Документация"
+
+#: src/components/sections/problem-section.tsx:38
+#~ msgid "Docs lie"
+#~ msgstr "Документация врёт"
+
+#: src/components/sections/integrations-section.tsx:25
+#~ msgid "Documentation"
+#~ msgstr "Документация"
+
+#: src/components/sections/problem-section.tsx:39
+#~ msgid "Documentation says one thing. The system behaves differently. AI reads the docs and generates wrong code."
+#~ msgstr "Документация говорит одно. Система ведёт себя по-другому. ИИ читает документацию и генерирует неправильный код."
+
+#: src/components/sections/architecture-record-section.tsx:35
+msgid "Domain terms and definitions, team's ubiquitous language."
+msgstr "Термины и определения предметной области, единый язык команды."
+
+#: src/components/sections/integrations-section.tsx:26
+#: src/components/sections/integrations-section.tsx:32
+#~ msgid "early access"
+#~ msgstr "ранний доступ"
+
+#: src/components/sections/solution-section.tsx:51
+#~ msgid "Enforceable constraints"
+#~ msgstr "Исполняемые ограничения"
+
+#: src/components/sections/footer-section.tsx:30
+msgid "Enter your work email"
+msgstr "Введите рабочий email"
+
+#: src/components/comparison-table.tsx:14
+msgid "Enterprise Search (like Onyx)"
+msgstr "Корпоративный поиск (как Onyx)"
+
+#: src/components/sections/solution-section.tsx:33
+#~ msgid "Every AI answer links to specific decisions, ADRs, and constraints"
+#~ msgstr "Каждый ответ ИИ ссылается на конкретные решения, ADR и ограничения"
+
+#: src/components/sections/demo-section.tsx:17
+msgid "Example of AI agent generating code with architectural constraints"
+msgstr "Пример ИИ-агента, генерирующего код с архитектурными ограничениями"
+
+#: src/components/sections/demo-section.tsx:29
+msgid "Example of architectural decision explanation with sources"
+msgstr "Пример объяснения архитектурного решения с источниками"
+
+#: src/components/sections/demo-section.tsx:23
+msgid "Example of automated architectural code review"
+msgstr "Пример автоматизированного архитектурного код-ревью"
+
+#: src/components/sections/architecture-record-section.tsx:29
+msgid "Examples / Anti-examples"
+msgstr "Примеры / Антипримеры"
+
+#: src/components/sections/solution-section.tsx:81
+msgid "Explore how Archcore structures, versions, and enforces architectural context"
+msgstr "Изучите, как Archcore структурирует, версионирует и применяет архитектурный контекст"
+
+#: src/components/sections/use-cases-section.tsx:22
+msgid "Faster Onboarding"
+msgstr "Быстрый онбординг"
+
+#: src/components/sections/hero-section.tsx:45
+msgid "Faster onboarding: \"why did we do this?\" → answer + link to decision/ADR."
+msgstr "Архитектурные решения превращаются в долговременную память команды. "
+
+#: src/components/sections/hero-section.tsx:37
+msgid "Fewer PR iterations: AI considers module boundaries, patterns, and constraints before writing code."
+msgstr "Ускоряет и делает более точной работу AI агентов"
+
+#: src/components/sections/hero-section.tsx:61
+#~ msgid "Fewer risky PRs (AI reviews reference ADRs and standards)"
+#~ msgstr "Меньше рискованных PR (ИИ учитывает ADR и стандарты)"
+
+#: src/components/sections/hero-section.tsx:22
+msgid "for all AI tools"
+msgstr "для AI-инструментов"
+
+#: src/components/faq-section.tsx:54
+msgid "Frequently Asked Questions"
+msgstr "Часто задаваемые вопросы"
+
+#: src/components/sections/solution-section.tsx:20
+msgid "Gather"
+msgstr "Собрать"
+
+#: src/components/sections/solution-section.tsx:43
+msgid "Gather → Record → Apply → Verify"
+msgstr "Собрать → Зафиксировать → Применять → Проверять"
+
+#: src/components/sections/demo-section.tsx:16
+msgid "Generate service X following context boundaries"
+msgstr "Сгенерируй сервис X, соблюдая границы контекстов"
+
+#: src/components/sections/use-cases-section.tsx:26
+msgid "Generic AI reviewer approves without checking architectural standards"
+msgstr "Обычный ИИ-ревьюер одобряет без проверки архитектурных стандартов"
+
+#: src/components/sections/integrations-section.tsx:19
+#~ msgid "Git Repositories"
+#~ msgstr "Git-репозитории"
+
+#: src/components/sections/integrations-section.tsx:34
+#~ msgid "Git repositories: GitHub, GitLab, Bitbucket"
+#~ msgstr "Git-репозитории: GitHub, GitLab, Bitbucket"
+
+#: src/components/sections/integrations-section.tsx:21
+#~ msgid "GitHub, GitLab: code, PRs, commit history"
+#~ msgstr "GitHub, GitLab: код, PR, история коммитов"
+
+#: src/components/sections/architecture-record-section.tsx:34
+msgid "Glossary"
+msgstr "Глоссарий"
+
+#: src/components/sections/architecture-record-section.tsx:20
+msgid "Hard rules: what must be done, what is strictly forbidden in the codebase."
+msgstr "Жёсткие правила: что обязательно делать, что категорически запрещено в кодовой базе."
+
+#: src/components/sections/problem-section.tsx:34
+#~ msgid "Hours wasted in 'why did we...?' meetings"
+#~ msgstr "Часы, потраченные на встречи 'а почему мы...?'"
+
+#: src/components/faq-section.tsx:22
+msgid "How is Archcore different from GitHub Copilot or Cursor?"
+msgstr "Чем Archcore отличается от GitHub Copilot или Cursor?"
+
+#: src/components/sections/sticky-header.tsx:19
+msgid "How it works"
+msgstr "Как работает"
+
+#: src/components/faq-section.tsx:34
+msgid "How long does setup take?"
+msgstr "Сколько времени занимает настройка?"
+
+#: src/components/sections/use-cases-section.tsx:46
+msgid "How teams use Archcore to solve architectural context challenges"
+msgstr "Как команды используют Archcore для решения проблем архитектурного контекста"
+
+#: src/components/sections/solution-section.tsx:31
+msgid "IDEs/chats/agents get context via MCP"
+msgstr "IDE/чаты/агенты получают контекст через MCP"
+
+#~ msgid "Integrations"
+#~ msgstr "Интеграции"
+
+#: src/components/sections/demo-section.tsx:38
+msgid "Interactive scenarios on a public repository. Read-only tour."
+msgstr "Интерактивные сценарии на публичном репозитории. Read-only тур."
+
+#: src/components/sections/enterprise-section.tsx:60
+#: src/components/sections/solution-section.tsx:82
+msgid "Interactive Tour"
+msgstr "Интерактивный тур"
+
+#: src/components/sections/hero-section.tsx:78
+#: src/components/sections/hero-section.tsx:93
+#~ msgid "Interactive Tour (read-only)"
+#~ msgstr "Интерактивный тур (только чтение)"
+
+#: src/components/faq-section.tsx:46
+msgid "Is Archcore SOC2 / ISO 27001 compliant?"
+msgstr "Соответствует ли Archcore SOC2 / ISO 27001?"
+
+#: src/components/sections/integrations-section.tsx:69
+#~ msgid "Issue tracking and technical context"
+#~ msgstr "Отслеживание задач и технический контекст"
+
+#: src/components/sections/integrations-section.tsx:66
+#~ msgid "Jira"
+#~ msgstr "Jira"
+
+#: src/components/sections/integrations-section.tsx:20
+#: src/components/sections/integrations-section.tsx:38
+#~ msgid "live"
+#~ msgstr "доступно"
+
+#: src/components/sections/enterprise-section.tsx:16
+msgid "Local LLMs supported"
+msgstr "Поддержка локальных LLM"
+
+#: src/components/sections/hero-section.tsx:47
+#~ msgid "Make AI tools follow your architecture — <0>not hallucinate it</0>"
+#~ msgstr "Заставьте ИИ следовать вашей архитектуре — <0>а не галлюцинировать её</0>"
+
+#: src/components/sections/integrations-section.tsx:105
+#~ msgid "MCP server = one way to get context from IDEs/chats/agents"
+#~ msgstr "MCP-сервер = один способ получать контекст из IDE/чатов/агентов"
+
+#: src/components/sections/hero-section.tsx:100
+msgid "MCP-native"
+msgstr "RAG"
+
+#: src/components/sections/architecture-record-section.tsx:25
+msgid "Modules, bounded contexts, interaction interfaces between components."
+msgstr "Модули, bounded contexts, интерфейсы взаимодействия между компонентами."
+
+#: src/components/sections/problem-section.tsx:33
+#~ msgid "Most decisions undocumented after 6mo"
+#~ msgstr "Большинство решений не задокументировано через 6 месяцев"
+
+#: src/components/sections/use-cases-section.tsx:17
+msgid "New engineer asks: \"Why did we choose microservices?\""
+msgstr "Новый инженер спрашивает: \"Почему мы выбрали микросервисы?\""
+
+#: src/components/sections/problem-section.tsx:31
+#~ msgid "No audit trail"
+#~ msgstr "Нет истории решений"
+
+#: src/components/sections/problem-section.tsx:28
+#~ msgid "No audit trail for AI decisions"
+#~ msgstr "Нет audit trail для ИИ-решений"
+
+#: src/components/sections/problem-section.tsx:20
+msgid "No traceability"
+msgstr "Нет проверяемости"
+
+#: src/components/sections/enterprise-section.tsx:21
+msgid "No vendor lock-in"
+msgstr "Нет привязки к вендору"
+
+#: src/components/faq-section.tsx:27
+msgid "No. Archcore ingests existing ADRs, RFCs, docs, and code. You can start with what you have and gradually enhance coverage as you document new decisions."
+msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых решений."
+
+#: src/components/sections/problem-section.tsx:24
+#~ msgid "Nobody knows the constraints"
+#~ msgstr "Никто не знает ограничений"
+
+#: src/components/sections/solution-section.tsx:20
+#~ msgid "Not a document repo. Not a search engine. A structured, versioned, queryable contract."
+#~ msgstr "Не репозиторий документов. Не поисковик. Структурированный, версионированный, запрашиваемый контракт."
+
+#: src/components/sections/integrations-section.tsx:32
+#: src/components/sections/integrations-section.tsx:39
+#~ msgid "Now"
+#~ msgstr "Сейчас"
+
+#: src/components/sections/problem-section.tsx:27
+#~ msgid "Often 2-3 days rework per incident"
+#~ msgstr "Часто 2-3 дня переделок на инцидент"
+
+#: src/components/sections/use-cases-section.tsx:20
+msgid "Onboarding time: 4 weeks → 1.5 weeks"
+msgstr "Время онбординга: 4 недели → 1.5 недели"
+
+#: src/components/sections/hero-section.tsx:20
+msgid "One architectural context"
+msgstr "Общий архитектурный контекст"
+
+#: src/components/sections/hero-section.tsx:23
+#~ msgid "One architectural context for all AI tools"
+#~ msgstr "Общий архитектурный контекст для AI-инструментов"
+
+#: src/components/sections/enterprise-section.tsx:14
+msgid "PostgreSQL backend"
+msgstr "Бэкенд на PostgreSQL"
+
+#: src/components/sections/use-cases-section.tsx:34
+msgid "PR fails security review, wastes 3 days of rework"
+msgstr "PR не проходит security-ревью, тратится 3 дня на переделки"
+
+#: src/components/sections/use-cases-section.tsx:25
+msgid "PR introduces new database connection pattern"
+msgstr "PR вводит новый паттерн подключения к базе"
+
+#: src/components/sections/enterprise-section.tsx:30
+msgid "Private. Self-hosted. Yours."
+msgstr "Приватный. Self-hosted. Ваш."
+
+#: src/components/sections/sticky-header.tsx:18
+msgid "Problems"
+msgstr ""
+
+#~ msgid "Problems We Solve"
+#~ msgstr "Решаемые проблемы"
+
+#: src/components/sections/sticky-header.tsx:18
+#~ msgid "Product"
+#~ msgstr "Продукт"
+
+#: src/components/determinism-visual.tsx:16
+msgid "Question"
+msgstr "Вопрос"
+
+#: src/App.tsx:42
+msgid "Ready to make AI follow your architecture?"
+msgstr "Готовы заставить ИИ следовать вашей архитектуре?"
+
+#: src/components/sections/stories-section.tsx:45
+#~ msgid "Real outcomes from teams using Architecture Record"
+#~ msgstr "Реальные результаты команд, использующих Architecture Record"
+
+#: src/components/sections/use-cases-section.tsx:45
+msgid "Real Use Cases"
+msgstr "Реальные сценарии использования"
+
+#: src/components/sections/solution-section.tsx:25
+msgid "Record"
+msgstr "Зафиксировать"
+
+#: src/components/sections/hero-section.tsx:57
+#~ msgid "Reduce onboarding time (new engineers ramp in days, not weeks)"
+#~ msgstr "Сокращение времени онбординга (новые инженеры готовы за дни, а не недели)"
+
+#: src/components/sections/use-cases-section.tsx:38
+msgid "Reliable AI Generation"
+msgstr "Надёжная генерация ИИ"
+
+#: src/components/sections/hero-section.tsx:62
+#: src/components/sections/hero-section.tsx:84
+msgid "Request Pilot"
+msgstr "Запросить пилот"
+
+#: src/components/sections/architecture-record-section.tsx:39
+msgid "Review Checklists"
+msgstr "Чеклисты проверки"
+
+#: src/components/sections/integrations-section.tsx:67
+#~ msgid "Roadmap"
+#~ msgstr "Roadmap"
+
+#: src/components/determinism-visual.tsx:32
+msgid "Rules applied"
+msgstr "Применённые правила"
+
+#: src/components/sections/problem-section.tsx:15
+msgid "Rules aren't enforced"
+msgstr "Правила не исполняются"
+
+#: src/components/sections/hero-section.tsx:67
+#: src/components/sections/hero-section.tsx:79
+msgid "Run demo"
+msgstr "Запустить демо"
+
+#: src/components/sections/hero-section.tsx:36
+#: src/components/sections/hero-section.tsx:134
+#~ msgid "Run Demo"
+#~ msgstr "Запустить демо"
+
+#: src/components/sections/hero-section.tsx:65
+#~ msgid "Safer agentic coding (generation constrained by documented rules)"
+#~ msgstr "Безопасное агентное программирование (генерация ограничена документированными правилами)"
+
+#: src/components/sections/use-cases-section.tsx:30
+msgid "Safer Code Review"
+msgstr "Безопасное код-ревью"
+
+#: src/components/sections/hero-section.tsx:51
+msgid "Safer code review: changes are validated against architectural constraints."
+msgstr "Контекст ИИ под контролем — для кодревью, онбординга и любых автоматизаций."
+
+#: src/components/sections/solution-section.tsx:43
+#~ msgid "Same question = same sources. No hallucination. Reproducible context."
+#~ msgstr "Один вопрос = те же источники. Без галлюцинаций. Воспроизводимый контекст."
+
+#: src/components/sections/architecture-record-section.tsx:30
+msgid "Samples of correct and incorrect code for specific patterns."
+msgstr "Образцы правильного и неправильного кода для конкретных паттернов."
+
+#: src/components/sections/integrations-section.tsx:112
+#~ msgid "See how Archcore integrates with your existing tools and workflows"
+#~ msgstr "Посмотрите, как Archcore интегрируется с вашими инструментами и процессами"
+
+#: src/components/sections/problem-section.tsx:77
+#~ msgid "See how Archcore works in practice"
+#~ msgstr "Посмотрите, как Archcore работает на практике"
+
+#: src/components/sections/use-cases-section.tsx:58
+msgid "See how Architecture Record transforms your development workflow"
+msgstr "Посмотрите, как Architecture Record трансформирует ваш процесс разработки"
+
+#: src/components/sections/solution-section.tsx:80
+msgid "See the Architecture Record in action"
+msgstr "Посмотрите Architecture Record в действии"
+
+#: src/components/sections/hero-section.tsx:94
+msgid "Self-hosted"
+msgstr "Self-hosted"
+
+#~ msgid "Self-Hosted"
+#~ msgstr "Self-Hosted"
+
+#: src/components/sections/hero-section.tsx:82
+#: src/components/sections/hero-section.tsx:97
+#~ msgid "Self-hosted. No SaaS. Tour is read-only."
+#~ msgstr "Self-hosted. Без SaaS. Тур только для чтения."
+
+#: src/components/sections/enterprise-section.tsx:13
+msgid "Single binary"
+msgstr "Единый бинарник"
+
+#: src/components/sections/integrations-section.tsx:52
+#~ msgid "Slack"
+#~ msgstr "Slack"
+
+#: src/components/sections/integrations-section.tsx:33
+#~ msgid "Slack threads with architectural decisions"
+#~ msgstr "Slack-треды с архитектурными решениями"
+
+#: src/components/solution-diagram.tsx:45
+msgid "Sources"
+msgstr "Источники"
+
+#: src/components/determinism-visual.tsx:24
+msgid "Sources used"
+msgstr "Использованные источники"
+
+#: src/components/sections/use-cases-section.tsx:18
+msgid "Spends 2 days searching Slack, outdated docs, asking teammates"
+msgstr "Тратит 2 дня на поиск в Slack, устаревшей документации, опросы коллег"
+
+#: src/components/sections/integrations-section.tsx:47
+#~ msgid "Start from your architecture artifacts. Connectors bring context together automatically."
+#~ msgstr "Начните с ваших архитектурных артефактов. Коннекторы автоматически объединяют контекст."
+
+#: src/components/sections/use-cases-section.tsx:57
+msgid "Start seeing these outcomes"
+msgstr "Начните получать эти результаты"
+
+#: src/components/faq-section.tsx:43
+msgid "Start with code analysis and capture decisions as they're discovered. Archcore helps you build the record incrementally—you don't need perfect docs on day one."
+msgstr "Начните с анализа кода и фиксируйте решения по мере их обнаружения. Archcore помогает строить запись инкрементально — вам не нужна идеальная документация с первого дня."
+
+#: src/components/sections/integrations-section.tsx:14
+msgid "Start with what you already have: code, ADRs, documentation, discussions. Connectors gather context into a unified Architecture Record."
+msgstr "Начните с того, что у вас уже есть: создавайте документацию в Archcore и связывайте ее с вашим кодом"
+
+#: src/components/sections/footer-section.tsx:28
+msgid "Stay Updated"
+msgstr "Будьте в курсе"
+
+#: src/components/faq-section.tsx:72
+msgid "Still have questions?"
+msgstr "Остались вопросы?"
+
+#: src/components/solution-diagram.tsx:58
+msgid "Structured, versioned, queryable"
+msgstr "Структурировано, версионировано, запрашиваемо"
+
+#: src/components/sections/footer-section.tsx:31
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: src/components/sections/integrations-section.tsx:31
+#~ msgid "Team Communication"
+#~ msgstr "Командная коммуникация"
+
+#: src/components/sections/integrations-section.tsx:55
+#~ msgid "Team communication and decision threads"
+#~ msgstr "Командная коммуникация и треды решений"
+
+#: src/components/sections/problem-section.tsx:49
+#~ msgid "Teams commonly report 30-40% productivity loss to context switching and knowledge gaps"
+#~ msgstr "Команды обычно сообщают о потере 30-40% производительности из-за переключения контекста и пробелов в знаниях"
+
+#: src/components/sections/footer-section.tsx:32
+msgid "Thanks! You're on the list."
+msgstr "Спасибо! Вы в списке рассылки."
+
+#: src/components/sections/solution-section.tsx:44
+msgid "The 4-stage architectural knowledge pipeline that powers consistent AI context."
+msgstr "4-этапный пайплайн архитектурных знаний, обеспечивающий консистентный контекст для ИИ."
+
+#: src/components/sections/architecture-record-section.tsx:48
+msgid "The answer to: 'what exactly do you store?' Six types of architectural knowledge."
+msgstr "Ответ на вопрос: 'а что именно вы храните?' Шесть типов архитектурных знаний."
+
+#: src/components/sections/problem-section.tsx:31
+msgid "The Model Isn't 'Bad'. The Context Is Incomplete."
+msgstr "Модель не 'плохая'. Контекст — неполный."
+
+#: src/components/sections/problem-section.tsx:48
+#~ msgid "The Real Cost of Poor Architectural Context"
+#~ msgstr "Реальная цена плохого архитектурного контекста"
+
+#: src/components/sections/demo-section.tsx:63
+msgid "This is a read-only tour on a public repository. To create/modify Architecture Record — install self-hosted."
+msgstr "Это read-only тур на публичном репозитории. Чтобы создать/изменять Architecture Record — поставьте self-hosted установку."
+
+#: src/components/determinism-visual.tsx:10
+msgid "Traceable reasoning: No black box"
+msgstr "Отслеживаемое рассуждение: без чёрного ящика"
+
+#: src/components/sections/solution-section.tsx:31
+#~ msgid "Traceable sources"
+#~ msgstr "Отслеживаемые источники"
+
+#: src/components/sections/demo-section.tsx:37
+msgid "Try Archcore in Action"
+msgstr "Попробуйте Archcore в действии"
+
+#: src/components/sections/demo-section.tsx:53
+msgid "Try Scenario"
+msgstr "Попробовать сценарий"
+
+#: src/components/sections/problem-section.tsx:41
+#~ msgid "Typically 3-5 days per major feature"
+#~ msgstr "Обычно 3-5 дней на крупную фичу"
+
+#~ msgid "Use Cases"
+#~ msgstr "Примеры использования"
+
+#: src/components/sections/footer-section.tsx:23
+msgid "Verified architectural context for AI-assisted development. Self-hosted, MCP-native."
+msgstr "Верифицированный архитектурный контекст для разработки с помощью ИИ. Self-hosted, RAG."
+
+#: src/components/sections/solution-section.tsx:35
+msgid "Verify"
+msgstr "Проверять"
+
+#: src/components/faq-section.tsx:42
+msgid "What if we have legacy systems with no documentation?"
+msgstr "Что если у нас легаси-системы без документации?"
+
+#: src/components/faq-section.tsx:30
+msgid "What if we use local LLMs (not Claude/GPT)?"
+msgstr "Что если мы используем локальные LLM (не Claude/GPT)?"
+
+#: src/components/sections/architecture-record-section.tsx:47
+msgid "What is Architecture Record"
+msgstr "Что такое Architecture Record"
+
+#: src/components/sections/problem-section.tsx:32
+#~ msgid "Why did we choose microservices? GraphQL? This particular DB? Nobody remembers after 6 months."
+#~ msgstr "Почему мы выбрали микросервисы? GraphQL? Именно эту БД? Никто не помнит через 6 месяцев."
+
+#: src/components/sections/demo-section.tsx:28
+msgid "Why did we choose microservices/queue/DDD?"
+msgstr "Почему мы выбрали микросервисы/очередь/DDD?"
+
+#: src/components/sections/integrations-section.tsx:62
+#~ msgid "Wiki pages and technical documentation"
+#~ msgstr "Wiki-страницы и техническая документация"
+
+#: src/components/determinism-visual.tsx:41
+msgid "With citations"
+msgstr "С цитатами"
+
+#: src/components/sections/problem-section.tsx:21
+msgid "Without sources and versions, impossible to understand 'why AI decided this' or verify correctness."
+msgstr "Без источников и версий невозможно понять 'почему ИИ так решил' или проверить корректность."
+
+#: src/components/sections/hero-section.tsx:97
+msgid "Works with local LLMs"
+msgstr "Поддержка локальных LLM"
+
+#: src/components/faq-section.tsx:39
+msgid "Yes. Context Packs let you define role-based access (e.g., junior devs see standards, seniors see ADRs). Audit logs track every AI query and retrieval."
+msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты, seniors видят ADR). Audit logs отслеживают каждый запрос и извлечение ИИ."
