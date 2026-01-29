@@ -31,10 +31,11 @@ export default function App() {
         <ProblemSection />
         <IntegrationsSection />
         <UseCasesSection onContactClick={openContactDialog} />
-        <SolutionSection />
-        <ArchitectureRecordSection />
+        {/* <SolutionSection /> */}
+        {/* <ArchitectureRecordSection /> */}
         <EnterpriseSection />
         <DemoSection />
+        <div className="border-t border-border" />
         <FAQSection onContactClick={openContactDialog} />
       </main>
       <FooterSection onContactClick={openContactDialog} />

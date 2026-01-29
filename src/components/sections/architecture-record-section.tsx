@@ -47,7 +47,7 @@ export function ArchitectureRecordSection() {
         title={_(msg`What is Architecture Record`)}
         description={_(msg`The answer to: 'what exactly do you store?' Six types of architectural knowledge.`)}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
         {components.map((item) => {
           const Icon = item.icon;
           return (

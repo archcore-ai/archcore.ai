@@ -4,7 +4,9 @@ import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const footerLinks = {
-  Resources: [{ label: "GitHub", href: "https://github.com/archcore-ai", external: true }],
+  Resources: [
+    { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
+  ],
 };
 
 interface FooterSectionProps {
@@ -14,18 +16,20 @@ interface FooterSectionProps {
 export function FooterSection({ onContactClick }: FooterSectionProps) {
   const { _ } = useLingui();
   return (
-    <footer className="border-t border-border px-6 py-12">
+    <footer className="border-t border-border px-6 py-20 md:py-24">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12">
           <div className="space-y-4">
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
-              <Trans>Verified architectural context for AI-assisted development. Self-hosted, MCP-native.</Trans>
+              <Trans>Context engineering platform for teams</Trans>
             </p>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium"><Trans>Stay Updated</Trans></h3>
+            <h3 className="text-sm font-medium">
+              <Trans>Stay Updated</Trans>
+            </h3>
             <InlineEmailCapture
               placeholder={_(msg`Enter your work email`)}
               buttonLabel={_(msg`Subscribe`)}
@@ -42,18 +46,25 @@ export function FooterSection({ onContactClick }: FooterSectionProps) {
                 <a
                   key={link.label}
                   href={link.href}
-                  {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...("external" in link && link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-            <button onClick={onContactClick} className="text-muted-foreground hover:text-foreground transition-colors">
+            <button
+              onClick={onContactClick}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               <Trans>Contact Us</Trans>
             </button>
           </div>
 
-          <div className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} archcore.ai</div>
+          <div className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} archcore.ai
+          </div>
         </div>
       </div>
     </footer>

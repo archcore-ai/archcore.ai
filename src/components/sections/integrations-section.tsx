@@ -15,7 +15,7 @@ export function IntegrationsSection() {
         )}
       />
 
-      <div className="flex justify-center items-center mb-8">
+      <div className="flex justify-center items-center mb-12">
         <img
           src="/images/how-to-work.png"
           alt="Archcore flow diagram: Docs and Code feed into Archcore, which connects to AI Agents via MCP protocol, and outputs to Apps and Integrations"
@@ -24,7 +24,7 @@ export function IntegrationsSection() {
       </div>
 
       {/* Three-step process */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
         {/* Step 1: Ingest */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
@@ -62,8 +62,8 @@ export function IntegrationsSection() {
             <h3 className="text-xl font-semibold">Подключение</h3>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Добавляйте любые ИИ инструменты: редакторы, боты, автоматизации к Archcore через MCP. Корректируйте
-            документацию и получайте мгновенную обратную связь
+            Протокол MCP позволяет подключить любые ваши инструменты и интеграции: редакторы кода, боты и др.
+            Корректируйте документацию и получайте мгновенную обратную связь
           </p>
         </div>
       </div>

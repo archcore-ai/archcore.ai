@@ -1,4 +1,4 @@
-import { Box, Database, Container, Cpu, Check } from "lucide-react";
+import { Rocket, Database, Container, Cpu, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SectionContainer } from "@/components/section-container";
@@ -10,32 +10,38 @@ const DEMO_URL = "https://demo.archcore.ai";
 export function EnterpriseSection() {
   const { _ } = useLingui();
   const deploymentFeatures = [
-    { icon: Box, label: _(msg`Single binary`) },
+    { icon: Rocket, label: _(msg`Quick start`) },
     { icon: Database, label: _(msg`PostgreSQL backend`) },
     { icon: Container, label: _(msg`Docker-ready`) },
     { icon: Cpu, label: _(msg`Local LLMs supported`) },
   ];
 
   const trustBullets = [
-    _(msg`Data sovereignty`),
-    _(msg`No vendor lock-in`),
-    _(msg`Data stays on your infrastructure`),
-    _(msg`Designed for environments with strict architectural and data controls`),
+    // _(msg`Data sovereignty`),
+    // _(msg`No vendor lock-in`),
+    // _(msg`Data stays on your infrastructure`),
+    // _(msg`Designed for environments with strict architectural and data controls`),
   ];
 
   return (
-    <SectionContainer id="privacy" className="bg-muted/30 border-b border-border">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <SectionContainer
+      id="privacy"
+      className="bg-muted/30 border-b border-border"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight"><Trans>Private. Self-hosted. Yours.</Trans></h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <Trans>Private. Self-hosted. Yours.</Trans>
+          </h2>
           <p className="text-lg text-muted-foreground">
-            <Trans>Archcore runs entirely on your infrastructure — no SaaS, no data export, no third-party AI vendors required. Keep your code and architectural knowledge inside your security perimeter.</Trans>
-          </p>
-          <p className="text-base text-muted-foreground">
-            <Trans>Architectural understanding remains local, explicit, and under your control.</Trans>
+            <Trans>
+              Archcore runs entirely on your infrastructure — no SaaS, no data
+              export, no third-party AI vendors required. Keep your code and
+              architectural knowledge inside your security perimeter.
+            </Trans>
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {deploymentFeatures.map((feature) => (
               <div key={feature.label} className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/10">
@@ -55,11 +61,11 @@ export function EnterpriseSection() {
             ))}
           </div>
 
-          <Button size="lg" asChild className="mt-2">
+          {/* <Button size="lg" asChild className="mt-2">
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
               <Trans>Interactive Tour</Trans>
             </a>
-          </Button>
+          </Button> */}
         </div>
 
         <img

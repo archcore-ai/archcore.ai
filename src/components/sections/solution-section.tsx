@@ -45,7 +45,7 @@ export function SolutionSection() {
       />
 
       {/* 4-step flow */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 mb-12">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 mb-12">
         {steps.map((step, idx) => {
           const Icon = step.icon;
           return (

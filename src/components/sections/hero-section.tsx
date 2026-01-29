@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onContactClick }: HeroSectionProps) {
   return (
-    <section id="top" className="hero-pattern relative py-12 pt-20 lg:pt-24 px-6 overflow-hidden">
+    <section id="top" className="hero-pattern relative py-20 md:py-24 pt-20 lg:pt-24 px-6 overflow-hidden">
       {/* Content layer */}
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="space-y-8 text-left">

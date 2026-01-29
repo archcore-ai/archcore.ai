@@ -15,9 +15,10 @@ export function StickyHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { href: "#problem", label: _(msg`Problems`) },
-    { href: "#solution", label: _(msg`How it works`) },
-    { href: DEMO_URL, label: _(msg`Demo`), external: true },
+    { href: "#integrations", label: _(msg`Product`) },
+    { href: "#use-cases", label: _(msg`Use cases`) },
+    { href: "#demo", label: _(msg`Demo`) },
+    { href: "#faq", label: _(msg`FAQ`) },
   ];
 
   useEffect(() => {
@@ -34,7 +35,9 @@ export function StickyHeader() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
-        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent",
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-transparent"
       )}
     >
       <div className="px-6">
@@ -48,7 +51,9 @@ export function StickyHeader() {
               <Button key={item.href} variant="ghost" size="sm" asChild>
                 <a
                   href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                 >
                   {item.label}
                 </a>
@@ -66,7 +71,11 @@ export function StickyHeader() {
             }}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </div>
@@ -78,7 +87,9 @@ export function StickyHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="block py-2.5 text-sm hover:text-primary transition-colors"
                 onClick={() => {
                   setMobileMenuOpen(false);
