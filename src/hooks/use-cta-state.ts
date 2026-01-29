@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export function useCTAState() {
-  const [contactDialogOpen, setContactDialogOpen] = useState(false)
-  const [openDemoDialogOpen, setOpenDemoDialogOpen] = useState(false)
+  const [contactDialogOpen, setContactDialogOpen] = useState(false);
+  const [openDemoDialogOpen, setOpenDemoDialogOpen] = useState(false);
 
   const openContactDialog = () => {
-    setContactDialogOpen(true)
-  }
+    setContactDialogOpen(true);
+  };
 
   const openDemoDialog = () => {
-    setOpenDemoDialogOpen(true)
-  }
+    setOpenDemoDialogOpen(true);
+  };
 
   return {
     contactDialogOpen,
@@ -19,5 +19,5 @@ export function useCTAState() {
     openDemoDialogOpen,
     setOpenDemoDialogOpen,
     openDemoDialog,
-  }
+  };
 }

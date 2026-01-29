@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -23,7 +29,9 @@ function ContactForm({ onClose }: ContactFormProps) {
     company: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -94,7 +102,9 @@ function ContactForm({ onClose }: ContactFormProps) {
     <>
       <DialogHeader>
         <DialogTitle>Contact Us</DialogTitle>
-        <DialogDescription>Have questions about Archcore? Our team is here to help.</DialogDescription>
+        <DialogDescription>
+          Have questions about Archcore? Our team is here to help.
+        </DialogDescription>
       </DialogHeader>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -113,7 +123,9 @@ function ContactForm({ onClose }: ContactFormProps) {
             }}
             aria-invalid={!!errors.email}
           />
-          {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+          {errors.email && (
+            <p className="text-xs text-destructive">{errors.email}</p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -125,7 +137,9 @@ function ContactForm({ onClose }: ContactFormProps) {
             type="text"
             placeholder="Your company name"
             value={formData.company}
-            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, company: e.target.value })
+            }
           />
         </div>
 
@@ -137,15 +151,25 @@ function ContactForm({ onClose }: ContactFormProps) {
             id="message"
             placeholder="Tell us about your use case..."
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
             rows={3}
             className="flex w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
 
-        {status === "error" && <p className="text-sm text-destructive">Something went wrong. Please try again.</p>}
+        {status === "error" && (
+          <p className="text-sm text-destructive">
+            Something went wrong. Please try again.
+          </p>
+        )}
 
-        <Button type="submit" className="w-full" disabled={status === "loading"}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={status === "loading"}
+        >
           {status === "loading" ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />

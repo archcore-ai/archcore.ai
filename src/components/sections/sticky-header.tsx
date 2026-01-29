@@ -7,14 +7,12 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
-const DEMO_URL = "https://demo.archcore.ai";
-
 export function StickyHeader() {
   const { _ } = useLingui();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems = [
+  const navItems: Array<{ href: string; label: string; external?: boolean }> = [
     { href: "#integrations", label: _(msg`Product`) },
     { href: "#use-cases", label: _(msg`Use cases`) },
     { href: "#demo", label: _(msg`Demo`) },

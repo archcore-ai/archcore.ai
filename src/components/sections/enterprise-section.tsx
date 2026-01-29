@@ -1,11 +1,8 @@
 import { Rocket, Database, Container, Cpu, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SectionContainer } from "@/components/section-container";
 import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
-
-const DEMO_URL = "https://demo.archcore.ai";
 
 export function EnterpriseSection() {
   const { _ } = useLingui();
@@ -16,7 +13,7 @@ export function EnterpriseSection() {
     { icon: Cpu, label: _(msg`Local LLMs supported`) },
   ];
 
-  const trustBullets = [
+  const trustBullets: string[] = [
     // _(msg`Data sovereignty`),
     // _(msg`No vendor lock-in`),
     // _(msg`Data stays on your infrastructure`),

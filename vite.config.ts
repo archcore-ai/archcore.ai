@@ -1,14 +1,14 @@
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
-import { lingui } from '@lingui/vite-plugin'
-import { defineConfig } from 'vite'
+import path from "path";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { lingui } from "@lingui/vite-plugin";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
     react({
       babel: {
-        plugins: ['macros'],
+        plugins: ["macros"],
       },
     }),
     lingui(),
@@ -16,14 +16,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     sourcemap: false,
-    minify: 'esbuild',
-    target: 'esnext',
+    minify: "esbuild",
+    target: "esnext",
     cssMinify: true,
     rollupOptions: {
       output: {
@@ -31,4 +31,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

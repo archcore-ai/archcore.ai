@@ -12,7 +12,14 @@ interface StoryCardProps {
   title: string;
 }
 
-export function StoryCard({ trigger, problem, solution, outcome, icon: Icon, title }: StoryCardProps) {
+export function StoryCard({
+  trigger,
+  problem,
+  solution,
+  outcome,
+  icon: Icon,
+  title,
+}: StoryCardProps) {
   return (
     <Card>
       <CardContent className="p-6 md:p-8">
@@ -28,18 +35,24 @@ export function StoryCard({ trigger, problem, solution, outcome, icon: Icon, tit
 
             {/* Trigger */}
             <div>
-              <Badge variant="outline" className="mb-2">Trigger</Badge>
+              <Badge variant="outline" className="mb-2">
+                Trigger
+              </Badge>
               <p className="text-muted-foreground italic">"{trigger}"</p>
             </div>
 
             {/* Before/After Grid */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-semibold text-sm mb-2 text-destructive">❌ What breaks</h4>
+                <h4 className="font-semibold text-sm mb-2 text-destructive">
+                  ❌ What breaks
+                </h4>
                 <p className="text-sm text-muted-foreground">{problem}</p>
               </div>
               <div>
-                <h4 className="font-semibold text-sm mb-2 text-primary">✓ With Archcore</h4>
+                <h4 className="font-semibold text-sm mb-2 text-primary">
+                  ✓ With Archcore
+                </h4>
                 <p className="text-sm text-muted-foreground">{solution}</p>
               </div>
             </div>

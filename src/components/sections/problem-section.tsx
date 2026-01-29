@@ -26,14 +26,22 @@ export function ProblemSection() {
   const { _ } = useLingui();
 
   return (
-    <SectionContainer id="problem" className="bg-muted/30 border-b border-border">
+    <SectionContainer
+      id="problem"
+      className="bg-muted/30 border-b border-border"
+    >
       <SectionHeader
         title={_(msg`The Model Isn't 'Bad'. The Context Is Incomplete.`)}
-        description={_(msg`Context fragmentation is the root cause of AI hallucinations and architectural drift.`)}
+        description={_(
+          msg`Context fragmentation is the root cause of AI hallucinations and architectural drift.`
+        )}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
         {problems.map(({ icon: Icon, title, description }) => (
-          <div key={_(title)} className="flex flex-col items-center text-center space-y-4">
+          <div
+            key={_(title)}
+            className="flex flex-col items-center text-center space-y-4"
+          >
             <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center">
               <Icon className="h-5 w-5 text-muted-foreground" />
             </div>

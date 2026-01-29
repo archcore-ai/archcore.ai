@@ -34,7 +34,7 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
       id: "onboarding",
       title: _(msg`Faster Onboarding`),
       description: _(
-        msg`New engineers understand architectural decisions instantly instead of spending days searching through Slack and outdated docs.`,
+        msg`New engineers understand architectural decisions instantly instead of spending days searching through Slack and outdated docs.`
       ),
       bullets: [
         _(msg`"Why did we choose microservices?" → Instant ADR lookup`),
@@ -49,28 +49,31 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
             <div className="space-y-4">
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-foreground">
-                  Пользователь: Почему мы отказались от монолита?
+                  {_(msg`User: Why did we move away from the monolith?`)}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <div className="text-sm font-semibold text-foreground">ИИ: …анализ…</div>
-
-                <div className="text-xs text-muted-foreground pl-4 border-l-2 border-primary/50">
-                  RFC-017: Монолитная архитектура признана узким местом для параллельной разработки. Основные проблемы:
-                  блокирующие релизы, высокая связность доменов, средний цикл поставки изменений &gt; 14 дней.
+                <div className="text-sm font-semibold text-foreground">
+                  {_(msg`AI: …analyzing…`)}
                 </div>
 
                 <div className="text-xs text-muted-foreground pl-4 border-l-2 border-primary/50">
-                  ADR-009: Принято решение о декомпозиции по bounded contexts. Ограничения: автономные схемы данных,
-                  контрактное взаимодействие через HTTP/Async API, обратная совместимость ≥ 2 релиза.
+                  {_(
+                    msg`RFC-017: Monolithic architecture identified as bottleneck for parallel development. Key issues: blocking releases, high domain coupling, average change delivery cycle > 14 days.`
+                  )}
+                </div>
+
+                <div className="text-xs text-muted-foreground pl-4 border-l-2 border-primary/50">
+                  {_(
+                    msg`ADR-009: Decided to decompose by bounded contexts. Constraints: autonomous data schemas, contract-based interaction via HTTP/Async API, backward compatibility ≥ 2 releases.`
+                  )}
                 </div>
 
                 <div className="text-sm">
-                  Мы отказались от монолита, потому что скорость команд стала ограничиваться архитектурой, а не людьми.
-                  Переход к сервисам позволил выпускать изменения независимо, сократить blast radius ошибок и выровнять
-                  ответственность по доменам. Решение осознанно увеличивает операционную сложность, но считается
-                  приемлемым при текущем масштабе.
+                  {_(
+                    msg`We moved away from the monolith because team velocity became limited by architecture, not people. Moving to services enabled independent deployments, reduced blast radius of errors, and aligned responsibility by domains. The decision consciously increases operational complexity but is considered acceptable at current scale.`
+                  )}
                 </div>
               </div>
             </div>
@@ -81,7 +84,9 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
     {
       id: "code-review",
       title: _(msg`Safer Code Review`),
-      description: _(msg`Architectural standards enforcement during code review, not after merge.`),
+      description: _(
+        msg`Architectural standards enforcement during code review, not after merge.`
+      ),
       bullets: [
         _(msg`Auto-detect pattern violations against ADRs`),
         _(msg`Links reviewers directly to relevant architectural decisions`),
@@ -100,13 +105,18 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
 
           <div className="text-sm text-muted-foreground space-y-2">
             <p>
-              Прямое создание соединений нарушает <span className="underline">GUIDE-012</span> (Connection Pooling
-              Policy). Это приводит к исчерпанию лимита подключений базы данных при масштабировании.
+              {_(msg`Direct connection creation violates`)}{" "}
+              <span className="underline">GUIDE-012</span>{" "}
+              {_(
+                msg`(Connection Pooling Policy). This leads to database connection limit exhaustion during scaling.`
+              )}
             </p>
             <p className="font-semibold">
-              Рекомендация: Используйте пул соединений (
-              <code className="text-xs font-mono bg-muted px-1 py-0.5 rounded">db_pool.getconn()</code>), как определено
-              в GUIDE-012.
+              {_(msg`Recommendation: Use connection pool (`)}
+              <code className="text-xs font-mono bg-muted px-1 py-0.5 rounded">
+                db_pool.getconn()
+              </code>
+              {_(msg`), as defined in GUIDE-012.`)}
             </p>
           </div>
         </GitHubBotComment>
@@ -116,7 +126,7 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
       id: "code-generation",
       title: _(msg`Reliable AI Code Generation`),
       description: _(
-        msg`AI agents generate code following your current architectural standards, not deprecated patterns.`,
+        msg`AI agents generate code following your current architectural standards, not deprecated patterns.`
       ),
       bullets: [
         _(msg`Provides current OAuth2 standard to coding agents`),
@@ -139,14 +149,24 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
     <SectionContainer id="use-cases" className="border-b border-border">
       <SectionHeader
         title={_(msg`Real Use Cases`)}
-        description={_(msg`How teams use Archcore to solve architectural context challenges`)}
+        description={_(
+          msg`How teams use Archcore to solve architectural context challenges`
+        )}
       />
 
-      <Tabs defaultValue="onboarding" className="w-full" aria-label="Use case examples">
+      <Tabs
+        defaultValue="onboarding"
+        className="w-full"
+        aria-label="Use case examples"
+      >
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="onboarding">{_(msg`Q/A, onboarding`)}</TabsTrigger>
+          <TabsTrigger value="onboarding">
+            {_(msg`Q/A, onboarding`)}
+          </TabsTrigger>
           <TabsTrigger value="code-review">{_(msg`Code Review`)}</TabsTrigger>
-          <TabsTrigger value="code-generation">{_(msg`Code Generation`)}</TabsTrigger>
+          <TabsTrigger value="code-generation">
+            {_(msg`Code Generation`)}
+          </TabsTrigger>
         </TabsList>
 
         {useCases.map((useCase) => (
@@ -161,18 +181,28 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
                   <h3 className="text-2xl font-semibold">{useCase.title}</h3>
                 </div>
 
-                <p className="text-base text-muted-foreground leading-relaxed">{useCase.description}</p>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  {useCase.description}
+                </p>
 
                 <ul className="space-y-3">
                   {useCase.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span className="text-sm text-muted-foreground leading-relaxed">{bullet}</span>
+                      <Check
+                        className="h-5 w-5 text-primary flex-shrink-0 mt-0.5"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm text-muted-foreground leading-relaxed">
+                        {bullet}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
-                <Badge variant="outline" className="text-sm font-medium px-3 py-1.5 gap-2">
+                <Badge
+                  variant="outline"
+                  className="text-sm font-medium px-3 py-1.5 gap-2"
+                >
                   <TrendingUp className="h-4 w-4" aria-hidden="true" />
                   {useCase.outcome}
                 </Badge>

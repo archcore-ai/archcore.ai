@@ -43,7 +43,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
         urlParams.delete("lang");
         urlParams.delete("locale");
         const newSearch = urlParams.toString();
-        const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : "");
+        const newUrl =
+          window.location.pathname + (newSearch ? `?${newSearch}` : "");
         window.history.replaceState({}, "", newUrl);
       }
 

@@ -1,5 +1,10 @@
 import { Database, Box, Zap, Shield, ArrowRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
 import { SectionCTACard } from "@/components/cta";
@@ -41,7 +46,9 @@ export function SolutionSection() {
     <SectionContainer id="solution">
       <SectionHeader
         title={_(msg`Gather → Record → Apply → Verify`)}
-        description={_(msg`The 4-stage architectural knowledge pipeline that powers consistent AI context.`)}
+        description={_(
+          msg`The 4-stage architectural knowledge pipeline that powers consistent AI context.`
+        )}
       />
 
       {/* 4-step flow */}
@@ -54,7 +61,9 @@ export function SolutionSection() {
                 <CardContent className="p-6 text-center">
                   <Icon className="h-8 w-8 text-primary mx-auto mb-3" />
                   <CardTitle className="text-lg mb-2">{step.title}</CardTitle>
-                  <CardDescription className="text-sm">{step.description}</CardDescription>
+                  <CardDescription className="text-sm">
+                    {step.description}
+                  </CardDescription>
                 </CardContent>
               </Card>
               {idx < steps.length - 1 && (
@@ -78,7 +87,9 @@ export function SolutionSection() {
 
       <SectionCTACard
         title={_(msg`See the Architecture Record in action`)}
-        description={_(msg`Explore how Archcore structures, versions, and enforces architectural context`)}
+        description={_(
+          msg`Explore how Archcore structures, versions, and enforces architectural context`
+        )}
         buttonLabel={_(msg`Interactive Tour`)}
         buttonHref={DEMO_URL}
         className="mt-10"

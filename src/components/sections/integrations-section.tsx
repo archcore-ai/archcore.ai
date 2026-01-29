@@ -11,7 +11,7 @@ export function IntegrationsSection() {
       <SectionHeader
         title={_(msg`Connects to Your Architecture Sources`)}
         description={_(
-          msg`Start with what you already have: code, ADRs, documentation, discussions. Connectors gather context into a unified Architecture Record.`,
+          msg`Start with what you already have: code, ADRs, documentation, discussions. Connectors gather context into a unified Architecture Record.`
         )}
       />
 
@@ -31,11 +31,12 @@ export function IntegrationsSection() {
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
               1
             </div>
-            <h3 className="text-xl font-semibold">Исходный код</h3>
+            <h3 className="text-xl font-semibold">{_(msg`Source Code`)}</h3>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Archcore клонирует ваш репозиторий и строит первичный граф знаний. Вы можете создавать глобальные документы
-            общие для нескольких проектов.
+            {_(
+              msg`Archcore clones your repository and builds an initial knowledge graph. You can create global documents shared across multiple projects.`
+            )}
           </p>
         </div>
 
@@ -45,11 +46,14 @@ export function IntegrationsSection() {
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
               2
             </div>
-            <h3 className="text-xl font-semibold">Документация и код</h3>
+            <h3 className="text-xl font-semibold">
+              {_(msg`Documentation and Code`)}
+            </h3>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Создавайте базу знаний, правила и документацию связанную с кодом. Каждая связь исходного кода с фрагментом
-            документа кратно увеличивает понимание ИИ проекта
+            {_(
+              msg`Create knowledge base, rules, and documentation linked to code. Each link between source code and documentation dramatically improves AI understanding of the project.`
+            )}
           </p>
         </div>
 
@@ -59,11 +63,12 @@ export function IntegrationsSection() {
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
               3
             </div>
-            <h3 className="text-xl font-semibold">Подключение</h3>
+            <h3 className="text-xl font-semibold">{_(msg`Integration`)}</h3>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Протокол MCP позволяет подключить любые ваши инструменты и интеграции: редакторы кода, боты и др.
-            Корректируйте документацию и получайте мгновенную обратную связь
+            {_(
+              msg`MCP protocol allows connecting any tools and integrations: code editors, bots, etc. Update documentation and get instant feedback.`
+            )}
           </p>
         </div>
       </div>

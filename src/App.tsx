@@ -7,8 +7,6 @@ import {
   IntegrationsSection,
   ProblemSection,
   UseCasesSection,
-  SolutionSection,
-  ArchitectureRecordSection,
   EnterpriseSection,
   DemoSection,
   FooterSection,
@@ -21,7 +19,8 @@ export default function App() {
   const { _ } = useLingui();
   useTheme(); // Initialize theme detection (system preference + localStorage)
 
-  const { contactDialogOpen, setContactDialogOpen, openContactDialog } = useCTAState();
+  const { contactDialogOpen, setContactDialogOpen, openContactDialog } =
+    useCTAState();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,7 +43,10 @@ export default function App() {
         buttonLabel={_(msg`Book a Demo`)}
         onButtonClick={openContactDialog}
       />
-      <ContactDialog open={contactDialogOpen} onOpenChange={setContactDialogOpen} />
+      <ContactDialog
+        open={contactDialogOpen}
+        onOpenChange={setContactDialogOpen}
+      />
     </div>
   );
 }

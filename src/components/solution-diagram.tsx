@@ -7,7 +7,7 @@ import {
   MessageCircle,
   GitPullRequest,
   Code,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { LucideIcon } from "lucide-react";
@@ -42,7 +42,9 @@ export function SolutionDiagram() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         {/* Sources */}
         <div className="space-y-3">
-          <h3 className="font-semibold text-sm text-muted-foreground mb-4"><Trans>Sources</Trans></h3>
+          <h3 className="font-semibold text-sm text-muted-foreground mb-4">
+            <Trans>Sources</Trans>
+          </h3>
           <SourceBadge icon={MessageSquare} label="Slack threads" />
           <SourceBadge icon={FileText} label="Confluence docs" />
           <SourceBadge icon={GitBranch} label="Git repos" />
@@ -53,7 +55,9 @@ export function SolutionDiagram() {
         <div className="relative">
           <Card className="bg-primary/5 border-primary p-8 text-center">
             <Box className="h-12 w-12 mx-auto mb-4 text-primary" />
-            <h3 className="text-xl font-bold"><Trans>Architecture Record</Trans></h3>
+            <h3 className="text-xl font-bold">
+              <Trans>Architecture Record</Trans>
+            </h3>
             <p className="text-sm text-muted-foreground mt-2">
               <Trans>Structured, versioned, queryable</Trans>
             </p>
@@ -64,7 +68,9 @@ export function SolutionDiagram() {
 
         {/* Tools */}
         <div className="space-y-3">
-          <h3 className="font-semibold text-sm text-muted-foreground mb-4"><Trans>AI Tools</Trans></h3>
+          <h3 className="font-semibold text-sm text-muted-foreground mb-4">
+            <Trans>AI Tools</Trans>
+          </h3>
           <ToolBadge icon={MessageCircle} label="Chat (Claude, GPT)" />
           <ToolBadge icon={GitPullRequest} label="PR Review" />
           <ToolBadge icon={Code} label="Code Agents" />

@@ -13,7 +13,10 @@ const options = {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PostHogProvider apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY} options={options}>
+    <PostHogProvider
+      apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+      options={options}
+    >
       <LocaleProvider>
         <App />
       </LocaleProvider>

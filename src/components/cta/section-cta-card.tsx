@@ -1,29 +1,29 @@
-import { type LucideIcon, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import { type LucideIcon, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface SectionCTACardProps {
-  icon?: LucideIcon
-  title: string
-  description: string
-  buttonLabel?: string
-  buttonHref?: string
-  onButtonClick?: () => void
-  className?: string
+  icon?: LucideIcon;
+  title: string;
+  description: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  onButtonClick?: () => void;
+  className?: string;
   /** Use 'featured' for the main conversion CTA with enhanced styling */
-  variant?: 'default' | 'featured'
+  variant?: "default" | "featured";
 }
 
 export function SectionCTACard({
   icon: Icon,
   title,
   description,
-  buttonLabel = 'Learn More',
+  buttonLabel = "Learn More",
   buttonHref,
   onButtonClick,
   className,
-  variant = 'default',
+  variant = "default",
 }: SectionCTACardProps) {
   const handleButtonClick = () => {
     if (buttonHref) {
@@ -32,11 +32,11 @@ export function SectionCTACard({
       onButtonClick();
     }
   };
-  if (variant === 'featured') {
+  if (variant === "featured") {
     return (
       <div
         className={cn(
-          'section-cta-featured group relative overflow-hidden rounded-xl p-px',
+          "section-cta-featured group relative overflow-hidden rounded-xl p-px",
           className
         )}
       >
@@ -50,14 +50,9 @@ export function SectionCTACard({
               <h3 className="text-base font-semibold tracking-tight">
                 {title}
               </h3>
-              <p className="text-sm text-muted-foreground">
-                {description}
-              </p>
+              <p className="text-sm text-muted-foreground">{description}</p>
             </div>
-            <Button
-              onClick={handleButtonClick}
-              className="gap-2 flex-shrink-0"
-            >
+            <Button onClick={handleButtonClick} className="gap-2 flex-shrink-0">
               {buttonLabel}
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Button>
@@ -99,11 +94,11 @@ export function SectionCTACard({
           }
         `}</style>
       </div>
-    )
+    );
   }
 
   return (
-    <Card className={cn('bg-primary/5 border-primary/20', className)}>
+    <Card className={cn("bg-primary/5 border-primary/20", className)}>
       <CardContent className="p-6 sm:p-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           {Icon && (
@@ -122,5 +117,5 @@ export function SectionCTACard({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

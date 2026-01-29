@@ -2,7 +2,7 @@
  * Landing page styles - imports shared theme from main app
  * Lightweight version without tiptap/charts/sidebar styles
  */
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* Include shared components from parent src directory */
 @source "../../src";
@@ -121,8 +121,11 @@
   background:
     linear-gradient(rgba(147, 161, 161, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(147, 161, 161, 0.08) 1px, transparent 1px),
-    linear-gradient(180deg, #FDF6E3 0%, #F8F6EB 100%);
-  background-size: 70px 70px, 70px 70px, 100% 100%;
+    linear-gradient(180deg, #fdf6e3 0%, #f8f6eb 100%);
+  background-size:
+    70px 70px,
+    70px 70px,
+    100% 100%;
 }
 
 .dark .hero-pattern {
@@ -135,7 +138,8 @@
 
 /* Hero typography styles */
 .hero-title {
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     oklch(0.145 0 0) 0%,
     oklch(0.25 0.05 95) 50%,
     oklch(0.145 0 0) 100%
@@ -149,7 +153,8 @@
 }
 
 .dark .hero-title {
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     oklch(0.95 0.02 95) 0%,
     oklch(0.75 0.08 95) 50%,
     oklch(0.95 0.02 95) 100%
@@ -162,7 +167,8 @@
 }
 
 @keyframes shine {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% center;
   }
   50% {

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -10,7 +16,11 @@ interface OpenDemoDialogProps {
   demoUrl: string;
 }
 
-export function OpenDemoDialog({ open, onOpenChange, demoUrl }: OpenDemoDialogProps) {
+export function OpenDemoDialog({
+  open,
+  onOpenChange,
+  demoUrl,
+}: OpenDemoDialogProps) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +73,9 @@ export function OpenDemoDialog({ open, onOpenChange, demoUrl }: OpenDemoDialogPr
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Explore Archcore on a real application</DialogTitle>
-          <DialogDescription>Enter your email to access the interactive demo.</DialogDescription>
+          <DialogDescription>
+            Enter your email to access the interactive demo.
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 pt-2">
@@ -88,7 +100,11 @@ export function OpenDemoDialog({ open, onOpenChange, demoUrl }: OpenDemoDialogPr
             )}
           </div>
 
-          <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="w-full gap-2"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />

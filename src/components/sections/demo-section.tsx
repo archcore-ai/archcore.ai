@@ -1,8 +1,7 @@
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { CirclePlay, Info } from "lucide-react";
-import { msg } from "@lingui/macro";
+import { CirclePlay } from "lucide-react";
+import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const DEMO_URL = "https://demo.archcore.ai";
@@ -14,7 +13,19 @@ export function DemoSection() {
     <SectionContainer id="demo">
       <SectionHeader
         title={_(msg`Try Archcore in Action`)}
-        description={_(msg`Interactive scenarios on a public repository. Read-only tour.`)}
+        description={
+          <Trans>
+            Example of how the system works with real open-source project{" "}
+            <a
+              href="https://github.com/ivklgn/hotpot-tracker"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary transition-colors"
+            >
+              hotpot-tracker
+            </a>
+          </Trans>
+        }
       />
 
       <div className="flex flex-col items-center gap-8">
@@ -25,7 +36,11 @@ export function DemoSection() {
           rel="noopener noreferrer"
           className="group relative w-full max-w-3xl mx-auto rounded-lg overflow-hidden border shadow-lg block cursor-pointer"
         >
-          <img src="/images/archcore-demo.gif" alt={_(msg`Archcore demo`)} className="w-full h-auto" />
+          <img
+            src="/images/archcore-demo.gif"
+            alt={_(msg`Archcore demo`)}
+            className="w-full h-auto"
+          />
           <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center cursor-pointer">
             <div className="flex flex-col items-center gap-3 text-white transition-transform duration-200 group-hover:scale-110">
               <CirclePlay className="h-16 w-16" />

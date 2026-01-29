@@ -21,7 +21,9 @@ export function InlineEmailCapture({
   className,
 }: InlineEmailCaptureProps) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const submitEmail = async () => {
@@ -65,7 +67,9 @@ export function InlineEmailCapture({
 
   if (status === "success") {
     return (
-      <div className={`flex items-center gap-2 text-sm text-muted-foreground ${className ?? ""}`}>
+      <div
+        className={`flex items-center gap-2 text-sm text-muted-foreground ${className ?? ""}`}
+      >
         <Check className="h-4 w-4 text-primary" />
         {successMessage}
       </div>
@@ -73,7 +77,10 @@ export function InlineEmailCapture({
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 ${className ?? ""}`}>
+    <form
+      onSubmit={handleSubmit}
+      className={`flex flex-col sm:flex-row gap-2 ${className ?? ""}`}
+    >
       <div className="flex-1">
         <Input
           type="email"
@@ -86,7 +93,9 @@ export function InlineEmailCapture({
           aria-invalid={status === "error"}
           className="w-full"
         />
-        {status === "error" && <p className="text-xs text-destructive mt-1">{errorMessage}</p>}
+        {status === "error" && (
+          <p className="text-xs text-destructive mt-1">{errorMessage}</p>
+        )}
       </div>
       <Button type="submit" disabled={status === "loading"} className="gap-2">
         {status === "loading" ? (

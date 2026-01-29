@@ -11,7 +11,10 @@ interface HeroSectionProps {
 
 export function HeroSection({ onContactClick }: HeroSectionProps) {
   return (
-    <section id="top" className="hero-pattern relative py-20 md:py-24 pt-20 lg:pt-24 px-6 overflow-hidden">
+    <section
+      id="top"
+      className="hero-pattern relative py-20 md:py-24 pt-20 lg:pt-24 px-6 overflow-hidden"
+    >
       {/* Content layer */}
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="space-y-8 text-left">
@@ -23,9 +26,10 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
             </h1>
             <p className="hero-description text-xl md:text-2xl lg:text-2xl leading-relaxed text-muted-foreground/90 max-w-4xl">
               <Trans>
-                Archcore gathers architectural decisions from code, ADRs, and discussions, transforms them into an
-                Architecture Record (versioned contract), and delivers it to IDEs/chats/agents via MCP — with traceable
-                sources.
+                Archcore gathers architectural decisions from code, ADRs, and
+                discussions, transforms them into an Architecture Record
+                (versioned contract), and delivers it to IDEs/chats/agents via
+                MCP — with traceable sources.
               </Trans>
             </p>
 
@@ -35,20 +39,27 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
                   <Trans>
-                    Fewer PR iterations: AI considers module boundaries, patterns, and constraints before writing code.
+                    Fewer PR iterations: AI considers module boundaries,
+                    patterns, and constraints before writing code.
                   </Trans>
                 </span>
               </div>
               <div className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
-                  <Trans>Faster onboarding: "why did we do this?" → answer + link to decision/ADR.</Trans>
+                  <Trans>
+                    Faster onboarding: "why did we do this?" → answer + link to
+                    decision/ADR.
+                  </Trans>
                 </span>
               </div>
               <div className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
-                  <Trans>Safer code review: changes are validated against architectural constraints.</Trans>
+                  <Trans>
+                    Safer code review: changes are validated against
+                    architectural constraints.
+                  </Trans>
                 </span>
               </div>
             </div>
@@ -73,19 +84,31 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
           {/* Mobile: Show both buttons in a column */}
           <div className="flex lg:hidden flex-col gap-4 items-start">
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="w-full sm:w-auto"
+              >
                 <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
                   <Play className="h-5 w-5 mr-2" />
                   <Trans>Run demo</Trans>
                 </a>
               </Button>
-              <Button size="lg" onClick={onContactClick} className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                onClick={onContactClick}
+                className="w-full sm:w-auto"
+              >
                 <Mail className="h-5 w-5 mr-2" />
                 <Trans>Request Pilot</Trans>
               </Button>
             </div>
             <p className="text-sm text-muted-foreground">
-              <Trans>Demo is read-only. Creating/editing records available in self-hosted installation.</Trans>
+              <Trans>
+                Demo is read-only. Creating/editing records available in
+                self-hosted installation.
+              </Trans>
             </p>
           </div>
 

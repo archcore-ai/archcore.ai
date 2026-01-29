@@ -10,7 +10,11 @@ interface GitHubBotCommentProps {
   };
 }
 
-export function GitHubBotComment({ title, children, link }: GitHubBotCommentProps) {
+export function GitHubBotComment({
+  title,
+  children,
+  link,
+}: GitHubBotCommentProps) {
   return (
     <Card className="w-full">
       <CardContent className="space-y-4">
