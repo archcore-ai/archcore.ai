@@ -38,11 +38,11 @@ export default function App() {
         <FAQSection onContactClick={openContactDialog} />
       </main>
       <FooterSection onContactClick={openContactDialog} />
-      <StickyCTABar
+      {/* <StickyCTABar
         message={_(msg`Ready to make AI follow your architecture?`)}
         buttonLabel={_(msg`Book a Demo`)}
         onButtonClick={openContactDialog}
-      />
+      /> */}
       <ContactDialog
         open={contactDialogOpen}
         onOpenChange={setContactDialogOpen}

@@ -1,5 +1,5 @@
 import { msg } from "@lingui/core/macro";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ export function StickyHeader() {
   const { _ } = useLingui();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   const navItems: Array<{ href: string; label: string; external?: boolean }> = [
     { href: "#integrations", label: _(msg`Product`) },
@@ -29,13 +30,34 @@ export function StickyHeader() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <header
+      ref={headerRef}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
+        "fixed top-0 left-0 right-0 z-[9999] transition-all duration-200",
         isScrolled
           ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
+          : mobileMenuOpen
+            ? "bg-background"
+            : "bg-transparent"
       )}
     >
       <div className="px-6">
@@ -79,7 +101,7 @@ export function StickyHeader() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md px-6">
+        <div className="md:hidden border-t border-border bg-background px-6">
           <nav className="max-w-6xl mx-auto py-4 space-y-1">
             {navItems.map((item) => (
               <a
