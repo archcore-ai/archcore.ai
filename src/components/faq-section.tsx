@@ -20,9 +20,7 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
 
   const faqs = [
     {
-      question: _(
-        msg`How can I use Archcore in code editors?`
-      ),
+      question: _(msg`How can I use Archcore in code editors?`),
       answer: _(
         msg`Deployed Archcore system connects to any AI agent that supports MCP (Model Context Protocol). Nearly every editor or terminal allows you to run AI agents for your tasks: Cursor, VSCode, Warp, and others.`
       ),
