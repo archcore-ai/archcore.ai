@@ -1,5 +1,4 @@
-import { msg } from "@lingui/core/macro";
-import { ContactDialog, StickyCTABar } from "@/components/cta";
+import { ContactDialog } from "@/components/cta";
 import { useCTAState } from "@/hooks/use-cta-state";
 import { useTheme } from "@/hooks/use-theme";
 import {
@@ -13,10 +12,8 @@ import {
   FooterSection,
 } from "@/components/sections";
 import { FAQSection } from "@/components/faq-section";
-import { useLingui } from "@lingui/react";
 
 export default function App() {
-  const { _ } = useLingui();
   useTheme(); // Initialize theme detection (system preference + localStorage)
 
   const { contactDialogOpen, setContactDialogOpen, openContactDialog } =
