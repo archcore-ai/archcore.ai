@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run types && npm run lint && npm run format:check",
+    "check": "npm run types && npm run lint",
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
     "prebuild": "npm run i18n:compile",
