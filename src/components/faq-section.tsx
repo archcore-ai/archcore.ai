@@ -21,10 +21,10 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
   const faqs = [
     {
       question: _(
-        msg`Can I use Archcore directly in VSCode or JetBrains IDEs?`
+        msg`How can I use Archcore in code editors?`
       ),
       answer: _(
-        msg`Yes, Archcore search and chat can be integrated with both VSCode and JetBrains IDEs via MCP. This allows you to interact with your Architecture Record directly from your preferred development environment.`
+        msg`Deployed Archcore system connects to any AI agent that supports MCP (Model Context Protocol). Nearly every editor or terminal allows you to run AI agents for your tasks: Cursor, VSCode, Warp, and others.`
       ),
     },
     {
@@ -40,7 +40,7 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
         msg`Can I use Archcore with local LLMs instead of cloud providers?`
       ),
       answer: _(
-        msg`Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can access your Architecture Record while keeping everything on-premises.`
+        msg`Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. You can flexibly configure embeddings and chat with different models separately.`
       ),
     },
     {
@@ -52,7 +52,7 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
     {
       question: _(msg`Do I need to rewrite our existing documentation?`),
       answer: _(
-        msg`No. Archcore ingests existing ADRs, RFCs, documentation, and code. You can start with what you have and gradually enhance coverage as you document new architectural decisions.`
+        msg`Not required. Archcore focuses on technical details - it's closer to source code and infrastructure. You can use it as another system, but exclusively for technical tasks. However, the system doesn't limit you and has sufficient functionality to keep documentation entirely within it, considering the limitations of our layers and the specifics of its purpose.`
       ),
     },
     {
@@ -60,13 +60,13 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
         msg`How is Archcore different from GitHub Copilot or Cursor?`
       ),
       answer: _(
-        msg`Copilot and Cursor generate code from patterns in public repositories. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance and consistency, not just code generation.`
+        msg`Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project.`
       ),
     },
     {
       question: _(msg`Can we control what context AI tools can access?`),
       answer: _(
-        msg`Yes. Context Packs let you define role-based access (e.g., junior developers see coding standards, seniors see ADRs and strategic decisions). Audit logs track every AI query and context retrieval for compliance.`
+        msg`Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, we can refine context with tags for filtering.`
       ),
     },
   ];
@@ -84,7 +84,7 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
             <AccordionTrigger className="text-left">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground">
+            <AccordionContent className="text-muted-foreground [&_a]:!no-underline [&_a:hover]:!no-underline">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

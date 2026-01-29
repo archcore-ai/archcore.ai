@@ -274,8 +274,8 @@ msgid "Can Archcore be deployed on-premises for my organization?"
 msgstr "Можно ли развернуть Archcore локально (on-premises) для моей организации?"
 
 #: src/components/faq-section.tsx:24
-msgid "Can I use Archcore directly in VSCode or JetBrains IDEs?"
-msgstr "Можно ли использовать Archcore прямо в VSCode или IDE от JetBrains?"
+#~ msgid "Can I use Archcore directly in VSCode or JetBrains IDEs?"
+#~ msgstr "Как можно использовать Archcore в редакторах кода?"
 
 #: src/components/faq-section.tsx:40
 msgid "Can I use Archcore with local LLMs instead of cloud providers?"
@@ -391,8 +391,12 @@ msgstr "Соглашения легко игнорируются, когда о�
 #~ msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь о управлении, а не только генерации."
 
 #: src/components/faq-section.tsx:63
-msgid "Copilot and Cursor generate code from patterns in public repositories. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance and consistency, not just code generation."
-msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь об управлении и последовательности, а не только о генерации кода."
+#~ msgid "Copilot and Cursor generate code from patterns in public repositories. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance and consistency, not just code generation."
+#~ msgstr "Copilot и Cursor, Claude и другие ИИ агенты генерируют код по паттернам из публичных репозиториев. Archcore является источником контекста и дополняет знания ИИ агента. Другими словами Archcore это постоянная память вашего проекта."
+
+#: src/components/faq-section.tsx:63
+msgid "Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project."
+msgstr ""
 
 #: src/components/sections/integrations-section.tsx:57
 msgid "Create knowledge base, rules, and documentation linked to code. Each link between source code and documentation dramatically improves AI understanding of the project."
@@ -425,6 +429,10 @@ msgstr "Демо"
 #: src/components/sections/hero-section.tsx:108
 msgid "Demo is read-only. Creating/editing records available in self-hosted installation."
 msgstr "Демо — только просмотр. Создание/изменение записей доступно в self-hosted установке."
+
+#: src/components/faq-section.tsx:27
+msgid "Deployed Archcore system connects to any AI agent that supports MCP (Model Context Protocol). Nearly every editor or terminal allows you to run AI agents for your tasks: Cursor, VSCode, Warp, and others."
+msgstr ""
 
 #: src/components/sections/enterprise-section.tsx:23
 #~ msgid "Designed for environments with strict architectural and data controls"
@@ -591,6 +599,10 @@ msgstr "Жёсткие правила: что обязательно делат�
 #~ msgid "Hours wasted in 'why did we...?' meetings"
 #~ msgstr "Часы, потраченные на встречи 'а почему мы...?'"
 
+#: src/components/faq-section.tsx:24
+msgid "How can I use Archcore in code editors?"
+msgstr ""
+
 #: src/components/faq-section.tsx:60
 msgid "How is Archcore different from GitHub Copilot or Cursor?"
 msgstr "Чем Archcore отличается от GitHub Copilot или Cursor?"
@@ -705,8 +717,8 @@ msgstr "Нет проверяемости"
 #~ msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых решений."
 
 #: src/components/faq-section.tsx:55
-msgid "No. Archcore ingests existing ADRs, RFCs, documentation, and code. You can start with what you have and gradually enhance coverage as you document new architectural decisions."
-msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых архитектурных решений."
+#~ msgid "No. Archcore ingests existing ADRs, RFCs, documentation, and code. You can start with what you have and gradually enhance coverage as you document new architectural decisions."
+#~ msgstr "Необязательно. Archcore фокусируется на технических деталях - находится ближе к исходному коду и инфраструктуре. Вы можете использовать его как еще одна система, но исключительно для технических задач. Но система вас неограничивает и имеет достаточный функционал держать документацию полностью у себя, учитывая ограничения наших слоев и специфики назначения."
 
 #: src/components/sections/problem-section.tsx:24
 #~ msgid "Nobody knows the constraints"
@@ -715,6 +727,10 @@ msgstr "Нет. Archcore индексирует существующие ADR, RF
 #: src/components/sections/solution-section.tsx:20
 #~ msgid "Not a document repo. Not a search engine. A structured, versioned, queryable contract."
 #~ msgstr "Не репозиторий документов. Не поисковик. Структурированный, версионированный, запрашиваемый контракт."
+
+#: src/components/faq-section.tsx:55
+msgid "Not required. Archcore focuses on technical details - it's closer to source code and infrastructure. You can use it as another system, but exclusively for technical tasks. However, the system doesn't limit you and has sufficient functionality to keep documentation entirely within it, considering the limitations of our layers and the specifics of its purpose."
+msgstr ""
 
 #: src/components/sections/integrations-section.tsx:32
 #: src/components/sections/integrations-section.tsx:39
@@ -1080,21 +1096,29 @@ msgid "Yes, Archcore can be integrated with AI agents via MCP. This allows you t
 msgstr "Да, Archcore можно интегрировать с AI-агентами через MCP. Это позволяет подключать Cursor, Claude Code и другие инструменты к платформе Archcore, обогащая контекст ваших проектов глубокими знаниями об архитектурных решениях и ограничениях."
 
 #: src/components/faq-section.tsx:43
-msgid "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can access your Architecture Record while keeping everything on-premises."
-msgstr "Да, Archcore совместим с локальными LLM, такими как Llama 3, Qwen 2 и другими через Ollama или LM Studio. Он изначально поддерживает MCP, поэтому любой MCP-совместимый ИИ-инструмент может получить доступ к вашей Архитектурной записи, сохраняя всё в вашей инфраструктуре."
+#~ msgid "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can access your Architecture Record while keeping everything on-premises."
+#~ msgstr "Да, Archcore совместим с локальными LLM, такими как Llama 3, Qwen 2 и другими через Ollama или LM Studio. Вы можете гибко настраивать отдельно embeddings и чат разными моделями."
+
+#: src/components/faq-section.tsx:43
+msgid "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. You can flexibly configure embeddings and chat with different models separately."
+msgstr ""
 
 #: src/components/faq-section.tsx:27
-msgid "Yes, Archcore search and chat can be integrated with both VSCode and JetBrains IDEs via MCP. This allows you to interact with your Architecture Record directly from your preferred development environment."
-msgstr "Да, поиск и чат Archcore можно интегрировать как с VSCode, так и с IDE от JetBrains через MCP. Это позволит вам общаться с вашей Архитектурной записью прямо из вашей любимой среды разработки."
+#~ msgid "Yes, Archcore search and chat can be integrated with both VSCode and JetBrains IDEs via MCP. This allows you to interact with your Architecture Record directly from your preferred development environment."
+#~ msgstr "Развернутая система Archcore подключается к любому ИИ агенту, который поддерживает MCP (Model Context Protocol). Практически редактор или терминал позволяет запускать ИИ агентов для ваших задач: Cursor, VSCode, Warp и др. "
 
 #: src/components/faq-section.tsx:35
 msgid "Yes, you can deploy Archcore entirely within your infrastructure and even use your own LLM providers for greater flexibility. This option allows you to maintain complete confidentiality and security of your Architecture Record. Available only for enterprise customers—contact us for more information."
 msgstr "Да, вы можете развернуть Archcore полностью в своей инфраструктуре и даже использовать собственных LLM-провайдеров для большей гибкости. Эта опция позволяет сохранить полную конфиденциальность и безопасность вашей Архитектурной записи. Доступно только для корпоративных клиентов — свяжитесь с нами для получения дополнительной информации."
 
 #: src/components/faq-section.tsx:69
-msgid "Yes. Context Packs let you define role-based access (e.g., junior developers see coding standards, seniors see ADRs and strategic decisions). Audit logs track every AI query and context retrieval for compliance."
-msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты кодирования, seniors видят ADR и стратегические решения). Журналы аудита отслеживают каждый запрос ИИ и извлечение контекста для соответствия требованиям."
+#~ msgid "Yes. Context Packs let you define role-based access (e.g., junior developers see coding standards, seniors see ADRs and strategic decisions). Audit logs track every AI query and context retrieval for compliance."
+#~ msgstr "Да. При подключении через MCP вашей системы вы можете указать конкретные проекты с которыми хотите работать. Кроме этого мы можем уточнять теги для фильтрации контекста."
 
 #: src/components/faq-section.tsx:50
 #~ msgid "Yes. Context Packs let you define role-based access (e.g., junior devs see standards, seniors see ADRs). Audit logs track every AI query and retrieval."
 #~ msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты, seniors видят ADR). Audit logs отслеживают каждый запрос и извлечение ИИ."
+
+#: src/components/faq-section.tsx:69
+msgid "Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, we can refine context with tags for filtering."
+msgstr ""
