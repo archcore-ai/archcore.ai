@@ -1,6 +1,7 @@
 import { msg } from "@lingui/core/macro";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
+import { ThemedImage } from "@/components/themed-image";
 import { useLingui } from "@lingui/react";
 
 export function IntegrationsSection() {
@@ -16,8 +17,9 @@ export function IntegrationsSection() {
       />
 
       <div className="flex justify-center items-center mb-12">
-        <img
-          src="/images/how-to-work.png"
+        <ThemedImage
+          lightSrc="/images/how-to-work-light.png"
+          darkSrc="/images/how-to-work-dark.png"
           alt="Archcore flow diagram: Docs and Code feed into Archcore, which connects to AI Agents via MCP protocol, and outputs to Apps and Integrations"
           className="max-w-full h-auto w-full lg:w-4/5 xl:w-3/4"
         />

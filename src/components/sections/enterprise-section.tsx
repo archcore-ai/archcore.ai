@@ -3,6 +3,7 @@ import { Trans } from "@lingui/react/macro";
 import { Rocket, Database, Container, Cpu, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionContainer } from "@/components/section-container";
+import { ThemedImage } from "@/components/themed-image";
 import { useLingui } from "@lingui/react";
 
 export function EnterpriseSection() {
@@ -66,8 +67,9 @@ export function EnterpriseSection() {
           </Button> */}
         </div>
 
-        <img
-          src="/images/security.png"
+        <ThemedImage
+          lightSrc="/images/security-light.png"
+          darkSrc="/images/security-dark.png"
           alt="Self-hosted Archcore architecture: PostgreSQL-backed artifacts, filesystem storage, local or on-prem LLMs, and IDE/tool integrations"
           width={1064}
           height={887}
