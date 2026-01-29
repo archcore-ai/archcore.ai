@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/react/macro";
 import {
   MessageSquare,
   FileText,
@@ -11,7 +12,6 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { LucideIcon } from "lucide-react";
-import { Trans } from "@lingui/macro";
 
 interface BadgeProps {
   icon: LucideIcon;

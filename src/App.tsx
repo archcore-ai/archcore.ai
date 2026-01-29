@@ -1,3 +1,4 @@
+import { msg } from "@lingui/core/macro";
 import { ContactDialog, StickyCTABar } from "@/components/cta";
 import { useCTAState } from "@/hooks/use-cta-state";
 import { useTheme } from "@/hooks/use-theme";
@@ -12,7 +13,6 @@ import {
   FooterSection,
 } from "@/components/sections";
 import { FAQSection } from "@/components/faq-section";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 export default function App() {

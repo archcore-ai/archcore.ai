@@ -1,7 +1,7 @@
+import { msg } from "@lingui/core/macro";
 import { Shuffle, AlertTriangle, Search } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const problems = [

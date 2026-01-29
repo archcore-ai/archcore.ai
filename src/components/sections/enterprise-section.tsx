@@ -1,7 +1,8 @@
+import { msg } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { Rocket, Database, Container, Cpu, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionContainer } from "@/components/section-container";
-import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 export function EnterpriseSection() {

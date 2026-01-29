@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/react/macro";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   MessageCircle,
@@ -6,7 +7,6 @@ import {
   Check,
   ArrowRight,
 } from "lucide-react";
-import { Trans } from "@lingui/macro";
 
 export function DeterminismVisual() {
   return (

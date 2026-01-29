@@ -1,6 +1,6 @@
+import { Trans } from "@lingui/react/macro";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, Box } from "lucide-react";
-import { Trans } from "@lingui/macro";
 
 export function ComparisonTable() {
   return (

@@ -1,10 +1,10 @@
+import { msg } from "@lingui/core/macro";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 export function StickyHeader() {

@@ -1,6 +1,7 @@
+import { msg } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
-import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const footerLinks = {

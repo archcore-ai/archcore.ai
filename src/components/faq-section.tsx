@@ -1,3 +1,5 @@
+import { msg } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +9,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 interface FAQSectionProps {

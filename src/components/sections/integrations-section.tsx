@@ -1,6 +1,6 @@
+import { msg } from "@lingui/core/macro";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 export function IntegrationsSection() {

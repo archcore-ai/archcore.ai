@@ -1,10 +1,10 @@
+import { msg } from "@lingui/core/macro";
 import { Users, GitPullRequest, Code, Check, TrendingUp } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import type { LucideIcon } from "lucide-react";
 import { CodeDiffView } from "@/components/ui/code-diff-view";

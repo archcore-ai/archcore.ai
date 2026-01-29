@@ -1,3 +1,4 @@
+import { msg } from "@lingui/core/macro";
 import { Database, Box, Zap, Shield, ArrowRight } from "lucide-react";
 import {
   Card,
@@ -11,7 +12,6 @@ import { SectionCTACard } from "@/components/cta";
 import { SolutionDiagram } from "@/components/solution-diagram";
 import { ComparisonTable } from "@/components/comparison-table";
 import { DeterminismVisual } from "@/components/determinism-visual";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const DEMO_URL = "https://demo.archcore.ai";

@@ -1,3 +1,4 @@
+import { msg } from "@lingui/core/macro";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
 import {
@@ -7,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FileText, Shield, Box, Code, Book, CheckCircle } from "lucide-react";
-import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 export function ArchitectureRecordSection() {

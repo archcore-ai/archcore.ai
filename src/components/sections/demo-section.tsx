@@ -1,7 +1,8 @@
+import { msg } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
 import { CirclePlay } from "lucide-react";
-import { Trans, msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 
 const DEMO_URL = "https://demo.archcore.ai";

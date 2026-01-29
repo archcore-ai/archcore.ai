@@ -1,7 +1,7 @@
+import { Trans } from "@lingui/react/macro";
 import { Check, Mail, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Trans } from "@lingui/macro";
 
 const DEMO_URL = "https://demo.archcore.ai";
 
