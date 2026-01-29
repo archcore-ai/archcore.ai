@@ -82,8 +82,8 @@ msgstr "✗ Результаты зависят от формулировки з
 #~ msgstr "3-4 недели онбординга на инженера"
 
 #: src/components/faq-section.tsx:44
-msgid "30 minutes to deploy the binary. 1-2 days to ingest initial sources and configure connectors. Context building is incremental from there."
-msgstr "30 минут на развёртывание бинарника. 1-2 дня на начальную индексацию источников и настройку коннекторов. Построение контекста происходит инкрементально."
+#~ msgid "30 minutes to deploy the binary. 1-2 days to ingest initial sources and configure connectors. Context building is incremental from there."
+#~ msgstr "30 минут на развёртывание бинарника. 1-2 дня на начальную индексацию источников и настройку коннекторов. Построение контекста происходит инкрементально."
 
 #: src/components/sections/use-cases-section.tsx:28
 #~ msgid "60% fewer architecture violations reach main"
@@ -169,11 +169,11 @@ msgstr "Archcore"
 #~ msgid "Archcore captures architectural decisions, constraints, and system relationships — then feeds them to chat, code review, and coding agents with traceable sources."
 #~ msgstr "Archcore фиксирует архитектурные решения, ограничения и связи между системами — и передаёт их в чат, код-ревью и агентов с отслеживаемыми источниками."
 
-#: src/components/sections/integrations-section.tsx:38
+#: src/components/sections/integrations-section.tsx:40
 msgid "Archcore clones your repository and builds an initial knowledge graph. You can create global documents shared across multiple projects."
 msgstr "Archcore клонирует ваш репозиторий и строит первичный граф знаний. Вы можете создавать глобальные документы общие для нескольких проектов."
 
-#: src/components/sections/demo-section.tsx:41
+#: src/components/sections/demo-section.tsx:42
 msgid "Archcore demo"
 msgstr ""
 
@@ -187,13 +187,13 @@ msgstr ""
 #~ msgid "Archcore provides ADR with decision rationale, constraints, and current state"
 #~ msgstr "Archcore предоставляет ADR с обоснованием решений, ограничениями и текущим состоянием"
 
-#: src/components/sections/enterprise-section.tsx:34
+#: src/components/sections/enterprise-section.tsx:36
 msgid "Archcore runs entirely on your infrastructure — no SaaS, no data export, no third-party AI vendors required. Keep your code and architectural knowledge inside your security perimeter."
 msgstr "Archcore работает полностью на вашей инфраструктуре — без SaaS, без экспорта данных. Храните код и архитектурные знания внутри вашего периметра безопасности."
 
 #: src/components/faq-section.tsx:38
-msgid "Archcore works with Claude, GPT, and local models via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can use your Architecture Record."
-msgstr "Archcore работает с Claude, GPT и локальными моделями через Ollama или LM Studio. Он нативно поддерживает MCP, поэтому любой MCP-совместимый ИИ-инструмент может использовать ваш Architecture Record."
+#~ msgid "Archcore works with Claude, GPT, and local models via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can use your Architecture Record."
+#~ msgstr "Archcore работает с Claude, GPT и локальными моделями через Ollama или LM Studio. Он нативно поддерживает MCP, поэтому любой MCP-совместимый ИИ-инструмент может использовать ваш Architecture Record."
 
 #: src/components/sections/use-cases-section.tsx:27
 #~ msgid "Archcore-powered review flags violation of connection pooling rules (links to ADR)"
@@ -269,9 +269,25 @@ msgstr "Границы"
 #~ msgid "Built for <0>engineering teams</0> who need architecture that AI can follow"
 #~ msgstr "Создано для <0>инженерных команд</0>, которым нужна архитектура, которую ИИ может соблюдать"
 
-#: src/components/faq-section.tsx:48
-msgid "Can we control what context AI tools see?"
+#: src/components/faq-section.tsx:32
+msgid "Can Archcore be deployed on-premises for my organization?"
+msgstr "Можно ли развернуть Archcore локально (on-premises) для моей организации?"
+
+#: src/components/faq-section.tsx:24
+msgid "Can I use Archcore directly in VSCode or JetBrains IDEs?"
+msgstr "Можно ли использовать Archcore прямо в VSCode или IDE от JetBrains?"
+
+#: src/components/faq-section.tsx:40
+msgid "Can I use Archcore with local LLMs instead of cloud providers?"
+msgstr "Можно ли использовать Archcore с локальной LLM?"
+
+#: src/components/faq-section.tsx:67
+msgid "Can we control what context AI tools can access?"
 msgstr "Можем ли мы контролировать, какой контекст видят ИИ-инструменты?"
+
+#: src/components/faq-section.tsx:48
+#~ msgid "Can we control what context AI tools see?"
+#~ msgstr "Можем ли мы контролировать, какой контекст видят ИИ-инструменты?"
 
 #: src/components/sections/demo-section.tsx:22
 #~ msgid "Check PR for architectural constraint violations"
@@ -310,8 +326,8 @@ msgstr "Критерии проверки кода на соответствие
 #~ msgstr "Обычно $15-20K потерянной производительности"
 
 #: src/components/faq-section.tsx:62
-msgid "Compliance certifications are on our roadmap. Archcore is self-hosted, so you control the infrastructure and can map it to your existing compliance frameworks."
-msgstr "Сертификаты соответствия в нашем roadmap. Archcore self-hosted, поэтому вы контролируете инфраструктуру и можете сопоставить её с вашими существующими фреймворками соответствия."
+#~ msgid "Compliance certifications are on our roadmap. Archcore is self-hosted, so you control the infrastructure and can map it to your existing compliance frameworks."
+#~ msgstr "Сертификаты соответствия в нашем roadmap. Archcore self-hosted, поэтому вы контролируете инфраструктуру и можете сопоставить её с вашими существующими фреймворками соответствия."
 
 #: src/components/sections/stories-section.tsx:46
 #~ msgid "Concrete examples of how enforceable context changes development workflows"
@@ -333,7 +349,7 @@ msgstr "Сертификаты соответствия в нашем roadmap. A
 #~ msgid "Connect your sources"
 #~ msgstr "Подключите свои источники"
 
-#: src/components/sections/integrations-section.tsx:12
+#: src/components/sections/integrations-section.tsx:13
 msgid "Connects to Your Architecture Sources"
 msgstr "Платформа контекстной инженерии"
 
@@ -341,12 +357,12 @@ msgstr "Платформа контекстной инженерии"
 msgid "Constraints (must/never)"
 msgstr "Ограничения (must/never)"
 
-#: src/components/faq-section.tsx:92
-#: src/components/sections/footer-section.tsx:61
+#: src/components/faq-section.tsx:99
+#: src/components/sections/footer-section.tsx:62
 msgid "Contact Us"
 msgstr "Связаться с нами"
 
-#: src/components/sections/footer-section.tsx:25
+#: src/components/sections/footer-section.tsx:26
 msgid "Context engineering platform for teams"
 msgstr "Платформа контекстной инженерии для команд"
 
@@ -371,10 +387,14 @@ msgid "Conventions are easily ignored when not structured. No automatic validati
 msgstr "Соглашения легко игнорируются, когда они не структурированы. Нет автоматической проверки."
 
 #: src/components/faq-section.tsx:26
-msgid "Copilot and Cursor generate code from patterns in public repos. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance, not just generation."
-msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь о управлении, а не только генерации."
+#~ msgid "Copilot and Cursor generate code from patterns in public repos. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance, not just generation."
+#~ msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь о управлении, а не только генерации."
 
-#: src/components/sections/integrations-section.tsx:55
+#: src/components/faq-section.tsx:63
+msgid "Copilot and Cursor generate code from patterns in public repositories. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance and consistency, not just code generation."
+msgstr "Copilot и Cursor генерируют код по паттернам из публичных репозиториев. Archcore гарантирует, что ИИ следует вашим конкретным архитектурным правилам, решениям и ограничениям. Речь об управлении и последовательности, а не только о генерации кода."
+
+#: src/components/sections/integrations-section.tsx:57
 msgid "Create knowledge base, rules, and documentation linked to code. Each link between source code and documentation dramatically improves AI understanding of the project."
 msgstr "Создавайте базу знаний, правила и документацию связанную с кодом. Каждая связь исходного кода с фрагментом документа кратно увеличивает понимание ИИ проекта"
 
@@ -419,10 +439,14 @@ msgid "Direct connection creation violates"
 msgstr "Прямое создание соединений нарушает"
 
 #: src/components/faq-section.tsx:30
-msgid "Do I need to rewrite our documentation?"
+#~ msgid "Do I need to rewrite our documentation?"
+#~ msgstr "Нужно ли переписывать нашу документацию?"
+
+#: src/components/faq-section.tsx:53
+msgid "Do I need to rewrite our existing documentation?"
 msgstr "Нужно ли переписывать нашу документацию?"
 
-#: src/components/sections/enterprise-section.tsx:12
+#: src/components/sections/enterprise-section.tsx:14
 msgid "Docker-ready"
 msgstr "Docker образ"
 
@@ -438,13 +462,17 @@ msgstr "Docker образ"
 #~ msgid "Documentation"
 #~ msgstr "Документация"
 
-#: src/components/sections/integrations-section.tsx:50
+#: src/components/sections/integrations-section.tsx:52
 msgid "Documentation and Code"
 msgstr "Документация и код"
 
 #: src/components/sections/problem-section.tsx:39
 #~ msgid "Documentation says one thing. The system behaves differently. AI reads the docs and generates wrong code."
 #~ msgstr "Документация говорит одно. Система ведёт себя по-другому. ИИ читает документацию и генерирует неправильный код."
+
+#: src/components/faq-section.tsx:47
+msgid "Does Archcore integrate with AI agents via MCP?"
+msgstr "Интегрируется ли Archcore с AI-агентами через MCP?"
 
 #: src/components/sections/architecture-record-section.tsx:49
 msgid "Domain terms and definitions, team's ubiquitous language."
@@ -459,7 +487,7 @@ msgstr "Термины и определения предметной облас
 #~ msgid "Enforceable constraints"
 #~ msgstr "Исполняемые ограничения"
 
-#: src/components/sections/footer-section.tsx:34
+#: src/components/sections/footer-section.tsx:35
 msgid "Enter your work email"
 msgstr "Введите рабочий email"
 
@@ -483,7 +511,7 @@ msgstr "Корпоративный поиск (как Onyx)"
 #~ msgid "Example of automated architectural code review"
 #~ msgstr "Пример автоматизированного архитектурного код-ревью"
 
-#: src/components/sections/demo-section.tsx:17
+#: src/components/sections/demo-section.tsx:18
 msgid "Example of how the system works with real open-source project <0>hotpot-tracker</0>"
 msgstr "Пример работы системы с реальным open-source проектом <0>hotpot-tracker</0>"
 
@@ -519,7 +547,7 @@ msgstr "Ускоряет и делает более точной работу AI
 msgid "for all AI tools"
 msgstr "для AI-инструментов"
 
-#: src/components/faq-section.tsx:70
+#: src/components/faq-section.tsx:77
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
@@ -563,13 +591,13 @@ msgstr "Жёсткие правила: что обязательно делат�
 #~ msgid "Hours wasted in 'why did we...?' meetings"
 #~ msgstr "Часы, потраченные на встречи 'а почему мы...?'"
 
-#: src/components/faq-section.tsx:23
+#: src/components/faq-section.tsx:60
 msgid "How is Archcore different from GitHub Copilot or Cursor?"
 msgstr "Чем Archcore отличается от GitHub Copilot или Cursor?"
 
 #: src/components/faq-section.tsx:42
-msgid "How long does setup take?"
-msgstr "Сколько времени занимает настройка?"
+#~ msgid "How long does setup take?"
+#~ msgstr "Сколько времени занимает настройка?"
 
 #: src/components/sections/use-cases-section.tsx:153
 msgid "How teams use Archcore to solve architectural context challenges"
@@ -579,7 +607,7 @@ msgstr "Как команды используют Archcore для решени�
 msgid "IDEs/chats/agents get context via MCP"
 msgstr "IDE/чаты/агенты получают контекст через MCP"
 
-#: src/components/sections/integrations-section.tsx:66
+#: src/components/sections/integrations-section.tsx:68
 msgid "Integration"
 msgstr "Подключение"
 
@@ -600,8 +628,8 @@ msgstr "Интерактивный тур"
 #~ msgstr "Интерактивный тур (только чтение)"
 
 #: src/components/faq-section.tsx:60
-msgid "Is Archcore SOC2 / ISO 27001 compliant?"
-msgstr "Соответствует ли Archcore SOC2 / ISO 27001?"
+#~ msgid "Is Archcore SOC2 / ISO 27001 compliant?"
+#~ msgstr "Соответствует ли Archcore SOC2 / ISO 27001?"
 
 #: src/components/sections/integrations-section.tsx:69
 #~ msgid "Issue tracking and technical context"
@@ -620,7 +648,7 @@ msgstr "Помогает команде влиять на качество от�
 #~ msgid "live"
 #~ msgstr "доступно"
 
-#: src/components/sections/enterprise-section.tsx:13
+#: src/components/sections/enterprise-section.tsx:15
 msgid "Local LLMs supported"
 msgstr "Поддержка локальных LLM"
 
@@ -628,7 +656,7 @@ msgstr "Поддержка локальных LLM"
 #~ msgid "Make AI tools follow your architecture — <0>not hallucinate it</0>"
 #~ msgstr "Заставьте ИИ следовать вашей архитектуре — <0>а не галлюцинировать её</0>"
 
-#: src/components/sections/integrations-section.tsx:70
+#: src/components/sections/integrations-section.tsx:72
 msgid "MCP protocol allows connecting any tools and integrations: code editors, bots, etc. Update documentation and get instant feedback."
 msgstr "Протокол MCP позволяет подключить любые ваши инструменты и интеграции: редакторы кода, боты и др. Корректируйте документацию и получайте мгновенную обратную связь"
 
@@ -673,8 +701,12 @@ msgstr "Нет проверяемости"
 #~ msgstr "Нет привязки к вендору"
 
 #: src/components/faq-section.tsx:32
-msgid "No. Archcore ingests existing ADRs, RFCs, docs, and code. You can start with what you have and gradually enhance coverage as you document new decisions."
-msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых решений."
+#~ msgid "No. Archcore ingests existing ADRs, RFCs, docs, and code. You can start with what you have and gradually enhance coverage as you document new decisions."
+#~ msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых решений."
+
+#: src/components/faq-section.tsx:55
+msgid "No. Archcore ingests existing ADRs, RFCs, documentation, and code. You can start with what you have and gradually enhance coverage as you document new architectural decisions."
+msgstr "Нет. Archcore индексирует существующие ADR, RFC, документацию и код. Вы можете начать с того, что есть, и постепенно расширять покрытие по мере документирования новых архитектурных решений."
 
 #: src/components/sections/problem-section.tsx:24
 #~ msgid "Nobody knows the constraints"
@@ -709,7 +741,7 @@ msgstr "Общий архитектурный контекст"
 #~ msgid "One architectural context for all AI tools"
 #~ msgstr "Общий архитектурный контекст для AI-инструментов"
 
-#: src/components/sections/enterprise-section.tsx:11
+#: src/components/sections/enterprise-section.tsx:13
 msgid "PostgreSQL backend"
 msgstr "Бэкенд на PostgreSQL"
 
@@ -729,7 +761,7 @@ msgstr "Не позволяет универсальному ИИ одобрят
 msgid "Prevents using deprecated authentication patterns"
 msgstr "Экономия токенов и уменьшение ошибок"
 
-#: src/components/sections/enterprise-section.tsx:31
+#: src/components/sections/enterprise-section.tsx:33
 msgid "Private. Self-hosted. Yours."
 msgstr "Self-hosted. Работает в вашей инфраструктуре."
 
@@ -756,7 +788,7 @@ msgstr "Онбординг, Q/A"
 msgid "Question"
 msgstr "Вопрос"
 
-#: src/components/sections/enterprise-section.tsx:10
+#: src/components/sections/enterprise-section.tsx:12
 msgid "Quick start"
 msgstr "Запуск за 1 день"
 
@@ -817,7 +849,7 @@ msgstr "Применённые правила"
 msgid "Rules aren't enforced"
 msgstr "Правила не исполняются"
 
-#: src/components/sections/demo-section.tsx:47
+#: src/components/sections/demo-section.tsx:48
 #: src/components/sections/hero-section.tsx:78
 #: src/components/sections/hero-section.tsx:95
 msgid "Run demo"
@@ -884,7 +916,7 @@ msgstr "Self-hosted"
 #~ msgid "Slack threads with architectural decisions"
 #~ msgstr "Slack-треды с архитектурными решениями"
 
-#: src/components/sections/integrations-section.tsx:34
+#: src/components/sections/integrations-section.tsx:36
 msgid "Source Code"
 msgstr "Исходный код"
 
@@ -909,18 +941,18 @@ msgstr "Использованные источники"
 #~ msgstr "Начните получать эти результаты"
 
 #: src/components/faq-section.tsx:56
-msgid "Start with code analysis and capture decisions as they're discovered. Archcore helps you build the record incrementally—you don't need perfect docs on day one."
-msgstr "Начните с анализа кода и фиксируйте решения по мере их обнаружения. Archcore помогает строить запись инкрементально — вам не нужна идеальная документация с первого дня."
+#~ msgid "Start with code analysis and capture decisions as they're discovered. Archcore helps you build the record incrementally—you don't need perfect docs on day one."
+#~ msgstr "Начните с анализа кода и фиксируйте решения по мере их обнаружения. Archcore помогает строить запись инкрементально — вам не нужна идеальная документация с первого дня."
 
-#: src/components/sections/integrations-section.tsx:14
+#: src/components/sections/integrations-section.tsx:15
 msgid "Start with what you already have: code, ADRs, documentation, discussions. Connectors gather context into a unified Architecture Record."
 msgstr "Начните с того, что у вас уже есть: создавайте документацию в Archcore и связывайте ее с вашим кодом"
 
-#: src/components/sections/footer-section.tsx:31
+#: src/components/sections/footer-section.tsx:32
 msgid "Stay Updated"
 msgstr "Будьте в курсе"
 
-#: src/components/faq-section.tsx:89
+#: src/components/faq-section.tsx:96
 msgid "Still have questions?"
 msgstr "Остались вопросы?"
 
@@ -928,7 +960,7 @@ msgstr "Остались вопросы?"
 msgid "Structured, versioned, queryable"
 msgstr "Структурировано, версионировано, запрашиваемо"
 
-#: src/components/sections/footer-section.tsx:35
+#: src/components/sections/footer-section.tsx:36
 msgid "Subscribe"
 msgstr "Подписаться"
 
@@ -944,7 +976,7 @@ msgstr "Подписаться"
 #~ msgid "Teams commonly report 30-40% productivity loss to context switching and knowledge gaps"
 #~ msgstr "Команды обычно сообщают о потере 30-40% производительности из-за переключения контекста и пробелов в знаниях"
 
-#: src/components/sections/footer-section.tsx:36
+#: src/components/sections/footer-section.tsx:37
 msgid "Thanks! You're on the list."
 msgstr "Спасибо! Вы в списке рассылки."
 
@@ -976,7 +1008,7 @@ msgstr "Отслеживаемое рассуждение: без чёрного
 #~ msgid "Traceable sources"
 #~ msgstr "Отслеживаемые источники"
 
-#: src/components/sections/demo-section.tsx:15
+#: src/components/sections/demo-section.tsx:16
 msgid "Try Archcore in Action"
 msgstr "Попробуйте Archcore в действии"
 
@@ -1008,12 +1040,12 @@ msgid "We moved away from the monolith because team velocity became limited by a
 msgstr "Мы отказались от монолита, потому что скорость команд стала ограничиваться архитектурой, а не людьми. Переход к сервисам позволил выпускать изменения независимо, сократить blast radius ошибок и выровнять ответственность по доменам. Решение осознанно увеличивает операционную сложность, но считается приемлемым при текущем масштабе."
 
 #: src/components/faq-section.tsx:54
-msgid "What if we have legacy systems with no documentation?"
-msgstr "Что если у нас легаси-системы без документации?"
+#~ msgid "What if we have legacy systems with no documentation?"
+#~ msgstr "Что если у нас легаси-системы без документации?"
 
 #: src/components/faq-section.tsx:36
-msgid "What if we use local LLMs (not Claude/GPT)?"
-msgstr "Что если мы используем локальные LLM (не Claude/GPT)?"
+#~ msgid "What if we use local LLMs (not Claude/GPT)?"
+#~ msgstr "Что если мы используем локальные LLM (не Claude/GPT)?"
 
 #: src/components/sections/architecture-record-section.tsx:62
 msgid "What is Architecture Record"
@@ -1043,6 +1075,26 @@ msgstr "Без источников и версий невозможно пон�
 msgid "Works with local LLMs"
 msgstr "Поддержка локальных LLM"
 
+#: src/components/faq-section.tsx:49
+msgid "Yes, Archcore can be integrated with AI agents via MCP. This allows you to connect Cursor, Claude Code, and other tools to the Archcore platform, enriching your project context with deep knowledge of architectural decisions and constraints."
+msgstr "Да, Archcore можно интегрировать с AI-агентами через MCP. Это позволяет подключать Cursor, Claude Code и другие инструменты к платформе Archcore, обогащая контекст ваших проектов глубокими знаниями об архитектурных решениях и ограничениях."
+
+#: src/components/faq-section.tsx:43
+msgid "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can access your Architecture Record while keeping everything on-premises."
+msgstr "Да, Archcore совместим с локальными LLM, такими как Llama 3, Qwen 2 и другими через Ollama или LM Studio. Он изначально поддерживает MCP, поэтому любой MCP-совместимый ИИ-инструмент может получить доступ к вашей Архитектурной записи, сохраняя всё в вашей инфраструктуре."
+
+#: src/components/faq-section.tsx:27
+msgid "Yes, Archcore search and chat can be integrated with both VSCode and JetBrains IDEs via MCP. This allows you to interact with your Architecture Record directly from your preferred development environment."
+msgstr "Да, поиск и чат Archcore можно интегрировать как с VSCode, так и с IDE от JetBrains через MCP. Это позволит вам общаться с вашей Архитектурной записью прямо из вашей любимой среды разработки."
+
+#: src/components/faq-section.tsx:35
+msgid "Yes, you can deploy Archcore entirely within your infrastructure and even use your own LLM providers for greater flexibility. This option allows you to maintain complete confidentiality and security of your Architecture Record. Available only for enterprise customers—contact us for more information."
+msgstr "Да, вы можете развернуть Archcore полностью в своей инфраструктуре и даже использовать собственных LLM-провайдеров для большей гибкости. Эта опция позволяет сохранить полную конфиденциальность и безопасность вашей Архитектурной записи. Доступно только для корпоративных клиентов — свяжитесь с нами для получения дополнительной информации."
+
+#: src/components/faq-section.tsx:69
+msgid "Yes. Context Packs let you define role-based access (e.g., junior developers see coding standards, seniors see ADRs and strategic decisions). Audit logs track every AI query and context retrieval for compliance."
+msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты кодирования, seniors видят ADR и стратегические решения). Журналы аудита отслеживают каждый запрос ИИ и извлечение контекста для соответствия требованиям."
+
 #: src/components/faq-section.tsx:50
-msgid "Yes. Context Packs let you define role-based access (e.g., junior devs see standards, seniors see ADRs). Audit logs track every AI query and retrieval."
-msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты, seniors видят ADR). Audit logs отслеживают каждый запрос и извлечение ИИ."
+#~ msgid "Yes. Context Packs let you define role-based access (e.g., junior devs see standards, seniors see ADRs). Audit logs track every AI query and retrieval."
+#~ msgstr "Да. Context Packs позволяют определить ролевой доступ (например, junior-разработчики видят стандарты, seniors видят ADR). Audit logs отслеживают каждый запрос и извлечение ИИ."

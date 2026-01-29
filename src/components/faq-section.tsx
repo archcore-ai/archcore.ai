@@ -21,46 +21,52 @@ export function FAQSection({ onContactClick }: FAQSectionProps) {
   const faqs = [
     {
       question: _(
+        msg`Can I use Archcore directly in VSCode or JetBrains IDEs?`
+      ),
+      answer: _(
+        msg`Yes, Archcore search and chat can be integrated with both VSCode and JetBrains IDEs via MCP. This allows you to interact with your Architecture Record directly from your preferred development environment.`
+      ),
+    },
+    {
+      question: _(
+        msg`Can Archcore be deployed on-premises for my organization?`
+      ),
+      answer: _(
+        msg`Yes, you can deploy Archcore entirely within your infrastructure and even use your own LLM providers for greater flexibility. This option allows you to maintain complete confidentiality and security of your Architecture Record. Available only for enterprise customers—contact us for more information.`
+      ),
+    },
+    {
+      question: _(
+        msg`Can I use Archcore with local LLMs instead of cloud providers?`
+      ),
+      answer: _(
+        msg`Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can access your Architecture Record while keeping everything on-premises.`
+      ),
+    },
+    {
+      question: _(msg`Does Archcore integrate with AI agents via MCP?`),
+      answer: _(
+        msg`Yes, Archcore can be integrated with AI agents via MCP. This allows you to connect Cursor, Claude Code, and other tools to the Archcore platform, enriching your project context with deep knowledge of architectural decisions and constraints.`
+      ),
+    },
+    {
+      question: _(msg`Do I need to rewrite our existing documentation?`),
+      answer: _(
+        msg`No. Archcore ingests existing ADRs, RFCs, documentation, and code. You can start with what you have and gradually enhance coverage as you document new architectural decisions.`
+      ),
+    },
+    {
+      question: _(
         msg`How is Archcore different from GitHub Copilot or Cursor?`
       ),
       answer: _(
-        msg`Copilot and Cursor generate code from patterns in public repos. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance, not just generation.`
+        msg`Copilot and Cursor generate code from patterns in public repositories. Archcore ensures AI follows your specific architectural rules, decisions, and constraints. It's about governance and consistency, not just code generation.`
       ),
     },
     {
-      question: _(msg`Do I need to rewrite our documentation?`),
+      question: _(msg`Can we control what context AI tools can access?`),
       answer: _(
-        msg`No. Archcore ingests existing ADRs, RFCs, docs, and code. You can start with what you have and gradually enhance coverage as you document new decisions.`
-      ),
-    },
-    {
-      question: _(msg`What if we use local LLMs (not Claude/GPT)?`),
-      answer: _(
-        msg`Archcore works with Claude, GPT, and local models via Ollama or LM Studio. It's MCP-native, so any MCP-compatible AI tool can use your Architecture Record.`
-      ),
-    },
-    {
-      question: _(msg`How long does setup take?`),
-      answer: _(
-        msg`30 minutes to deploy the binary. 1-2 days to ingest initial sources and configure connectors. Context building is incremental from there.`
-      ),
-    },
-    {
-      question: _(msg`Can we control what context AI tools see?`),
-      answer: _(
-        msg`Yes. Context Packs let you define role-based access (e.g., junior devs see standards, seniors see ADRs). Audit logs track every AI query and retrieval.`
-      ),
-    },
-    {
-      question: _(msg`What if we have legacy systems with no documentation?`),
-      answer: _(
-        msg`Start with code analysis and capture decisions as they're discovered. Archcore helps you build the record incrementally—you don't need perfect docs on day one.`
-      ),
-    },
-    {
-      question: _(msg`Is Archcore SOC2 / ISO 27001 compliant?`),
-      answer: _(
-        msg`Compliance certifications are on our roadmap. Archcore is self-hosted, so you control the infrastructure and can map it to your existing compliance frameworks.`
+        msg`Yes. Context Packs let you define role-based access (e.g., junior developers see coding standards, seniors see ADRs and strategic decisions). Audit logs track every AI query and context retrieval for compliance.`
       ),
     },
   ];
