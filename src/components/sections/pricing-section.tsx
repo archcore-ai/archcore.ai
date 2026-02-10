@@ -72,6 +72,9 @@ export function PricingSection() {
                   <Badge variant="secondary">
                     <Trans>Free</Trans>
                   </Badge>
+                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-primary/40 text-primary">
+                    Alpha
+                  </Badge>
                 </div>
                 <CardDescription>
                   <Trans>For individual developers</Trans>

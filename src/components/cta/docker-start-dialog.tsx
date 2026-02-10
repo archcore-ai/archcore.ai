@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 interface DockerStartDialogProps {
@@ -34,9 +35,14 @@ export function DockerStartDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>
-            <Trans>Get Started with Archcore</Trans>
-          </DialogTitle>
+          <div className="flex items-center gap-2">
+            <DialogTitle>
+              <Trans>Get Started with Archcore</Trans>
+            </DialogTitle>
+            <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-primary/40 text-primary">
+              Alpha
+            </Badge>
+          </div>
           <DialogDescription>
             <Trans>
               Launch Archcore locally with a single Docker command. No
