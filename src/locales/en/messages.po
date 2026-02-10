@@ -69,6 +69,10 @@ msgstr "✗ No architectural structure"
 msgid "✗ Results vary by query phrasing"
 msgstr "✗ Results vary by query phrasing"
 
+#: src/components/sections/pricing-section.tsx:24
+msgid "1 user"
+msgstr "1 user"
+
 #: src/components/sections/problem-section.tsx:26
 #~ msgid "15-20% of PRs introduce violations"
 #~ msgstr "15-20% of PRs introduce violations"
@@ -293,6 +297,10 @@ msgstr "Can we control what context AI tools can access?"
 #~ msgid "Check PR for architectural constraint violations"
 #~ msgstr "Check PR for architectural constraint violations"
 
+#: src/components/sections/pricing-section.tsx:53
+msgid "Cloud"
+msgstr "Cloud"
+
 #: src/components/sections/integrations-section.tsx:31
 #~ msgid "Code"
 #~ msgstr "Code"
@@ -317,6 +325,10 @@ msgstr "Code review criteria for architectural compliance."
 #~ msgid "Coding agent generates REST endpoint using deprecated auth pattern"
 #~ msgstr "Coding agent generates REST endpoint using deprecated auth pattern"
 
+#: src/components/sections/pricing-section.tsx:111
+msgid "Coming Soon"
+msgstr "Coming Soon"
+
 #: src/components/faq-section.tsx:55
 #~ msgid "Common questions about Architecture Record and how Archcore works"
 #~ msgstr "Common questions about Architecture Record and how Archcore works"
@@ -324,6 +336,10 @@ msgstr "Code review criteria for architectural compliance."
 #: src/components/sections/problem-section.tsx:20
 #~ msgid "Commonly $15-20K in lost productivity"
 #~ msgstr "Commonly $15-20K in lost productivity"
+
+#: src/components/sections/pricing-section.tsx:26
+msgid "Community support"
+msgstr "Community support"
 
 #: src/components/faq-section.tsx:62
 #~ msgid "Compliance certifications are on our roadmap. Archcore is self-hosted, so you control the infrastructure and can map it to your existing compliance frameworks."
@@ -356,6 +372,10 @@ msgstr "Context Engineering Platform"
 #: src/components/sections/architecture-record-section.tsx:26
 msgid "Constraints (must/never)"
 msgstr "Constraints (must/never)"
+
+#: src/components/sections/pricing-section.tsx:141
+msgid "Contact Sales"
+msgstr "Contact Sales"
 
 #: src/components/faq-section.tsx:97
 #: src/components/sections/footer-section.tsx:62
@@ -405,6 +425,10 @@ msgstr "Create knowledge base, rules, and documentation linked to code. Each lin
 #: src/components/sections/problem-section.tsx:17
 #~ msgid "Critical decisions disappear"
 #~ msgstr "Critical decisions disappear"
+
+#: src/components/sections/pricing-section.tsx:127
+msgid "Custom"
+msgstr "Custom"
 
 #: src/components/sections/enterprise-section.tsx:20
 #~ msgid "Data sovereignty"
@@ -555,6 +579,22 @@ msgstr "Speeds up and improves accuracy of AI agents"
 msgid "for all AI tools"
 msgstr "for all AI tools"
 
+#: src/components/sections/pricing-section.tsx:75
+msgid "For individual developers"
+msgstr "For individual developers"
+
+#: src/components/sections/pricing-section.tsx:121
+msgid "For teams and organizations"
+msgstr "For teams and organizations"
+
+#: src/components/sections/pricing-section.tsx:82
+msgid "Forever free"
+msgstr "Forever free"
+
+#: src/components/sections/pricing-section.tsx:71
+msgid "Free"
+msgstr "Free"
+
 #: src/components/faq-section.tsx:75
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
@@ -574,6 +614,10 @@ msgstr "Gather → Record → Apply → Verify"
 #: src/components/sections/use-cases-section.tsx:26
 #~ msgid "Generic AI reviewer approves without checking architectural standards"
 #~ msgstr "Generic AI reviewer approves without checking architectural standards"
+
+#: src/components/sections/pricing-section.tsx:101
+msgid "Get Started"
+msgstr "Get Started"
 
 #: src/components/sections/integrations-section.tsx:19
 #~ msgid "Git Repositories"
@@ -689,6 +733,10 @@ msgstr "Modules, bounded contexts, interaction interfaces between components."
 #~ msgid "Most decisions undocumented after 6mo"
 #~ msgstr "Most decisions undocumented after 6mo"
 
+#: src/components/sections/pricing-section.tsx:30
+msgid "Multi-user auth"
+msgstr "Multi-user auth"
+
 #: src/components/sections/use-cases-section.tsx:17
 #~ msgid "New engineer asks: \"Why did we choose microservices?\""
 #~ msgstr "New engineer asks: \"Why did we choose microservices?\""
@@ -704,6 +752,10 @@ msgstr "More efficient onboarding and Q&A for new employees. Technical code deta
 #: src/components/sections/problem-section.tsx:28
 #~ msgid "No audit trail for AI decisions"
 #~ msgstr "No audit trail for AI decisions"
+
+#: src/components/sections/pricing-section.tsx:23
+msgid "No auth required"
+msgstr "No auth required"
 
 #: src/components/sections/problem-section.tsx:20
 msgid "No traceability"
@@ -758,6 +810,10 @@ msgstr "One architectural context"
 #~ msgid "One architectural context for all AI tools"
 #~ msgstr "One architectural context for all AI tools"
 
+#: src/components/sections/pricing-section.tsx:68
+msgid "Personal"
+msgstr "Personal"
+
 #: src/components/sections/enterprise-section.tsx:13
 msgid "PostgreSQL backend"
 msgstr "PostgreSQL backend"
@@ -777,6 +833,14 @@ msgstr "Prevents generic AI from approving non-compliant code"
 #: src/components/sections/use-cases-section.tsx:133
 msgid "Prevents using deprecated authentication patterns"
 msgstr "Token savings and error reduction"
+
+#: src/components/sections/pricing-section.tsx:39
+msgid "Pricing"
+msgstr "Pricing"
+
+#: src/components/sections/pricing-section.tsx:33
+msgid "Priority support"
+msgstr "Priority support"
 
 #: src/components/sections/enterprise-section.tsx:33
 msgid "Private. Self-hosted. Yours."
@@ -918,9 +982,9 @@ msgstr "See the Architecture Record in action"
 msgid "Self-hosted"
 msgstr "Self-hosted"
 
-#: src/App.tsx:59
-#~ msgid "Self-Hosted"
-#~ msgstr "Self-Hosted"
+#: src/components/sections/pricing-section.tsx:49
+msgid "Self-Hosted"
+msgstr "Self-Hosted"
 
 #: src/components/sections/hero-section.tsx:82
 #: src/components/sections/hero-section.tsx:97
@@ -939,6 +1003,10 @@ msgstr "Self-hosted"
 #~ msgid "Slack threads with architectural decisions"
 #~ msgstr "Slack threads with architectural decisions"
 
+#: src/components/sections/pricing-section.tsx:55
+msgid "Soon"
+msgstr "Soon"
+
 #: src/components/sections/integrations-section.tsx:36
 msgid "Source Code"
 msgstr "Source Code"
@@ -954,6 +1022,10 @@ msgstr "Sources used"
 #: src/components/sections/use-cases-section.tsx:18
 #~ msgid "Spends 2 days searching Slack, outdated docs, asking teammates"
 #~ msgstr "Spends 2 days searching Slack, outdated docs, asking teammates"
+
+#: src/components/sections/pricing-section.tsx:41
+msgid "Start free. Scale when you're ready."
+msgstr "Start free. Scale when you're ready."
 
 #: src/components/sections/integrations-section.tsx:47
 #~ msgid "Start from your architecture artifacts. Connectors bring context together automatically."
@@ -986,6 +1058,14 @@ msgstr "Structured, versioned, queryable"
 #: src/components/sections/footer-section.tsx:36
 msgid "Subscribe"
 msgstr "Subscribe"
+
+#: src/components/sections/pricing-section.tsx:117
+msgid "Team"
+msgstr "Team"
+
+#: src/components/sections/pricing-section.tsx:32
+msgid "Team collaboration"
+msgstr "Team collaboration"
 
 #: src/components/sections/integrations-section.tsx:31
 #~ msgid "Team Communication"
@@ -1042,6 +1122,14 @@ msgstr "Try Archcore in Action"
 #: src/components/sections/problem-section.tsx:41
 #~ msgid "Typically 3-5 days per major feature"
 #~ msgstr "Typically 3-5 days per major feature"
+
+#: src/components/sections/pricing-section.tsx:31
+msgid "Unlimited projects"
+msgstr "Unlimited projects"
+
+#: src/components/sections/pricing-section.tsx:25
+msgid "Up to 3 projects"
+msgstr "Up to 3 projects"
 
 #: src/components/sections/sticky-header.tsx:18
 msgid "Use cases"

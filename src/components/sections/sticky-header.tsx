@@ -16,6 +16,7 @@ export function StickyHeader() {
   const navItems: Array<{ href: string; label: string; external?: boolean }> = [
     { href: "#integrations", label: _(msg`Product`) },
     { href: "#use-cases", label: _(msg`Use cases`) },
+    { href: "#pricing", label: _(msg`Pricing`) },
     { href: "#demo", label: _(msg`Demo`) },
     { href: "#faq", label: _(msg`FAQ`) },
   ];

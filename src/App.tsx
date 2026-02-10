@@ -8,6 +8,7 @@ import {
   ProblemSection,
   UseCasesSection,
   EnterpriseSection,
+  PricingSection,
   DemoSection,
   FooterSection,
 } from "@/components/sections";
@@ -29,9 +30,11 @@ export default function App() {
         <UseCasesSection onContactClick={openContactDialog} />
         {/* <SolutionSection /> */}
         {/* <ArchitectureRecordSection /> */}
-        <EnterpriseSection />
+        <PricingSection />
+        <div className="border-t border-border" />
         <DemoSection />
         <div className="border-t border-border" />
+        <EnterpriseSection />
         <FAQSection onContactClick={openContactDialog} />
       </main>
       <FooterSection onContactClick={openContactDialog} />
