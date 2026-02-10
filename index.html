@@ -15,25 +15,138 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- SEO -->
-    <title>Archcore | Context Engineering Platform</title>
+    <title>Archcore | Context Engineering Platform for AI</title>
     <meta
       name="description"
       content="Archcore helps teams share a clear understanding of how their systems work — across humans, AI, and time"
     />
+    <link rel="canonical" href="https://archcore.ai/" />
 
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Archcore | Context Engineering Platform"
+      content="Archcore | Context Engineering Platform for AI"
     />
     <meta
       property="og:description"
       content="Archcore helps teams share a clear understanding of how their systems work — across humans, AI, and time"
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://archcore.ai/" />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content="https://archcore.ai/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Archcore | Context Engineering Platform for AI"
+    />
+    <meta
+      name="twitter:description"
+      content="Archcore gathers architectural decisions from code, ADRs, and discussions into a versioned Architecture Record and delivers it to AI tools via MCP. Self-hosted, free to start."
+    />
+    <meta name="twitter:image" content="https://archcore.ai/og-image.png" />
 
     <!-- Theme color for mobile browsers -->
     <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": ["https://github.com/archcore-ai"]
+      }
+    </script>
+
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows (Docker)",
+        "description": "Context engineering platform that gathers architectural decisions from code, ADRs, and discussions into a versioned Architecture Record and delivers it to AI tools via MCP.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How can I use Archcore in code editors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Deployed Archcore system connects to any AI agent that supports MCP (Model Context Protocol). Nearly every editor or terminal allows you to run AI agents for your tasks: Cursor, VSCode, Warp, and others."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Archcore be deployed on-premises for my organization?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can deploy Archcore entirely within your infrastructure and even use your own LLM providers for greater flexibility. This option allows you to maintain complete confidentiality and security of your Architecture Record."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Archcore with local LLMs instead of cloud providers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. You can flexibly configure embeddings and chat with different models separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Archcore integrate with AI agents via MCP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Archcore can be integrated with AI agents via MCP. This allows you to connect Cursor, Claude Code, and other tools to the Archcore platform, enriching your project context with deep knowledge of architectural decisions and constraints."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to rewrite our existing documentation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not required. Archcore focuses on technical details - it's closer to source code and infrastructure. You can start with what you have and gradually enhance coverage as you document new decisions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is Archcore different from GitHub Copilot or Cursor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we control what context AI tools can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, you can refine context with tags for filtering."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -139,7 +139,11 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
         <img
           src="/images/code-generation.gif"
           alt="AI code generation following architectural standards"
+          width={800}
+          height={603}
           className="w-full rounded-lg shadow-md"
+          loading="lazy"
+          decoding="async"
         />
       ),
     },

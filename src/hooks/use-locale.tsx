@@ -50,6 +50,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
       await activateLocale(detected);
       setLocaleState(detected);
+      document.documentElement.lang = detected;
       setIsLoading(false);
     };
 
@@ -60,6 +61,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     await activateLocale(newLocale);
     setLocaleState(newLocale);
+    document.documentElement.lang = newLocale;
     saveLocale(newLocale);
     setIsLoading(false);
   };

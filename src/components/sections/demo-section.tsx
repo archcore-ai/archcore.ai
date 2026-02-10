@@ -40,7 +40,11 @@ export function DemoSection() {
           <img
             src="/images/archcore-demo.gif"
             alt={_(msg`Archcore demo`)}
+            width={800}
+            height={482}
             className="w-full h-auto"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center cursor-pointer">
             <div className="flex flex-col items-center gap-3 text-white transition-transform duration-200 group-hover:scale-110">
