@@ -615,6 +615,26 @@ msgstr "Собрать → Зафиксировать → Применять →
 #~ msgid "Generic AI reviewer approves without checking architectural standards"
 #~ msgstr "Обычный ИИ-ревьюер одобряет без проверки архитектурных стандартов"
 
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Get Started with Archcore"
+msgstr "Начало работы с Archcore"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Launch Archcore locally with a single Docker command. No registration or configuration required."
+msgstr "Запустите Archcore локально одной командой Docker. Регистрация и настройка не требуются."
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Run in your terminal:"
+msgstr "Выполните в терминале:"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Copy command"
+msgstr "Скопировать команду"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "After launch, open <0>http://localhost</0> in your browser."
+msgstr "После запуска откройте <0>http://localhost</0> в браузере."
+
 #: src/components/sections/pricing-section.tsx:101
 msgid "Get Started"
 msgstr "Начать"

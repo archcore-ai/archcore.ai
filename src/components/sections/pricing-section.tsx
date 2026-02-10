@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { msg } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
@@ -15,9 +16,11 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { DockerStartDialog } from "@/components/cta/docker-start-dialog";
 
 export function PricingSection() {
   const { _ } = useLingui();
+  const [dockerDialogOpen, setDockerDialogOpen] = useState(false);
 
   const personalFeatures = [
     _(msg`No auth required`),
@@ -91,17 +94,20 @@ export function PricingSection() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button size="lg" className="w-full" asChild>
-                  <a
-                    href="https://docs.archcore.dev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Trans>Get Started</Trans>
-                  </a>
+                <Button
+                  size="lg"
+                  className="w-full"
+                  onClick={() => setDockerDialogOpen(true)}
+                >
+                  <Trans>Get Started</Trans>
                 </Button>
               </CardFooter>
             </Card>
+
+            <DockerStartDialog
+              open={dockerDialogOpen}
+              onOpenChange={setDockerDialogOpen}
+            />
 
             {/* Team Card (Coming Soon) */}
             <Card className="relative overflow-hidden opacity-60">

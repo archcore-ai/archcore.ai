@@ -615,6 +615,26 @@ msgstr "Gather → Record → Apply → Verify"
 #~ msgid "Generic AI reviewer approves without checking architectural standards"
 #~ msgstr "Generic AI reviewer approves without checking architectural standards"
 
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Get Started with Archcore"
+msgstr "Get Started with Archcore"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Launch Archcore locally with a single Docker command. No registration or configuration required."
+msgstr "Launch Archcore locally with a single Docker command. No registration or configuration required."
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Run in your terminal:"
+msgstr "Run in your terminal:"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "Copy command"
+msgstr "Copy command"
+
+#: src/components/cta/docker-start-dialog.tsx
+msgid "After launch, open <0>http://localhost</0> in your browser."
+msgstr "After launch, open <0>http://localhost</0> in your browser."
+
 #: src/components/sections/pricing-section.tsx:101
 msgid "Get Started"
 msgstr "Get Started"

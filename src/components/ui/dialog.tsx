@@ -20,7 +20,7 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
+        "fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         className
@@ -42,7 +42,7 @@ function DialogContent({
         data-slot="dialog-content"
         className={cn(
           // Mobile: full screen, content aligned to top
-          "fixed inset-0 z-50 flex flex-col w-full h-full gap-4 border-0 bg-background p-6 pt-12 shadow-lg duration-200",
+          "fixed inset-0 z-[10000] flex flex-col w-full h-full gap-4 border-0 bg-background p-6 pt-12 shadow-lg duration-200",
           // Desktop: centered modal
           "sm:grid sm:pt-6 sm:inset-auto sm:left-[50%] sm:top-[50%] sm:h-auto sm:max-w-lg sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-xl sm:border",
           // Animations
