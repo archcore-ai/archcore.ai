@@ -2,7 +2,7 @@ import { useState } from "react";
 import { msg } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
-import { Check, Lock } from "lucide-react";
+import { Check, Clock, Lock } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -29,12 +29,13 @@ export function PricingSection() {
     _(msg`Community support`),
   ];
 
-  const teamFeatures = [
-    _(msg`Multi-user auth`),
-    _(msg`Unlimited projects`),
-    _(msg`Team collaboration`),
-    _(msg`Priority support`),
-  ];
+  // Team features — commented out while Team card is in "Coming Soon" state
+  // const teamFeatures = [
+  //   _(msg`Multi-user auth`),
+  //   _(msg`Unlimited projects`),
+  //   _(msg`Team collaboration`),
+  //   _(msg`Priority support`),
+  // ];
 
   return (
     <SectionContainer id="pricing">
@@ -112,18 +113,47 @@ export function PricingSection() {
               onOpenChange={setDockerDialogOpen}
             />
 
-            {/* Team Card (Coming Soon) */}
-            <Card className="relative overflow-hidden opacity-60">
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/50 backdrop-blur-[1px]">
-                <Badge variant="outline" className="text-sm px-3 py-1">
-                  <Trans>Coming Soon</Trans>
-                </Badge>
-              </div>
+            {/* Team Card — Coming Soon placeholder */}
+            <Card className="relative opacity-70">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CardTitle>
                     <Trans>Team</Trans>
                   </CardTitle>
+                  <Badge variant="secondary">
+                    <Trans>Coming Soon</Trans>
+                  </Badge>
+                </div>
+                <CardDescription>
+                  <Trans>For teams and organizations</Trans>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center justify-center py-10 text-center space-y-3">
+                <Clock className="h-10 w-10 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground max-w-[220px]">
+                  <Trans>Team plan is coming soon. Stay tuned!</Trans>
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button size="lg" className="w-full" disabled>
+                  <Trans>Coming Soon</Trans>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            {/* Original Team Card — commented out for restoration later
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <CardTitle>
+                    <Trans>Team</Trans>
+                  </CardTitle>
+                  <Badge variant="secondary">
+                    <Trans>Free</Trans>
+                  </Badge>
+                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-primary/40 text-primary">
+                    Early Access
+                  </Badge>
                 </div>
                 <CardDescription>
                   <Trans>For teams and organizations</Trans>
@@ -131,8 +161,9 @@ export function PricingSection() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">
-                    <Trans>Custom</Trans>
+                  <span className="text-4xl font-bold">$0</span>
+                  <span className="text-muted-foreground">
+                    <Trans>Early Access</Trans>
                   </span>
                 </div>
                 <ul className="space-y-3">
@@ -145,11 +176,14 @@ export function PricingSection() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button size="lg" variant="outline" className="w-full" disabled>
-                  <Trans>Contact Sales</Trans>
+                <Button size="lg" className="w-full" asChild>
+                  <Link to="/teams/getting-started">
+                    <Trans>Get Started</Trans>
+                  </Link>
                 </Button>
               </CardFooter>
             </Card>
+            */}
           </div>
         </TabsContent>
 

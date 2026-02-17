@@ -1,52 +1,20 @@
-import { ContactDialog } from "@/components/cta";
-import { useCTAState } from "@/hooks/use-cta-state";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTheme } from "@/hooks/use-theme";
-import {
-  StickyHeader,
-  HeroSection,
-  IntegrationsSection,
-  ProblemSection,
-  UseCasesSection,
-  EnterpriseSection,
-  PricingSection,
-  DemoSection,
-  FooterSection,
-} from "@/components/sections";
-import { FAQSection } from "@/components/faq-section";
+import { LandingPage } from "@/pages/landing";
+import { TeamsGettingStarted } from "@/pages/teams-getting-started";
 
 export default function App() {
   useTheme(); // Initialize theme detection (system preference + localStorage)
 
-  const { contactDialogOpen, setContactDialogOpen, openContactDialog } =
-    useCTAState();
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <StickyHeader />
-      <main>
-        <HeroSection onContactClick={openContactDialog} />
-        <ProblemSection />
-        <IntegrationsSection />
-        <UseCasesSection onContactClick={openContactDialog} />
-        {/* <SolutionSection /> */}
-        {/* <ArchitectureRecordSection /> */}
-        <PricingSection />
-        <div className="border-t border-border" />
-        <DemoSection />
-        <div className="border-t border-border" />
-        <EnterpriseSection />
-        <FAQSection onContactClick={openContactDialog} />
-      </main>
-      <FooterSection onContactClick={openContactDialog} />
-      {/* <StickyCTABar
-        message={_(msg`Ready to make AI follow your architecture?`)}
-        buttonLabel={_(msg`Book a Demo`)}
-        onButtonClick={openContactDialog}
-      /> */}
-      <ContactDialog
-        open={contactDialogOpen}
-        onOpenChange={setContactDialogOpen}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/teams/getting-started"
+          element={<TeamsGettingStarted />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
