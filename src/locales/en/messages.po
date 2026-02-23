@@ -69,7 +69,7 @@ msgstr "✗ No architectural structure"
 msgid "✗ Results vary by query phrasing"
 msgstr "✗ Results vary by query phrasing"
 
-#: src/components/sections/pricing-section.tsx:28
+#: src/components/sections/pricing-section.tsx:27
 msgid "1 user"
 msgstr "1 user"
 
@@ -163,11 +163,11 @@ msgstr "AI: …analyzing…"
 msgid "Answer"
 msgstr "Answer"
 
-#: src/components/sections/solution-section.tsx:41
+#: src/components/sections/solution-section.tsx:38
 msgid "Answers with citations to specific decisions"
 msgstr "Answers with citations to specific decisions"
 
-#: src/components/sections/solution-section.tsx:35
+#: src/components/sections/solution-section.tsx:32
 msgid "Apply"
 msgstr "Apply"
 
@@ -184,10 +184,10 @@ msgid "Archcore clones your repository and builds an initial knowledge graph. Yo
 msgstr "Archcore clones your repository and builds an initial knowledge graph. You can create global documents shared across multiple projects."
 
 #: src/components/sections/demo-section.tsx:42
-msgid "Archcore demo"
-msgstr "Archcore demo"
+#~ msgid "Archcore demo"
+#~ msgstr "Archcore demo"
 
-#: src/components/sections/hero-section.tsx:28
+#: src/components/sections/hero-section.tsx:26
 msgid "Archcore gathers architectural decisions from code, ADRs, and discussions, transforms them into an Architecture Record (versioned contract), and delivers it to IDEs/chats/agents via MCP — with traceable sources."
 msgstr ""
 "Archcore helps teams build accurate technical context\n"
@@ -245,7 +245,7 @@ msgstr "Team's implicit code knowledge accessible to AI agent for deeper review"
 msgid "Architecture Record"
 msgstr "Architecture Record"
 
-#: src/components/sections/solution-section.tsx:31
+#: src/components/sections/solution-section.tsx:28
 msgid "Architecture Record as enforceable contract"
 msgstr "Architecture Record as enforceable contract"
 
@@ -316,7 +316,7 @@ msgstr "Cloud"
 #~ msgid "Code"
 #~ msgstr "Code"
 
-#: src/components/sections/solution-section.tsx:26
+#: src/components/sections/solution-section.tsx:23
 msgid "Code + ADRs + discussions"
 msgstr "Code + ADRs + discussions"
 
@@ -336,9 +336,10 @@ msgstr "Code review criteria for architectural compliance."
 #~ msgid "Coding agent generates REST endpoint using deprecated auth pattern"
 #~ msgstr "Coding agent generates REST endpoint using deprecated auth pattern"
 
-#: src/components/sections/pricing-section.tsx:111
-#~ msgid "Coming Soon"
-#~ msgstr "Coming Soon"
+#: src/components/sections/pricing-section.tsx:124
+#: src/components/sections/pricing-section.tsx:139
+msgid "Coming Soon"
+msgstr "Coming Soon"
 
 #: src/components/faq-section.tsx:55
 #~ msgid "Common questions about Architecture Record and how Archcore works"
@@ -348,7 +349,7 @@ msgstr "Code review criteria for architectural compliance."
 #~ msgid "Commonly $15-20K in lost productivity"
 #~ msgstr "Commonly $15-20K in lost productivity"
 
-#: src/components/sections/pricing-section.tsx:30
+#: src/components/sections/pricing-section.tsx:29
 msgid "Community support"
 msgstr "Community support"
 
@@ -477,12 +478,12 @@ msgid "Decisions (ADR)"
 msgstr "Decisions (ADR)"
 
 #: src/components/sections/sticky-header.tsx:20
-msgid "Demo"
-msgstr "Demo"
+#~ msgid "Demo"
+#~ msgstr "Demo"
 
 #: src/components/sections/hero-section.tsx:108
-msgid "Demo is read-only. Creating/editing records available in self-hosted installation."
-msgstr "Demo is read-only. Creating/editing records available in self-hosted installation."
+#~ msgid "Demo is read-only. Creating/editing records available in self-hosted installation."
+#~ msgstr "Demo is read-only. Creating/editing records available in self-hosted installation."
 
 #: src/components/cta/team-setup-dialog.tsx:74
 #: src/pages/teams-getting-started.tsx:74
@@ -556,8 +557,8 @@ msgstr "Domain terms and definitions, team's ubiquitous language."
 #~ msgstr "early access"
 
 #: src/components/sections/pricing-section.tsx:138
-msgid "Early Access"
-msgstr "Early Access"
+#~ msgid "Early Access"
+#~ msgstr "Early Access"
 
 #: src/components/sections/solution-section.tsx:51
 #~ msgid "Enforceable constraints"
@@ -588,18 +589,18 @@ msgstr "Enterprise Search (like Onyx)"
 #~ msgstr "Example of automated architectural code review"
 
 #: src/components/sections/demo-section.tsx:18
-msgid "Example of how the system works with real open-source project <0>hotpot-tracker</0>"
-msgstr "Example of how the system works with real open-source project <0>hotpot-tracker</0>"
+#~ msgid "Example of how the system works with real open-source project <0>hotpot-tracker</0>"
+#~ msgstr "Example of how the system works with real open-source project <0>hotpot-tracker</0>"
 
 #: src/components/sections/architecture-record-section.tsx:40
 msgid "Examples / Anti-examples"
 msgstr "Examples / Anti-examples"
 
 #: src/components/sections/solution-section.tsx:91
-msgid "Explore how Archcore structures, versions, and enforces architectural context"
-msgstr "Explore how Archcore structures, versions, and enforces architectural context"
+#~ msgid "Explore how Archcore structures, versions, and enforces architectural context"
+#~ msgstr "Explore how Archcore structures, versions, and enforces architectural context"
 
-#: src/components/sections/sticky-header.tsx:21
+#: src/components/sections/sticky-header.tsx:20
 msgid "FAQ"
 msgstr ""
 
@@ -607,11 +608,11 @@ msgstr ""
 msgid "Faster Onboarding"
 msgstr "Faster Onboarding"
 
-#: src/components/sections/hero-section.tsx:50
+#: src/components/sections/hero-section.tsx:48
 msgid "Faster onboarding: \"why did we do this?\" → answer + link to decision/ADR."
 msgstr "Architectural decisions become team's long-term memory."
 
-#: src/components/sections/hero-section.tsx:41
+#: src/components/sections/hero-section.tsx:39
 msgid "Fewer PR iterations: AI considers module boundaries, patterns, and constraints before writing code."
 msgstr "Speeds up and improves accuracy of AI agents"
 
@@ -619,7 +620,7 @@ msgstr "Speeds up and improves accuracy of AI agents"
 #~ msgid "Fewer risky PRs (AI reviews reference ADRs and standards)"
 #~ msgstr "Fewer risky PRs (AI reviews reference ADRs and standards)"
 
-#: src/components/sections/hero-section.tsx:25
+#: src/components/sections/hero-section.tsx:23
 msgid "for all AI tools"
 msgstr "for all AI tools"
 
@@ -627,7 +628,7 @@ msgstr "for all AI tools"
 msgid "For individual developers"
 msgstr "For individual developers"
 
-#: src/components/sections/pricing-section.tsx:131
+#: src/components/sections/pricing-section.tsx:128
 msgid "For teams and organizations"
 msgstr "For teams and organizations"
 
@@ -636,7 +637,6 @@ msgid "Forever free"
 msgstr "Forever free"
 
 #: src/components/sections/pricing-section.tsx:74
-#: src/components/sections/pricing-section.tsx:124
 msgid "Free"
 msgstr "Free"
 
@@ -644,11 +644,11 @@ msgstr "Free"
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
-#: src/components/sections/solution-section.tsx:25
+#: src/components/sections/solution-section.tsx:22
 msgid "Gather"
 msgstr "Gather"
 
-#: src/components/sections/solution-section.tsx:48
+#: src/components/sections/solution-section.tsx:45
 msgid "Gather → Record → Apply → Verify"
 msgstr "Gather → Record → Apply → Verify"
 
@@ -661,7 +661,6 @@ msgstr "Gather → Record → Apply → Verify"
 #~ msgstr "Generic AI reviewer approves without checking architectural standards"
 
 #: src/components/sections/pricing-section.tsx:106
-#: src/components/sections/pricing-section.tsx:153
 msgid "Get Started"
 msgstr "Get Started"
 
@@ -709,7 +708,7 @@ msgstr "How is Archcore different from GitHub Copilot or Cursor?"
 msgid "How teams use Archcore to solve architectural context challenges"
 msgstr "How teams use Archcore to solve architectural context challenges"
 
-#: src/components/sections/solution-section.tsx:36
+#: src/components/sections/solution-section.tsx:33
 msgid "IDEs/chats/agents get context via MCP"
 msgstr "IDEs/chats/agents get context via MCP"
 
@@ -726,8 +725,8 @@ msgstr "Integration"
 #~ msgstr "Example of how the system works with real open-source project hotpot-tracker"
 
 #: src/components/sections/solution-section.tsx:93
-msgid "Interactive Tour"
-msgstr "Interactive Tour"
+#~ msgid "Interactive Tour"
+#~ msgstr "Interactive Tour"
 
 #: src/components/sections/hero-section.tsx:78
 #: src/components/sections/hero-section.tsx:93
@@ -775,7 +774,7 @@ msgstr "MCP protocol allows connecting any tools and integrations: code editors,
 #~ msgid "MCP server = one way to get context from IDEs/chats/agents"
 #~ msgstr "MCP server = one way to get context from IDEs/chats/agents"
 
-#: src/components/sections/hero-section.tsx:123
+#: src/components/sections/hero-section.tsx:81
 msgid "MCP-native"
 msgstr "RAG"
 
@@ -788,8 +787,8 @@ msgstr "Modules, bounded contexts, interaction interfaces between components."
 #~ msgstr "Most decisions undocumented after 6mo"
 
 #: src/components/sections/pricing-section.tsx:34
-msgid "Multi-user auth"
-msgstr "Multi-user auth"
+#~ msgid "Multi-user auth"
+#~ msgstr "Multi-user auth"
 
 #: src/components/sections/use-cases-section.tsx:17
 #~ msgid "New engineer asks: \"Why did we choose microservices?\""
@@ -807,7 +806,7 @@ msgstr "More efficient onboarding and Q&A for new employees. Technical code deta
 #~ msgid "No audit trail for AI decisions"
 #~ msgstr "No audit trail for AI decisions"
 
-#: src/components/sections/pricing-section.tsx:27
+#: src/components/sections/pricing-section.tsx:26
 msgid "No auth required"
 msgstr "No auth required"
 
@@ -856,7 +855,7 @@ msgstr "Not required. Archcore focuses on technical details - it's closer to sou
 msgid "Onboarding: 4 weeks → 1.5 weeks"
 msgstr "Onboarding: 4 weeks → 1.5 weeks"
 
-#: src/components/sections/hero-section.tsx:23
+#: src/components/sections/hero-section.tsx:21
 msgid "One architectural context"
 msgstr "One architectural context"
 
@@ -894,8 +893,8 @@ msgid "Pricing"
 msgstr "Pricing"
 
 #: src/components/sections/pricing-section.tsx:37
-msgid "Priority support"
-msgstr "Priority support"
+#~ msgid "Priority support"
+#~ msgstr "Priority support"
 
 #: src/components/sections/enterprise-section.tsx:33
 msgid "Private. Self-hosted. Yours."
@@ -945,7 +944,7 @@ msgstr "Real Use Cases"
 msgid "Recommendation: Use connection pool ("
 msgstr "Recommendation: Use connection pool ("
 
-#: src/components/sections/solution-section.tsx:30
+#: src/components/sections/solution-section.tsx:27
 msgid "Record"
 msgstr "Record"
 
@@ -961,8 +960,7 @@ msgstr "Reliable AI Code Generation"
 #~ msgid "Reliable AI Generation"
 #~ msgstr "Reliable AI Generation"
 
-#: src/components/sections/hero-section.tsx:73
-#: src/components/sections/hero-section.tsx:104
+#: src/components/sections/hero-section.tsx:69
 msgid "Request Pilot"
 msgstr "Request Pilot"
 
@@ -989,8 +987,8 @@ msgstr "Rules aren't enforced"
 #: src/components/sections/demo-section.tsx:52
 #: src/components/sections/hero-section.tsx:78
 #: src/components/sections/hero-section.tsx:95
-msgid "Run demo"
-msgstr "Run demo"
+#~ msgid "Run demo"
+#~ msgstr "Run demo"
 
 #: src/components/sections/hero-section.tsx:36
 #: src/components/sections/hero-section.tsx:134
@@ -1014,7 +1012,7 @@ msgstr "Run in your terminal:"
 msgid "Safer Code Review"
 msgstr "Safer Code Review"
 
-#: src/components/sections/hero-section.tsx:59
+#: src/components/sections/hero-section.tsx:57
 msgid "Safer code review: changes are validated against architectural constraints."
 msgstr "AI context under control — for code review, onboarding, and any automation."
 
@@ -1039,10 +1037,10 @@ msgstr "Samples of correct and incorrect code for specific patterns."
 #~ msgstr "See how Architecture Record transforms your development workflow"
 
 #: src/components/sections/solution-section.tsx:89
-msgid "See the Architecture Record in action"
-msgstr "See the Architecture Record in action"
+#~ msgid "See the Architecture Record in action"
+#~ msgstr "See the Architecture Record in action"
 
-#: src/components/sections/hero-section.tsx:117
+#: src/components/sections/hero-section.tsx:75
 msgid "Self-hosted"
 msgstr "Self-hosted"
 
@@ -1128,8 +1126,8 @@ msgid "Team"
 msgstr "Team"
 
 #: src/components/sections/pricing-section.tsx:36
-msgid "Team collaboration"
-msgstr "Team collaboration"
+#~ msgid "Team collaboration"
+#~ msgstr "Team collaboration"
 
 #: src/components/sections/integrations-section.tsx:31
 #~ msgid "Team Communication"
@@ -1139,6 +1137,10 @@ msgstr "Team collaboration"
 #~ msgid "Team communication and decision threads"
 #~ msgstr "Team communication and decision threads"
 
+#: src/components/sections/pricing-section.tsx:134
+msgid "Team plan is coming soon. Stay tuned!"
+msgstr "Team plan is coming soon. Stay tuned!"
+
 #: src/components/sections/problem-section.tsx:49
 #~ msgid "Teams commonly report 30-40% productivity loss to context switching and knowledge gaps"
 #~ msgstr "Teams commonly report 30-40% productivity loss to context switching and knowledge gaps"
@@ -1147,7 +1149,7 @@ msgstr "Team collaboration"
 msgid "Thanks! You're on the list."
 msgstr "Thanks! You're on the list."
 
-#: src/components/sections/solution-section.tsx:50
+#: src/components/sections/solution-section.tsx:47
 msgid "The 4-stage architectural knowledge pipeline that powers consistent AI context."
 msgstr "The 4-stage architectural knowledge pipeline that powers consistent AI context."
 
@@ -1176,8 +1178,8 @@ msgstr "Traceable reasoning: No black box"
 #~ msgstr "Traceable sources"
 
 #: src/components/sections/demo-section.tsx:16
-msgid "Try Archcore in Action"
-msgstr "Try Archcore in Action"
+#~ msgid "Try Archcore in Action"
+#~ msgstr "Try Archcore in Action"
 
 #: src/components/sections/demo-section.tsx:53
 #~ msgid "Try Scenario"
@@ -1188,10 +1190,10 @@ msgstr "Try Archcore in Action"
 #~ msgstr "Typically 3-5 days per major feature"
 
 #: src/components/sections/pricing-section.tsx:35
-msgid "Unlimited projects"
-msgstr "Unlimited projects"
+#~ msgid "Unlimited projects"
+#~ msgstr "Unlimited projects"
 
-#: src/components/sections/pricing-section.tsx:29
+#: src/components/sections/pricing-section.tsx:28
 msgid "Up to 3 projects"
 msgstr "Up to 3 projects"
 
@@ -1211,7 +1213,7 @@ msgstr "User: Why did we move away from the monolith?"
 #~ msgid "Verified architectural context for AI-assisted development. Self-hosted, MCP-native."
 #~ msgstr "Verified architectural context for AI-assisted development. Self-hosted, MCP-native."
 
-#: src/components/sections/solution-section.tsx:40
+#: src/components/sections/solution-section.tsx:37
 msgid "Verify"
 msgstr "Verify"
 
@@ -1251,7 +1253,7 @@ msgstr "With citations"
 msgid "Without sources and versions, impossible to understand 'why AI decided this' or verify correctness."
 msgstr "Without sources and versions, impossible to understand 'why AI decided this' or verify correctness."
 
-#: src/components/sections/hero-section.tsx:120
+#: src/components/sections/hero-section.tsx:78
 msgid "Works with local LLMs"
 msgstr "Works with local LLMs"
 
