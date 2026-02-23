@@ -1,9 +1,7 @@
 import { Trans } from "@lingui/react/macro";
-import { Check, Mail, Play } from "lucide-react";
+import { Check, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-const DEMO_URL = "https://demo.archcore.ai";
 
 interface HeroSectionProps {
   onContactClick?: () => void;
@@ -65,51 +63,11 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Desktop: Show both buttons */}
-          <div className="hidden lg:flex flex-col gap-4">
-            <div className="flex gap-3">
-              <Button size="lg" onClick={onContactClick}>
-                <Mail className="h-5 w-5 mr-2" />
-                <Trans>Request Pilot</Trans>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
-                  <Play className="h-5 w-5 mr-2" />
-                  <Trans>Run demo</Trans>
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile: Show both buttons in a column */}
-          <div className="flex lg:hidden flex-col gap-4 items-start">
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="w-full sm:w-auto"
-              >
-                <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
-                  <Play className="h-5 w-5 mr-2" />
-                  <Trans>Run demo</Trans>
-                </a>
-              </Button>
-              <Button
-                size="lg"
-                onClick={onContactClick}
-                className="w-full sm:w-auto"
-              >
-                <Mail className="h-5 w-5 mr-2" />
-                <Trans>Request Pilot</Trans>
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              <Trans>
-                Demo is read-only. Creating/editing records available in
-                self-hosted installation.
-              </Trans>
-            </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button size="lg" onClick={onContactClick}>
+              <Mail className="h-5 w-5 mr-2" />
+              <Trans>Request Pilot</Trans>
+            </Button>
           </div>
 
           <div className="flex flex-wrap gap-2 justify-start">

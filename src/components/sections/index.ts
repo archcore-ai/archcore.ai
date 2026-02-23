@@ -6,6 +6,5 @@ export { UseCasesSection } from "./use-cases-section";
 export { SolutionSection } from "./solution-section";
 export { ArchitectureRecordSection } from "./architecture-record-section";
 export { EnterpriseSection } from "./enterprise-section";
-export { DemoSection } from "./demo-section";
 export { PricingSection } from "./pricing-section";
 export { FooterSection } from "./footer-section";

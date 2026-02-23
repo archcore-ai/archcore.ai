@@ -8,7 +8,6 @@ import {
   UseCasesSection,
   EnterpriseSection,
   PricingSection,
-  DemoSection,
   FooterSection,
 } from "@/components/sections";
 import { FAQSection } from "@/components/faq-section";
@@ -29,17 +28,10 @@ export function LandingPage() {
         {/* <ArchitectureRecordSection /> */}
         <PricingSection />
         <div className="border-t border-border" />
-        <DemoSection />
-        <div className="border-t border-border" />
         <EnterpriseSection />
         <FAQSection onContactClick={openContactDialog} />
       </main>
       <FooterSection onContactClick={openContactDialog} />
-      {/* <StickyCTABar
-        message={_(msg`Ready to make AI follow your architecture?`)}
-        buttonLabel={_(msg`Book a Demo`)}
-        onButtonClick={openContactDialog}
-      /> */}
       <ContactDialog
         open={contactDialogOpen}
         onOpenChange={setContactDialogOpen}

@@ -82,14 +82,6 @@ export function IntegrationsSection() {
         </AlertDescription>
       </Alert> */}
 
-      {/* <SectionCTACard
-        variant="featured"
-        title={_(msg`Connect your sources`)}
-        description={_(msg`See how Archcore integrates with your existing tools and workflows`)}
-        buttonLabel={_(msg`Book a Demo`)}
-        onButtonClick={onContactClick}
-        className="mt-10"
-      /> */}
     </SectionContainer>
   );
 }

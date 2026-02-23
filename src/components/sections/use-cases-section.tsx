@@ -219,14 +219,6 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
         ))}
       </Tabs>
 
-      {/* <SectionCTACard
-        variant="featured"
-        title={_(msg`Start seeing these outcomes`)}
-        description={_(msg`See how Architecture Record transforms your development workflow`)}
-        buttonLabel={_(msg`Book a Demo`)}
-        onButtonClick={onContactClick}
-        className="mt-10"
-      /> */}
     </SectionContainer>
   );
 }

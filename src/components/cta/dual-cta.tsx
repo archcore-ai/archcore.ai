@@ -12,7 +12,7 @@ interface DualCTAProps {
 }
 
 export function DualCTA({
-  primaryLabel = "Book a Demo",
+  primaryLabel = "Get Started",
   primaryHref,
   secondaryLabel,
   secondaryHref,

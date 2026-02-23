@@ -8,13 +8,10 @@ import {
 } from "@/components/ui/card";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { SectionCTACard } from "@/components/cta";
 import { SolutionDiagram } from "@/components/solution-diagram";
 import { ComparisonTable } from "@/components/comparison-table";
 import { DeterminismVisual } from "@/components/determinism-visual";
 import { useLingui } from "@lingui/react";
-
-const DEMO_URL = "https://demo.archcore.ai";
 
 export function SolutionSection() {
   const { _ } = useLingui();
@@ -85,15 +82,6 @@ export function SolutionSection() {
       {/* Determinism proof */}
       <DeterminismVisual />
 
-      <SectionCTACard
-        title={_(msg`See the Architecture Record in action`)}
-        description={_(
-          msg`Explore how Archcore structures, versions, and enforces architectural context`
-        )}
-        buttonLabel={_(msg`Interactive Tour`)}
-        buttonHref={DEMO_URL}
-        className="mt-10"
-      />
     </SectionContainer>
   );
 }

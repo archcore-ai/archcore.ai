@@ -60,11 +60,6 @@ export function EnterpriseSection() {
             ))}
           </div>
 
-          {/* <Button size="lg" asChild className="mt-2">
-            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
-              <Trans>Interactive Tour</Trans>
-            </a>
-          </Button> */}
         </div>
 
         <ThemedImage

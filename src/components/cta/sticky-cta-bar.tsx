@@ -19,7 +19,7 @@ function getInitialDismissed() {
 
 export function StickyCTABar({
   message = "Ready to implement Archcore?",
-  buttonLabel = "Book a Demo",
+  buttonLabel = "Get Started",
   onButtonClick,
   className,
 }: StickyCTABarProps) {
