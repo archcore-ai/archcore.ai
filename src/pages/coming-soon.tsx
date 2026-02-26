@@ -15,7 +15,7 @@ export function ComingSoonPage() {
 
         <div className="pt-4">
           <a
-            href="https://github.com/nichochar/archcore"
+            href="https://github.com/archcore-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
