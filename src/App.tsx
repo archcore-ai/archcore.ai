@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTheme } from "@/hooks/use-theme";
-import { LandingPage } from "@/pages/landing";
+import { ComingSoonPage } from "@/pages/coming-soon";
 import { TeamsGettingStarted } from "@/pages/teams-getting-started";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<ComingSoonPage />} />
         <Route
           path="/teams/getting-started"
           element={<TeamsGettingStarted />}
