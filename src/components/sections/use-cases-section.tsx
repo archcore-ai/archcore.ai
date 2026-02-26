@@ -10,10 +10,6 @@ import type { LucideIcon } from "lucide-react";
 import { CodeDiffView } from "@/components/ui/code-diff-view";
 import { GitHubBotComment } from "@/components/github-bot-comment";
 
-interface UseCasesSectionProps {
-  onContactClick: () => void;
-}
-
 interface UseCase {
   id: string;
   title: string;
@@ -24,9 +20,7 @@ interface UseCase {
   visual: React.ReactNode;
 }
 
-export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
-  // Note: onContactClick is used in commented-out CTA section below
-  void onContactClick; // Suppress unused variable warning
+export function UseCasesSection() {
   const { _ } = useLingui();
 
   const useCases: UseCase[] = [
@@ -34,12 +28,12 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
       id: "onboarding",
       title: _(msg`Faster Onboarding`),
       description: _(
-        msg`New engineers understand architectural decisions instantly instead of spending days searching through Slack and outdated docs.`
+        msg`New engineers ask questions — AI finds answers in .archcore/knowledge/ instantly, with links to the original decisions.`
       ),
       bullets: [
-        _(msg`"Why did we choose microservices?" → Instant ADR lookup`),
+        _(msg`"Why did we choose microservices?" — answered from .archcore/knowledge/`),
         _(msg`Decision rationale, constraints, and current state in seconds`),
-        _(msg`Context-aware answers for architecture questions`),
+        _(msg`No more digging through Slack threads or outdated wikis`),
       ],
       outcome: _(msg`Onboarding: 4 weeks → 1.5 weeks`),
       icon: Users,
@@ -55,7 +49,7 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
 
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-foreground">
-                  {_(msg`AI: …analyzing…`)}
+                  {_(msg`AI: …analyzing .archcore/knowledge/…`)}
                 </div>
 
                 <div className="text-xs text-muted-foreground pl-4 border-l-2 border-primary/50">
@@ -85,10 +79,10 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
       id: "code-review",
       title: _(msg`Safer Code Review`),
       description: _(
-        msg`Architectural standards enforcement during code review, not after merge.`
+        msg`AI checks every PR against .archcore/rules/ — conventions are enforced before merge, not after.`
       ),
       bullets: [
-        _(msg`Auto-detect pattern violations against ADRs`),
+        _(msg`Auto-detect pattern violations against rules in .archcore/`),
         _(msg`Links reviewers directly to relevant architectural decisions`),
         _(msg`Prevents generic AI from approving non-compliant code`),
       ],
@@ -126,12 +120,12 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
       id: "code-generation",
       title: _(msg`Reliable AI Code Generation`),
       description: _(
-        msg`AI agents generate code following your current architectural standards, not deprecated patterns.`
+        msg`Claude Code hooks load .archcore/ at session start — every AI tool follows your current standards, not deprecated patterns.`
       ),
       bullets: [
-        _(msg`Provides current OAuth2 standard to coding agents`),
+        _(msg`Hooks inject architectural context into every AI session`),
         _(msg`Prevents using deprecated authentication patterns`),
-        _(msg`Context-aware code generation aligned with ADRs`),
+        _(msg`Context-aware code generation aligned with your ADRs and rules`),
       ],
       outcome: _(msg`75% less architectural rework`),
       icon: Code,
@@ -152,9 +146,9 @@ export function UseCasesSection({ onContactClick }: UseCasesSectionProps) {
   return (
     <SectionContainer id="use-cases" className="border-b border-border">
       <SectionHeader
-        title={_(msg`Real Use Cases`)}
+        title={_(msg`See it in action`)}
         description={_(
-          msg`How teams use Archcore to solve architectural context challenges`
+          msg`Real workflows where .archcore/ changes how AI tools work with your code`
         )}
       />
 

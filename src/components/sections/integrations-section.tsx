@@ -1,87 +1,84 @@
 import { msg } from "@lingui/core/macro";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { ThemedImage } from "@/components/themed-image";
 import { useLingui } from "@lingui/react";
+import { cn } from "@/lib/utils";
+
+interface QuadrantCard {
+  title: string;
+  description: string;
+  placeholder: string;
+}
+
+const borderClasses = [
+  "border-b md:border-r border-border",
+  "border-b border-border",
+  "border-b md:border-b-0 md:border-r border-border",
+  "",
+];
 
 export function IntegrationsSection() {
   const { _ } = useLingui();
 
+  const cards: QuadrantCard[] = [
+    {
+      title: _(msg`One command to start`),
+      description: _(
+        msg`Run archcore init and get a structured .archcore/ directory in your repo. No servers, no accounts, no configuration files. Just a CLI and 30 seconds.`
+      ),
+      placeholder: _(msg`archcore init`),
+    },
+    {
+      title: _(msg`Works with every AI agent`),
+      description: _(
+        msg`Archcore uses the MCP protocol to expose context to 30+ AI tools. Claude Code, Cursor, Windsurf, Copilot — they all read from the same .archcore/ source of truth.`
+      ),
+      placeholder: _(msg`MCP integrations`),
+    },
+    {
+      title: _(msg`Documentation lives in your repo`),
+      description: _(
+        msg`Like README, but for architecture. Your decisions, rules, and guides are version-controlled markdown files. They go through code review, show up in diffs, and never go stale in a wiki no one checks.`
+      ),
+      placeholder: _(msg`.archcore/ directory`),
+    },
+    {
+      title: _(msg`Cloud with GraphRAG`),
+      description: _(
+        msg`Connect multiple repos into a unified knowledge graph. GraphRAG finds relations between projects, improves search precision, and gives AI tools global context — not just what's in one repository.`
+      ),
+      placeholder: _(msg`GraphRAG visualization`),
+    },
+  ];
+
   return (
-    <SectionContainer id="integrations" className="border-b border-border">
+    <SectionContainer id="how-it-works" className="border-b border-border">
+      <p className="text-center text-xs font-semibold tracking-widest text-muted-foreground uppercase mb-4">
+        {_(msg`How it works`)}
+      </p>
       <SectionHeader
-        title={_(msg`Connects to Your Architecture Sources`)}
+        title={_(msg`From zero to full context in 60 seconds`)}
         description={_(
-          msg`Start with what you already have: code, ADRs, documentation, discussions. Connectors gather context into a unified Architecture Record.`
+          msg`Everything you need to give AI tools deep understanding of your codebase.`
         )}
       />
 
-      <div className="flex justify-center items-center mb-12">
-        <ThemedImage
-          lightSrc="/images/how-to-work-light.png"
-          darkSrc="/images/how-to-work-dark.png"
-          alt="Archcore flow diagram: Docs and Code feed into Archcore, which connects to AI Agents via MCP protocol, and outputs to Apps and Integrations"
-          className="max-w-full h-auto w-full lg:w-4/5 xl:w-3/4"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto">
+        {cards.map(({ title, description, placeholder }, index) => (
+          <div
+            key={title}
+            className={cn("p-6 md:p-8 space-y-4", borderClasses[index])}
+          >
+            <div className="aspect-[4/3] rounded-lg bg-muted/50 border border-border flex items-center justify-center">
+              <span className="text-sm text-muted-foreground">{placeholder}</span>
+            </div>
+            <h3 className="text-lg font-semibold">{title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {description}
+            </p>
+          </div>
+        ))}
       </div>
-
-      {/* Three-step process */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
-        {/* Step 1: Ingest */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
-              1
-            </div>
-            <h3 className="text-xl font-semibold">{_(msg`Source Code`)}</h3>
-          </div>
-          <p className="text-muted-foreground leading-relaxed">
-            {_(
-              msg`Archcore clones your repository and builds an initial knowledge graph. You can create global documents shared across multiple projects.`
-            )}
-          </p>
-        </div>
-
-        {/* Step 2: Graph */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
-              2
-            </div>
-            <h3 className="text-xl font-semibold">
-              {_(msg`Documentation and Code`)}
-            </h3>
-          </div>
-          <p className="text-muted-foreground leading-relaxed">
-            {_(
-              msg`Create knowledge base, rules, and documentation linked to code. Each link between source code and documentation dramatically improves AI understanding of the project.`
-            )}
-          </p>
-        </div>
-
-        {/* Step 3: Assemble */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
-              3
-            </div>
-            <h3 className="text-xl font-semibold">{_(msg`Integration`)}</h3>
-          </div>
-          <p className="text-muted-foreground leading-relaxed">
-            {_(
-              msg`MCP protocol allows connecting any tools and integrations: code editors, bots, etc. Update documentation and get instant feedback.`
-            )}
-          </p>
-        </div>
-      </div>
-
-      {/* <Alert className="mb-10 border-primary/50 bg-primary/5">
-        <Info className="h-4 w-4 text-primary" />
-        <AlertDescription className="text-sm font-medium">
-          {_(msg`MCP server = one way to get context from IDEs/chats/agents`)}
-        </AlertDescription>
-      </Alert> */}
-
     </SectionContainer>
   );
 }

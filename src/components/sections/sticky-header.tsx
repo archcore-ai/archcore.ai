@@ -14,10 +14,10 @@ export function StickyHeader() {
   const headerRef = useRef<HTMLElement>(null);
 
   const navItems: Array<{ href: string; label: string; external?: boolean }> = [
-    { href: "#integrations", label: _(msg`Product`) },
+    { href: "#how-it-works", label: _(msg`How it works`) },
     { href: "#use-cases", label: _(msg`Use cases`) },
     { href: "#pricing", label: _(msg`Pricing`) },
-    { href: "#faq", label: _(msg`FAQ`) },
+    { href: "https://github.com/archcore-ai", label: "GitHub", external: true },
   ];
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export function StickyHeader() {
             onClick={() => {
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? _(msg`Close menu`) : _(msg`Open menu`)}
           >
             {mobileMenuOpen ? (
               <X className="h-5 w-5" />

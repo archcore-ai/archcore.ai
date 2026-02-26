@@ -4,17 +4,11 @@ import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
 
-const footerLinks = {
-  Resources: [
-    { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
-  ],
-};
+const footerLinks = [
+  { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
+];
 
-interface FooterSectionProps {
-  onContactClick?: () => void;
-}
-
-export function FooterSection({ onContactClick }: FooterSectionProps) {
+export function FooterSection() {
   const { _ } = useLingui();
   return (
     <footer className="border-t border-border px-6 py-20 md:py-24">
@@ -23,7 +17,7 @@ export function FooterSection({ onContactClick }: FooterSectionProps) {
           <div className="space-y-4">
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
-              <Trans>Context engineering platform for teams</Trans>
+              <Trans>Architectural context for AI-assisted development</Trans>
             </p>
           </div>
 
@@ -41,26 +35,18 @@ export function FooterSection({ onContactClick }: FooterSectionProps) {
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-border">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-            {Object.values(footerLinks)
-              .flat()
-              .map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  {...("external" in link && link.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            <button
-              onClick={onContactClick}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Trans>Contact Us</Trans>
-            </button>
+            {footerLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           <div className="text-sm text-muted-foreground">
