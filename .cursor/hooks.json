@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "archcore hooks cursor session-start",
+        "type": "command"
+      }
+    ]
+  }
+}
