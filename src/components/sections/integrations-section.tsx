@@ -113,9 +113,9 @@ export function IntegrationsSection() {
         {_(msg`How it works`)}
       </p>
       <SectionHeader
-        title={_(msg`From zero to full context in 60 seconds`)}
+        title={_(msg`Give your AI agents the full picture`)}
         description={_(
-          msg`Everything you need to give AI tools deep understanding of your codebase.`
+          msg`Build and structure project knowledge with Archcore — so every agent works with real architectural context, not guesswork.`
         )}
       />
 

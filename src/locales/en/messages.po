@@ -17,11 +17,11 @@ msgstr ""
 #~ msgid ".archcore/ directory"
 #~ msgstr ".archcore/ directory"
 
-#: src/components/sections/problem-section.tsx:13
+#: src/components/sections/problem-section.tsx:20
 msgid "\"Is this code following our standards?\""
 msgstr "\"Is this code following our standards?\""
 
-#: src/components/sections/problem-section.tsx:17
+#: src/components/sections/problem-section.tsx:25
 msgid "\"What does the new person need to know?\""
 msgstr "\"What does the new person need to know?\""
 
@@ -33,7 +33,7 @@ msgstr "\"Why did we choose microservices?\" — answered from .archcore/knowled
 #~ msgid "\"Why did we choose microservices?\" → Instant ADR lookup"
 #~ msgstr "PRD, RFC, ADR help understand the reasons behind decisions"
 
-#: src/components/sections/problem-section.tsx:9
+#: src/components/sections/problem-section.tsx:15
 msgid "\"Why did we choose this pattern?\""
 msgstr "\"Why did we choose this pattern?\""
 
@@ -177,7 +177,7 @@ msgstr "ADR-009: Decided to decompose by bounded contexts. Constraints: autonomo
 msgid "ADR-042, RFC-15"
 msgstr "ADR-042, RFC-15"
 
-#: src/components/sections/problem-section.tsx:10
+#: src/components/sections/problem-section.tsx:16
 msgid "ADRs and rules in .archcore/ make decisions searchable and available to every AI tool."
 msgstr "ADRs and rules in .archcore/ make decisions searchable and available to every AI tool."
 
@@ -185,9 +185,9 @@ msgstr "ADRs and rules in .archcore/ make decisions searchable and available to 
 #~ msgid "ADRs, RFCs, diagrams, runbooks"
 #~ msgstr "ADRs, RFCs, diagrams, runbooks"
 
-#: src/components/cta/docker-start-dialog.tsx:78
-#: src/components/cta/team-setup-dialog.tsx:137
-#: src/pages/teams-getting-started.tsx:164
+#: src/components/cta/docker-start-dialog.tsx:72
+#: src/components/cta/team-setup-dialog.tsx:116
+#: src/pages/teams-getting-started.tsx:133
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "After launch, open <0>http://localhost</0> in your browser."
 
@@ -381,8 +381,8 @@ msgstr "Auto-detect pattern violations against rules in .archcore/"
 #~ msgid "Auto-installs Claude Code hooks. Smart detection suggests ADRs when you decide something."
 #~ msgstr "Auto-installs Claude Code hooks. Smart detection suggests ADRs when you decide something."
 
-#: src/pages/teams-getting-started.tsx:67
-#: src/pages/teams-getting-started.tsx:186
+#: src/pages/teams-getting-started.tsx:42
+#: src/pages/teams-getting-started.tsx:155
 msgid "Back to home"
 msgstr "Back to home"
 
@@ -399,6 +399,10 @@ msgstr "Back to home"
 #: src/components/sections/architecture-record-section.tsx:33
 msgid "Boundaries"
 msgstr "Boundaries"
+
+#: src/components/sections/integrations-section.tsx:118
+msgid "Build and structure project knowledge with Archcore — so every agent works with real architectural context, not guesswork."
+msgstr "Build and structure project knowledge with Archcore — so every agent works with real architectural context, not guesswork."
 
 #: src/components/sections/problem-section.tsx:78
 #~ msgid "Build shared architectural understanding for humans and AI."
@@ -589,25 +593,24 @@ msgstr "Context-aware code generation aligned with your ADRs and rules"
 #~ msgid "Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project."
 #~ msgstr "Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project."
 
-#: src/components/cta/team-setup-dialog.tsx:50
-#: src/pages/teams-getting-started.tsx:41
+#: src/components/cta/copy-button.tsx:24
 msgid "Copy"
 msgstr "Copy"
 
-#: src/components/cta/docker-start-dialog.tsx:73
-#: src/components/cta/install-command.tsx:57
-#: src/components/cta/install-command.tsx:89
-#: src/components/cta/install-command.tsx:117
+#: src/components/cta/docker-start-dialog.tsx:67
+#: src/components/cta/install-command.tsx:55
+#: src/components/cta/install-command.tsx:87
+#: src/components/cta/install-command.tsx:115
 msgid "Copy command"
 msgstr "Copy command"
 
-#: src/components/cta/team-setup-dialog.tsx:95
-#: src/pages/teams-getting-started.tsx:99
+#: src/components/cta/team-setup-dialog.tsx:74
+#: src/pages/teams-getting-started.tsx:74
 msgid "Create <0>.env</0> file"
 msgstr "Create <0>.env</0> file"
 
-#: src/components/cta/team-setup-dialog.tsx:111
-#: src/pages/teams-getting-started.tsx:124
+#: src/components/cta/team-setup-dialog.tsx:90
+#: src/pages/teams-getting-started.tsx:97
 msgid "Create <0>docker-compose.yml</0> file"
 msgstr "Create <0>docker-compose.yml</0> file"
 
@@ -659,13 +662,13 @@ msgstr "Decisions (ADR)"
 #~ msgid "Demo is read-only. Creating/editing records available in self-hosted installation."
 #~ msgstr "Demo is read-only. Creating/editing records available in self-hosted installation."
 
-#: src/components/cta/team-setup-dialog.tsx:74
-#: src/pages/teams-getting-started.tsx:74
+#: src/components/cta/team-setup-dialog.tsx:53
+#: src/pages/teams-getting-started.tsx:49
 msgid "Deploy Archcore Team"
 msgstr "Deploy Archcore Team"
 
-#: src/components/cta/team-setup-dialog.tsx:81
-#: src/pages/teams-getting-started.tsx:84
+#: src/components/cta/team-setup-dialog.tsx:60
+#: src/pages/teams-getting-started.tsx:59
 msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 msgstr "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 
@@ -770,10 +773,6 @@ msgstr "Enterprise Search (like Onyx)"
 #~ msgid "Every AI answer links to specific decisions, ADRs, and constraints"
 #~ msgstr "Every AI answer links to specific decisions, ADRs, and constraints"
 
-#: src/components/sections/integrations-section.tsx:118
-msgid "Everything you need to give AI tools deep understanding of your codebase."
-msgstr "Everything you need to give AI tools deep understanding of your codebase."
-
 #: src/components/sections/pricing-section.tsx:55
 msgid "Everything you need, locally"
 msgstr "Everything you need, locally"
@@ -854,10 +853,6 @@ msgstr "Free. Open source. No strings."
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
-#: src/components/sections/integrations-section.tsx:116
-msgid "From zero to full context in 60 seconds"
-msgstr "From zero to full context in 60 seconds"
-
 #: src/components/sections/solution-section.tsx:22
 msgid "Gather"
 msgstr "Gather"
@@ -878,7 +873,7 @@ msgstr "Gather → Record → Apply → Verify"
 #~ msgid "Get Started"
 #~ msgstr "Get Started"
 
-#: src/components/cta/docker-start-dialog.tsx:40
+#: src/components/cta/docker-start-dialog.tsx:34
 msgid "Get Started with Archcore"
 msgstr "Get Started with Archcore"
 
@@ -893,6 +888,10 @@ msgstr "Get Started with Archcore"
 #: src/components/sections/integrations-section.tsx:21
 #~ msgid "GitHub, GitLab: code, PRs, commit history"
 #~ msgstr "GitHub, GitLab: code, PRs, commit history"
+
+#: src/components/sections/integrations-section.tsx:116
+msgid "Give your AI agents the full picture"
+msgstr "Give your AI agents the full picture"
 
 #: src/components/sections/architecture-record-section.tsx:47
 msgid "Glossary"
@@ -1012,7 +1011,7 @@ msgstr "Join Waitlist"
 msgid "Keeps humans and AI in sync with your system"
 msgstr "Keeps humans and AI in sync with your system"
 
-#: src/components/cta/docker-start-dialog.tsx:47
+#: src/components/cta/docker-start-dialog.tsx:41
 msgid "Launch Archcore locally with a single Docker command. No registration or configuration required."
 msgstr "Launch Archcore locally with a single Docker command. No registration or configuration required."
 
@@ -1149,7 +1148,7 @@ msgstr "No. Standalone CLI binary. Everything in .archcore/ inside your repo —
 #~ msgid "Often 2-3 days rework per incident"
 #~ msgstr "Often 2-3 days rework per incident"
 
-#: src/components/sections/problem-section.tsx:18
+#: src/components/sections/problem-section.tsx:26
 msgid "Onboarding context lives in .archcore/, not in someone's head or a lost Slack thread."
 msgstr "Onboarding context lives in .archcore/, not in someone's head or a lost Slack thread."
 
@@ -1317,7 +1316,7 @@ msgstr "RFC-017: Monolithic architecture identified as bottleneck for parallel d
 #~ msgid "Roadmap"
 #~ msgstr "Roadmap"
 
-#: src/components/sections/problem-section.tsx:14
+#: src/components/sections/problem-section.tsx:21
 msgid "Rules and guides tell AI what's allowed and what's deprecated. No more violating conventions."
 msgstr "Rules and guides tell AI what's allowed and what's deprecated. No more violating conventions."
 
@@ -1356,13 +1355,13 @@ msgstr "Run <0>archcore init</0> and get a structured <1>.archcore/</1> director
 #~ msgid "Run Demo"
 #~ msgstr "Run Demo"
 
-#: src/components/cta/team-setup-dialog.tsx:127
-#: src/pages/teams-getting-started.tsx:149
+#: src/components/cta/team-setup-dialog.tsx:106
+#: src/pages/teams-getting-started.tsx:120
 msgid "Run in your terminal"
 msgstr "Run in your terminal"
 
-#: src/components/cta/docker-start-dialog.tsx:57
-#: src/components/cta/install-command.tsx:74
+#: src/components/cta/docker-start-dialog.tsx:51
+#: src/components/cta/install-command.tsx:72
 msgid "Run in your terminal:"
 msgstr "Run in your terminal:"
 
@@ -1659,7 +1658,7 @@ msgstr "Which AI agents does it support?"
 msgid "With citations"
 msgstr "With citations"
 
-#: src/components/sections/problem-section.tsx:33
+#: src/components/sections/problem-section.tsx:41
 msgid "Without architectural context, every AI session starts from scratch."
 msgstr "Without architectural context, every AI session starts from scratch."
 
@@ -1723,6 +1722,6 @@ msgstr "Works with all agents"
 #~ msgid "Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, we can refine context with tags for filtering."
 #~ msgstr "Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, we can refine context with tags for filtering."
 
-#: src/components/sections/problem-section.tsx:31
+#: src/components/sections/problem-section.tsx:39
 msgid "Your AI tools are guessing. They don't have to."
 msgstr "Your AI tools are guessing. They don't have to."
