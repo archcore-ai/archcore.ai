@@ -5,6 +5,7 @@ import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
 
 const footerLinks = [
+  { label: "Docs", href: "https://docs.archcore.ai/", external: true },
   { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
   { label: "Discord", href: "https://discord.gg/5YC8pdjD", external: true },
   { label: "X", href: "https://x.com/archcore_ai", external: true },

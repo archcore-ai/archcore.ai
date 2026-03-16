@@ -17,6 +17,7 @@ export function StickyHeader() {
     { href: "#how-it-works", label: _(msg`How it works`) },
     // { href: "#use-cases", label: _(msg`Use cases`) },
     // { href: "#pricing", label: _(msg`Pricing`) },
+    { href: "https://docs.archcore.ai/", label: _(msg`Docs`), external: true },
     { href: "https://github.com/archcore-ai", label: "GitHub", external: true },
   ];
 
