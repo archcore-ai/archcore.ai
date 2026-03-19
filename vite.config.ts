@@ -1,8 +1,22 @@
 import path from "path";
+import fs from "fs";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { lingui } from "@lingui/vite-plugin";
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
+
+function copy404Plugin(): Plugin {
+  return {
+    name: "copy-404",
+    closeBundle() {
+      const outDir = path.resolve(__dirname, "dist");
+      fs.copyFileSync(
+        path.join(outDir, "index.html"),
+        path.join(outDir, "404.html"),
+      );
+    },
+  };
+}
 
 export default defineConfig({
   plugins: [
@@ -13,6 +27,7 @@ export default defineConfig({
     }),
     lingui(),
     tailwindcss(),
+    copy404Plugin(),
   ],
   resolve: {
     alias: {

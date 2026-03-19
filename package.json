@@ -15,8 +15,7 @@
     "i18n:compile": "lingui compile",
     "prebuild": "npm run i18n:compile",
     "build": "npm run check && vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && vercel --prod"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@lingui/core": "^5.9.0",
