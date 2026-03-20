@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Preconnect to improve performance -->
-    <link rel="preconnect" href="https://archcore.ai" />
-
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -15,21 +12,26 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- SEO -->
-    <title>Archcore — System Context Platform</title>
+    <title>Archcore — Shared architectural memory for AI coding agents</title>
     <meta
       name="description"
-      content="Keeps humans and AI in sync with your system"
+      content="Version decisions, rules, plans, and experience in your repo so Claude Code, Cursor, Copilot, and other AI coding agents share the same context across sessions."
     />
     <link rel="canonical" href="https://archcore.ai/" />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="en" href="https://archcore.ai/" />
+    <link rel="alternate" hreflang="ru" href="https://archcore.ai/?lang=ru" />
+    <link rel="alternate" hreflang="x-default" href="https://archcore.ai/" />
 
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Archcore — System Context Platform"
+      content="Archcore — Shared architectural memory for AI coding agents"
     />
     <meta
       property="og:description"
-      content="Keeps humans and AI in sync with your system"
+      content="Version decisions, rules, plans, and experience in your repo so Claude Code, Cursor, Copilot, and other AI coding agents share the same context across sessions."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://archcore.ai/" />
@@ -42,12 +44,13 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Archcore — System Context Platform"
+      content="Archcore — Shared architectural memory for AI coding agents"
     />
     <meta
       name="twitter:description"
-      content="Keeps humans and AI in sync with your system"
+      content="Version decisions, rules, plans, and experience in your repo so Claude Code, Cursor, Copilot, and other AI coding agents share the same context across sessions."
     />
+    <meta name="twitter:site" content="@archcore_ai" />
     <meta name="twitter:image" content="https://archcore.ai/og-image.png" />
 
     <!-- Theme color for mobile browsers -->
@@ -61,7 +64,12 @@
         "name": "Archcore",
         "url": "https://archcore.ai",
         "logo": "https://archcore.ai/logo.png",
-        "sameAs": ["https://github.com/archcore-ai"]
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
       }
     </script>
 
@@ -73,7 +81,9 @@
         "name": "Archcore",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Linux, macOS, Windows (Docker)",
-        "description": "System context platform that keeps humans and AI in sync with your system.",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Shared architectural memory for AI coding agents. Version decisions, rules, plans, and experience in your repo.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -90,63 +100,64 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How can I use Archcore in code editors?",
+            "name": "What does archcore init create?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Deployed Archcore system connects to any AI agent that supports MCP (Model Context Protocol). Nearly every editor or terminal allows you to run AI agents for your tasks: Cursor, VSCode, Warp, and others."
+              "text": "Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
             }
           },
           {
             "@type": "Question",
-            "name": "Can Archcore be deployed on-premises for my organization?",
+            "name": "Which AI agents does it support?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, you can deploy Archcore entirely within your infrastructure and even use your own LLM providers for greater flexibility. This option allows you to maintain complete confidentiality and security of your Architecture Record."
+              "text": "8 agents: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline. Hooks (session start injection) for Claude Code/Cursor/Gemini CLI/GitHub Copilot. MCP (document tools) for all 8. Auto-detects installed agents."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I use Archcore with local LLMs instead of cloud providers?",
+            "name": "How do hooks and MCP work together?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Archcore is compatible with local LLMs such as Llama 3, Qwen 2, and others via Ollama or LM Studio. You can flexibly configure embeddings and chat with different models separately."
+              "text": "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse/edit .archcore/ docs during a session. Set up with archcore hooks install and archcore mcp install."
             }
           },
           {
             "@type": "Question",
-            "name": "Does Archcore integrate with AI agents via MCP?",
+            "name": "Do I need any external services?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Archcore can be integrated with AI agents via MCP. This allows you to connect Cursor, Claude Code, and other tools to the Archcore platform, enriching your project context with deep knowledge of architectural decisions and constraints."
+              "text": "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
             }
           },
           {
             "@type": "Question",
-            "name": "Do I need to rewrite our existing documentation?",
+            "name": "What document types are supported?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Not required. Archcore focuses on technical details - it's closer to source code and infrastructure. You can start with what you have and gradually enhance coverage as you document new decisions."
+              "text": "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
             }
           },
           {
             "@type": "Question",
-            "name": "How is Archcore different from GitHub Copilot or Cursor?",
+            "name": "How is this different from plain markdown?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Copilot, Cursor, Claude, and other AI agents generate code from patterns in public repositories. Archcore serves as a context source and complements the AI agent's knowledge. In other words, Archcore is the persistent memory of your project."
+              "text": "Plain markdown lacks consistent structure for AI parsing. Archcore docs have typed YAML frontmatter, semantic categories, and validation via archcore validate and archcore doctor. MCP tools use this structure to deliver relevant context — not raw text dumps."
             }
           },
           {
             "@type": "Question",
-            "name": "Can we control what context AI tools can access?",
+            "name": "How do I keep the CLI updated?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. When connecting your system via MCP, you can specify specific projects you want to work with. Additionally, you can refine context with tags for filtering."
+              "text": "archcore update self-updates to latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues."
             }
           }
         ]
       }
     </script>
+
   </head>
   <body>
     <div id="root"></div>

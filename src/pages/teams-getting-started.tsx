@@ -16,6 +16,28 @@ export function TeamsGettingStarted() {
   const [copiedKey, setCopiedKey] = useState<CopyKey | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
+  useEffect(() => {
+    document.title = "Deploy Archcore Team — Archcore";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Deploy the full Archcore Team stack with Docker Compose in 3 steps. Self-hosted, no external dependencies."
+      );
+    }
+    return () => {
+      document.title =
+        "Archcore — Shared architectural memory for AI coding agents";
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) {
+        meta.setAttribute(
+          "content",
+          "Version decisions, rules, plans, and experience in your repo so Claude Code, Cursor, Copilot, and other AI coding agents share the same context across sessions."
+        );
+      }
+    };
+  }, []);
+
   useEffect(
     () => () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);

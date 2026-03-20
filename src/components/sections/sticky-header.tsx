@@ -14,9 +14,8 @@ export function StickyHeader() {
   const headerRef = useRef<HTMLElement>(null);
 
   const navItems: Array<{ href: string; label: string; external?: boolean }> = [
-    { href: "#how-it-works", label: _(msg`How it works`) },
-    // { href: "#use-cases", label: _(msg`Use cases`) },
-    // { href: "#pricing", label: _(msg`Pricing`) },
+    { href: "#why-archcore", label: _(msg`Why Archcore`) },
+    { href: "#quickstart", label: _(msg`Get started`) },
     { href: "https://docs.archcore.ai/", label: _(msg`Docs`), external: true },
     { href: "https://github.com/archcore-ai", label: "GitHub", external: true },
   ];
@@ -43,9 +42,19 @@ export function StickyHeader() {
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
 
@@ -67,7 +76,7 @@ export function StickyHeader() {
             <Logo size="md" loading="eager" />
           </a>
 
-          <nav className="hidden md:flex items-center gap-2">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
               <Button key={item.href} variant="ghost" size="sm" asChild>
                 <a
@@ -103,7 +112,7 @@ export function StickyHeader() {
 
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background px-6">
-          <nav className="max-w-6xl mx-auto py-4 space-y-1">
+          <nav aria-label="Mobile navigation" className="max-w-6xl mx-auto py-4 space-y-1">
             {navItems.map((item) => (
               <a
                 key={item.href}

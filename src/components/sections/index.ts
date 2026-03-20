@@ -1,5 +1,12 @@
 export { StickyHeader } from "./sticky-header";
 export { HeroSection } from "./hero-section";
-export { IntegrationsSection } from "./integrations-section";
 export { ProblemSection } from "./problem-section";
+export { WhyArchcoreSection } from "./why-archcore-section";
+export { WhyNotInstructionsSection } from "./why-not-instructions-section";
+export { QuickstartSection } from "./quickstart-section";
+export { HowItWorksSection } from "./how-it-works-section";
+export { WorksWithAgentsSection } from "./works-with-agents-section";
+export { ComingSoonSection } from "./coming-soon-section";
+export { FAQSection } from "./faq-section";
+export { FinalCTASection } from "./final-cta-section";
 export { FooterSection } from "./footer-section";

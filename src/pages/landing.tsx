@@ -1,11 +1,17 @@
 import {
   StickyHeader,
   HeroSection,
-  IntegrationsSection,
   ProblemSection,
+  WhyArchcoreSection,
+  WhyNotInstructionsSection,
+  QuickstartSection,
+  HowItWorksSection,
+  WorksWithAgentsSection,
+  ComingSoonSection,
+  FAQSection,
+  FinalCTASection,
   FooterSection,
 } from "@/components/sections";
-import { FAQSection } from "@/components/faq-section";
 
 export function LandingPage() {
   return (
@@ -13,11 +19,15 @@ export function LandingPage() {
       <StickyHeader />
       <main>
         <HeroSection />
-        <IntegrationsSection />
         <ProblemSection />
-        {/* <UseCasesSection /> */}
-        {/* <PricingSection /> */}
+        <WhyArchcoreSection />
+        <WhyNotInstructionsSection />
+        <QuickstartSection />
+        <HowItWorksSection />
+        <WorksWithAgentsSection />
+        <ComingSoonSection />
         <FAQSection />
+        <FinalCTASection />
       </main>
       <FooterSection />
     </div>

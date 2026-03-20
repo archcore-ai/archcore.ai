@@ -4,16 +4,16 @@ import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
 
-const footerLinks = [
-  { label: "Docs", href: "https://docs.archcore.ai/", external: true },
-  { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
-  { label: "Discord", href: "https://discord.gg/5YC8pdjD", external: true },
-  { label: "X", href: "https://x.com/archcore_ai", external: true },
-  { label: "Telegram", href: "https://t.me/archcore_ai", external: true },
-];
-
 export function FooterSection() {
   const { _ } = useLingui();
+
+  const footerLinks = [
+    { label: _(msg`Docs`), href: "https://docs.archcore.ai/", external: true },
+    { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
+    { label: "Discord", href: "https://discord.gg/5YC8pdjD", external: true },
+    { label: "X", href: "https://x.com/archcore_ai", external: true },
+    { label: "Telegram", href: "https://t.me/archcore_ai", external: true },
+  ];
   return (
     <footer className="border-t border-border px-6 py-20 md:py-24">
       <div className="max-w-6xl mx-auto">
@@ -22,8 +22,7 @@ export function FooterSection() {
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
               <Trans>
-                System Context Platform. Keeps humans and AI in sync with your
-                system.
+                Shared architectural memory for AI coding agents.
               </Trans>
             </p>
           </div>

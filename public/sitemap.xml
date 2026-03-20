@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://archcore.ai/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-03-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://archcore.ai/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://archcore.ai/?lang=ru" />
+  </url>
+  <url>
+    <loc>https://archcore.ai/teams/getting-started</loc>
+    <lastmod>2026-03-20</lastmod>
   </url>
 </urlset>
