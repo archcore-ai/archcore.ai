@@ -26,7 +26,7 @@ export function HeroSection() {
 
           <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-4xl mx-auto">
             <Trans>
-              Keep decisions, rules, plans, and incidents in your repo so AI
+              Keep decisions, rules, plans, and experience in your repo so AI
               coding agents stop starting from scratch.
             </Trans>
           </p>

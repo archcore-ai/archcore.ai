@@ -196,7 +196,7 @@ msgstr "ADR"
 #~ msgstr "ADR, RFC, диаграммы, runbook"
 
 #: src/components/sections/why-archcore-section.tsx:27
-msgid "ADRs, rules, plans, and incidents become structured, machine-readable documents that agents use — not just files humans write."
+msgid "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
 msgstr "ADR, правила, планы и опыт становятся структурированными, машиночитаемыми документами, которые агенты используют — а не просто файлами, которые пишут люди."
 
 #: src/components/sections/why-archcore-section.tsx:27
@@ -332,7 +332,7 @@ msgstr "archcore doctor"
 #~ msgstr "archcore init"
 
 #: src/components/sections/quickstart-section.tsx:29
-msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and incidents. Your first document is one command away."
+msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
 msgstr "archcore init создаёт .archcore/, устанавливает интеграции с агентами и даёт стартовые шаблоны для ADR, правил, планов и опыта. До первого документа — одна команда."
 
 #: src/components/sections/integrations-section.tsx:59
@@ -1202,7 +1202,7 @@ msgstr "Храните архитектурный контекст там, гд�
 #~ msgstr ""
 
 #: src/components/sections/hero-section.tsx:28
-msgid "Keep decisions, rules, plans, and incidents in your repo so AI coding agents stop starting from scratch."
+msgid "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
 msgstr "Храните решения, правила, планы и опыт в репозитории, чтобы ИИ-агенты перестали начинать с нуля."
 
 #: src/components/sections/hero-section.tsx:23

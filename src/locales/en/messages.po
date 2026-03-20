@@ -196,8 +196,8 @@ msgstr "ADRs"
 #~ msgstr "ADRs, RFCs, diagrams, runbooks"
 
 #: src/components/sections/why-archcore-section.tsx:27
-msgid "ADRs, rules, plans, and incidents become structured, machine-readable documents that agents use — not just files humans write."
-msgstr "ADRs, rules, plans, and incidents become structured, machine-readable documents that agents use — not just files humans write."
+msgid "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
+msgstr "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
 
 #: src/components/sections/why-archcore-section.tsx:27
 #~ msgid "ADRs, rules, plans, incidents, and experience reports in a consistent, machine-readable format inside your repo."
@@ -332,8 +332,8 @@ msgstr "archcore doctor"
 #~ msgstr "archcore init"
 
 #: src/components/sections/quickstart-section.tsx:29
-msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and incidents. Your first document is one command away."
-msgstr "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and incidents. Your first document is one command away."
+msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
+msgstr "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
 
 #: src/components/sections/integrations-section.tsx:59
 #~ msgid "Archcore is a CLI that creates a structured knowledge base in your repo. No servers, no setup, no accounts."
@@ -1203,8 +1203,8 @@ msgstr "Keep architecture context where code lives"
 #~ msgstr "Keep context where code lives"
 
 #: src/components/sections/hero-section.tsx:28
-msgid "Keep decisions, rules, plans, and incidents in your repo so AI coding agents stop starting from scratch."
-msgstr "Keep decisions, rules, plans, and incidents in your repo so AI coding agents stop starting from scratch."
+msgid "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
+msgstr "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
 
 #: src/components/sections/hero-section.tsx:23
 #~ msgid "Keep decisions, rules, plans, and incidents in your repo so Claude Code, Cursor, Copilot, and other agents stop starting from scratch."
