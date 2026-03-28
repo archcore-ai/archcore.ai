@@ -2,7 +2,7 @@
 
 <https://archcore.ai>
 
-Landing page for [Archcore](https://archcore.ai) — System Context Platform that keeps humans and AI in sync with your system.
+Archcore is a git-native context layer for AI coding agents. It helps teams turn scattered repo knowledge into structured context that AI coding agents can find, reuse, and follow.
 
 ## Links
 

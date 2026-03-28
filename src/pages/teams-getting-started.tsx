@@ -27,12 +27,12 @@ export function TeamsGettingStarted() {
     }
     return () => {
       document.title =
-        "Archcore — Shared architectural memory for AI coding agents";
+        "Archcore — Git-native context for AI coding agents";
       const meta = document.querySelector('meta[name="description"]');
       if (meta) {
         meta.setAttribute(
           "content",
-          "Version decisions, rules, plans, and experience in your repo so Claude Code, Cursor, Copilot, and other AI coding agents share the same context across sessions."
+          "Git-native context for AI coding agents. Context engineering for repositories."
         );
       }
     };

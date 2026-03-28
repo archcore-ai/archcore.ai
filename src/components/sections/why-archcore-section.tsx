@@ -30,7 +30,7 @@ const cards: Array<{
     id: "working-context",
     icon: FileText,
     title: msg`Turn docs into working context`,
-    description: msg`ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write.`,
+    description: msg`ADRs, rules, plans, and guides become structured, machine-readable documents that agents use — not just files humans write.`,
   },
   {
     id: "git-review",

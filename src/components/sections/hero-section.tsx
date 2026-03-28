@@ -17,17 +17,14 @@ export function HeroSection() {
           </p>
 
           <h1 className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
-            <Trans>
-              Shared architectural memory
-              <br />
-              for AI coding agents
-            </Trans>
+            <Trans>Git-native context for AI coding agents</Trans>
           </h1>
 
           <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-4xl mx-auto">
             <Trans>
-              Keep decisions, rules, plans, and experience in your repo so AI
-              coding agents stop starting from scratch.
+              Structure decisions, rules, plans, and guides in your repo so
+              Claude Code, Cursor, Copilot, and other agents work with stronger
+              project context.
             </Trans>
           </p>
 

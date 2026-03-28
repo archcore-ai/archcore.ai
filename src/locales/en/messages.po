@@ -95,8 +95,8 @@ msgstr "✗ Results vary by query phrasing"
 
 #: src/components/faq-section.tsx:43
 #: src/components/sections/faq-section.tsx:43
-msgid "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
-msgstr "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
+#~ msgid "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
+#~ msgstr "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
 
 #: src/components/faq-section.tsx:43
 #~ msgid "11 built-in templates: ADR (Architecture Decision Record), RFC, Rule, Guide, PRD (Product Requirements), Plan, Doc, Idea, CPAT (Corrective/Preventive Action), and more. Each has a structured markdown format with frontmatter for metadata and code path linking."
@@ -117,6 +117,11 @@ msgstr "10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, R
 #: src/components/sections/problem-section.tsx:22
 #~ msgid "15-20% of PRs violate constraints"
 #~ msgstr "15-20% of PRs violate constraints"
+
+#: src/components/faq-section.tsx:43
+#: src/components/sections/faq-section.tsx:43
+msgid "18 types across three layers. Vision: PRD, Idea, Plan, MRD, BRD, URD, and ISO 29148 types. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
+msgstr "18 types across three layers. Vision: PRD, Idea, Plan, MRD, BRD, URD, and ISO 29148 types. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
 
 #: src/components/sections/integrations-section.tsx:42
 #~ msgid "3 hooks"
@@ -164,8 +169,8 @@ msgstr "8 agents: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Cod
 #~ msgstr "80% of architectural knowledge undocumented"
 
 #: src/components/sections/archcore-contents-section.tsx:106
-msgid "A context layer inside your repo"
-msgstr "A context layer inside your repo"
+#~ msgid "A context layer inside your repo"
+#~ msgstr "A context layer inside your repo"
 
 #: src/components/determinism-visual.tsx:50
 msgid "Access policy, versioning"
@@ -184,8 +189,8 @@ msgid "ADR-042, RFC-15"
 msgstr "ADR-042, RFC-15"
 
 #: src/components/sections/archcore-contents-section.tsx:43
-msgid "ADRs"
-msgstr "ADRs"
+#~ msgid "ADRs"
+#~ msgstr "ADRs"
 
 #: src/components/sections/problem-section.tsx:16
 #~ msgid "ADRs and rules in .archcore/ make decisions searchable and available to every AI tool."
@@ -196,8 +201,12 @@ msgstr "ADRs"
 #~ msgstr "ADRs, RFCs, diagrams, runbooks"
 
 #: src/components/sections/why-archcore-section.tsx:27
-msgid "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
-msgstr "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
+#~ msgid "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
+#~ msgstr "ADRs, rules, plans, and experience become structured, machine-readable documents that agents use — not just files humans write."
+
+#: src/components/sections/why-archcore-section.tsx:33
+msgid "ADRs, rules, plans, and guides become structured, machine-readable documents that agents use — not just files humans write."
+msgstr "ADRs, rules, plans, and guides become structured, machine-readable documents that agents use — not just files humans write."
 
 #: src/components/sections/why-archcore-section.tsx:27
 #~ msgid "ADRs, rules, plans, incidents, and experience reports in a consistent, machine-readable format inside your repo."
@@ -209,7 +218,7 @@ msgstr "ADRs, rules, plans, and experience become structured, machine-readable d
 
 #: src/components/cta/docker-start-dialog.tsx:72
 #: src/components/cta/team-setup-dialog.tsx:116
-#: src/pages/teams-getting-started.tsx:133
+#: src/pages/teams-getting-started.tsx:155
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "After launch, open <0>http://localhost</0> in your browser."
 
@@ -265,7 +274,7 @@ msgstr "Answer"
 msgid "Answers with citations to specific decisions"
 msgstr "Answers with citations to specific decisions"
 
-#: src/components/sections/why-archcore-section.tsx:22
+#: src/components/sections/why-archcore-section.tsx:27
 msgid "Any agent that reads files can use .archcore/ context. No vendor lock-in, no per-tool configuration."
 msgstr "Any agent that reads files can use .archcore/ context. No vendor lock-in, no per-tool configuration."
 
@@ -332,8 +341,12 @@ msgstr "archcore doctor"
 #~ msgstr "archcore init"
 
 #: src/components/sections/quickstart-section.tsx:29
-msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
-msgstr "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
+#~ msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
+#~ msgstr "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and experience. Your first document is one command away."
+
+#: src/components/sections/quickstart-section.tsx:29
+msgid "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and guides. Your first document is one command away."
+msgstr "archcore init creates .archcore/, installs agent integrations, and gives you starter templates for ADRs, rules, plans, and guides. Your first document is one command away."
 
 #: src/components/sections/integrations-section.tsx:59
 #~ msgid "Archcore is a CLI that creates a structured knowledge base in your repo. No servers, no setup, no accounts."
@@ -413,8 +426,8 @@ msgid "Architecture decisions that need rationale, status, and history"
 msgstr "Architecture decisions that need rationale, status, and history"
 
 #: src/components/sections/archcore-contents-section.tsx:44
-msgid "architecture decisions with rationale and status"
-msgstr "architecture decisions with rationale and status"
+#~ msgid "architecture decisions with rationale and status"
+#~ msgstr "architecture decisions with rationale and status"
 
 #: src/components/sections/integrations-section.tsx:37
 #~ msgid "Architecture Docs"
@@ -440,8 +453,8 @@ msgstr "Auto-detect pattern violations against rules in .archcore/"
 #~ msgid "Auto-installs Claude Code hooks. Smart detection suggests ADRs when you decide something."
 #~ msgstr "Auto-installs Claude Code hooks. Smart detection suggests ADRs when you decide something."
 
-#: src/pages/teams-getting-started.tsx:42
-#: src/pages/teams-getting-started.tsx:155
+#: src/pages/teams-getting-started.tsx:64
+#: src/pages/teams-getting-started.tsx:177
 msgid "Back to home"
 msgstr "Back to home"
 
@@ -520,7 +533,7 @@ msgstr "Claude Code hooks load .archcore/ at session start — every AI tool fol
 #~ msgid "CLI-assisted create, update, deprecate"
 #~ msgstr "CLI-assisted create, update, deprecate"
 
-#: src/components/sections/sticky-header.tsx:92
+#: src/components/sections/sticky-header.tsx:102
 msgid "Close menu"
 msgstr "Close menu"
 
@@ -557,9 +570,10 @@ msgstr "Code review criteria for architectural compliance."
 #~ msgstr "Coding agent generates REST endpoint using deprecated auth pattern"
 
 #: src/components/sections/archcore-contents-section.tsx:50
-msgid "coding conventions and guardrails agents must follow"
-msgstr "coding conventions and guardrails agents must follow"
+#~ msgid "coding conventions and guardrails agents must follow"
+#~ msgstr "coding conventions and guardrails agents must follow"
 
+#: src/components/sections/coming-soon-section.tsx:30
 #: src/components/sections/pricing-section.tsx:83
 msgid "Coming Soon"
 msgstr "Coming Soon"
@@ -596,7 +610,7 @@ msgstr "Coming Soon"
 #~ msgid "Confluence, Notion, markdown documentation"
 #~ msgstr "Confluence, Notion, markdown documentation"
 
-#: src/components/sections/coming-soon-section.tsx:33
+#: src/components/sections/coming-soon-section.tsx:35
 #: src/components/sections/integrations-section.tsx:100
 msgid "Connect multiple repos into a unified knowledge graph. GraphRAG finds relations between projects, improves search precision, and gives AI tools global context — not just what's in one repository."
 msgstr "Connect multiple repos into a unified knowledge graph. GraphRAG finds relations between projects, improves search precision, and gives AI tools global context — not just what's in one repository."
@@ -634,7 +648,7 @@ msgstr "Constraints (must/never)"
 #~ msgid "Context fragmentation is the root cause of AI hallucinations and architectural drift."
 #~ msgstr "Context fragmentation is the root cause of AI hallucinations and architectural drift."
 
-#: src/components/sections/why-archcore-section.tsx:32
+#: src/components/sections/why-archcore-section.tsx:39
 msgid "Context is versioned, reviewable, and diffable — just like code. Changes go through the same PR workflow."
 msgstr "Context is versioned, reviewable, and diffable — just like code. Changes go through the same PR workflow."
 
@@ -690,12 +704,12 @@ msgid "Copy command"
 msgstr "Copy command"
 
 #: src/components/cta/team-setup-dialog.tsx:74
-#: src/pages/teams-getting-started.tsx:74
+#: src/pages/teams-getting-started.tsx:96
 msgid "Create <0>.env</0> file"
 msgstr "Create <0>.env</0> file"
 
 #: src/components/cta/team-setup-dialog.tsx:90
-#: src/pages/teams-getting-started.tsx:97
+#: src/pages/teams-getting-started.tsx:119
 msgid "Create <0>docker-compose.yml</0> file"
 msgstr "Create <0>docker-compose.yml</0> file"
 
@@ -705,8 +719,13 @@ msgstr "Create <0>docker-compose.yml</0> file"
 
 #: src/components/faq-section.tsx:19
 #: src/components/sections/faq-section.tsx:19
-msgid "Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
-msgstr "Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
+#~ msgid "Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
+#~ msgstr "Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
+
+#: src/components/faq-section.tsx:19
+#: src/components/sections/faq-section.tsx:19
+msgid "Creates .archcore/ directory with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
+msgstr "Creates .archcore/ directory with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
 
 #: src/components/sections/integrations-section.tsx:24
 #~ msgid "Creates .archcore/ with vision, knowledge, and experience categories. Interactive setup."
@@ -752,7 +771,7 @@ msgstr "Decisions (ADR)"
 #~ msgid "Decisions, rules, and plans live alongside the code — accessible to every team member and every agent."
 #~ msgstr "Decisions, rules, and plans live alongside the code — accessible to every team member and every agent."
 
-#: src/components/sections/why-archcore-section.tsx:17
+#: src/components/sections/why-archcore-section.tsx:21
 msgid "Decisions, rules, and plans live alongside the code — every agent reads the same context without re-prompting."
 msgstr "Decisions, rules, and plans live alongside the code — every agent reads the same context without re-prompting."
 
@@ -765,12 +784,12 @@ msgstr "Decisions, rules, and plans live alongside the code — every agent read
 #~ msgstr "Demo is read-only. Creating/editing records available in self-hosted installation."
 
 #: src/components/cta/team-setup-dialog.tsx:53
-#: src/pages/teams-getting-started.tsx:49
+#: src/pages/teams-getting-started.tsx:71
 msgid "Deploy Archcore Team"
 msgstr "Deploy Archcore Team"
 
 #: src/components/cta/team-setup-dialog.tsx:60
-#: src/pages/teams-getting-started.tsx:59
+#: src/pages/teams-getting-started.tsx:81
 msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 msgstr "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 
@@ -815,6 +834,7 @@ msgstr "Do I need any external services?"
 msgid "Docker-ready"
 msgstr "Docker-ready"
 
+#: src/components/sections/footer-section.tsx:11
 #: src/components/sections/sticky-header.tsx:19
 msgid "Docs"
 msgstr "Docs"
@@ -1014,13 +1034,21 @@ msgstr "Get Started with Archcore"
 #~ msgid "Git-native architectural memory for AI coding agents"
 #~ msgstr "Git-native architectural memory for AI coding agents"
 
-#: src/components/sections/footer-section.tsx:24
-msgid "Shared architectural memory for AI coding agents."
-msgstr "Shared architectural memory for AI coding agents."
-
 #: src/components/sections/hero-section.tsx:20
 #~ msgid "Git-native architectural memory<0/>for AI coding agents"
 #~ msgstr "Git-native architectural memory<0/>for AI coding agents"
+
+#: src/components/sections/hero-section.tsx:20
+msgid "Git-native context for AI coding agents"
+msgstr "Git-native context for AI coding agents"
+
+#: src/components/sections/footer-section.tsx:24
+msgid "Git-native context for AI coding agents."
+msgstr "Git-native context for AI coding agents."
+
+#: src/components/sections/hero-section.tsx:20
+#~ msgid "Git-native context<0/>for AI coding agents"
+#~ msgstr "Git-native context<0/>for AI coding agents"
 
 #: src/components/sections/integrations-section.tsx:21
 #~ msgid "GitHub, GitLab: code, PRs, commit history"
@@ -1056,7 +1084,7 @@ msgstr "Hooks inject architectural context into every AI session"
 msgid "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse/edit .archcore/ docs during a session. Set up with archcore hooks install and archcore mcp install."
 msgstr "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse/edit .archcore/ docs during a session. Set up with archcore hooks install and archcore mcp install."
 
-#: src/components/sections/works-with-agents-section.tsx:34
+#: src/components/sections/works-with-agents-section.tsx:36
 msgid "Hooks inject context at session start automatically. MCP exposes tools so agents can browse and edit .archcore/ documents during a session. Auto-detects installed agents."
 msgstr "Hooks inject context at session start automatically. MCP exposes tools so agents can browse and edit .archcore/ documents during a session. Auto-detects installed agents."
 
@@ -1113,12 +1141,12 @@ msgid "IDEs/chats/agents get context via MCP"
 msgstr "IDEs/chats/agents get context via MCP"
 
 #: src/components/sections/archcore-contents-section.tsx:56
-msgid "implementation plans that evolve with the work"
-msgstr "implementation plans that evolve with the work"
+#~ msgid "implementation plans that evolve with the work"
+#~ msgstr "implementation plans that evolve with the work"
 
 #: src/components/sections/archcore-contents-section.tsx:67
-msgid "Incidents"
-msgstr "Incidents"
+#~ msgid "Incidents"
+#~ msgstr "Incidents"
 
 #: src/components/sections/why-not-instructions-section.tsx:49
 msgid "Incidents and experience reports"
@@ -1194,7 +1222,7 @@ msgstr "Instruction files are great for agent-specific prompts and short-lived r
 msgid "Join Waitlist"
 msgstr "Join Waitlist"
 
-#: src/components/sections/why-archcore-section.tsx:42
+#: src/components/sections/why-archcore-section.tsx:49
 msgid "Keep architecture context where code lives"
 msgstr "Keep architecture context where code lives"
 
@@ -1203,8 +1231,8 @@ msgstr "Keep architecture context where code lives"
 #~ msgstr "Keep context where code lives"
 
 #: src/components/sections/hero-section.tsx:28
-msgid "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
-msgstr "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
+#~ msgid "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
+#~ msgstr "Keep decisions, rules, plans, and experience in your repo so AI coding agents stop starting from scratch."
 
 #: src/components/sections/hero-section.tsx:23
 #~ msgid "Keep decisions, rules, plans, and incidents in your repo so Claude Code, Cursor, Copilot, and other agents stop starting from scratch."
@@ -1390,7 +1418,7 @@ msgstr "Onboarding: 4 weeks → 1.5 weeks"
 msgid "One command to start"
 msgstr "One command to start"
 
-#: src/components/sections/sticky-header.tsx:92
+#: src/components/sections/sticky-header.tsx:102
 msgid "Open menu"
 msgstr "Open menu"
 
@@ -1402,13 +1430,13 @@ msgstr "Open menu"
 #~ msgid "Open Source"
 #~ msgstr "Open Source"
 
-#: src/components/sections/hero-section.tsx:44
+#: src/components/sections/hero-section.tsx:41
 msgid "Open source · Version-controlled · Setup in minutes"
 msgstr "Open source · Version-controlled · Setup in minutes"
 
 #: src/components/sections/archcore-contents-section.tsx:68
-msgid "outage records so mistakes are never repeated"
-msgstr "outage records so mistakes are never repeated"
+#~ msgid "outage records so mistakes are never repeated"
+#~ msgstr "outage records so mistakes are never repeated"
 
 #: src/components/sections/pricing-section.tsx:71
 #~ msgid "Personal"
@@ -1424,8 +1452,8 @@ msgid "Plain markdown lacks consistent structure for AI parsing. Archcore docs h
 msgstr "Plain markdown lacks consistent structure for AI parsing. Archcore docs have typed YAML frontmatter, semantic categories, and validation via archcore validate and archcore doctor. MCP tools use this structure to deliver relevant context — not raw text dumps."
 
 #: src/components/sections/archcore-contents-section.tsx:55
-msgid "Plans"
-msgstr "Plans"
+#~ msgid "Plans"
+#~ msgstr "Plans"
 
 #: src/components/sections/why-not-instructions-section.tsx:43
 msgid "Plans that evolve over sprints"
@@ -1480,12 +1508,12 @@ msgstr "Self-hosted. Runs on your infrastructure."
 #~ msgstr "Product"
 
 #: src/components/sections/archcore-contents-section.tsx:62
-msgid "product specs tied to decisions and plans"
-msgstr "product specs tied to decisions and plans"
+#~ msgid "product specs tied to decisions and plans"
+#~ msgstr "product specs tied to decisions and plans"
 
 #: src/components/sections/archcore-contents-section.tsx:117
-msgid "Project structure"
-msgstr "Project structure"
+#~ msgid "Project structure"
+#~ msgstr "Project structure"
 
 #: src/components/sections/use-cases-section.tsx:132
 #~ msgid "Provides current OAuth2 standard to coding agents"
@@ -1556,18 +1584,18 @@ msgstr "Reliable AI Code Generation"
 #~ msgstr "Request Pilot"
 
 #: src/components/sections/archcore-contents-section.tsx:61
-msgid "Requirements"
-msgstr "Requirements"
+#~ msgid "Requirements"
+#~ msgstr "Requirements"
 
 #: src/components/sections/archcore-contents-section.tsx:73
-msgid "Retros"
-msgstr "Retros"
+#~ msgid "Retros"
+#~ msgstr "Retros"
 
 #: src/components/sections/architecture-record-section.tsx:54
 msgid "Review Checklists"
 msgstr "Review Checklists"
 
-#: src/components/sections/why-archcore-section.tsx:31
+#: src/components/sections/why-archcore-section.tsx:38
 msgid "Review context changes in Git"
 msgstr "Review context changes in Git"
 
@@ -1580,8 +1608,8 @@ msgstr "RFC-017: Monolithic architecture identified as bottleneck for parallel d
 #~ msgstr "Roadmap"
 
 #: src/components/sections/archcore-contents-section.tsx:49
-msgid "Rules"
-msgstr "Rules"
+#~ msgid "Rules"
+#~ msgstr "Rules"
 
 #: src/components/sections/problem-section.tsx:21
 #~ msgid "Rules and guides tell AI what's allowed and what's deprecated. No more violating conventions."
@@ -1624,7 +1652,7 @@ msgstr "Run <0>archcore init</0> and get a structured <1>.archcore/</1> director
 #~ msgstr "Run Demo"
 
 #: src/components/cta/team-setup-dialog.tsx:106
-#: src/pages/teams-getting-started.tsx:120
+#: src/pages/teams-getting-started.tsx:142
 msgid "Run in your terminal"
 msgstr "Run in your terminal"
 
@@ -1658,7 +1686,7 @@ msgstr "Samples of correct and incorrect code for specific patterns."
 #~ msgstr "Scope"
 
 #: src/components/sections/integrations-section.tsx:64
-#: src/components/sections/works-with-agents-section.tsx:47
+#: src/components/sections/works-with-agents-section.tsx:49
 msgid "See full list of supported agents"
 msgstr "See full list of supported agents"
 
@@ -1700,9 +1728,13 @@ msgstr "See real example"
 #~ msgid "Self-hosted. No SaaS. Tour is read-only."
 #~ msgstr "Self-hosted. No SaaS. Tour is read-only."
 
+#: src/components/sections/footer-section.tsx:24
+#~ msgid "Shared architectural memory for AI coding agents."
+#~ msgstr "Shared architectural memory for AI coding agents."
+
 #: src/components/sections/hero-section.tsx:20
-msgid "Shared architectural memory<0/>for AI coding agents"
-msgstr "Shared architectural memory<0/>for AI coding agents"
+#~ msgid "Shared architectural memory<0/>for AI coding agents"
+#~ msgstr "Shared architectural memory<0/>for AI coding agents"
 
 #: src/components/sections/why-not-instructions-section.tsx:35
 #~ msgid "Shared context layer"
@@ -1752,7 +1784,7 @@ msgstr "Sources used"
 #~ msgid "Spends 2 days searching Slack, outdated docs, asking teammates"
 #~ msgstr "Spends 2 days searching Slack, outdated docs, asking teammates"
 
-#: src/components/sections/hero-section.tsx:56
+#: src/components/sections/hero-section.tsx:53
 msgid "Star on GitHub"
 msgstr "Star on GitHub"
 
@@ -1788,13 +1820,17 @@ msgstr "Stay Updated"
 msgid "Stop re-explaining your codebase to AI agents"
 msgstr "Stop re-explaining your codebase to AI agents"
 
-#: src/components/sections/why-archcore-section.tsx:16
+#: src/components/sections/why-archcore-section.tsx:20
 msgid "Stop repeated explaining"
 msgstr "Stop repeated explaining"
 
 #: src/components/sections/why-not-instructions-section.tsx:18
 #~ msgid "Structure"
 #~ msgstr "Structure"
+
+#: src/components/sections/hero-section.tsx:24
+msgid "Structure decisions, rules, plans, and guides in your repo so Claude Code, Cursor, Copilot, and other agents work with stronger project context."
+msgstr "Structure decisions, rules, plans, and guides in your repo so Claude Code, Cursor, Copilot, and other agents work with stronger project context."
 
 #: src/components/sections/why-archcore-section.tsx:26
 #~ msgid "Structured documents"
@@ -1808,7 +1844,7 @@ msgstr "Structured, versioned, queryable"
 msgid "Subscribe"
 msgstr "Subscribe"
 
-#: src/components/sections/coming-soon-section.tsx:26
+#: src/components/sections/coming-soon-section.tsx:28
 #: src/components/sections/integrations-section.tsx:93
 msgid "Sync projects with global knowledge"
 msgstr "Sync projects with global knowledge"
@@ -1855,8 +1891,8 @@ msgstr "Thanks! You're on the list."
 #~ msgstr "The .archcore/ directory holds structured documents that capture your system's architectural knowledge."
 
 #: src/components/sections/archcore-contents-section.tsx:108
-msgid "The .archcore/ directory holds structured documents that capture your system's architectural knowledge. Agents can read, create, and update these documents through hooks and MCP."
-msgstr "The .archcore/ directory holds structured documents that capture your system's architectural knowledge. Agents can read, create, and update these documents through hooks and MCP."
+#~ msgid "The .archcore/ directory holds structured documents that capture your system's architectural knowledge. Agents can read, create, and update these documents through hooks and MCP."
+#~ msgstr "The .archcore/ directory holds structured documents that capture your system's architectural knowledge. Agents can read, create, and update these documents through hooks and MCP."
 
 #: src/components/sections/solution-section.tsx:47
 msgid "The 4-stage architectural knowledge pipeline that powers consistent AI context."
@@ -1914,7 +1950,7 @@ msgstr "Traceable reasoning: No black box"
 #~ msgid "Try Scenario"
 #~ msgstr "Try Scenario"
 
-#: src/components/sections/why-archcore-section.tsx:26
+#: src/components/sections/why-archcore-section.tsx:32
 msgid "Turn docs into working context"
 msgstr "Turn docs into working context"
 
@@ -1997,8 +2033,8 @@ msgid "What is Architecture Record"
 msgstr "What is Architecture Record"
 
 #: src/components/sections/archcore-contents-section.tsx:132
-msgid "What lives here"
-msgstr "What lives here"
+#~ msgid "What lives here"
+#~ msgstr "What lives here"
 
 #: src/components/faq-section.tsx:23
 #: src/components/sections/faq-section.tsx:23
@@ -2037,13 +2073,13 @@ msgstr "With citations"
 #~ msgid "Without sources and versions, impossible to understand 'why AI decided this' or verify correctness."
 #~ msgstr "Without sources and versions, impossible to understand 'why AI decided this' or verify correctness."
 
-#: src/components/sections/why-archcore-section.tsx:21
+#: src/components/sections/why-archcore-section.tsx:26
 msgid "Work across Claude, Cursor, and Copilot"
 msgstr "Work across Claude, Cursor, and Copilot"
 
 #: src/components/sections/archcore-contents-section.tsx:74
-msgid "workflow knowledge captured from retrospectives"
-msgstr "workflow knowledge captured from retrospectives"
+#~ msgid "workflow knowledge captured from retrospectives"
+#~ msgstr "workflow knowledge captured from retrospectives"
 
 #: src/components/sections/why-archcore-section.tsx:21
 #~ msgid "Works across agents"
@@ -2062,7 +2098,7 @@ msgstr "Works with AI agents"
 #~ msgid "Works with Claude Code"
 #~ msgstr "Works with Claude Code"
 
-#: src/components/sections/hero-section.tsx:38
+#: src/components/sections/hero-section.tsx:35
 msgid "Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex CLI, and more"
 msgstr "Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex CLI, and more"
 

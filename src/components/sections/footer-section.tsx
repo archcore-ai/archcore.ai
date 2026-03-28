@@ -22,7 +22,7 @@ export function FooterSection() {
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
               <Trans>
-                Shared architectural memory for AI coding agents.
+                Git-native context for AI coding agents.
               </Trans>
             </p>
           </div>

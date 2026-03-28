@@ -16,7 +16,7 @@ export function FAQSection() {
     {
       question: _(msg`What does archcore init create?`),
       answer: _(
-        msg`Creates .archcore/ directory with 10 document types in three layers: Vision (PRD, Idea, Plan), Knowledge (ADR, RFC, Rule, Guide, Doc), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code.`
+        msg`Creates .archcore/ directory with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code.`
       ),
     },
     {
@@ -40,7 +40,7 @@ export function FAQSection() {
     {
       question: _(msg`What document types are supported?`),
       answer: _(
-        msg`10 types across three layers. Vision: PRD, Idea, Plan. Knowledge: ADR, RFC, Rule, Guide, Doc. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI.`
+        msg`18 types across three layers. Vision: PRD, Idea, Plan, MRD, BRD, URD, and ISO 29148 types. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI.`
       ),
     },
     {

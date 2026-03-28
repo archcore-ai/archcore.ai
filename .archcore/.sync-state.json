@@ -1,5 +1,21 @@
 {
   "version": 1,
   "files": {},
-  "relations": []
+  "relations": [
+    {
+      "source": "messaging-alignment.rule.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "i18n-workflow.guide.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "i18n-workflow.guide.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    }
+  ]
 }

@@ -28,7 +28,7 @@ export function QuickstartSection() {
         <p className="text-center text-muted-foreground text-base md:text-lg leading-relaxed">
           <Trans>
             archcore init creates .archcore/, installs agent integrations, and
-            gives you starter templates for ADRs, rules, plans, and experience.
+            gives you starter templates for ADRs, rules, plans, and guides.
             Your first document is one command away.
           </Trans>
         </p>
