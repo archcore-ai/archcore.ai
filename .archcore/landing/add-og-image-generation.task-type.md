@@ -5,11 +5,11 @@ status: accepted
 
 ## Pattern Name
 
-Build-time OG image generation for a static site (Vite SPA or Astro on GitHub Pages).
+Build-time OG image generation for a static site (Vite SPA on GitHub Pages).
 
 ## When to Apply
 
-- Landing site or static site needs Open Graph / Twitter Card social media previews
+- Landing site needs Open Graph / Twitter Card social media previews
 - No SSR/edge functions available (e.g., GitHub Pages, plain static hosting)
 - Want version-controlled, code-defined OG images instead of manual Figma exports
 - Need the image to auto-regenerate when content or branding changes
@@ -52,22 +52,14 @@ Design should match site theme. Archcore uses light Solarized palette (#fdf6e3 b
 
 ### 4. Wire into build pipeline
 
-For Vite SPA (landing):
 ```json
 "og:generate": "npx tsx scripts/generate-og-image.mts",
 "prebuild": "npm run i18n:compile && npm run og:generate"
 ```
 
-For Astro (docs):
-```json
-"og:generate": "npx tsx scripts/generate-og-image.mts",
-"prebuild": "npm run og:generate",
-"build": "npm run prebuild && astro build"
-```
-
 ### 5. Add/verify meta tags
 
-Required OG tags (in `index.html` or Starlight `head[]` config):
+Required OG tags in `index.html`:
 ```html
 <meta property="og:image" content="https://example.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -92,7 +84,7 @@ Add `scripts` to ESLint's `globalIgnores` if using TypeScript-checked ESLint con
 
 - **OTF fonts don't work with Satori** — must use `.ttf` format
 - **Social platforms cache aggressively** — after first deploy, use platform debuggers to force refresh
-- **SPA limitation** — crawlers only see `index.html` head, so all routes share the same OG image unless you add prerendering or static HTML files per route
+- **SPA limitation** — crawlers only see `index.html` head, so all routes share the same OG image
 - **Satori CSS subset** — no Grid, no absolute positioning, no `calc()`, no `clamp()` — keep layouts simple with Flexbox
 
 ## Related Files
@@ -100,6 +92,6 @@ Add `scripts` to ESLint's `globalIgnores` if using TypeScript-checked ESLint con
 - `scripts/generate-og-image.mts` — generator script
 - `scripts/fonts/` — TTF font files
 - `public/og-image.png` — generated output
-- `index.html` or `astro.config.mjs` — OG/Twitter meta tags
+- `index.html` — OG/Twitter meta tags
 - `package.json` — build scripts
-- `eslint.config.js` — script exclusion (landing only)
+- `eslint.config.js` — script exclusion
