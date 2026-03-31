@@ -16,6 +16,16 @@
       "source": "i18n-workflow.guide.md",
       "target": "messaging-alignment.rule.md",
       "type": "related"
+    },
+    {
+      "source": "landing/add-og-image-generation.task-type.md",
+      "target": "landing/og-image-generation.guide.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/og-image-generation.guide.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
     }
   ]
 }
