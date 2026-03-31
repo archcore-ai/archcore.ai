@@ -5,7 +5,7 @@ status: accepted
 
 ## Pattern Name
 
-Build-time OG image generation for a static site (Vite SPA on GitHub Pages).
+Build-time OG image generation for a static site (Vite SPA or Astro on GitHub Pages).
 
 ## When to Apply
 
@@ -30,14 +30,14 @@ npm install --save-dev satori @resvg/resvg-js tsx
 
 Satori requires raw `.ttf` font buffers. Download the project's font (e.g., Inter) and place in `scripts/fonts/`.
 
-Google Fonts doesn't provide direct TTF download links — use the font's GitHub releases instead.
+Google Fonts doesn't provide direct TTF download links — use the font's GitHub releases instead (e.g., `https://github.com/rsms/inter/releases`).
 
 ### 3. Create generator script
 
 Create `scripts/generate-og-image.mts`:
 
 1. Load fonts as `readFileSync` buffers
-2. Load logo from `public/`, encode as base64 data URI
+2. Load logo, encode as base64 data URI
 3. Define layout as Satori object tree (not JSX — plain `{ type, props, children }`)
 4. Render: `satori()` → SVG string → `new Resvg(svg)` → `.render().asPng()`
 5. Write to `public/og-image.png`
@@ -48,25 +48,32 @@ Key constraints for the Satori layout:
 - Images must be base64 data URIs or remote URLs
 - Font data passed as ArrayBuffer in the `fonts` option
 
+Design should match site theme. Archcore uses light Solarized palette (#fdf6e3 background, dark text) with 70px grid pattern.
+
 ### 4. Wire into build pipeline
 
+For Vite SPA (landing):
 ```json
-"scripts": {
-  "og:generate": "npx tsx scripts/generate-og-image.mts",
-  "prebuild": "npm run i18n:compile && npm run og:generate"
-}
+"og:generate": "npx tsx scripts/generate-og-image.mts",
+"prebuild": "npm run i18n:compile && npm run og:generate"
 ```
 
-The prebuild hook ensures CI (GitHub Actions `npm run build`) always has a fresh image.
+For Astro (docs):
+```json
+"og:generate": "npx tsx scripts/generate-og-image.mts",
+"prebuild": "npm run og:generate",
+"build": "npm run prebuild && astro build"
+```
 
-### 5. Add/verify meta tags in index.html
+### 5. Add/verify meta tags
 
-Required OG tags:
+Required OG tags (in `index.html` or Starlight `head[]` config):
 ```html
 <meta property="og:image" content="https://example.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
+<meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://example.com/og-image.png" />
 ```
@@ -93,6 +100,6 @@ Add `scripts` to ESLint's `globalIgnores` if using TypeScript-checked ESLint con
 - `scripts/generate-og-image.mts` — generator script
 - `scripts/fonts/` — TTF font files
 - `public/og-image.png` — generated output
-- `index.html` — OG/Twitter meta tags
+- `index.html` or `astro.config.mjs` — OG/Twitter meta tags
 - `package.json` — build scripts
-- `eslint.config.js` — script exclusion
+- `eslint.config.js` — script exclusion (landing only)

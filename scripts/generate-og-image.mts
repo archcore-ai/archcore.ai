@@ -12,19 +12,19 @@ const publicDir = join(rootDir, "public");
 const interBold = readFileSync(join(__dirname, "fonts", "Inter-Bold.ttf"));
 const interRegular = readFileSync(join(__dirname, "fonts", "Inter-Regular.ttf"));
 
-// Load logo and encode as base64
-const logoBuffer = readFileSync(join(publicDir, "logo-dark.png"));
+// Load logo (dark version for light background)
+const logoBuffer = readFileSync(join(publicDir, "logo.png"));
 const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-// Dark theme colors (matching the site's .dark CSS variables)
-const BG_COLOR = "#1a1816";
-const TEXT_PRIMARY = "#ede8df";
-const TEXT_MUTED = "#9a9590";
-const TEXT_DIM = "#5c5855";
-const GRID_COLOR = "rgba(255, 255, 255, 0.03)";
+// Light theme colors (matching the site's hero-pattern / Solarized Light palette)
+const BG_COLOR = "#fdf6e3";
+const TEXT_PRIMARY = "#1a1a1a";
+const TEXT_MUTED = "#6b6b6b";
+const TEXT_DIM = "#93a1a1";
+const GRID_COLOR = "rgba(147, 161, 161, 0.08)";
 
 const svg = await satori(
   {

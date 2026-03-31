@@ -13,7 +13,7 @@ status: accepted
 
 The OG image (1200x630 PNG) is generated at build time using **Satori** (JSX → SVG) and **@resvg/resvg-js** (SVG → PNG). The layout is defined as code in `scripts/generate-og-image.mts` — no Figma or external design tools needed.
 
-The image uses the site's dark theme colors with the 70px grid pattern, and renders across X/Twitter, Telegram, Discord, Slack, LinkedIn, and Facebook.
+The image uses the site's light theme (warm beige `#fdf6e3`, Solarized Light palette) with the 70px grid pattern, matching the landing page appearance. Renders across X/Twitter, Telegram, Discord, Slack, LinkedIn, and Facebook.
 
 Meta tags in `index.html` reference `https://archcore.ai/og-image.png` with `summary_large_image` Twitter Card type.
 
@@ -41,11 +41,11 @@ No manual step needed in CI — GitHub Actions runs `npm run build` which trigge
 
 Open `scripts/generate-og-image.mts` and modify:
 
-- **Headline text** — look for the two `fontSize: "56px"` children ("Git-native context for" / "AI coding agents")
-- **Subtitle** — look for the `fontSize: "22px"` block
-- **Bottom bar** — look for the `justifyContent: "space-between"` section
-- **Colors** — constants at the top: `BG_COLOR`, `TEXT_PRIMARY`, `TEXT_MUTED`, `TEXT_DIM`
-- **Logo** — reads `public/logo-dark.png` automatically
+- **Headline text** — two `fontSize: "56px"` children ("Git-native context for" / "AI coding agents")
+- **Subtitle** — the `fontSize: "22px"` block
+- **Bottom bar** — the `justifyContent: "space-between"` section (URL left, features right)
+- **Colors** — constants at the top: `BG_COLOR` (#fdf6e3), `TEXT_PRIMARY` (#1a1a1a), `TEXT_MUTED` (#6b6b6b), `TEXT_DIM` (#93a1a1)
+- **Logo** — reads `public/logo.png` (dark logo for light background)
 
 After editing, run `npm run og:generate` and inspect `public/og-image.png`.
 
@@ -85,4 +85,5 @@ Social platforms cache OG images aggressively. If the image doesn't update:
 - `scripts/generate-og-image.mts` — image generator script
 - `scripts/fonts/` — Inter TTF fonts for Satori
 - `public/og-image.png` — generated output (1200x630)
+- `public/logo.png` — dark logo used on light OG background
 - `index.html` lines 28-46 — OG and Twitter Card meta tags
