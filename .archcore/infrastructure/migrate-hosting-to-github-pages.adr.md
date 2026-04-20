@@ -16,7 +16,7 @@ Move hosting from Vercel to GitHub Pages.
 Key implementation details:
 - GitHub Actions workflow deploys `dist/` on every push to `main` (@.github/workflows/deploy.yml)
 - SPA routing handled via `404.html` — a Vite post-build plugin copies `index.html` → `404.html`, which GitHub Pages serves for unknown paths
-- `/install.sh` browser redirect implemented as `public/install.sh/index.html` with a `<meta http-equiv="refresh">` to the raw GitHub URL (`curl` users use the direct GitHub URL)
+- `/install.sh` is served as a real POSIX shell script from `public/install.sh` — it works for both browsers and `curl`/`wget` (the script shells out to the canonical CLI installer at `raw.githubusercontent.com/archcore-ai/cli/.../install.sh`)
 - Custom domain `archcore.ai` configured via `public/CNAME`
 - Vercel config (`vercel.json`) and deploy script removed
 
@@ -32,8 +32,8 @@ Key implementation details:
 - The site is accessible from Russia and other regions where Vercel may be restricted
 - Hosting is free and fully integrated with the existing GitHub repository
 - Simpler infrastructure — no separate Vercel project to manage
+- `curl -fsSL archcore.ai/install.sh | sh` works directly because `/install.sh` is an actual shell script, not an HTML redirect
 
 **Negative:**
-- No server-side redirects — `/install.sh` redirect only works in browsers, not with `curl`/`wget` (users must use the direct GitHub raw URL)
 - No preview deployments for pull requests (can be added later with a separate workflow if needed)
 - GitHub Pages has a soft bandwidth limit (100 GB/month) — unlikely to be an issue for a landing page

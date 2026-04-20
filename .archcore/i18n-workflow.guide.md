@@ -32,7 +32,7 @@ status: accepted
    ```bash
    npm run build
    ```
-   The `prebuild` script runs `i18n:compile` automatically, so `npm run build` is sufficient for a full check.
+   The `prebuild` script runs `i18n:compile && og:generate`, so `npm run build` is sufficient for a full check — it will also regenerate `public/og-image.png` (see `.archcore/landing/og-image-generation.guide.md`).
 
 ### Strings NOT in Lingui
 
