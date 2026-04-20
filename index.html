@@ -13,10 +13,10 @@
 
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
-    <title>Archcore — Git-native context for AI coding agents</title>
+    <title>Archcore — Turn your repository into structured, machine-readable context</title>
     <meta
       name="description"
-      content="Git-native context for AI coding agents. Context engineering for repositories."
+      content="Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
     />
     <link rel="canonical" href="https://archcore.ai/" />
 
@@ -28,17 +28,17 @@
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Archcore — Git-native context for AI coding agents"
+      content="Archcore — Turn your repository into structured, machine-readable context"
     />
     <meta
       property="og:description"
-      content="Git-native context for AI coding agents. Context engineering for repositories."
+      content="Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://archcore.ai/" />
     <meta property="og:site_name" content="Archcore" />
     <meta property="og:image" content="https://archcore.ai/og-image.png" />
-    <meta property="og:image:alt" content="Archcore — Git-native context for AI coding agents" />
+    <meta property="og:image:alt" content="Archcore — Turn your repository into structured, machine-readable context" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
@@ -48,11 +48,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Archcore — Git-native context for AI coding agents"
+      content="Archcore — Turn your repository into structured, machine-readable context"
     />
     <meta
       name="twitter:description"
-      content="Git-native context for AI coding agents. Context engineering for repositories."
+      content="Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
     />
     <meta name="twitter:site" content="@archcore_ai" />
     <meta name="twitter:creator" content="@archcore_ai" />
@@ -88,7 +88,7 @@
         "operatingSystem": "Linux, macOS, Windows (Docker)",
         "url": "https://archcore.ai",
         "downloadUrl": "https://archcore.ai/install.sh",
-        "description": "Git-native context for AI coding agents. Context engineering for repositories.",
+        "description": "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -105,18 +105,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What does archcore init create?",
+            "name": "Do I need both the plugin and the CLI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Creates .archcore/ directory with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code."
+              "text": "The plugin uses the CLI under the hood, so installing the plugin gives you both. If you only want the core context layer — .archcore/, MCP, hooks — install the CLI on its own."
             }
           },
           {
             "@type": "Question",
-            "name": "Which AI agents does it support?",
+            "name": "Which path should I start with — Plugin or CLI + MCP?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "8 agents: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline. Hooks (session start injection) for Claude Code/Cursor/Gemini CLI/GitHub Copilot. MCP (document tools) for all 8. Auto-detects installed agents."
+              "text": "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI + MCP if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which AI agents are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. CLI + MCP + hooks works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does archcore init create?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
             }
           },
           {
@@ -124,7 +140,7 @@
             "name": "How do hooks and MCP work together?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse/edit .archcore/ docs during a session. Set up with archcore hooks install and archcore mcp install."
+              "text": "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse and edit .archcore/ documents during a session. Set up with archcore hooks install and archcore mcp install."
             }
           },
           {
@@ -137,18 +153,10 @@
           },
           {
             "@type": "Question",
-            "name": "What document types are supported?",
+            "name": "How is this different from CLAUDE.md or AGENTS.md?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "18 types across three layers. Vision: PRD, Idea, Plan, MRD, BRD, URD, and ISO 29148 types. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How is this different from plain markdown?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Plain markdown lacks consistent structure for AI parsing. Archcore docs have typed YAML frontmatter, semantic categories, and validation via archcore validate and archcore doctor. MCP tools use this structure to deliver relevant context — not raw text dumps."
+              "text": "Instruction files are flat, tool-specific, and weakly structured. Archcore gives you multiple document types, relations between them, versioned history, and reads and writes during real work — reusable across Claude Code, Cursor, Copilot, and other agents."
             }
           },
           {
@@ -156,7 +164,7 @@
             "name": "How do I keep the CLI updated?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "archcore update self-updates to latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues."
+              "text": "archcore update self-updates to the latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues."
             }
           }
         ]

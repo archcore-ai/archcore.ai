@@ -14,21 +14,33 @@ export function FAQSection() {
 
   const faqs = [
     {
-      question: _(msg`What does archcore init create?`),
+      question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`Creates .archcore/ directory with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter. Version-controlled with your code.`
+        msg`The plugin uses the CLI under the hood, so installing the plugin gives you both. If you only want the core context layer — .archcore/, MCP, hooks — install the CLI on its own.`
       ),
     },
     {
-      question: _(msg`Which AI agents does it support?`),
+      question: _(msg`Which path should I start with — Plugin or CLI?`),
       answer: _(
-        msg`8 agents: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline. Hooks (session start injection) for Claude Code/Cursor/Gemini CLI/GitHub Copilot. MCP (document tools) for all 8. Auto-detects installed agents.`
+        msg`Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support.`
+      ),
+    },
+    {
+      question: _(msg`Which AI agents are supported?`),
+      answer: _(
+        msg`Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. The CLI (with MCP and hooks) works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline.`
+      ),
+    },
+    {
+      question: _(msg`What does archcore init create?`),
+      answer: _(
+        msg`Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code.`
       ),
     },
     {
       question: _(msg`How do hooks and MCP work together?`),
       answer: _(
-        msg`Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse/edit .archcore/ docs during a session. Set up with archcore hooks install and archcore mcp install.`
+        msg`Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse and edit .archcore/ documents during a session. Set up with archcore hooks install and archcore mcp install.`
       ),
     },
     {
@@ -38,21 +50,15 @@ export function FAQSection() {
       ),
     },
     {
-      question: _(msg`What document types are supported?`),
+      question: _(msg`How is this different from CLAUDE.md or AGENTS.md?`),
       answer: _(
-        msg`18 types across three layers. Vision: PRD, Idea, Plan, MRD, BRD, URD, and ISO 29148 types. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT. Markdown with YAML frontmatter (title, status), parseable by both humans and AI.`
-      ),
-    },
-    {
-      question: _(msg`How is this different from plain markdown?`),
-      answer: _(
-        msg`Plain markdown lacks consistent structure for AI parsing. Archcore docs have typed YAML frontmatter, semantic categories, and validation via archcore validate and archcore doctor. MCP tools use this structure to deliver relevant context — not raw text dumps.`
+        msg`Instruction files are flat, tool-specific, and weakly structured. Archcore gives you multiple document types, relations between them, versioned history, and reads and writes during real work — reusable across Claude Code, Cursor, Copilot, and other agents.`
       ),
     },
     {
       question: _(msg`How do I keep the CLI updated?`),
       answer: _(
-        msg`archcore update self-updates to latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues.`
+        msg`archcore update self-updates to the latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues.`
       ),
     },
   ];

@@ -1,30 +1,176 @@
+import { useEffect, useState } from "react";
 import { usePostHog } from "posthog-js/react";
 import { Check, Copy, Terminal } from "lucide-react";
 import { Trans } from "@lingui/react/macro";
 import { Button } from "@/components/ui/button";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
-const DEFAULT_COMMAND = "curl -fsSL https://archcore.ai/install.sh | bash";
+const BASH_COMMAND = "curl -fsSL https://archcore.ai/install.sh | bash";
+const POWERSHELL_COMMAND = "irm https://archcore.ai/install.ps1 | iex";
+
+type Platform = "unix" | "windows";
+
+function detectPlatform(): Platform {
+  if (typeof navigator === "undefined") return "unix";
+  const uaData = (navigator as Navigator & {
+    userAgentData?: { platform?: string };
+  }).userAgentData;
+  if (uaData?.platform === "Windows") return "windows";
+  if (/windows/i.test(navigator.userAgent)) return "windows";
+  return "unix";
+}
 
 interface InstallCommandProps {
   command?: string;
   className?: string;
   variant?: "hero" | "inline" | "compact";
+  defaultPlatform?: Platform | "auto";
 }
 
 export function InstallCommand({
-  command = DEFAULT_COMMAND,
+  command,
   className,
   variant = "inline",
+  defaultPlatform = "auto",
 }: InstallCommandProps) {
+  const isCustomCommand = command !== undefined;
+
+  // First paint is always "unix" for SSR/hydration determinism.
+  const initialPlatform: Platform =
+    defaultPlatform === "windows" ? "windows" : "unix";
+  const [platform, setPlatform] = useState<Platform>(initialPlatform);
+
+  useEffect(() => {
+    if (defaultPlatform !== "auto") return;
+    if (detectPlatform() === "windows") {
+      // Post-hydration swap. First paint is deterministic ("unix");
+      // we only nudge to "windows" once on the client if detection says so.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPlatform("windows");
+    }
+  }, [defaultPlatform]);
+
+  if (isCustomCommand) {
+    return (
+      <SingleCommand
+        command={command}
+        platform={platform}
+        variant={variant}
+        className={className}
+      />
+    );
+  }
+
+  if (variant === "compact") {
+    // No tabs in the navbar — they overflow. Detection happens post-mount.
+    const compactCommand =
+      platform === "windows" ? POWERSHELL_COMMAND : BASH_COMMAND;
+    return (
+      <SingleCommand
+        command={compactCommand}
+        platform={platform}
+        variant="compact"
+        className={className}
+      />
+    );
+  }
+
+  return (
+    <PlatformTabs
+      platform={platform}
+      onPlatformChange={setPlatform}
+      variant={variant}
+      className={className}
+    />
+  );
+}
+
+interface PlatformTabsProps {
+  platform: Platform;
+  onPlatformChange: (next: Platform) => void;
+  variant: "hero" | "inline";
+  className?: string;
+}
+
+function PlatformTabs({
+  platform,
+  onPlatformChange,
+  variant,
+  className,
+}: PlatformTabsProps) {
+  const posthog = usePostHog();
+
+  const handleValueChange = (value: string) => {
+    const next: Platform = value === "windows" ? "windows" : "unix";
+    if (next === platform) return;
+    posthog.capture("install_command_tab_changed", {
+      from: platform,
+      to: next,
+    });
+    onPlatformChange(next);
+  };
+
+  return (
+    <Tabs
+      value={platform}
+      onValueChange={handleValueChange}
+      className={cn("w-full", variant === "hero" && "max-w-2xl mx-auto")}
+    >
+      <TabsList className="mb-2">
+        <TabsTrigger value="unix">
+          <Trans>macOS / Linux</Trans>
+        </TabsTrigger>
+        <TabsTrigger value="windows">
+          <Trans>Windows</Trans>
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="unix">
+        <SingleCommand
+          command={BASH_COMMAND}
+          platform="unix"
+          variant={variant}
+          className={className}
+        />
+      </TabsContent>
+      <TabsContent value="windows">
+        <SingleCommand
+          command={POWERSHELL_COMMAND}
+          platform="windows"
+          variant={variant}
+          className={className}
+        />
+      </TabsContent>
+    </Tabs>
+  );
+}
+
+interface SingleCommandProps {
+  command: string;
+  platform: Platform;
+  variant: "hero" | "inline" | "compact";
+  className?: string;
+}
+
+function SingleCommand({
+  command,
+  platform,
+  variant,
+  className,
+}: SingleCommandProps) {
   const { copied, copy } = useCopyToClipboard();
   const posthog = usePostHog();
 
   const handleCopy = async () => {
     try {
       await copy(command);
-      posthog.capture("install_command_copied", { command });
+      posthog.capture("install_command_copied", { command, platform });
     } catch {
       // Clipboard API may fail in non-HTTPS or unfocused contexts
     }

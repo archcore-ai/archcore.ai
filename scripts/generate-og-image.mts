@@ -99,7 +99,7 @@ const svg = await satori(
                     lineHeight: 1.1,
                     letterSpacing: "-0.03em",
                   },
-                  children: "Git-native context for",
+                  children: "Turn your repository into structured,",
                 },
               },
               {
@@ -112,7 +112,7 @@ const svg = await satori(
                     lineHeight: 1.1,
                     letterSpacing: "-0.03em",
                   },
-                  children: "AI coding agents",
+                  children: "machine-readable context.",
                 },
               },
             ],
@@ -131,7 +131,7 @@ const svg = await satori(
               letterSpacing: "-0.01em",
             },
             children:
-              "Structure decisions, rules, and guides in your repo so AI agents work with stronger project context.",
+              "Archcore gives AI agents the architecture, rules, and decisions they need to work correctly in your codebase.",
           },
         },
 
@@ -166,7 +166,7 @@ const svg = await satori(
                     fontSize: "16px",
                     color: TEXT_DIM,
                   },
-                  children: "Open source  ·  Version-controlled  ·  Works with any AI agent",
+                  children: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
                 },
               },
             ],

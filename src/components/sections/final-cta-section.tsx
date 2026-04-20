@@ -1,48 +1,73 @@
 import { Trans } from "@lingui/react/macro";
-import { Button } from "@/components/ui/button";
+import { msg } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react";
+import { ArrowUpRight, BookOpen, Github, Puzzle, Terminal } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
+import { LINKS } from "@/lib/links";
 
 export function FinalCTASection() {
+  const { _ } = useLingui();
+
+  const links = [
+    {
+      href: LINKS.pluginRepo,
+      icon: Puzzle,
+      label: _(msg`Plugin repository`),
+      description: _(msg`Source, releases, and issues for the Claude Code and Cursor plugin.`),
+    },
+    {
+      href: LINKS.cliRepo,
+      icon: Terminal,
+      label: _(msg`CLI repository`),
+      description: _(msg`Source and releases for the CLI and MCP server.`),
+    },
+    {
+      href: LINKS.docs,
+      icon: BookOpen,
+      label: _(msg`Documentation`),
+      description: _(msg`Guides, reference, and quickstart for Archcore.`),
+    },
+    {
+      href: LINKS.org,
+      icon: Github,
+      label: _(msg`GitHub organization`),
+      description: _(msg`All Archcore repositories in one place.`),
+    },
+  ];
+
   return (
-    <SectionContainer id="final-cta" className="py-24 md:py-32">
-      <div className="text-center space-y-6 max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          <Trans>Stop re-explaining your codebase to AI agents</Trans>
-        </h2>
+    <SectionContainer id="more-info" className="py-16 md:py-20">
+      <nav
+        aria-label={_(msg`More info`)}
+        className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4"
+      >
+        {links.map(({ href, icon: Icon, label, description }) => (
+          <a
+            key={href}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative rounded-xl border border-border bg-card p-5 flex items-start gap-4 transition-colors hover:border-primary/40 hover:bg-primary/[0.03]"
+          >
+            <div className="rounded-lg bg-muted p-2.5 shrink-0">
+              <Icon className="h-5 w-5 text-foreground/80" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 font-semibold text-sm mb-1">
+                <span>{label}</span>
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {description}
+              </p>
+            </div>
+          </a>
+        ))}
+      </nav>
 
-        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-          <Trans>
-            Install Archcore and give every agent the same project context.
-            Ship faster with consistent, context-aware output.
-          </Trans>
-        </p>
-
-        <div className="flex flex-wrap gap-4 justify-center pt-4">
-          <Button size="lg" asChild>
-            <a href="#quickstart">
-              <Trans>Install CLI</Trans>
-            </a>
-          </Button>
-          <Button variant="outline" size="lg" asChild>
-            <a
-              href="https://github.com/archcore-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Trans>View on GitHub</Trans>
-            </a>
-          </Button>
-          <Button variant="outline" size="lg" asChild>
-            <a
-              href="https://docs.archcore.ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Trans>Read the docs</Trans>
-            </a>
-          </Button>
-        </div>
-      </div>
+      <p className="mt-8 text-center text-sm text-muted-foreground">
+        <Trans>Same context layer. Different entry points.</Trans>
+      </p>
     </SectionContainer>
   );
 }

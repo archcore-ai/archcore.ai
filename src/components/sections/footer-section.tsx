@@ -3,16 +3,19 @@ import { Trans } from "@lingui/react/macro";
 import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
+import { LINKS } from "@/lib/links";
 
 export function FooterSection() {
   const { _ } = useLingui();
 
   const footerLinks = [
-    { label: _(msg`Docs`), href: "https://docs.archcore.ai/", external: true },
-    { label: "GitHub", href: "https://github.com/archcore-ai", external: true },
-    { label: "Discord", href: "https://discord.gg/5YC8pdjD", external: true },
-    { label: "X", href: "https://x.com/archcore_ai", external: true },
-    { label: "Telegram", href: "https://t.me/archcore_ai", external: true },
+    { label: _(msg`Plugin`), href: LINKS.pluginRepo, external: true },
+    { label: _(msg`CLI`), href: LINKS.cliRepo, external: true },
+    { label: _(msg`Docs`), href: LINKS.docs, external: true },
+    { label: "GitHub", href: LINKS.org, external: true },
+    { label: "Discord", href: LINKS.discord, external: true },
+    { label: "X", href: LINKS.x, external: true },
+    { label: "Telegram", href: LINKS.telegram, external: true },
   ];
   return (
     <footer className="border-t border-border px-6 py-20 md:py-24">
@@ -22,7 +25,9 @@ export function FooterSection() {
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
               <Trans>
-                Git-native context for AI coding agents.
+                Archcore turns your repository into structured, machine-readable
+                context — so AI agents understand your architecture, rules, and
+                decisions.
               </Trans>
             </p>
           </div>

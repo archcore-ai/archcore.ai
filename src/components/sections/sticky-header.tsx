@@ -1,11 +1,12 @@
 import { msg } from "@lingui/core/macro";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLingui } from "@lingui/react";
+import { ANCHORS, LINKS } from "@/lib/links";
 
 export function StickyHeader() {
   const { _ } = useLingui();
@@ -14,10 +15,9 @@ export function StickyHeader() {
   const headerRef = useRef<HTMLElement>(null);
 
   const navItems: Array<{ href: string; label: string; external?: boolean }> = [
-    { href: "#why-archcore", label: _(msg`Why Archcore`) },
-    { href: "#quickstart", label: _(msg`Get started`) },
-    { href: "https://docs.archcore.ai/", label: _(msg`Docs`), external: true },
-    { href: "https://github.com/archcore-ai", label: "GitHub", external: true },
+    { href: ANCHORS.install, label: _(msg`Install`) },
+    { href: ANCHORS.compare, label: _(msg`Compare`) },
+    { href: LINKS.docs, label: _(msg`Docs`), external: true },
   ];
 
   useEffect(() => {
@@ -71,12 +71,15 @@ export function StickyHeader() {
       )}
     >
       <div className="px-6">
-        <div className="max-w-6xl mx-auto h-16 flex items-center justify-between">
-          <a href="#top">
+        <div className="max-w-6xl mx-auto h-16 flex items-center justify-between gap-4">
+          <a href={ANCHORS.top} className="shrink-0">
             <Logo size="md" loading="eager" />
           </a>
 
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-2">
+          <nav
+            aria-label="Main navigation"
+            className="hidden md:flex items-center gap-1"
+          >
             {navItems.map((item) => (
               <Button key={item.href} variant="ghost" size="sm" asChild>
                 <a
@@ -92,27 +95,45 @@ export function StickyHeader() {
             <LanguageSwitcher />
           </nav>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => {
-              setMobileMenuOpen((prev) => !prev);
-            }}
-            aria-label={mobileMenuOpen ? _(msg`Close menu`) : _(msg`Open menu`)}
-          >
-            {mobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
-          </Button>
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href={LINKS.org}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button size="sm" asChild>
+              <a href={ANCHORS.install}>{_(msg`Try it`)}</a>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => {
+                setMobileMenuOpen((prev) => !prev);
+              }}
+              aria-label={mobileMenuOpen ? _(msg`Close menu`) : _(msg`Open menu`)}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background px-6">
-          <nav aria-label="Mobile navigation" className="max-w-6xl mx-auto py-4 space-y-1">
+          <nav
+            aria-label="Mobile navigation"
+            className="max-w-6xl mx-auto py-4 space-y-1"
+          >
             {navItems.map((item) => (
               <a
                 key={item.href}

@@ -19,13 +19,18 @@ export function WhyNotInstructionsSection() {
           )}
         </h2>
 
-        <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center mb-10">
+        <p className="text-lg md:text-xl text-foreground font-medium text-center leading-relaxed mb-4">
           <Trans>
-            Instruction files are great for agent-specific prompts and
-            short-lived rules.
+            Instruction files are flat memory. Archcore is structured system
+            context.
           </Trans>
-          <br />
-          <Trans>They are not a great fit for:</Trans>
+        </p>
+
+        <p className="text-base text-muted-foreground leading-relaxed text-center mb-10">
+          <Trans>
+            Instruction files work for agent-specific prompts and short-lived
+            rules. They are not a great fit for:
+          </Trans>
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-10">

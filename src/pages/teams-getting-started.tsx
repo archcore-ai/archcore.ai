@@ -32,7 +32,7 @@ export function TeamsGettingStarted() {
       if (meta) {
         meta.setAttribute(
           "content",
-          "Git-native context for AI coding agents. Context engineering for repositories."
+          "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
         );
       }
     };

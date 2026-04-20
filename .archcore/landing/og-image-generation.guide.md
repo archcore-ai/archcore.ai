@@ -41,13 +41,13 @@ No manual step needed in CI — GitHub Actions runs `npm run build` which trigge
 
 Open `scripts/generate-og-image.mts` and modify:
 
-- **Headline text** — two `fontSize: "56px"` children ("Git-native context for" / "AI coding agents")
-- **Subtitle** — the `fontSize: "22px"` block
-- **Bottom bar** — the `justifyContent: "space-between"` section (URL left, features right)
+- **Headline text** — two `fontSize: "56px"` children containing the two hero lines. Should mirror the site's current hero H1. If the H1 changes, update both lines here to match.
+- **Subtitle** — the `fontSize: "22px"` block. Should mirror the hero subhead.
+- **Bottom bar** — the `justifyContent: "space-between"` section: URL on the left, short tagline on the right.
 - **Colors** — constants at the top: `BG_COLOR` (#fdf6e3), `TEXT_PRIMARY` (#1a1a1a), `TEXT_MUTED` (#6b6b6b), `TEXT_DIM` (#93a1a1)
 - **Logo** — reads `public/logo.png` (dark logo for light background)
 
-After editing, run `npm run og:generate` and inspect `public/og-image.png`.
+Keep all three text sections aligned with `.archcore/messaging-alignment.rule.md` (the single source of truth for landing copy). After editing, run `npm run og:generate` and inspect `public/og-image.png`.
 
 ### 4. Preview locally
 

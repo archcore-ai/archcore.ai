@@ -1,6 +1,7 @@
 import { Trans } from "@lingui/react/macro";
 import { Star } from "lucide-react";
-import { InstallCommand } from "@/components/cta/install-command";
+import { EntryPointCards } from "@/components/cta/entry-point-cards";
+import { LINKS } from "@/lib/links";
 
 export function HeroSection() {
   return (
@@ -10,25 +11,22 @@ export function HeroSection() {
     >
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="space-y-8 text-center">
-          <p className="text-sm md:text-base text-muted-foreground/90">
-            <Trans>
-              Archcore brings context engineering into the codebase.
-            </Trans>
-          </p>
-
           <h1 className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
-            <Trans>Git-native context for AI coding agents</Trans>
+            <Trans>
+              Turn your repository into structured,
+              <br />
+              machine-readable context.
+            </Trans>
           </h1>
 
-          <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-4xl mx-auto">
+          <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
             <Trans>
-              Structure decisions, rules, plans, and guides in your repo so
-              Claude Code, Cursor, Copilot, and other agents work with stronger
-              project context.
+              So AI agents can follow your architecture, rules, and decisions
+              — instead of guessing.
             </Trans>
           </p>
 
-          <InstallCommand variant="hero" />
+          <EntryPointCards />
 
           <div className="space-y-1 text-sm text-muted-foreground/70">
             <p>
@@ -41,7 +39,7 @@ export function HeroSection() {
               <Trans>Open source · Version-controlled · Setup in minutes</Trans>
               {" · "}
               <a
-                href="https://github.com/archcore-ai/cli"
+                href={LINKS.cliRepo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-4 hover:text-foreground transition-colors"
