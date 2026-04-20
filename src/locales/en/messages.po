@@ -155,7 +155,7 @@ msgstr "Close menu"
 msgid "Compare"
 msgstr "Compare"
 
-#: src/components/sections/install-section.tsx:324
+#: src/components/sections/install-section.tsx:335
 msgid "Connect the context layer to your agent. Hooks inject context at session start. MCP exposes tools to browse and edit docs."
 msgstr "Connect the context layer to your agent. Hooks inject context at session start. MCP exposes tools to browse and edit docs."
 
@@ -208,7 +208,7 @@ msgstr "Creates .archcore/ with starter templates for ADRs, rules, plans, and gu
 msgid "Cross-cutting context shared across repos and agents"
 msgstr "Cross-cutting context shared across repos and agents"
 
-#: src/components/sections/install-section.tsx:210
+#: src/components/sections/install-section.tsx:221
 msgid "Cursor is supported too. Copilot and Codex CLI are on the plugin roadmap."
 msgstr "Cursor is supported too. Copilot and Codex CLI are on the plugin roadmap."
 
@@ -267,7 +267,7 @@ msgstr "For direct integrations. Repo-native context, hooks, MCP, and a scriptab
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
-#: src/components/sections/install-section.tsx:243
+#: src/components/sections/install-section.tsx:254
 msgid "From inside Claude Code"
 msgstr "From inside Claude Code"
 
@@ -335,7 +335,7 @@ msgstr "Incidents and experience reports"
 msgid "Initialize your repo"
 msgstr "Initialize your repo"
 
-#: src/components/sections/install-section.tsx:309
+#: src/components/sections/install-section.tsx:320
 msgid "Inject repo context at session start for supported agents."
 msgstr "Inject repo context at session start for supported agents."
 
@@ -360,7 +360,7 @@ msgstr "Install the CLI"
 msgid "Install the CLI once, run archcore init, then pick your path."
 msgstr "Install the CLI once, run archcore init, then pick your path."
 
-#: src/components/sections/install-section.tsx:197
+#: src/components/sections/install-section.tsx:208
 msgid "Install the plugin in your agent host"
 msgstr "Install the plugin in your agent host"
 
@@ -392,7 +392,7 @@ msgstr "Invents patterns that already exist elsewhere in the repo"
 msgid "Launch Archcore locally with a single Docker command. No registration or configuration required."
 msgstr "Launch Archcore locally with a single Docker command. No registration or configuration required."
 
-#: src/components/sections/install-section.tsx:302
+#: src/components/sections/install-section.tsx:313
 msgid "list, get, create, update, relate — exposed to any MCP-capable agent."
 msgstr "list, get, create, update, relate — exposed to any MCP-capable agent."
 
@@ -408,7 +408,7 @@ msgstr "list, get, create, update, relate — exposed to any MCP-capable agent."
 msgid "macOS / Linux"
 msgstr "macOS / Linux"
 
-#: src/components/sections/install-section.tsx:295
+#: src/components/sections/install-section.tsx:306
 msgid "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
 msgstr "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
 
@@ -416,7 +416,7 @@ msgstr "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
 #~ msgid "MCP + Hooks"
 #~ msgstr "MCP + Hooks"
 
-#: src/components/sections/install-section.tsx:300
+#: src/components/sections/install-section.tsx:311
 msgid "MCP tools"
 msgstr "MCP tools"
 
@@ -437,12 +437,20 @@ msgstr "More info"
 #~ msgstr "Most teams should start with the Plugin. CLI + MCP is available when you want the core directly."
 
 #: src/components/sections/faq-section.tsx:49
-msgid "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
-msgstr "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
+msgid "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
+msgstr "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
+
+#: src/components/sections/faq-section.tsx:49
+#~ msgid "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
+#~ msgstr "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
 
 #: src/components/sections/install-section.tsx:154
-msgid "On Windows? Switch to the PowerShell tab above."
-msgstr "On Windows? Switch to the PowerShell tab above."
+msgid "On Windows? Switch to the PowerShell tab above, or see the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
+msgstr "On Windows? Switch to the PowerShell tab above, or see the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
+
+#: src/components/sections/install-section.tsx:154
+#~ msgid "On Windows? Switch to the PowerShell tab above."
+#~ msgstr "On Windows? Switch to the PowerShell tab above."
 
 #: src/components/sections/architecture-diagram-section.tsx:14
 #~ msgid "One context layer. Two ways to use it."
@@ -464,7 +472,7 @@ msgstr "Open source · Version-controlled · Setup in minutes"
 #~ msgid "Or from inside Claude Code"
 #~ msgstr "Or from inside Claude Code"
 
-#: src/components/sections/install-section.tsx:257
+#: src/components/sections/install-section.tsx:268
 msgid "Or from your terminal"
 msgstr "Or from your terminal"
 
@@ -522,7 +530,7 @@ msgstr "Plugin repository"
 #~ msgid "Product requirements linked to the code that ships them."
 #~ msgstr "Product requirements linked to the code that ships them."
 
-#: src/components/sections/install-section.tsx:237
+#: src/components/sections/install-section.tsx:248
 msgid "Production"
 msgstr "Production"
 
@@ -552,7 +560,7 @@ msgstr "Recommended"
 msgid "References the ADR that already decided the question"
 msgstr "References the ADR that already decided the question"
 
-#: src/components/sections/install-section.tsx:288
+#: src/components/sections/install-section.tsx:299
 msgid "Repo-native directory of structured, versioned documents."
 msgstr "Repo-native directory of structured, versioned documents."
 
@@ -602,7 +610,7 @@ msgstr "Same prompt. Same codebase. The difference is whether the agent has stru
 #~ msgid "See the full integration matrix"
 #~ msgstr "See the full integration matrix"
 
-#: src/components/sections/install-section.tsx:307
+#: src/components/sections/install-section.tsx:318
 msgid "Session hooks"
 msgstr "Session hooks"
 
@@ -666,7 +674,7 @@ msgstr "Stay Updated"
 msgid "Step 3 — choose your path"
 msgstr "Step 3 — choose your path"
 
-#: src/components/sections/install-section.tsx:293
+#: src/components/sections/install-section.tsx:304
 msgid "Structured docs"
 msgstr "Structured docs"
 
@@ -698,7 +706,7 @@ msgstr "The agent places files where your architecture expects them, following r
 msgid "The moment the agent starts understanding your repo"
 msgstr "The moment the agent starts understanding your repo"
 
-#: src/components/sections/install-section.tsx:200
+#: src/components/sections/install-section.tsx:211
 msgid "The plugin reads your repo context and gives the agent a higher-level interface."
 msgstr "The plugin reads your repo context and gives the agent a higher-level interface."
 
@@ -726,7 +734,7 @@ msgstr "Turn your repository into structured,<0/>machine-readable context."
 msgid "Use the Plugin"
 msgstr "Use the Plugin"
 
-#: src/components/sections/install-section.tsx:221
+#: src/components/sections/install-section.tsx:232
 msgid "View plugin on GitHub"
 msgstr "View plugin on GitHub"
 
@@ -738,7 +746,7 @@ msgstr "What does archcore init create?"
 msgid "What gets better once your agent knows your system"
 msgstr "What gets better once your agent knows your system"
 
-#: src/components/sections/install-section.tsx:339
+#: src/components/sections/install-section.tsx:350
 msgid "What you get"
 msgstr "What you get"
 
@@ -762,7 +770,7 @@ msgstr "Why not just CLAUDE.md, AGENTS.md, or repository instructions?"
 msgid "Windows"
 msgstr "Windows"
 
-#: src/components/sections/install-section.tsx:321
+#: src/components/sections/install-section.tsx:332
 msgid "Wire up MCP or hooks"
 msgstr "Wire up MCP or hooks"
 

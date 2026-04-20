@@ -151,7 +151,18 @@ function PrereqSteps() {
           </div>
           <InstallCommand variant="inline" />
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <Trans>On Windows? Switch to the PowerShell tab above.</Trans>
+            <Trans>
+              On Windows? Switch to the PowerShell tab above, or see the{" "}
+              <a
+                href="https://docs.archcore.ai/cli/install/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-foreground transition-colors"
+              >
+                full install guide
+              </a>{" "}
+              (PowerShell, WSL, go install, from source).
+            </Trans>
           </p>
         </div>
       </div>
