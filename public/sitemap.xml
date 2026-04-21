@@ -9,4 +9,10 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://archcore.ai/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://archcore.ai/?lang=ru" />
   </url>
+  <url>
+    <loc>https://archcore.ai/privacy</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

@@ -1,5 +1,6 @@
 import { msg } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
+import { Link } from "react-router-dom";
 import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
@@ -16,6 +17,7 @@ export function FooterSection() {
     { label: "Discord", href: LINKS.discord, external: true },
     { label: "X", href: LINKS.x, external: true },
     { label: "Telegram", href: LINKS.telegram, external: true },
+    { label: _(msg`Privacy`), href: "/privacy", external: false },
   ];
   return (
     <footer className="border-t border-border px-6 py-20 md:py-24">
@@ -46,18 +48,27 @@ export function FooterSection() {
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-border">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-            {footerLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                {...(link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {footerLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           <div className="text-sm text-muted-foreground">

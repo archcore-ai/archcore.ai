@@ -8,6 +8,12 @@ const TeamsGettingStarted = lazy(() =>
   }))
 );
 
+const PrivacyPage = lazy(() =>
+  import("@/pages/privacy").then((m) => ({
+    default: m.PrivacyPage,
+  }))
+);
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -18,6 +24,14 @@ export default function App() {
           element={
             <Suspense>
               <TeamsGettingStarted />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <Suspense>
+              <PrivacyPage />
             </Suspense>
           }
         />
