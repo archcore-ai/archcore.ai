@@ -34,7 +34,7 @@ export function FAQSection() {
     {
       question: _(msg`What does archcore init create?`),
       answer: _(
-        msg`Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code.`
+        msg`Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code. The Plugin ships 33 skills covering all of these — 17 document-type skills (Plan is served by the /archcore:plan intent skill), 9 intent commands, 6 multi-step tracks, and 1 utility.`
       ),
     },
     {

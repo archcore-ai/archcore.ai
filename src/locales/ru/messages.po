@@ -144,12 +144,20 @@ msgid "Create <0>docker-compose.yml</0> file"
 msgstr "Создайте файл <0>docker-compose.yml</0>"
 
 #: src/components/sections/faq-section.tsx:37
-msgid "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
-msgstr "Создаёт .archcore/ с 18 типами документов в трёх слоях: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Каждый — markdown с YAML-фронтматтером, версионируется вместе с кодом."
+#~ msgid "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
+#~ msgstr "Создаёт .archcore/ с 18 типами документов в трёх слоях: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Каждый — markdown с YAML-фронтматтером, версионируется вместе с кодом."
+
+#: src/components/sections/faq-section.tsx:37
+msgid "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code. The Plugin ships 33 skills covering all of these — 17 document-type skills (Plan is served by the /archcore:plan intent skill), 9 intent commands, 6 multi-step tracks, and 1 utility."
+msgstr "Создаёт .archcore/ с 18 типами документов в трёх слоях: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Каждый — markdown с YAML-фронтматтером, версионируется вместе с кодом. Плагин содержит 33 навыка, покрывающих все эти типы — 17 навыков по типам документов (Plan обслуживается intent-навыком /archcore:plan), 9 intent-команд, 6 многошаговых треков и 1 утилиту."
 
 #: src/components/sections/install-section.tsx:316
-msgid "Creates .archcore/ with starter templates for ADRs, rules, plans, and guides."
-msgstr "Создаёт .archcore/ со стартовыми шаблонами для ADR, правил, планов и гайдов."
+msgid "Creates .archcore/ with starter templates for ADRs, rules, guides, and specs."
+msgstr "Создаёт .archcore/ со стартовыми шаблонами для ADR, правил, гайдов и спеков."
+
+#: src/components/sections/install-section.tsx:316
+#~ msgid "Creates .archcore/ with starter templates for ADRs, rules, plans, and guides."
+#~ msgstr "Создаёт .archcore/ со стартовыми шаблонами для ADR, правил, планов и гайдов."
 
 #: src/components/sections/why-not-instructions-section.tsx:60
 msgid "Cross-cutting context shared across repos and agents"
@@ -308,8 +316,12 @@ msgid "macOS / Linux"
 msgstr "macOS / Linux"
 
 #: src/components/sections/install-section.tsx:255
-msgid "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
-msgstr "Markdown + YAML-типы (ADR, rule, plan, PRD и другие)."
+msgid "Markdown + YAML types (ADR, PRD, rule, guide, doc, spec, and more)."
+msgstr "Markdown + YAML-типы (ADR, PRD, rule, guide, doc, spec и другие)."
+
+#: src/components/sections/install-section.tsx:255
+#~ msgid "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
+#~ msgstr "Markdown + YAML-типы (ADR, rule, plan, PRD и другие)."
 
 #: src/components/sections/install-section.tsx:260
 msgid "MCP tools"

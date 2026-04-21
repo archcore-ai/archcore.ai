@@ -252,7 +252,7 @@ function CLITab() {
       icon: ScrollText,
       title: _(msg`Structured docs`),
       description: _(
-        msg`Markdown + YAML types (ADR, rule, plan, PRD, and more).`
+        msg`Markdown + YAML types (ADR, PRD, rule, guide, doc, spec, and more).`
       ),
     },
     {
@@ -315,7 +315,7 @@ function CLITab() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               <Trans>
                 Creates .archcore/ with starter templates for ADRs, rules,
-                plans, and guides.
+                guides, and specs.
               </Trans>
             </p>
           </div>
