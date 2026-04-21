@@ -65,7 +65,7 @@ export function EntryPointChoiceSection() {
               <Terminal className="h-5 w-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold">
-              <Trans>Choose CLI if</Trans>
+              <Trans>Choose the CLI if</Trans>
             </h3>
           </header>
 

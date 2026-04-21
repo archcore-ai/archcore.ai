@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { msg } from "@lingui/core/macro";
+import { useLingui } from "@lingui/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -13,16 +15,22 @@ interface InlineEmailCaptureProps {
 import type { Web3FormsResponse } from "@/lib/types";
 
 export function InlineEmailCapture({
-  placeholder = "Enter your work email",
-  buttonLabel = "Get Updates",
-  successMessage = "Thanks! We'll be in touch.",
+  placeholder,
+  buttonLabel,
+  successMessage,
   className,
 }: InlineEmailCaptureProps) {
+  const { _ } = useLingui();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const resolvedPlaceholder = placeholder ?? _(msg`Enter your work email`);
+  const resolvedButtonLabel = buttonLabel ?? _(msg`Get updates`);
+  const resolvedSuccessMessage =
+    successMessage ?? _(msg`Thanks! We'll be in touch.`);
 
   const submitEmail = async () => {
     try {
@@ -42,11 +50,11 @@ export function InlineEmailCapture({
         setEmail("");
       } else {
         setStatus("error");
-        setErrorMessage("Something went wrong. Please try again.");
+        setErrorMessage(_(msg`Something went wrong. Please try again.`));
       }
     } catch {
       setStatus("error");
-      setErrorMessage("Something went wrong. Please try again.");
+      setErrorMessage(_(msg`Something went wrong. Please try again.`));
     }
   };
 
@@ -54,7 +62,7 @@ export function InlineEmailCapture({
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
-      setErrorMessage("Please enter a valid email");
+      setErrorMessage(_(msg`Please enter a valid email.`));
       setStatus("error");
       return;
     }
@@ -69,7 +77,7 @@ export function InlineEmailCapture({
         className={`flex items-center gap-2 text-sm text-muted-foreground ${className ?? ""}`}
       >
         <Check className="h-4 w-4 text-primary" />
-        {successMessage}
+        {resolvedSuccessMessage}
       </div>
     );
   }
@@ -82,7 +90,7 @@ export function InlineEmailCapture({
       <div className="flex-1">
         <Input
           type="email"
-          placeholder={placeholder}
+          placeholder={resolvedPlaceholder}
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -100,7 +108,7 @@ export function InlineEmailCapture({
           <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
           <>
-            {buttonLabel}
+            {resolvedButtonLabel}
             <ArrowRight className="h-4 w-4" />
           </>
         )}

@@ -47,7 +47,7 @@ export function JobsSection() {
       description: _(
         msg`ADRs and specs stop being rediscovered every session. Past reasoning is one MCP call away.`
       ),
-      tag: "cli",
+      tag: "shared",
     },
     {
       icon: Workflow,

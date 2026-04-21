@@ -85,7 +85,7 @@
         "@type": "SoftwareApplication",
         "name": "Archcore",
         "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Linux, macOS, Windows (Docker)",
+        "operatingSystem": "Linux, macOS, Windows",
         "url": "https://archcore.ai",
         "downloadUrl": "https://archcore.ai/install.sh",
         "description": "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions.",
@@ -113,10 +113,10 @@
           },
           {
             "@type": "Question",
-            "name": "Which path should I start with — Plugin or CLI + MCP?",
+            "name": "Which path should I start with — Plugin or CLI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI + MCP if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
+              "text": "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
             }
           },
           {
@@ -124,7 +124,7 @@
             "name": "Which AI agents are supported?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. CLI + MCP + hooks works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
+              "text": "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. The CLI (with MCP and hooks) works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
             }
           },
           {
@@ -148,7 +148,7 @@
             "name": "Do I need any external services?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash or go install."
+              "text": "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
             }
           },
           {

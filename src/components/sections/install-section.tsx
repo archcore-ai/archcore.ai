@@ -139,9 +139,9 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor is supported too — register MCP in Cursor settings
-              pointing at the plugin's launcher. Copilot and Codex CLI are on
-              the plugin roadmap.
+              Cursor is supported too: register MCP in Cursor settings pointing
+              at the plugin's launcher. Copilot and Codex CLI are on the plugin
+              roadmap.
             </Trans>
             {" "}
             <a

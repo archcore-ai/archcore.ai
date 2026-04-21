@@ -107,7 +107,7 @@ export function StickyHeader() {
               </a>
             </Button>
             <Button size="sm" asChild>
-              <a href={ANCHORS.install}>{_(msg`Try it`)}</a>
+              <a href={ANCHORS.install}>{_(msg`Install Plugin`)}</a>
             </Button>
             <Button
               variant="ghost"

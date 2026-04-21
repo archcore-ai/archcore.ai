@@ -1,9 +1,10 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { ArrowUpRight, BookOpen, Github, Puzzle, Terminal } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Github, Puzzle, Terminal } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
-import { LINKS } from "@/lib/links";
+import { Button } from "@/components/ui/button";
+import { ANCHORS, LINKS } from "@/lib/links";
 
 export function FinalCTASection() {
   const { _ } = useLingui();
@@ -37,6 +38,21 @@ export function FinalCTASection() {
 
   return (
     <SectionContainer id="more-info" className="py-16 md:py-20">
+      <div className="max-w-2xl mx-auto mb-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+        <Button size="lg" className="gap-2" asChild>
+          <a href={ANCHORS.install}>
+            <Trans>Use the Plugin</Trans>
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </Button>
+        <Button size="lg" variant="outline" className="gap-2" asChild>
+          <a href={ANCHORS.installCli}>
+            <Trans>Start with CLI</Trans>
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </Button>
+      </div>
+
       <nav
         aria-label={_(msg`More info`)}
         className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4"

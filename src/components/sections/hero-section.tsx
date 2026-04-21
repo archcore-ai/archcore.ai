@@ -36,7 +36,7 @@ export function HeroSection() {
               </Trans>
             </p>
             <p>
-              <Trans>Open source · Version-controlled · Setup in minutes</Trans>
+              <Trans>Open source · Versioned in Git · Set up in minutes</Trans>
               {" · "}
               <a
                 href={LINKS.cliRepo}
