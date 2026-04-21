@@ -62,17 +62,15 @@ export function InstallSection() {
       <SectionHeader
         title={_(msg`Install Archcore`)}
         description={_(
-          msg`Install the CLI once, run archcore init, then pick your path.`
+          msg`Pick your path. The plugin is the fastest way in — zero setup for Claude Code.`
         )}
       />
 
       <div className="max-w-4xl mx-auto space-y-10">
-        <PrereqSteps />
-
         <div id="install-cli" className="scroll-mt-20">
           <div className="mb-4 text-center">
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-              <Trans>Step 3 — choose your path</Trans>
+              <Trans>Choose your path</Trans>
             </p>
           </div>
 
@@ -108,85 +106,6 @@ export function InstallSection() {
   );
 }
 
-interface Step {
-  number: string;
-  title: string;
-  description: string;
-  command?: string;
-}
-
-function PrereqSteps() {
-  const { _ } = useLingui();
-
-  const steps: Step[] = [
-    {
-      number: "1",
-      title: _(msg`Install the CLI`),
-      description: _(
-        msg`Standalone binary for macOS, Linux, and Windows. No external services.`
-      ),
-    },
-    {
-      number: "2",
-      title: _(msg`Initialize your repo`),
-      description: _(
-        msg`Creates .archcore/ with starter templates for ADRs, rules, plans, and guides.`
-      ),
-      command: "archcore init",
-    },
-  ];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
-        <StepNumber>{steps[0].number}</StepNumber>
-        <div className="flex-1 space-y-3">
-          <div>
-            <h3 className="font-semibold text-base leading-tight mb-1">
-              {steps[0].title}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {steps[0].description}
-            </p>
-          </div>
-          <InstallCommand variant="inline" />
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            <Trans>
-              On Windows? Switch to the PowerShell tab above, or see the{" "}
-              <a
-                href="https://docs.archcore.ai/cli/install/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-foreground transition-colors"
-              >
-                full install guide
-              </a>{" "}
-              (PowerShell, WSL, go install, from source).
-            </Trans>
-          </p>
-        </div>
-      </div>
-
-      <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
-        <StepNumber>{steps[1].number}</StepNumber>
-        <div className="flex-1 space-y-3">
-          <div>
-            <h3 className="font-semibold text-base leading-tight mb-1">
-              {steps[1].title}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {steps[1].description}
-            </p>
-          </div>
-          {steps[1].command && (
-            <InstallCommand variant="inline" command={steps[1].command} />
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function StepNumber({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-sm">
@@ -201,7 +120,7 @@ function PluginTab() {
   return (
     <div className="space-y-4">
       <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
-        <StepNumber>3</StepNumber>
+        <StepNumber>1</StepNumber>
         <div className="flex-1 space-y-5">
           <div>
             <h3 className="font-semibold text-base leading-tight mb-1">
@@ -209,8 +128,9 @@ function PluginTab() {
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               <Trans>
-                The plugin reads your repo context and gives the agent a
-                higher-level interface.
+                No prerequisites for Claude Code. The plugin bundles a launcher
+                that auto-resolves the Archcore CLI on first use and registers
+                MCP automatically.
               </Trans>
             </p>
           </div>
@@ -219,8 +139,9 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor is supported too. Copilot and Codex CLI are on the plugin
-              roadmap.
+              Cursor is supported too — register MCP in Cursor settings
+              pointing at the plugin's launcher. Copilot and Codex CLI are on
+              the plugin roadmap.
             </Trans>
             {" "}
             <a
@@ -232,6 +153,34 @@ function PluginTab() {
               {_(msg`View plugin on GitHub`)}
               <ExternalLink className="h-3 w-3" />
             </a>
+          </p>
+        </div>
+      </div>
+
+      <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
+        <StepNumber>2</StepNumber>
+        <div className="flex-1 space-y-3">
+          <div>
+            <h3 className="font-semibold text-base leading-tight mb-1">
+              <Trans>Run your first intent command</Trans>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <Trans>
+                Open your project and type a slash command. The first Archcore
+                tool call downloads the CLI (~5s, one-time, cached between
+                sessions) and initializes .archcore/ through MCP if needed.
+              </Trans>
+            </p>
+          </div>
+          <InstallCommand
+            variant="inline"
+            command="/archcore:decide use PostgreSQL as our primary database"
+          />
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            <Trans>
+              Already have archcore on PATH? The launcher defers to your
+              existing install — no duplicate cache.
+            </Trans>
           </p>
         </div>
       </div>
@@ -324,6 +273,56 @@ function CLITab() {
 
   return (
     <div className="space-y-6">
+      <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
+        <StepNumber>1</StepNumber>
+        <div className="flex-1 space-y-3">
+          <div>
+            <h3 className="font-semibold text-base leading-tight mb-1">
+              <Trans>Install the CLI</Trans>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <Trans>
+                Standalone binary for macOS, Linux, and Windows. No external
+                services.
+              </Trans>
+            </p>
+          </div>
+          <InstallCommand variant="inline" />
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            <Trans>
+              On Windows? Switch to the PowerShell tab above, or see the{" "}
+              <a
+                href="https://docs.archcore.ai/cli/install/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-foreground transition-colors"
+              >
+                full install guide
+              </a>{" "}
+              (PowerShell, WSL, go install, from source).
+            </Trans>
+          </p>
+        </div>
+      </div>
+
+      <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
+        <StepNumber>2</StepNumber>
+        <div className="flex-1 space-y-3">
+          <div>
+            <h3 className="font-semibold text-base leading-tight mb-1">
+              <Trans>Initialize your repo</Trans>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <Trans>
+                Creates .archcore/ with starter templates for ADRs, rules,
+                plans, and guides.
+              </Trans>
+            </p>
+          </div>
+          <InstallCommand variant="inline" command="archcore init" />
+        </div>
+      </div>
+
       <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
         <StepNumber>3</StepNumber>
         <div className="flex-1 space-y-4">
