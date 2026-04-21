@@ -139,9 +139,7 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor is supported too: register MCP in Cursor settings pointing
-              at the plugin's launcher. Copilot and Codex CLI are on the plugin
-              roadmap.
+              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</code> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap.
             </Trans>
             {" "}
             <a

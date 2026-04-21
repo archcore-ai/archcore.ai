@@ -164,8 +164,8 @@ msgid "Cross-cutting context shared across repos and agents"
 msgstr "Сквозной контекст, общий для репозиториев и агентов"
 
 #: src/components/sections/install-section.tsx:141
-msgid "Cursor is supported too: register MCP in Cursor settings pointing at the plugin's launcher. Copilot and Codex CLI are on the plugin roadmap."
-msgstr "Cursor тоже поддерживается: зарегистрируйте MCP в настройках Cursor, указав на лаунчер плагина. Copilot и Codex CLI — в планах по поддержке плагина."
+msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
+msgstr "Cursor 2.5+: в новом Agent-чате выполните <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (наберите команду целиком — её нет в автокомплите). Copilot и Codex CLI — в планах по поддержке плагина."
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/pages/teams-getting-started.tsx:71
