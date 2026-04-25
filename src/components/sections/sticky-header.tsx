@@ -1,12 +1,13 @@
 import { msg } from "@lingui/core/macro";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLingui } from "@lingui/react";
-import { ANCHORS, LINKS } from "@/lib/links";
+import { ANCHORS, INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 export function StickyHeader() {
   const { _ } = useLingui();
@@ -14,9 +15,15 @@ export function StickyHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
-  const navItems: Array<{ href: string; label: string; external?: boolean }> = [
-    { href: ANCHORS.install, label: _(msg`Install`) },
-    { href: ANCHORS.compare, label: _(msg`Compare`) },
+  const navItems: Array<{
+    href: string;
+    label: string;
+    external?: boolean;
+    internal?: boolean;
+  }> = [
+    { href: INTERNAL_LINKS.plugin, label: _(msg`Plugin`), internal: true },
+    { href: INTERNAL_LINKS.cli, label: _(msg`CLI`), internal: true },
+    { href: `/${ANCHORS.compare}`, label: _(msg`Compare`) },
     { href: LINKS.docs, label: _(msg`Docs`), external: true },
   ];
 
@@ -72,9 +79,9 @@ export function StickyHeader() {
     >
       <div className="px-6">
         <div className="max-w-6xl mx-auto h-16 flex items-center justify-between gap-4">
-          <a href={ANCHORS.top} className="shrink-0">
+          <Link to="/" className="shrink-0">
             <Logo size="md" loading="eager" />
-          </a>
+          </Link>
 
           <nav
             aria-label="Main navigation"
@@ -82,14 +89,18 @@ export function StickyHeader() {
           >
             {navItems.map((item) => (
               <Button key={item.href} variant="ghost" size="sm" asChild>
-                <a
-                  href={item.href}
-                  {...(item.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  {item.label}
-                </a>
+                {item.internal ? (
+                  <Link to={item.href}>{item.label}</Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {item.label}
+                  </a>
+                )}
               </Button>
             ))}
             <LanguageSwitcher />
@@ -107,7 +118,7 @@ export function StickyHeader() {
               </a>
             </Button>
             <Button size="sm" asChild>
-              <a href={ANCHORS.install}>{_(msg`Install Plugin`)}</a>
+              <Link to={INTERNAL_LINKS.plugin}>{_(msg`Install Plugin`)}</Link>
             </Button>
             <Button
               variant="ghost"
@@ -134,21 +145,34 @@ export function StickyHeader() {
             aria-label="Mobile navigation"
             className="max-w-6xl mx-auto py-4 space-y-1"
           >
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="block py-2.5 text-sm hover:text-primary transition-colors"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                }}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.internal ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="block py-2.5 text-sm hover:text-primary transition-colors"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="block py-2.5 text-sm hover:text-primary transition-colors"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <div className="pt-3 border-t border-border">
               <LanguageSwitcher />
             </div>

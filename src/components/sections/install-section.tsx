@@ -139,8 +139,19 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</code> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap.
+              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</code> (type the full command — it's not in autocomplete), or install from
             </Trans>
+            {" "}
+            <a
+              href={LINKS.cursorDirectory}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Cursor Directory
+              <ExternalLink className="h-3 w-3" />
+            </a>
+            <Trans>. Copilot and Codex CLI are on the plugin roadmap.</Trans>
             {" "}
             <a
               href={LINKS.pluginRepo}

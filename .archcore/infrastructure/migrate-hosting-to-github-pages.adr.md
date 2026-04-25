@@ -5,7 +5,7 @@ status: accepted
 
 ## Context
 
-The landing site (archcore.ai) is a fully static Vite + React SPA with two routes (`/` and `/teams/getting-started`). It was hosted on Vercel.
+The landing site (archcore.ai) is a fully static Vite + React SPA. At decision time it had two routes (`/` and `/teams/getting-started`); the same approach scales to additional pages (`/plugin`, `/cli`, `/privacy` were added later — see `.archcore/landing-tech-stack.doc.md` for the current page list). It was hosted on Vercel.
 
 Vercel is blocked or unreliable for a portion of users in Russia, which means potential users cannot access the project landing page or installation instructions. Since the site requires no server-side features (SSR, edge functions, middleware), there is no technical reason to stay on a platform with access restrictions.
 
@@ -14,6 +14,7 @@ Vercel is blocked or unreliable for a portion of users in Russia, which means po
 Move hosting from Vercel to GitHub Pages.
 
 Key implementation details:
+
 - GitHub Actions workflow deploys `dist/` on every push to `main` (@.github/workflows/deploy.yml)
 - SPA routing handled via `404.html` — a Vite post-build plugin copies `index.html` → `404.html`, which GitHub Pages serves for unknown paths
 - `/install.sh` is served as a real POSIX shell script from `public/install.sh` — it works for both browsers and `curl`/`wget` (the script shells out to the canonical CLI installer at `raw.githubusercontent.com/archcore-ai/cli/.../install.sh`)
@@ -29,11 +30,14 @@ Key implementation details:
 ## Consequences
 
 **Positive:**
+
 - The site is accessible from Russia and other regions where Vercel may be restricted
 - Hosting is free and fully integrated with the existing GitHub repository
 - Simpler infrastructure — no separate Vercel project to manage
 - `curl -fsSL archcore.ai/install.sh | sh` works directly because `/install.sh` is an actual shell script, not an HTML redirect
 
 **Negative:**
+
 - No preview deployments for pull requests (can be added later with a separate workflow if needed)
 - GitHub Pages has a soft bandwidth limit (100 GB/month) — unlikely to be an issue for a landing page
+- Per-route social previews require an extra build step (a Vite `closeBundle` plugin that emits `dist/<route>/index.html` with rewritten OG tags) since GitHub Pages serves only static files. Implemented in `scripts/prerender-routes.mts` — see `.archcore/landing/og-image-generation.guide.md`.

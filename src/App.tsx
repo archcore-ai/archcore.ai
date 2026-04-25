@@ -14,11 +14,39 @@ const PrivacyPage = lazy(() =>
   }))
 );
 
+const PluginPage = lazy(() =>
+  import("@/pages/plugin").then((m) => ({
+    default: m.PluginPage,
+  }))
+);
+
+const CLIPage = lazy(() =>
+  import("@/pages/cli").then((m) => ({
+    default: m.CLIPage,
+  }))
+);
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/plugin"
+          element={
+            <Suspense>
+              <PluginPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/cli"
+          element={
+            <Suspense>
+              <CLIPage />
+            </Suspense>
+          }
+        />
         <Route
           path="/teams/getting-started"
           element={

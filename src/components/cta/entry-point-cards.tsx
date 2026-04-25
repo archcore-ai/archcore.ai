@@ -1,9 +1,10 @@
 import { Trans } from "@lingui/react/macro";
+import { Link } from "react-router-dom";
 import { ArrowRight, Puzzle, Terminal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ANCHORS } from "@/lib/links";
+import { INTERNAL_LINKS } from "@/lib/links";
 
 interface EntryPointCardsProps {
   className?: string;
@@ -34,10 +35,10 @@ export function EntryPointCards({ className }: EntryPointCardsProps) {
           </Trans>
         </p>
         <Button size="sm" className="w-full gap-2 mt-auto" asChild>
-          <a href={ANCHORS.install}>
+          <Link to={INTERNAL_LINKS.plugin}>
             <Trans>Use the Plugin</Trans>
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </Button>
       </div>
 
@@ -60,10 +61,10 @@ export function EntryPointCards({ className }: EntryPointCardsProps) {
           className="w-full gap-2 mt-auto"
           asChild
         >
-          <a href={ANCHORS.installCli}>
+          <Link to={INTERNAL_LINKS.cli}>
             <Trans>Start with CLI</Trans>
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </Button>
       </div>
     </div>

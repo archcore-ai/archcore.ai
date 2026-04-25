@@ -6,9 +6,17 @@ export const LINKS = {
   docsQuickstart: "https://docs.archcore.ai/getting-started/quick-start/",
   supportedAgents:
     "https://github.com/archcore-ai/cli/tree/main?tab=readme-ov-file#supported-agents",
+  cursorDirectory: "https://cursor.directory/plugins/archcore",
   discord: "https://discord.gg/5YC8pdjD",
   x: "https://x.com/archcore_ai",
   telegram: "https://t.me/archcore_ai",
+} as const;
+
+export const INTERNAL_LINKS = {
+  home: "/",
+  plugin: "/plugin",
+  cli: "/cli",
+  privacy: "/privacy",
 } as const;
 
 export const ANCHORS = {

@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { lingui } from "@lingui/vite-plugin";
 import { defineConfig, type Plugin } from "vite";
+import { prerenderRoutesPlugin } from "./scripts/prerender-routes.mts";
 
 function copy404Plugin(): Plugin {
   return {
@@ -28,6 +29,7 @@ export default defineConfig({
     lingui(),
     tailwindcss(),
     copy404Plugin(),
+    prerenderRoutesPlugin(),
   ],
   resolve: {
     alias: {

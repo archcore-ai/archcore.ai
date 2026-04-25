@@ -13,13 +13,37 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/sections/install-section.tsx:154
+msgid ". Copilot and Codex CLI are on the plugin roadmap."
+msgstr ". Copilot and Codex CLI are on the plugin roadmap."
+
 #: src/components/sections/before-after-section.tsx:42
 msgid "“Add a new user-notifications service.”"
 msgstr "“Add a new user-notifications service.”"
 
+#: src/pages/cli.tsx:241
+msgid "10 tools — list, get, create, update, search, relate — exposed to any MCP-capable agent."
+msgstr "10 tools — list, get, create, update, search, relate — exposed to any MCP-capable agent."
+
+#: src/pages/cli.tsx:232
+msgid "18 document types"
+msgstr "18 document types"
+
+#: src/pages/cli.tsx:486
+msgid "A .archcore/ directory with templates and config for 18 document types in three layers — vision (PRD, idea, plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+msgstr "A .archcore/ directory with templates and config for 18 document types in three layers — vision (PRD, idea, plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+
+#: src/pages/cli.tsx:258
+msgid "A small CLI, a structured directory, and protocol-level integration with the agents you already use."
+msgstr "A small CLI, a structured directory, and protocol-level integration with the agents you already use."
+
 #: src/components/sections/jobs-section.tsx:30
 msgid "Add a new service"
 msgstr "Add a new service"
+
+#: src/pages/cli.tsx:234
+msgid "ADR, PRD, RFC, rule, guide, doc, spec, plan, task-type — vision, knowledge, and experience layers."
+msgstr "ADR, PRD, RFC, rule, guide, doc, spec, plan, task-type — vision, knowledge, and experience layers."
 
 #: src/components/sections/jobs-section.tsx:48
 msgid "ADRs and specs stop being rediscovered every session. Past reasoning is one MCP call away."
@@ -39,11 +63,11 @@ msgstr "Agent guesses"
 msgid "Agent reads your repo context"
 msgstr "Agent reads your repo context"
 
-#: src/components/sections/final-cta-section.tsx:35
+#: src/components/sections/final-cta-section.tsx:36
 msgid "All Archcore repositories in one place."
 msgstr "All Archcore repositories in one place."
 
-#: src/components/sections/install-section.tsx:180
+#: src/components/sections/install-section.tsx:189
 msgid "Already have archcore on PATH? The launcher defers to your existing install — no duplicate cache."
 msgstr "Already have archcore on PATH? The launcher defers to your existing install — no duplicate cache."
 
@@ -51,11 +75,35 @@ msgstr "Already have archcore on PATH? The launcher defers to your existing inst
 msgid "Applies team rules for logging, auth, and error handling consistently"
 msgstr "Applies team rules for logging, auth, and error handling consistently"
 
+#: src/pages/cli.tsx:43
+msgid "Archcore CLI — repo-native context layer for AI coding agents"
+msgstr "Archcore CLI — repo-native context layer for AI coding agents"
+
+#: src/pages/cli.tsx:84
+msgid "Archcore CLI · MCP + Hooks"
+msgstr "Archcore CLI · MCP + Hooks"
+
 #: src/components/sections/why-not-instructions-section.tsx:68
 msgid "Archcore complements agent-native memory with a durable repo context layer."
 msgstr "Archcore complements agent-native memory with a durable repo context layer."
 
-#: src/components/sections/footer-section.tsx:27
+#: src/pages/cli.tsx:163
+msgid "archcore init creating .archcore/ in a project"
+msgstr "archcore init creating .archcore/ in a project"
+
+#: src/pages/plugin.tsx:50
+msgid "Archcore Plugin — Claude Code & Cursor plugin for repo-aware AI"
+msgstr "Archcore Plugin — Claude Code & Cursor plugin for repo-aware AI"
+
+#: src/pages/plugin.tsx:88
+msgid "Archcore Plugin · Claude Code & Cursor"
+msgstr "Archcore Plugin · Claude Code & Cursor"
+
+#: src/pages/plugin.tsx:193
+msgid "Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands"
+msgstr "Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands"
+
+#: src/components/sections/footer-section.tsx:29
 msgid "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
 msgstr "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
 
@@ -70,6 +118,14 @@ msgstr "Architecture decisions that need rationale, status, and history"
 #: src/components/sections/jobs-section.tsx:70
 msgid "Architecture. Rules. Decisions. Workflows. Not just code context — system context."
 msgstr "Architecture. Rules. Decisions. Workflows. Not just code context — system context."
+
+#: src/pages/plugin.tsx:40
+msgid "Audit documentation health and find coverage gaps."
+msgstr "Audit documentation health and find coverage gaps."
+
+#: src/pages/plugin.tsx:230
+msgid "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself. No configs to write."
+msgstr "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself. No configs to write."
 
 #: src/components/sections/jobs-section.tsx:113
 msgid "Available via CLI"
@@ -88,6 +144,14 @@ msgstr "Best with Plugin"
 msgid "Both paths use the same repository context. The difference is the experience layer."
 msgstr "Both paths use the same repository context. The difference is the experience layer."
 
+#: src/pages/plugin.tsx:238
+msgid "Built for the way agents actually work"
+msgstr "Built for the way agents actually work"
+
+#: src/pages/plugin.tsx:411
+msgid "Can I use my own CLI install?"
+msgstr "Can I use my own CLI install?"
+
 #: src/components/sections/entry-point-choice-section.tsx:68
 msgid "Choose the CLI if"
 msgstr "Choose the CLI if"
@@ -100,27 +164,76 @@ msgstr "Choose the Plugin if"
 msgid "Choose your path"
 msgstr "Choose your path"
 
-#: src/components/cta/entry-point-cards.tsx:48
-#: src/components/sections/footer-section.tsx:13
+#: src/pages/plugin.tsx:407
+msgid "Claude Code (production) and Cursor 2.5+ (implemented). Copilot and Codex CLI are on the plugin roadmap. For other MCP-capable agents, use the CLI directly."
+msgstr "Claude Code (production) and Cursor 2.5+ (implemented). Copilot and Codex CLI are on the plugin roadmap. For other MCP-capable agents, use the CLI directly."
+
+#: src/components/cta/entry-point-cards.tsx:49
+#: src/components/sections/footer-section.tsx:14
 #: src/components/sections/install-section.tsx:91
+#: src/components/sections/sticky-header.tsx:25
 msgid "CLI"
 msgstr "CLI"
 
-#: src/components/sections/final-cta-section.tsx:22
+#: src/pages/cli.tsx:511
+msgid "CLI FAQ"
+msgstr "CLI FAQ"
+
+#: src/pages/cli.tsx:148
+msgid "CLI in action"
+msgstr "CLI in action"
+
+#: src/components/sections/final-cta-section.tsx:23
 msgid "CLI repository"
 msgstr "CLI repository"
 
-#: src/components/sections/sticky-header.tsx:119
+#: src/pages/cli.tsx:461
+msgid "Click to copy. Run from any project root."
+msgstr "Click to copy. Run from any project root."
+
+#: src/components/sections/sticky-header.tsx:130
 msgid "Close menu"
 msgstr "Close menu"
 
-#: src/components/sections/sticky-header.tsx:19
+#: src/pages/plugin.tsx:39
+msgid "Codify a team practice as ADR → rule → guide."
+msgstr "Codify a team practice as ADR → rule → guide."
+
+#: src/pages/cli.tsx:306
+msgid "Codify a team standard."
+msgstr "Codify a team standard."
+
+#: src/pages/cli.tsx:460
+msgid "Commands cheatsheet"
+msgstr "Commands cheatsheet"
+
+#: src/pages/plugin.tsx:41
+msgid "Compact dashboard — counts, statuses, relations."
+msgstr "Compact dashboard — counts, statuses, relations."
+
+#: src/components/sections/sticky-header.tsx:26
 msgid "Compare"
 msgstr "Compare"
 
-#: src/components/sections/install-section.tsx:334
+#: src/pages/plugin.tsx:529
+msgid "Compare with the CLI"
+msgstr "Compare with the CLI"
+
+#: src/pages/cli.tsx:609
+msgid "Compare with the plugin"
+msgstr "Compare with the plugin"
+
+#: src/pages/cli.tsx:452
+msgid "Configure MCP for your agent"
+msgstr "Configure MCP for your agent"
+
+#: src/components/sections/install-section.tsx:343
 msgid "Connect the context layer to your agent. Hooks inject context at session start. MCP exposes tools to browse and edit docs."
 msgstr "Connect the context layer to your agent. Hooks inject context at session start. MCP exposes tools to browse and edit docs."
+
+#: src/pages/plugin.tsx:346
+msgid "Copilot and Codex CLI are on the plugin roadmap. Need raw context for any MCP-capable agent today?"
+msgstr "Copilot and Codex CLI are on the plugin roadmap. Need raw context for any MCP-capable agent today?"
 
 #: src/components/cta/copy-button.tsx:24
 msgid "Copy"
@@ -143,6 +256,10 @@ msgstr "Create <0>.env</0> file"
 msgid "Create <0>docker-compose.yml</0> file"
 msgstr "Create <0>docker-compose.yml</0> file"
 
+#: src/pages/plugin.tsx:38
+msgid "Create a feature plan or full PRD → plan cascade."
+msgstr "Create a feature plan or full PRD → plan cascade."
+
 #: src/components/sections/faq-section.tsx:37
 #~ msgid "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
 #~ msgstr "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
@@ -151,7 +268,7 @@ msgstr "Create <0>docker-compose.yml</0> file"
 msgid "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code. The Plugin ships 33 skills covering all of these — 17 document-type skills (Plan is served by the /archcore:plan intent skill), 9 intent commands, 6 multi-step tracks, and 1 utility."
 msgstr "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code. The Plugin ships 33 skills covering all of these — 17 document-type skills (Plan is served by the /archcore:plan intent skill), 9 intent commands, 6 multi-step tracks, and 1 utility."
 
-#: src/components/sections/install-section.tsx:316
+#: src/components/sections/install-section.tsx:325
 msgid "Creates .archcore/ with starter templates for ADRs, rules, guides, and specs."
 msgstr "Creates .archcore/ with starter templates for ADRs, rules, guides, and specs."
 
@@ -163,9 +280,17 @@ msgstr "Creates .archcore/ with starter templates for ADRs, rules, guides, and s
 msgid "Cross-cutting context shared across repos and agents"
 msgstr "Cross-cutting context shared across repos and agents"
 
+#: src/pages/cli.tsx:182
+msgid "Cross-platform binary. No Node, no Python, no external services."
+msgstr "Cross-platform binary. No Node, no Python, no external services."
+
 #: src/components/sections/install-section.tsx:141
-msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
-msgstr "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
+msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete), or install from"
+msgstr "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete), or install from"
+
+#: src/components/sections/install-section.tsx:141
+#~ msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
+#~ msgstr "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/pages/teams-getting-started.tsx:71
@@ -177,7 +302,12 @@ msgstr "Deploy Archcore Team"
 msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 msgstr "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 
+#: src/pages/cli.tsx:450
+msgid "Diagnose setup issues"
+msgstr "Diagnose setup issues"
+
 #: src/components/sections/faq-section.tsx:47
+#: src/pages/cli.tsx:490
 msgid "Do I need any external services?"
 msgstr "Do I need any external services?"
 
@@ -185,17 +315,29 @@ msgstr "Do I need any external services?"
 msgid "Do I need both the plugin and the CLI?"
 msgstr "Do I need both the plugin and the CLI?"
 
-#: src/components/sections/footer-section.tsx:14
-#: src/components/sections/sticky-header.tsx:20
+#: src/pages/plugin.tsx:399
+msgid "Do I need to install the CLI separately?"
+msgstr "Do I need to install the CLI separately?"
+
+#: src/components/sections/footer-section.tsx:15
+#: src/components/sections/sticky-header.tsx:27
 msgid "Docs"
 msgstr "Docs"
 
-#: src/components/sections/final-cta-section.tsx:28
+#: src/pages/plugin.tsx:36
+msgid "Document a module — Archcore picks ADR, doc, spec, or guide."
+msgstr "Document a module — Archcore picks ADR, doc, spec, or guide."
+
+#: src/components/sections/final-cta-section.tsx:29
 msgid "Documentation"
 msgstr "Documentation"
 
+#: src/pages/plugin.tsx:373
+msgid "Each command runs a typed document workflow — from a single decision to a full PRD cascade."
+msgstr "Each command runs a typed document workflow — from a single decision to a full PRD cascade."
+
 #: src/components/cta/inline-email-capture.tsx:30
-#: src/components/sections/footer-section.tsx:40
+#: src/components/sections/footer-section.tsx:42
 msgid "Enter your work email"
 msgstr "Enter your work email"
 
@@ -203,45 +345,74 @@ msgstr "Enter your work email"
 msgid "Follow team rules"
 msgstr "Follow team rules"
 
-#: src/components/cta/entry-point-cards.tsx:31
+#: src/components/cta/entry-point-cards.tsx:32
 msgid "For Claude Code and Cursor. High-level workflows, guardrails, and structured actions inside your agent."
 msgstr "For Claude Code and Cursor. High-level workflows, guardrails, and structured actions inside your agent."
 
-#: src/components/cta/entry-point-cards.tsx:52
+#: src/components/cta/entry-point-cards.tsx:53
 msgid "For direct integrations. Repo-native context, hooks, MCP, and a scriptable core that works across agents."
 msgstr "For direct integrations. Repo-native context, hooks, MCP, and a scriptable core that works across agents."
+
+#: src/pages/cli.tsx:316
+msgid "Formal ISO 29148 cascade."
+msgstr "Formal ISO 29148 cascade."
 
 #: src/components/sections/faq-section.tsx:68
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
-#: src/components/sections/install-section.tsx:203
+#: src/components/sections/install-section.tsx:212
+#: src/pages/plugin.tsx:287
 msgid "From inside Claude Code"
 msgstr "From inside Claude Code"
+
+#: src/pages/plugin.tsx:270
+msgid "From inside Claude Code, run two commands. Cursor 2.5+ users see the snippet below."
+msgstr "From inside Claude Code, run two commands. Cursor 2.5+ users see the snippet below."
 
 #: src/components/cta/docker-start-dialog.tsx:34
 msgid "Get Started with Archcore"
 msgstr "Get Started with Archcore"
 
+#: src/pages/cli.tsx:547
+msgid "Get the plugin — intent-based slash commands and zero-config MCP registration on top of the CLI."
+msgstr "Get the plugin — intent-based slash commands and zero-config MCP registration on top of the CLI."
+
 #: src/components/cta/inline-email-capture.tsx:31
 msgid "Get updates"
 msgstr "Get updates"
 
-#: src/components/sections/final-cta-section.tsx:34
+#: src/components/sections/final-cta-section.tsx:35
 msgid "GitHub organization"
 msgstr "GitHub organization"
 
-#: src/components/sections/final-cta-section.tsx:29
+#: src/pages/plugin.tsx:92
+msgid "Give Claude Code & Cursor<0/>a brain for your codebase."
+msgstr "Give Claude Code & Cursor<0/>a brain for your codebase."
+
+#: src/components/sections/final-cta-section.tsx:30
 msgid "Guides, reference, and quickstart for Archcore."
 msgstr "Guides, reference, and quickstart for Archcore."
+
+#: src/pages/cli.tsx:374
+msgid "Hooks + MCP"
+msgstr "Hooks + MCP"
 
 #: src/components/sections/faq-section.tsx:43
 msgid "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse and edit .archcore/ documents during a session. Set up with archcore hooks install and archcore mcp install."
 msgstr "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse and edit .archcore/ documents during a session. Set up with archcore hooks install and archcore mcp install."
 
+#: src/pages/cli.tsx:416
+msgid "Hooks inject context at session start. MCP exposes tools to browse and edit .archcore/ documents during a session."
+msgstr "Hooks inject context at session start. MCP exposes tools to browse and edit .archcore/ documents during a session."
+
 #: src/components/sections/faq-section.tsx:41
 msgid "How do hooks and MCP work together?"
 msgstr "How do hooks and MCP work together?"
+
+#: src/pages/cli.tsx:502
+msgid "How do I keep it updated?"
+msgstr "How do I keep it updated?"
 
 #: src/components/sections/faq-section.tsx:59
 msgid "How do I keep the CLI updated?"
@@ -255,31 +426,73 @@ msgstr "How is this different from CLAUDE.md or AGENTS.md?"
 msgid "How to choose between Plugin and CLI"
 msgstr "How to choose between Plugin and CLI"
 
+#: src/pages/cli.tsx:498
+msgid "If you use Claude Code or Cursor, yes — see the plugin page. The plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
+msgstr "If you use Claude Code or Cursor, yes — see the plugin page. The plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
+
+#: src/pages/plugin.tsx:319
+msgid "Implemented"
+msgstr "Implemented"
+
+#: src/pages/plugin.tsx:419
+msgid "In .archcore/ inside your repository. Markdown with YAML frontmatter, versioned with your code. No external services, accounts, or databases."
+msgstr "In .archcore/ inside your repository. Markdown with YAML frontmatter, versioned with your code. No external services, accounts, or databases."
+
+#: src/pages/plugin.tsx:323
+msgid "In a new Agent chat, type the full command (it isn't in autocomplete):"
+msgstr "In a new Agent chat, type the full command (it isn't in autocomplete):"
+
 #: src/components/sections/why-not-instructions-section.tsx:54
 msgid "Incidents and experience reports"
 msgstr "Incidents and experience reports"
 
-#: src/components/sections/install-section.tsx:313
+#: src/pages/cli.tsx:449
+msgid "Initialize .archcore/ in your repo"
+msgstr "Initialize .archcore/ in your repo"
+
+#: src/components/sections/install-section.tsx:322
 msgid "Initialize your repo"
 msgstr "Initialize your repo"
 
-#: src/components/sections/install-section.tsx:269
+#: src/components/sections/install-section.tsx:278
 msgid "Inject repo context at session start for supported agents."
 msgstr "Inject repo context at session start for supported agents."
 
+#: src/pages/cli.tsx:248
+msgid "Inject the right repo context at session start for supported agents — automatically."
+msgstr "Inject the right repo context at session start for supported agents — automatically."
+
 #: src/components/sections/sticky-header.tsx:18
-msgid "Install"
-msgstr "Install"
+#~ msgid "Install"
+#~ msgstr "Install"
 
 #: src/components/sections/install-section.tsx:63
 msgid "Install Archcore"
 msgstr "Install Archcore"
 
-#: src/components/sections/sticky-header.tsx:110
+#: src/pages/cli.tsx:103
+#: src/pages/cli.tsx:576
+msgid "Install CLI"
+msgstr "Install CLI"
+
+#: src/pages/plugin.tsx:268
+msgid "Install in 30 seconds"
+msgstr "Install in 30 seconds"
+
+#: src/pages/cli.tsx:180
+msgid "Install in one line"
+msgstr "Install in one line"
+
+#: src/pages/plugin.tsx:111
+#: src/pages/plugin.tsx:492
+msgid "Install plugin"
+msgstr "Install plugin"
+
+#: src/components/sections/sticky-header.tsx:121
 msgid "Install Plugin"
 msgstr "Install Plugin"
 
-#: src/components/sections/install-section.tsx:281
+#: src/components/sections/install-section.tsx:290
 msgid "Install the CLI"
 msgstr "Install the CLI"
 
@@ -295,27 +508,60 @@ msgstr "Instruction files are flat memory. Archcore is structured system context
 msgid "Instruction files are flat, tool-specific, and weakly structured. Archcore gives you multiple document types, relations between them, versioned history, and reads and writes during real work — reusable across Claude Code, Cursor, Copilot, and other agents."
 msgstr "Instruction files are flat, tool-specific, and weakly structured. Archcore gives you multiple document types, relations between them, versioned history, and reads and writes during real work — reusable across Claude Code, Cursor, Copilot, and other agents."
 
+#: src/pages/cli.tsx:434
+msgid "Instruction files tell agents <0>what</0> you want. Archcore tells them <1>how your system works</1> — typed, queryable, relation-aware project truth that evolves with your code."
+msgstr "Instruction files tell agents <0>what</0> you want. Archcore tells them <1>how your system works</1> — typed, queryable, relation-aware project truth that evolves with your code."
+
 #: src/components/sections/why-not-instructions-section.tsx:30
 msgid "Instruction files work for agent-specific prompts and short-lived rules. They are not a great fit for:"
 msgstr "Instruction files work for agent-specific prompts and short-lived rules. They are not a great fit for:"
+
+#: src/pages/plugin.tsx:214
+msgid "Intent-based slash commands"
+msgstr "Intent-based slash commands"
 
 #: src/components/sections/before-after-section.tsx:14
 msgid "Invents patterns that already exist elsewhere in the repo"
 msgstr "Invents patterns that already exist elsewhere in the repo"
 
+#: src/pages/cli.tsx:603
+#: src/pages/plugin.tsx:523
+msgid "Join Discord"
+msgstr "Join Discord"
+
+#: src/pages/plugin.tsx:221
+msgid "Knows your architecture"
+msgstr "Knows your architecture"
+
 #: src/components/cta/docker-start-dialog.tsx:41
 msgid "Launch Archcore locally with a single Docker command. No registration or configuration required."
 msgstr "Launch Archcore locally with a single Docker command. No registration or configuration required."
 
-#: src/components/sections/install-section.tsx:262
+#: src/pages/cli.tsx:296
+msgid "Lightweight feature flow."
+msgstr "Lightweight feature flow."
+
+#: src/components/sections/install-section.tsx:271
 msgid "list, get, create, update, relate — exposed to any MCP-capable agent."
 msgstr "list, get, create, update, relate — exposed to any MCP-capable agent."
+
+#: src/pages/plugin.tsx:181
+msgid "Live"
+msgstr "Live"
 
 #: src/components/cta/install-command.tsx:128
 msgid "macOS / Linux"
 msgstr "macOS / Linux"
 
-#: src/components/sections/install-section.tsx:255
+#: src/pages/cli.tsx:454
+msgid "Manage settings (sync, language)"
+msgstr "Manage settings (sync, language)"
+
+#: src/pages/cli.tsx:384
+msgid "Manual setup"
+msgstr "Manual setup"
+
+#: src/components/sections/install-section.tsx:264
 msgid "Markdown + YAML types (ADR, PRD, rule, guide, doc, spec, and more)."
 msgstr "Markdown + YAML types (ADR, PRD, rule, guide, doc, spec, and more)."
 
@@ -323,7 +569,19 @@ msgstr "Markdown + YAML types (ADR, PRD, rule, guide, doc, spec, and more)."
 #~ msgid "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
 #~ msgstr "Markdown + YAML types (ADR, rule, plan, PRD, and more)."
 
-#: src/components/sections/install-section.tsx:260
+#: src/pages/cli.tsx:311
+msgid "Market / business / user discovery."
+msgstr "Market / business / user discovery."
+
+#: src/pages/cli.tsx:379
+msgid "MCP"
+msgstr "MCP"
+
+#: src/pages/cli.tsx:239
+msgid "MCP server"
+msgstr "MCP server"
+
+#: src/components/sections/install-section.tsx:269
 msgid "MCP tools"
 msgstr "MCP tools"
 
@@ -331,23 +589,47 @@ msgstr "MCP tools"
 msgid "Misses the logging, auth, and error-handling rules your team follows"
 msgstr "Misses the logging, auth, and error-handling rules your team follows"
 
-#: src/components/sections/final-cta-section.tsx:57
+#: src/components/sections/final-cta-section.tsx:58
 msgid "More info"
 msgstr "More info"
+
+#: src/pages/plugin.tsx:459
+msgid "Need the raw context layer instead?"
+msgstr "Need the raw context layer instead?"
 
 #: src/components/sections/install-section.tsx:130
 msgid "No prerequisites for Claude Code. The plugin bundles a launcher that auto-resolves the Archcore CLI on first use and registers MCP automatically."
 msgstr "No prerequisites for Claude Code. The plugin bundles a launcher that auto-resolves the Archcore CLI on first use and registers MCP automatically."
 
+#: src/pages/cli.tsx:492
+msgid "No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies."
+msgstr "No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies."
+
 #: src/components/sections/faq-section.tsx:49
 msgid "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
 msgstr "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
 
-#: src/components/sections/install-section.tsx:292
+#: src/pages/plugin.tsx:401
+msgid "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
+msgstr "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
+
+#: src/pages/cli.tsx:195
+msgid "On Windows? See the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
+msgstr "On Windows? See the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
+
+#: src/components/sections/install-section.tsx:301
 msgid "On Windows? Switch to the PowerShell tab above, or see the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
 msgstr "On Windows? Switch to the PowerShell tab above, or see the <0>full install guide</0> (PowerShell, WSL, go install, from source)."
 
-#: src/components/sections/sticky-header.tsx:119
+#: src/pages/cli.tsx:568
+msgid "One binary, eight agents, zero accounts. Your team's truth, in Git."
+msgstr "One binary, eight agents, zero accounts. Your team's truth, in Git."
+
+#: src/pages/cli.tsx:323
+msgid "One prompt. A whole document cascade."
+msgstr "One prompt. A whole document cascade."
+
+#: src/components/sections/sticky-header.tsx:130
 msgid "Open menu"
 msgstr "Open menu"
 
@@ -355,13 +637,18 @@ msgstr "Open menu"
 msgid "Open source · Versioned in Git · Set up in minutes"
 msgstr "Open source · Versioned in Git · Set up in minutes"
 
-#: src/components/sections/install-section.tsx:168
+#: src/components/sections/install-section.tsx:177
 msgid "Open your project and type a slash command. The first Archcore tool call downloads the CLI (~5s, one-time, cached between sessions) and initializes .archcore/ through MCP if needed."
 msgstr "Open your project and type a slash command. The first Archcore tool call downloads the CLI (~5s, one-time, cached between sessions) and initializes .archcore/ through MCP if needed."
 
-#: src/components/sections/install-section.tsx:217
+#: src/components/sections/install-section.tsx:226
+#: src/pages/plugin.tsx:300
 msgid "Or from your terminal"
 msgstr "Or from your terminal"
+
+#: src/pages/plugin.tsx:333
+msgid "Or grab it from"
+msgstr "Or grab it from"
 
 #: src/components/sections/install-section.tsx:65
 msgid "Pick your path. The plugin is the fastest way in — zero setup for Claude Code."
@@ -387,43 +674,94 @@ msgstr "Plans, decisions, guides, and implementation stay connected across the w
 msgid "Please enter a valid email."
 msgstr "Please enter a valid email."
 
-#: src/components/cta/entry-point-cards.tsx:27
-#: src/components/sections/footer-section.tsx:12
+#: src/components/cta/entry-point-cards.tsx:28
+#: src/components/sections/footer-section.tsx:13
 #: src/components/sections/install-section.tsx:81
+#: src/components/sections/sticky-header.tsx:24
 msgid "Plugin"
 msgstr "Plugin"
+
+#: src/pages/plugin.tsx:426
+msgid "Plugin FAQ"
+msgstr "Plugin FAQ"
 
 #: src/components/sections/faq-section.tsx:31
 msgid "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. The CLI (with MCP and hooks) works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
 msgstr "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. The CLI (with MCP and hooks) works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
 
-#: src/components/sections/final-cta-section.tsx:16
+#: src/pages/plugin.tsx:160
+msgid "Plugin in action"
+msgstr "Plugin in action"
+
+#: src/components/sections/final-cta-section.tsx:17
 msgid "Plugin repository"
 msgstr "Plugin repository"
 
-#: src/components/sections/install-section.tsx:197
+#: src/components/sections/footer-section.tsx:20
+msgid "Privacy"
+msgstr "Privacy"
+
+#: src/components/sections/install-section.tsx:206
+#: src/pages/plugin.tsx:282
 msgid "Production"
 msgstr "Production"
+
+#: src/pages/plugin.tsx:129
+msgid "Production on Claude Code · Implemented for Cursor 2.5+ · Open source · Versioned in Git"
+msgstr "Production on Claude Code · Implemented for Cursor 2.5+ · Open source · Versioned in Git"
 
 #: src/components/sections/before-after-section.tsx:39
 msgid "Prompt"
 msgstr "Prompt"
 
+#: src/pages/plugin.tsx:35
+msgid "Pull rules and ADRs that apply to the file you're touching."
+msgstr "Pull rules and ADRs that apply to the file you're touching."
+
 #: src/components/sections/before-after-section.tsx:16
 msgid "Re-litigates decisions already made in an old ADR"
 msgstr "Re-litigates decisions already made in an old ADR"
 
-#: src/components/cta/entry-point-cards.tsx:22
+#: src/pages/cli.tsx:583
+#: src/pages/plugin.tsx:503
+msgid "Read the docs"
+msgstr "Read the docs"
+
+#: src/pages/plugin.tsx:223
+msgid "Reads ADRs, rules, and guides from .archcore/ before suggesting changes — so refactors land in the right place."
+msgstr "Reads ADRs, rules, and guides from .archcore/ before suggesting changes — so refactors land in the right place."
+
+#: src/components/cta/entry-point-cards.tsx:23
 #: src/components/sections/entry-point-choice-section.tsx:38
 #: src/components/sections/install-section.tsx:86
 msgid "Recommended"
 msgstr "Recommended"
 
+#: src/pages/plugin.tsx:37
+msgid "Record a finalized technical or architectural decision."
+msgstr "Record a finalized technical or architectural decision."
+
 #: src/components/sections/before-after-section.tsx:23
 msgid "References the ADR that already decided the question"
 msgstr "References the ADR that already decided the question"
 
-#: src/components/sections/install-section.tsx:248
+#: src/pages/plugin.tsx:42
+msgid "Render the Archcore document graph as a Mermaid flowchart."
+msgstr "Render the Archcore document graph as a Mermaid flowchart."
+
+#: src/pages/cli.tsx:88
+msgid "Repo-native context for any AI agent."
+msgstr "Repo-native context for any AI agent."
+
+#: src/pages/cli.tsx:88
+#~ msgid "Repo-native context<0/>for any AI agent."
+#~ msgstr "Repo-native context<0/>for any AI agent."
+
+#: src/pages/cli.tsx:227
+msgid "Repo-native directory of structured, versioned documents — Markdown with YAML frontmatter."
+msgstr "Repo-native directory of structured, versioned documents — Markdown with YAML frontmatter."
+
+#: src/components/sections/install-section.tsx:257
 msgid "Repo-native directory of structured, versioned documents."
 msgstr "Repo-native directory of structured, versioned documents."
 
@@ -434,6 +772,14 @@ msgstr "Reuse prior decisions"
 #: src/components/sections/before-after-section.tsx:21
 msgid "Reuses existing patterns instead of inventing new ones"
 msgstr "Reuses existing patterns instead of inventing new ones"
+
+#: src/pages/cli.tsx:347
+msgid "Run <0>/product_track feature=\"user notifications\"</0> in your agent — it drafts an idea, derives a PRD, builds a plan, and links them automatically."
+msgstr "Run <0>/product_track feature=\"user notifications\"</0> in your agent — it drafts an idea, derives a PRD, builds a plan, and links them automatically."
+
+#: src/pages/cli.tsx:504
+msgid "Run archcore update. Cross-platform on amd64/arm64. Run archcore doctor anytime to verify your setup."
+msgstr "Run archcore update. Cross-platform on amd64/arm64. Run archcore doctor anytime to verify your setup."
 
 #: src/components/cta/team-setup-dialog.tsx:106
 #: src/pages/teams-getting-started.tsx:142
@@ -449,11 +795,11 @@ msgstr "Run in your terminal:"
 msgid "Run multi-step workflows"
 msgstr "Run multi-step workflows"
 
-#: src/components/sections/install-section.tsx:165
+#: src/components/sections/install-section.tsx:174
 msgid "Run your first intent command"
 msgstr "Run your first intent command"
 
-#: src/components/sections/final-cta-section.tsx:85
+#: src/components/sections/final-cta-section.tsx:86
 msgid "Same context layer. Different entry points."
 msgstr "Same context layer. Different entry points."
 
@@ -461,13 +807,34 @@ msgstr "Same context layer. Different entry points."
 msgid "Same prompt. Same codebase. The difference is whether the agent has structured project context or has to guess."
 msgstr "Same prompt. Same codebase. The difference is whether the agent has structured project context or has to guess."
 
-#: src/components/sections/install-section.tsx:267
+#: src/pages/cli.tsx:453
+msgid "Self-update to latest version"
+msgstr "Self-update to latest version"
+
+#: src/components/sections/install-section.tsx:276
+#: src/pages/cli.tsx:246
 msgid "Session hooks"
 msgstr "Session hooks"
 
 #: src/components/sections/jobs-section.tsx:119
 msgid "Shared core capability"
 msgstr "Shared core capability"
+
+#: src/pages/plugin.tsx:480
+msgid "Ship architecture-aware code today"
+msgstr "Ship architecture-aware code today"
+
+#: src/pages/cli.tsx:565
+msgid "Ship the CLI today"
+msgstr "Ship the CLI today"
+
+#: src/pages/cli.tsx:496
+msgid "Should I install the plugin instead?"
+msgstr "Should I install the plugin instead?"
+
+#: src/pages/plugin.tsx:371
+msgid "Slash commands at your fingertips"
+msgstr "Slash commands at your fingertips"
 
 #: src/components/sections/hero-section.tsx:23
 msgid "So AI agents can follow your architecture, rules, and decisions — instead of guessing."
@@ -478,15 +845,19 @@ msgstr "So AI agents can follow your architecture, rules, and decisions — inst
 msgid "Something went wrong. Please try again."
 msgstr "Something went wrong. Please try again."
 
-#: src/components/sections/final-cta-section.tsx:23
+#: src/components/sections/final-cta-section.tsx:24
 msgid "Source and releases for the CLI and MCP server."
 msgstr "Source and releases for the CLI and MCP server."
 
-#: src/components/sections/final-cta-section.tsx:17
+#: src/components/sections/final-cta-section.tsx:18
 msgid "Source, releases, and issues for the Claude Code and Cursor plugin."
 msgstr "Source, releases, and issues for the Claude Code and Cursor plugin."
 
-#: src/components/sections/install-section.tsx:284
+#: src/pages/cli.tsx:117
+msgid "Standalone binary · macOS, Linux, Windows · No external services · Apache 2.0"
+msgstr "Standalone binary · macOS, Linux, Windows · No external services · Apache 2.0"
+
+#: src/components/sections/install-section.tsx:293
 msgid "Standalone binary for macOS, Linux, and Windows. No external services."
 msgstr "Standalone binary for macOS, Linux, and Windows. No external services."
 
@@ -495,11 +866,21 @@ msgid "Standards stop living only in memory and scattered docs. Agents read the 
 msgstr "Standards stop living only in memory and scattered docs. Agents read the rules and apply them consistently."
 
 #: src/components/sections/hero-section.tsx:51
+#: src/pages/cli.tsx:595
+#: src/pages/plugin.tsx:515
 msgid "Star on GitHub"
 msgstr "Star on GitHub"
 
-#: src/components/cta/entry-point-cards.tsx:64
-#: src/components/sections/final-cta-section.tsx:50
+#: src/pages/cli.tsx:133
+msgid "Star the CLI on GitHub"
+msgstr "Star the CLI on GitHub"
+
+#: src/pages/plugin.tsx:145
+msgid "Star the plugin on GitHub"
+msgstr "Star the plugin on GitHub"
+
+#: src/components/cta/entry-point-cards.tsx:65
+#: src/components/sections/final-cta-section.tsx:51
 msgid "Start with CLI"
 msgstr "Start with CLI"
 
@@ -507,29 +888,50 @@ msgstr "Start with CLI"
 msgid "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
 msgstr "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
 
-#: src/components/sections/footer-section.tsx:37
+#: src/components/sections/footer-section.tsx:39
 msgid "Stay Updated"
 msgstr "Stay Updated"
 
-#: src/components/sections/install-section.tsx:253
+#: src/components/sections/install-section.tsx:262
 msgid "Structured docs"
 msgstr "Structured docs"
 
-#: src/components/sections/footer-section.tsx:41
+#: src/components/sections/footer-section.tsx:43
 msgid "Subscribe"
 msgstr "Subscribe"
+
+#: src/pages/cli.tsx:301
+msgid "Technical design + implementation."
+msgstr "Technical design + implementation."
 
 #: src/components/cta/inline-email-capture.tsx:33
 msgid "Thanks! We'll be in touch."
 msgstr "Thanks! We'll be in touch."
 
-#: src/components/sections/footer-section.tsx:42
+#: src/components/sections/footer-section.tsx:44
 msgid "Thanks! You're on the list."
 msgstr "Thanks! You're on the list."
 
 #: src/components/sections/jobs-section.tsx:32
 msgid "The agent places files where your architecture expects them, following real conventions from ADRs and rules."
 msgstr "The agent places files where your architecture expects them, following real conventions from ADRs and rules."
+
+#: src/pages/cli.tsx:46
+msgid "The Archcore CLI puts your architectural decisions, rules, and conventions in .archcore/ — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
+msgstr "The Archcore CLI puts your architectural decisions, rules, and conventions in .archcore/ — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
+
+#: src/pages/cli.tsx:92
+msgid "The Archcore CLI puts your architectural decisions, rules, and conventions in <0>.archcore/</0> — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
+msgstr "The Archcore CLI puts your architectural decisions, rules, and conventions in <0>.archcore/</0> — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
+
+#: src/pages/plugin.tsx:462
+msgid "The Archcore CLI works with 8 AI agents via MCP and session hooks — no plugin host required."
+msgstr "The Archcore CLI works with 8 AI agents via MCP and session hooks — no plugin host required."
+
+#: src/pages/plugin.tsx:53
+#: src/pages/plugin.tsx:100
+msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code and Cursor — so the agent stops guessing and starts following your team's truth."
+msgstr "The Archcore plugin loads your architecture, rules, and decisions into Claude Code and Cursor — so the agent stops guessing and starts following your team's truth."
 
 #: src/components/sections/before-after-section.tsx:29
 msgid "The moment the agent starts understanding your repo"
@@ -539,24 +941,58 @@ msgstr "The moment the agent starts understanding your repo"
 msgid "The plugin uses the CLI under the hood, so installing the plugin gives you both. If you only want the core context layer — .archcore/, MCP, hooks — install the CLI on its own."
 msgstr "The plugin uses the CLI under the hood, so installing the plugin gives you both. If you only want the core context layer — .archcore/, MCP, hooks — install the CLI on its own."
 
+#: src/pages/plugin.tsx:240
+msgid "The plugin wraps the Archcore context layer in commands and guardrails your team can use from day one."
+msgstr "The plugin wraps the Archcore context layer in commands and guardrails your team can use from day one."
+
 #: src/components/sections/before-after-section.tsx:105
 msgid "The same context is available over MCP and hooks for teams that prefer the direct CLI path."
 msgstr "The same context is available over MCP and hooks for teams that prefer the direct CLI path."
+
+#: src/pages/cli.tsx:191
+msgid "Then initialize your repo"
+msgstr "Then initialize your repo"
+
+#: src/pages/cli.tsx:325
+msgid "Tracks are MCP prompts that orchestrate full workflows in a single call — the agent drafts and links every document for you. Use a lightweight track for most work, or formal ones when you need traceability."
+msgstr "Tracks are MCP prompts that orchestrate full workflows in a single call — the agent drafts and links every document for you. Use a lightweight track for most work, or formal ones when you need traceability."
 
 #: src/components/sections/hero-section.tsx:15
 msgid "Turn your repository into structured,<0/>machine-readable context."
 msgstr "Turn your repository into structured,<0/>machine-readable context."
 
-#: src/components/cta/entry-point-cards.tsx:38
-#: src/components/sections/final-cta-section.tsx:44
+#: src/pages/plugin.tsx:483
+msgid "Two commands inside Claude Code. Your team's decisions travel with every change."
+msgstr "Two commands inside Claude Code. Your team's decisions travel with every change."
+
+#: src/pages/plugin.tsx:216
+msgid "Type /archcore:capture, /archcore:decide, /archcore:context — full document workflows live inside your agent."
+msgstr "Type /archcore:capture, /archcore:decide, /archcore:context — full document workflows live inside your agent."
+
+#: src/pages/plugin.tsx:356
+msgid "Use the CLI"
+msgstr "Use the CLI"
+
+#: src/components/cta/entry-point-cards.tsx:39
+#: src/components/sections/final-cta-section.tsx:45
 msgid "Use the Plugin"
 msgstr "Use the Plugin"
 
-#: src/components/sections/install-section.tsx:153
+#: src/pages/cli.tsx:544
+msgid "Using Claude Code or Cursor?"
+msgstr "Using Claude Code or Cursor?"
+
+#: src/pages/cli.tsx:110
+#: src/pages/plugin.tsx:122
+msgid "View on GitHub"
+msgstr "View on GitHub"
+
+#: src/components/sections/install-section.tsx:162
 msgid "View plugin on GitHub"
 msgstr "View plugin on GitHub"
 
 #: src/components/sections/faq-section.tsx:35
+#: src/pages/cli.tsx:484
 msgid "What does archcore init create?"
 msgstr "What does archcore init create?"
 
@@ -564,9 +1000,18 @@ msgstr "What does archcore init create?"
 msgid "What gets better once your agent knows your system"
 msgstr "What gets better once your agent knows your system"
 
-#: src/components/sections/install-section.tsx:349
+#: src/components/sections/install-section.tsx:358
+#: src/pages/cli.tsx:256
 msgid "What you get"
 msgstr "What you get"
+
+#: src/pages/plugin.tsx:417
+msgid "Where do my docs live?"
+msgstr "Where do my docs live?"
+
+#: src/pages/plugin.tsx:405
+msgid "Which agents are supported?"
+msgstr "Which agents are supported?"
 
 #: src/components/sections/faq-section.tsx:29
 msgid "Which AI agents are supported?"
@@ -576,6 +1021,10 @@ msgstr "Which AI agents are supported?"
 msgid "Which path should I start with — Plugin or CLI?"
 msgstr "Which path should I start with — Plugin or CLI?"
 
+#: src/pages/cli.tsx:431
+msgid "Why not just CLAUDE.md or .cursorrules?"
+msgstr "Why not just CLAUDE.md or .cursorrules?"
+
 #: src/components/sections/why-not-instructions-section.tsx:18
 msgid "Why not just CLAUDE.md, AGENTS.md, or repository instructions?"
 msgstr "Why not just CLAUDE.md, AGENTS.md, or repository instructions?"
@@ -584,9 +1033,17 @@ msgstr "Why not just CLAUDE.md, AGENTS.md, or repository instructions?"
 msgid "Windows"
 msgstr "Windows"
 
-#: src/components/sections/install-section.tsx:331
+#: src/pages/cli.tsx:395
+msgid "Wire up hooks and MCP in seconds. archcore hooks install · archcore mcp install."
+msgstr "Wire up hooks and MCP in seconds. archcore hooks install · archcore mcp install."
+
+#: src/components/sections/install-section.tsx:340
 msgid "Wire up MCP or hooks"
 msgstr "Wire up MCP or hooks"
+
+#: src/pages/cli.tsx:451
+msgid "Wire up session hooks"
+msgstr "Wire up session hooks"
 
 #: src/components/sections/before-after-section.tsx:82
 msgid "With the Archcore Plugin"
@@ -596,9 +1053,17 @@ msgstr "With the Archcore Plugin"
 msgid "Without Archcore"
 msgstr "Without Archcore"
 
+#: src/pages/cli.tsx:393
+msgid "Works with 8 AI coding agents"
+msgstr "Works with 8 AI coding agents"
+
 #: src/components/sections/hero-section.tsx:33
 msgid "Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex CLI, and more"
 msgstr "Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex CLI, and more"
+
+#: src/pages/plugin.tsx:413
+msgid "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download (useful for offline / enterprise deployments)."
+msgstr "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download (useful for offline / enterprise deployments)."
 
 #: src/components/sections/entry-point-choice-section.tsx:23
 msgid "You prefer a minimal, scriptable surface"
@@ -631,3 +1096,7 @@ msgstr "You want the core context layer directly — .archcore/, MCP, hooks"
 #: src/components/sections/entry-point-choice-section.tsx:16
 msgid "You want the fastest path to value without wiring up MCP manually"
 msgstr "You want the fastest path to value without wiring up MCP manually"
+
+#: src/pages/plugin.tsx:228
+msgid "Zero setup for Claude Code"
+msgstr "Zero setup for Claude Code"

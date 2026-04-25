@@ -3,11 +3,27 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://archcore.ai/</loc>
-    <lastmod>2026-03-28</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://archcore.ai/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://archcore.ai/?lang=ru" />
+  </url>
+  <url>
+    <loc>https://archcore.ai/plugin</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://archcore.ai/plugin" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://archcore.ai/plugin?lang=ru" />
+  </url>
+  <url>
+    <loc>https://archcore.ai/cli</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://archcore.ai/cli" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://archcore.ai/cli?lang=ru" />
   </url>
   <url>
     <loc>https://archcore.ai/privacy</loc>

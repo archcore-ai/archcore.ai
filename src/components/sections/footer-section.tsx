@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import { Logo } from "@/components/logo";
 import { InlineEmailCapture } from "@/components/cta";
 import { useLingui } from "@lingui/react";
-import { LINKS } from "@/lib/links";
+import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 export function FooterSection() {
   const { _ } = useLingui();
 
   const footerLinks = [
-    { label: _(msg`Plugin`), href: LINKS.pluginRepo, external: true },
-    { label: _(msg`CLI`), href: LINKS.cliRepo, external: true },
+    { label: _(msg`Plugin`), href: INTERNAL_LINKS.plugin, external: false },
+    { label: _(msg`CLI`), href: INTERNAL_LINKS.cli, external: false },
     { label: _(msg`Docs`), href: LINKS.docs, external: true },
     { label: "GitHub", href: LINKS.org, external: true },
     { label: "Discord", href: LINKS.discord, external: true },
     { label: "X", href: LINKS.x, external: true },
     { label: "Telegram", href: LINKS.telegram, external: true },
-    { label: _(msg`Privacy`), href: "/privacy", external: false },
+    { label: _(msg`Privacy`), href: INTERNAL_LINKS.privacy, external: false },
   ];
   return (
     <footer className="border-t border-border px-6 py-20 md:py-24">

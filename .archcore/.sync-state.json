@@ -26,6 +26,11 @@
       "source": "landing/og-image-generation.guide.md",
       "target": "landing-tech-stack.doc.md",
       "type": "related"
+    },
+    {
+      "source": "infrastructure/migrate-hosting-to-github-pages.adr.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
     }
   ]
 }
