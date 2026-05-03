@@ -289,7 +289,7 @@ function PluginInstall() {
             </p>
             <InstallCommand
               variant="inline"
-              command="/plugin marketplace add archcore-ai/archcore-plugin"
+              command="/plugin marketplace add archcore-ai/plugin"
             />
             <InstallCommand
               variant="inline"
@@ -303,7 +303,7 @@ function PluginInstall() {
             <div className="mt-2 space-y-2">
               <InstallCommand
                 variant="inline"
-                command="claude plugin marketplace add archcore-ai/archcore-plugin"
+                command="claude plugin marketplace add archcore-ai/plugin"
               />
               <InstallCommand
                 variant="inline"
@@ -328,7 +328,7 @@ function PluginInstall() {
           </p>
           <InstallCommand
             variant="inline"
-            command="/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin"
+            command="/add-plugin archcore@https://github.com/archcore-ai/plugin"
           />
           <p className="text-xs text-muted-foreground leading-relaxed">
             <Trans>Or grab it from</Trans>{" "}

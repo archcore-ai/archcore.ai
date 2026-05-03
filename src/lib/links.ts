@@ -1,5 +1,5 @@
 export const LINKS = {
-  pluginRepo: "https://github.com/archcore-ai/archcore-plugin",
+  pluginRepo: "https://github.com/archcore-ai/plugin",
   cliRepo: "https://github.com/archcore-ai/cli",
   org: "https://github.com/archcore-ai",
   docs: "https://docs.archcore.ai/",

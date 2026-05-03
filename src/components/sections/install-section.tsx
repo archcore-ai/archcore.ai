@@ -139,7 +139,7 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</code> (type the full command — it's not in autocomplete), or install from
+              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/plugin</code> (type the full command — it's not in autocomplete), or install from
             </Trans>
             {" "}
             <a
@@ -213,7 +213,7 @@ function ClaudeCodeCard() {
         </p>
         <InstallCommand
           variant="inline"
-          command="/plugin marketplace add archcore-ai/archcore-plugin"
+          command="/plugin marketplace add archcore-ai/plugin"
         />
         <InstallCommand
           variant="inline"
@@ -228,7 +228,7 @@ function ClaudeCodeCard() {
         <div className="mt-2 space-y-2">
           <InstallCommand
             variant="inline"
-            command="claude plugin marketplace add archcore-ai/archcore-plugin"
+            command="claude plugin marketplace add archcore-ai/plugin"
           />
           <InstallCommand
             variant="inline"

@@ -285,12 +285,12 @@ msgid "Cross-platform binary. No Node, no Python, no external services."
 msgstr "Кроссплатформенный бинарник. Без Node, Python и внешних сервисов."
 
 #: src/components/sections/install-section.tsx:141
-msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete), or install from"
-msgstr "Cursor 2.5+: в новом Agent-чате выполните <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (наберите команду целиком — её нет в автокомплите) или установите из"
+msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete), or install from"
+msgstr "Cursor 2.5+: в новом Agent-чате выполните <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (наберите команду целиком — её нет в автокомплите) или установите из"
 
 #: src/components/sections/install-section.tsx:141
-#~ msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
-#~ msgstr "Cursor 2.5+: в новом Agent-чате выполните <0>/add-plugin archcore@https://github.com/archcore-ai/archcore-plugin</0> (наберите команду целиком — её нет в автокомплите). Copilot и Codex CLI — в планах по поддержке плагина."
+#~ msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
+#~ msgstr "Cursor 2.5+: в новом Agent-чате выполните <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (наберите команду целиком — её нет в автокомплите). Copilot и Codex CLI — в планах по поддержке плагина."
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/pages/teams-getting-started.tsx:71
