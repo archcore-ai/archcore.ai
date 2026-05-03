@@ -322,13 +322,12 @@ function PluginInstall() {
           </header>
           <p className="text-sm text-muted-foreground leading-relaxed">
             <Trans>
-              In a new Agent chat, type the full command (it isn't in
-              autocomplete):
+              Open Cursor → Plugins, paste the GitHub URL into "Search or paste link", and click Add Plugin:
             </Trans>
           </p>
           <InstallCommand
             variant="inline"
-            command="/add-plugin archcore@https://github.com/archcore-ai/plugin"
+            command="https://github.com/archcore-ai/plugin"
           />
           <p className="text-xs text-muted-foreground leading-relaxed">
             <Trans>Or grab it from</Trans>{" "}

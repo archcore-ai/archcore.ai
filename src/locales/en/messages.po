@@ -285,12 +285,8 @@ msgid "Cross-platform binary. No Node, no Python, no external services."
 msgstr "Cross-platform binary. No Node, no Python, no external services."
 
 #: src/components/sections/install-section.tsx:141
-msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete), or install from"
-msgstr "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete), or install from"
-
-#: src/components/sections/install-section.tsx:141
-#~ msgid "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
-#~ msgstr "Cursor 2.5+: in a new Agent chat, run <0>/add-plugin archcore@https://github.com/archcore-ai/plugin</0> (type the full command — it's not in autocomplete). Copilot and Codex CLI are on the plugin roadmap."
+msgid "Cursor 2.5+: open Cursor → Plugins, paste <0>https://github.com/archcore-ai/plugin</0> into the \"Search or paste link\" field, and click Add Plugin. Or install from"
+msgstr "Cursor 2.5+: open Cursor → Plugins, paste <0>https://github.com/archcore-ai/plugin</0> into the \"Search or paste link\" field, and click Add Plugin. Or install from"
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/pages/teams-getting-started.tsx:71
@@ -439,8 +435,8 @@ msgid "In .archcore/ inside your repository. Markdown with YAML frontmatter, ver
 msgstr "In .archcore/ inside your repository. Markdown with YAML frontmatter, versioned with your code. No external services, accounts, or databases."
 
 #: src/pages/plugin.tsx:323
-msgid "In a new Agent chat, type the full command (it isn't in autocomplete):"
-msgstr "In a new Agent chat, type the full command (it isn't in autocomplete):"
+msgid "Open Cursor → Plugins, paste the GitHub URL into \"Search or paste link\", and click Add Plugin:"
+msgstr "Open Cursor → Plugins, paste the GitHub URL into \"Search or paste link\", and click Add Plugin:"
 
 #: src/components/sections/why-not-instructions-section.tsx:54
 msgid "Incidents and experience reports"

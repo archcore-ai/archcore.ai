@@ -139,7 +139,7 @@ function PluginTab() {
 
           <p className="text-xs text-muted-foreground pt-2 border-t border-border leading-relaxed">
             <Trans>
-              Cursor 2.5+: in a new Agent chat, run <code className="rounded bg-muted px-1 py-0.5 font-mono">/add-plugin archcore@https://github.com/archcore-ai/plugin</code> (type the full command — it's not in autocomplete), or install from
+              Cursor 2.5+: open Cursor → Plugins, paste <code className="rounded bg-muted px-1 py-0.5 font-mono">https://github.com/archcore-ai/plugin</code> into the "Search or paste link" field, and click Add Plugin. Or install from
             </Trans>
             {" "}
             <a
