@@ -31,7 +31,7 @@ export function DockerStartDialog({
         <DialogHeader>
           <div className="flex items-center gap-2">
             <DialogTitle>
-              <Trans>Get Started with Archcore</Trans>
+              <Trans>Install Archcore</Trans>
             </DialogTitle>
             <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-primary/40 text-primary">
               Alpha
@@ -50,7 +50,7 @@ export function DockerStartDialog({
             <Terminal className="h-4 w-4 shrink-0" />
             <Trans>Run in your terminal:</Trans>
           </div>
-          <div className="relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-sm break-all">
+          <div className="relative rounded-lg bg-[var(--color-code-bg)] border border-border p-4 pr-12 font-mono text-sm break-all">
             {DOCKER_COMMAND}
             <Button
               variant="ghost"

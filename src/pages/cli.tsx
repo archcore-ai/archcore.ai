@@ -74,9 +74,9 @@ function CLIHero() {
   return (
     <section
       id="top"
-      className="hero-pattern relative pt-28 lg:pt-32 pb-12 md:pb-16 px-6 overflow-hidden"
+      className="relative pt-28 lg:pt-32 pb-12 md:pb-16 px-6 overflow-hidden"
     >
-      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+      <div className="relative z-10 max-w-[var(--container-max)] mx-auto text-center space-y-6">
         <Badge
           variant="outline"
           className="mx-auto border-primary/30 bg-primary/[0.06] text-primary"
@@ -85,11 +85,11 @@ function CLIHero() {
           <Trans>Archcore CLI · MCP + Hooks</Trans>
         </Badge>
 
-        <h1 className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
+        <h1 className="type-hero text-balance">
           <Trans>Repo-native context for any AI agent.</Trans>
         </h1>
 
-        <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
           <Trans>
             The Archcore CLI puts your architectural decisions, rules, and
             conventions in <code className="font-mono text-base bg-muted/60 px-1.5 py-0.5 rounded">.archcore/</code> — versioned with your code, exposed to 8 AI
@@ -150,10 +150,6 @@ function CLIShowcase() {
       className="relative px-6"
     >
       <div className="relative max-w-5xl mx-auto">
-        <div
-          aria-hidden
-          className="showcase-glow pointer-events-none absolute inset-x-0 -top-10 -bottom-10 -z-10 mx-auto max-w-3xl rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_50%,oklch(0.8_0.15_85/0.25),transparent_70%)] blur-3xl"
-        />
         <img
           key={isDark ? "dark" : "light"}
           src={

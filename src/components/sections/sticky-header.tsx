@@ -69,16 +69,16 @@ export function StickyHeader() {
     <header
       ref={headerRef}
       className={cn(
-        "fixed top-0 left-0 right-0 z-[9999] transition-all duration-200",
+        "fixed top-0 left-0 right-0 z-[9999] transition-colors duration-200",
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+          ? "bg-[var(--color-page)] border-b border-border"
           : mobileMenuOpen
-            ? "bg-background"
+            ? "bg-[var(--color-page)]"
             : "bg-transparent"
       )}
     >
       <div className="px-6">
-        <div className="max-w-6xl mx-auto h-16 flex items-center justify-between gap-4">
+        <div className="max-w-[var(--container-max)] mx-auto h-16 flex items-center justify-between gap-4">
           <Link to="/" className="shrink-0">
             <Logo size="md" loading="eager" />
           </Link>
@@ -143,7 +143,7 @@ export function StickyHeader() {
         <div className="md:hidden border-t border-border bg-background px-6">
           <nav
             aria-label="Mobile navigation"
-            className="max-w-6xl mx-auto py-4 space-y-1"
+            className="max-w-[var(--container-max)] mx-auto py-4 space-y-1"
           >
             {navItems.map((item) =>
               item.internal ? (

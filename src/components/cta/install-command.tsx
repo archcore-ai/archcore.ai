@@ -180,7 +180,7 @@ function SingleCommand({
     return (
       <div
         className={cn(
-          "hidden lg:flex items-center gap-1.5 rounded-md bg-muted/80 border px-3 py-1.5 font-mono text-xs text-muted-foreground",
+          "hidden lg:flex items-center gap-1.5 rounded-md bg-[var(--color-code-bg)] border border-border px-3 py-1.5 font-mono text-xs text-muted-foreground",
           className
         )}
       >
@@ -209,7 +209,7 @@ function SingleCommand({
     return (
       <div
         className={cn(
-          "relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-sm sm:text-base break-all max-w-2xl mx-auto text-left",
+          "relative rounded-lg bg-[var(--color-code-bg)] border border-border p-4 pr-12 font-mono text-sm sm:text-base break-all max-w-2xl mx-auto text-left",
           className
         )}
       >
@@ -241,7 +241,7 @@ function SingleCommand({
   return (
     <div
       className={cn(
-        "relative rounded-lg bg-muted/50 border p-3 pr-11 font-mono text-sm break-all",
+        "relative rounded-lg bg-[var(--color-code-bg)] border border-border p-3 pr-11 font-mono text-sm break-all",
         className
       )}
     >

@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface DualCTAProps {
-  primaryLabel?: string;
+  primaryLabel: string;
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
@@ -12,7 +12,7 @@ interface DualCTAProps {
 }
 
 export function DualCTA({
-  primaryLabel = "Get Started",
+  primaryLabel,
   primaryHref,
   secondaryLabel,
   secondaryHref,

@@ -33,7 +33,7 @@ export function EntryPointChoiceSection() {
       />
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <article className="relative rounded-2xl border-2 border-primary/40 bg-primary/[0.04] p-8 shadow-md">
+        <article className="relative rounded-xl border-2 border-primary/40 bg-primary/[0.04] p-8 shadow-md">
           <Badge className="absolute -top-3 left-8" variant="default">
             <Trans>Recommended</Trans>
           </Badge>
@@ -59,7 +59,7 @@ export function EntryPointChoiceSection() {
           </ul>
         </article>
 
-        <article className="rounded-2xl border border-border bg-card p-8">
+        <article className="rounded-xl border border-border bg-card p-8">
           <header className="flex items-center gap-3 mb-5">
             <div className="rounded-lg bg-muted p-2.5">
               <Terminal className="h-5 w-5 text-muted-foreground" />

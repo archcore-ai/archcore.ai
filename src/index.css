@@ -1,39 +1,53 @@
 /*
- * Landing page styles - imports shared theme from main app
- * Lightweight version without tiptap/charts/sidebar styles
+ * Landing page styles — DESIGN.md token system.
+ * Maps shadcn/ui aliases onto the canonical Archcore tokens so
+ * existing primitives keep working without per-component overrides.
  */
 @import "tailwindcss";
 
-/* Include shared components from parent src directory */
 @source "../../src";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  /* shadcn aliases → Archcore tokens */
+  --color-background: var(--color-page);
+  --color-foreground: var(--color-text);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text);
+  --color-popover: var(--color-elevated);
+  --color-popover-foreground: var(--color-text);
+  --color-primary: var(--color-action);
+  --color-primary-foreground: var(--color-text-inverse);
+  --color-secondary: var(--color-surface-muted);
+  --color-secondary-foreground: var(--color-text);
+  --color-muted: var(--color-surface-muted);
+  --color-muted-foreground: var(--color-text-secondary);
+  --color-accent: var(--color-surface-muted);
+  --color-accent-foreground: var(--color-text);
+  --color-destructive: var(--color-status-danger);
+  --color-border: var(--color-border-default);
+  --color-input: var(--color-border-default);
+  --color-ring: var(--color-border-strong);
 
-  /* Accordion animations */
+  /* Radius scale */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 22px;
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", SFMono-Regular,
+    Consolas, "Liberation Mono", monospace;
+
+  /* Container widths */
+  --container-archcore: 1040px;
+  --container-archcore-narrow: 760px;
+
+  /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -56,156 +70,158 @@
   }
 }
 
-/*
- * Theme variables - kept in sync with main app (../src/index.css)
- * NOTE: Intentionally duplicated to avoid cross-project CSS imports
- * which can cause Vite/Tailwind issues. Keep core values identical.
- */
+/* Archcore design tokens (DESIGN.md) */
 :root {
+  --color-page: #f8f1e8;
+  --color-page-alt: #f3ede1;
+  --color-surface: #fbf7ee;
+  --color-surface-muted: #f1ebdd;
+  --color-elevated: #fffdf7;
+  --color-code-bg: #f5eee1;
+
+  --color-text: #11100e;
+  --color-text-secondary: #5f5a50;
+  --color-text-muted: #8a8377;
+  --color-text-inverse: #ffffff;
+
+  --color-border-subtle: #e3d8c8;
+  --color-border-default: #d5c8b6;
+  --color-border-strong: #191714;
+
+  --color-action: #11100e;
+  --color-action-hover: #2a2722;
+
+  --color-status-success: #2e6b45;
+  --color-status-warning: #8a6426;
+  --color-status-danger: #8a2e2e;
+
+  --container-max: 1040px;
+  --container-narrow: 760px;
+
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+
+  /* Legacy alias kept for any consumer that still reads --radius. */
   --radius: 0.625rem;
-  --background: oklch(0.971 0.015 95);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(0.971 0.015 95);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(0.971 0.015 95);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.94 0.025 95);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.94 0.025 95);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.94 0.025 95);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.03 95);
-  --input: oklch(0.9 0.03 95);
-  --ring: oklch(0.8 0.05 95);
+
+  --grid-line: rgba(17, 16, 14, 0.035);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 95);
-  --foreground: oklch(0.93 0.02 95);
-  --card: oklch(0.2 0.025 95);
-  --card-foreground: oklch(0.93 0.02 95);
-  --popover: oklch(0.2 0.025 95);
-  --popover-foreground: oklch(0.93 0.02 95);
-  --primary: oklch(0.9 0.03 95);
-  --primary-foreground: oklch(0.18 0.02 95);
-  --secondary: oklch(0.26 0.03 95);
-  --secondary-foreground: oklch(0.93 0.02 95);
-  --muted: oklch(0.26 0.03 95);
-  --muted-foreground: oklch(0.65 0.04 95);
-  --accent: oklch(0.26 0.03 95);
-  --accent-foreground: oklch(0.93 0.02 95);
-  --destructive: oklch(0.65 0.2 25);
-  --border: oklch(0.32 0.035 95);
-  --input: oklch(0.32 0.035 95);
-  --ring: oklch(0.55 0.05 95);
+  --color-page: #1a1816;
+  --color-page-alt: #1f1c19;
+  --color-surface: #23201c;
+  --color-surface-muted: #2a2722;
+  --color-elevated: #2e2a25;
+  --color-code-bg: #2a2722;
+
+  --color-text: #f3ede1;
+  --color-text-secondary: #b3aa9b;
+  --color-text-muted: #8a8377;
+  --color-text-inverse: #11100e;
+
+  --color-border-subtle: #2e2a25;
+  --color-border-default: #3a342d;
+  --color-border-strong: #f3ede1;
+
+  --color-action: #f3ede1;
+  --color-action-hover: #fffdf7;
+
+  --color-status-success: #4f9c70;
+  --color-status-warning: #c79656;
+  --color-status-danger: #c45a5a;
+
+  --grid-line: rgba(243, 237, 225, 0.04);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     @apply overflow-x-hidden;
   }
+
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    background-color: var(--color-page);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--font-mono);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
   }
 }
 
-/* Hero section background pattern - Square grid with Solarized Light colors */
-.hero-pattern {
-  background:
-    linear-gradient(rgba(147, 161, 161, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(147, 161, 161, 0.08) 1px, transparent 1px),
-    linear-gradient(180deg, #fdf6e3 0%, #f8f6eb 100%);
-  background-size:
-    70px 70px,
-    70px 70px,
-    100% 100%;
+/* Type scale (DESIGN.md, lines 178-217) */
+.type-hero {
+  font-family: var(--font-sans);
+  font-size: 56px;
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: -0.045em;
 }
 
-.dark .hero-pattern {
-  background-color: oklch(0.16 0.02 95);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 70px 70px;
+.type-h2 {
+  font-family: var(--font-sans);
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
-/* Hero typography styles */
-.hero-title {
-  background: linear-gradient(
-    135deg,
-    oklch(0.145 0 0) 0%,
-    oklch(0.25 0.05 95) 50%,
-    oklch(0.145 0 0) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  animation: shine 8s ease-in-out infinite;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.type-h3 {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 650;
 }
 
-.dark .hero-title {
-  background: linear-gradient(
-    135deg,
-    oklch(0.95 0.02 95) 0%,
-    oklch(0.75 0.08 95) 50%,
-    oklch(0.95 0.02 95) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+.type-body {
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
 }
 
-@keyframes shine {
-  0%,
-  100% {
-    background-position: 0% center;
+.type-small {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .type-hero {
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.04em;
   }
-  50% {
-    background-position: 100% center;
+
+  .type-h2 {
+    font-size: 28px;
+    line-height: 1.08;
   }
 }
 
-.hero-description {
-  letter-spacing: -0.01em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  white-space: pre-line;
-}
-
-.dark .hero-description {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-title {
-    animation: none;
-    background: none;
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    -webkit-text-fill-color: initial;
-    color: oklch(0.145 0 0);
-  }
-
-  .dark .hero-title {
-    background: none;
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    -webkit-text-fill-color: initial;
-    color: oklch(0.95 0.02 95);
-  }
-}
-
-/* Integration card images - soften screenshots to match page palette */
+/* Soften screenshots so they sit on warm cream surfaces. */
 .integration-card-image {
   filter: contrast(0.95) brightness(0.98) sepia(0.04);
 }
@@ -213,4 +229,3 @@
 .dark .integration-card-image {
   filter: contrast(0.9) brightness(0.95);
 }
-

@@ -7,12 +7,13 @@ import {
   ArrowUpRight,
   BookOpen,
   Github,
+  Plug,
   Puzzle,
-  Sparkles,
   ShieldCheck,
   Star,
   Terminal,
   Workflow,
+  Zap,
 } from "lucide-react";
 import { StickyHeader } from "@/components/sections/sticky-header";
 import { FooterSection } from "@/components/sections/footer-section";
@@ -78,26 +79,26 @@ function PluginHero() {
   return (
     <section
       id="top"
-      className="hero-pattern relative pt-28 lg:pt-32 pb-12 md:pb-16 px-6 overflow-hidden"
+      className="relative pt-28 lg:pt-32 pb-12 md:pb-16 px-6 overflow-hidden"
     >
-      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+      <div className="relative z-10 max-w-[var(--container-max)] mx-auto text-center space-y-6">
         <Badge
           variant="outline"
           className="mx-auto border-primary/30 bg-primary/[0.06] text-primary"
         >
-          <Sparkles className="h-3 w-3" />
+          <Plug className="h-3 w-3" />
           <Trans>Archcore Plugin · Claude Code & Cursor</Trans>
         </Badge>
 
-        <h1 className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
+        <h1 className="type-hero text-balance">
           <Trans>
-            Give Claude Code & Cursor
+            Load your repository's architecture
             <br />
-            a brain for your codebase.
+            into Claude Code and Cursor.
           </Trans>
         </h1>
 
-        <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
           <Trans>
             The Archcore plugin loads your architecture, rules, and decisions
             into Claude Code and Cursor — so the agent stops guessing and starts
@@ -162,11 +163,7 @@ function PluginShowcase() {
       className="relative px-6"
     >
       <div className="relative max-w-5xl mx-auto">
-        <div
-          aria-hidden
-          className="showcase-glow pointer-events-none absolute inset-x-0 -top-10 -bottom-10 -z-10 mx-auto max-w-3xl rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_50%,oklch(0.8_0.15_85/0.25),transparent_70%)] blur-3xl"
-        />
-        <div className="showcase-frame relative rounded-2xl border bg-card shadow-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden">
+        <div className="relative rounded-2xl border border-border bg-card overflow-hidden">
           <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-3">
             <div className="flex items-center gap-1.5">
               <span className="size-3 rounded-full bg-[#ff5f57]/80" />
@@ -225,7 +222,7 @@ function PluginFeatures() {
       ),
     },
     {
-      icon: Sparkles,
+      icon: Zap,
       title: _(msg`Zero setup for Claude Code`),
       description: _(
         msg`Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself. No configs to write.`

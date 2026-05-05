@@ -7,11 +7,11 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="hero-pattern relative pt-28 lg:pt-32 pb-16 md:pb-20 px-6 overflow-hidden"
+      className="relative pt-28 lg:pt-32 pb-16 md:pb-20 px-6 overflow-hidden"
     >
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
-          <h1 className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
+          <h1 className="type-hero text-balance">
             <Trans>
               Turn your repository into structured,
               <br />
@@ -19,7 +19,7 @@ export function HeroSection() {
             </Trans>
           </h1>
 
-          <p className="hero-description text-lg md:text-xl leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
               So AI agents can follow your architecture, rules, and decisions
               — instead of guessing.

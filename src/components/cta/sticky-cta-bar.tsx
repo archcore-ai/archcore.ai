@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface StickyCTABarProps {
-  message?: string;
-  buttonLabel?: string;
+  message: string;
+  buttonLabel: string;
   onButtonClick?: () => void;
   className?: string;
 }
@@ -18,8 +18,8 @@ function getInitialDismissed() {
 }
 
 export function StickyCTABar({
-  message = "Ready to implement Archcore?",
-  buttonLabel = "Get Started",
+  message,
+  buttonLabel,
   onButtonClick,
   className,
 }: StickyCTABarProps) {
@@ -52,17 +52,14 @@ export function StickyCTABar({
     <div
       className={cn(
         "fixed bottom-0 left-0 right-0 z-40",
-        "bg-background/95 backdrop-blur-md border-t border-border",
+        "bg-[var(--color-surface)] border-t border-border-strong",
         "transform transition-transform duration-300",
         isVisible ? "translate-y-0" : "translate-y-full",
         className
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <p className="text-sm font-medium hidden sm:block">{message}</p>
-        <p className="text-sm font-medium sm:hidden">
-          Get started with Archcore
-        </p>
+      <div className="max-w-[var(--container-max)] mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <p className="text-sm font-medium">{message}</p>
 
         <div className="flex items-center gap-2">
           <Button size="sm" onClick={onButtonClick} className="gap-1.5">

@@ -7,11 +7,11 @@ interface SectionCTACardProps {
   icon?: LucideIcon;
   title: string;
   description: string;
-  buttonLabel?: string;
+  buttonLabel: string;
   buttonHref?: string;
   onButtonClick?: () => void;
   className?: string;
-  /** Use 'featured' for the main conversion CTA with enhanced styling */
+  /** Use 'featured' for the main conversion CTA with strong-border emphasis. */
   variant?: "default" | "featured";
 }
 
@@ -19,7 +19,7 @@ export function SectionCTACard({
   icon: Icon,
   title,
   description,
-  buttonLabel = "Learn More",
+  buttonLabel,
   buttonHref,
   onButtonClick,
   className,
@@ -32,67 +32,25 @@ export function SectionCTACard({
       onButtonClick();
     }
   };
+
   if (variant === "featured") {
     return (
       <div
         className={cn(
-          "section-cta-featured group relative overflow-hidden rounded-xl p-px",
+          "group relative rounded-[var(--radius-card)] border border-border-strong bg-[var(--color-elevated)] px-6 py-5 shadow-[0_8px_24px_rgba(17,16,14,0.06)]",
           className
         )}
       >
-        {/* Animated gradient border */}
-        <div className="absolute inset-0 rounded-xl animate-border-gold" />
-
-        {/* Card content */}
-        <div className="relative rounded-[11px] bg-background px-6 py-5">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-            <div className="flex-1 space-y-1">
-              <h3 className="text-base font-semibold tracking-tight">
-                {title}
-              </h3>
-              <p className="text-sm text-muted-foreground">{description}</p>
-            </div>
-            <Button onClick={handleButtonClick} className="gap-2 flex-shrink-0">
-              {buttonLabel}
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Button>
+        <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+          <div className="flex-1 space-y-1">
+            <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+            <p className="text-sm text-muted-foreground">{description}</p>
           </div>
+          <Button onClick={handleButtonClick} className="gap-2 flex-shrink-0">
+            {buttonLabel}
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Button>
         </div>
-
-        <style>{`
-          @property --border-angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-          }
-
-          .animate-border-gold {
-            background: conic-gradient(
-              from var(--border-angle),
-              #d4a574,
-              #f4d03f,
-              #c9a227,
-              #8b6914,
-              #c9a227,
-              #f4d03f,
-              #d4a574
-            );
-            animation: border-spin 3s linear infinite;
-          }
-
-          @keyframes border-spin {
-            to {
-              --border-angle: 360deg;
-            }
-          }
-
-          @media (prefers-reduced-motion: reduce) {
-            .animate-border-gold {
-              animation: none;
-              background: linear-gradient(135deg, #d4a574, #f4d03f, #c9a227);
-            }
-          }
-        `}</style>
       </div>
     );
   }
