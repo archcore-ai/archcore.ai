@@ -23,7 +23,7 @@ export const ANCHORS = {
   top: "#top",
   install: "#install",
   installCli: "#install-cli",
-  compare: "#why-not-instructions",
+  compare: "#problem",
   whyArchcore: "#why-archcore",
   faq: "#faq",
 } as const;

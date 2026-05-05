@@ -27,9 +27,8 @@ export function FooterSection() {
             <Logo size="md" loading="lazy" />
             <p className="text-sm text-muted-foreground max-w-sm">
               <Trans>
-                Archcore turns your repository into structured, machine-readable
-                context — so AI agents understand your architecture, rules, and
-                decisions.
+                Archcore gives AI coding agents repo memory in Git — decisions,
+                rules, guides, and plans they can load before editing code.
               </Trans>
             </p>
           </div>

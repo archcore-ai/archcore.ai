@@ -1,10 +1,9 @@
 export { StickyHeader } from "./sticky-header";
 export { HeroSection } from "./hero-section";
-export { EntryPointChoiceSection } from "./entry-point-choice-section";
-export { JobsSection } from "./jobs-section";
-export { BeforeAfterSection } from "./before-after-section";
+export { ProblemSection } from "./problem-section";
+export { HowItWorksSection } from "./how-it-works-section";
+export { TryPromptsSection } from "./try-prompts-section";
 export { InstallSection } from "./install-section";
-export { WhyNotInstructionsSection } from "./why-not-instructions-section";
 export { FAQSection } from "./faq-section";
 export { FinalCTASection } from "./final-cta-section";
 export { FooterSection } from "./footer-section";

@@ -19,17 +19,17 @@ const ROUTES: RouteMeta[] = [
   {
     path: "plugin",
     title:
-      "Archcore Plugin — Claude Code & Cursor plugin for repo-aware AI",
+      "Archcore Plugin — make Claude Code and Cursor follow your repo rules",
     description:
-      "Install the Archcore plugin in Claude Code or Cursor. Intent-based slash commands load your architecture, rules, and decisions into the agent — so it stops guessing.",
+      "Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions, standards, and plans without leaving chat.",
     ogImage: "/og-image-plugin.png",
   },
   {
     path: "cli",
     title:
-      "Archcore CLI — repo-native context layer for AI coding agents",
+      "Archcore CLI — repo memory for every AI coding agent",
     description:
-      "The Archcore CLI puts your architectural decisions, rules, and conventions in .archcore/ — versioned with your code, exposed to 8 AI agents via MCP and session hooks.",
+      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write decisions, rules, plans, and guides from Git.",
     ogImage: "/og-image-cli.png",
   },
 ];

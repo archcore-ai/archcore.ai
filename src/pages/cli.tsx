@@ -9,10 +9,8 @@ import {
   Bot,
   Cpu,
   FolderGit2,
-  Github,
   Plug,
   Puzzle,
-  ScrollText,
   Star,
   Terminal,
   Webhook,
@@ -39,11 +37,9 @@ export function CLIPage() {
   const { _ } = useLingui();
 
   usePageMeta({
-    title: _(
-      msg`Archcore CLI — repo-native context layer for AI coding agents`
-    ),
+    title: _(msg`Archcore CLI — repo memory for every AI coding agent`),
     description: _(
-      msg`The Archcore CLI puts your architectural decisions, rules, and conventions in .archcore/ — versioned with your code, exposed to 8 AI agents via MCP and session hooks.`
+      msg`Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write decisions, rules, plans, and guides from Git.`
     ),
     canonical: "/cli",
     ogImage: "/og-image-cli.png",
@@ -86,14 +82,17 @@ function CLIHero() {
         </Badge>
 
         <h1 className="type-hero text-balance">
-          <Trans>Repo-native context for any AI agent.</Trans>
+          <Trans>Repo memory for every AI coding agent.</Trans>
         </h1>
 
         <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
           <Trans>
-            The Archcore CLI puts your architectural decisions, rules, and
-            conventions in <code className="font-mono text-base bg-muted/60 px-1.5 py-0.5 rounded">.archcore/</code> — versioned with your code, exposed to 8 AI
-            agents via MCP and session hooks.
+            Archcore CLI creates{" "}
+            <code className="font-mono text-base bg-muted/60 px-1.5 py-0.5 rounded">
+              .archcore/
+            </code>
+            , wires MCP and hooks, and lets your agents read/write decisions,
+            rules, plans, and guides from Git.
           </Trans>
         </p>
 
@@ -106,9 +105,9 @@ function CLIHero() {
             </a>
           </Button>
           <Button size="lg" variant="outline" className="gap-2" asChild>
-            <a href={LINKS.cliRepo} target="_blank" rel="noopener noreferrer">
-              <Github className="h-4 w-4" />
-              <Trans>View on GitHub</Trans>
+            <a href={LINKS.docs} target="_blank" rel="noopener noreferrer">
+              <BookOpen className="h-4 w-4" />
+              <Trans>Read MCP docs</Trans>
             </a>
           </Button>
         </div>
@@ -145,17 +144,12 @@ function CLIShowcase() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   return (
-    <section
-      aria-label={_(msg`CLI in action`)}
-      className="relative px-6"
-    >
+    <section aria-label={_(msg`CLI in action`)} className="relative px-6">
       <div className="relative max-w-5xl mx-auto">
         <img
           key={isDark ? "dark" : "light"}
           src={
-            isDark
-              ? "/images/cli-init-dark.png"
-              : "/images/cli-init-light.png"
+            isDark ? "/images/cli-init-dark.png" : "/images/cli-init-light.png"
           }
           alt={_(msg`archcore init creating .archcore/ in a project`)}
           width={1600}
@@ -177,7 +171,8 @@ function CLIInstall() {
         title={_(msg`Install in one line`)}
         description={
           <Trans>
-            Cross-platform binary. No Node, no Python, no external services.
+            Install the binary, move into your project, then initialize repo
+            memory.
           </Trans>
         }
       />
@@ -187,7 +182,8 @@ function CLIInstall() {
           <p className="text-sm font-medium">
             <Trans>Then initialize your repo</Trans>
           </p>
-          <InstallCommand variant="inline" command="cd your-project && archcore init" />
+          <InstallCommand variant="inline" command="cd your-project" />
+          <InstallCommand variant="inline" command="archcore init" />
           <p className="text-xs text-muted-foreground leading-relaxed">
             <Trans>
               On Windows? See the{" "}
@@ -219,30 +215,30 @@ function CLIWhatYouGet() {
   const primitives: Primitive[] = [
     {
       icon: FolderGit2,
-      title: ".archcore/",
+      title: _(msg`Creates .archcore/`),
       description: _(
-        msg`Repo-native directory of structured, versioned documents — Markdown with YAML frontmatter.`
+        msg`Adds a repo-native directory for decisions, rules, plans, guides, and specs.`
       ),
     },
     {
-      icon: ScrollText,
-      title: _(msg`18 document types`),
+      icon: Bot,
+      title: _(msg`Detects installed agents`),
       description: _(
-        msg`ADR, PRD, RFC, rule, guide, doc, spec, plan, task-type — vision, knowledge, and experience layers.`
+        msg`Finds supported coding agents in the workspace and prepares the right integration path.`
       ),
     },
     {
       icon: Plug,
-      title: _(msg`MCP server`),
+      title: _(msg`Writes MCP config`),
       description: _(
-        msg`10 tools — list, get, create, update, search, relate — exposed to any MCP-capable agent.`
+        msg`Exposes tools for agents to browse, search, create, update, and relate Archcore docs.`
       ),
     },
     {
       icon: Webhook,
-      title: _(msg`Session hooks`),
+      title: _(msg`Installs session hooks`),
       description: _(
-        msg`Inject the right repo context at session start for supported agents — automatically.`
+        msg`Loads relevant repo context at session start for supported agents.`
       ),
     },
   ];
@@ -250,9 +246,9 @@ function CLIWhatYouGet() {
   return (
     <SectionContainer id="features" className="py-16 md:py-20">
       <SectionHeader
-        title={_(msg`What you get`)}
+        title={_(msg`What archcore init does`)}
         description={_(
-          msg`A small CLI, a structured directory, and protocol-level integration with the agents you already use.`
+          msg`The CLI turns the current repository into a Git-native context layer your agents can read and update.`
         )}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
@@ -342,9 +338,12 @@ function CLITracks() {
       </div>
       <p className="text-center text-xs text-muted-foreground mt-6 max-w-2xl mx-auto leading-relaxed">
         <Trans>
-          Run <code className="font-mono bg-muted px-1.5 py-0.5 rounded">/product_track feature="user notifications"</code> in your agent — it
-          drafts an idea, derives a PRD, builds a plan, and links them
-          automatically.
+          Run{" "}
+          <code className="font-mono bg-muted px-1.5 py-0.5 rounded">
+            /product_track feature="user notifications"
+          </code>{" "}
+          in your agent — it drafts an idea, derives a PRD, builds a plan, and
+          links them automatically.
         </Trans>
       </p>
     </SectionContainer>
@@ -411,8 +410,8 @@ function CLIAgents() {
       </div>
       <p className="text-center text-xs text-muted-foreground mt-6 max-w-2xl mx-auto">
         <Trans>
-          Hooks inject context at session start. MCP exposes tools to browse
-          and edit .archcore/ documents during a session.
+          Hooks inject context at session start. MCP exposes tools to browse and
+          edit .archcore/ documents during a session.
         </Trans>
       </p>
     </SectionContainer>
@@ -430,8 +429,8 @@ function CLIWhyNot() {
         <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
           <Trans>
             Instruction files tell agents <em>what</em> you want. Archcore tells
-            them <em>how your system works</em> — typed, queryable, relation-aware
-            project truth that evolves with your code.
+            them <em>how your system works</em> — typed, queryable,
+            relation-aware project truth that evolves with your code.
           </Trans>
         </p>
       </div>

@@ -6,7 +6,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  Github,
+  MessageSquareText,
   Plug,
   Puzzle,
   ShieldCheck,
@@ -33,14 +33,38 @@ import { useTheme } from "@/hooks/use-theme";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 const SLASH_COMMANDS = [
-  { cmd: "/archcore:context", desc: msg`Pull rules and ADRs that apply to the file you're touching.` },
-  { cmd: "/archcore:capture", desc: msg`Document a module — Archcore picks ADR, doc, spec, or guide.` },
-  { cmd: "/archcore:decide", desc: msg`Record a finalized technical or architectural decision.` },
-  { cmd: "/archcore:plan", desc: msg`Create a feature plan or full PRD → plan cascade.` },
-  { cmd: "/archcore:standard", desc: msg`Codify a team practice as ADR → rule → guide.` },
-  { cmd: "/archcore:review", desc: msg`Audit documentation health and find coverage gaps.` },
-  { cmd: "/archcore:status", desc: msg`Compact dashboard — counts, statuses, relations.` },
-  { cmd: "/archcore:graph", desc: msg`Render the Archcore document graph as a Mermaid flowchart.` },
+  {
+    cmd: "/archcore:context",
+    desc: msg`Pull rules and ADRs that apply to the file you're touching.`,
+  },
+  {
+    cmd: "/archcore:capture",
+    desc: msg`Document a module — Archcore picks ADR, doc, spec, or guide.`,
+  },
+  {
+    cmd: "/archcore:decide",
+    desc: msg`Record a finalized technical or architectural decision.`,
+  },
+  {
+    cmd: "/archcore:plan",
+    desc: msg`Create a feature plan or full PRD → plan cascade.`,
+  },
+  {
+    cmd: "/archcore:standard",
+    desc: msg`Codify a team practice as ADR → rule → guide.`,
+  },
+  {
+    cmd: "/archcore:review",
+    desc: msg`Audit documentation health and find coverage gaps.`,
+  },
+  {
+    cmd: "/archcore:status",
+    desc: msg`Compact dashboard — counts, statuses, relations.`,
+  },
+  {
+    cmd: "/archcore:graph",
+    desc: msg`Render the Archcore document graph as a Mermaid flowchart.`,
+  },
 ];
 
 export function PluginPage() {
@@ -48,10 +72,10 @@ export function PluginPage() {
 
   usePageMeta({
     title: _(
-      msg`Archcore Plugin — Claude Code & Cursor plugin for repo-aware AI`
+      msg`Archcore Plugin — make Claude Code and Cursor follow your repo rules`
     ),
     description: _(
-      msg`The Archcore plugin loads your architecture, rules, and decisions into Claude Code and Cursor — so the agent stops guessing and starts following your team's truth.`
+      msg`Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions, standards, and plans without leaving chat.`
     ),
     canonical: "/plugin",
     ogImage: "/og-image-plugin.png",
@@ -62,9 +86,10 @@ export function PluginPage() {
       <StickyHeader />
       <main>
         <PluginHero />
+        <PluginInstall />
+        <PluginFirstPrompts />
         <PluginShowcase />
         <PluginFeatures />
-        <PluginInstall />
         <PluginCommands />
         <PluginFAQ />
         <PluginCrossSell />
@@ -92,17 +117,17 @@ function PluginHero() {
 
         <h1 className="type-hero text-balance">
           <Trans>
-            Load your repository's architecture
+            Make Claude Code and Cursor
             <br />
-            into Claude Code and Cursor.
+            follow your repo rules.
           </Trans>
         </h1>
 
         <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
           <Trans>
-            The Archcore plugin loads your architecture, rules, and decisions
-            into Claude Code and Cursor — so the agent stops guessing and starts
-            following your team's truth.
+            Archcore loads the right ADRs, specs, rules, and patterns before
+            your agent edits code. Capture new decisions, standards, and plans
+            without leaving the chat.
           </Trans>
         </p>
 
@@ -110,18 +135,14 @@ function PluginHero() {
           <Button size="lg" className="gap-2" asChild>
             <a href="#install">
               <Puzzle className="h-4 w-4" />
-              <Trans>Install plugin</Trans>
+              <Trans>Install in Claude Code</Trans>
               <ArrowRight className="h-4 w-4" />
             </a>
           </Button>
           <Button size="lg" variant="outline" className="gap-2" asChild>
-            <a
-              href={LINKS.pluginRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-4 w-4" />
-              <Trans>View on GitHub</Trans>
+            <a href="#cursor">
+              <Terminal className="h-4 w-4" />
+              <Trans>Cursor setup</Trans>
             </a>
           </Button>
         </div>
@@ -129,8 +150,8 @@ function PluginHero() {
         <div className="space-y-1 text-sm text-muted-foreground/70 pt-2">
           <p>
             <Trans>
-              Production on Claude Code · Implemented for Cursor 2.5+ · Open
-              source · Versioned in Git
+              Fastest path for Claude Code · Cursor 2.5+ plugin · Open source ·
+              Versioned in Git
             </Trans>
           </p>
           <p>
@@ -158,10 +179,7 @@ function PluginShowcase() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   return (
-    <section
-      aria-label={_(msg`Plugin in action`)}
-      className="relative px-6"
-    >
+    <section aria-label={_(msg`Plugin in action`)} className="relative px-6">
       <div className="relative max-w-5xl mx-auto">
         <div className="relative rounded-2xl border border-border bg-card overflow-hidden">
           <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-3">
@@ -175,7 +193,10 @@ function PluginShowcase() {
                 cursor · plugins · archcore
               </span>
             </div>
-            <Badge variant="outline" className="text-[10px] hidden sm:inline-flex">
+            <Badge
+              variant="outline"
+              className="text-[10px] hidden sm:inline-flex"
+            >
               <Trans>Live</Trans>
             </Badge>
           </div>
@@ -266,8 +287,9 @@ function PluginInstall() {
         title={_(msg`Install in 30 seconds`)}
         description={
           <Trans>
-            From inside Claude Code, run two commands. Cursor 2.5+ users see
-            the snippet below.
+            Claude Code auto-resolves the CLI and registers MCP. Cursor users
+            install the plugin, then may need manual MCP registration depending
+            on their workspace.
           </Trans>
         }
       />
@@ -310,7 +332,10 @@ function PluginInstall() {
           </details>
         </article>
 
-        <article className="rounded-2xl border border-border bg-card p-6 space-y-3">
+        <article
+          id="cursor"
+          className="rounded-2xl border border-border bg-card p-6 space-y-3 scroll-mt-24"
+        >
           <header className="flex items-center justify-between gap-2">
             <h3 className="font-semibold text-base">Cursor 2.5+</h3>
             <Badge variant="outline" className="text-[10px]">
@@ -319,7 +344,8 @@ function PluginInstall() {
           </header>
           <p className="text-sm text-muted-foreground leading-relaxed">
             <Trans>
-              Open Cursor → Plugins, paste the GitHub URL into "Search or paste link", and click Add Plugin:
+              Open Cursor → Plugins, paste the GitHub URL into "Search or paste
+              link", and click Add Plugin:
             </Trans>
           </p>
           <InstallCommand
@@ -341,8 +367,9 @@ function PluginInstall() {
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border">
             <Trans>
-              Copilot and Codex CLI are on the plugin roadmap. Need raw context
-              for any MCP-capable agent today?
+              If MCP is not registered automatically in Cursor, install the CLI
+              context layer and run archcore mcp install. Need raw context for
+              any MCP-capable agent today?
             </Trans>{" "}
             <a
               href={INTERNAL_LINKS.cli}
@@ -355,6 +382,57 @@ function PluginInstall() {
             .
           </p>
         </article>
+      </div>
+    </SectionContainer>
+  );
+}
+
+function PluginFirstPrompts() {
+  const { _ } = useLingui();
+  const prompts = [
+    {
+      prompt: _(
+        msg`Before I touch src/auth/, what rules and prior decisions apply here?`
+      ),
+      outcome: _(
+        msg`Loads the matching ADRs, rules, and patterns before editing.`
+      ),
+    },
+    {
+      prompt: _(msg`Add a new API handler and follow this repo's conventions.`),
+      outcome: _(
+        msg`Keeps generated code aligned with your existing structure.`
+      ),
+    },
+    {
+      prompt: _(msg`We picked PostgreSQL. Record it as a team standard.`),
+      outcome: _(
+        msg`Creates structured Archcore documents the next session can read.`
+      ),
+    },
+  ];
+
+  return (
+    <SectionContainer id="first-prompts" className="py-16 md:py-20 bg-muted/30">
+      <SectionHeader
+        title={_(msg`First 3 prompts to try`)}
+        description={_(
+          msg`Start with context loading, convention-following, and decision capture — the three moments where repo memory pays off immediately.`
+        )}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        {prompts.map((item) => (
+          <article
+            key={item.prompt}
+            className="rounded-xl border border-border bg-background p-5 flex flex-col gap-4"
+          >
+            <MessageSquareText className="h-5 w-5 text-muted-foreground" />
+            <p className="font-mono text-sm leading-relaxed">“{item.prompt}”</p>
+            <p className="text-xs text-muted-foreground leading-relaxed pt-3 border-t border-border">
+              {item.outcome}
+            </p>
+          </article>
+        ))}
       </div>
     </SectionContainer>
   );
@@ -491,11 +569,7 @@ function PluginFinalCTA() {
             </a>
           </Button>
           <Button size="lg" variant="outline" className="gap-2" asChild>
-            <a
-              href={LINKS.docs}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={LINKS.docs} target="_blank" rel="noopener noreferrer">
               <BookOpen className="h-4 w-4" />
               <Trans>Read the docs</Trans>
             </a>

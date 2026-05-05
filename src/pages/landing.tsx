@@ -1,11 +1,10 @@
 import {
   StickyHeader,
   HeroSection,
-  EntryPointChoiceSection,
-  JobsSection,
-  BeforeAfterSection,
+  ProblemSection,
+  HowItWorksSection,
+  TryPromptsSection,
   InstallSection,
-  WhyNotInstructionsSection,
   FAQSection,
   FinalCTASection,
   FooterSection,
@@ -17,11 +16,10 @@ export function LandingPage() {
       <StickyHeader />
       <main>
         <HeroSection />
-        <BeforeAfterSection />
+        <ProblemSection />
+        <HowItWorksSection />
+        <TryPromptsSection />
         <InstallSection />
-        <WhyNotInstructionsSection />
-        <EntryPointChoiceSection />
-        <JobsSection />
         <FAQSection />
         <FinalCTASection />
       </main>

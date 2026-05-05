@@ -23,7 +23,7 @@ export function StickyHeader() {
   }> = [
     { href: INTERNAL_LINKS.plugin, label: _(msg`Plugin`), internal: true },
     { href: INTERNAL_LINKS.cli, label: _(msg`CLI`), internal: true },
-    { href: `/${ANCHORS.compare}`, label: _(msg`Compare`) },
+    { href: `/${ANCHORS.compare}`, label: _(msg`Why Archcore`) },
     { href: LINKS.docs, label: _(msg`Docs`), external: true },
   ];
 
@@ -127,7 +127,9 @@ export function StickyHeader() {
               onClick={() => {
                 setMobileMenuOpen((prev) => !prev);
               }}
-              aria-label={mobileMenuOpen ? _(msg`Close menu`) : _(msg`Open menu`)}
+              aria-label={
+                mobileMenuOpen ? _(msg`Close menu`) : _(msg`Open menu`)
+              }
             >
               {mobileMenuOpen ? (
                 <X className="h-5 w-5" />

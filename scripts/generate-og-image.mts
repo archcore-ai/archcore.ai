@@ -39,31 +39,31 @@ const VARIANTS: Variant[] = [
   {
     output: "og-image.png",
     headline: [
-      "Turn your repository into structured,",
-      "machine-readable context.",
+      "Stop re-explaining your repo",
+      "to every AI agent.",
     ],
     subtitle:
-      "Archcore gives AI agents the architecture, rules, and decisions they need to work correctly in your codebase.",
+      "Archcore keeps decisions, rules, guides, and plans in Git — so AI coding agents follow your architecture instead of guessing.",
     bottomLabel: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
   },
   {
     output: "og-image-plugin.png",
     headline: [
-      "Give Claude Code & Cursor",
-      "a brain for your codebase.",
+      "Make Claude Code & Cursor",
+      "follow your repo rules.",
     ],
     subtitle:
-      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code and Cursor — so the agent stops guessing.",
+      "Archcore loads the right ADRs, specs, rules, and patterns before your agent edits code — and captures new decisions without leaving the chat.",
     bottomLabel: "Claude Code & Cursor plugin  ·  Intent-based slash commands",
   },
   {
     output: "og-image-cli.png",
     headline: [
-      "Repo-native context",
-      "for any AI agent.",
+      "Repo memory for every",
+      "AI coding agent.",
     ],
     subtitle:
-      "The Archcore CLI puts your architectural decisions, rules, and conventions in .archcore/ — exposed to 8 AI agents via MCP and session hooks.",
+      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets your agents read and write decisions, rules, plans, and guides from Git.",
     bottomLabel: "Standalone binary  ·  MCP + hooks  ·  8 AI coding agents",
   },
 ];
