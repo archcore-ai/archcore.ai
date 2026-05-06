@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLingui } from "@lingui/react";
-import { ANCHORS, INTERNAL_LINKS, LINKS } from "@/lib/links";
+import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 export function StickyHeader() {
   const { _ } = useLingui();
@@ -23,7 +23,6 @@ export function StickyHeader() {
   }> = [
     { href: INTERNAL_LINKS.plugin, label: _(msg`Plugin`), internal: true },
     { href: INTERNAL_LINKS.cli, label: _(msg`CLI`), internal: true },
-    { href: `/${ANCHORS.compare}`, label: _(msg`Why Archcore`) },
     { href: LINKS.docs, label: _(msg`Docs`), external: true },
   ];
 

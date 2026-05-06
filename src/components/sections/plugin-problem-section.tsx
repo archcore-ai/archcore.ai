@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Terminal, XCircle } from "lucide-react";
+import { MessageSquareText, XCircle } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 
 interface Pain {
@@ -9,32 +9,32 @@ interface Pain {
   detail: string;
 }
 
-export function ProblemSection() {
+export function PluginProblemSection() {
   const { _ } = useLingui();
 
   const pains: Pain[] = [
     {
-      title: _(msg`Guesses your folder structure`),
+      title: _(msg`Re-pasting context every chat`),
       detail: _(
-        msg`Drops files in plausible-looking places that don't match how your repo is organized.`
+        msg`You copy-paste the same architecture rules into every new conversation. The agent forgets the moment it ends.`
       ),
     },
     {
-      title: _(msg`Ignores team conventions`),
+      title: _(msg`Generic suggestions for your codebase`),
       detail: _(
-        msg`Reinvents naming, error handling, and patterns you already standardized.`
+        msg`Claude Code and Cursor produce code that ignores your conventions, your ADRs, and your prior decisions.`
       ),
     },
     {
-      title: _(msg`Reopens decisions you already made`),
+      title: _(msg`Decisions stuck in chat history`),
       detail: _(
-        msg`The ADR exists, but the agent never read it — so it pitches the option you rejected six months ago.`
+        msg`You make a real call inside the agent — and a week later nobody, including the agent, remembers why.`
       ),
     },
     {
-      title: _(msg`Forgets the rules between sessions`),
+      title: _(msg`MCP setup is a chore`),
       detail: _(
-        msg`Every new chat starts from zero. You explain the same constraints, again and again.`
+        msg`Wiring an MCP server, editing config files, and keeping it updated isn't what you want to ship today.`
       ),
     },
   ];
@@ -44,27 +44,26 @@ export function ProblemSection() {
       <div className="max-w-4xl mx-auto space-y-10">
         <div className="text-center space-y-5 max-w-3xl mx-auto">
           <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-            <Trans>The day-to-day reality</Trans>
+            <Trans>Why you need the plugin</Trans>
           </p>
 
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-            <Trans>Your AI agent doesn't know your codebase.</Trans>
+            <Trans>Your agent forgets the rules every session.</Trans>
           </h2>
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              It has read your code. It hasn't read your architecture. The ADRs
-              you wrote, the conventions your team agreed on, the rules that
-              keep things consistent — none of that is in the model. So it
-              improvises. And you spend more time correcting than coding.
+              Two install commands give Claude Code and Cursor a memory that
+              lives next to the code — and slash commands to capture new
+              decisions as they happen.
             </Trans>
           </p>
         </div>
 
         <div className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-5 py-4 font-mono text-sm text-left max-w-2xl mx-auto">
-          <Terminal className="h-4 w-4 text-muted-foreground shrink-0" />
+          <MessageSquareText className="h-4 w-4 text-muted-foreground shrink-0" />
           <span className="text-foreground">
-            <Trans>"Add a new user-notifications service."</Trans>
+            <Trans>"Before I touch src/auth/, what rules apply here?"</Trans>
           </span>
         </div>
 
@@ -89,8 +88,8 @@ export function ProblemSection() {
 
         <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <Trans>
-            The result: code drift, repeated mistakes, and decisions you've
-            already made being made again.
+            The plugin loads the right context before edits and captures every
+            new decision back into Git.
           </Trans>
         </p>
       </div>

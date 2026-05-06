@@ -1,9 +1,18 @@
 export { StickyHeader } from "./sticky-header";
 export { HeroSection } from "./hero-section";
 export { ProblemSection } from "./problem-section";
-export { HowItWorksSection } from "./how-it-works-section";
-export { TryPromptsSection } from "./try-prompts-section";
-export { InstallSection } from "./install-section";
+export { HowWeSolveSection } from "./how-we-solve-section";
 export { FAQSection } from "./faq-section";
-export { FinalCTASection } from "./final-cta-section";
-export { FooterSection } from "./footer-section";
+export { SiteNav } from "./site-nav";
+
+export { CLIHeroSection } from "./cli-hero-section";
+export { CLIShowcaseSection } from "./cli-showcase-section";
+export { CLIProblemSection } from "./cli-problem-section";
+export { CLIPillarsSection } from "./cli-pillars-section";
+export { CLIFAQSection } from "./cli-faq-section";
+
+export { PluginHeroSection } from "./plugin-hero-section";
+export { PluginShowcaseSection } from "./plugin-showcase-section";
+export { PluginProblemSection } from "./plugin-problem-section";
+export { PluginPillarsSection } from "./plugin-pillars-section";
+export { PluginFAQSection } from "./plugin-faq-section";

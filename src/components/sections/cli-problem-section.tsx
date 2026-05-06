@@ -9,32 +9,32 @@ interface Pain {
   detail: string;
 }
 
-export function ProblemSection() {
+export function CLIProblemSection() {
   const { _ } = useLingui();
 
   const pains: Pain[] = [
     {
-      title: _(msg`Guesses your folder structure`),
+      title: _(msg`Instructions live in one flat file`),
       detail: _(
-        msg`Drops files in plausible-looking places that don't match how your repo is organized.`
+        msg`CLAUDE.md and .cursorrules pile up — there's no type, no link, no history the agent can reason about.`
       ),
     },
     {
-      title: _(msg`Ignores team conventions`),
+      title: _(msg`No shared context across agents`),
       detail: _(
-        msg`Reinvents naming, error handling, and patterns you already standardized.`
+        msg`Claude Code, Cursor, and Copilot each get their own bespoke prompt. Nothing is reused.`
       ),
     },
     {
-      title: _(msg`Reopens decisions you already made`),
+      title: _(msg`Decisions never make it back to the repo`),
       detail: _(
-        msg`The ADR exists, but the agent never read it — so it pitches the option you rejected six months ago.`
+        msg`The agent picks a direction in chat, but the rationale doesn't land in Git for the next session — or the next teammate.`
       ),
     },
     {
-      title: _(msg`Forgets the rules between sessions`),
+      title: _(msg`MCP servers stay generic`),
       detail: _(
-        msg`Every new chat starts from zero. You explain the same constraints, again and again.`
+        msg`Most MCP servers expose external services. None of them speak your codebase's typed decisions, rules, and plans.`
       ),
     },
   ];
@@ -44,19 +44,18 @@ export function ProblemSection() {
       <div className="max-w-4xl mx-auto space-y-10">
         <div className="text-center space-y-5 max-w-3xl mx-auto">
           <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-            <Trans>The day-to-day reality</Trans>
+            <Trans>Why you need a CLI</Trans>
           </p>
 
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-            <Trans>Your AI agent doesn't know your codebase.</Trans>
+            <Trans>Instruction files don't scale.</Trans>
           </h2>
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              It has read your code. It hasn't read your architecture. The ADRs
-              you wrote, the conventions your team agreed on, the rules that
-              keep things consistent — none of that is in the model. So it
-              improvises. And you spend more time correcting than coding.
+              Flat memory works for a few rules. Real teams need typed,
+              queryable, versioned context every agent can read. That's what
+              archcore init builds.
             </Trans>
           </p>
         </div>
@@ -64,7 +63,7 @@ export function ProblemSection() {
         <div className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-5 py-4 font-mono text-sm text-left max-w-2xl mx-auto">
           <Terminal className="h-4 w-4 text-muted-foreground shrink-0" />
           <span className="text-foreground">
-            <Trans>"Add a new user-notifications service."</Trans>
+            <Trans>"Read the ADRs before you touch payments."</Trans>
           </span>
         </div>
 
@@ -89,8 +88,8 @@ export function ProblemSection() {
 
         <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <Trans>
-            The result: code drift, repeated mistakes, and decisions you've
-            already made being made again.
+            One binary turns the repo itself into the source of truth — no
+            servers, no accounts, no copy-paste prompts.
           </Trans>
         </p>
       </div>

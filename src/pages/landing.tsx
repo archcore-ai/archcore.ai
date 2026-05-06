@@ -2,12 +2,9 @@ import {
   StickyHeader,
   HeroSection,
   ProblemSection,
-  HowItWorksSection,
-  TryPromptsSection,
-  InstallSection,
+  HowWeSolveSection,
   FAQSection,
-  FinalCTASection,
-  FooterSection,
+  SiteNav,
 } from "@/components/sections";
 
 export function LandingPage() {
@@ -17,13 +14,10 @@ export function LandingPage() {
       <main>
         <HeroSection />
         <ProblemSection />
-        <HowItWorksSection />
-        <TryPromptsSection />
-        <InstallSection />
+        <HowWeSolveSection />
         <FAQSection />
-        <FinalCTASection />
       </main>
-      <FooterSection />
+      <SiteNav />
     </div>
   );
 }
