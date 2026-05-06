@@ -170,13 +170,14 @@ function rewriteHead(html: string, meta: Required<RouteMeta>): string {
 }
 
 function rewriteBody(html: string, meta: Required<RouteMeta>): string {
-  // Replace the entire <main id="main-content">...</main> block inside #root
-  // with the per-route body. This block exists in dist/index.html as the
-  // crawler-friendly fallback that React replaces on mount.
+  // Replace the static SEO fallback <main id="main-content">...</main>
+  // that lives inside <div id="root">. Anchored to a <div id="root"> +
+  // newline + 6-space indentation so we never accidentally match the same
+  // string inside a CSS comment, JSON-LD block, or anything else in <head>.
   const bodyHtml = renderBody(meta);
   return html.replace(
-    /<main id="main-content">[\s\S]*?<\/main>/,
-    bodyHtml.trim(),
+    /(<div id="root">\s*\n)\s*<main id="main-content">[\s\S]*?<\/main>/,
+    `$1${bodyHtml}`,
   );
 }
 
