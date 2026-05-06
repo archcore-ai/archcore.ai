@@ -183,9 +183,13 @@ msgstr "archcore init создаёт .archcore/ в проекте"
 #~ msgid "Archcore keeps your decisions, rules, guides, and plans in Git — so Claude Code, Cursor, Copilot, Gemini, and other coding agents follow your architecture instead of guessing."
 #~ msgstr "Archcore хранит ваши решения, правила, гайды и планы в Git — чтобы Claude Code, Cursor, Copilot, Gemini и другие AI-агенты разработки следовали вашей архитектуре, а не гадали."
 
+#: src/pages/plugin.tsx:20
+msgid "Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions and standards without leaving chat."
+msgstr "Archcore подгружает нужные ADR, спеки, правила и паттерны до того, как Claude Code и Cursor отредактируют код. Фиксируйте решения и стандарты, не выходя из чата."
+
 #: src/pages/plugin.tsx:22
-msgid "Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions, standards, and plans without leaving chat."
-msgstr "Archcore подгружает нужные ADR, спеки, правила и паттерны до того, как Claude Code и Cursor отредактируют код. Фиксируйте решения, стандарты и планы, не выходя из чата."
+#~ msgid "Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions, standards, and plans without leaving chat."
+#~ msgstr "Archcore подгружает нужные ADR, спеки, правила и паттерны до того, как Claude Code и Cursor отредактируют код. Фиксируйте решения, стандарты и планы, не выходя из чата."
 
 #: src/components/sections/plugin-hero-section.tsx:27
 msgid "Archcore loads the right ADRs, specs, rules, and patterns before your agent edits code. Capture new decisions, standards, and plans without leaving the chat."
@@ -196,8 +200,12 @@ msgstr "Archcore подгружает нужные ADR, спеки, правил
 #~ msgstr "Archcore Plugin — плагин Claude Code и Cursor для AI, понимающего ваш репозиторий"
 
 #: src/pages/plugin.tsx:19
-msgid "Archcore Plugin — make Claude Code and Cursor follow your repo rules"
-msgstr "Archcore Plugin — заставьте Claude Code и Cursor соблюдать правила вашего репозитория"
+#~ msgid "Archcore Plugin — make Claude Code and Cursor follow your repo rules"
+#~ msgstr "Archcore Plugin — заставьте Claude Code и Cursor соблюдать правила вашего репозитория"
+
+#: src/pages/plugin.tsx:18
+msgid "Archcore Plugin — repo context for Claude Code & Cursor"
+msgstr "Archcore Plugin — контекст репозитория для Claude Code и Cursor"
 
 #: src/components/sections/plugin-hero-section.tsx:24
 #~ msgid "Archcore Plugin · Claude Code & Cursor"

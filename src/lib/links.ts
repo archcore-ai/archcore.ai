@@ -14,9 +14,9 @@ export const LINKS = {
 
 export const INTERNAL_LINKS = {
   home: "/",
-  plugin: "/plugin",
-  cli: "/cli",
-  privacy: "/privacy",
+  plugin: "/plugin/",
+  cli: "/cli/",
+  privacy: "/privacy/",
 } as const;
 
 export const ANCHORS = {

@@ -19,14 +19,14 @@ export function CLIPage() {
     description: _(
       msg`Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write decisions, rules, plans, and guides from Git.`
     ),
-    canonical: "/cli",
+    canonical: "/cli/",
     ogImage: "/og-image-cli.png",
   });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <StickyHeader />
-      <main>
+      <main id="main-content">
         <CLIHeroSection />
         <CLIShowcaseSection />
         <CLIProblemSection />

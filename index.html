@@ -16,12 +16,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Security (GH Pages cannot set HTTP headers; meta-equiv covers what it can) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
     <title>Archcore — Stop re-explaining your repo to every AI agent</title>
     <meta
       name="description"
-      content="Archcore keeps decisions, rules, guides, and plans in Git so Claude Code, Cursor, Copilot, Gemini, and other agents follow your architecture instead of guessing."
+      content="Archcore keeps ADRs, rules, guides, and plans in Git so Claude Code, Cursor, Copilot, and Gemini follow your architecture instead of guessing."
     />
     <link rel="canonical" href="https://archcore.ai/" />
 
@@ -29,6 +33,28 @@
     <link rel="alternate" hreflang="en" href="https://archcore.ai/" />
     <link rel="alternate" hreflang="ru" href="https://archcore.ai/?lang=ru" />
     <link rel="alternate" hreflang="x-default" href="https://archcore.ai/" />
+
+    <style>
+      .archcore-skip-link {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .archcore-skip-link:focus {
+        left: 1rem;
+        top: 1rem;
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        background: #0a0a0a;
+        color: #fff;
+        z-index: 10000;
+        border-radius: 0.375rem;
+      }
+    </style>
 
     <!-- Open Graph -->
     <meta
@@ -180,7 +206,68 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <a href="#main-content" class="archcore-skip-link">Skip to main content</a>
+    <div id="root">
+      <main id="main-content">
+        <h1>Archcore — Stop re-explaining your repo to every AI agent</h1>
+        <p>
+          A Git-native context layer for AI coding agents. The project keeps
+          architectural decisions (ADRs), team rules, how-to guides, named
+          patterns, action plans, and product requirements in your repository
+          so Claude Code, Cursor, GitHub Copilot, Gemini CLI, and other agents
+          follow your real architecture instead of guessing.
+        </p>
+        <h2>Why instruction files like CLAUDE.md and AGENTS.md aren't enough</h2>
+        <p>
+          Single instruction files are flat, tool-specific, and weakly
+          structured. They pile up without type, link, or history. As a
+          codebase grows, the agent has no way to find which rule applies to
+          which directory, which decision blocks a refactor, or which spec
+          governs a contract. The replacement here is eighteen typed document
+          categories, named relations between them (informs, blocks, refines,
+          supersedes), and versioned history — the same artifacts senior
+          engineers already write but that agents can read, write, and reason
+          about during real work.
+        </p>
+        <h2>Two ways to use it</h2>
+        <p>
+          Install the <a href="/plugin/">plugin</a> for the best day-to-day
+          experience inside Claude Code and Cursor, with architecture-aware
+          <code>/archcore</code> slash commands. Or use the
+          <a href="/cli/">CLI</a> directly with MCP and session hooks to
+          support custom agent flows, minimal setups, and the eight AI coding
+          agents the CLI integrates with today: Claude Code, Cursor, Gemini
+          CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline.
+        </p>
+        <h2>How the context loop works</h2>
+        <p>
+          Session hooks inject the right documents at the start of every
+          conversation. MCP exposes tools (list, get, create, update) so the
+          agent can browse and edit <code>.archcore/</code> documents during a
+          session. Slash commands like <code>/archcore:context</code>,
+          <code>/archcore:decide</code>, and <code>/archcore:plan</code> give
+          you a clean way to load, capture, and break down work without
+          breaking flow.
+        </p>
+        <h2>Local-first, open source</h2>
+        <p>
+          Everything lives in <code>.archcore/</code> inside your repository,
+          versioned alongside the code it documents. No servers, no databases,
+          no accounts, no telemetry. The CLI is a single cross-platform binary;
+          the MCP server runs locally as a child process; install scripts pull
+          release binaries from GitHub Releases. See the
+          <a href="https://docs.archcore.ai/">documentation</a> or read the
+          <a href="/privacy/">privacy policy</a> for details.
+        </p>
+        <nav aria-label="Site">
+          <a href="/plugin/">Plugin</a>
+          <a href="/cli/">CLI</a>
+          <a href="https://docs.archcore.ai/">Docs</a>
+          <a href="https://github.com/archcore-ai">GitHub</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
