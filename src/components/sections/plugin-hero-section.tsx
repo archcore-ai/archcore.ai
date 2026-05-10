@@ -17,17 +17,17 @@ export function PluginHeroSection() {
         <div className="space-y-8 text-center">
           <h1 className="type-hero text-balance">
             <Trans>
-              Make Claude Code and Cursor
+              Give Claude Code, Cursor & Codex CLI
               <br />
-              follow your repo rules.
+              a brain for your codebase.
             </Trans>
           </h1>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
-              Archcore loads the right ADRs, specs, rules, and patterns before
-              your agent edits code. Capture new decisions, standards, and
-              plans without leaving the chat.
+              The Archcore plugin loads your architecture, rules, and decisions
+              into Claude Code, Cursor, and Codex CLI — so the agent stops
+              guessing and starts following your team's truth.
             </Trans>
           </p>
 
@@ -48,6 +48,16 @@ export function PluginHeroSection() {
                 label={<Trans>Cursor 2.5+</Trans>}
                 hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
                 commands={["https://github.com/archcore-ai/plugin"]}
+              />
+
+              <div className="border-t border-border" />
+
+              <PluginAgent
+                label={<Trans>Codex CLI 0.117+</Trans>}
+                hint={<Trans>Install in Codex:</Trans>}
+                commands={[
+                  "codex plugin marketplace add archcore-ai/plugin",
+                ]}
               />
 
               <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">

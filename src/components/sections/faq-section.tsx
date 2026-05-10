@@ -22,7 +22,7 @@ export function FAQSection() {
     {
       question: _(msg`Which AI agents are supported?`),
       answer: _(
-        msg`Plugin: Claude Code (production) and Cursor. Copilot and Codex CLI are on the roadmap. The CLI works with 8 agents today via MCP and hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline.`
+        msg`Plugin: Claude Code (production), Cursor 2.5+, and Codex CLI 0.117+ (all implemented). GitHub Copilot is on the roadmap. The CLI works with 8 agents today via MCP and hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline.`
       ),
     },
     {

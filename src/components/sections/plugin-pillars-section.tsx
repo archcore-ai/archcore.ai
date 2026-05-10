@@ -52,6 +52,13 @@ export function PluginPillarsSection() {
         msg`Add the plugin from Cursor Plugins or via cursor.directory. CLI fallback for raw MCP control.`
       ),
     },
+    {
+      icon: Terminal,
+      title: _(msg`Codex CLI 0.117+ supported`),
+      description: _(
+        msg`Add the plugin via \`codex plugin marketplace add archcore-ai/plugin\`. Hooks gated by Codex feature flag (\`codex features enable plugin_hooks\`).`
+      ),
+    },
   ];
 
   return (
@@ -62,7 +69,7 @@ export function PluginPillarsSection() {
       <div className="text-center space-y-3 mb-12">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance max-w-3xl mx-auto">
           <Trans>
-            Two install commands. Architecture-aware{" "}
+            Three install commands. Architecture-aware{" "}
             <code className="font-mono text-[0.85em] rounded bg-muted px-1.5 py-0.5">
               /archcore
             </code>{" "}
@@ -71,7 +78,7 @@ export function PluginPillarsSection() {
         </h2>
       </div>
 
-      <ul className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <ul className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {pillars.map((pillar) => {
           const Icon = pillar.icon;
           return (

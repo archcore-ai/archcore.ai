@@ -22,7 +22,7 @@ export function PluginFAQSection() {
     {
       question: _(msg`Which agents are supported?`),
       answer: _(
-        msg`Claude Code (production) and Cursor 2.5+ (implemented). Copilot and Codex CLI are on the plugin roadmap. For other MCP-capable agents, use the CLI directly.`
+        msg`Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is on the roadmap. For other MCP-capable agents, use the CLI directly.`
       ),
     },
     {

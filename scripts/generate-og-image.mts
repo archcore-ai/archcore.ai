@@ -49,12 +49,13 @@ const VARIANTS: Variant[] = [
   {
     output: "og-image-plugin.png",
     headline: [
-      "Make Claude Code & Cursor",
-      "follow your repo rules.",
+      "Claude Code, Cursor &",
+      "Codex CLI plugin for AI agents.",
     ],
     subtitle:
-      "Archcore loads the right ADRs, specs, rules, and patterns before your agent edits code — and captures new decisions without leaving the chat.",
-    bottomLabel: "Claude Code & Cursor plugin  ·  Intent-based slash commands",
+      "Archcore loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.",
+    bottomLabel:
+      "Claude Code · Cursor · Codex CLI plugin  ·  Intent-based slash commands",
   },
   {
     output: "og-image-cli.png",

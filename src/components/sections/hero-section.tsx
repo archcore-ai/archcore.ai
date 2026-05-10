@@ -159,6 +159,14 @@ function PluginPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
         commands={["https://github.com/archcore-ai/plugin"]}
       />
 
+      <div className="border-t border-border" />
+
+      <PluginAgent
+        label={<Trans>Codex CLI 0.117+</Trans>}
+        hint={<Trans>Install in Codex:</Trans>}
+        commands={["codex plugin marketplace add archcore-ai/plugin"]}
+      />
+
       <PanelLinks
         repoHref={LINKS.pluginRepo}
         repoText="archcore-ai/plugin"

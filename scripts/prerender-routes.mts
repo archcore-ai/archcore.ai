@@ -25,17 +25,18 @@ interface RouteBody {
 const ROUTES: RouteMeta[] = [
   {
     path: "plugin",
-    title: "Archcore Plugin — repo context for Claude Code & Cursor",
+    title:
+      "Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI",
     description:
-      "Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions and standards without leaving chat.",
+      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.",
     ogImage: "/og-image-plugin.png",
     body: {
-      h1: "Archcore Plugin — repo context for Claude Code & Cursor",
+      h1: "Give Claude Code, Cursor & Codex CLI a brain for your codebase.",
       paragraphs: [
-        "The plugin gives Claude Code and Cursor access to the architectural context already in your repository — decisions, specs, team rules, patterns, and plans — so the agent edits code with the same constraints your team works under, not its best guess from a flat instruction file.",
-        "Two install commands wire up architecture-aware /archcore slash commands inside your agent. Run /archcore:context before a refactor to load the rules, decisions, and specs that apply to a directory. Use /archcore:decide to record a finalized decision (creating an ADR), /archcore:standard to codify a team convention as an ADR + rule + guide chain, or /archcore:plan to break a feature into a requirements cascade and an implementation plan.",
+        "The plugin gives Claude Code, Cursor, and Codex CLI access to the architectural context already in your repository — decisions, specs, team rules, patterns, and plans — so the agent edits code with the same constraints your team works under, not its best guess from a flat instruction file.",
+        "Three install commands wire up architecture-aware /archcore slash commands inside your agent. Run /archcore:context before a refactor to load the rules, decisions, and specs that apply to a directory. Use /archcore:decide to record a finalized decision (creating an ADR), /archcore:standard to codify a team convention as an ADR + rule + guide chain, or /archcore:plan to break a feature into a requirements cascade and an implementation plan.",
         "Capture decisions, standards, and plans without leaving chat. The plugin uses the underlying CLI for execution, so you also get MCP tools (list, get, create, update) for browsing and editing .archcore/ documents, and session hooks that inject the relevant context automatically at the start of a conversation.",
-        "Plugin hosts: Claude Code (production) and Cursor 2.5+ (production). Copilot and Codex CLI are on the roadmap. The CLI itself, exposed under the hood, supports eight agents through MCP. Open source, fully local — no servers, no accounts, no telemetry. Everything is stored in .archcore/ inside your repo and versioned with your code.",
+        "Plugin hosts: Claude Code (production), Cursor 2.5+ (production), and Codex CLI 0.117+ (production). GitHub Copilot is on the roadmap. The CLI itself, exposed under the hood, supports eight agents through MCP. Open source, fully local — no servers, no accounts, no telemetry. Everything is stored in .archcore/ inside your repo and versioned with your code.",
         "Common workflows: load context for a directory before touching it, record an ADR for a finalized decision, propose an RFC when the team needs to weigh in, or extend a feature plan after scope changes. The slash commands are tuned for these patterns, and the document graph means relevant rules and specs surface automatically when an agent reads a file under their scope. Reviewers can audit decisions and standards in code review like any other diff, since the documents live in Git.",
       ],
     },

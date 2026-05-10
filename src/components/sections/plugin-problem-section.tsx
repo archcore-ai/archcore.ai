@@ -22,7 +22,7 @@ export function PluginProblemSection() {
     {
       title: _(msg`Generic suggestions for your codebase`),
       detail: _(
-        msg`Claude Code and Cursor produce code that ignores your conventions, your ADRs, and your prior decisions.`
+        msg`Claude Code, Cursor, and Codex CLI produce code that ignores your conventions, your ADRs, and your prior decisions.`
       ),
     },
     {
@@ -53,9 +53,9 @@ export function PluginProblemSection() {
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              Two install commands give Claude Code and Cursor a memory that
-              lives next to the code — and slash commands to capture new
-              decisions as they happen.
+              Three install commands give Claude Code, Cursor, and Codex CLI a
+              memory that lives next to the code — and slash commands to
+              capture new decisions as they happen.
             </Trans>
           </p>
         </div>

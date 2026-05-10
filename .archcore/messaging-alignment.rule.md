@@ -17,7 +17,7 @@ All user-facing copy on the landing site MUST align with the canonical messaging
 
 Archcore is one product with two entry points:
 
-- **Plugin** — recommended runtime for Claude Code and Cursor. Best day-to-day experience. Requires the CLI under the hood.
+- **Plugin** — recommended runtime for Claude Code, Cursor, and Codex CLI. Best day-to-day experience. Requires the CLI under the hood.
 - **CLI** — core context layer (with MCP and hooks). Direct, scriptable, and the way to integrate with a wider set of agents.
 
 All copy must treat Plugin as the default recommended path while keeping the CLI a prestigious, fully supported alternative. Never imply the two are separate products or that CLI is a fallback.
@@ -45,8 +45,8 @@ Avoid as primary framing: "shared architectural memory", "system context platfor
 
 Dedicated pages have their own H1 and subhead, but each must reinforce the canonical framing above (one product, two entry points; "context layer" / "structured context" vocabulary).
 
-- **`/plugin` H1:** "Give Claude Code & Cursor a brain for your codebase."
-  **Subhead:** "The Archcore plugin loads your architecture, rules, and decisions into Claude Code and Cursor — so the agent stops guessing and starts following your team's truth."
+- **`/plugin` H1:** "Give Claude Code, Cursor & Codex CLI a brain for your codebase."
+  **Subhead:** "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
 - **`/cli` H1:** "Repo-native context for any AI agent."
   **Subhead:** "The Archcore CLI puts your architectural decisions, rules, and conventions in `.archcore/` — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
 

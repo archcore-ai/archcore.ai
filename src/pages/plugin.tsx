@@ -15,9 +15,11 @@ export function PluginPage() {
   const { _ } = useLingui();
 
   usePageMeta({
-    title: _(msg`Archcore Plugin — repo context for Claude Code & Cursor`),
+    title: _(
+      msg`Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI`
+    ),
     description: _(
-      msg`Archcore loads the right ADRs, specs, rules, and patterns before Claude Code and Cursor edit code. Capture decisions and standards without leaving chat.`
+      msg`The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.`
     ),
     canonical: "/plugin/",
     ogImage: "/og-image-plugin.png",
