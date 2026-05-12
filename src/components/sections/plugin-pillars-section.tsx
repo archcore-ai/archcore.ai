@@ -40,9 +40,9 @@ export function PluginPillarsSection() {
     },
     {
       icon: Zap,
-      title: _(msg`Zero setup for Claude Code`),
+      title: _(msg`One install, three hosts`),
       description: _(
-        msg`Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself.`
+        msg`Install the Archcore CLI once via curl or PowerShell — the plugin uses it from PATH in Claude Code, Cursor, and Codex CLI.`
       ),
     },
     {

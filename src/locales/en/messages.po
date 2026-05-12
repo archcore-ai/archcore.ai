@@ -88,8 +88,8 @@ msgid "Archcore turns your repository into structured, machine-readable context 
 msgstr "Archcore turns your repository into structured, machine-readable context — so Claude Code, Cursor, and other AI agents follow your architecture, rules, and decisions instead of guessing."
 
 #: src/components/sections/plugin-pillars-section.tsx:45
-msgid "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself."
-msgstr "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself."
+#~ msgid "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself."
+#~ msgstr "Auto-bundles a launcher that resolves the Archcore CLI on first call. MCP registers itself."
 
 #: src/pages/teams-getting-started.tsx:64
 #: src/pages/teams-getting-started.tsx:177
@@ -342,6 +342,10 @@ msgstr "Install in Codex:"
 msgid "Install Plugin"
 msgstr "Install Plugin"
 
+#: src/components/sections/plugin-pillars-section.tsx:45
+msgid "Install the Archcore CLI once via curl or PowerShell — the plugin uses it from PATH in Claude Code, Cursor, and Codex CLI."
+msgstr "Install the Archcore CLI once via curl or PowerShell — the plugin uses it from PATH in Claude Code, Cursor, and Codex CLI."
+
 #: src/components/sections/cli-pillars-section.tsx:50
 msgid "Installs session hooks"
 msgstr "Installs session hooks"
@@ -432,8 +436,8 @@ msgid "No. Standalone CLI binary, everything stored in .archcore/ inside your re
 msgstr "No. Standalone CLI binary, everything stored in .archcore/ inside your repo. No servers, no databases, no accounts."
 
 #: src/components/sections/plugin-faq-section.tsx:19
-msgid "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
-msgstr "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
+#~ msgid "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
+#~ msgstr "No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it."
 
 #: src/components/sections/cli-problem-section.tsx:90
 msgid "One binary turns the repo itself into the source of truth — no servers, no accounts, no copy-paste prompts."
@@ -447,6 +451,10 @@ msgstr "One binary. Local MCP in your repo. macOS, Linux, Windows — no externa
 #: src/components/sections/cli-pillars-section.tsx:64
 msgid "One command, <0>archcore init</0>, wires up four things at once."
 msgstr "One command, <0>archcore init</0>, wires up four things at once."
+
+#: src/components/sections/plugin-pillars-section.tsx:43
+msgid "One install, three hosts"
+msgstr "One install, three hosts"
 
 #: src/components/sections/sticky-header.tsx:130
 msgid "Open menu"
@@ -664,9 +672,17 @@ msgstr "Wiring an MCP server, editing config files, and keeping it updated isn't
 msgid "Writes MCP config"
 msgstr "Writes MCP config"
 
+#: src/components/sections/plugin-faq-section.tsx:19
+msgid "Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH."
+msgstr "Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH."
+
 #: src/components/sections/plugin-faq-section.tsx:31
-msgid "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download — useful for offline or enterprise deployments."
-msgstr "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download — useful for offline or enterprise deployments."
+msgid "Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/."
+msgstr "Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/."
+
+#: src/components/sections/plugin-faq-section.tsx:31
+#~ msgid "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download — useful for offline or enterprise deployments."
+#~ msgstr "Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download — useful for offline or enterprise deployments."
 
 #: src/components/sections/plugin-problem-section.tsx:19
 msgid "You copy-paste the same architecture rules into every new conversation. The agent forgets the moment it ends."
@@ -685,5 +701,5 @@ msgid "Your AI agent doesn't know your codebase."
 msgstr "Your AI agent doesn't know your codebase."
 
 #: src/components/sections/plugin-pillars-section.tsx:43
-msgid "Zero setup for Claude Code"
-msgstr "Zero setup for Claude Code"
+#~ msgid "Zero setup for Claude Code"
+#~ msgstr "Zero setup for Claude Code"

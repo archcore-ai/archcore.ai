@@ -16,7 +16,7 @@ export function PluginFAQSection() {
     {
       question: _(msg`Do I need to install the CLI separately?`),
       answer: _(
-        msg`No. The plugin bundles a launcher that auto-resolves and caches the Archcore CLI on first tool call (~5s, one-time). If you already have archcore on PATH, the launcher defers to it.`
+        msg`Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.`
       ),
     },
     {
@@ -28,7 +28,7 @@ export function PluginFAQSection() {
     {
       question: _(msg`Can I use my own CLI install?`),
       answer: _(
-        msg`Yes. Set ARCHCORE_BIN=/abs/path/to/archcore to point the plugin at your own binary, or ARCHCORE_SKIP_DOWNLOAD=1 to disable the auto-download — useful for offline or enterprise deployments.`
+        msg`Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/.`
       ),
     },
     {
