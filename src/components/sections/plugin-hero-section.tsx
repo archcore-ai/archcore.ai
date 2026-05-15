@@ -1,12 +1,23 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
+import { useState } from "react";
 import { ExternalLink, Github, Star } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
 
+type PluginHost = "claude" | "cursor" | "codex";
+
 export function PluginHeroSection() {
   const { _ } = useLingui();
+  const [host, setHost] = useState<PluginHost>("claude");
+
+  const handleHostChange = (value: string) => {
+    if (value === "claude" || value === "cursor" || value === "codex") {
+      setHost(value);
+    }
+  };
 
   return (
     <section
@@ -32,57 +43,46 @@ export function PluginHeroSection() {
           </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">
-            <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-              <PluginAgent
-                label={<Trans>Claude Code</Trans>}
-                hint={<Trans>Run inside Claude Code:</Trans>}
-                commands={[
-                  "/plugin marketplace add archcore-ai/plugin",
-                  "/plugin install archcore@archcore-plugins",
-                ]}
-              />
+            <Tabs value={host} onValueChange={handleHostChange}>
+              <TabsList className="mx-auto flex h-auto w-full max-w-xl">
+                <TabsTrigger value="claude" className="flex-1 py-2">
+                  <Trans>Claude Code</Trans>
+                </TabsTrigger>
+                <TabsTrigger value="cursor" className="flex-1 py-2">
+                  <Trans>Cursor 2.5+</Trans>
+                </TabsTrigger>
+                <TabsTrigger value="codex" className="flex-1 py-2">
+                  <Trans>Codex CLI 0.117+</Trans>
+                </TabsTrigger>
+              </TabsList>
 
-              <div className="border-t border-border" />
+              <TabsContent value="claude" className="mt-5">
+                <HostPanel
+                  hint={<Trans>Run inside Claude Code:</Trans>}
+                  commands={[
+                    "/plugin marketplace add archcore-ai/plugin",
+                    "/plugin install archcore@archcore-plugins",
+                  ]}
+                  repoLabel={_(msg`Star plugin on GitHub`)}
+                />
+              </TabsContent>
 
-              <PluginAgent
-                label={<Trans>Cursor 2.5+</Trans>}
-                hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
-                commands={["https://github.com/archcore-ai/plugin"]}
-              />
+              <TabsContent value="cursor" className="mt-5">
+                <HostPanel
+                  hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
+                  commands={["https://github.com/archcore-ai/plugin"]}
+                  repoLabel={_(msg`Star plugin on GitHub`)}
+                />
+              </TabsContent>
 
-              <div className="border-t border-border" />
-
-              <PluginAgent
-                label={<Trans>Codex CLI 0.117+</Trans>}
-                hint={<Trans>Install in Codex:</Trans>}
-                commands={[
-                  "codex plugin marketplace add archcore-ai/plugin",
-                ]}
-              />
-
-              <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
-                <a
-                  href={LINKS.pluginRepo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
-                  aria-label={_(msg`Star plugin on GitHub`)}
-                >
-                  <Github className="h-3 w-3" />
-                  archcore-ai/plugin
-                </a>
-                <span className="text-muted-foreground/40">·</span>
-                <a
-                  href="https://docs.archcore.ai/plugin/install/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-foreground transition-colors"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  <Trans>Plugin docs</Trans>
-                </a>
-              </p>
-            </div>
+              <TabsContent value="codex" className="mt-5">
+                <HostPanel
+                  hint={<Trans>Install in Codex:</Trans>}
+                  commands={["codex plugin marketplace add archcore-ai/plugin"]}
+                  repoLabel={_(msg`Star plugin on GitHub`)}
+                />
+              </TabsContent>
+            </Tabs>
           </div>
 
           <p className="text-sm text-muted-foreground/70">
@@ -109,24 +109,45 @@ export function PluginHeroSection() {
   );
 }
 
-interface PluginAgentProps {
-  label: React.ReactNode;
+interface HostPanelProps {
   hint: React.ReactNode;
   commands: string[];
+  repoLabel: string;
 }
 
-function PluginAgent({ label, hint, commands }: PluginAgentProps) {
+function HostPanel({ hint, commands, repoLabel }: HostPanelProps) {
   return (
-    <div className="space-y-2.5">
-      <div className="flex items-baseline gap-3">
-        <h3 className="text-sm font-semibold">{label}</h3>
-        <p className="text-xs text-muted-foreground">{hint}</p>
-      </div>
+    <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+      <p className="text-xs text-muted-foreground">{hint}</p>
+
       <div className="space-y-2">
         {commands.map((cmd) => (
           <InstallCommand key={cmd} variant="inline" command={cmd} />
         ))}
       </div>
+
+      <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
+        <a
+          href={LINKS.pluginRepo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
+          aria-label={repoLabel}
+        >
+          <Github className="h-3 w-3" />
+          archcore-ai/plugin
+        </a>
+        <span className="text-muted-foreground/40">·</span>
+        <a
+          href="https://docs.archcore.ai/plugin/install/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-foreground transition-colors"
+        >
+          <ExternalLink className="h-3 w-3" />
+          <Trans>Plugin docs</Trans>
+        </a>
+      </p>
     </div>
   );
 }

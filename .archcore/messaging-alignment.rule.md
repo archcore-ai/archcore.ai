@@ -48,7 +48,7 @@ Dedicated pages have their own H1 and subhead, but each must reinforce the canon
 - **`/plugin` H1:** "Give Claude Code, Cursor & Codex CLI a brain for your codebase."
   **Subhead:** "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
 - **`/cli` H1:** "Repo-native context for any AI agent."
-  **Subhead:** "The Archcore CLI puts your architectural decisions, rules, and conventions in `.archcore/` — versioned with your code, exposed to 8 AI agents via MCP and session hooks."
+  **Subhead:** "The Archcore CLI puts your architectural decisions, rules, and conventions in `.archcore/` — versioned with your code, exposed to leading AI agents via MCP and session hooks."
 
 Per-page OG cards (rendered by `scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments.
 
@@ -62,6 +62,8 @@ All install CTAs on the **home page** scroll to the single tabbed `InstallSectio
 - The home page's final CTA section pairs the primary and secondary CTAs above a "more info" nav of external links (plugin repo, CLI repo, docs, GitHub org).
 - Never pair these with different verbs — the page must read consistently.
 - Do not send install CTAs to external destinations (plugin repo, docs site). Each surface renders the real copyable commands on-page.
+
+The `/plugin` page's Install section is implemented as a 3-tab Radix Tabs widget with tabs labeled "Claude Code", "Cursor 2.5+", and "Codex CLI 0.117+". Each tab displays the host-specific install commands for that agent; copy written for this widget must stay host-specific and must not generalize across tabs.
 
 ## Rationale
 

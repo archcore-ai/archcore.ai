@@ -2,54 +2,50 @@ import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
-  ArrowUpRight,
-  BookOpen,
-  FileType,
-  Github,
-  GitBranch,
-  Network,
-  Plug,
+  Compass,
+  FileText,
+  Gavel,
+  Stethoscope,
   type LucideIcon,
 } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
-import { LINKS } from "@/lib/links";
 
-interface Pillar {
+interface Action {
   icon: LucideIcon;
   title: string;
-  description: string;
+  outcome: string;
 }
 
 export function HowWeSolveSection() {
   const { _ } = useLingui();
 
-  const pillars: Pillar[] = [
+  const actions: Action[] = [
     {
-      icon: FileType,
-      title: _(msg`Typed documents`),
-      description: _(
-        msg`ADRs, specs, rules, guides, and plans — every file has a type the agent can reason about.`
+      icon: Compass,
+      title: _(msg`Load context before editing`),
+      outcome: _(
+        msg`Pull the rules, ADRs, and patterns for the file you're about to touch. No more pasting conventions into chat.`
       ),
     },
     {
-      icon: Network,
-      title: _(msg`Relation graph`),
-      description: _(
-        msg`Documents link to each other. The agent loads the right context, not the whole repo.`
+      icon: FileText,
+      title: _(msg`Document what's in code`),
+      outcome: _(
+        msg`Turn modules, APIs, and integrations into versioned docs that live next to the code.`
       ),
     },
     {
-      icon: Plug,
-      title: _(msg`MCP & session hooks`),
-      description: _(
-        msg`Any compliant agent queries .archcore/ on demand or auto-loads it before edits.`
+      icon: Gavel,
+      title: _(msg`Record decisions, not chat history`),
+      outcome: _(
+        msg`Capture an ADR and make it a team rule that auto-applies to future edits.`
       ),
     },
     {
-      icon: GitBranch,
-      title: _(msg`Git-native`),
-      description: _(
-        msg`Lives next to the code. Reviewed in PRs. Travels across branches and teammates.`
+      icon: Stethoscope,
+      title: _(msg`Audit doc health`),
+      outcome: _(
+        msg`Spot stale, missing, or drifting docs before they become bugs.`
       ),
     },
   ];
@@ -59,70 +55,36 @@ export function HowWeSolveSection() {
       id="how-we-solve"
       className="bg-muted/30 border-y border-border"
     >
-      <div className="text-center space-y-3 mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance max-w-3xl mx-auto">
-          <Trans>
-            Decisions, rules, and guides — versioned in{" "}
-            <code className="font-mono text-[0.85em] rounded bg-muted px-1.5 py-0.5">
-              .archcore/
-            </code>
-            , exposed via MCP.
-          </Trans>
+      <div className="text-center space-y-4 mb-12 max-w-3xl mx-auto">
+        <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+          <Trans>What you do with Archcore</Trans>
+        </p>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
+          <Trans>Four outcomes you get back the moment you install.</Trans>
         </h2>
       </div>
 
       <ul className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {pillars.map((pillar) => {
-          const Icon = pillar.icon;
+        {actions.map((action) => {
+          const Icon = action.icon;
           return (
             <li
-              key={pillar.title}
+              key={action.title}
               className="rounded-xl border border-border bg-card p-6 flex flex-col gap-3"
             >
               <div className="rounded-lg bg-muted p-2 w-fit">
                 <Icon className="h-4 w-4 text-foreground" />
               </div>
               <h3 className="text-lg font-semibold leading-tight">
-                {pillar.title}
+                {action.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                {pillar.description}
+                {action.outcome}
               </p>
             </li>
           );
         })}
       </ul>
-
-      <nav
-        aria-label={_(msg`More info`)}
-        className="mt-12 flex flex-col items-center gap-3"
-      >
-        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-          <Trans>More info</Trans>
-        </span>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <a
-            href={LINKS.docs}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground hover:bg-muted transition-colors"
-          >
-            <BookOpen className="h-4 w-4" />
-            <Trans>Docs</Trans>
-            <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
-          </a>
-          <a
-            href={LINKS.org}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground hover:bg-muted transition-colors"
-          >
-            <Github className="h-4 w-4" />
-            <Trans>Repo</Trans>
-            <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
-          </a>
-        </div>
-      </nav>
     </SectionContainer>
   );
 }

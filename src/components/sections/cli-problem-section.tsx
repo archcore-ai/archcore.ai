@@ -1,42 +1,28 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Terminal, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 
-interface Pain {
-  title: string;
-  detail: string;
+interface Row {
+  text: string;
 }
 
 export function CLIProblemSection() {
   const { _ } = useLingui();
 
-  const pains: Pain[] = [
-    {
-      title: _(msg`Instructions live in one flat file`),
-      detail: _(
-        msg`CLAUDE.md and .cursorrules pile up — there's no type, no link, no history the agent can reason about.`
-      ),
-    },
-    {
-      title: _(msg`No shared context across agents`),
-      detail: _(
-        msg`Claude Code, Cursor, and Copilot each get their own bespoke prompt. Nothing is reused.`
-      ),
-    },
-    {
-      title: _(msg`Decisions never make it back to the repo`),
-      detail: _(
-        msg`The agent picks a direction in chat, but the rationale doesn't land in Git for the next session — or the next teammate.`
-      ),
-    },
-    {
-      title: _(msg`MCP servers stay generic`),
-      detail: _(
-        msg`Most MCP servers expose external services. None of them speak your codebase's typed decisions, rules, and plans.`
-      ),
-    },
+  const before: Row[] = [
+    { text: _(msg`CLAUDE.md (190 lines, growing)`) },
+    { text: _(msg`.cursorrules, scattered prompts`) },
+    { text: _(msg`Copy-paste rules every session`) },
+    { text: _(msg`Decisions stuck in chat`) },
+  ];
+
+  const after: Row[] = [
+    { text: _(msg`Typed decisions (ADRs)`) },
+    { text: _(msg`Versioned rules in Git`) },
+    { text: _(msg`Queryable across agents`) },
+    { text: _(msg`Auto-loaded at session start`) },
   ];
 
   return (
@@ -53,45 +39,47 @@ export function CLIProblemSection() {
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              Flat memory works for a few rules. Real teams need typed,
-              queryable, versioned context every agent can read. That's what
-              archcore init builds.
+              Flat memory works for one dev. Not a team, not multiple agents,
+              not six months from now.
             </Trans>
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-5 py-4 font-mono text-sm text-left max-w-2xl mx-auto">
-          <Terminal className="h-4 w-4 text-muted-foreground shrink-0" />
-          <span className="text-foreground">
-            <Trans>"Read the ADRs before you touch payments."</Trans>
-          </span>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded-xl border border-border bg-card p-6 space-y-4">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+              <Trans>What you have today</Trans>
+            </p>
+            <ul className="space-y-3">
+              {before.map((row) => (
+                <li
+                  key={row.text}
+                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                >
+                  <XCircle className="h-4 w-4 mt-0.5 shrink-0 opacity-70" />
+                  <span className="leading-snug">{row.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {pains.map((pain) => (
-            <div
-              key={pain.title}
-              className="rounded-xl border border-border bg-card p-5 flex items-start gap-3"
-            >
-              <XCircle className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
-              <div className="space-y-1.5">
-                <h3 className="text-sm font-semibold leading-tight">
-                  {pain.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {pain.detail}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div className="rounded-xl border border-border bg-card p-6 space-y-4">
+            <p className="text-xs uppercase tracking-wider text-foreground/80 font-medium">
+              <Trans>What teams actually need</Trans>
+            </p>
+            <ul className="space-y-3">
+              {after.map((row) => (
+                <li
+                  key={row.text}
+                  className="flex items-start gap-2.5 text-sm text-foreground"
+                >
+                  <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-foreground/80" />
+                  <span className="leading-snug">{row.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
-          <Trans>
-            One binary turns the repo itself into the source of truth — no
-            servers, no accounts, no copy-paste prompts.
-          </Trans>
-        </p>
       </div>
     </SectionContainer>
   );

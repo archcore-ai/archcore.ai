@@ -6,6 +6,7 @@ import {
   CLIShowcaseSection,
   CLIProblemSection,
   CLIPillarsSection,
+  CLIRepoLayoutSection,
   CLIFAQSection,
   SiteNav,
 } from "@/components/sections";
@@ -28,9 +29,10 @@ export function CLIPage() {
       <StickyHeader />
       <main id="main-content">
         <CLIHeroSection />
-        <CLIShowcaseSection />
         <CLIProblemSection />
+        <CLIShowcaseSection />
         <CLIPillarsSection />
+        <CLIRepoLayoutSection />
         <CLIFAQSection />
       </main>
       <SiteNav />

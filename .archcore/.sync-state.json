@@ -31,6 +31,21 @@
       "source": "infrastructure/migrate-hosting-to-github-pages.adr.md",
       "target": "landing-tech-stack.doc.md",
       "type": "related"
+    },
+    {
+      "source": "landing/plugin-page-action-framing.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "messaging-alignment.rule.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "related"
+    },
+    {
+      "source": "landing-tech-stack.doc.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "related"
     }
   ]
 }

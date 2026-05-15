@@ -3,6 +3,7 @@ import {
   HeroSection,
   ProblemSection,
   HowWeSolveSection,
+  ChoosePathSection,
   FAQSection,
   SiteNav,
 } from "@/components/sections";
@@ -15,6 +16,7 @@ export function LandingPage() {
         <HeroSection />
         <ProblemSection />
         <HowWeSolveSection />
+        <ChoosePathSection />
         <FAQSection />
       </main>
       <SiteNav />

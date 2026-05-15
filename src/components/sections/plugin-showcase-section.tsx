@@ -12,9 +12,9 @@ export function PluginShowcaseSection() {
   return (
     <section
       aria-label={_(msg`Plugin in action`)}
-      className="relative px-6 pb-16"
+      className="relative px-6 py-20 md:py-24"
     >
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative max-w-3xl mx-auto">
         <div className="relative rounded-2xl border border-border bg-card overflow-hidden">
           <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-3">
             <div className="flex items-center gap-1.5">

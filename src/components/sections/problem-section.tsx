@@ -1,42 +1,28 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Terminal, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 
-interface Pain {
-  title: string;
-  detail: string;
+interface Row {
+  text: string;
 }
 
 export function ProblemSection() {
   const { _ } = useLingui();
 
-  const pains: Pain[] = [
-    {
-      title: _(msg`Guesses your folder structure`),
-      detail: _(
-        msg`Drops files in plausible-looking places that don't match how your repo is organized.`
-      ),
-    },
-    {
-      title: _(msg`Ignores team conventions`),
-      detail: _(
-        msg`Reinvents naming, error handling, and patterns you already standardized.`
-      ),
-    },
-    {
-      title: _(msg`Reopens decisions you already made`),
-      detail: _(
-        msg`The ADR exists, but the agent never read it — so it pitches the option you rejected six months ago.`
-      ),
-    },
-    {
-      title: _(msg`Forgets the rules between sessions`),
-      detail: _(
-        msg`Every new chat starts from zero. You explain the same constraints, again and again.`
-      ),
-    },
+  const before: Row[] = [
+    { text: _(msg`Drop files anywhere`) },
+    { text: _(msg`Reopen decisions you already made`) },
+    { text: _(msg`Forget the rules each session`) },
+    { text: _(msg`One bespoke prompt per agent`) },
+  ];
+
+  const after: Row[] = [
+    { text: _(msg`Follow your conventions`) },
+    { text: _(msg`Respect ADRs and rules`) },
+    { text: _(msg`Persist across sessions`) },
+    { text: _(msg`One source of truth, every agent`) },
   ];
 
   return (
@@ -53,46 +39,47 @@ export function ProblemSection() {
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              It has read your code. It hasn't read your architecture. The ADRs
-              you wrote, the conventions your team agreed on, the rules that
-              keep things consistent — none of that is in the model. So it
-              improvises. And you spend more time correcting than coding.
+              It has read your code, not your architecture. So it improvises —
+              every session, every agent.
             </Trans>
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-5 py-4 font-mono text-sm text-left max-w-2xl mx-auto">
-          <Terminal className="h-4 w-4 text-muted-foreground shrink-0" />
-          <span className="text-foreground">
-            <Trans>"Add a new user-notifications service."</Trans>
-          </span>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded-xl border border-border bg-card p-6 space-y-4">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+              <Trans>What agents do today</Trans>
+            </p>
+            <ul className="space-y-3">
+              {before.map((row) => (
+                <li
+                  key={row.text}
+                  className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                >
+                  <XCircle className="h-4 w-4 mt-0.5 shrink-0 opacity-70" />
+                  <span className="leading-snug">{row.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {pains.map((pain) => (
-            <div
-              key={pain.title}
-              className="rounded-xl border border-border bg-card p-5 flex items-start gap-3"
-            >
-              <XCircle className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
-              <div className="space-y-1.5">
-                <h3 className="text-sm font-semibold leading-tight">
-                  {pain.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {pain.detail}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div className="rounded-xl border border-border bg-card p-6 space-y-4">
+            <p className="text-xs uppercase tracking-wider text-foreground/80 font-medium">
+              <Trans>What you want</Trans>
+            </p>
+            <ul className="space-y-3">
+              {after.map((row) => (
+                <li
+                  key={row.text}
+                  className="flex items-start gap-2.5 text-sm text-foreground"
+                >
+                  <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-foreground/80" />
+                  <span className="leading-snug">{row.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
-          <Trans>
-            The result: code drift, repeated mistakes, and decisions you've
-            already made being made again.
-          </Trans>
-        </p>
       </div>
     </SectionContainer>
   );

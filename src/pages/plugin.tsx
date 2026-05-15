@@ -30,9 +30,9 @@ export function PluginPage() {
       <StickyHeader />
       <main id="main-content">
         <PluginHeroSection />
+        <PluginPillarsSection />
         <PluginShowcaseSection />
         <PluginProblemSection />
-        <PluginPillarsSection />
         <PluginFAQSection />
       </main>
       <SiteNav />
