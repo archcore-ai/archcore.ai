@@ -16,6 +16,7 @@ export const INTERNAL_LINKS = {
   home: "/",
   plugin: "/plugin/",
   cli: "/cli/",
+  howToUse: "/how-to-use/",
   privacy: "/privacy/",
 } as const;
 

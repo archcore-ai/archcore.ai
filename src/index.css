@@ -259,3 +259,48 @@
 .dark .integration-card-image {
   filter: contrast(0.9) brightness(0.95);
 }
+
+/* "How to use" navbar CTA — live pulse indicator.
+ * Two-layer dot: a static white core + an outer ping echo.
+ * Signals "interactive / live demo" without leaning on a play icon. */
+@keyframes nav-live-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.nav-live-dot {
+  position: relative;
+  display: inline-flex;
+  width: 6px;
+  height: 6px;
+}
+
+.nav-live-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+  animation: nav-live-pulse 1.8s ease-out infinite;
+}
+
+.nav-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-live-dot::before {
+    animation: none;
+  }
+}

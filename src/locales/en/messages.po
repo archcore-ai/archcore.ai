@@ -197,7 +197,7 @@ msgstr "CLAUDE.md (190 lines, growing)"
 #: src/components/sections/choose-path-section.tsx:21
 #: src/components/sections/hero-section.tsx:76
 #: src/components/sections/site-nav.tsx:19
-#: src/components/sections/sticky-header.tsx:25
+#: src/components/sections/sticky-header.tsx:29
 msgid "CLI"
 msgstr "CLI"
 
@@ -218,7 +218,7 @@ msgstr "CLI in action"
 #~ msgid "CLI repo"
 #~ msgstr "CLI repo"
 
-#: src/components/sections/sticky-header.tsx:130
+#: src/components/sections/sticky-header.tsx:139
 msgid "Close menu"
 msgstr "Close menu"
 
@@ -341,7 +341,7 @@ msgid "Do I need to install the CLI separately?"
 msgstr "Do I need to install the CLI separately?"
 
 #: src/components/sections/site-nav.tsx:20
-#: src/components/sections/sticky-header.tsx:26
+#: src/components/sections/sticky-header.tsx:30
 msgid "Docs"
 msgstr "Docs"
 
@@ -477,6 +477,10 @@ msgstr "Health check"
 msgid "How is this different from CLAUDE.md or AGENTS.md?"
 msgstr "How is this different from CLAUDE.md or AGENTS.md?"
 
+#: src/components/sections/sticky-header.tsx:18
+msgid "How to use"
+msgstr "How to use"
+
 #: src/components/sections/cli-repo-layout-section.tsx:26
 msgid "how-tos"
 msgstr "how-tos"
@@ -503,6 +507,7 @@ msgid "Install in Codex:"
 msgstr "Install in Codex:"
 
 #: src/components/sections/sticky-header.tsx:120
+#: src/components/sections/sticky-header.tsx:235
 msgid "Install Plugin"
 msgstr "Install Plugin"
 
@@ -529,6 +534,10 @@ msgstr "Instruction files don't scale."
 #: src/components/sections/plugin-pillars-section.tsx:29
 #~ msgid "Intent-based slash commands"
 #~ msgstr "Intent-based slash commands"
+
+#: src/components/sections/sticky-header.tsx:20
+msgid "Interactive walkthrough"
+msgstr "Interactive walkthrough"
 
 #: src/components/sections/problem-section.tsx:49
 #~ msgid "It has read your code, not your architecture. So it improvises — and you spend more time correcting than coding."
@@ -681,7 +690,7 @@ msgstr "One config, every agent"
 msgid "One source of truth, every agent"
 msgstr "One source of truth, every agent"
 
-#: src/components/sections/sticky-header.tsx:130
+#: src/components/sections/sticky-header.tsx:139
 msgid "Open menu"
 msgstr "Open menu"
 
@@ -693,6 +702,10 @@ msgstr "Open Plugins → Add and paste URL:"
 #: src/components/sections/hero-section.tsx:95
 msgid "Open source · Git-native · MCP"
 msgstr "Open source · Git-native · MCP"
+
+#: src/components/sections/sticky-header.tsx:19
+msgid "Open the interactive walkthrough"
+msgstr "Open the interactive walkthrough"
 
 #: src/components/sections/problem-section.tsx:24
 msgid "Persist across sessions"
@@ -709,7 +722,7 @@ msgstr "Please enter a valid email."
 #: src/components/sections/choose-path-section.tsx:47
 #: src/components/sections/hero-section.tsx:80
 #: src/components/sections/site-nav.tsx:18
-#: src/components/sections/sticky-header.tsx:24
+#: src/components/sections/sticky-header.tsx:28
 msgid "Plugin"
 msgstr "Plugin"
 

@@ -197,7 +197,7 @@ msgstr "CLAUDE.md (190 строк, и растёт)"
 #: src/components/sections/choose-path-section.tsx:21
 #: src/components/sections/hero-section.tsx:76
 #: src/components/sections/site-nav.tsx:19
-#: src/components/sections/sticky-header.tsx:25
+#: src/components/sections/sticky-header.tsx:29
 msgid "CLI"
 msgstr "CLI"
 
@@ -218,7 +218,7 @@ msgstr "CLI в действии"
 #~ msgid "CLI repo"
 #~ msgstr "Репозиторий CLI"
 
-#: src/components/sections/sticky-header.tsx:130
+#: src/components/sections/sticky-header.tsx:139
 msgid "Close menu"
 msgstr "Закрыть меню"
 
@@ -341,7 +341,7 @@ msgid "Do I need to install the CLI separately?"
 msgstr "Нужно ли устанавливать CLI отдельно?"
 
 #: src/components/sections/site-nav.tsx:20
-#: src/components/sections/sticky-header.tsx:26
+#: src/components/sections/sticky-header.tsx:30
 msgid "Docs"
 msgstr "Документация"
 
@@ -477,6 +477,10 @@ msgstr "Проверка здоровья документации"
 msgid "How is this different from CLAUDE.md or AGENTS.md?"
 msgstr "Чем это отличается от CLAUDE.md или AGENTS.md?"
 
+#: src/components/sections/sticky-header.tsx:18
+msgid "How to use"
+msgstr "Как использовать"
+
 #: src/components/sections/cli-repo-layout-section.tsx:26
 msgid "how-tos"
 msgstr "how-to"
@@ -503,6 +507,7 @@ msgid "Install in Codex:"
 msgstr "Установите в Codex:"
 
 #: src/components/sections/sticky-header.tsx:120
+#: src/components/sections/sticky-header.tsx:235
 msgid "Install Plugin"
 msgstr "Установить плагин"
 
@@ -529,6 +534,10 @@ msgstr "Файлы инструкций не масштабируются."
 #: src/components/sections/plugin-pillars-section.tsx:29
 #~ msgid "Intent-based slash commands"
 #~ msgstr "Intent-команды"
+
+#: src/components/sections/sticky-header.tsx:20
+msgid "Interactive walkthrough"
+msgstr "Интерактивный тур"
 
 #: src/components/sections/problem-section.tsx:49
 #~ msgid "It has read your code, not your architecture. So it improvises — and you spend more time correcting than coding."
@@ -681,7 +690,7 @@ msgstr "Один конфиг — все агенты"
 msgid "One source of truth, every agent"
 msgstr "Один источник истины для всех агентов"
 
-#: src/components/sections/sticky-header.tsx:130
+#: src/components/sections/sticky-header.tsx:139
 msgid "Open menu"
 msgstr "Открыть меню"
 
@@ -693,6 +702,10 @@ msgstr "Откройте Plugins → Add и вставьте URL:"
 #: src/components/sections/hero-section.tsx:95
 msgid "Open source · Git-native · MCP"
 msgstr "Open source · Git-нативно · MCP"
+
+#: src/components/sections/sticky-header.tsx:19
+msgid "Open the interactive walkthrough"
+msgstr "Открыть интерактивный тур"
 
 #: src/components/sections/problem-section.tsx:24
 msgid "Persist across sessions"
@@ -709,7 +722,7 @@ msgstr "Введите корректный email."
 #: src/components/sections/choose-path-section.tsx:47
 #: src/components/sections/hero-section.tsx:80
 #: src/components/sections/site-nav.tsx:18
-#: src/components/sections/sticky-header.tsx:24
+#: src/components/sections/sticky-header.tsx:28
 msgid "Plugin"
 msgstr "Плагин"
 
