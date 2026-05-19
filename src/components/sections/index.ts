@@ -18,3 +18,6 @@ export { PluginShowcaseSection } from "./plugin-showcase-section";
 export { PluginProblemSection } from "./plugin-problem-section";
 export { PluginPillarsSection } from "./plugin-pillars-section";
 export { PluginFAQSection } from "./plugin-faq-section";
+
+export { HowToUseWizardSection } from "./how-to-use-wizard-section";
+export { HowToUseCtaSection } from "./how-to-use-cta-section";

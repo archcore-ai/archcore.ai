@@ -46,6 +46,36 @@
       "source": "landing-tech-stack.doc.md",
       "target": "i18n-workflow.guide.md",
       "type": "related"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.prd.md",
+      "target": "landing/how-to-use-interactive-walkthrough.idea.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.plan.md",
+      "target": "landing/how-to-use-interactive-walkthrough.prd.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.prd.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.prd.md",
+      "target": "landing/plugin-page-action-framing.adr.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.plan.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/how-to-use-interactive-walkthrough.plan.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "depends_on"
     }
   ]
 }

@@ -67,6 +67,16 @@ const VARIANTS: Variant[] = [
       "Archcore CLI creates .archcore/, wires MCP and hooks, and lets your agents read and write decisions, rules, plans, and guides from Git.",
     bottomLabel: "Standalone binary  ·  MCP + hooks  ·  8 AI coding agents",
   },
+  {
+    output: "og-image-how-to-use.png",
+    headline: [
+      "How to use Archcore.",
+      "Interactive walkthrough.",
+    ],
+    subtitle:
+      "Answer 3-5 questions and see the exact commands. Pick plugin vs CLI for your stack — no signup, no video.",
+    bottomLabel: "Interactive walkthrough  ·  3-5 steps  ·  Plugin · CLI",
+  },
 ];
 
 async function render(variant: Variant): Promise<void> {

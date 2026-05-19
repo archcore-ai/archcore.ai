@@ -8,6 +8,7 @@ import {
   CLIPillarsSection,
   CLIRepoLayoutSection,
   CLIFAQSection,
+  HowToUseCtaSection,
   SiteNav,
 } from "@/components/sections";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -32,8 +33,10 @@ export function CLIPage() {
         <CLIProblemSection />
         <CLIShowcaseSection />
         <CLIPillarsSection />
+        <HowToUseCtaSection />
         <CLIRepoLayoutSection />
         <CLIFAQSection />
+        <HowToUseCtaSection variant="compact" />
       </main>
       <SiteNav />
     </div>

@@ -7,6 +7,7 @@ import {
   PluginProblemSection,
   PluginPillarsSection,
   PluginFAQSection,
+  HowToUseCtaSection,
   SiteNav,
 } from "@/components/sections";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -31,9 +32,11 @@ export function PluginPage() {
       <main id="main-content">
         <PluginHeroSection />
         <PluginPillarsSection />
+        <HowToUseCtaSection />
         <PluginShowcaseSection />
         <PluginProblemSection />
         <PluginFAQSection />
+        <HowToUseCtaSection variant="compact" />
       </main>
       <SiteNav />
     </div>

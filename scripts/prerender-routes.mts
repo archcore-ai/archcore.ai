@@ -59,6 +59,21 @@ const ROUTES: RouteMeta[] = [
     },
   },
   {
+    path: "how-to-use",
+    title: "How to use Archcore — interactive walkthrough",
+    description:
+      "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent — in 3-5 steps.",
+    ogImage: "/og-image-how-to-use.png",
+    body: {
+      h1: "How to use Archcore.",
+      paragraphs: [
+        "A short interactive walkthrough with five branches you can pick from the entry screen. Each branch is 3-5 steps with copy-pasteable commands, expected output, and a one-line note on what just happened. Branches that have both a plugin and a CLI flavor carry a Plugin / CLI toggle you can flip on every step.",
+        "Same product, two entry points. The Plugin is the recommended runtime for Claude Code, Cursor, and Codex CLI — seven /archcore slash commands with automatic context injection. The CLI is the core context layer for any MCP-aware agent — finer control, scriptable in CI, the way to integrate with Copilot, Gemini CLI, OpenCode, Cline, and the rest.",
+        "What the five branches deliver. How to install Archcore — pick Plugin or CLI, walk through install and verification. Quick start in your project — your first useful command after install on a fresh repo. I have an idea, no context yet — turn a plain-English idea into PRD → spec → plan. Document existing code — capture what already lives in code as decisions, rules, plans, and guides. Solve tasks with existing context — load the right docs before editing, audit drift after.",
+      ],
+    },
+  },
+  {
     path: "privacy",
     title: "Privacy Policy — Archcore plugin, CLI & website",
     description:

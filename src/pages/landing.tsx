@@ -3,6 +3,7 @@ import {
   HeroSection,
   ProblemSection,
   HowWeSolveSection,
+  HowToUseCtaSection,
   ChoosePathSection,
   FAQSection,
   SiteNav,
@@ -16,8 +17,10 @@ export function LandingPage() {
         <HeroSection />
         <ProblemSection />
         <HowWeSolveSection />
+        <HowToUseCtaSection />
         <ChoosePathSection />
         <FAQSection />
+        <HowToUseCtaSection variant="compact" />
       </main>
       <SiteNav />
     </div>

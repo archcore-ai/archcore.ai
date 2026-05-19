@@ -26,6 +26,12 @@ const CLIPage = lazy(() =>
   }))
 );
 
+const HowToUsePage = lazy(() =>
+  import("@/pages/how-to-use").then((m) => ({
+    default: m.HowToUsePage,
+  }))
+);
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -44,6 +50,14 @@ export default function App() {
           element={
             <Suspense>
               <CLIPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/how-to-use"
+          element={
+            <Suspense>
+              <HowToUsePage />
             </Suspense>
           }
         />
