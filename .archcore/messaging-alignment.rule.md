@@ -15,20 +15,7 @@ All user-facing copy on the landing site MUST align with the canonical messaging
 
 ## Product framing
 
-Archcore is one product with two entry points:
-
-- **Plugin** — recommended runtime for Claude Code, Cursor, and Codex CLI. Best day-to-day experience. Requires the CLI under the hood.
-- **CLI** — core context layer (with MCP and hooks). Direct, scriptable, and the way to integrate with a wider set of agents.
-
-All copy must treat Plugin as the default recommended path while keeping the CLI a prestigious, fully supported alternative. Never imply the two are separate products or that CLI is a fallback.
-
-### Vocabulary preferences
-
-Use: "structured context", "machine-readable context", "repo context", "project context", "context layer", "entry point", "recommended path", "core", "runtime", "experience layer".
-
-Use for document surface: "decisions, rules, plans, and guides" (not "experience", not "memory").
-
-Avoid as primary framing: "shared architectural memory", "system context platform", "context engineering platform".
+The ecosystem-wide stance — Archcore as one product with two entry points (Plugin + CLI), the shared voice, the preferred vocabulary, and the avoid-list — lives in the `archcore` global source (`product/messaging-and-voice`, `architecture/one-product-two-entry-points`). Do not restate it here. This document covers only what is **specific to the landing site**: the canonical phrases above and the per-page heroes, copy hierarchy, and CTAs below.
 
 ### Copy hierarchy (home `/`)
 
