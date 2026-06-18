@@ -16,19 +16,13 @@ export function FAQSection() {
     {
       question: _(msg`How is this different from CLAUDE.md or AGENTS.md?`),
       answer: _(
-        msg`Instruction files are flat memory — one tool, one file. Archcore is structured: multiple document types (ADR, rule, plan, guide, spec), relations between them, versioned history, read and written during real work, and reusable across Claude Code, Cursor, Copilot, and other agents.`
+        msg`Instruction files are flat memory — one tool, one file. Archcore is structured: typed documents (ADR, rule, plan, guide, spec) with relations, versioned history, read and written during real work, and reused across every agent.`
       ),
     },
     {
-      question: _(msg`Which AI agents are supported, and do I need both plugin and CLI?`),
+      question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`The plugin runs on Claude Code, Cursor 2.5+, and Codex CLI 0.117+ (GitHub Copilot is on the roadmap). The CLI works with 8 agents via MCP and hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline. The plugin uses the CLI under the hood — install the plugin and you get both. For just the core context layer, install the CLI on its own.`
-      ),
-    },
-    {
-      question: _(msg`Do I need any external services?`),
-      answer: _(
-        msg`No. Standalone CLI binary, everything stored in .archcore/ inside your repo. No servers, no databases, no accounts.`
+        msg`No. The plugin runs on the CLI under the hood — install the plugin and you get both. Want just the core context layer? Install the CLI on its own.`
       ),
     },
   ];

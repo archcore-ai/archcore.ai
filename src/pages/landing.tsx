@@ -1,11 +1,11 @@
 import {
   StickyHeader,
   HeroSection,
-  ProblemSection,
-  HowWeSolveSection,
-  HowToUseCtaSection,
-  ChoosePathSection,
+  BeforeAfterSection,
+  HowItWorksSection,
+  HowToUseWizardSection,
   FAQSection,
+  StarCtaSection,
   SiteNav,
 } from "@/components/sections";
 
@@ -15,12 +15,11 @@ export function LandingPage() {
       <StickyHeader />
       <main id="main-content">
         <HeroSection />
-        <ProblemSection />
-        <HowWeSolveSection />
-        <HowToUseCtaSection />
-        <ChoosePathSection />
+        <BeforeAfterSection />
+        <HowItWorksSection />
+        <HowToUseWizardSection embedded />
         <FAQSection />
-        <HowToUseCtaSection variant="compact" />
+        <StarCtaSection />
       </main>
       <SiteNav />
     </div>

@@ -41,7 +41,18 @@ type WizardState =
 
 const INITIAL: WizardState = { phase: "picker" };
 
-export function HowToUseWizardSection() {
+interface HowToUseWizardSectionProps {
+  /**
+   * Inline mode for the landing page: tighter padding and a short section
+   * intro above the wizard card. The standalone /how-to-use page leaves this
+   * off so the wizard owns the full viewport.
+   */
+  embedded?: boolean;
+}
+
+export function HowToUseWizardSection({
+  embedded = false,
+}: HowToUseWizardSectionProps = {}) {
   const { _ } = useLingui();
   const [state, setState] = useState<WizardState>(INITIAL);
 
@@ -128,8 +139,26 @@ export function HowToUseWizardSection() {
     <SectionContainer
       narrow
       id="walkthrough"
-      className="pt-24 md:pt-28 pb-24 md:pb-32"
+      className={
+        embedded
+          ? "pt-8 md:pt-10 pb-8 md:pb-10"
+          : "pt-24 md:pt-28 pb-24 md:pb-32"
+      }
     >
+      {embedded && (
+        <div className="text-center space-y-3 mb-8 max-w-2xl mx-auto">
+          <p className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+            <span
+              className="nav-live-dot text-[var(--color-action)]"
+              aria-hidden="true"
+            />
+            <Trans>Try it right here</Trans>
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
+            <Trans>No install needed. See exactly what you'd run.</Trans>
+          </h2>
+        </div>
+      )}
       <div className="rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
         {state.phase === "picker" && <BranchPicker onPick={enterBranch} />}
 

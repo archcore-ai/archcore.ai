@@ -2,10 +2,11 @@ import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { useEffect, useState } from "react";
-import { ExternalLink, Github, Puzzle, Star, Terminal } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Puzzle, Terminal } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InstallCommand } from "@/components/cta/install-command";
-import { LINKS } from "@/lib/links";
+import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 type InstallTab = "cli" | "plugin";
 
@@ -48,7 +49,7 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="hero-section relative pt-28 lg:pt-32 pb-14 md:pb-16 px-6 overflow-hidden"
+      className="hero-section relative pt-28 lg:pt-32 pb-8 md:pb-10 px-6 overflow-hidden"
     >
       <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
@@ -62,9 +63,8 @@ export function HeroSection() {
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
-              Archcore turns your repository into structured, machine-readable
-              context — so Claude Code, Cursor, and other AI agents follow your
-              architecture, rules, and decisions instead of guessing.
+              So your agents follow your architecture instead of guessing from a
+              flat CLAUDE.md.
             </Trans>
           </p>
 
@@ -89,24 +89,15 @@ export function HeroSection() {
                 <PluginPanel _={_} />
               </TabsContent>
             </Tabs>
+            <div className="mt-4 space-y-1.5 text-center text-sm text-muted-foreground/70">
+              <p>
+                <Trans>CLI = one binary · Plugin = slash commands.</Trans>
+              </p>
+              <p>
+                <Trans>Open source · Local-first · No telemetry</Trans>
+              </p>
+            </div>
           </div>
-
-          <p className="text-sm text-muted-foreground/70">
-            <Trans>Open source · Git-native · MCP</Trans>
-            {" · "}
-            <a
-              href={LINKS.org}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-foreground transition-colors"
-            >
-              <Star
-                className="inline-block h-3.5 w-3.5 -mt-0.5 mr-1"
-                fill="currentColor"
-              />
-              <Trans>Star on GitHub</Trans>
-            </a>
-          </p>
         </div>
       </div>
     </section>
@@ -117,10 +108,7 @@ function CLIPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-4">
       <p className="text-sm text-muted-foreground">
-        <Trans>
-          One binary. Local MCP in your repo. macOS, Linux, Windows — no
-          external services.
-        </Trans>
+        <Trans>One binary, local MCP in your repo — macOS, Linux, Windows.</Trans>
       </p>
 
       <div className="space-y-2">
@@ -141,7 +129,7 @@ function CLIPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
 
 function PluginPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-5 space-y-5">
+    <div className="rounded-xl border border-border bg-card p-5 space-y-4">
       <PluginAgent
         label={<Trans>Claude Code</Trans>}
         hint={<Trans>Run inside Claude Code:</Trans>}
@@ -151,21 +139,13 @@ function PluginPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
         ]}
       />
 
-      <div className="border-t border-border" />
-
-      <PluginAgent
-        label={<Trans>Cursor 2.5+</Trans>}
-        hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
-        commands={["https://github.com/archcore-ai/plugin"]}
-      />
-
-      <div className="border-t border-border" />
-
-      <PluginAgent
-        label={<Trans>Codex CLI 0.117+</Trans>}
-        hint={<Trans>Install in Codex:</Trans>}
-        commands={["codex plugin marketplace add archcore-ai/plugin"]}
-      />
+      <Link
+        to={INTERNAL_LINKS.plugin}
+        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <Trans>Using Cursor or Codex CLI? See all install paths</Trans>
+        <ArrowRight className="h-3 w-3" />
+      </Link>
 
       <PanelLinks
         repoHref={LINKS.pluginRepo}

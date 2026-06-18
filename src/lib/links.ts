@@ -17,6 +17,7 @@ export const INTERNAL_LINKS = {
   plugin: "/plugin/",
   cli: "/cli/",
   howToUse: "/how-to-use/",
+  teamsGettingStarted: "/teams/getting-started",
   privacy: "/privacy/",
 } as const;
 

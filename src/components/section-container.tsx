@@ -15,7 +15,7 @@ export function SectionContainer({
   narrow = false,
 }: SectionContainerProps) {
   return (
-    <section id={id} className={cn("px-6 py-20 md:py-24", className)}>
+    <section id={id} className={cn("px-6 py-12 md:py-16", className)}>
       <div
         className={cn(
           "mx-auto",

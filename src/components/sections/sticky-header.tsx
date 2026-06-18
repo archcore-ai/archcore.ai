@@ -1,16 +1,20 @@
 import { msg } from "@lingui/core/macro";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Compass, Github, Menu, X, ArrowRight } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
+import { Compass, Menu, X, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { useGitHubStars, formatStars } from "@/hooks/use-github-stars";
 import { useLingui } from "@lingui/react";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
 export function StickyHeader() {
   const { _ } = useLingui();
+  const { total } = useGitHubStars();
+  const posthog = usePostHog();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -115,16 +119,24 @@ export function StickyHeader() {
               <LanguageSwitcher />
             </div>
 
-            <Button variant="ghost" size="icon" asChild>
-              <a
-                href={LINKS.org}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-            </Button>
+            <a
+              href={LINKS.org}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={_(msg`Star Archcore on GitHub`)}
+              onClick={() => posthog.capture("navbar_star_click", { total })}
+              className={cn(
+                "inline-flex items-center gap-1.5 h-8 rounded-md px-2 sm:px-2.5",
+                "border border-border bg-card text-sm font-medium text-foreground/90",
+                "hover:text-foreground hover:border-foreground/25 transition-colors"
+              )}
+            >
+              <Star
+                className="h-4 w-4 shrink-0 text-[var(--color-action)]"
+                fill="currentColor"
+              />
+              <span className="tabular-nums">{formatStars(total)}</span>
+            </a>
 
             <HowToUseCta
               label={howToUseLabel}

@@ -1,9 +1,9 @@
 export { StickyHeader } from "./sticky-header";
 export { HeroSection } from "./hero-section";
-export { ProblemSection } from "./problem-section";
-export { HowWeSolveSection } from "./how-we-solve-section";
-export { ChoosePathSection } from "./choose-path-section";
+export { BeforeAfterSection } from "./before-after-section";
+export { HowItWorksSection } from "./how-it-works-section";
 export { FAQSection } from "./faq-section";
+export { StarCtaSection } from "./star-cta-section";
 export { SiteNav } from "./site-nav";
 
 export { CLIHeroSection } from "./cli-hero-section";
