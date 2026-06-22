@@ -5,39 +5,16 @@ status: accepted
 
 ## Context
 
-The landing site (archcore.ai) is a fully static Vite + React SPA. At decision time it had two routes (`/` and `/teams/getting-started`); the same approach scales to additional pages (`/plugin`, `/cli`, `/privacy` were added later — see `.archcore/landing-tech-stack.doc.md` for the current page list). It was hosted on Vercel.
-
-Vercel is blocked or unreliable for a portion of users in Russia, which means potential users cannot access the project landing page or installation instructions. Since the site requires no server-side features (SSR, edge functions, middleware), there is no technical reason to stay on a platform with access restrictions.
+The landing site (`archcore.ai`) is a fully static Vite + React SPA with no server-side needs. Current pages are listed in `.archcore/landing-tech-stack.doc.md`.
 
 ## Decision
 
-Move hosting from Vercel to GitHub Pages.
+Follow the ecosystem decision to host static web properties on GitHub Pages — the rationale (Vercel blocked/unreliable in Russia, no SSR requirement) and shared consequences live in the `archcore` global source `web/static-hosting-github-pages` and are not restated here.
 
-Key implementation details:
+Landing SPA-specific implementation:
 
-- GitHub Actions workflow deploys `dist/` on every push to `main` (@.github/workflows/deploy.yml)
-- SPA routing handled via `404.html` — a Vite post-build plugin copies `index.html` → `404.html`, which GitHub Pages serves for unknown paths
-- `/install.sh` is served as a real POSIX shell script from `public/install.sh` — it works for both browsers and `curl`/`wget` (the script shells out to the canonical CLI installer at `raw.githubusercontent.com/archcore-ai/cli/.../install.sh`)
-- Custom domain `archcore.ai` configured via `public/CNAME`
-- Vercel config (`vercel.json`) and deploy script removed
-
-## Alternatives Considered
-
-- **Stay on Vercel** — simplest option, but does not solve the access problem for Russian users.
-- **Cloudflare Pages** — good alternative with wide availability, but adds another third-party dependency. GitHub Pages is sufficient for a static site and keeps everything within the GitHub ecosystem.
-- **Netlify** — similar to Cloudflare Pages; no meaningful advantage over GitHub Pages for this use case.
-
-## Consequences
-
-**Positive:**
-
-- The site is accessible from Russia and other regions where Vercel may be restricted
-- Hosting is free and fully integrated with the existing GitHub repository
-- Simpler infrastructure — no separate Vercel project to manage
-- `curl -fsSL archcore.ai/install.sh | sh` works directly because `/install.sh` is an actual shell script, not an HTML redirect
-
-**Negative:**
-
-- No preview deployments for pull requests (can be added later with a separate workflow if needed)
-- GitHub Pages has a soft bandwidth limit (100 GB/month) — unlikely to be an issue for a landing page
-- Per-route social previews require an extra build step (a Vite `closeBundle` plugin that emits `dist/<route>/index.html` with rewritten OG tags) since GitHub Pages serves only static files. Implemented in `scripts/prerender-routes.mts` — see `.archcore/landing/og-image-generation.guide.md`.
+- Deployed via GitHub Actions on every push to `main` (`@.github/workflows/deploy.yml`).
+- SPA routing via `404.html` — a Vite post-build plugin copies `index.html` → `404.html`, which GitHub Pages serves for unknown paths.
+- `/install.sh` is served as a real POSIX script from `public/install.sh`, so `curl -fsSL archcore.ai/install.sh | sh` works (it shells out to the canonical CLI installer at `raw.githubusercontent.com/archcore-ai/cli/.../install.sh`).
+- Custom domain `archcore.ai` via `public/CNAME`; `vercel.json` and the deploy script removed.
+- Per-route social previews need an extra build step (a Vite `closeBundle` plugin emitting `dist/<route>/index.html` with rewritten OG tags), since Pages serves only static files — `scripts/prerender-routes.mts`, see `.archcore/landing/og-image-generation.guide.md`.
