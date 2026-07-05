@@ -27,6 +27,9 @@ dist-ssr
 *.tsbuildinfo
 .vercel
 
+# Demo animation export artifacts (regenerate: cd scripts/demo-export && node export.mjs)
+scripts/demo-export/out/
+
 .claude/
 .claude/agents/
 

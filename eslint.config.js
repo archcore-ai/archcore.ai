@@ -7,7 +7,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import { globalIgnores } from "eslint/config";
 
 export default tseslint.config(
-  globalIgnores(["dist", "scripts"]),
+  globalIgnores(["dist", "scripts", "tmp"]),
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   eslintConfigPrettier,

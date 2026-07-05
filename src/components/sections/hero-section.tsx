@@ -98,6 +98,19 @@ export function HeroSection() {
               </p>
             </div>
           </div>
+
+          <div className="max-w-3xl mx-auto pt-6">
+            {/* Exported from scripts/demo-export (see .archcore/animated-product-demo.task-type.md) */}
+            <img
+              src="/demo.gif"
+              alt="Agent session: the agent searches .archcore/ context over MCP, follows the ADR and rules, then captures the new decision back"
+              width={800}
+              height={500}
+              fetchPriority="high"
+              decoding="async"
+              className="w-full rounded-[16px]"
+            />
+          </div>
         </div>
       </div>
     </section>

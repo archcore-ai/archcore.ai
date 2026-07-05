@@ -76,6 +76,16 @@
       "source": "landing/how-to-use-interactive-walkthrough.plan.md",
       "target": "landing-tech-stack.doc.md",
       "type": "depends_on"
+    },
+    {
+      "source": "animated-product-demo.task-type.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "animated-product-demo.task-type.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
     }
   ]
 }
