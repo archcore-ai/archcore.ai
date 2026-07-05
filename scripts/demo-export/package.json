@@ -1,0 +1,10 @@
+{
+  "name": "demo-export",
+  "private": true,
+  "type": "module",
+  "description": "Exports the hero demo animation (demo.html) as GIF/WebM/MP4. See export.mjs.",
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "puppeteer-core": "^24.0.0"
+  }
+}
