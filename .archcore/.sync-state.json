@@ -86,6 +86,21 @@
       "source": "animated-product-demo.task-type.md",
       "target": "messaging-alignment.rule.md",
       "type": "related"
+    },
+    {
+      "source": "landing/landing-improvement-iteration-2.plan.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/landing-improvement-iteration-2.plan.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/landing-improvement-iteration-2.plan.md",
+      "target": "animated-product-demo.task-type.md",
+      "type": "depends_on"
     }
   ]
 }

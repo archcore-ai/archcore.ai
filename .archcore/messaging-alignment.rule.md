@@ -5,76 +5,82 @@ status: accepted
 
 ## Rule
 
-All user-facing copy on the landing site MUST align with the canonical messaging below. This document is the single source of truth for landing copy across **all pages** — `/`, `/plugin`, `/cli`, `/teams/getting-started`, `/privacy` — and across all meta surfaces (OG cards, Twitter cards, prerendered route HTML, the OG image generator).
+All user-facing copy on the landing site MUST align with the canonical messaging below. This document is the single source of truth for landing copy across **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and across all meta surfaces (OG cards, Twitter cards, `index.html` static shell, prerendered route HTML, the OG image generator).
 
-**Primary phrase (Hero H1 / meta title):** "Turn your repository into structured, machine-readable context."
+**Primary phrase (Hero H1 / meta title):** "Stop re-explaining your repo to every AI agent."
 
-**Secondary phrase (supporting copy / subhead):** "Archcore gives AI agents the architecture, rules, and decisions they need to work correctly in your codebase." (canonical) or the shorter hero variant: "So AI agents can follow your architecture, rules, and decisions — instead of guessing."
+**Secondary phrase (hero subhead):** "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
 
-**Short tagline (footer / OG subtitle):** "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
+**Meta description (home, ≤160 chars):** "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
 
-## Product framing
+**Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 
-The ecosystem-wide stance — Archcore as one product with two entry points (Plugin + CLI), the shared voice, the preferred vocabulary, and the avoid-list — lives in the `archcore` global source (`product/messaging-and-voice`, `architecture/one-product-two-entry-points`). Do not restate it here. This document covers only what is **specific to the landing site**: the canonical phrases above and the per-page heroes, copy hierarchy, and CTAs below.
+**Short tagline (footer):** "Git-native context for AI coding agents."
 
-### Copy hierarchy (home `/`)
+## Entry-point framing
+
+Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" framing):
+
+- **Both entry points are equals.** No "(recommended)" labels anywhere on the site.
+- **Gentle plugin emphasis is allowed:** plugin copy may call itself "the most polished experience for Claude Code, Cursor, and Codex CLI". Never frame the CLI as a fallback.
+- **The home hero install block defaults to the CLI tab** (the one-line curl is the universal entry). The Plugin tab is pre-selected when the user lands via `#install-plugin`; `#install-cli` selects the CLI tab.
+- **Frame the choice by the user's agent, not by recommendation:** Plugin — for Claude Code / Cursor 2.5+ / Codex CLI 0.117+; CLI — any MCP-aware agent (GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline), scriptable in CI.
+
+## Copy hierarchy (home `/`)
 
 - **Hero H1:** Primary phrase
-- **Hero subhead:** Secondary phrase (canonical or short hero variant)
-- **Meta title / OG title / Twitter title:** Primary phrase
-- **Meta description / OG description / Twitter description:** Secondary phrase + short tagline
-- **Footer tagline:** Short tagline
+- **Hero subhead:** Secondary phrase
+- **Meta title / OG title / Twitter title:** "Archcore — Stop re-explaining your repo to every AI agent"
+- **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** Meta description phrase
+- **Works-with strip:** directly under the install tabs, above the "CLI = one binary · Plugin = slash commands." line
+- **OG image subtitle (`og-image.png`):** Secondary phrase verbatim
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
-- **Recommended path language:** "For most teams, start with the Plugin"
-- **Alternative path language:** "Need the core directly? Use the CLI" (or equivalent phrasing inside the Install section's CLI tab)
+- **Visible FAQ (`faq-section.tsx`) and the FAQPage JSON-LD in `index.html` MUST mirror each other** — same questions, same answers, same order.
 
-### Per-page heroes (`/plugin`, `/cli`)
+## Per-page heroes (`/plugin`, `/cli`)
 
-Dedicated pages have their own H1 and subhead, but each must reinforce the canonical framing above (one product, two entry points; "context layer" / "structured context" vocabulary).
+Unchanged this iteration:
 
 - **`/plugin` H1:** "Give Claude Code, Cursor & Codex CLI a brain for your codebase."
-  **Subhead:** "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
 - **`/cli` H1:** "Repo-native context for any AI agent."
-  **Subhead:** "The Archcore CLI puts your architectural decisions, rules, and conventions in `.archcore/` — versioned with your code, exposed to leading AI agents via MCP and session hooks."
 
-Per-page OG cards (rendered by `scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments.
+Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments.
 
-### CTA vocabulary
+## CTA vocabulary
 
-All install CTAs on the **home page** scroll to the single tabbed `InstallSection` (no longer link out to GitHub). The Plugin tab is the default; the CLI tab is pre-selected when the user lands via the secondary anchor.
+- **Home install anchors:** all install CTAs scroll to the hero install tabs — `#install` (CLI tab default) or `#install-plugin` (Plugin tab pre-selected). Never link install CTAs to external destinations; the page renders the real copyable commands.
+- **Header CTA:** "How to use" → `/how-to-use` (interactive walkthrough).
+- **Star CTA block (bottom of home):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`.
+- **Dedicated page CTAs:** `/plugin` uses "Install plugin" (primary) and "View on GitHub" (secondary); `/cli` uses "Install CLI" (primary) and "View on GitHub" (secondary). Each anchors to the page's own `#install` section.
+- Never pair these with different verbs — each page must read consistently.
 
-- **Primary CTA (home):** **"Use the Plugin"** (hero, final CTA) or **"Install Plugin"** (header, short contexts). Destination: `#install` — tabbed Install section, Plugin tab active by default.
-- **Secondary CTA (home):** **"Start with CLI"**. Destination: `#install-cli` — same Install section, CLI tab pre-selected.
-- **Dedicated page CTAs:** `/plugin` uses **"Install plugin"** (primary) and **"View on GitHub"** (secondary). `/cli` uses **"Install CLI"** (primary) and **"View on GitHub"** (secondary). Each anchors to the page's own `#install` section, not to the home page.
-- The home page's final CTA section pairs the primary and secondary CTAs above a "more info" nav of external links (plugin repo, CLI repo, docs, GitHub org).
-- Never pair these with different verbs — the page must read consistently.
-- Do not send install CTAs to external destinations (plugin repo, docs site). Each surface renders the real copyable commands on-page.
-
-The `/plugin` page's Install section is implemented as a 3-tab Radix Tabs widget with tabs labeled "Claude Code", "Cursor 2.5+", and "Codex CLI 0.117+". Each tab displays the host-specific install commands for that agent; copy written for this widget must stay host-specific and must not generalize across tabs.
+The `/plugin` page's Install section is a 3-tab Radix Tabs widget: "Claude Code", "Cursor 2.5+", "Codex CLI 0.117+". Copy for this widget stays host-specific and must not generalize across tabs.
 
 ## Rationale
 
-Consistent positioning across all touchpoints strengthens brand recognition. The dual-entry-point framing matches the real product architecture (plugin as runtime layer on top of CLI) and guides users to the right path by default without hiding the alternative. Keeping install CTAs in-page keeps the user in the funnel and avoids a context switch to GitHub. Dedicated `/plugin` and `/cli` pages let each entry point own its narrative while still echoing the canonical framing.
+Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the three plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel. The pain-first H1 outperformed the earlier category-first phrase ("Turn your repository into structured, machine-readable context") in clarity; the category statement now lives in the subhead where it answers "what is this" immediately after the hook.
 
 ## Examples
 
-**Good (Hero):** "Turn your repository into structured, machine-readable context. So AI agents can follow your architecture, rules, and decisions — instead of guessing."
+**Good (Hero):** "Stop re-explaining your repo to every AI agent. Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
 
-**Good (entry-point choice):** "Both paths use the same repository context. The difference is the experience layer."
+**Good (entry-point choice):** "Both paths use the same `.archcore/` directory. The difference is the experience layer."
 
-**Good (install section):** "Pick your path. The plugin is the fastest way in — zero setup for Claude Code."
+**Good (plugin emphasis):** "The most polished experience for Claude Code, Cursor, and Codex CLI."
 
-**Bad:** "Shared architectural memory for AI coding agents" — outdated primary phrase.
+**Bad:** "Turn your repository into structured, machine-readable context." — superseded primary phrase.
 
-**Bad:** "CLI is the main product; plugin is a nice-to-have" — misrepresents the recommended path.
+**Bad:** "Plugin (recommended)" — recommendation labels are retired; frame by the user's agent instead.
+
+**Bad:** "CLI is the main product; plugin is a nice-to-have" — the paths are equals.
 
 **Bad:** "Install Plugin" CTA linking to `https://github.com/archcore-ai/archcore-plugin` — forces a context switch; the page has the commands.
 
 ## Enforcement
 
-Review all copy changes against this rule before merging. When changing a per-page hero (`/plugin`, `/cli`), update **all four** layers in the same PR:
+Review all copy changes against this rule before merging. Copy lives in more layers than the component — update **all** that apply in the same PR:
 
-1. The page component's `<Trans>` (hero/subhead) and `usePageMeta` (title/description) calls.
-2. `scripts/prerender-routes.mts` `ROUTES[].title` and `description` for the matching route.
-3. `scripts/generate-og-image.mts` `VARIANTS[].headline` and `subtitle` for the matching variant.
-4. Run `npm run i18n:extract` + translate, then `npm run build`, then visually inspect the regenerated `public/og-image-<page>.png` and the rewritten `dist/<route>/index.html` meta.
+1. **Home hero/subhead/FAQ:** component `<Trans>`/`msg` strings + `index.html` (title, description, OG, Twitter, SoftwareApplication and FAQPage JSON-LD, static fallback body) + `scripts/generate-og-image.mts` home variant.
+2. **`/plugin`, `/cli`, `/how-to-use` heroes/meta:** page component `<Trans>` + `usePageMeta` + `scripts/prerender-routes.mts` `ROUTES[]` + `scripts/generate-og-image.mts` `VARIANTS[]`.
+3. Run `npm run i18n:extract`, translate new RU strings (formal «вы» throughout — never «ты»), then `npm run build`.
+4. Visually inspect the regenerated `public/og-image*.png` and the rewritten `dist/<route>/index.html` meta.

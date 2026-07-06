@@ -25,7 +25,7 @@
     <title>Archcore — Stop re-explaining your repo to every AI agent</title>
     <meta
       name="description"
-      content="Archcore keeps ADRs, rules, guides, and plans in Git so Claude Code, Cursor, Copilot, and Gemini follow your architecture instead of guessing."
+      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
     />
     <link rel="canonical" href="https://archcore.ai/" />
 
@@ -79,7 +79,7 @@
     />
     <meta
       property="og:description"
-      content="Archcore keeps decisions, rules, guides, and plans in Git so coding agents follow your architecture instead of guessing."
+      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://archcore.ai/" />
@@ -102,7 +102,7 @@
     />
     <meta
       name="twitter:description"
-      content="Archcore keeps decisions, rules, guides, and plans in Git so coding agents follow your architecture instead of guessing."
+      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
     />
     <meta name="twitter:site" content="@archcore_ai" />
     <meta name="twitter:creator" content="@archcore_ai" />
@@ -138,7 +138,7 @@
         "operatingSystem": "Linux, macOS, Windows",
         "url": "https://archcore.ai",
         "downloadUrl": "https://archcore.ai/install.sh",
-        "description": "Archcore keeps decisions, rules, guides, and plans in Git so AI coding agents follow your architecture instead of guessing.",
+        "description": "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -155,18 +155,18 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Do I need both the plugin and the CLI?",
+            "name": "How is this different from CLAUDE.md or AGENTS.md?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The plugin uses the CLI under the hood, so installing the plugin gives you both. If you only want the core context layer — .archcore/, MCP, hooks — install the CLI on its own."
+              "text": "Instruction files are flat memory — one tool, one file. Archcore is structured: typed documents (ADR, rule, plan, guide, spec) with relations, versioned history, read and written during real work, and reused across every agent."
             }
           },
           {
             "@type": "Question",
-            "name": "Which path should I start with — Plugin or CLI?",
+            "name": "I already have a CLAUDE.md or .cursor/rules. Do I start over?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Start with the Plugin if you use Claude Code or Cursor and want the best day-to-day experience. Start with CLI if you want the core directly — for custom agent flows, minimal setups, or agents that the plugin does not yet support."
+              "text": "No. archcore init imports your existing instruction files — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as structured documents, so the context you already wrote carries over."
             }
           },
           {
@@ -174,47 +174,31 @@
             "name": "Which AI agents are supported?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Plugin hosts: Claude Code (production) and Cursor (implemented). Copilot and Codex CLI are on the plugin roadmap. The CLI (with MCP and hooks) works with 8 agents today: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline."
+              "text": "The plugin runs inside Claude Code, Cursor 2.5+, and Codex CLI 0.117+. The CLI works with any MCP-aware agent — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
             }
           },
           {
             "@type": "Question",
-            "name": "What does archcore init create?",
+            "name": "Does this eat my agent's context window?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Creates .archcore/ with 18 document types in three layers: Vision (PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), Knowledge (ADR, RFC, Rule, Guide, Doc, Spec), Experience (Task Type, CPAT). Each is markdown with YAML frontmatter, versioned with your code."
+              "text": "No. At session start the agent gets a compact index of your documents; full documents are pulled on demand over MCP — search, relations, single reads — not loaded wholesale."
             }
           },
           {
             "@type": "Question",
-            "name": "How do hooks and MCP work together?",
+            "name": "Does my code leave my machine?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hooks inject context at session start automatically. MCP exposes tools (list, get, create, update) so agents can browse and edit .archcore/ documents during a session. Set up with archcore hooks install and archcore mcp install."
+              "text": "No. The plugin and CLI run fully local — no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo."
             }
           },
           {
             "@type": "Question",
-            "name": "Do I need any external services?",
+            "name": "Do I need both the plugin and the CLI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Standalone CLI binary. Everything in .archcore/ inside your repo — no servers, databases, accounts, or external dependencies. Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS/Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. See https://docs.archcore.ai/cli/install/ for WSL, go install, and from-source options."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How is this different from CLAUDE.md or AGENTS.md?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Instruction files are flat, tool-specific, and weakly structured. Archcore gives you multiple document types, relations between them, versioned history, and reads and writes during real work — reusable across Claude Code, Cursor, Copilot, and other agents."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do I keep the CLI updated?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "archcore update self-updates to the latest version. Cross-platform (macOS, Linux, Windows) on amd64/arm64. Run archcore doctor anytime to verify setup and check for issues."
+              "text": "No. The plugin runs on the CLI under the hood — install the plugin and you get both. Want just the core context layer? Install the CLI on its own."
             }
           }
         ]
@@ -247,9 +231,9 @@
         </p>
         <h2>Two ways to use it</h2>
         <p>
-          Install the <a href="/plugin/">plugin</a> for the best day-to-day
-          experience inside Claude Code and Cursor, with architecture-aware
-          <code>/archcore</code> slash commands. Or use the
+          Install the <a href="/plugin/">plugin</a> for the most polished
+          experience inside Claude Code, Cursor, and Codex CLI, with
+          architecture-aware <code>/archcore</code> slash commands. Or use the
           <a href="/cli/">CLI</a> directly with MCP and session hooks to
           support custom agent flows, minimal setups, and the eight AI coding
           agents the CLI integrates with today: Claude Code, Cursor, Gemini

@@ -63,8 +63,9 @@ export function HeroSection() {
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
-              So your agents follow your architecture instead of guessing from a
-              flat CLAUDE.md.
+              Archcore keeps your decisions, rules, and architecture as
+              structured docs in your repo — loaded into your agent over MCP
+              before it edits.
             </Trans>
           </p>
 
@@ -90,6 +91,12 @@ export function HeroSection() {
               </TabsContent>
             </Tabs>
             <div className="mt-4 space-y-1.5 text-center text-sm text-muted-foreground/70">
+              <p>
+                <Trans>
+                  Works with Claude Code · Cursor · Codex CLI · Copilot ·
+                  Gemini CLI · any MCP agent
+                </Trans>
+              </p>
               <p>
                 <Trans>CLI = one binary · Plugin = slash commands.</Trans>
               </p>

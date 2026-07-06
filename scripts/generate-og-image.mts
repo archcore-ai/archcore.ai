@@ -43,7 +43,7 @@ const VARIANTS: Variant[] = [
       "to every AI agent.",
     ],
     subtitle:
-      "Archcore keeps decisions, rules, guides, and plans in Git — so AI coding agents follow your architecture instead of guessing.",
+      "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits.",
     bottomLabel: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
   },
   {

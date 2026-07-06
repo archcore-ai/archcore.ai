@@ -33,11 +33,12 @@ export const installBranch: Branch = {
       choices: [
         {
           id: "plugin",
-          label: <Trans>Plugin (recommended)</Trans>,
+          label: <Trans>Plugin</Trans>,
           blurb: (
             <Trans>
-              Runtime for Claude Code, Cursor, and Codex CLI. Seven slash
-              commands, automatic context injection, guardrails.
+              The most polished experience for Claude Code, Cursor, and Codex
+              CLI. Seven slash commands, automatic context injection,
+              guardrails.
             </Trans>
           ),
           example: {
@@ -57,8 +58,8 @@ export const installBranch: Branch = {
           label: <Trans>CLI</Trans>,
           blurb: (
             <Trans>
-              The core context layer. One binary plus MCP — works with any
-              MCP-aware agent, scriptable in CI.
+              The core context layer for any MCP-aware agent — Copilot, Gemini
+              CLI, OpenCode, Cline. One binary, scriptable in CI.
             </Trans>
           ),
           example: {

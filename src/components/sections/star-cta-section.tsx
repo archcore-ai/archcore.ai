@@ -3,7 +3,7 @@ import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { usePostHog } from "posthog-js/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Star } from "lucide-react";
+import { ArrowRight, ArrowUp, Github, Star } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
 import { useGitHubStars, formatStars } from "@/hooks/use-github-stars";
@@ -87,6 +87,15 @@ export function StarCtaSection() {
             <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-text-inverse)]/15 px-2 py-0.5 text-xs font-bold tabular-nums">
               {formatStars(total)}
             </span>
+          </a>
+
+          <a
+            href="#install"
+            onClick={() => posthog.capture("star_cta_install_click")}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+          >
+            <Trans>Ready to try? Install now</Trans>
+            <ArrowUp className="h-3.5 w-3.5" />
           </a>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">

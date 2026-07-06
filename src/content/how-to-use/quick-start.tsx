@@ -1,8 +1,9 @@
 /* Branch 2: Quick start in your project.
  *
  * Plugin/CLI toggle on every step. PRD: landing/how-to-use-interactive-walkthrough.prd.md §R3.
- * Tone rules: landing/messaging-alignment.rule.md — Plugin is recommended runtime,
- * CLI is core context layer. Never frame CLI as a fallback. CLI variants must
+ * Tone rules: landing/messaging-alignment.rule.md — both entry points are equals;
+ * frame the choice by the user's agent (Plugin: Claude Code / Cursor / Codex CLI;
+ * CLI: any MCP-aware agent). Never frame CLI as a fallback. CLI variants must
  * include a one-line "Why CLI here:" blurb (PRD §R2, acceptance criteria).
  */
 import { msg } from "@lingui/core/macro";

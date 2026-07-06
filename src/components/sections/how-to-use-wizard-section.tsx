@@ -593,8 +593,8 @@ interface DonePanelProps {
 function DonePanel({ branchId, mode, onRestart }: DonePanelProps) {
   // The install branch has no toggle — its CTA depends on which path the user
   // ended on (their last `answers["choose-path"]`). The wizard doesn't pass
-  // that here, so we send install-finishers to /plugin (the recommended
-  // runtime) and trust the in-branch content already explained both paths.
+  // that here, so we send install-finishers to /plugin and trust the
+  // in-branch content already explained both paths.
   //
   // Branches 2-5 carry a real toggle — the CTA tracks whichever surface the
   // user last had selected on the wrap-up step.
