@@ -84,8 +84,8 @@ export function StickyHeader() {
             : "bg-transparent"
       )}
     >
-      <div className="px-6">
-        <div className="max-w-[var(--container-max)] mx-auto h-16 flex items-center justify-between gap-4">
+      <div className="px-4 min-[360px]:px-6">
+        <div className="max-w-[var(--container-max)] mx-auto h-16 flex items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-2 md:gap-6 min-w-0">
             <Link to="/" className="shrink-0">
               <Logo size="md" loading="eager" />
@@ -126,7 +126,7 @@ export function StickyHeader() {
               aria-label={_(msg`Star Archcore on GitHub`)}
               onClick={() => posthog.capture("navbar_star_click", { total })}
               className={cn(
-                "inline-flex items-center gap-1.5 h-8 rounded-md px-2 sm:px-2.5",
+                "hidden min-[246px]:inline-flex items-center gap-1.5 h-8 rounded-md px-2 sm:px-2.5",
                 "border border-border bg-card text-sm font-medium text-foreground/90",
                 "hover:text-foreground hover:border-foreground/25 transition-colors"
               )}
@@ -146,7 +146,7 @@ export function StickyHeader() {
 
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-sm"
               className="md:hidden"
               onClick={() => {
                 setMobileMenuOpen((prev) => !prev);
@@ -263,8 +263,8 @@ function HowToUseCta({ label, ariaLabel, caption }: HowToUseCtaProps) {
       aria-label={ariaLabel}
       title={caption}
       className={cn(
-        "group inline-flex items-center gap-1.5 sm:gap-2 rounded-md",
-        "h-8 px-2.5 sm:px-3",
+        "group hidden min-[320px]:inline-flex items-center gap-1.5 sm:gap-2 rounded-md",
+        "h-8 px-2 md:px-3",
         "bg-[var(--color-action)] text-[var(--color-text-inverse)]",
         "text-sm font-medium tracking-[-0.005em]",
         "transition-[transform,background-color] duration-200",
@@ -278,9 +278,9 @@ function HowToUseCta({ label, ariaLabel, caption }: HowToUseCtaProps) {
         strokeWidth={2.25}
         aria-hidden="true"
       />
-      <span className="whitespace-nowrap">{label}</span>
+      <span className="whitespace-nowrap hidden md:inline">{label}</span>
       <span
-        className="nav-live-dot text-white/85 ml-0.5 hidden sm:inline-flex"
+        className="nav-live-dot text-white/85 ml-0.5 hidden md:inline-flex"
         aria-hidden="true"
       />
     </Link>

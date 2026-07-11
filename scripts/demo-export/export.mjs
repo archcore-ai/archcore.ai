@@ -25,6 +25,8 @@ const SCALE = Number(process.env.SCALE || 2);
 const CHROME =
   process.env.CHROME_BIN ||
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const DEMO_HTML = process.env.DEMO_HTML || "demo.html";
+const OUT_NAME = process.env.OUT_NAME || "demo";
 
 rmSync(framesDir, { recursive: true, force: true });
 mkdirSync(framesDir, { recursive: true });
@@ -38,7 +40,7 @@ const browser = await puppeteer.launch({
 
 const page = await browser.newPage();
 await page.setViewport({ width: 800, height: 500, deviceScaleFactor: SCALE });
-await page.goto("file://" + join(here, "demo.html"), { waitUntil: "networkidle0" });
+await page.goto("file://" + join(here, DEMO_HTML), { waitUntil: "networkidle0" });
 await page.evaluate(() => document.fonts.ready);
 await page.evaluate(() => window.stopLoop());
 
@@ -62,30 +64,31 @@ await browser.close();
 const frames = join(framesDir, "f%04d.png");
 const run = (args) => execFileSync(ffmpeg, ["-y", ...args], { stdio: "ignore" });
 
-console.log("encoding demo.gif (800px, 12fps, 128 colors)…");
+console.log(`encoding ${OUT_NAME}.gif (800px, 12fps, 128 colors)…`);
 run([
   "-framerate", String(FPS), "-i", frames,
   "-vf",
   "fps=12,scale=800:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle",
-  "-loop", "0", join(outDir, "demo.gif"),
+  "-loop", "0", join(outDir, `${OUT_NAME}.gif`),
 ]);
 
-console.log("encoding demo.webm (VP9, 2x)…");
+console.log(`encoding ${OUT_NAME}.webm (VP9, 2x)…`);
 run([
   "-framerate", String(FPS), "-i", frames,
   "-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "34", "-pix_fmt", "yuv420p",
-  join(outDir, "demo.webm"),
+  join(outDir, `${OUT_NAME}.webm`),
 ]);
 
-console.log("encoding demo.mp4 (H.264, 2x)…");
+console.log(`encoding ${OUT_NAME}.mp4 (H.264, 2x)…`);
 run([
   "-framerate", String(FPS), "-i", frames,
   "-c:v", "libx264", "-crf", "20", "-preset", "slow", "-pix_fmt", "yuv420p",
-  "-movflags", "+faststart", join(outDir, "demo.mp4"),
+  "-movflags", "+faststart", join(outDir, `${OUT_NAME}.mp4`),
 ]);
 
-// poster: fully-played session frame (~13.3s)
-copyFileSync(join(framesDir, "f0200.png"), join(outDir, "poster.png"));
+// poster: a frame roughly 2/3 into the session (before the end card)
+const posterIndex = Math.min(total - 1, Math.round(total * 0.68));
+copyFileSync(join(framesDir, `f${String(posterIndex).padStart(4, "0")}.png`), join(outDir, `${OUT_NAME}-poster.png`));
 
 rmSync(framesDir, { recursive: true, force: true });
 console.log("done → scripts/demo-export/out/");

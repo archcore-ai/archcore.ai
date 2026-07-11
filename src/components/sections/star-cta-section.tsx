@@ -69,7 +69,7 @@ export function StarCtaSection() {
               posthog.capture("star_cta_click", { repo: "org", total })
             }
             className={cn(
-              "group inline-flex items-center gap-2.5 rounded-md h-12 px-6",
+              "group inline-flex items-center justify-center gap-2.5 rounded-md min-h-12 px-4 sm:px-6 py-2 max-w-full",
               "bg-[var(--color-action)] text-[var(--color-text-inverse)]",
               "text-sm md:text-base font-semibold tracking-[-0.005em]",
               "transition-[transform,background-color] duration-200",
@@ -81,10 +81,10 @@ export function StarCtaSection() {
               className="h-4 w-4 md:h-[18px] md:w-[18px] shrink-0"
               fill="currentColor"
             />
-            <span className="whitespace-nowrap">
+            <span className="text-center leading-snug">
               <Trans>Star on GitHub</Trans>
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-text-inverse)]/15 px-2 py-0.5 text-xs font-bold tabular-nums">
+            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--color-text-inverse)]/15 px-2 py-0.5 text-xs font-bold tabular-nums">
               {formatStars(total)}
             </span>
           </a>
