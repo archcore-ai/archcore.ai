@@ -100,8 +100,10 @@ get_latest_version() {
         error_exit "Could not reach ${url}. Check your internet connection or proxy settings, or pin a version to skip this lookup: ARCHCORE_VERSION=x.y.z curl -fsSL https://archcore.ai/install.sh | bash"
 
     # Expected shape: https://github.com/OWNER/REPO/releases/tag/vX.Y.Z
-    # A repo with no published release still redirects, but to a bare
-    # /releases page, so match on the tag segment rather than on emptiness.
+    # A repo with no published release still answers 302, but points at the
+    # bare /releases page (verified against github/gitignore and golang/go,
+    # both of which have an empty releases list), so match on the tag segment
+    # rather than on emptiness.
     case "$redirect_url" in
         */releases/tag/*) ;;
         *) error_exit "Could not resolve the latest version from ${url} (unexpected response). Pin a version instead: ARCHCORE_VERSION=x.y.z curl -fsSL https://archcore.ai/install.sh | bash" ;;
