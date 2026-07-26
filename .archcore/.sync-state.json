@@ -101,6 +101,11 @@
       "source": "landing/landing-improvement-iteration-2.plan.md",
       "target": "animated-product-demo.task-type.md",
       "type": "depends_on"
+    },
+    {
+      "source": "infrastructure/keep-github-api-out-of-visitor-paths.adr.md",
+      "target": "infrastructure/migrate-hosting-to-github-pages.adr.md",
+      "type": "extends"
     }
   ]
 }

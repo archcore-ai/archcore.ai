@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Lets the CLI repo trigger a redeploy after an installer change, and lets a
+  # human refresh the star counts baked in at build time.
+  workflow_dispatch:
+  repository_dispatch:
+    types: [installer-updated]
 
 permissions:
   contents: read
@@ -22,6 +27,34 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # archcore.ai/install.{sh,ps1} serves the real installer rather than a
+      # one-line redirect to raw.githubusercontent.com. That keeps one fewer
+      # host in the critical path of `curl … | bash` and moves the only fetch
+      # of raw.githubusercontent.com from every user's install to one CI run.
+      # The copies in public/ are committed so local builds and previews work;
+      # this step refreshes them so a deploy always ships the current script.
+      - name: Sync installers from the CLI repo
+        run: |
+          set -euo pipefail
+          base=https://raw.githubusercontent.com/archcore-ai/cli/refs/heads/main
+          for f in install.sh install.ps1; do
+            tmp=$(mktemp)
+            curl -fsSL --retry 3 --retry-delay 2 "$base/$f" -o "$tmp"
+            # A truncated download or an HTML error page must fail the build
+            # loudly rather than silently replace a working installer.
+            test -s "$tmp"
+            head -1 "$tmp" | grep -qE '^#!|^#Requires' || {
+              echo "::error::$f from the CLI repo does not look like an installer"
+              exit 1
+            }
+            if cmp -s "$tmp" "public/$f"; then
+              echo "public/$f already current"
+            else
+              echo "::notice::public/$f refreshed from the CLI repo"
+            fi
+            mv "$tmp" "public/$f"
+          done
+
       - uses: actions/setup-node@v6
         with:
           node-version: 22
@@ -29,6 +62,10 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          # Raises the build-time star fetch from 60 to 1000 req/hour so a busy
+          # Actions runner IP cannot rate-limit the deploy.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/configure-pages@v5
 

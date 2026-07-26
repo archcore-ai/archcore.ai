@@ -14,7 +14,8 @@
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
     "og:generate": "npx tsx scripts/generate-og-image.mts",
-    "prebuild": "npm run i18n:compile && npm run og:generate",
+    "stars:fetch": "npx tsx scripts/fetch-github-stars.mts",
+    "prebuild": "npm run i18n:compile && npm run og:generate && npm run stars:fetch",
     "build": "npm run check && vite build",
     "preview": "vite preview"
   },
