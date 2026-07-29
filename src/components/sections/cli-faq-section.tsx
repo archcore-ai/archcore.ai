@@ -16,7 +16,7 @@ export function CLIFAQSection() {
     {
       question: _(msg`What does archcore init create?`),
       answer: _(
-        msg`A .archcore/ directory with templates and config for 18 document types in three layers — vision (PRD, idea, plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).`
+        msg`A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).`
       ),
     },
     {

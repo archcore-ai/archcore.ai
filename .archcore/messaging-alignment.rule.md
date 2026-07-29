@@ -7,7 +7,9 @@ status: accepted
 
 All user-facing copy on the landing site MUST align with the canonical messaging below. This document is the single source of truth for landing copy across **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and across all meta surfaces (OG cards, Twitter cards, `index.html` static shell, prerendered route HTML, the OG image generator).
 
-**Primary phrase (Hero H1 / meta title):** "Stop re-explaining your repo to every AI agent."
+**Primary phrase (Hero H1):** "Stop re-explaining your repo to every AI agent."
+
+**Meta title (home `<title>`, ≤60 chars):** "Archcore — repo memory for AI coding agents" — the title tag is category-led for SERPs and brand disambiguation and intentionally does NOT mirror the H1 (decision: `landing/home-title-category-keyword.adr.md`).
 
 **Secondary phrase (hero subhead):** "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
 
@@ -30,11 +32,13 @@ Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" fram
 
 - **Hero H1:** Primary phrase
 - **Hero subhead:** Secondary phrase
-- **Meta title / OG title / Twitter title:** "Archcore — Stop re-explaining your repo to every AI agent"
+- **Meta title (`<title>`):** "Archcore — repo memory for AI coding agents"
+- **OG title / Twitter title / og:image:alt:** "Archcore — Stop re-explaining your repo to every AI agent"
 - **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** Meta description phrase
 - **Works-with strip:** directly under the install tabs, above the "CLI = one binary · Plugin = slash commands." line
 - **OG image subtitle (`og-image.png`):** Secondary phrase verbatim
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
+- **Document-type count:** the product exposes **19** typed document types (vision incl. RnD) — every count mention on any surface says 19, matching docs
 - **Visible FAQ (`faq-section.tsx`) and the FAQPage JSON-LD in `index.html` MUST mirror each other** — same questions, same answers, same order.
 
 ## Per-page heroes (`/plugin`, `/cli`)
@@ -60,6 +64,8 @@ The `/plugin` page's Install section is a 3-tab Radix Tabs widget: "Claude Code"
 
 Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the three plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel. The pain-first H1 outperformed the earlier category-first phrase ("Turn your repository into structured, machine-readable context") in clarity; the category statement now lives in the subhead where it answers "what is this" immediately after the hook.
 
+The meta title is the one deliberate exception to single-phrase purity: SERPs need the category term and disambiguation from unrelated Archcore-named companies (archcore.com steel), while social cards and the page itself keep the pain hook. See `landing/home-title-category-keyword.adr.md`.
+
 ## Examples
 
 **Good (Hero):** "Stop re-explaining your repo to every AI agent. Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
@@ -69,6 +75,8 @@ Consistent positioning across all touchpoints strengthens brand recognition. The
 **Good (plugin emphasis):** "The most polished experience for Claude Code, Cursor, and Codex CLI."
 
 **Bad:** "Turn your repository into structured, machine-readable context." — superseded primary phrase.
+
+**Bad:** `<title>Archcore — Stop re-explaining your repo to every AI agent</title>` — superseded title; the `<title>` is category-led, the pain phrase stays on H1/OG/Twitter.
 
 **Bad:** "Plugin (recommended)" — recommendation labels are retired; frame by the user's agent instead.
 

@@ -1,0 +1,25 @@
+# Archcore
+
+> Git-native repo memory for AI coding agents. Archcore keeps decisions, rules, specs, and plans as typed markdown documents in a .archcore/ directory inside your repository, and loads them into Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, and any MCP-aware agent through MCP tools, session hooks, and slash commands. Local-first: no accounts, no telemetry, no external services.
+
+## Main pages
+
+- [Home](https://archcore.ai/): what Archcore is and how to install the CLI or plugin
+- [Plugin](https://archcore.ai/plugin/): /archcore slash commands for Claude Code, Cursor, and Codex CLI
+- [CLI](https://archcore.ai/cli/): single cross-platform binary that scaffolds .archcore/, runs a local MCP server, and wires session hooks for 8 AI coding agents
+- [How to use](https://archcore.ai/how-to-use/): interactive walkthrough covering install, quick start, and day-to-day workflows
+- [Privacy policy](https://archcore.ai/privacy/): local-first data practices
+
+## Documentation
+
+- [Docs home](https://docs.archcore.ai/): full documentation
+- [Start here](https://docs.archcore.ai/start/): install and first steps
+- [Concepts](https://docs.archcore.ai/concepts/): document types, relations, and the context model
+- [CLI reference](https://docs.archcore.ai/cli/): commands, MCP server, hooks
+- [Plugin](https://docs.archcore.ai/plugin/): slash commands and supported hosts
+- [Reference](https://docs.archcore.ai/reference/): configuration and integration details
+- [Changelog](https://docs.archcore.ai/changelog/): release notes
+
+## Source
+
+- [GitHub organization](https://github.com/archcore-ai): open-source CLI and plugin repositories

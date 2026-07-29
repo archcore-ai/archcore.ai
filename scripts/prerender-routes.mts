@@ -50,7 +50,7 @@ const ROUTES: RouteMeta[] = [
     body: {
       h1: "Archcore CLI — repo memory for every AI coding agent",
       paragraphs: [
-        "The CLI is a single cross-platform binary that creates a .archcore/ directory in your repo, wires up MCP and session hooks, and exposes 18 typed document categories. Vision: PRD, Idea, Plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT.",
+        "The CLI is a single cross-platform binary that creates a .archcore/ directory in your repo, wires up MCP and session hooks, and exposes 19 typed document categories. Vision: PRD, Idea, Plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT.",
         "Each document is markdown with YAML frontmatter, versioned alongside your code. Documents have explicit types and named relations (informs, blocks, refines, supersedes), so the agent can navigate the dependency graph instead of grepping a flat instruction file. Status fields and timestamps are stored in frontmatter, so reviewers can scan a directory and see what is accepted, draft, deprecated, or superseded.",
         "Works with 8 AI coding agents today through MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. The MCP server runs locally as a child process and exposes tools to list, get, create, and update documents during a real session. Hooks pre-load relevant context based on the files in scope, so the agent starts each turn with the right rules and specs already in view.",
         "Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS or Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. Cross-platform binary on amd64 and arm64. Run archcore doctor to verify setup, archcore update to self-update, archcore hooks install and archcore mcp install to wire up the integrations. No Node, no Python, no external services required.",
@@ -124,7 +124,6 @@ function rewriteHead(html: string, meta: Required<RouteMeta>): string {
   const d = escapeHtml(meta.description);
   const c = escapeHtml(meta.canonical);
   const img = escapeHtml(meta.ogImage);
-  const ru = `${meta.canonical}${meta.canonical.includes("?") ? "&" : "?"}lang=ru`;
 
   let out = html;
 
@@ -138,14 +137,6 @@ function rewriteHead(html: string, meta: Required<RouteMeta>): string {
   out = out.replace(
     /(<link\s+rel="canonical"\s+href=)"[^"]*"/i,
     `$1"${c}"`,
-  );
-
-  // Per-route hreflang block (replaces the homepage hreflang block)
-  out = out.replace(
-    /<link rel="alternate" hreflang="en" href="[^"]*" \/>\s*<link rel="alternate" hreflang="ru" href="[^"]*" \/>\s*<link rel="alternate" hreflang="x-default" href="[^"]*" \/>/,
-    `<link rel="alternate" hreflang="en" href="${c}" />
-    <link rel="alternate" hreflang="ru" href="${escapeHtml(ru)}" />
-    <link rel="alternate" hreflang="x-default" href="${c}" />`,
   );
 
   out = out.replace(
@@ -202,6 +193,40 @@ function resolveAbsolute(value: string): string {
   return `${SITE_URL}${value.startsWith("/") ? "" : "/"}${value}`;
 }
 
+/** Sitemap hints per route path ("" = homepage). */
+const SITEMAP_HINTS: Record<string, { changefreq: string; priority: string }> =
+  {
+    "": { changefreq: "weekly", priority: "1.0" },
+    plugin: { changefreq: "monthly", priority: "0.9" },
+    cli: { changefreq: "monthly", priority: "0.9" },
+    "how-to-use": { changefreq: "monthly", priority: "0.8" },
+    privacy: { changefreq: "yearly", priority: "0.3" },
+  };
+
+function renderSitemap(): string {
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const paths = ["", ...ROUTES.map((r) => r.path)];
+  const entries = paths
+    .map((p) => {
+      const hints = SITEMAP_HINTS[p] ?? {
+        changefreq: "monthly",
+        priority: "0.8",
+      };
+      return `  <url>
+    <loc>${SITE_URL}/${p ? `${p}/` : ""}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${hints.changefreq}</changefreq>
+    <priority>${hints.priority}</priority>
+  </url>`;
+    })
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>
+`;
+}
+
 /**
  * Vite plugin that, after the build, generates static HTML files for each
  * configured route — e.g. dist/plugin/index.html, dist/cli/index.html, and
@@ -213,6 +238,10 @@ function resolveAbsolute(value: string): string {
  * LinkedIn, Slack) and many SEO crawlers do NOT execute JS. These per-route
  * HTML files give them correct previews and crawlable content (h1, intro,
  * internal links) when /plugin/, /cli/, or /privacy/ is shared or indexed.
+ *
+ * It also writes dist/sitemap.xml from ROUTES (+ homepage) with the build
+ * date as lastmod — there is no static public/sitemap.xml anymore, so a
+ * route added to ROUTES is picked up by the sitemap automatically.
  *
  * Run order: this plugin must run AFTER the index.html → 404.html copy plugin
  * so we don't accidentally overwrite the SPA fallback.
@@ -246,6 +275,12 @@ export function prerenderRoutesPlugin(): Plugin {
         html = rewriteBody(html, meta);
         fs.writeFileSync(path.join(targetDir, "index.html"), html, "utf8");
       }
+
+      fs.writeFileSync(
+        path.join(outDir, "sitemap.xml"),
+        renderSitemap(),
+        "utf8",
+      );
     },
   };
 }

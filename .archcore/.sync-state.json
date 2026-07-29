@@ -106,6 +106,61 @@
       "source": "infrastructure/keep-github-api-out-of-visitor-paths.adr.md",
       "target": "infrastructure/migrate-hosting-to-github-pages.adr.md",
       "type": "extends"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/seo-research-sdd-context-skills.rnd.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/landing-improvement-iteration-2.plan.md",
+      "type": "extends"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/home-title-category-keyword.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/drop-ru-hreflang-until-ru-routes.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/content-hub-astro-subbuild.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/seo-content-backlog.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/seo-content-backlog.doc.md",
+      "target": "landing/seo-research-sdd-context-skills.rnd.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-title-category-keyword.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/drop-ru-hreflang-until-ru-routes.adr.md",
+      "target": "landing/landing-improvement-iteration-2.plan.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/content-hub-astro-subbuild.adr.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
     }
   ]
 }

@@ -46,8 +46,8 @@ msgid "<0>use-postgres.adr.md</0> — the decision your queries inherit."
 msgstr "<0>use-postgres.adr.md</0> — the decision your queries inherit."
 
 #: src/components/sections/cli-faq-section.tsx:19
-msgid "A .archcore/ directory with templates and config for 18 document types in three layers — vision (PRD, idea, plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
-msgstr "A .archcore/ directory with templates and config for 18 document types in three layers — vision (PRD, idea, plan, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+msgid "A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+msgstr "A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
 
 #: src/components/sections/plugin-pillars-section.tsx:93
 msgid "A decision was made"
