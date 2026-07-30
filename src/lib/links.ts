@@ -19,6 +19,9 @@ export const INTERNAL_LINKS = {
   howToUse: "/how-to-use/",
   teamsGettingStarted: "/teams/getting-started",
   privacy: "/privacy/",
+  // Static Astro page (content-site build), not a SPA route — link with a
+  // full page load, never through React Router.
+  blog: "/blog/",
 } as const;
 
 export const ANCHORS = {

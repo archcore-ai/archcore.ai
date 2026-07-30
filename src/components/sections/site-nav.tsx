@@ -9,6 +9,8 @@ interface NavLink {
   label: string;
   href: string;
   external: boolean;
+  /** Same-site static page outside the SPA — needs a full page load. */
+  reload?: boolean;
 }
 
 export function SiteNav() {
@@ -18,6 +20,7 @@ export function SiteNav() {
     { label: _(msg`Plugin`), href: INTERNAL_LINKS.plugin, external: false },
     { label: _(msg`CLI`), href: INTERNAL_LINKS.cli, external: false },
     { label: _(msg`Docs`), href: LINKS.docs, external: true },
+    { label: _(msg`Blog`), href: INTERNAL_LINKS.blog, external: false, reload: true },
     { label: "GitHub", href: LINKS.org, external: true },
     { label: _(msg`Privacy`), href: INTERNAL_LINKS.privacy, external: false },
   ];
@@ -81,6 +84,13 @@ function NavItem({ link, muted = false }: { link: NavLink; muted?: boolean }) {
         rel="noopener noreferrer"
         className={className}
       >
+        {link.label}
+      </a>
+    );
+  }
+  if (link.reload) {
+    return (
+      <a href={link.href} className={className}>
         {link.label}
       </a>
     );

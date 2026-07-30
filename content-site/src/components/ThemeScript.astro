@@ -1,0 +1,16 @@
+{/* Pre-paint theme resolution — mirrors the SPA's use-theme hook exactly:
+    localStorage "theme" ∈ light|dark|system (default system), class on <html>. */}
+<script is:inline>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme") || "system";
+      var dark =
+        t === "dark" ||
+        (t === "system" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.add(dark ? "dark" : "light");
+    } catch (e) {
+      /* default: light */
+    }
+  })();
+</script>

@@ -235,6 +235,10 @@ msgstr "Bash — single curl line."
 msgid "Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions."
 msgstr "Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions."
 
+#: src/components/sections/site-nav.tsx:23
+msgid "Blog"
+msgstr "Blog"
+
 #: src/content/how-to-use/install.tsx:26
 msgid "Both paths use the same <0>.archcore/</0> directory. The difference is the experience layer."
 msgstr "Both paths use the same <0>.archcore/</0> directory. The difference is the experience layer."
@@ -287,7 +291,7 @@ msgstr "CLAUDE.md (190 lines, growing)"
 
 #: src/components/sections/hero-section.tsx:77
 #: src/components/sections/how-to-use-wizard-section.tsx:516
-#: src/components/sections/site-nav.tsx:19
+#: src/components/sections/site-nav.tsx:21
 #: src/components/sections/sticky-header.tsx:33
 #: src/content/how-to-use/install.tsx:58
 msgid "CLI"
@@ -323,11 +327,11 @@ msgstr "Code that matches your architecture on the first try."
 msgid "Codex CLI 0.117+"
 msgstr "Codex CLI 0.117+"
 
-#: src/components/sections/site-nav.tsx:56
+#: src/components/sections/site-nav.tsx:59
 msgid "Community"
 msgstr "Community"
 
-#: src/components/sections/site-nav.tsx:52
+#: src/components/sections/site-nav.tsx:55
 msgid "Community channels"
 msgstr "Community channels"
 
@@ -443,7 +447,7 @@ msgstr "Do I need both the plugin and the CLI?"
 msgid "Do I need to install the CLI separately?"
 msgstr "Do I need to install the CLI separately?"
 
-#: src/components/sections/site-nav.tsx:20
+#: src/components/sections/site-nav.tsx:22
 #: src/components/sections/sticky-header.tsx:34
 msgid "Docs"
 msgstr "Docs"
@@ -576,7 +580,7 @@ msgstr "Generic suggestions for your codebase"
 msgid "Get updates"
 msgstr "Get updates"
 
-#: src/components/sections/site-nav.tsx:37
+#: src/components/sections/site-nav.tsx:40
 msgid "Git-native context for AI coding agents."
 msgstr "Git-native context for AI coding agents."
 
@@ -933,7 +937,7 @@ msgstr "Please enter a valid email."
 
 #: src/components/sections/hero-section.tsx:81
 #: src/components/sections/how-to-use-wizard-section.tsx:501
-#: src/components/sections/site-nav.tsx:18
+#: src/components/sections/site-nav.tsx:20
 #: src/components/sections/sticky-header.tsx:32
 #: src/content/how-to-use/install.tsx:36
 msgid "Plugin"
@@ -985,7 +989,7 @@ msgstr "PRDs answer the \"why now, and how do we know it worked\" questions an i
 msgid "PRDs, roadmaps"
 msgstr "PRDs, roadmaps"
 
-#: src/components/sections/site-nav.tsx:22
+#: src/components/sections/site-nav.tsx:25
 msgid "Privacy"
 msgstr "Privacy"
 
@@ -1140,7 +1144,7 @@ msgstr "Set up .archcore/ in your repo"
 msgid "Should I install the plugin instead?"
 msgstr "Should I install the plugin instead?"
 
-#: src/components/sections/site-nav.tsx:42
+#: src/components/sections/site-nav.tsx:45
 msgid "Site navigation"
 msgstr "Site navigation"
 

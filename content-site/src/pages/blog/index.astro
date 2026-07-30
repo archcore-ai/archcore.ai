@@ -1,0 +1,68 @@
+---
+import "@fontsource-variable/inter";
+import "../../styles/content.css";
+import { getCollection } from "astro:content";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ThemeScript from "../../components/ThemeScript.astro";
+
+const SITE_URL = "https://archcore.ai";
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = "Archcore Blog — repo memory & context for AI coding agents";
+const description =
+  "Guides and comparisons on repo memory, context engineering, specs, and agent tooling — from the team behind Archcore.";
+const canonical = `${SITE_URL}/blog/`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <ThemeScript />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@archcore_ai" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f1e8" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1816" />
+  </head>
+  <body>
+    <SiteHeader />
+    <main class="page">
+      <h1>Blog</h1>
+      <p>
+        Repo memory, context engineering, specs, and AI coding agent tooling —
+        practical guides from the Archcore team.
+      </p>
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <SiteFooter />
+  </body>
+</html>

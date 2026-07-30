@@ -235,6 +235,10 @@ msgstr "Bash — одна curl-строчка."
 msgid "Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions."
 msgstr "Прежде чем агент тронет код, он сам подгружает правила, решения и паттерны для этого пути — больше не нужно переклеивать соглашения в каждый новый чат."
 
+#: src/components/sections/site-nav.tsx:23
+msgid "Blog"
+msgstr "Блог"
+
 #: src/content/how-to-use/install.tsx:26
 msgid "Both paths use the same <0>.archcore/</0> directory. The difference is the experience layer."
 msgstr "Оба пути работают с одной и той же папкой <0>.archcore/</0>. Разница — в слое опыта."
@@ -287,7 +291,7 @@ msgstr "CLAUDE.md (190 строк, и растёт)"
 
 #: src/components/sections/hero-section.tsx:77
 #: src/components/sections/how-to-use-wizard-section.tsx:516
-#: src/components/sections/site-nav.tsx:19
+#: src/components/sections/site-nav.tsx:21
 #: src/components/sections/sticky-header.tsx:33
 #: src/content/how-to-use/install.tsx:58
 msgid "CLI"
@@ -323,11 +327,11 @@ msgstr "Код, соответствующий вашей архитектуре
 msgid "Codex CLI 0.117+"
 msgstr "Codex CLI 0.117+"
 
-#: src/components/sections/site-nav.tsx:56
+#: src/components/sections/site-nav.tsx:59
 msgid "Community"
 msgstr "Сообщество"
 
-#: src/components/sections/site-nav.tsx:52
+#: src/components/sections/site-nav.tsx:55
 msgid "Community channels"
 msgstr "Каналы сообщества"
 
@@ -443,7 +447,7 @@ msgstr "Нужны ли мне одновременно плагин и CLI?"
 msgid "Do I need to install the CLI separately?"
 msgstr "Нужно ли устанавливать CLI отдельно?"
 
-#: src/components/sections/site-nav.tsx:20
+#: src/components/sections/site-nav.tsx:22
 #: src/components/sections/sticky-header.tsx:34
 msgid "Docs"
 msgstr "Документация"
@@ -576,7 +580,7 @@ msgstr "Универсальные подсказки для вашего код
 msgid "Get updates"
 msgstr "Подписаться на обновления"
 
-#: src/components/sections/site-nav.tsx:37
+#: src/components/sections/site-nav.tsx:40
 msgid "Git-native context for AI coding agents."
 msgstr "Git-нативный контекст для AI-агентов разработки."
 
@@ -933,7 +937,7 @@ msgstr "Введите корректный email."
 
 #: src/components/sections/hero-section.tsx:81
 #: src/components/sections/how-to-use-wizard-section.tsx:501
-#: src/components/sections/site-nav.tsx:18
+#: src/components/sections/site-nav.tsx:20
 #: src/components/sections/sticky-header.tsx:32
 #: src/content/how-to-use/install.tsx:36
 msgid "Plugin"
@@ -985,7 +989,7 @@ msgstr "PRD отвечает на вопросы «почему сейчас» �
 msgid "PRDs, roadmaps"
 msgstr "PRD, roadmap"
 
-#: src/components/sections/site-nav.tsx:22
+#: src/components/sections/site-nav.tsx:25
 msgid "Privacy"
 msgstr "Приватность"
 
@@ -1140,7 +1144,7 @@ msgstr "Создаёт .archcore/ в репозитории"
 msgid "Should I install the plugin instead?"
 msgstr "Не лучше ли установить плагин?"
 
-#: src/components/sections/site-nav.tsx:42
+#: src/components/sections/site-nav.tsx:45
 msgid "Site navigation"
 msgstr "Навигация по сайту"
 

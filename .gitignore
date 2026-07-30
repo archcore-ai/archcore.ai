@@ -25,6 +25,9 @@ dist-ssr
 
 # TypeScript
 *.tsbuildinfo
+
+# Astro (content-site)
+.astro/
 .vercel
 
 # Demo animation export artifacts (regenerate: cd scripts/demo-export && node export.mjs)
