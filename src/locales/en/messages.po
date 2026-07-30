@@ -165,8 +165,8 @@ msgid "Archcore keeps your decisions, rules, and architecture as structured docs
 msgstr "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
 
 #: src/pages/plugin.tsx:20
-msgid "Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI"
-msgstr "Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI"
+msgid "Archcore Plugin — repo memory in Claude Code, Cursor, Codex"
+msgstr "Archcore Plugin — repo memory in Claude Code, Cursor, Codex"
 
 #: src/components/sections/plugin-showcase-section.tsx:46
 msgid "Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands"
@@ -267,7 +267,7 @@ msgstr "Capture what already lives in code so the agent stops re-explaining."
 msgid "Check what was created."
 msgstr "Check what was created."
 
-#: src/components/sections/hero-section.tsx:154
+#: src/components/sections/hero-section.tsx:160
 #: src/components/sections/plugin-hero-section.tsx:49
 #: src/content/how-to-use/install.tsx:94
 msgid "Claude Code"
@@ -302,7 +302,7 @@ msgid "CLI = one binary · Plugin = slash commands."
 msgstr "CLI = one binary · Plugin = slash commands."
 
 #: src/components/sections/cli-hero-section.tsx:71
-#: src/components/sections/hero-section.tsx:144
+#: src/components/sections/hero-section.tsx:150
 msgid "CLI docs"
 msgstr "CLI docs"
 
@@ -838,7 +838,7 @@ msgstr "Nothing listed? See plugin troubleshooting in the docs. Usually it's the
 msgid "Offers an <0>adr → rule → guide</0> cascade — accept to also generate the team rule and a migration guide."
 msgstr "Offers an <0>adr → rule → guide</0> cascade — accept to also generate the team rule and a migration guide."
 
-#: src/components/sections/hero-section.tsx:131
+#: src/components/sections/hero-section.tsx:137
 msgid "One binary, local MCP in your repo — macOS, Linux, Windows."
 msgstr "One binary, local MCP in your repo — macOS, Linux, Windows."
 
@@ -944,10 +944,7 @@ msgid "Plugin"
 msgstr "Plugin"
 
 #: src/content/how-to-use/install.tsx:36
-#~ msgid "Plugin (recommended)"
-#~ msgstr "Plugin (recommended)"
-
-#: src/components/sections/hero-section.tsx:175
+#: src/components/sections/hero-section.tsx:181
 #: src/components/sections/plugin-hero-section.tsx:148
 #: src/components/sections/plugin-pillars-section.tsx:202
 msgid "Plugin docs"
@@ -1088,7 +1085,7 @@ msgstr "Run in your terminal"
 msgid "Run in your terminal:"
 msgstr "Run in your terminal:"
 
-#: src/components/sections/hero-section.tsx:155
+#: src/components/sections/hero-section.tsx:161
 #: src/components/sections/plugin-hero-section.tsx:61
 #: src/content/how-to-use/install.tsx:97
 msgid "Run inside Claude Code:"
@@ -1113,9 +1110,6 @@ msgid "Run this before merging anything that touches code under captured documen
 msgstr "Run this before merging anything that touches code under captured documents — three seconds, one report."
 
 #: src/content/how-to-use/install.tsx:38
-#~ msgid "Runtime for Claude Code, Cursor, and Codex CLI. Seven slash commands, automatic context injection, guardrails."
-#~ msgstr "Runtime for Claude Code, Cursor, and Codex CLI. Seven slash commands, automatic context injection, guardrails."
-
 #: src/components/sections/before-after-section.tsx:53
 msgid "Same prompt. Different agent."
 msgstr "Same prompt. Different agent."
@@ -1149,9 +1143,6 @@ msgid "Site navigation"
 msgstr "Site navigation"
 
 #: src/components/sections/hero-section.tsx:65
-#~ msgid "So your agents follow your architecture instead of guessing from a flat CLAUDE.md."
-#~ msgstr "So your agents follow your architecture instead of guessing from a flat CLAUDE.md."
-
 #: src/content/how-to-use/use-context.tsx:16
 msgid "Solve tasks with existing context"
 msgstr "Solve tasks with existing context"
@@ -1179,7 +1170,7 @@ msgid "Star Archcore on GitHub"
 msgstr "Star Archcore on GitHub"
 
 #: src/components/sections/cli-hero-section.tsx:58
-#: src/components/sections/hero-section.tsx:142
+#: src/components/sections/hero-section.tsx:148
 msgid "Star CLI on GitHub"
 msgstr "Star CLI on GitHub"
 
@@ -1188,7 +1179,7 @@ msgstr "Star CLI on GitHub"
 msgid "Star on GitHub"
 msgstr "Star on GitHub"
 
-#: src/components/sections/hero-section.tsx:173
+#: src/components/sections/hero-section.tsx:179
 #: src/components/sections/plugin-hero-section.tsx:66
 #: src/components/sections/plugin-hero-section.tsx:74
 #: src/components/sections/plugin-hero-section.tsx:82
@@ -1260,9 +1251,12 @@ msgid "The agent's <0>list_relations</0> call returns the explicit edges you wir
 msgstr "The agent's <0>list_relations</0> call returns the explicit edges you wired."
 
 #: src/components/sections/plugin-hero-section.tsx:38
-#: src/pages/plugin.tsx:23
 msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
 msgstr "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
+
+#: src/pages/plugin.tsx:23
+msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth."
+msgstr "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth."
 
 #: src/content/how-to-use/idea-no-context.tsx:270
 msgid "The cascade gave you four linked documents. Here's how to put them to work in your next coding session."
@@ -1285,9 +1279,6 @@ msgid "The core context layer for any MCP-aware agent — Copilot, Gemini CLI, O
 msgstr "The core context layer for any MCP-aware agent — Copilot, Gemini CLI, OpenCode, Cline. One binary, scriptable in CI."
 
 #: src/content/how-to-use/install.tsx:59
-#~ msgid "The core context layer. One binary plus MCP — works with any MCP-aware agent, scriptable in CI."
-#~ msgstr "The core context layer. One binary plus MCP — works with any MCP-aware agent, scriptable in CI."
-
 #: src/content/how-to-use/idea-no-context.tsx:171
 msgid "The feature track is the right tool when there's a real API or schema to lock down. Skip it for ideation-stage work."
 msgstr "The feature track is the right tool when there's a real API or schema to lock down. Skip it for ideation-stage work."
@@ -1420,7 +1411,7 @@ msgstr "Useful follow-up asks:"
 msgid "Useful follow-ups:"
 msgstr "Useful follow-ups:"
 
-#: src/components/sections/hero-section.tsx:166
+#: src/components/sections/hero-section.tsx:172
 msgid "Using Cursor or Codex CLI? See all install paths"
 msgstr "Using Cursor or Codex CLI? See all install paths"
 

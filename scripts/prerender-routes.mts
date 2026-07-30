@@ -25,10 +25,9 @@ interface RouteBody {
 const ROUTES: RouteMeta[] = [
   {
     path: "plugin",
-    title:
-      "Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI",
+    title: "Archcore Plugin — repo memory in Claude Code, Cursor, Codex",
     description:
-      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.",
+      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth.",
     ogImage: "/og-image-plugin.png",
     body: {
       h1: "Give Claude Code, Cursor & Codex CLI a brain for your codebase.",

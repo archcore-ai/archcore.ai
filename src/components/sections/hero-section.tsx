@@ -107,16 +107,22 @@ export function HeroSection() {
           </div>
 
           <div className="max-w-3xl mx-auto pt-6">
-            {/* Exported from scripts/demo-export (see .archcore/animated-product-demo.task-type.md) */}
-            <img
-              src="/demo.gif"
-              alt="Agent session: the agent searches .archcore/ context over MCP, follows the ADR and rules, then captures the new decision back"
+            {/* Exported from scripts/demo-export (see .archcore/animated-product-demo.task-type.md);
+                webm/mp4 re-encoded from the same animation — 20x lighter than the GIF. */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/demo-poster.jpg"
               width={800}
               height={500}
-              fetchPriority="high"
-              decoding="async"
+              aria-label="Agent session: the agent searches .archcore/ context over MCP, follows the ADR and rules, then captures the new decision back"
               className="w-full rounded-[16px]"
-            />
+            >
+              <source src="/demo.webm" type="video/webm" />
+              <source src="/demo.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

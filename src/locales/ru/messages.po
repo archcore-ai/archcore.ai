@@ -165,8 +165,8 @@ msgid "Archcore keeps your decisions, rules, and architecture as structured docs
 msgstr "Archcore хранит ваши решения, правила и архитектуру как структурированные документы прямо в репозитории — и подгружает их агенту по MCP до того, как он начнёт править код."
 
 #: src/pages/plugin.tsx:20
-msgid "Archcore Plugin — repo context for Claude Code, Cursor & Codex CLI"
-msgstr "Archcore Plugin — контекст репозитория для Claude Code, Cursor и Codex CLI"
+msgid "Archcore Plugin — repo memory in Claude Code, Cursor, Codex"
+msgstr "Archcore Plugin — память репозитория в Claude Code, Cursor, Codex"
 
 #: src/components/sections/plugin-showcase-section.tsx:46
 msgid "Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands"
@@ -267,7 +267,7 @@ msgstr "Зафиксируйте то, что уже живёт в коде, —
 msgid "Check what was created."
 msgstr "Проверьте, что получилось."
 
-#: src/components/sections/hero-section.tsx:154
+#: src/components/sections/hero-section.tsx:160
 #: src/components/sections/plugin-hero-section.tsx:49
 #: src/content/how-to-use/install.tsx:94
 msgid "Claude Code"
@@ -302,7 +302,7 @@ msgid "CLI = one binary · Plugin = slash commands."
 msgstr "CLI — один бинарь · Plugin — слэш-команды."
 
 #: src/components/sections/cli-hero-section.tsx:71
-#: src/components/sections/hero-section.tsx:144
+#: src/components/sections/hero-section.tsx:150
 msgid "CLI docs"
 msgstr "Документация CLI"
 
@@ -838,7 +838,7 @@ msgstr "Список пуст? Посмотрите раздел plugin troubles
 msgid "Offers an <0>adr → rule → guide</0> cascade — accept to also generate the team rule and a migration guide."
 msgstr "Предлагает каскад <0>adr → rule → guide</0> — примите, чтобы заодно получить командное правило и миграционный гайд."
 
-#: src/components/sections/hero-section.tsx:131
+#: src/components/sections/hero-section.tsx:137
 msgid "One binary, local MCP in your repo — macOS, Linux, Windows."
 msgstr "Один бинарь, локальный MCP в репозитории — macOS, Linux, Windows."
 
@@ -947,7 +947,7 @@ msgstr "Плагин"
 #~ msgid "Plugin (recommended)"
 #~ msgstr "Плагин (рекомендуем)"
 
-#: src/components/sections/hero-section.tsx:175
+#: src/components/sections/hero-section.tsx:181
 #: src/components/sections/plugin-hero-section.tsx:148
 #: src/components/sections/plugin-pillars-section.tsx:202
 msgid "Plugin docs"
@@ -1088,7 +1088,7 @@ msgstr "Запустите в терминале"
 msgid "Run in your terminal:"
 msgstr "Запустите в терминале:"
 
-#: src/components/sections/hero-section.tsx:155
+#: src/components/sections/hero-section.tsx:161
 #: src/components/sections/plugin-hero-section.tsx:61
 #: src/content/how-to-use/install.tsx:97
 msgid "Run inside Claude Code:"
@@ -1179,7 +1179,7 @@ msgid "Star Archcore on GitHub"
 msgstr "Поставить звезду Archcore на GitHub"
 
 #: src/components/sections/cli-hero-section.tsx:58
-#: src/components/sections/hero-section.tsx:142
+#: src/components/sections/hero-section.tsx:148
 msgid "Star CLI on GitHub"
 msgstr "Поставить звезду CLI на GitHub"
 
@@ -1188,7 +1188,7 @@ msgstr "Поставить звезду CLI на GitHub"
 msgid "Star on GitHub"
 msgstr "Поставить звезду на GitHub"
 
-#: src/components/sections/hero-section.tsx:173
+#: src/components/sections/hero-section.tsx:179
 #: src/components/sections/plugin-hero-section.tsx:66
 #: src/components/sections/plugin-hero-section.tsx:74
 #: src/components/sections/plugin-hero-section.tsx:82
@@ -1260,9 +1260,12 @@ msgid "The agent's <0>list_relations</0> call returns the explicit edges you wir
 msgstr "Вызов <0>list_relations</0> у агента вернёт связи, которые вы прописали."
 
 #: src/components/sections/plugin-hero-section.tsx:38
-#: src/pages/plugin.tsx:23
 msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
 msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI — чтобы агент перестал угадывать и начал следовать команде."
+
+#: src/pages/plugin.tsx:23
+msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth."
+msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI, чтобы агент следовал договорённостям вашей команды."
 
 #: src/content/how-to-use/idea-no-context.tsx:270
 msgid "The cascade gave you four linked documents. Here's how to put them to work in your next coding session."
@@ -1420,7 +1423,7 @@ msgstr "Полезные следующие запросы:"
 msgid "Useful follow-ups:"
 msgstr "Полезные следующие шаги:"
 
-#: src/components/sections/hero-section.tsx:166
+#: src/components/sections/hero-section.tsx:172
 msgid "Using Cursor or Codex CLI? See all install paths"
 msgstr "Используешь Cursor или Codex CLI? Все способы установки"
 
