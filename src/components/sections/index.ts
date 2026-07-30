@@ -5,18 +5,21 @@ export { HowItWorksSection } from "./how-it-works-section";
 export { FAQSection } from "./faq-section";
 export { StarCtaSection } from "./star-cta-section";
 export { SiteNav } from "./site-nav";
+export { MigrationSection } from "./migration-section";
 
 export { CLIHeroSection } from "./cli-hero-section";
 export { CLIShowcaseSection } from "./cli-showcase-section";
 export { CLIProblemSection } from "./cli-problem-section";
 export { CLIPillarsSection } from "./cli-pillars-section";
 export { CLIRepoLayoutSection } from "./cli-repo-layout-section";
+export { CLIAgentsSection } from "./cli-agents-section";
 export { CLIFAQSection } from "./cli-faq-section";
 
 export { PluginHeroSection } from "./plugin-hero-section";
 export { PluginShowcaseSection } from "./plugin-showcase-section";
 export { PluginProblemSection } from "./plugin-problem-section";
 export { PluginPillarsSection } from "./plugin-pillars-section";
+export { PluginHostsSection } from "./plugin-hosts-section";
 export { PluginFAQSection } from "./plugin-faq-section";
 
 export { HowToUseWizardSection } from "./how-to-use-wizard-section";

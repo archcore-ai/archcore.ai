@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import ListingLayout from "../../layouts/ListingLayout.astro";
+
+const pages = (await getCollection("learn", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const items = pages.map((page) => ({
+  href: `/learn/${page.id}/`,
+  title: page.data.title,
+  description: page.data.description,
+  pubDate: page.data.pubDate,
+}));
+---
+
+<ListingLayout
+  title="Learn — repo memory and context for AI coding agents"
+  description="Reference explainers on repo memory, repo-native context, and the document types AI coding agents read: what the terms mean and how the pieces fit."
+  sectionPath="/learn/"
+  h1="Learn"
+  intro="Reference explainers, not news: what repo memory is, how repo-native context differs from flat instruction files and vector memory, and what belongs in each document type."
+  items={items}
+>
+  <p>
+    For dated guides, migrations, and vendor changes, see the <a href="/blog/"
+      >blog</a
+    >. To put any of this to work, start with the <a href="/plugin/">plugin</a>
+    or the <a href="/cli/">CLI</a>.
+  </p>
+</ListingLayout>

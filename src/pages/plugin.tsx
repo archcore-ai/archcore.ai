@@ -6,7 +6,9 @@ import {
   PluginShowcaseSection,
   PluginProblemSection,
   PluginPillarsSection,
+  PluginHostsSection,
   PluginFAQSection,
+  MigrationSection,
   HowToUseCtaSection,
   SiteNav,
 } from "@/components/sections";
@@ -33,8 +35,15 @@ export function PluginPage() {
         <PluginHeroSection />
         <PluginPillarsSection />
         <HowToUseCtaSection />
+        {/* Hosts answer "does it run in my agent?" — a qualifying question, so
+            it sits close to install. Migration answers "I already have
+            CLAUDE.md" — an objection, so it sits just before the FAQ. The
+            Hero → Pillars → Showcase → Problem → FAQ order fixed by
+            plugin-page-action-framing.adr.md is preserved. */}
+        <PluginHostsSection />
         <PluginShowcaseSection />
         <PluginProblemSection />
+        <MigrationSection entryPoint="plugin" />
         <PluginFAQSection />
         <HowToUseCtaSection variant="compact" />
       </main>

@@ -1,0 +1,105 @@
+---
+import "@fontsource-variable/inter";
+import "../styles/content.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import ThemeScript from "../components/ThemeScript.astro";
+
+interface ListingItem {
+  /** Absolute site path, e.g. "/blog/repo-memory/". */
+  href: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+}
+
+interface Props {
+  /** Full <title>; keep ≤70 characters so SERPs don't truncate it. */
+  title: string;
+  /** Meta description; keep ≤170 characters. */
+  description: string;
+  /** Section path with slashes, e.g. "/learn/". */
+  sectionPath: string;
+  h1: string;
+  /** Visible intro under the H1 — say what this hub holds, not the other one. */
+  intro: string;
+  items: ListingItem[];
+}
+
+const SITE_URL = "https://archcore.ai";
+const { title, description, sectionPath, h1, intro, items } = Astro.props;
+
+const canonical = `${SITE_URL}${sectionPath}`;
+
+const listingSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: h1,
+  description,
+  url: canonical,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Archcore",
+    url: SITE_URL,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: items.map((item, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SITE_URL}${item.href}`,
+      name: item.title,
+    })),
+  },
+};
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <ThemeScript />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@archcore_ai" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f1e8" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1816" />
+    <script type="application/ld+json" set:html={JSON.stringify(listingSchema)} />
+  </head>
+  <body>
+    <SiteHeader />
+    <main class="page">
+      <h1>{h1}</h1>
+      <p>{intro}</p>
+      <ul class="post-list">
+        {items.map((item) => (
+          <li>
+            <a href={item.href}>{item.title}</a>
+            <p>{item.description}</p>
+            <time datetime={item.pubDate.toISOString()}>{fmt(item.pubDate)}</time>
+          </li>
+        ))}
+      </ul>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

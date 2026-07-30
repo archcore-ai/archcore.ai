@@ -21,6 +21,7 @@ export function SiteNav() {
     { label: _(msg`CLI`), href: INTERNAL_LINKS.cli, external: false },
     { label: _(msg`Docs`), href: LINKS.docs, external: true },
     { label: _(msg`Blog`), href: INTERNAL_LINKS.blog, external: false, reload: true },
+    { label: _(msg`Learn`), href: INTERNAL_LINKS.learn, external: false, reload: true },
     { label: "GitHub", href: LINKS.org, external: true },
     { label: _(msg`Privacy`), href: INTERNAL_LINKS.privacy, external: false },
   ];

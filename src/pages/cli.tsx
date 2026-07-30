@@ -7,7 +7,9 @@ import {
   CLIProblemSection,
   CLIPillarsSection,
   CLIRepoLayoutSection,
+  CLIAgentsSection,
   CLIFAQSection,
+  MigrationSection,
   HowToUseCtaSection,
   SiteNav,
 } from "@/components/sections";
@@ -34,7 +36,9 @@ export function CLIPage() {
         <CLIShowcaseSection />
         <CLIPillarsSection />
         <HowToUseCtaSection />
+        <CLIAgentsSection />
         <CLIRepoLayoutSection />
+        <MigrationSection entryPoint="cli" />
         <CLIFAQSection />
         <HowToUseCtaSection variant="compact" />
       </main>

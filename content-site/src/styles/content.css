@@ -309,6 +309,19 @@ html.dark .site-header__brand .logo-dark {
   color: var(--color-text-secondary);
 }
 
+/* Cross-links in listing intros/outros — same treatment as article prose,
+   otherwise they render as default browser blue. */
+.page > p a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-muted);
+  text-underline-offset: 3px;
+}
+
+.page > p a:hover {
+  text-decoration-color: var(--color-text);
+}
+
 .post-list {
   list-style: none;
   padding: 0;

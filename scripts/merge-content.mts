@@ -55,28 +55,43 @@ function collectRoutes(section: string): string[] {
 }
 
 const routes = SECTIONS.flatMap(collectRoutes);
+let added = 0;
 
 if (routes.length > 0) {
   const sitemapPath = path.join(DEST, "sitemap.xml");
+  const sitemap = fs.readFileSync(sitemapPath, "utf8");
   const lastmod = new Date().toISOString().slice(0, 10);
-  const entries = routes
-    .map(
-      (route) => `  <url>
+  // Appending is only safe once per generated sitemap. Skip routes already
+  // present so re-running this script (without a fresh vite build) cannot
+  // emit duplicate <loc> entries.
+  const fresh = routes.filter(
+    (route) => !sitemap.includes(`<loc>https://archcore.ai${route}</loc>`),
+  );
+  added = fresh.length;
+  if (fresh.length < routes.length) {
+    console.log(
+      `[merge-content] ${routes.length - fresh.length} route(s) already in sitemap — skipped`,
+    );
+  }
+  if (fresh.length > 0) {
+    const entries = fresh
+      .map(
+        (route) => `  <url>
     <loc>https://archcore.ai${route}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`,
-    )
-    .join("\n");
-  const sitemap = fs.readFileSync(sitemapPath, "utf8");
-  fs.writeFileSync(
-    sitemapPath,
-    sitemap.replace("</urlset>", `${entries}\n</urlset>`),
-    "utf8",
-  );
+      )
+      .join("\n");
+    fs.writeFileSync(
+      sitemapPath,
+      sitemap.replace("</urlset>", `${entries}\n</urlset>`),
+      "utf8",
+    );
+  }
 }
 
 console.log(
-  `[merge-content] merged ${copied.join(", ") || "nothing"}; ${routes.length} route(s) added to sitemap`,
+  `[merge-content] merged ${copied.join(", ") || "nothing"}; ${added} route(s) added to sitemap`,
 );
