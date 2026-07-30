@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
 import { INTERNAL_LINKS } from "@/lib/links";
+import { track } from "@/lib/analytics";
 import { BRANCHES } from "@/content/how-to-use";
 import type {
   Branch,
@@ -75,6 +76,13 @@ export function HowToUseWizardSection({
   const enterBranch = (id: string) => {
     const target = BRANCHES.find((b) => b.id === id);
     if (!target || target.steps.length === 0) return;
+    track("wizard_branch_started", { branch: id });
+    track("wizard_step_viewed", {
+      branch: id,
+      step: target.steps[0].id,
+      step_index: 0,
+      mode: "plugin",
+    });
     setState({
       phase: "step",
       branchId: id,
@@ -95,6 +103,13 @@ export function HowToUseWizardSection({
 
   const setMode = (next: Surface) => {
     if (state.phase !== "step" || !branch?.supportsToggle) return;
+    if (next !== state.mode) {
+      track("wizard_mode_switched", {
+        branch: branch.id,
+        from: state.mode,
+        to: next,
+      });
+    }
     setState({ ...state, mode: next });
   };
 
@@ -116,9 +131,19 @@ export function HowToUseWizardSection({
       step.next?.(answer ?? "") ?? defaultNextStepId(branch, step.id);
 
     if (!nextStepId) {
+      track("wizard_completed", { branch: branch.id, mode: state.mode });
       setState({ phase: "done", branchId: branch.id, mode: state.mode });
       return;
     }
+    track("wizard_step_viewed", {
+      branch: branch.id,
+      step: nextStepId,
+      step_index: Math.max(
+        0,
+        branch.steps.findIndex((s) => s.id === nextStepId)
+      ),
+      mode: state.mode,
+    });
     setState({
       ...state,
       history: [...state.history, state.stepId],
@@ -127,6 +152,10 @@ export function HowToUseWizardSection({
   };
 
   const restart = () => {
+    track("wizard_restarted", {
+      ...(branch ? { branch: branch.id } : {}),
+      ...(step ? { step: step.id } : {}),
+    });
     setState(INITIAL);
   };
 

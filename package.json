@@ -17,7 +17,7 @@
     "stars:fetch": "npx tsx scripts/fetch-github-stars.mts",
     "prebuild": "npm run i18n:compile && npm run og:generate && npm run stars:fetch",
     "build": "npm run check && vite build && npm run build:content && npm run merge:content",
-    "build:content": "npm --prefix content-site run build",
+    "build:content": "npx tsx scripts/build-content.mts",
     "merge:content": "npx tsx scripts/merge-content.mts",
     "preview": "vite preview"
   },

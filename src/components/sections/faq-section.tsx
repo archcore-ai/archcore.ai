@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
+import { faqOpenHandler } from "@/lib/analytics";
 import { useLingui } from "@lingui/react";
 
 export function FAQSection() {
@@ -58,6 +59,7 @@ export function FAQSection() {
       <Accordion
         type="single"
         collapsible
+        onValueChange={faqOpenHandler(faqs, "home_faq")}
         className="w-full max-w-3xl mx-auto"
       >
         {faqs.map((faq, idx) => (

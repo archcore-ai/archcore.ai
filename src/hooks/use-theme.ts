@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { registerSuperProperties, track } from "@/lib/analytics";
 
 type Theme = "light" | "dark" | "system";
 
@@ -25,6 +26,9 @@ export function useTheme() {
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem("theme", newTheme);
+    const resolved = newTheme === "system" ? getSystemTheme() : newTheme;
+    track("theme_switched", { to: newTheme });
+    registerSuperProperties({ color_scheme: resolved });
   }, []);
 
   // Apply theme on mount and when theme changes

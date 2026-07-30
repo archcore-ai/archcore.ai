@@ -7,6 +7,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
   type ReactNode,
 } from "react";
 import {
@@ -15,6 +16,7 @@ import {
   saveLocale,
   type SupportedLocale,
 } from "@/i18n";
+import { registerSuperProperties, track } from "@/lib/analytics";
 
 interface LocaleContextValue {
   locale: SupportedLocale;
@@ -27,6 +29,7 @@ const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<SupportedLocale>("en");
   const [isLoading, setIsLoading] = useState(true);
+  const localeRef = useRef<SupportedLocale>("en");
 
   useEffect(() => {
     const initLocale = async () => {
@@ -51,6 +54,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
       }
 
       await activateLocale(detected);
+      localeRef.current = detected;
       setLocaleState(detected);
       document.documentElement.lang = detected;
       setIsLoading(false);
@@ -62,6 +66,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const setLocale = useCallback(async (newLocale: SupportedLocale) => {
     setIsLoading(true);
     await activateLocale(newLocale);
+    // Read through a ref rather than a state updater: an updater runs twice
+    // under StrictMode and would double-count the switch.
+    const previous = localeRef.current;
+    if (previous !== newLocale) {
+      track("locale_switched", { from: previous, to: newLocale });
+      registerSuperProperties({ locale: newLocale });
+    }
+    localeRef.current = newLocale;
     setLocaleState(newLocale);
     document.documentElement.lang = newLocale;
     saveLocale(newLocale);

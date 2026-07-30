@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
-const LAST_UPDATED = "April 22, 2026";
+const LAST_UPDATED = "July 30, 2026";
 const CONTACT_EMAIL = "archcore-ai@proton.me";
 
 export function PrivacyPage() {
@@ -125,8 +125,14 @@ export function PrivacyPage() {
                 >
                   PostHog
                 </a>{" "}
-                to understand aggregate traffic (pages viewed, referrer,
-                country, approximate device type). Analytics respect{" "}
+                across archcore.ai and docs.archcore.ai to understand aggregate
+                traffic (pages viewed, referrer, country, approximate device
+                type) and how people use the pages — links clicked, how far down
+                a page you read, which commands you copy, which questions you
+                open, and what you type into the docs search box. We do not
+                record your screen or session, and we do not collect form
+                contents or anything that identifies you personally. Analytics
+                respect{" "}
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
                   Do Not Track
                 </code>{" "}

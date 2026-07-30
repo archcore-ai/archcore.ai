@@ -1,7 +1,6 @@
 import { msg } from "@lingui/core/macro";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { usePostHog } from "posthog-js/react";
 import { Compass, Menu, X, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,11 +9,11 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { useGitHubStars, formatStars } from "@/hooks/use-github-stars";
 import { useLingui } from "@lingui/react";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
+import { track } from "@/lib/analytics";
 
 export function StickyHeader() {
   const { _ } = useLingui();
   const { total } = useGitHubStars();
-  const posthog = usePostHog();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -124,7 +123,16 @@ export function StickyHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={_(msg`Star Archcore on GitHub`)}
-              onClick={() => posthog.capture("navbar_star_click", { total })}
+              // Reports github_star_clicked itself; the flag stops the generic
+              // outbound tracker from logging the same click a second time.
+              data-analytics-handled
+              onClick={() =>
+                track("github_star_clicked", {
+                  repo: "org",
+                  stars: total,
+                  surface: "navbar",
+                })
+              }
               className={cn(
                 "hidden min-[246px]:inline-flex items-center gap-1.5 h-8 rounded-md px-2 sm:px-2.5",
                 "border border-border bg-card text-sm font-medium text-foreground/90",
@@ -173,6 +181,7 @@ export function StickyHeader() {
           >
             <Link
               to={INTERNAL_LINKS.howToUse}
+              data-analytics-cta="mobile_menu_how_to_use"
               className={cn(
                 "group relative flex items-center gap-3 rounded-xl p-4",
                 "bg-[var(--color-action)] text-[var(--color-text-inverse)]",
@@ -262,6 +271,7 @@ function HowToUseCta({ label, ariaLabel, caption }: HowToUseCtaProps) {
       to={INTERNAL_LINKS.howToUse}
       aria-label={ariaLabel}
       title={caption}
+      data-analytics-cta="header_how_to_use"
       className={cn(
         "group hidden min-[320px]:inline-flex items-center gap-1.5 sm:gap-2 rounded-md",
         "h-8 px-2 md:px-3",

@@ -4,6 +4,7 @@ import "../styles/content.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ThemeScript from "../components/ThemeScript.astro";
+import Analytics from "../components/Analytics.astro";
 
 interface ListingItem {
   /** Absolute site path, e.g. "/blog/repo-memory/". */
@@ -83,6 +84,7 @@ const fmt = (d: Date) =>
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f1e8" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1816" />
     <script type="application/ld+json" set:html={JSON.stringify(listingSchema)} />
+    <Analytics />
   </head>
   <body>
     <SiteHeader />

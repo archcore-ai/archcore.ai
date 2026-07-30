@@ -46,8 +46,13 @@ export function CLIHeroSection() {
                 </Trans>
               </p>
               <div className="space-y-2">
-                <InstallCommand variant="inline" />
-                <InstallCommand variant="inline" command="archcore init" />
+                <InstallCommand variant="inline" surface="cli_hero" />
+                <InstallCommand
+                  variant="inline"
+                  command="archcore init"
+                  surface="cli_hero"
+                  installTarget="cli"
+                />
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
                 <a

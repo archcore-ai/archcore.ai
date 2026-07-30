@@ -67,6 +67,20 @@ jobs:
           # Raises the build-time star fetch from 60 to 1000 req/hour so a busy
           # Actions runner IP cannot rate-limit the deploy.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PostHog's project API key is public by design — it ships in every
+          # client bundle — so it lives in a repository *variable*, not a
+          # secret. Passing it here is not optional: without it the build now
+          # fails instead of deploying a site that loads analytics and reports
+          # nothing, which is what happened before this was wired up.
+          #
+          # Both names come from the one variable because the two build systems
+          # expose different prefixes: Vite reads VITE_PUBLIC_*, Astro reads
+          # PUBLIC_*. The same POSTHOG_KEY variable is set in the docs
+          # repository, so all three surfaces report into one project.
+          VITE_PUBLIC_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          VITE_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          PUBLIC_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
 
       - uses: actions/configure-pages@v5
 

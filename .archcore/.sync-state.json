@@ -166,6 +166,16 @@
       "source": "landing-tech-stack.doc.md",
       "target": "landing/og-image-generation.guide.md",
       "type": "related"
+    },
+    {
+      "source": "landing/analytics-event-taxonomy.doc.md",
+      "target": "landing/content-hub-astro-subbuild.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/analytics-event-taxonomy.doc.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
     }
   ]
 }

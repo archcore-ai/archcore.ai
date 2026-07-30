@@ -5,6 +5,7 @@ import "../styles/content.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ThemeScript from "../components/ThemeScript.astro";
+import Analytics from "../components/Analytics.astro";
 
 interface FaqEntry {
   question: string;
@@ -27,6 +28,11 @@ const { title, description, pubDate, updatedDate, faq, ogImage, markdownTwin } =
   Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+// "/blog/claude-code-memory/" → section "blog", slug "claude-code-memory".
+// Handed to the analytics script through the [data-article-end] marker.
+const [articleSection = "blog", articleSlug = ""] = Astro.url.pathname
+  .split("/")
+  .filter(Boolean);
 const image = ogImage
   ? new URL(ogImage, SITE_URL).href
   : `${SITE_URL}/og-image.png`;
@@ -107,6 +113,7 @@ const faqSchema =
     {faqSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     )}
+    <Analytics />
   </head>
   <body>
     <SiteHeader />
@@ -119,6 +126,17 @@ const faqSchema =
           {" "}· Archcore team
         </p>
         <slot />
+        {/*
+          End of the article body — reaching it reports article_read_completed.
+          Deliberately before the FAQ and the CTA, so the event means "read the
+          piece" rather than duplicating scroll_depth_reached at 100 %.
+        */}
+        <div
+          data-article-end
+          data-slug={articleSlug}
+          data-section={articleSection}
+          aria-hidden="true"
+        />
         {faq && faq.length > 0 && (
           <section class="faq">
             <h2>FAQ</h2>
@@ -130,7 +148,7 @@ const faqSchema =
             ))}
           </section>
         )}
-        <aside class="cta">
+        <aside class="cta" data-analytics-cta="article_install">
           <p>
             Archcore keeps decisions, rules, specs, and plans as typed markdown
             documents in your repo — loaded into Claude Code, Cursor, and any
@@ -148,6 +166,9 @@ const faqSchema =
         btn.className = "copy-btn";
         btn.type = "button";
         btn.textContent = "Copy";
+        // Picked up by the delegated copy tracker in analytics/core.ts, which
+        // matches on this attribute rather than the "copy-btn" class name.
+        btn.dataset.analyticsCopy = "article_code_block";
         btn.addEventListener("click", () => {
           const text =
             pre.querySelector("code")?.textContent ?? pre.textContent ?? "";

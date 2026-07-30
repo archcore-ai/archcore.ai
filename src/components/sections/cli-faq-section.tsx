@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
+import { faqOpenHandler } from "@/lib/analytics";
 
 export function CLIFAQSection() {
   const { _ } = useLingui();
@@ -46,6 +47,7 @@ export function CLIFAQSection() {
       <Accordion
         type="single"
         collapsible
+        onValueChange={faqOpenHandler(faqs, "cli_faq")}
         className="w-full max-w-3xl mx-auto"
       >
         {faqs.map((faq, idx) => (

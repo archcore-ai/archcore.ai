@@ -138,8 +138,13 @@ function CLIPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
       </p>
 
       <div className="space-y-2">
-        <InstallCommand variant="inline" />
-        <InstallCommand variant="inline" command="archcore init" />
+        <InstallCommand variant="inline" surface="home_hero_cli_panel" />
+        <InstallCommand
+          variant="inline"
+          command="archcore init"
+          surface="home_hero_cli_panel"
+          installTarget="cli"
+        />
       </div>
 
       <PanelLinks
@@ -199,7 +204,13 @@ function PluginAgent({ label, hint, commands }: PluginAgentProps) {
       </div>
       <div className="space-y-2">
         {commands.map((cmd) => (
-          <InstallCommand key={cmd} variant="inline" command={cmd} />
+          <InstallCommand
+            key={cmd}
+            variant="inline"
+            command={cmd}
+            surface="home_hero_plugin_panel"
+            installTarget="plugin"
+          />
         ))}
       </div>
     </div>

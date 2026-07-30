@@ -9,8 +9,15 @@ import {
   RUN_COMMAND,
 } from "@/lib/team-deploy-content";
 import { CopyButton } from "@/components/cta/copy-button";
+import { track } from "@/lib/analytics";
 
 type CopyKey = "env" | "compose" | "run";
+
+const COPY_LANGUAGES: Record<CopyKey, string> = {
+  env: "dotenv",
+  compose: "yaml",
+  run: "shell",
+};
 
 export function TeamsGettingStarted() {
   const [copiedKey, setCopiedKey] = useState<CopyKey | null>(null);
@@ -47,6 +54,12 @@ export function TeamsGettingStarted() {
 
   const handleCopy = (text: string, key: CopyKey) => {
     void navigator.clipboard.writeText(text);
+    track("code_snippet_copied", {
+      surface: `teams_deploy_${key}`,
+      language: COPY_LANGUAGES[key],
+      page: location.pathname,
+      via: "button",
+    });
     setCopiedKey(key);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setCopiedKey(null), 2000);

@@ -1,0 +1,44 @@
+---
+/**
+ * PostHog for the content hub (/blog/, /learn/, /alternatives/).
+ *
+ * The wiring itself lives in the landing site's src/lib/analytics/core.ts and
+ * is imported by relative path rather than copied, so the content hub and the
+ * SPA cannot drift apart on event names, config or auto-instrumentation. That
+ * shared module uses no `@/` path aliases precisely so this import works
+ * across the two build systems.
+ *
+ * This project deliberately does not depend on posthog-js. The `import
+ * "posthog-js"` statement lives in the parent project's source tree, so it
+ * resolves from the repo-root node_modules — meaning both builds share one
+ * copy at one version and cannot drift apart on the library either.
+ *
+ * See .archcore/landing/content-hub-astro-subbuild.adr.md for why the content
+ * hub is a separate Astro build in the first place.
+ *
+ * Article-level context (slug, section) is read from the [data-article-end]
+ * marker that ArticleLayout renders, which avoids threading props into a
+ * client script.
+ */
+---
+
+<script>
+  import { setupAnalytics, trackArticleCompletion } from "../../../src/lib/analytics/core";
+  import type { ContentSection } from "../../../src/lib/analytics/events";
+
+  setupAnalytics({
+    site: "content",
+    key: import.meta.env.PUBLIC_POSTHOG_KEY,
+    host: import.meta.env.PUBLIC_POSTHOG_HOST,
+    debug: import.meta.env.DEV,
+  });
+
+  // Astro bundles this as a module script, so it runs after the document is
+  // parsed and the marker is guaranteed to be in the DOM.
+  const marker = document.querySelector<HTMLElement>("[data-article-end]");
+  const slug = marker?.dataset.slug;
+  const section = marker?.dataset.section as ContentSection | undefined;
+  if (marker && slug && section) {
+    trackArticleCompletion(marker, slug, section);
+  }
+</script>

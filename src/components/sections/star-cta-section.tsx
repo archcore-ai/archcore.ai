@@ -1,13 +1,15 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { usePostHog } from "posthog-js/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUp, Github, Star } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
 import { useGitHubStars, formatStars } from "@/hooks/use-github-stars";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
+import { track } from "@/lib/analytics";
+
+const SURFACE = "star_cta_section";
 
 /**
  * Bottom-of-page conversion block built around the single lowest-friction
@@ -18,7 +20,6 @@ import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 export function StarCtaSection() {
   const { _ } = useLingui();
   const { cli, plugin, total } = useGitHubStars();
-  const posthog = usePostHog();
 
   return (
     <SectionContainer narrow className="py-12 md:py-16">
@@ -26,7 +27,13 @@ export function StarCtaSection() {
         <Trans>Free and local today.</Trans>{" "}
         <Link
           to={INTERNAL_LINKS.teamsGettingStarted}
-          onClick={() => posthog.capture("teams_link_click")}
+          onClick={() =>
+            track("cta_clicked", {
+              cta: "teams_managed",
+              destination: INTERNAL_LINKS.teamsGettingStarted,
+              surface: SURFACE,
+            })
+          }
           className="inline-flex items-center gap-1 font-medium text-foreground underline underline-offset-4 hover:text-[var(--color-action)] transition-colors"
         >
           <Trans>Managed when your team needs it</Trans>
@@ -65,8 +72,13 @@ export function StarCtaSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={_(msg`Star Archcore on GitHub`)}
+            data-analytics-handled
             onClick={() =>
-              posthog.capture("star_cta_click", { repo: "org", total })
+              track("github_star_clicked", {
+                repo: "org",
+                stars: total,
+                surface: SURFACE,
+              })
             }
             className={cn(
               "group inline-flex items-center justify-center gap-2.5 rounded-md min-h-12 px-4 sm:px-6 py-2 max-w-full",
@@ -91,7 +103,13 @@ export function StarCtaSection() {
 
           <a
             href="#install"
-            onClick={() => posthog.capture("star_cta_install_click")}
+            onClick={() =>
+              track("cta_clicked", {
+                cta: "back_to_install",
+                destination: "#install",
+                surface: SURFACE,
+              })
+            }
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
           >
             <Trans>Ready to try? Install now</Trans>
@@ -103,8 +121,13 @@ export function StarCtaSection() {
               href={LINKS.cliRepo}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-handled
               onClick={() =>
-                posthog.capture("star_cta_click", { repo: "cli", total: cli })
+                track("github_star_clicked", {
+                  repo: "cli",
+                  stars: cli,
+                  surface: SURFACE,
+                })
               }
               className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
             >
@@ -116,10 +139,12 @@ export function StarCtaSection() {
               href={LINKS.pluginRepo}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-handled
               onClick={() =>
-                posthog.capture("star_cta_click", {
+                track("github_star_clicked", {
                   repo: "plugin",
-                  total: plugin,
+                  stars: plugin,
+                  surface: SURFACE,
                 })
               }
               className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"

@@ -8,4 +8,16 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://archcore.ai",
   trailingSlash: "always",
+  vite: {
+    server: {
+      fs: {
+        // src/components/Analytics.astro imports the shared analytics core
+        // from the parent project (../../../src/lib/analytics) so the content
+        // hub and the SPA cannot drift apart on event names. The bundler
+        // resolves that during `astro build`; `astro dev` additionally needs
+        // the parent directory to be servable.
+        allow: [".."],
+      },
+    },
+  },
 });

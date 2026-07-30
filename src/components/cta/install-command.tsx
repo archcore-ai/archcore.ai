@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { usePostHog } from "posthog-js/react";
 import { Check, Copy, Terminal } from "lucide-react";
 import { Trans } from "@lingui/react/macro";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { track } from "@/lib/analytics";
 
 const BASH_COMMAND = "curl -fsSL https://archcore.ai/install.sh | bash";
 const POWERSHELL_COMMAND = "irm https://archcore.ai/install.ps1 | iex";
@@ -32,6 +32,14 @@ interface InstallCommandProps {
   className?: string;
   variant?: "hero" | "inline" | "compact";
   defaultPlatform?: Platform | "auto";
+  /**
+   * Page region this instance belongs to, e.g. "home_hero". Copies are the
+   * primary conversion signal, so the surface has to be explicit rather than
+   * inferred from the variant — several regions share a variant.
+   */
+  surface?: string;
+  /** What the command installs. Defaults to the CLI installer script. */
+  installTarget?: "cli" | "plugin" | "custom";
 }
 
 export function InstallCommand({
@@ -39,8 +47,11 @@ export function InstallCommand({
   className,
   variant = "inline",
   defaultPlatform = "auto",
+  surface = "unknown",
+  installTarget,
 }: InstallCommandProps) {
   const isCustomCommand = command !== undefined;
+  const target = installTarget ?? (isCustomCommand ? "custom" : "cli");
 
   // First paint is always "unix" for SSR/hydration determinism.
   const initialPlatform: Platform =
@@ -64,6 +75,8 @@ export function InstallCommand({
         platform={platform}
         variant={variant}
         className={className}
+        surface={surface}
+        installTarget={target}
       />
     );
   }
@@ -78,6 +91,8 @@ export function InstallCommand({
         platform={platform}
         variant="compact"
         className={className}
+        surface={surface}
+        installTarget={target}
       />
     );
   }
@@ -88,6 +103,8 @@ export function InstallCommand({
       onPlatformChange={setPlatform}
       variant={variant}
       className={className}
+      surface={surface}
+      installTarget={target}
     />
   );
 }
@@ -97,6 +114,8 @@ interface PlatformTabsProps {
   onPlatformChange: (next: Platform) => void;
   variant: "hero" | "inline";
   className?: string;
+  surface: string;
+  installTarget: "cli" | "plugin" | "custom";
 }
 
 function PlatformTabs({
@@ -104,15 +123,16 @@ function PlatformTabs({
   onPlatformChange,
   variant,
   className,
+  surface,
+  installTarget,
 }: PlatformTabsProps) {
-  const posthog = usePostHog();
-
   const handleValueChange = (value: string) => {
     const next: Platform = value === "windows" ? "windows" : "unix";
     if (next === platform) return;
-    posthog.capture("install_command_tab_changed", {
+    track("install_platform_switched", {
       from: platform,
       to: next,
+      surface,
     });
     onPlatformChange(next);
   };
@@ -137,6 +157,8 @@ function PlatformTabs({
           platform="unix"
           variant={variant}
           className={className}
+          surface={surface}
+          installTarget={installTarget}
         />
       </TabsContent>
       <TabsContent value="windows">
@@ -145,6 +167,8 @@ function PlatformTabs({
           platform="windows"
           variant={variant}
           className={className}
+          surface={surface}
+          installTarget={installTarget}
         />
       </TabsContent>
     </Tabs>
@@ -156,6 +180,8 @@ interface SingleCommandProps {
   platform: Platform;
   variant: "hero" | "inline" | "compact";
   className?: string;
+  surface: string;
+  installTarget: "cli" | "plugin" | "custom";
 }
 
 function SingleCommand({
@@ -163,14 +189,20 @@ function SingleCommand({
   platform,
   variant,
   className,
+  surface,
+  installTarget,
 }: SingleCommandProps) {
   const { copied, copy } = useCopyToClipboard();
-  const posthog = usePostHog();
 
   const handleCopy = async () => {
     try {
       await copy(command);
-      posthog.capture("install_command_copied", { command, platform });
+      track("install_command_copied", {
+        command,
+        platform,
+        surface,
+        install_target: installTarget,
+      });
     } catch {
       // Clipboard API may fail in non-HTTPS or unfocused contexts
     }
@@ -179,6 +211,7 @@ function SingleCommand({
   if (variant === "compact") {
     return (
       <div
+        data-analytics-install
         className={cn(
           "hidden lg:flex items-center gap-1.5 rounded-md bg-[var(--color-code-bg)] border border-border px-3 py-1.5 font-mono text-xs text-muted-foreground",
           className
@@ -208,6 +241,7 @@ function SingleCommand({
   if (variant === "hero") {
     return (
       <div
+        data-analytics-install
         className={cn(
           "relative rounded-lg bg-[var(--color-code-bg)] border border-border p-4 pr-12 font-mono text-sm sm:text-base break-all max-w-2xl mx-auto text-left",
           className
@@ -240,6 +274,7 @@ function SingleCommand({
   // inline variant
   return (
     <div
+      data-analytics-install
       className={cn(
         "relative rounded-lg bg-[var(--color-code-bg)] border border-border p-3 pr-11 font-mono text-sm break-all",
         className

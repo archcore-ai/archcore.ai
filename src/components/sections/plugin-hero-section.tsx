@@ -122,7 +122,13 @@ function HostPanel({ hint, commands, repoLabel }: HostPanelProps) {
 
       <div className="space-y-2">
         {commands.map((cmd) => (
-          <InstallCommand key={cmd} variant="inline" command={cmd} />
+          <InstallCommand
+            key={cmd}
+            variant="inline"
+            command={cmd}
+            surface="plugin_hero_host_panel"
+            installTarget="plugin"
+          />
         ))}
       </div>
 
