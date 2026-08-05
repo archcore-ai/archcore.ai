@@ -74,9 +74,14 @@ export function PrivacyPage() {
                 directory inside your Git repository.
               </li>
               <li>
-                <span className="text-foreground">No telemetry.</span> We do not
-                collect usage analytics, crash reports, identifiers, or any data
-                from the plugin or CLI.
+                <span className="text-foreground">
+                  No telemetry in the tools.
+                </span>{" "}
+                The plugin and the installed CLI binary send us nothing. Once
+                Archcore is on your machine it makes no analytics request of any
+                kind — no usage tracking, no crash reports, no check-in on
+                start. The one exception is the installer itself, described
+                below.
               </li>
               <li>
                 <span className="text-foreground">
@@ -104,8 +109,58 @@ export function PrivacyPage() {
                 </code>{" "}
                 download release binaries from GitHub Releases. Standard web
                 request metadata (IP, user-agent) may be logged by GitHub and
-                our CDN during download; we do not process or retain it
-                ourselves.
+                our CDN during download; we do not retain it ourselves.
+              </li>
+              <li>
+                <span className="text-foreground">Install analytics.</span> The
+                install scripts send us one event when an install finishes or
+                fails, so we can tell how many people are actually installing
+                Archcore. It contains the version installed, your operating
+                system and CPU architecture, whether this was a first install or
+                a repeat one, whether the run looked like a CI environment, and
+                — if it failed — which of the eight steps it stopped at. It
+                never contains an error message, a file path, a directory name,
+                a user name, a hostname, or anything about your repository.
+              </li>
+              <li>
+                <span className="text-foreground">
+                  The install identifier.
+                </span>{" "}
+                That event is keyed to a random value generated at install time
+                and kept in{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  ~/.local/state/archcore/install-id
+                </code>
+                , so reinstalling on the same machine is counted once rather
+                than as a new person. It is random — not derived from your
+                hardware, your account, or your network — and deleting that file
+                gives you a new one. Events reach the same PostHog project as
+                the website analytics, through{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  ph.archcore.ai
+                </code>
+                .
+              </li>
+              <li>
+                <span className="text-foreground">Opting out of it.</span> Set{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  DO_NOT_TRACK=1
+                </code>{" "}
+                or{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  ARCHCORE_TELEMETRY_OPTOUT=1
+                </code>{" "}
+                before running the installer. Nothing is sent and no identifier
+                file is written — opting out leaves no trace on your disk. The
+                installer also prints a one-line notice when it does send the
+                event, so you are never told about this only here.
+              </li>
+              <li>
+                <span className="text-foreground">Download counts.</span> We
+                also read the public download totals of our own release files
+                from GitHub&apos;s API and chart them. Those are per-file totals
+                only — GitHub does not tell us, and we cannot infer, who
+                downloaded anything.
               </li>
             </ul>
           </section>

@@ -204,3 +204,99 @@ export interface AnalyticsEventMap {
 }
 
 export type AnalyticsEventName = keyof AnalyticsEventMap;
+
+/**
+ * Events that land in the same PostHog project but are *not* fired by any
+ * browser — so they are deliberately kept out of AnalyticsEventMap, which
+ * `track()` is typed against. Listing them here would make them callable from
+ * the client, where they can never legitimately originate.
+ *
+ * They are declared anyway because this file is documented as the single source
+ * of truth for every event in the project: an event nobody can find is an event
+ * someone eventually re-invents under a second name, and the funnel silently
+ * splits in two.
+ *
+ * None of these carry the super properties from core.ts — there is no browser
+ * to read `site`, `locale` or `color_scheme` from. Filter on `source` instead.
+ */
+export interface ExternalAnalyticsEventMap {
+  /**
+   * A successful CLI install, sent by install.sh / install.ps1 once the binary
+   * is in place. `distinct_id` is a random opaque id stored under
+   * ~/.local/state/archcore/install-id, so repeat installs on one machine
+   * collapse to one person rather than inflating the count.
+   *
+   * Emitted only when archcore.ai's deploy step injected a PostHog key into the
+   * published installer, and never when DO_NOT_TRACK or
+   * ARCHCORE_TELEMETRY_OPTOUT is set. See .github/workflows/deploy.yml.
+   */
+  cli_installed: {
+    source: "installer";
+    installer: "install.sh" | "install.ps1";
+    os: "darwin" | "linux" | "windows" | "unknown";
+    arch: "amd64" | "arm64" | "unknown";
+    archcore_version?: string;
+    /** An install id already existed, i.e. a reinstall or an upgrade. */
+    is_reinstall: boolean;
+    /** A CI environment variable was present. Segment these out of adoption. */
+    ci: boolean;
+    pinned_version: boolean;
+    install_dir_default: boolean;
+  };
+  /**
+   * A failed install. `stage` is a coarse category — never the error message,
+   * which is deliberately never transmitted.
+   */
+  cli_install_failed: Omit<
+    ExternalAnalyticsEventMap["cli_installed"],
+    "archcore_version"
+  > & {
+    archcore_version?: string;
+    stage:
+      | "start"
+      | "prereq"
+      | "platform"
+      | "version"
+      | "download"
+      | "checksum"
+      | "extract"
+      | "install"
+      | "done";
+  };
+  /**
+   * Daily cumulative gauge of GitHub release asset downloads, from
+   * .github/workflows/install-stats.yml. Anonymous — there is no person.
+   *
+   * `installer_runs_total` counts checksums.txt fetches, which every installer
+   * and self-update run performs, and is the denoised figure.
+   * `archive_downloads_total` is the raw one and includes scanners and mirrors;
+   * at the time of writing the two were 538 and ~3175. Do not chart them as if
+   * they were the same measurement.
+   */
+  release_downloads_sampled: {
+    source: "release-stats";
+    scope: "all_releases";
+    releases_count: number;
+    latest_version: string;
+    installer_runs_total: number;
+    archive_downloads_total: number;
+    /** Per-platform, archive-derived, so fully bot-skewed. Suffix is os_arch. */
+    [platform: `archive_downloads_${string}`]: number | string;
+  };
+  /**
+   * One event per historical release, timestamped at its publish date. A
+   * per-release total *as of the day the backfill ran* — the GitHub API exposes
+   * no historical series — so it answers "which releases got picked up", not
+   * "installs per week". Emitted only by a manual backfill run.
+   */
+  release_downloads_recorded: {
+    source: "release-stats";
+    scope: "single_release";
+    version: string;
+    prerelease: boolean;
+    installer_runs_to_date: number;
+    archive_downloads_to_date: number;
+  };
+}
+
+export type ExternalAnalyticsEventName = keyof ExternalAnalyticsEventMap;

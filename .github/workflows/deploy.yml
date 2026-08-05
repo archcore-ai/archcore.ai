@@ -34,8 +34,31 @@ jobs:
       # The copies in public/ are committed so local builds and previews work;
       # this step refreshes them so a deploy always ships the current script.
       - name: Sync installers from the CLI repo
+        env:
+          # The same public project key the site bundle ships. The installers
+          # carry a `__POSTHOG_KEY__` placeholder in the CLI repo, so the key
+          # never lands in git there and any copy run straight from that repo —
+          # a local test, install-smoke.yml, a fork — reports nothing at all.
+          # archcore.ai is therefore the only place that turns install analytics
+          # on, which is why the substitution lives in this step.
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
         run: |
           set -euo pipefail
+
+          # Checked before the downloads so a misconfigured variable fails in
+          # one obvious line rather than as a confusing npm build failure later.
+          case "${POSTHOG_KEY:-}" in
+            phc_*) ;;
+            '')
+              echo "::error::POSTHOG_KEY variable is not set — the installers would ship with analytics disabled"
+              exit 1
+              ;;
+            *)
+              echo "::error::POSTHOG_KEY does not look like a PostHog *project* key (expected a phc_ prefix)"
+              exit 1
+              ;;
+          esac
+
           base=https://raw.githubusercontent.com/archcore-ai/cli/refs/heads/main
           for f in install.sh install.ps1; do
             tmp=$(mktemp)
@@ -47,13 +70,32 @@ jobs:
               echo "::error::$f from the CLI repo does not look like an installer"
               exit 1
             }
+            # Compared before the substitution below, so this keeps comparing
+            # the committed placeholder copy against the freshly fetched one
+            # instead of reporting a change on every single deploy.
             if cmp -s "$tmp" "public/$f"; then
               echo "public/$f already current"
             else
               echo "::notice::public/$f refreshed from the CLI repo"
             fi
+
+            # Exactly one occurrence is expected: the assignment. A rename in
+            # the CLI repo, or a second copy of the token, must fail the deploy
+            # rather than publish an installer that quietly reports nothing —
+            # that failure mode looks identical to "nobody is installing".
+            occurrences=$(grep -c '__POSTHOG_KEY__' "$tmp" || true)
+            if [ "${occurrences:-0}" -ne 1 ]; then
+              echo "::error::$f carries ${occurrences:-0} POSTHOG_KEY placeholders, expected exactly 1"
+              exit 1
+            fi
+            sed -i "s|__POSTHOG_KEY__|${POSTHOG_KEY}|" "$tmp"
+
             mv "$tmp" "public/$f"
           done
+          # public/ now holds the injected key. Nothing commits it — the deploy
+          # uploads dist/ only — but a future step that pushed public/ back to
+          # git would leak it, so this must stay the last mutation of these two
+          # files.
 
       - uses: actions/setup-node@v6
         with:

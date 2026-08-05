@@ -1,0 +1,227 @@
+name: Install Stats
+
+# Bridges GitHub release download counts into PostHog, so "how many people
+# installed the CLI" is answerable from the same place as every other archcore
+# metric — without collecting anything from a user's machine.
+#
+# Why the counts need interpreting, and why two numbers are reported rather
+# than one: install.sh and archcore update both fetch the platform archive *and*
+# checksums.txt on every run, so the checksums.txt count is a denoised proxy for
+# real installer runs while the archive count is the raw figure. Measured at the
+# time this was written those were 538 and 3166 — 86 % of the raw archive
+# traffic sat in linux_amd64 alone, which is scanners and mirrors, not users.
+# Reporting both is what makes the noise floor visible instead of implied.
+#
+# This is deliberately independent of the installer's own telemetry ping. The
+# two measure different things — this counts asset fetches including automation,
+# the ping counts consenting machines — and each is the other's sanity check.
+
+on:
+  schedule:
+    # 03:20 UTC. Nothing here is time-critical; a slot away from the top of the
+    # hour avoids the busiest Actions scheduling window.
+    - cron: "20 3 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "snapshot: today's cumulative totals. backfill: one event per historical release, run once."
+        type: choice
+        options:
+          - snapshot
+          - backfill
+        default: snapshot
+
+permissions:
+  contents: read
+
+concurrency:
+  group: install-stats
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    env:
+      # Public project key, same repository variable the site build uses.
+      POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+      # First-party ingestion proxy, from the same repository variable the site
+      # build reads, so there is one analytics host to name in the privacy
+      # policy and one place to change it. The fallback mirrors DEFAULT_HOST in
+      # src/lib/analytics/core.ts — except that PostHog US cloud would be wrong
+      # for a first-party proxy setup, so this falls back to the proxy instead.
+      POSTHOG_HOST: ${{ vars.POSTHOG_HOST || 'https://ph.archcore.ai' }}
+      MODE: ${{ inputs.mode || 'snapshot' }}
+      CLI_REPO: archcore-ai/cli
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check the PostHog key
+        run: |
+          set -euo pipefail
+          case "${POSTHOG_KEY:-}" in
+            phc_*) ;;
+            '')
+              echo "::error::POSTHOG_KEY variable is not set"
+              exit 1
+              ;;
+            *)
+              echo "::error::POSTHOG_KEY does not look like a PostHog *project* key (expected a phc_ prefix)"
+              exit 1
+              ;;
+          esac
+
+      - name: Fetch release download counts
+        run: |
+          set -euo pipefail
+          # --slurp accumulates the pages, each of which is itself an array, so
+          # the result is [[release, …]] and needs one level of flattening. Using
+          # --jq here instead would run the filter once per page and emit
+          # several separate JSON documents.
+          gh api "repos/${CLI_REPO}/releases?per_page=100" --paginate --slurp \
+            | jq 'flatten(1)' > releases.json
+          echo "releases: $(jq 'length' releases.json)"
+
+      - name: Build the event payloads
+        run: |
+          set -euo pipefail
+
+          # One cumulative gauge event. Chart it as the latest value per day and
+          # derive deltas in PostHog; keeping no state here means a missed or
+          # re-run job can never double-count.
+          jq -c --arg key "$POSTHOG_KEY" '
+            . as $rel
+            | {
+                api_key: $key,
+                event: "release_downloads_sampled",
+                distinct_id: "release-stats",
+                # The value is parenthesised because jq will not parse an
+                # object literal followed by `+` as a field value without it.
+                properties: ({
+                  # Server-side aggregate about our own release assets. No
+                  # person profile: there is no person, and anonymous events
+                  # are the cheaper and more honest representation.
+                  "$process_person_profile": false,
+                  source: "release-stats",
+                  scope: "all_releases",
+                  releases_count: ($rel | length),
+                  latest_version: (
+                    $rel
+                    | map(select(.prerelease == false and .draft == false))
+                    | first | .tag_name // "unknown"
+                  ),
+                  # Denoised proxy for real installer and self-update runs.
+                  installer_runs_total: (
+                    [$rel[].assets[] | select(.name == "checksums.txt") | .download_count]
+                    | add // 0
+                  ),
+                  # Raw figure, scanners and mirrors included. Kept so the gap
+                  # between the two stays visible on the same chart.
+                  archive_downloads_total: (
+                    [$rel[].assets[] | select(.name | test("\\.(tar\\.gz|zip)$")) | .download_count]
+                    | add // 0
+                  )
+                }
+                + (
+                  # Per-platform, from archive counts only — checksums.txt
+                  # carries no platform. These inherit the full bot skew, hence
+                  # the archive_downloads_ prefix rather than an installs_ one.
+                  [$rel[].assets[]]
+                  | map(select(.name | test("^archcore_")))
+                  | group_by(.name)
+                  | map({
+                      ("archive_downloads_" + (.[0].name | sub("^archcore_"; "") | sub("\\.(tar\\.gz|zip)$"; ""))):
+                        ([.[].download_count] | add)
+                    })
+                  | add // {}
+                ))
+              }
+          ' releases.json > snapshot.json
+
+          # One event per release, timestamped at its publish date.
+          #
+          # Read this as a per-release total *as of today*, not as a historical
+          # time series: the GitHub API exposes only a current cumulative
+          # download_count per asset, so there is no way to reconstruct what any
+          # release's count was on any past day. Charted at publish dates it
+          # answers "which releases got picked up", not "installs per week in
+          # 2025". Run once — re-running duplicates every event.
+          jq -c --arg key "$POSTHOG_KEY" '
+            .[]
+            | {
+                api_key: $key,
+                event: "release_downloads_recorded",
+                distinct_id: "release-stats",
+                timestamp: .published_at,
+                properties: {
+                  "$process_person_profile": false,
+                  source: "release-stats",
+                  scope: "single_release",
+                  version: .tag_name,
+                  prerelease: .prerelease,
+                  installer_runs_to_date: (
+                    [.assets[] | select(.name == "checksums.txt") | .download_count]
+                    | add // 0
+                  ),
+                  archive_downloads_to_date: (
+                    [.assets[] | select(.name | test("\\.(tar\\.gz|zip)$")) | .download_count]
+                    | add // 0
+                  )
+                }
+              }
+          ' releases.json > backfill.ndjson
+
+          if [ "$MODE" = "backfill" ]; then
+            cp backfill.ndjson events.ndjson
+          else
+            cp snapshot.json events.ndjson
+          fi
+          echo "mode=$MODE, events=$(wc -l < events.ndjson)"
+
+      - name: Send to PostHog
+        run: |
+          set -euo pipefail
+          sent=0
+          failed=0
+          while IFS= read -r payload; do
+            [ -n "$payload" ] || continue
+            # The single-event endpoint, one request per event. The batch
+            # endpoint would be fewer round trips but nests distinct_id
+            # differently; at one event a day, and ~36 for a one-off backfill,
+            # the simpler contract is worth more than the saved requests.
+            if curl -fsS -X POST --max-time 15 --retry 2 --retry-delay 3 \
+                 -H 'Content-Type: application/json' \
+                 -d "$payload" "${POSTHOG_HOST}/i/v0/e/" > /dev/null; then
+              sent=$((sent + 1))
+            else
+              failed=$((failed + 1))
+            fi
+          done < events.ndjson
+
+          echo "sent=$sent failed=$failed"
+          # A silent failure here reads exactly like a flat install chart, so it
+          # must turn the run red.
+          if [ "$failed" -gt 0 ]; then
+            echo "::error::${failed} event(s) failed to reach PostHog"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          set -euo pipefail
+          {
+            echo "### Install stats — \`${MODE}\`"
+            echo
+            if [ -f snapshot.json ]; then
+              jq -r '
+                .properties
+                | "| metric | value |",
+                  "|---|---|",
+                  "| installer runs (checksums.txt) | \(.installer_runs_total) |",
+                  "| archive downloads (raw) | \(.archive_downloads_total) |",
+                  "| releases | \(.releases_count) |",
+                  "| latest | \(.latest_version) |"
+              ' snapshot.json
+              echo
+              echo "The two download figures are not interchangeable — see the header comment in this workflow."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
