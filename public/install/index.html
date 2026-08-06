@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- /install is not a page anyone links to — it is a URL people guess, by
+         analogy with docs.archcore.ai/cli/install/ or by trimming the .sh off
+         the `curl -fsSL https://archcore.ai/install.sh | bash` one-liner to see
+         what is there. Before this file those visits fell through to 404.html,
+         which is the SPA shell: React booted, matched no route, and rendered an
+         empty #root. A blank screen for the visitor with the strongest possible
+         intent — "I want to install this right now".
+
+         A static file rather than a <Route> in App.tsx because GitHub Pages
+         serves this directory with a 200, while any path the SPA does not match
+         is served as 404.html under a 404 status. The redirect also fires
+         without waiting for the bundle to parse. -->
+    <title>Install Archcore — redirecting</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://archcore.ai/cli" />
+
+    <!-- Deliberately no `noindex`. A page that is indexable and canonicals
+         elsewhere gets consolidated into the target; `noindex` combined with a
+         cross-page canonical risks Google carrying the noindex across to /cli
+         itself, which would be a self-inflicted wound. The redirect is what
+         takes this URL out of the index — the canonical just says where it
+         went. -->
+    <script>
+      // Carries the query string across, which a meta refresh cannot:
+      // archcore.ai/install?utm_source=… must not lose its attribution on the
+      // way to /cli, or this hop would launder every campaign into direct
+      // traffic in PostHog.
+      //
+      // replace() rather than href so this URL never enters history — Back from
+      // /cli returns to wherever the visitor actually came from instead of
+      // landing here and bouncing forward again.
+      location.replace("/cli" + location.search + location.hash);
+    </script>
+
+    <!-- Fallback for JS-less clients only. This deliberately lives inside
+         <noscript> rather than beside the script: a bare `content="0"` refresh
+         is scheduled the moment it is parsed and beats the inline script to the
+         navigation, which silently drops the query string — measured, not
+         assumed. Inside <noscript> the two can never race, at the cost of the
+         no-JS path losing UTM parameters, which is the right trade. -->
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/cli" />
+    </noscript>
+
+    <style>
+      /* Visible only if both the script and the meta refresh fail. Inline
+         because files in public/ are copied verbatim and cannot reference the
+         fingerprinted stylesheet Vite emits for the app. */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.6;
+        text-align: center;
+        padding: 1.5rem;
+        background: #ffffff;
+        color: #18181b;
+      }
+
+      a {
+        color: #2563eb;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #09090b;
+          color: #fafafa;
+        }
+
+        a {
+          color: #60a5fa;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>Install Archcore</h1>
+      <p>
+        Redirecting to the <a href="/cli">Archcore CLI page</a>, where the
+        install commands live.
+      </p>
+      <p>
+        Prefer the full guide?
+        <a href="https://docs.archcore.ai/cli/install/"
+          >docs.archcore.ai/cli/install</a
+        >
+      </p>
+    </main>
+  </body>
+</html>
