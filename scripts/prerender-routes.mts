@@ -40,19 +40,19 @@ interface FaqEntry {
 const ROUTES: RouteMeta[] = [
   {
     path: "plugin",
-    title: "Archcore Plugin — repo memory in Claude Code, Cursor, Codex",
+    title: "Archcore Plugin — repo memory for AI coding agents",
     description:
-      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth.",
+      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex, and Copilot CLI, so the agent follows your team's truth.",
     ogImage: "/og-image-plugin.png",
     body: {
-      h1: "Give Claude Code, Cursor & Codex CLI a brain for your codebase.",
+      h1: "Give Claude Code, Cursor, Codex & Copilot a brain for your codebase.",
       paragraphs: [
-        "The plugin gives Claude Code, Cursor, and Codex CLI access to the architectural context already in your repository — decisions, specs, team rules, patterns, and plans — so the agent edits code with the same constraints your team works under, not its best guess from a flat instruction file.",
-        "Three install commands wire up architecture-aware /archcore slash commands inside your agent — seven of them, no subcommands: /archcore:init, /archcore:context, /archcore:capture, /archcore:plan, /archcore:decide, /archcore:audit, /archcore:help. Run /archcore:context before a refactor to load the rules, decisions, and specs that apply to a directory. Use /archcore:decide to record a finalized decision as an ADR and turn it into a team rule, /archcore:capture to document what already lives in code, or /archcore:plan to break a feature into a requirements cascade and an implementation plan.",
+        "The plugin gives Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI access to the architectural context already in your repository: decisions, specs, team rules, patterns, and plans — so the agent edits code with the same constraints your team works under, not its best guess from a flat instruction file.",
+        "One install wires up architecture-aware /archcore slash commands inside your agent, four of them, no subcommands: /archcore:init, /archcore:plan, /archcore:document, /archcore:review. Everyday context needs no command at all: hooks inject the rules and specs that apply to the file being edited, and each session opens with a recap of what is decided and in progress. Use /archcore:document to record a finalized decision as an ADR (optionally codified as a team rule) or to document a module that only lives in someone's head, /archcore:plan to break a feature into a requirements cascade and an implementation plan, and /archcore:review before merge to check changed code against the documents that claim it.",
         "Capture decisions, standards, and plans without leaving chat. The plugin uses the underlying CLI for execution, so you also get MCP tools (list, get, create, update) for browsing and editing .archcore/ documents, and session hooks that inject the relevant context automatically at the start of a conversation.",
-        "Plugin hosts: Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is planned — use the CLI path there for now. The plugin needs a host with a plugin runtime; every other MCP-aware agent reads the same .archcore/ directory through the CLI, which supports eight agents through MCP and session hooks. Open source, fully local — no servers, no accounts, no telemetry. Everything is stored in .archcore/ inside your repo and versioned with your code.",
-        "Already have instruction files? You don't start over. /archcore:init imports the ones you already wrote — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded.",
-        "Common workflows: load context for a directory before touching it, record an ADR for a finalized decision, propose an RFC when the team needs to weigh in, or extend a feature plan after scope changes. The slash commands are tuned for these patterns, and the document graph means relevant rules and specs surface automatically when an agent reads a file under their scope. Reviewers can audit decisions and standards in code review like any other diff, since the documents live in Git.",
+        "Plugin hosts: Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot the plugin ships no MCP server, so wiring the project once with archcore init --agent copilot is required rather than optional — without it the agent has no document tools. The plugin needs a host with a plugin runtime; every other MCP-aware agent reads the same .archcore/ directory through the CLI, which supports eight agents over MCP and session hooks for five of them. Open source, fully local — no servers, no accounts, no telemetry. Everything is stored in .archcore/ inside your repo and versioned with your code.",
+        "Already have instruction files? You don't start over. /archcore:init detects your repo's scale and composes a full first-day seed: stack rule, run guide, data model, entry points, and specs for hotspot modules — shown in one preview and written on a single confirm. It also imports the ones you already wrote (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded.",
+        "Common workflows: record an ADR for a finalized decision, propose an RFC when the team needs to weigh in, document a module nobody has written down, or extend a feature plan after scope changes. The slash commands are tuned for these patterns, and the document graph means relevant rules and specs surface automatically when an agent reads a file under their scope. Reviewers can audit decisions and standards in code review like any other diff, since the documents live in Git.",
       ],
     },
     // Mirrors src/components/sections/plugin-faq-section.tsx.
@@ -60,17 +60,22 @@ const ROUTES: RouteMeta[] = [
       {
         question: "Do I need to install the CLI separately?",
         answer:
-          "Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.",
+          "Yes, one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.",
       },
       {
         question: "Which agents are supported?",
         answer:
-          "Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is on the roadmap. For other MCP-capable agents, use the CLI directly.",
+          "Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot you must also run archcore init --agent copilot once per repo, because the plugin ships no MCP server there. For other MCP-capable agents, use the CLI directly.",
+      },
+      {
+        question: "What are the plugin's commands?",
+        answer:
+          "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command at all, because hooks inject the applicable rules and specs as the agent edits.",
       },
       {
         question: "Can I use my own CLI install?",
         answer:
-          "Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/.",
+          "Yes. The plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source). See https://docs.archcore.ai/cli/install/.",
       },
       {
         question: "Where do my docs live?",
@@ -90,10 +95,10 @@ const ROUTES: RouteMeta[] = [
       paragraphs: [
         "The CLI is a single cross-platform binary that creates a .archcore/ directory in your repo, wires up MCP and session hooks, and exposes 19 typed document categories. Vision: PRD, Idea, Plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT.",
         "Each document is markdown with YAML frontmatter, versioned alongside your code. Documents have explicit types and named relations (informs, blocks, refines, supersedes), so the agent can navigate the dependency graph instead of grepping a flat instruction file. Status fields and timestamps are stored in frontmatter, so reviewers can scan a directory and see what is accepted, draft, deprecated, or superseded.",
-        "Works with 8 AI coding agents today through MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Two commands wire each one up — archcore mcp install registers the local MCP server, archcore hooks install adds session hooks where the host supports them. Claude Code, Cursor, and Codex CLI are also plugin hosts. Anything else that speaks MCP works the same way: the CLI is a local MCP server, not an integration per vendor. The MCP server runs locally as a child process and exposes tools to list, get, create, and update documents during a real session. Hooks pre-load relevant context based on the files in scope, so the agent starts each turn with the right rules and specs already in view.",
-        "Already have instruction files? You don't start over. archcore init imports the ones you already wrote — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so an agent pulls the guide for the directory it is editing instead of grepping the whole folder.",
+        "Works with 8 AI coding agents today over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five also get session hooks — Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot; OpenCode is never wired for hooks because its hooks are JavaScript plugins that cannot be written declaratively. Two commands wire each one up — archcore mcp install registers the local MCP server, archcore hooks install adds session hooks where the host supports them. Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI are also plugin hosts. Anything else that speaks MCP works the same way: the CLI is a local MCP server, not an integration per vendor. The MCP server runs locally as a child process and exposes tools to list, get, create, and update documents during a real session. Hooks pre-load relevant context based on the files in scope, so the agent starts each turn with the right rules and specs already in view.",
+        "Already have instruction files? You don't start over. archcore init imports the ones you already wrote (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so an agent pulls the guide for the directory it is editing instead of grepping the whole folder.",
         "Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS or Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. Cross-platform binary on amd64 and arm64. Run archcore doctor to verify setup, archcore update to self-update, archcore hooks install and archcore mcp install to wire up the integrations. No Node, no Python, no external services required.",
-        "Typical first steps after install: run archcore init to scaffold the directory, archcore bootstrap to seed scale-appropriate stack rules and a run guide, and archcore review to surface coverage gaps once you have a few documents in place. Day-to-day commands cover capturing decisions, codifying standards, planning features, and detecting stale documentation as the codebase evolves.",
+        "Typical first steps after install: run archcore init to scaffold the directory and wire your agents, archcore status to see the document tree and health, and archcore doctor to verify MCP registration and hook installation in one shot. Day-to-day work happens inside the agent — capturing decisions, codifying standards, planning features, and detecting stale documentation as the codebase evolves.",
       ],
     },
     // Mirrors src/components/sections/cli-faq-section.tsx.
@@ -101,22 +106,22 @@ const ROUTES: RouteMeta[] = [
       {
         question: "What does archcore init create?",
         answer:
-          "A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).",
+          "A .archcore/ directory with templates and config for 19 document types in three layers: vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).",
       },
       {
         question: "Which AI agents does the CLI support?",
         answer:
-          "Eight today via MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Run archcore mcp install or archcore hooks install to wire each one up.",
+          "Eight over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five of those also get session hooks: Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Run archcore mcp install or archcore hooks install to wire each one up.",
       },
       {
         question: "Do I need any external services?",
         answer:
-          "No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies.",
+          "No. Standalone binary. Everything in .archcore/ stays in your repo: no servers, databases, accounts, or external dependencies.",
       },
       {
         question: "Should I install the plugin instead?",
         answer:
-          "If you use Claude Code or Cursor, yes — the plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent.",
+          "If you use Claude Code, Cursor, Codex CLI, or GitHub Copilot CLI, the plugin adds intent-based slash commands on top of the same CLI. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent.",
       },
     ],
   },
@@ -124,14 +129,14 @@ const ROUTES: RouteMeta[] = [
     path: "how-to-use",
     title: "How to use Archcore — interactive walkthrough",
     description:
-      "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent — in 3-5 steps.",
+      "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps.",
     ogImage: "/og-image-how-to-use.png",
     body: {
       h1: "How to use Archcore.",
       paragraphs: [
         "A short interactive walkthrough with five branches you can pick from the entry screen. Each branch is 3-5 steps with copy-pasteable commands, expected output, and a one-line note on what just happened. Branches that have both a plugin and a CLI flavor carry a Plugin / CLI toggle you can flip on every step.",
-        "Same product, two entry points — pick by the agent you run, not by a recommendation. The Plugin runs inside Claude Code, Cursor, and Codex CLI: seven /archcore slash commands with automatic context injection. The CLI is the core context layer for any MCP-aware agent — finer control, scriptable in CI, the way to integrate with Copilot, Gemini CLI, OpenCode, Cline, and the rest.",
-        "What the five branches deliver. How to install Archcore — pick Plugin or CLI, walk through install and verification. Quick start in your project — your first useful command after install on a fresh repo. I have an idea, no context yet — turn a plain-English idea into PRD → spec → plan. Document existing code — capture what already lives in code as decisions, rules, plans, and guides. Solve tasks with existing context — load the right docs before editing, audit drift after.",
+        "Same product, two entry points. Pick by the agent you run, not by a recommendation. The Plugin runs inside Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI: four /archcore slash commands, plus automatic context injection that needs no command at all. The CLI is the core context layer for any MCP-aware agent — finer control, scriptable in CI, the way to integrate with Gemini CLI, OpenCode, Roo Code, Cline, and the rest.",
+        "What the five branches deliver. How to install Archcore: pick Plugin or CLI, walk through install and verification. Quick start in your project: your first useful command after install on a fresh repo. I have an idea, no context yet — turn a plain-English idea into PRD → spec → plan. Document existing code — capture what already lives in code as decisions, rules, plans, and guides. Solve tasks with existing context — the right docs arrive before your edit, then review the branch for drift.",
       ],
     },
   },

@@ -41,7 +41,7 @@ export function CLIHeroSection() {
             <div className="rounded-xl border border-border bg-card p-5 space-y-4">
               <p className="text-sm text-muted-foreground">
                 <Trans>
-                  One binary. Local MCP in your repo. macOS, Linux, Windows — no
+                  One binary. Local MCP in your repo. macOS, Linux, Windows, with no
                   external services.
                 </Trans>
               </p>

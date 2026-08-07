@@ -33,13 +33,15 @@ export function TeamsGettingStarted() {
       );
     }
     return () => {
-      document.title =
-        "Archcore — Git-native context for AI coding agents";
+      // Canonical home meta, per .archcore/messaging-alignment.rule.md. This
+      // restore path shipped the superseded "turns your repository into
+      // structured, machine-readable context" phrase and the old title.
+      document.title = "Archcore — repo memory for AI coding agents";
       const meta = document.querySelector('meta[name="description"]');
       if (meta) {
         meta.setAttribute(
           "content",
-          "Archcore turns your repository into structured, machine-readable context — so AI agents understand your architecture, rules, and decisions."
+          "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
         );
       }
     };

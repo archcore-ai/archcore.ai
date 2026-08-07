@@ -32,7 +32,7 @@ export function MigrationSection({ entryPoint }: MigrationSectionProps) {
       from: "CLAUDE.md",
       becomes: _(msg`Rules and decisions`),
       detail: _(
-        msg`One flat file for one tool becomes typed documents every agent can read — conventions as rules, the reasoning behind them as ADRs.`
+        msg`One flat file for one tool becomes typed documents every agent can read: conventions as rules, the reasoning behind them as ADRs.`
       ),
     },
     {
@@ -40,7 +40,7 @@ export function MigrationSection({ entryPoint }: MigrationSectionProps) {
       from: "AGENTS.md · .cursor/rules",
       becomes: _(msg`Scoped rules`),
       detail: _(
-        msg`Path-scoped instruction files keep their scope, but gain status, timestamps, and relations — so you can see what is still accepted and what a later decision superseded.`
+        msg`Path-scoped instruction files keep their scope, but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded.`
       ),
     },
     {
@@ -69,8 +69,8 @@ export function MigrationSection({ entryPoint }: MigrationSectionProps) {
               <code className="font-mono text-[0.9em] rounded bg-muted px-1.5 py-0.5">
                 {importCommand}
               </code>{" "}
-              imports the instruction files you already wrote — CLAUDE.md,
-              AGENTS.md, .cursorrules, .cursor/rules/* — as typed documents. The
+              imports the instruction files you already wrote (CLAUDE.md,
+              AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents. The
               context you wrote carries over; it just stops being one flat file
               per tool.
             </Trans>

@@ -72,39 +72,39 @@ Concrete step plans per branch:
 
 **Branch 1 — How to install Archcore (no toggle):**
 
-1. *Which path?* — Two choices: Plugin (recommended) / CLI. Each renders the [[messaging-alignment]]-aligned one-paragraph blurb on "experience layer vs core" plus an Install card.
-2. *Plugin path:* host picker — Claude Code / Cursor / Codex CLI. Each tab shows the host-specific install command (the same commands rendered by the `/plugin` Install widget; copy lives in [[messaging-alignment]]). A note reminds the user the CLI installs as a transitive prerequisite.
-3. *Plugin path:* verification — restart the host, run `/archcore:help`, expect the 7-command list. Link to plugin troubleshooting.
+1. *Which path?* — Two choices: Plugin / CLI (equals — no recommendation label, per [[messaging-alignment]]). Each renders the [[messaging-alignment]]-aligned one-paragraph blurb on "experience layer vs core" plus an Install card.
+2. *Plugin path:* host picker — Claude Code / Cursor / Codex CLI / GitHub Copilot CLI. Copilot renders **two** commands, both required (`copilot plugin install …` then `archcore init --agent copilot`). Each tab shows the host-specific install command (the same commands rendered by the `/plugin` Install widget; copy lives in [[messaging-alignment]]). A note reminds the user the CLI installs as a transitive prerequisite.
+3. *Plugin path:* verification — restart the host, type `/archcore:`, expect the four-command list (init, plan, document, review). Link to plugin troubleshooting.
 4. *CLI path:* install via curl / PowerShell + `archcore init`. Show what `init` does (creates `.archcore/`, registers MCP, installs hooks).
 5. *CLI path:* verification — open the agent, ask "what Archcore documents exist?", expect a "none yet" answer. Link to CLI troubleshooting.
 
 **Branch 2 — Quick start in your project (toggle):**
 
 1. *What's the fastest first action?* — Plugin variant: `/archcore:init` and the bootstrap (stack rule, run-the-app guide, hotspot capture candidates). CLI variant: ask the agent "create an ADR about using PostgreSQL as our primary database", showing the MCP `create_document` call.
-2. *Record a real decision.* — Plugin: `/archcore:decide use PostgreSQL as the primary database`, mention the optional `adr → rule → guide` cascade. CLI: same outcome via natural language ("create an ADR for choosing PostgreSQL, then propose a rule and a migration guide based on it").
+2. *Record a real decision.* — Plugin: `/archcore:document use PostgreSQL as the primary database` (decision track), mention the optional `adr → rule → guide` cascade. CLI: same outcome via natural language ("create an ADR for choosing PostgreSQL, then propose a rule and a migration guide based on it").
 3. *Check what was created.* — Plugin: visualize the `.archcore/` listing and the `add_relation` chain. CLI: same via `archcore status` + asking the agent to list relations.
 4. *Wrap-up.* — Single CTA to install (anchored to `/plugin` or `/cli` depending on the toggle's last value).
 
 **Branch 3 — I have an idea, no context (toggle):**
 
-1. *Capture the idea.* — Plugin: `/archcore:plan auth redesign` with `--track product` (default). CLI: MCP `product_track` prompt or natural language "draft a PRD for an auth redesign idea".
+1. *Capture the idea.* — Plugin: `/archcore:plan auth redesign` on the default `sdd` track. CLI: natural language "draft a PRD for an auth redesign idea" (the MCP track prompts were removed in CLI v0.7.0).
 2. *Move from idea to PRD.* — Plugin: same `/archcore:plan` cascade pausing at PRD step; show the gate. CLI: ask the agent "draft a PRD that implements the auth-redesign idea", call out the manual `add_relation(implements)` step.
-3. *Formalize with a spec.* — Plugin: `/archcore:plan --track feature` swap, or `/archcore:decide` continuation cascade. CLI: ask for a spec via `create_document(type=spec)` and link with `add_relation`.
+3. *Formalize with a spec.* — Plugin: the `sdd` track's own spec gate (no track swap; `sdd` covers idea → PRD → spec → plan). CLI: ask for a spec via `create_document(type=spec)` and link with `add_relation`.
 4. *Land on a plan.* — Plugin: final step of the cascade. CLI: `create_document(type=plan)` + `add_relation(implements)`.
 5. *Wrap-up.* — CTA to docs/plan reference.
 
 **Branch 4 — Document existing code (toggle):**
 
-1. *Pick a module to capture.* — Plugin: `/archcore:capture src/notifications/`, agent picks `spec` and asks for approval. CLI: ask "create a spec for the notifications module" — agent infers `type=spec`, drafts via MCP; show the user that on the CLI side they can override the type explicitly (`type=doc`, `type=guide`).
-2. *Capture a cross-cutting pipeline.* — Plugin: `/archcore:capture webhook delivery pipeline`. CLI: same via natural language; show how to ask for `type=spec` explicitly to skip the agent's heuristic.
-3. *Write the rule.* — Plugin: `/archcore:decide` continuation offering `adr → rule → guide`. CLI: ask the agent to "turn this spec into a rule + how-to guide" and call `add_relation(implements)` and `add_relation(related)`.
+1. *Pick a module to capture.* — Plugin: `/archcore:document src/notifications/` (describe track), agent picks `spec` and asks for approval. CLI: ask "create a spec for the notifications module" — agent infers `type=spec`, drafts via MCP; show the user that on the CLI side they can override the type explicitly (`type=doc`, `type=guide`).
+2. *Capture a cross-cutting pipeline.* — Plugin: `/archcore:document webhook delivery pipeline`. CLI: same via natural language; show how to ask for `type=spec` explicitly to skip the agent's heuristic.
+3. *Write the rule.* — Plugin: `/archcore:document` continuation offering `spec → rule → guide`. CLI: ask the agent to "turn this spec into a rule + how-to guide" and call `add_relation(implements)` and `add_relation(related)`.
 4. *Wrap-up.* — Link to `/concepts/document-types/`.
 
 **Branch 5 — Solve tasks with existing context (toggle):**
 
-1. *Load context before editing.* — Plugin: `/archcore:context src/billing/`, output panel shows `billing-format.spec.md`, `refund-policy.rule.md`, `use-postgres.adr.md`. CLI: ask "what rules and decisions apply to `src/billing/`?", agent uses `search_documents` + `list_documents`.
-2. *Audit after your change.* — Plugin: `/archcore:audit --drift`. CLI: ask "audit `.archcore/` for stale docs and drift" — agent walks `list_documents` + relations and reports.
-3. *Wrap-up.* — Link to `/plugin/skills/#archcorecontext` and `#archcoreaudit`.
+1. *Context arrives before the edit.* — Plugin: **no command** (v0.7.0 removed `/archcore:context`); the user just asks for the change and the pre-write hook injects `billing-format.spec.md`, `refund-policy.rule.md`, `use-postgres.adr.md`. CLI: ask "what rules and decisions apply to `src/billing/`?", agent uses `search_documents` + `list_documents`.
+2. *Review after your change.* — Plugin: `/archcore:review` (add `--drift` for staleness, `--deep` for a full audit). CLI: ask "audit `.archcore/` for stale docs and drift" — agent walks `list_documents` + relations and reports.
+3. *Wrap-up.* — Link to the plugin's `review` skill docs.
 
 ### R4 — Content shape and code organization
 

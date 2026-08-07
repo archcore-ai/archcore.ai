@@ -61,13 +61,15 @@ The write path matters as much as the read path, because memory that only humans
 
 ## Why git specifically?
 
-Five properties fall out of storing memory as files in the repository, and no other storage offers them together:
+Five properties fall out of storing memory as files in the repository:
 
 1. Versioned with the code. A decision is tied to the commit range it governed, and `git log` is the memory's audit trail.
 2. Reviewable. Context changes go through pull requests like any other change, so a wrong "fact" gets caught in review instead of silently steering agents.
 3. Local and offline. No account, no service, no per-retrieval billing.
-4. Cross-agent by default. Files and MCP are the two most portable interfaces in the ecosystem; one memory serves Claude Code, Cursor, Copilot, and whatever ships next year.
-5. Vendor-proof: nobody can remove a feature and take your project's memory with it.
+4. Cross-agent by default. Files and MCP are the two most portable interfaces in the ecosystem, so one memory serves Claude Code, Cursor, Copilot, and whatever ships next year.
+5. Durable against product decisions. Nobody can remove a feature and take your project's memory with it.
+
+Individually, none of these is exotic. A vendor memory layer can be reviewable if the vendor builds review into it. What is hard to get elsewhere is all five at once, from storage you already run.
 
 ## What does structured repo memory look like?
 

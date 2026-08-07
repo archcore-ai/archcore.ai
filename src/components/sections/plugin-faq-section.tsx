@@ -17,19 +17,25 @@ export function PluginFAQSection() {
     {
       question: _(msg`Do I need to install the CLI separately?`),
       answer: _(
-        msg`Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.`
+        msg`Yes, one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.`
       ),
     },
     {
       question: _(msg`Which agents are supported?`),
       answer: _(
-        msg`Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is on the roadmap. For other MCP-capable agents, use the CLI directly.`
+        msg`Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot you must also run archcore init --agent copilot once per repo, because the plugin ships no MCP server there. For other MCP-capable agents, use the CLI directly.`
+      ),
+    },
+    {
+      question: _(msg`What are the plugin's commands?`),
+      answer: _(
+        msg`Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command at all, because hooks inject the applicable rules and specs as the agent edits.`
       ),
     },
     {
       question: _(msg`Can I use my own CLI install?`),
       answer: _(
-        msg`Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/.`
+        msg`Yes. The plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source). See https://docs.archcore.ai/cli/install/.`
       ),
     },
     {

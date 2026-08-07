@@ -36,18 +36,20 @@ export const installBranch: Branch = {
           label: <Trans>Plugin</Trans>,
           blurb: (
             <Trans>
-              The most polished experience for Claude Code, Cursor, and Codex
-              CLI. Seven slash commands, automatic context injection,
-              guardrails.
+              The most polished experience for Claude Code, Cursor, Codex CLI,
+              and GitHub Copilot CLI. Four slash commands, automatic context
+              injection, guardrails.
             </Trans>
           ),
           example: {
             caption: <Trans>What you get inside the agent:</Trans>,
             command:
-              "/archcore:init\n/archcore:context\n/archcore:capture\n/archcore:plan\n/archcore:decide\n/archcore:audit\n/archcore:help",
+              "/archcore:init\n/archcore:plan\n/archcore:document\n/archcore:review",
             note: (
               <Trans>
-                The CLI installs as a prerequisite — the plugin invokes{" "}
+                Everyday context needs no command. Hooks inject the applicable
+                rules as the agent edits. The CLI installs as a prerequisite:
+                the plugin invokes{" "}
                 <code className="font-mono">archcore</code> from your PATH.
               </Trans>
             ),
@@ -58,8 +60,8 @@ export const installBranch: Branch = {
           label: <Trans>CLI</Trans>,
           blurb: (
             <Trans>
-              The core context layer for any MCP-aware agent — Copilot, Gemini
-              CLI, OpenCode, Cline. One binary, scriptable in CI.
+              The core context layer for any MCP-aware agent: Gemini CLI,
+              OpenCode, Roo Code, Cline. One binary, scriptable in CI.
             </Trans>
           ),
           example: {
@@ -67,8 +69,8 @@ export const installBranch: Branch = {
             command: "archcore init\narchcore status\narchcore mcp",
             note: (
               <Trans>
-                MCP exposes 10 tools and 5 prompt cascades. Use this for
-                Copilot, Gemini CLI, OpenCode, Cline, or pipelines.
+                MCP exposes 10 document tools. Use this for Gemini CLI,
+                OpenCode, Roo Code, Cline, or pipelines.
               </Trans>
             ),
           },
@@ -127,15 +129,33 @@ export const installBranch: Branch = {
           label: <Trans>Codex CLI 0.117+</Trans>,
           blurb: <Trans>One marketplace command.</Trans>,
           example: {
-            caption: <Trans>Run in your shell:</Trans>,
-            command:
-              "codex plugin marketplace add archcore-ai/plugin\ncodex features enable plugin_hooks",
+            caption: <Trans>Run in your shell, then install from /plugins:</Trans>,
+            command: "codex plugin marketplace add archcore-ai/plugin\ncodex",
             note: (
               <Trans>
-                MCP is auto-registered.{" "}
-                <code className="font-mono">plugin_hooks</code> is a feature
-                flag (default off) — enable it for validation, cascade, and
-                pre-edit injection.
+                In Codex, run <code className="font-mono">/plugins</code>, open
+                Archcore, select Install plugin. MCP is auto-registered. Hooks
+                are experimental on Codex. Turn them on with{" "}
+                <code className="font-mono">codex --enable hooks</code>, and
+                note they don't run on Windows.
+              </Trans>
+            ),
+          },
+        },
+        {
+          id: "copilot",
+          label: <Trans>GitHub Copilot CLI</Trans>,
+          blurb: <Trans>Two steps, both required.</Trans>,
+          example: {
+            caption: <Trans>Run in your shell:</Trans>,
+            command:
+              'copilot plugin install archcore-ai/plugin:plugins/archcore\narchcore init --agent copilot --project "$PWD"',
+            note: (
+              <Trans>
+                On Copilot the plugin ships no MCP server, so step 2 registers
+                a project-level one. Skip it and you get no document tools at
+                all. Run it once per repo and commit the result. Copilot CLI
+                only: VS Code agent mode has no self-serve plugin install.
               </Trans>
             ),
           },
@@ -154,16 +174,20 @@ export const installBranch: Branch = {
         </Trans>
       ),
       example: {
-        caption: <Trans>In a fresh conversation, run:</Trans>,
-        command: "/archcore:help",
+        caption: <Trans>In a fresh conversation, type:</Trans>,
+        command: "/archcore:",
         outputLines: [
-          <Trans>You should see the seven /archcore:* commands.</Trans>,
+          <Trans>
+            You should see four commands: init, plan, document, review.
+          </Trans>,
         ],
         note: (
           <Trans>
-            Nothing listed? See plugin troubleshooting in the docs. Usually
-            it's the CLI not on PATH, or Codex's{" "}
-            <code className="font-mono">plugin_hooks</code> flag is off.
+            Nothing listed? Usually it's the CLI not on PATH. Check{" "}
+            <code className="font-mono">archcore --version</code>. On Copilot,
+            missing document tools mean step 2 (
+            <code className="font-mono">archcore init --agent copilot</code>)
+            was skipped.
           </Trans>
         ),
       },
@@ -187,7 +211,7 @@ export const installBranch: Branch = {
         {
           id: "unix",
           label: <Trans>macOS / Linux</Trans>,
-          blurb: <Trans>Bash — single curl line.</Trans>,
+          blurb: <Trans>Bash: single curl line.</Trans>,
           example: {
             caption: <Trans>Run in your terminal:</Trans>,
             command:
@@ -196,7 +220,7 @@ export const installBranch: Branch = {
               <Trans>
                 <code className="font-mono">init</code> auto-detects installed
                 agents (Claude Code, Cursor, Copilot, Gemini CLI…) and writes
-                MCP + hooks for each. Idempotent — safe to re-run.
+                MCP + hooks for each. Idempotent, safe to re-run.
               </Trans>
             ),
           },
@@ -204,7 +228,7 @@ export const installBranch: Branch = {
         {
           id: "windows",
           label: <Trans>Windows</Trans>,
-          blurb: <Trans>PowerShell — single irm line.</Trans>,
+          blurb: <Trans>PowerShell: single irm line.</Trans>,
           example: {
             caption: <Trans>Run in PowerShell:</Trans>,
             command:
@@ -242,7 +266,7 @@ export const installBranch: Branch = {
         note: (
           <Trans>
             Agent didn't recognize the question? Run{" "}
-            <code className="font-mono">archcore doctor</code> — it reports
+            <code className="font-mono">archcore doctor</code>. It reports
             MCP registration, hook installation, and tag hygiene in one shot.
           </Trans>
         ),

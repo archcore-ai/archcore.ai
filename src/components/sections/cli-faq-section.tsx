@@ -17,25 +17,25 @@ export function CLIFAQSection() {
     {
       question: _(msg`What does archcore init create?`),
       answer: _(
-        msg`A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).`
+        msg`A .archcore/ directory with templates and config for 19 document types in three layers: vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).`
       ),
     },
     {
       question: _(msg`Which AI agents does the CLI support?`),
       answer: _(
-        msg`Eight today via MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Run archcore mcp install or archcore hooks install to wire each one up.`
+        msg`Eight over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five of those also get session hooks: Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Run archcore mcp install or archcore hooks install to wire each one up.`
       ),
     },
     {
       question: _(msg`Do I need any external services?`),
       answer: _(
-        msg`No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies.`
+        msg`No. Standalone binary. Everything in .archcore/ stays in your repo: no servers, databases, accounts, or external dependencies.`
       ),
     },
     {
       question: _(msg`Should I install the plugin instead?`),
       answer: _(
-        msg`If you use Claude Code or Cursor, yes — the plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent.`
+        msg`If you use Claude Code, Cursor, Codex CLI, or GitHub Copilot CLI, the plugin adds intent-based slash commands on top of the same CLI. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent.`
       ),
     },
   ];

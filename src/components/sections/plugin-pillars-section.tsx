@@ -8,7 +8,6 @@ import {
   FileText,
   Gavel,
   Github,
-  HelpCircle,
   ListChecks,
   Rocket,
   Stethoscope,
@@ -21,7 +20,13 @@ interface Spotlight {
   icon: LucideIcon;
   title: string;
   outcome: string;
-  command: string;
+  /**
+   * The slash command that triggers it, or null when the plugin does it on its
+   * own — since v0.7.0 everyday context injection needs no command at all.
+   */
+  command: string | null;
+  /** Rendered in place of the command chip when `command` is null. */
+  trigger?: string;
 }
 
 interface SkillRow {
@@ -37,27 +42,28 @@ export function PluginPillarsSection() {
   const spotlights: Spotlight[] = [
     {
       icon: Compass,
-      title: _(msg`Context-aware edits`),
+      title: _(msg`Context-aware edits, no command`),
       outcome: _(
-        msg`Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions.`
+        msg`Hooks inject the rules and specs that apply to the file your agent is editing, and every session opens with a recap of what's decided and in progress.`
       ),
-      command: "/archcore:context",
-    },
-    {
-      icon: FileText,
-      title: _(msg`Document what's already in code`),
-      outcome: _(
-        msg`Turn tribal knowledge into versioned docs — modules, APIs, integrations — captured straight into your repo.`
-      ),
-      command: "/archcore:capture",
+      command: null,
+      trigger: _(msg`automatic`),
     },
     {
       icon: Gavel,
       title: _(msg`Decisions stop dying in chat`),
       outcome: _(
-        msg`Record an ADR and (optionally) make it a team rule that auto-applies to every future edit in the same area.`
+        msg`Record an ADR or RFC, optionally codified as a team rule that auto-applies to every future edit in the same area. Or document a module that only lives in someone's head.`
       ),
-      command: "/archcore:decide",
+      command: "/archcore:document",
+    },
+    {
+      icon: Stethoscope,
+      title: _(msg`Catch drift before you merge`),
+      outcome: _(
+        msg`Review the branch against your recorded rules and decisions, in both directions: code that broke a doc, and docs the code left behind.`
+      ),
+      command: "/archcore:review",
     },
   ];
 
@@ -69,40 +75,22 @@ export function PluginPillarsSection() {
       when: _(msg`First-time setup`),
     },
     {
-      icon: Compass,
-      command: "/archcore:context",
-      outcome: _(msg`Load what's already decided before you change code`),
-      when: _(msg`Daily, before editing`),
-    },
-    {
-      icon: FileText,
-      command: "/archcore:capture",
-      outcome: _(msg`Document what already lives in code`),
-      when: _(msg`A module has tribal knowledge but no doc`),
-    },
-    {
       icon: ListChecks,
       command: "/archcore:plan",
       outcome: _(msg`Turn an idea into a scoped implementation plan`),
       when: _(msg`New feature, refactor, or initiative`),
     },
     {
-      icon: Gavel,
-      command: "/archcore:decide",
-      outcome: _(msg`Record a decision and make it a team rule`),
-      when: _(msg`A decision was made`),
+      icon: FileText,
+      command: "/archcore:document",
+      outcome: _(msg`Record a decision or document what lives in code`),
+      when: _(msg`A decision was made, or a module has no doc`),
     },
     {
       icon: Stethoscope,
-      command: "/archcore:audit",
-      outcome: _(msg`Find stale, missing, or drifting docs`),
-      when: _(msg`Health check`),
-    },
-    {
-      icon: HelpCircle,
-      command: "/archcore:help",
-      outcome: _(msg`Navigate the skill catalog`),
-      when: _(msg`When you forget which command fits`),
+      command: "/archcore:review",
+      outcome: _(msg`Check your changes and your docs against each other`),
+      when: _(msg`Before merge; --drift and --deep for audits`),
     },
   ];
 
@@ -117,12 +105,12 @@ export function PluginPillarsSection() {
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
           <Trans>
-            The plugin is 7 slash commands. Here's what each one does for you.
+            Four slash commands. The everyday context needs none of them.
           </Trans>
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           <Trans>
-            Describe what you want in plain English — Archcore routes it. The{" "}
+            Describe what you want in plain English and Archcore routes it. The{" "}
             <code className="font-mono text-[0.9em] rounded bg-muted px-1.5 py-0.5">
               /archcore:*
             </code>{" "}
@@ -136,7 +124,7 @@ export function PluginPillarsSection() {
           const Icon = s.icon;
           return (
             <li
-              key={s.command}
+              key={s.command ?? s.title}
               className="rounded-xl border border-border bg-card p-6 flex flex-col gap-3"
             >
               <div className="rounded-lg bg-muted p-2 w-fit">
@@ -146,9 +134,15 @@ export function PluginPillarsSection() {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {s.outcome}
               </p>
-              <code className="mt-auto font-mono text-xs text-foreground/80 bg-muted/60 rounded px-2 py-1 w-fit">
-                {s.command}
-              </code>
+              {s.command ? (
+                <code className="mt-auto font-mono text-xs text-foreground/80 bg-muted/60 rounded px-2 py-1 w-fit">
+                  {s.command}
+                </code>
+              ) : (
+                <span className="mt-auto text-xs font-medium uppercase tracking-wider text-muted-foreground bg-muted/60 rounded px-2 py-1 w-fit">
+                  {s.trigger}
+                </span>
+              )}
             </li>
           );
         })}
@@ -157,7 +151,7 @@ export function PluginPillarsSection() {
       <div className="max-w-5xl mx-auto rounded-xl border border-border bg-card overflow-hidden">
         <div className="px-5 py-3 border-b border-border bg-muted/40">
           <p className="text-xs uppercase tracking-wider font-medium text-muted-foreground">
-            <Trans>All 7 commands at a glance</Trans>
+            <Trans>All 4 commands at a glance</Trans>
           </p>
         </div>
         <ul className="divide-y divide-border">

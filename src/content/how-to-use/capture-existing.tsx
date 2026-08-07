@@ -1,8 +1,8 @@
 /* Branch 4: Document existing code.
  *
  * Plugin/CLI toggle on every step. PRD: landing/how-to-use-interactive-walkthrough.prd.md §R3.
- * Plugin uses /archcore:capture (heuristic picks the right type); CLI uses
- * natural-language asks with explicit type overrides (spec / doc / guide).
+ * Plugin uses /archcore:document, whose describe track picks the right type;
+ * CLI uses natural-language asks with explicit type overrides (spec/doc/guide).
  *
  * Tone rules: landing/messaging-alignment.rule.md. CLI variants carry a one-line
  * "Why CLI here:" blurb; never "fallback" or "alternative".
@@ -24,14 +24,14 @@ export const captureExistingBranch: Branch = {
       description: (
         <Trans>
           Start with one folder that an agent keeps re-discovering. The output
-          is usually a <code className="font-mono">.spec.md</code> — a
+          is usually a <code className="font-mono">.spec.md</code>, a
           contract describing what the module guarantees.
         </Trans>
       ),
       variants: {
         plugin: {
           caption: <Trans>Run inside your agent:</Trans>,
-          command: "/archcore:capture src/notifications/",
+          command: "/archcore:document src/notifications/",
           outputLines: [
             <Trans>
                 Reads the folder, picks{" "}
@@ -39,11 +39,11 @@ export const captureExistingBranch: Branch = {
               </Trans>,
             <Trans>
                 Drafts{" "}
-                <code className="font-mono">notifications.spec.md</code> —
+                <code className="font-mono">notifications.spec.md</code>:
                 interfaces, invariants, edge cases.
               </Trans>,
             <Trans>
-                Asks for approval before writing — you can override the type or
+                Asks for approval before writing. You can override the type or
                 edit the draft first.
               </Trans>,
           ],
@@ -58,7 +58,7 @@ export const captureExistingBranch: Branch = {
         cli: {
           caption: <Trans>Ask your agent in plain English:</Trans>,
           command:
-            '"Create a spec for src/notifications/ — read the code, describe the public API and the delivery guarantees."',
+            '"Create a spec for src/notifications/: read the code, describe the public API and the delivery guarantees."',
           outputLines: [
             <Trans>
                 Agent uses MCP{" "}
@@ -73,7 +73,7 @@ export const captureExistingBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you choose the type explicitly
+              Why CLI here: finer control. You choose the type explicitly
               instead of accepting the plugin's heuristic. Useful when the
               module fits "doc" or "guide" better than "spec".
             </Trans>
@@ -88,7 +88,7 @@ export const captureExistingBranch: Branch = {
       question: <Trans>Capture a cross-cutting pipeline.</Trans>,
       description: (
         <Trans>
-          Some behavior lives across many folders — webhook delivery, auth
+          Some behavior lives across many folders: webhook delivery, auth
           middleware, queue retry. These are the highest-value specs because
           they're the hardest for an agent to grep for.
         </Trans>
@@ -96,14 +96,14 @@ export const captureExistingBranch: Branch = {
       variants: {
         plugin: {
           caption: <Trans>Describe the pipeline, not a path:</Trans>,
-          command: "/archcore:capture webhook delivery pipeline",
+          command: "/archcore:document webhook delivery pipeline",
           outputLines: [
             <Trans>
                 Agent finds every touched file (sender, retry queue, signing,
                 receivers).
               </Trans>,
             <Trans>
-                Drafts a spec that describes the contract — not the
+                Drafts a spec that describes the contract, not the
                 implementation.
               </Trans>,
           ],
@@ -126,13 +126,13 @@ export const captureExistingBranch: Branch = {
                 <code className="font-mono">create_document(type=spec)</code>.
               </Trans>,
             <Trans>
-                Asking for type explicitly skips the agent's heuristic — the
+                Asking for type explicitly skips the agent's heuristic. The
                 output type is predictable.
               </Trans>,
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — predictable type means the
+              Why CLI here: finer control. Predictable type means the
               document lands exactly where you want in the category structure
               (knowledge / vision / experience).
             </Trans>
@@ -154,11 +154,11 @@ export const captureExistingBranch: Branch = {
       variants: {
         plugin: {
           caption: <Trans>Run inside your agent:</Trans>,
-          command: "/archcore:decide",
+          command: "/archcore:document",
           outputLines: [
             <Trans>
-                When triggered after a recent capture, decide offers a{" "}
-                <code className="font-mono">spec → rule → guide</code>{" "}
+                Say "make this our team standard" and the decision track offers
+                a <code className="font-mono">spec → rule → guide</code>{" "}
                 continuation cascade.
               </Trans>,
             <Trans>
@@ -168,7 +168,7 @@ export const captureExistingBranch: Branch = {
           ],
           note: (
             <Trans>
-              Relations are wired automatically — the rule{" "}
+              Relations are wired automatically: the rule{" "}
               <code className="font-mono">implements</code> the spec, the guide
               is <code className="font-mono">related</code> to the rule.
             </Trans>
@@ -181,7 +181,7 @@ export const captureExistingBranch: Branch = {
           outputLines: [
             <Trans>
                 Two{" "}
-                <code className="font-mono">create_document</code> calls —
+                <code className="font-mono">create_document</code> calls:
                 one rule, one guide.
               </Trans>,
             <Trans>
@@ -194,7 +194,7 @@ export const captureExistingBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — choose your own relation types
+              Why CLI here: finer control. Choose your own relation types
               (related vs depends_on, etc.) instead of accepting the plugin's
               defaults.
             </Trans>
@@ -217,7 +217,7 @@ export const captureExistingBranch: Branch = {
         plugin: {
           caption: <Trans>Useful follow-ups:</Trans>,
           command:
-            "/archcore:capture src/auth/      # next-hottest folder\n/archcore:audit                  # coverage gaps\n/archcore:context src/api/       # use what you captured",
+            "/archcore:document src/auth/   # next-hottest folder\n/archcore:review --deep       # coverage gaps\n# then just edit src/api/, context is injected automatically",
           note: (
             <Trans>
               See the document-types reference in the docs for when to reach
@@ -228,10 +228,10 @@ export const captureExistingBranch: Branch = {
         cli: {
           caption: <Trans>Useful follow-up asks:</Trans>,
           command:
-            '"Capture src/auth/ as a spec."\n"Audit .archcore/ — what major modules have no captured context?"\n"List all specs and their incoming relations."',
+            '"Capture src/auth/ as a spec."\n"Audit .archcore/: what major modules have no captured context?"\n"List all specs and their incoming relations."',
           note: (
             <Trans>
-              Why CLI here: finer control — these asks compose into a single
+              Why CLI here: finer control. These asks compose into a single
               CI job that audits coverage on every push.
             </Trans>
           ),

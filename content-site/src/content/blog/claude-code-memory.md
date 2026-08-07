@@ -57,7 +57,7 @@ Two design facts matter more than any bug, though. Auto Memory is per repository
 Run one question over the table above: where does the project's engineering record live? Nowhere in particular, it turns out.
 
 1. The memory isn't in your repo. Auto Memory accumulates on each developer's machine separately. Your teammate's Claude learns the same lessons yours did, from scratch. Nothing goes through a pull request, so a wrong "memory" never gets caught in review. (We wrote about [where this road ends for vendor-side memory](/blog/cursor-memories-removed/) when Cursor removed its Memories feature.)
-2. It's tied to one tool. Claude Code [explicitly does not read AGENTS.md](https://code.claude.com/docs/en/memory#agents-md), and the request is the [most-upvoted open issue in the repository](https://github.com/anthropics/claude-code/issues/6235) (4,475 👍 as of July 2026). Your CLAUDE.md means nothing to Cursor or Copilot, and their files mean nothing to Claude Code.
+2. It's tied to one tool. Claude Code [explicitly does not read AGENTS.md](https://code.claude.com/docs/en/memory#agents-md), and the request is the [most-upvoted open issue in the repository](https://github.com/anthropics/claude-code/issues/6235) (4,475 upvotes as of July 2026). Your CLAUDE.md means nothing to Cursor or Copilot, and their files mean nothing to Claude Code.
 3. Nothing is typed or linked. A decision, a team rule, and a debugging note all look identical in free-form markdown. Nothing marks what's binding, what's stale, or which rule governs which directory, which is precisely the structure that keeps instruction files useful past the 200-line mark.
 4. None of it is enforced. Every layer is advisory context; only hooks are deterministic.
 

@@ -30,7 +30,7 @@ export function HowToUseCtaSection({
             </h3>
             <p className="text-sm text-muted-foreground leading-snug">
               <Trans>
-                Install, quick start, capture, or use context — pick a path.
+                Install, quick start, capture, or use context. Pick a path.
               </Trans>
             </p>
           </div>
@@ -60,13 +60,13 @@ export function HowToUseCtaSection({
         </p>
 
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance max-w-2xl">
-          <Trans>See it in action — an interactive walkthrough.</Trans>
+          <Trans>See it in action, in an interactive walkthrough.</Trans>
         </h2>
 
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl">
           <Trans>
-            Pick a path — install, quick start, capture existing code, or use a
-            decision — and walk through copy-pasteable commands. Branches with
+            Pick a path: install, quick start, capture existing code, or use a
+            decision. Then walk through copy-pasteable commands. Branches with
             both plugin and CLI flavors carry a toggle.
           </Trans>
         </p>

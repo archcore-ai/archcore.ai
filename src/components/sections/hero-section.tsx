@@ -64,7 +64,7 @@ export function HeroSection() {
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
               Archcore keeps your decisions, rules, and architecture as
-              structured docs in your repo — loaded into your agent over MCP
+              structured docs in your repo, loaded into your agent over MCP
               before it edits.
             </Trans>
           </p>
@@ -134,7 +134,7 @@ function CLIPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-4">
       <p className="text-sm text-muted-foreground">
-        <Trans>One binary, local MCP in your repo — macOS, Linux, Windows.</Trans>
+        <Trans>One binary, local MCP in your repo. macOS, Linux, Windows.</Trans>
       </p>
 
       <div className="space-y-2">

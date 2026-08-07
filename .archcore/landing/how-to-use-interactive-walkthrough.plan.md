@@ -36,10 +36,10 @@ The simplest branch — no toggle, all content is already aligned with the [[mes
 
 One branch per task; each lands behind the same runtime, with no further wizard component changes.
 
-1. **`quick-start.tsx`** — 4 steps, `supportsToggle: true`. Examples per [[how-to-use-interactive-walkthrough]] PRD §R3 (Branch 2). Plugin side uses `/archcore:init` and `/archcore:decide use PostgreSQL as the primary database`; CLI side uses the equivalent natural-language asks invoking `create_document` and `add_relation` via MCP.
-2. **`idea-no-context.tsx`** — 5 steps, `supportsToggle: true`. Plugin side walks `/archcore:plan auth redesign` from default `product` track up through `--track feature`; CLI side walks MCP `product_track` prompt and explicit `create_document(type=spec)` + `add_relation(implements)`.
-3. **`capture-existing.tsx`** — 4 steps, `supportsToggle: true`. Plugin side uses `/archcore:capture src/notifications/` and `/archcore:capture webhook delivery pipeline`; CLI side shows the natural-language equivalent plus the manual-type-override note (`type=spec` vs `type=doc` vs `type=guide`).
-4. **`use-context.tsx`** — 3 steps, `supportsToggle: true`. Plugin side uses `/archcore:context src/billing/` (output: `billing-format.spec.md`, `refund-policy.rule.md`, `use-postgres.adr.md`) and `/archcore:audit --drift`; CLI side uses `search_documents` + `list_documents` and walks the audit logic by hand.
+1. **`quick-start.tsx`** — 4 steps, `supportsToggle: true`. Examples per [[how-to-use-interactive-walkthrough]] PRD §R3 (Branch 2). Plugin side uses `/archcore:init` and `/archcore:document use PostgreSQL as the primary database`; CLI side uses the equivalent natural-language asks invoking `create_document` and `add_relation` via MCP.
+2. **`idea-no-context.tsx`** — 5 steps, `supportsToggle: true`. Plugin side walks `/archcore:plan auth redesign` on the default `sdd` track (idea → PRD → spec → plan); CLI side walks explicit `create_document(type=spec)` + `add_relation(implements)`.
+3. **`capture-existing.tsx`** — 4 steps, `supportsToggle: true`. Plugin side uses `/archcore:document src/notifications/` and `/archcore:document webhook delivery pipeline`; CLI side shows the natural-language equivalent plus the manual-type-override note (`type=spec` vs `type=doc` vs `type=guide`).
+4. **`use-context.tsx`** — 3 steps, `supportsToggle: true`. Plugin side shows automatic injection — no command — (output: `billing-format.spec.md`, `refund-policy.rule.md`, `use-postgres.adr.md`) and `/archcore:review`; CLI side uses `search_documents` + `list_documents` and walks the audit logic by hand.
 
 Each task ends with: extract strings, translate RU, run `npm run build`, smoke-test the branch end-to-end in the dev server.
 
@@ -63,7 +63,7 @@ Each task ends with: extract strings, translate RU, run `npm run build`, smoke-t
 
 ## Dependencies
 
-- The Archcore plugin's 7-command surface (`/archcore:init`, `/archcore:context`, `/archcore:capture`, `/archcore:plan`, `/archcore:decide`, `/archcore:audit`, `/archcore:help`) — see [[plugin-page-action-framing]]. If a command name changes, the relevant branch content module must be updated in the same PR.
+- The Archcore plugin's 4-command surface as of v0.7.0 (`/archcore:init`, `/archcore:plan`, `/archcore:document`, `/archcore:review`), plus command-free automatic context injection — see [[plugin-page-action-framing]]. If a command name changes, the relevant branch content module must be updated in the same PR. This drifted once: the v0.6→v0.7 command removal shipped while all five branches still named the deleted commands.
 - The CLI's MCP tool surface (10 tools) and MCP prompts (5 prompts: `product_track`, `architecture_track`, `standard_track`, `sources_track`, `iso_track`) — used directly in branches 2, 3.
 - [[messaging-alignment]] tone, install commands, and per-page CTA vocabulary.
 - [[i18n-workflow]] for the extract/translate cycle and `npm run i18n:extract` invocation.

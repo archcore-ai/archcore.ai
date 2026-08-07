@@ -38,7 +38,7 @@ export function CLIRepoLayoutSection() {
       icon: Workflow,
       title: _(msg`One config, every agent`),
       body: _(
-        msg`Claude Code, Cursor, Codex CLI — same source of truth.`
+        msg`Claude Code, Cursor, Codex, Copilot. One source of truth.`
       ),
     },
     {

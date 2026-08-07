@@ -7,15 +7,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
 
-type PluginHost = "claude" | "cursor" | "codex";
+type PluginHost = "claude" | "cursor" | "codex" | "copilot";
+
+const PLUGIN_HOSTS: readonly PluginHost[] = [
+  "claude",
+  "cursor",
+  "codex",
+  "copilot",
+];
 
 export function PluginHeroSection() {
   const { _ } = useLingui();
   const [host, setHost] = useState<PluginHost>("claude");
 
   const handleHostChange = (value: string) => {
-    if (value === "claude" || value === "cursor" || value === "codex") {
-      setHost(value);
+    if ((PLUGIN_HOSTS as readonly string[]).includes(value)) {
+      setHost(value as PluginHost);
     }
   };
 
@@ -28,7 +35,7 @@ export function PluginHeroSection() {
         <div className="space-y-8 text-center">
           <h1 className="type-hero text-balance">
             <Trans>
-              Give Claude Code, Cursor & Codex CLI
+              Give Claude Code, Cursor, Codex & Copilot
               <br />
               a brain for your codebase.
             </Trans>
@@ -37,8 +44,8 @@ export function PluginHeroSection() {
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
               The Archcore plugin loads your architecture, rules, and decisions
-              into Claude Code, Cursor, and Codex CLI — so the agent stops
-              guessing and starts following your team's truth.
+              into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI, so
+              the agent stops guessing and starts following your team's truth.
             </Trans>
           </p>
 
@@ -53,6 +60,9 @@ export function PluginHeroSection() {
                 </TabsTrigger>
                 <TabsTrigger value="codex" className="flex-1 py-2">
                   <Trans>Codex CLI 0.117+</Trans>
+                </TabsTrigger>
+                <TabsTrigger value="copilot" className="flex-1 py-2">
+                  <Trans>Copilot CLI</Trans>
                 </TabsTrigger>
               </TabsList>
 
@@ -80,6 +90,25 @@ export function PluginHeroSection() {
                   hint={<Trans>Install in Codex:</Trans>}
                   commands={["codex plugin marketplace add archcore-ai/plugin"]}
                   repoLabel={_(msg`Star plugin on GitHub`)}
+                />
+              </TabsContent>
+
+              <TabsContent value="copilot" className="mt-5">
+                <HostPanel
+                  hint={<Trans>Both steps are required:</Trans>}
+                  commands={[
+                    "copilot plugin install archcore-ai/plugin:plugins/archcore",
+                    'archcore init --agent copilot --project "$PWD"',
+                  ]}
+                  repoLabel={_(msg`Star plugin on GitHub`)}
+                  note={
+                    <Trans>
+                      On Copilot the plugin ships no MCP server, so step 2 wires
+                      it per repo. Skip it and the agent has no document tools.
+                      Copilot CLI only; VS Code agent mode has no self-serve
+                      plugin install.
+                    </Trans>
+                  }
                 />
               </TabsContent>
             </Tabs>
@@ -113,9 +142,11 @@ interface HostPanelProps {
   hint: React.ReactNode;
   commands: string[];
   repoLabel: string;
+  /** Host-specific caveat shown under the commands — Copilot needs both steps. */
+  note?: React.ReactNode;
 }
 
-function HostPanel({ hint, commands, repoLabel }: HostPanelProps) {
+function HostPanel({ hint, commands, repoLabel, note }: HostPanelProps) {
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-4">
       <p className="text-xs text-muted-foreground">{hint}</p>
@@ -131,6 +162,10 @@ function HostPanel({ hint, commands, repoLabel }: HostPanelProps) {
           />
         ))}
       </div>
+
+      {note ? (
+        <p className="text-xs text-muted-foreground leading-relaxed">{note}</p>
+      ) : null}
 
       <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
         <a

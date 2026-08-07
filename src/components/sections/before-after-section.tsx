@@ -27,7 +27,7 @@ export function BeforeAfterSection() {
         { text: _(msg`Reinvents conventions the team already settled`) },
         { text: _(msg`You re-explain the same rules. Again.`) },
       ],
-      footnote: _(msg`Logical code — just not how this repo works.`),
+      footnote: _(msg`Logical code. Just not how this repo works.`),
     },
     {
       tone: "after",

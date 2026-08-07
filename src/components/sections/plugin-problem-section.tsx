@@ -22,13 +22,13 @@ export function PluginProblemSection() {
     {
       title: _(msg`Generic suggestions for your codebase`),
       detail: _(
-        msg`Claude Code, Cursor, and Codex CLI produce code that ignores your conventions, your ADRs, and your prior decisions.`
+        msg`Claude Code, Cursor, Codex, and Copilot produce code that ignores your conventions, your ADRs, and your prior decisions.`
       ),
     },
     {
       title: _(msg`Decisions stuck in chat history`),
       detail: _(
-        msg`You make a real call inside the agent — and a week later nobody, including the agent, remembers why.`
+        msg`You make a real call inside the agent, and a week later nobody, including the agent, remembers why.`
       ),
     },
     {
@@ -53,9 +53,10 @@ export function PluginProblemSection() {
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
-              Three install commands give Claude Code, Cursor, and Codex CLI a
-              memory that lives next to the code — and slash commands to
-              capture new decisions as they happen.
+              One install gives Claude Code, Cursor, Codex, and Copilot a memory
+              that lives next to the code, injected automatically as the agent
+              edits, with slash commands to capture new decisions as they
+              happen.
             </Trans>
           </p>
         </div>

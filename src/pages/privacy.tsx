@@ -79,7 +79,7 @@ export function PrivacyPage() {
                 </span>{" "}
                 The plugin and the installed CLI binary send us nothing. Once
                 Archcore is on your machine it makes no analytics request of any
-                kind — no usage tracking, no crash reports, no check-in on
+                kind: no usage tracking, no crash reports, no check-in on
                 start. The one exception is the installer itself, described
                 below.
               </li>
@@ -117,8 +117,8 @@ export function PrivacyPage() {
                 fails, so we can tell how many people are actually installing
                 Archcore. It contains the version installed, your operating
                 system and CPU architecture, whether this was a first install or
-                a repeat one, whether the run looked like a CI environment, and
-                — if it failed — which of the eight steps it stopped at. It
+                a repeat one, whether the run looked like a CI environment, and,
+                if it failed, which of the eight steps it stopped at. It
                 never contains an error message, a file path, a directory name,
                 a user name, a hostname, or anything about your repository.
               </li>
@@ -132,8 +132,8 @@ export function PrivacyPage() {
                   ~/.local/state/archcore/install-id
                 </code>
                 , so reinstalling on the same machine is counted once rather
-                than as a new person. It is random — not derived from your
-                hardware, your account, or your network — and deleting that file
+                than as a new person. It is random, not derived from your
+                hardware, your account, or your network, and deleting that file
                 gives you a new one. Events reach the same PostHog project as
                 the website analytics, through{" "}
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
@@ -151,7 +151,7 @@ export function PrivacyPage() {
                   ARCHCORE_TELEMETRY_OPTOUT=1
                 </code>{" "}
                 before running the installer. Nothing is sent and no identifier
-                file is written — opting out leaves no trace on your disk. The
+                file is written, so opting out leaves no trace on your disk. The
                 installer also prints a one-line notice when it does send the
                 event, so you are never told about this only here.
               </li>
@@ -159,7 +159,7 @@ export function PrivacyPage() {
                 <span className="text-foreground">Download counts.</span> We
                 also read the public download totals of our own release files
                 from GitHub&apos;s API and chart them. Those are per-file totals
-                only — GitHub does not tell us, and we cannot infer, who
+                only. GitHub does not tell us, and we cannot infer, who
                 downloaded anything.
               </li>
             </ul>
@@ -182,7 +182,7 @@ export function PrivacyPage() {
                 </a>{" "}
                 across archcore.ai and docs.archcore.ai to understand aggregate
                 traffic (pages viewed, referrer, country, approximate device
-                type) and how people use the pages — links clicked, how far down
+                type) and how people use the pages: links clicked, how far down
                 a page you read, which commands you copy, which questions you
                 open, and what you type into the docs search box. We do not
                 record your screen or session, and we do not collect form

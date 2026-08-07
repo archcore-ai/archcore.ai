@@ -2,9 +2,10 @@
  *
  * Plugin/CLI toggle on every step. PRD: landing/how-to-use-interactive-walkthrough.prd.md §R3.
  * Tone rules: landing/messaging-alignment.rule.md — both entry points are equals;
- * frame the choice by the user's agent (Plugin: Claude Code / Cursor / Codex CLI;
- * CLI: any MCP-aware agent). Never frame CLI as a fallback. CLI variants must
- * include a one-line "Why CLI here:" blurb (PRD §R2, acceptance criteria).
+ * frame the choice by the user's agent (Plugin: Claude Code / Cursor / Codex CLI /
+ * GitHub Copilot CLI; CLI: any MCP-aware agent). Never frame CLI as a fallback.
+ * CLI variants must include a one-line "Why CLI here:" blurb (PRD §R2,
+ * acceptance criteria).
  */
 import { msg } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
@@ -22,8 +23,8 @@ export const quickStartBranch: Branch = {
       question: <Trans>What's the fastest first action?</Trans>,
       description: (
         <Trans>
-          Land your first piece of structured context — a stack rule, a run
-          guide, or your first decision — so the agent has something to read.
+          Land your first piece of structured context: a stack rule, a run
+          guide, or your first decision, so the agent has something to read.
         </Trans>
       ),
       variants: {
@@ -31,25 +32,36 @@ export const quickStartBranch: Branch = {
           caption: <Trans>Run inside your agent:</Trans>,
           command: "/archcore:init",
           outputLines: [
-            <Trans>Detects your stack and proposes a stack rule.</Trans>,
             <Trans>
-                Drafts a <code className="font-mono">how-to-run.guide.md</code>{" "}
-                from your scripts.
+                Detects your repo's scale and shape, then composes a whole
+                first-day seed: stack rule, run guide, data model, entry
+                points, and specs for your hotspot modules.
               </Trans>,
-            <Trans>Surfaces 2-3 hotspot modules worth capturing next.</Trans>,
+            <Trans>
+                Imports an existing{" "}
+                <code className="font-mono">CLAUDE.md</code>,{" "}
+                <code className="font-mono">AGENTS.md</code>, or{" "}
+                <code className="font-mono">.cursorrules</code> instead of
+                making you start over.
+              </Trans>,
+            <Trans>
+                Shows all of it in one preview. Nothing is written until you
+                confirm once.
+              </Trans>,
           ],
           note: (
             <Trans>
               Everything writes to{" "}
-              <code className="font-mono">.archcore/</code> as plain markdown —
-              you review the diff like any other commit.
+              <code className="font-mono">.archcore/</code> as plain markdown.
+              You review the diff like any other commit. The same confirm wires
+              host configs, so CLI-only teammates get it too.
             </Trans>
           ),
         },
         cli: {
           caption: <Trans>Ask your agent in plain English:</Trans>,
           command:
-            '"Create an ADR titled \'Use PostgreSQL as the primary database\' — pick a sensible status and write the rationale."',
+            '"Create an ADR titled \'Use PostgreSQL as the primary database\'. Pick a sensible status and write the rationale."',
           outputLines: [
             <Trans>
                 Agent calls{" "}
@@ -64,9 +76,9 @@ export const quickStartBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you choose the document type, the
+              Why CLI here: finer control. You choose the document type, the
               path, and exactly when the agent writes. Works with any
-              MCP-aware agent (Copilot, Gemini CLI, OpenCode, Cline).
+              MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline).
             </Trans>
           ),
         },
@@ -87,22 +99,24 @@ export const quickStartBranch: Branch = {
       variants: {
         plugin: {
           caption: <Trans>Run inside your agent:</Trans>,
-          command: "/archcore:decide use PostgreSQL as the primary database",
+          command: "/archcore:document use PostgreSQL as the primary database",
           outputLines: [
             <Trans>
-                Drafts <code className="font-mono">use-postgres.adr.md</code>{" "}
-                with status, context, decision, consequences.
+                Recognizes this as a decision and runs the decision track,
+                drafting{" "}
+                <code className="font-mono">use-postgres.adr.md</code> with
+                status, context, decision, consequences.
               </Trans>,
             <Trans>
                 Offers an <code className="font-mono">adr → rule → guide</code>{" "}
-                cascade — accept to also generate the team rule and a
+                cascade. Accept to also generate the team rule and a
                 migration guide.
               </Trans>,
           ],
           note: (
             <Trans>
               You get the full chain of decisions, rules, and guides in one
-              pass — relations are wired automatically.
+              pass. Relations are wired automatically.
             </Trans>
           ),
         },
@@ -113,7 +127,7 @@ export const quickStartBranch: Branch = {
           outputLines: [
             <Trans>
                 Three <code className="font-mono">create_document</code> calls
-                via MCP — one ADR, one rule, one guide.
+                via MCP: one ADR, one rule, one guide.
               </Trans>,
             <Trans>
                 Then ask the agent to link them:{" "}
@@ -125,7 +139,7 @@ export const quickStartBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you pick the cascade shape and the
+              Why CLI here: finer control. You pick the cascade shape and the
               relation types by hand instead of accepting the plugin's default.
               Scriptable in CI for batch operations.
             </Trans>
@@ -180,7 +194,7 @@ export const quickStartBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: status is one shell command — no agent round-trip.
+              Why CLI here: status is one shell command, no agent round-trip.
               Useful in pre-commit hooks or PR checks.
             </Trans>
           ),
@@ -202,11 +216,11 @@ export const quickStartBranch: Branch = {
         plugin: {
           caption: <Trans>Suggested next commands:</Trans>,
           command:
-            "/archcore:capture src/api/      # document an existing module\n/archcore:plan refunds          # turn an idea into a PRD + plan\n/archcore:audit                  # spot drift before it grows",
+            "/archcore:document src/api/   # document an existing module\n/archcore:plan refunds        # turn an idea into a PRD + plan\n/archcore:review --drift      # spot drift before it grows",
           note: (
             <Trans>
               Every command writes to{" "}
-              <code className="font-mono">.archcore/</code> — review in
+              <code className="font-mono">.archcore/</code>. Review in
               the PR, accept what fits, edit the rest.
             </Trans>
           ),
@@ -217,7 +231,7 @@ export const quickStartBranch: Branch = {
             '"Capture a spec for src/api/."\n"Draft a PRD for a refunds feature, link the existing payments ADR."\n"Audit .archcore/ for stale documents."',
           note: (
             <Trans>
-              Why CLI here: finer control — every action is a named MCP call
+              Why CLI here: finer control. Every action is a named MCP call
               you can replay, version, or run in CI.
             </Trans>
           ),

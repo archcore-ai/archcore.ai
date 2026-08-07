@@ -11,12 +11,16 @@ interface Agent {
   wiring: string;
   /** True when the plugin also runs inside this host. */
   pluginHost?: boolean;
+  /** Host-specific caveat — a hook that is written but gated, or partial. */
+  note?: string;
 }
 
 /**
- * The eight agents the CLI supports. Mirrors docs/cli/agent-integrations.mdx
- * and the "Which AI agents does the CLI support?" answer in
- * cli-faq-section.tsx — keep all three in step.
+ * The eight agents the CLI supports. Mirrors the hook/MCP matrix in the CLI's
+ * agent-hooks-integration.guide.md and the "Which AI agents does the CLI
+ * support?" answer in cli-faq-section.tsx — keep all three in step. Hooks are
+ * wired for five agents as of CLI v0.7.0; OpenCode is never wired because its
+ * hooks are JavaScript plugins that cannot be written declaratively.
  */
 export function CLIAgentsSection() {
   const { _ } = useLingui();
@@ -28,12 +32,22 @@ export function CLIAgentsSection() {
       pluginHost: true,
     },
     { name: "Cursor", wiring: _(msg`MCP + session hooks`), pluginHost: true },
-    { name: "Codex CLI", wiring: _(msg`MCP + session hooks`), pluginHost: true },
-    { name: "GitHub Copilot", wiring: _(msg`MCP`) },
-    { name: "Gemini CLI", wiring: _(msg`MCP`) },
+    {
+      name: "Codex CLI",
+      wiring: _(msg`MCP + session hooks`),
+      pluginHost: true,
+      note: _(msg`Hooks need Codex's experimental flag; not on Windows`),
+    },
+    {
+      name: "GitHub Copilot",
+      wiring: _(msg`MCP + session hooks`),
+      pluginHost: true,
+      note: _(msg`No pre-write context injection`),
+    },
+    { name: "Gemini CLI", wiring: _(msg`MCP + session hooks`) },
     { name: "OpenCode", wiring: _(msg`MCP`) },
     { name: "Roo Code", wiring: _(msg`MCP`) },
-    { name: "Cline", wiring: _(msg`MCP`) },
+    { name: "Cline", wiring: _(msg`MCP (manual setup)`) },
   ];
 
   return (
@@ -78,13 +92,18 @@ export function CLIAgentsSection() {
                   <Trans>Plugin host too</Trans>
                 </p>
               )}
+              {agent.note && (
+                <p className="text-xs text-muted-foreground/60 leading-snug">
+                  {agent.note}
+                </p>
+              )}
             </li>
           ))}
         </ul>
 
         <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <Trans>
-            Anything else that speaks MCP works the same way — the CLI is a
+            Anything else that speaks MCP works the same way. The CLI is a
             local MCP server, not an integration per vendor.
           </Trans>
         </p>

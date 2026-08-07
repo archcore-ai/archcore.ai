@@ -2,8 +2,8 @@
  *
  * Plugin/CLI toggle on every step. PRD: landing/how-to-use-interactive-walkthrough.prd.md §R3.
  * Demonstrates the requirements cascade: idea → PRD → spec → plan. Plugin uses
- * the /archcore:plan command with --track flags; CLI uses the MCP product_track
- * prompt and explicit create_document calls.
+ * /archcore:plan, whose default `sdd` track covers all four; CLI uses explicit
+ * create_document calls. (The MCP track prompts were removed in CLI v0.7.0.)
  *
  * Tone rules: landing/messaging-alignment.rule.md. CLI variants carry a one-line
  * "Why CLI here:" blurb; never "fallback" or "alternative".
@@ -25,7 +25,7 @@ export const ideaNoContextBranch: Branch = {
       description: (
         <Trans>
           The cheapest unit of vision context is an{" "}
-          <code className="font-mono">.idea.md</code> — one paragraph of intent,
+          <code className="font-mono">.idea.md</code>, one paragraph of intent,
           no commitment yet. Land that before you reach for PRD or plan.
         </Trans>
       ),
@@ -35,8 +35,8 @@ export const ideaNoContextBranch: Branch = {
           command: "/archcore:plan auth redesign",
           outputLines: [
             <Trans>
-                Starts the <code className="font-mono">product</code> track
-                cascade — first stop is an{" "}
+                Starts the default <code className="font-mono">sdd</code>{" "}
+                track: first stop is an{" "}
                 <code className="font-mono">.idea.md</code>.
               </Trans>,
             <Trans>
@@ -46,17 +46,18 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              Default <code className="font-mono">product</code> track means
-              idea → PRD → plan. Swap to{" "}
-              <code className="font-mono">--track feature</code> when you need a
-              spec layer too.
+              The <code className="font-mono">sdd</code> track runs idea → PRD
+              → spec → plan. Name{" "}
+              <code className="font-mono">sources</code> for market discovery
+              (MRD → BRD → URD) or <code className="font-mono">iso</code> for an
+              ISO 29148 cascade.
             </Trans>
           ),
         },
         cli: {
           caption: <Trans>Ask your agent in plain English:</Trans>,
           command:
-            '"Draft an idea document for an auth redesign — the current session-token approach is hitting compliance issues."',
+            '"Draft an idea document for an auth redesign: the current session-token approach is hitting compliance issues."',
           outputLines: [
             <Trans>
                 Agent calls{" "}
@@ -64,14 +65,13 @@ export const ideaNoContextBranch: Branch = {
                 via MCP.
               </Trans>,
             <Trans>
-                Or invoke the MCP{" "}
-                <code className="font-mono">product_track</code> prompt
-                directly for the full cascade.
+                Ask for the next document when you're ready. You drive the
+                cascade one call at a time.
               </Trans>,
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you decide when (and whether) to
+              Why CLI here: finer control. You decide when (and whether) to
               advance to PRD. Useful when the idea may still die in
               discussion.
             </Trans>
@@ -110,7 +110,7 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              The cascade pauses at each gate — you can edit the draft in your
+              The cascade pauses at each gate. You can edit the draft in your
               editor before accepting and moving on.
             </Trans>
           ),
@@ -127,12 +127,12 @@ export const ideaNoContextBranch: Branch = {
               </Trans>,
             <Trans>
                 The <code className="font-mono">implements</code> relation is
-                an explicit MCP call — review and approve.
+                an explicit MCP call: review and approve.
               </Trans>,
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — relations are explicit, reviewable,
+              Why CLI here: finer control. Relations are explicit, reviewable,
               and replayable. Good for compliance-sensitive work like this auth
               example.
             </Trans>
@@ -147,20 +147,20 @@ export const ideaNoContextBranch: Branch = {
       question: <Trans>Formalize the contract with a spec.</Trans>,
       description: (
         <Trans>
-          Specs describe what the system must do — interfaces, invariants,
+          Specs describe what the system must do: interfaces, invariants,
           edge cases. They sit between PRDs (the "why") and plans (the "how").
         </Trans>
       ),
       variants: {
         plugin: {
-          caption: <Trans>Switch the cascade track:</Trans>,
+          caption: <Trans>Keep going in the same session:</Trans>,
           command:
-            "/archcore:plan auth redesign --track feature",
+            "# the sdd track's next gate after the PRD is the spec.",
           outputLines: [
             <Trans>
-                The <code className="font-mono">feature</code> track inserts a{" "}
+                The <code className="font-mono">sdd</code> track puts a{" "}
                 <code className="font-mono">.spec.md</code> stop between PRD
-                and plan.
+                and plan by default.
               </Trans>,
             <Trans>
                 Drafts the spec from the PRD; you accept and move to the plan
@@ -169,8 +169,9 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              The feature track is the right tool when there's a real API or
-              schema to lock down. Skip it for ideation-stage work.
+              Nothing to lock down yet? Say "just a plan". Gates an existing
+              document already covers close themselves, and the rest run
+              question-free.
             </Trans>
           ),
         },
@@ -192,7 +193,7 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you pick the spec's scope and
+              Why CLI here: finer control. You pick the spec's scope and
               exclusions yourself, instead of accepting the default the plugin
               would generate.
             </Trans>
@@ -230,7 +231,7 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              You now have the full chain — idea, PRD, spec, plan — wired
+              You now have the full chain (idea, PRD, spec, plan) wired
               together. The next session that opens any of them auto-loads the
               rest.
             </Trans>
@@ -239,7 +240,7 @@ export const ideaNoContextBranch: Branch = {
         cli: {
           caption: <Trans>Ask your agent:</Trans>,
           command:
-            '"Draft an implementation plan from the auth-redesign spec — 3 phases. Link plan implements spec."',
+            '"Draft an implementation plan from the auth-redesign spec, 3 phases. Link plan implements spec."',
           outputLines: [
             <Trans>
                 <code className="font-mono">create_document(type=plan)</code>{" "}
@@ -253,7 +254,7 @@ export const ideaNoContextBranch: Branch = {
           ],
           note: (
             <Trans>
-              Why CLI here: finer control — you decide phase granularity and
+              Why CLI here: finer control. You decide phase granularity and
               the relations explicitly. Scriptable to generate plans from a
               batch of specs.
             </Trans>
@@ -276,7 +277,7 @@ export const ideaNoContextBranch: Branch = {
         plugin: {
           caption: <Trans>Useful follow-ups:</Trans>,
           command:
-            "/archcore:context             # before editing any auth code\n/archcore:audit               # check drift as you build\n/archcore:capture src/auth/   # document existing pieces you're keeping",
+            "# just edit, auth context is injected automatically\n/archcore:review --drift      # check drift as you build\n/archcore:document src/auth/  # document existing pieces you're keeping",
           note: (
             <Trans>
               The plan you just created is now the agent's source of truth for
@@ -290,7 +291,7 @@ export const ideaNoContextBranch: Branch = {
             '"What docs apply to src/auth/?"          # → search_documents\n"Audit .archcore/ for drift."             # → walk relations\n"Capture src/auth/middleware/ as a spec." # → create_document',
           note: (
             <Trans>
-              Why CLI here: finer control — every action is a named MCP call
+              Why CLI here: finer control. Every action is a named MCP call
               you can reuse, version, or run in CI.
             </Trans>
           ),

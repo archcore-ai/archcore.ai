@@ -43,10 +43,10 @@ export function PluginHostsSection() {
       ready: true,
     },
     {
-      name: "GitHub Copilot",
-      status: _(msg`Planned`),
-      install: _(msg`Use the CLI path for now`),
-      ready: false,
+      name: "GitHub Copilot CLI",
+      status: _(msg`Implemented`),
+      install: _(msg`copilot plugin install + archcore init`),
+      ready: true,
     },
   ];
 
@@ -58,13 +58,13 @@ export function PluginHostsSection() {
             <Trans>Where the plugin runs</Trans>
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-            <Trans>Three hosts today. Any MCP agent through the CLI.</Trans>
+            <Trans>Four hosts today. Any MCP agent through the CLI.</Trans>
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
             <Trans>
               The plugin needs a host with a plugin runtime. Every other
               MCP-aware agent reads the same .archcore/ directory through the
-              CLI — same source of truth, different entry point.
+              CLI: same source of truth, different entry point.
             </Trans>
           </p>
         </div>
@@ -107,12 +107,25 @@ export function PluginHostsSection() {
           </ul>
         </div>
 
-        <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
-          <Trans>
-            Running Gemini CLI, OpenCode, Roo Code, or Cline? The CLI wires all
-            eight supported agents over MCP and session hooks.
-          </Trans>
-        </p>
+        <div className="space-y-3 max-w-2xl mx-auto">
+          <p className="text-center text-sm text-muted-foreground/80">
+            <Trans>
+              On GitHub Copilot CLI the plugin cannot carry its own MCP server,
+              so wiring the project once with{" "}
+              <code className="font-mono text-[0.9em] rounded bg-muted px-1.5 py-0.5">
+                archcore init --agent copilot
+              </code>{" "}
+              is required, not optional. Without it the document tools are
+              missing.
+            </Trans>
+          </p>
+          <p className="text-center text-sm text-muted-foreground/80">
+            <Trans>
+              Running Gemini CLI, OpenCode, Roo Code, or Cline? The CLI wires all
+              eight supported agents over MCP and session hooks.
+            </Trans>
+          </p>
+        </div>
 
         <nav
           aria-label={_(msg`Host support resources`)}

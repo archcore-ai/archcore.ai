@@ -62,7 +62,7 @@ export function StarCtaSection() {
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl">
           <Trans>
             Archcore is open source and built in public. A star helps more
-            developers find it — and tells us which direction to push next.
+            developers find it, and tells us which direction to push next.
           </Trans>
         </p>
 

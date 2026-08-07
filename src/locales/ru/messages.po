@@ -17,58 +17,90 @@ msgstr ""
 msgid ".cursorrules, scattered prompts"
 msgstr ".cursorrules и разрозненные промпты"
 
-#: src/components/sections/plugin-problem-section.tsx:66
+#: src/components/sections/plugin-problem-section.tsx:67
 msgid "\"Before I touch src/auth/, what rules apply here?\""
 msgstr "«Прежде чем я трону src/auth/, какие правила здесь применимы?»"
 
 #: src/components/sections/cli-pillars-section.tsx:63
-msgid "<0>archcore init</0> — one command, four things wired up for you."
-msgstr "<0>archcore init</0> — одна команда, четыре вещи подключены за вас."
+#~ msgid "<0>archcore init</0> — one command, four things wired up for you."
+#~ msgstr "<0>archcore init</0> — одна команда, четыре вещи подключены за вас."
 
-#: src/content/how-to-use/quick-start.tsx:172
+#: src/components/sections/cli-pillars-section.tsx:63
+msgid "<0>archcore init</0> One command, four things wired up for you."
+msgstr "<0>archcore init</0> Одна команда, четыре вещи настроены за вас."
+
+#: src/content/how-to-use/quick-start.tsx:186
 msgid "<0>archcore status</0> prints the full document tree with statuses."
 msgstr "<0>archcore status</0> печатает полное дерево документов со статусами."
 
-#: src/content/how-to-use/idea-no-context.tsx:244
+#: src/content/how-to-use/idea-no-context.tsx:245
 msgid "<0>create_document(type=plan)</0> with phases, acceptance criteria, dependencies."
 msgstr "<0>create_document(type=plan)</0> с фазами, критериями приёмки и зависимостями."
 
-#: src/content/how-to-use/install.tsx:196
-msgid "<0>init</0> auto-detects installed agents (Claude Code, Cursor, Copilot, Gemini CLI…) and writes MCP + hooks for each. Idempotent — safe to re-run."
-msgstr "<0>init</0> сам найдёт установленные агенты (Claude Code, Cursor, Copilot, Gemini CLI…) и пропишет MCP + хуки для каждого. Идемпотентно — можно перезапускать."
+#: src/content/how-to-use/install.tsx:220
+#~ msgid "<0>init</0> auto-detects installed agents (Claude Code, Cursor, Copilot, Gemini CLI…) and writes MCP + hooks for each. Idempotent — safe to re-run."
+#~ msgstr "<0>init</0> сам найдёт установленные агенты (Claude Code, Cursor, Copilot, Gemini CLI…) и пропишет MCP + хуки для каждого. Идемпотентно — можно перезапускать."
 
-#: src/content/how-to-use/use-context.tsx:40
-msgid "<0>refund-policy.rule.md</0> — the constraint your edits must respect."
-msgstr "<0>refund-policy.rule.md</0> — правило, которому ваши правки должны соответствовать."
+#: src/content/how-to-use/install.tsx:220
+msgid "<0>init</0> auto-detects installed agents (Claude Code, Cursor, Copilot, Gemini CLI…) and writes MCP + hooks for each. Idempotent, safe to re-run."
+msgstr "<0>init</0> сам находит установленных агентов (Claude Code, Cursor, Copilot, Gemini CLI…) и прописывает MCP и хуки для каждого. Идемпотентно, повторный запуск безопасен."
 
-#: src/content/how-to-use/use-context.tsx:44
-msgid "<0>use-postgres.adr.md</0> — the decision your queries inherit."
-msgstr "<0>use-postgres.adr.md</0> — решение, которому подчиняются ваши запросы."
+#: src/content/how-to-use/use-context.tsx:42
+#~ msgid "<0>refund-policy.rule.md</0> — the constraint your edits must respect."
+#~ msgstr "<0>refund-policy.rule.md</0> — правило, которому ваши правки должны соответствовать."
 
-#: src/components/sections/cli-faq-section.tsx:19
-msgid "A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
-msgstr "Каталог .archcore/ с шаблонами и конфигом для 19 типов документов в трёх слоях — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec) и experience (task-type, CPAT)."
+#: src/content/how-to-use/use-context.tsx:42
+msgid "<0>refund-policy.rule.md</0>, the constraint your edits must respect."
+msgstr "<0>refund-policy.rule.md</0>, ограничение, которое ваши правки обязаны соблюдать."
+
+#: src/content/how-to-use/use-context.tsx:46
+#~ msgid "<0>use-postgres.adr.md</0> — the decision your queries inherit."
+#~ msgstr "<0>use-postgres.adr.md</0> — решение, которому подчиняются ваши запросы."
+
+#: src/content/how-to-use/use-context.tsx:46
+msgid "<0>use-postgres.adr.md</0>, the decision your queries inherit."
+msgstr "<0>use-postgres.adr.md</0>, решение, которое наследуют ваши запросы."
+
+#: src/components/sections/cli-faq-section.tsx:20
+#~ msgid "A .archcore/ directory with templates and config for 19 document types in three layers — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+#~ msgstr "Каталог .archcore/ с шаблонами и конфигом для 19 типов документов в трёх слоях — vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec) и experience (task-type, CPAT)."
+
+#: src/components/sections/cli-faq-section.tsx:20
+msgid "A .archcore/ directory with templates and config for 19 document types in three layers: vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT)."
+msgstr "Каталог .archcore/ с шаблонами и конфигом для 19 типов документов в трёх слоях: vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec) и experience (task-type, CPAT)."
 
 #: src/components/sections/plugin-pillars-section.tsx:93
-msgid "A decision was made"
-msgstr "Решение принято"
+#~ msgid "A decision was made"
+#~ msgstr "Решение принято"
+
+#: src/components/sections/plugin-pillars-section.tsx:87
+msgid "A decision was made, or a module has no doc"
+msgstr "Принято решение или у модуля нет документации"
 
 #: src/components/sections/plugin-pillars-section.tsx:81
-msgid "A module has tribal knowledge but no doc"
-msgstr "У модуля есть знание в головах, но нет документа"
+#~ msgid "A module has tribal knowledge but no doc"
+#~ msgstr "У модуля есть знание в головах, но нет документа"
 
 #: src/pages/how-to-use.tsx:16
-msgid "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent — in 3-5 steps."
-msgstr "Короткий интерактивный тур по Archcore: когда использовать плагин, когда — CLI, и как подключить контекст к вашему AI-агенту — за 3-5 шагов."
+#~ msgid "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent — in 3-5 steps."
+#~ msgstr "Короткий интерактивный тур по Archcore: когда использовать плагин, когда — CLI, и как подключить контекст к вашему AI-агенту — за 3-5 шагов."
+
+#: src/pages/how-to-use.tsx:16
+msgid "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps."
+msgstr "Короткий интерактивный разбор: когда брать плагин, когда CLI и как подключить контекст к вашему AI-агенту, за 3-5 шагов."
+
+#: src/content/how-to-use/use-context.tsx:106
+msgid "Add <0>--drift</0> for staleness detection, or <1>--deep</1> for a full audit with coverage and relation findings."
+msgstr "Добавьте <0>--drift</0> для поиска устаревшего или <1>--deep</1> для полного аудита с проверкой покрытия и связей."
 
 #: src/components/sections/before-after-section.tsx:23
 #: src/components/sections/before-after-section.tsx:35
 msgid "Add rate limiting to the auth endpoints."
 msgstr "Добавь rate limiting на auth-эндпоинты."
 
-#: src/content/how-to-use/quick-start.tsx:81
+#: src/content/how-to-use/quick-start.tsx:93
 msgid "ADRs are the smallest useful unit of repo context. Cascade one into a rule and a migration guide so the agent enforces it, not just remembers it."
-msgstr "ADR — самая компактная полезная единица контекста репозитория. Каскадните одно решение в правило и миграционный гайд — тогда агент будет его соблюдать, а не просто помнить."
+msgstr "ADR — самая компактная полезная единица контекста репозитория. Каскадните одно решение в правило и миграционный гайд, и тогда агент будет его соблюдать, а не просто помнить."
 
 #: src/components/sections/cli-repo-layout-section.tsx:23
 msgid "ADRs, RFCs"
@@ -76,19 +108,19 @@ msgstr "ADR, RFC"
 
 #: src/components/cta/docker-start-dialog.tsx:72
 #: src/components/cta/team-setup-dialog.tsx:116
-#: src/pages/teams-getting-started.tsx:155
+#: src/pages/teams-getting-started.tsx:170
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "После запуска откройте <0>http://localhost</0> в браузере."
 
-#: src/content/how-to-use/idea-no-context.tsx:61
+#: src/content/how-to-use/idea-no-context.tsx:62
 msgid "Agent calls <0>create_document(type=idea)</0> via MCP."
 msgstr "Агент вызывает <0>create_document(type=idea)</0> через MCP."
 
-#: src/content/how-to-use/idea-no-context.tsx:182
+#: src/content/how-to-use/idea-no-context.tsx:183
 msgid "Agent calls <0>create_document(type=spec)</0> with the contract details inline."
 msgstr "Агент вызывает <0>create_document(type=spec)</0> с деталями контракта прямо внутри."
 
-#: src/content/how-to-use/quick-start.tsx:54
+#: src/content/how-to-use/quick-start.tsx:66
 msgid "Agent calls <0>create_document</0> via MCP with <1>type=adr</1>."
 msgstr "Агент вызывает <0>create_document</0> через MCP с <1>type=adr</1>."
 
@@ -96,15 +128,19 @@ msgstr "Агент вызывает <0>create_document</0> через MCP с <1>
 msgid "agent config"
 msgstr "конфиг агентов"
 
-#: src/content/how-to-use/install.tsx:243
-msgid "Agent didn't recognize the question? Run <0>archcore doctor</0> — it reports MCP registration, hook installation, and tag hygiene in one shot."
-msgstr "Агент не понял вопрос? Запустите <0>archcore doctor</0> — он за один проход проверит регистрацию MCP, установку хуков и гигиену тегов."
+#: src/content/how-to-use/install.tsx:267
+#~ msgid "Agent didn't recognize the question? Run <0>archcore doctor</0> — it reports MCP registration, hook installation, and tag hygiene in one shot."
+#~ msgstr "Агент не понял вопрос? Запустите <0>archcore doctor</0> — он за один проход проверит регистрацию MCP, установку хуков и гигиену тегов."
+
+#: src/content/how-to-use/install.tsx:267
+msgid "Agent didn't recognize the question? Run <0>archcore doctor</0>. It reports MCP registration, hook installation, and tag hygiene in one shot."
+msgstr "Агент не понял вопрос? Запустите <0>archcore doctor</0>. Он за один проход покажет регистрацию MCP, установку хуков и порядок в тегах."
 
 #: src/content/how-to-use/capture-existing.tsx:101
 msgid "Agent finds every touched file (sender, retry queue, signing, receivers)."
 msgstr "Агент находит каждый затронутый файл (отправитель, очередь ретраев, подпись, получатели)."
 
-#: src/components/sections/cli-agents-section.tsx:93
+#: src/components/sections/cli-agents-section.tsx:112
 msgid "Agent integration resources"
 msgstr "Материалы по интеграции агентов"
 
@@ -112,7 +148,7 @@ msgstr "Материалы по интеграции агентов"
 msgid "Agent reads via <0>get_document</0>, writes via <1>create_document(type=prd)</1>."
 msgstr "Агент читает через <0>get_document</0>, пишет через <1>create_document(type=prd)</1>."
 
-#: src/content/how-to-use/use-context.tsx:62
+#: src/content/how-to-use/use-context.tsx:64
 msgid "Agent runs <0>search_documents</0> with the folder as the query."
 msgstr "Агент запускает <0>search_documents</0>, передавая путь к папке как запрос."
 
@@ -124,33 +160,41 @@ msgstr "Агент использует MCP <0>create_document(type=spec)</0>."
 msgid "Agent uses MCP <0>search_documents</0> + <1>create_document(type=spec)</1>."
 msgstr "Агент использует MCP <0>search_documents</0> + <1>create_document(type=spec)</1>."
 
-#: src/content/how-to-use/use-context.tsx:121
+#: src/content/how-to-use/use-context.tsx:125
 msgid "Agent walks <0>list_documents</0> + <1>list_relations</1> and reports findings."
 msgstr "Агент обходит <0>list_documents</0> + <1>list_relations</1> и возвращает отчёт."
 
-#: src/components/sections/plugin-pillars-section.tsx:160
-msgid "All 7 commands at a glance"
-msgstr "Все 7 команд одним взглядом"
+#: src/components/sections/plugin-pillars-section.tsx:154
+msgid "All 4 commands at a glance"
+msgstr "Все 4 команды сразу"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:196
+#: src/components/sections/plugin-pillars-section.tsx:160
+#~ msgid "All 7 commands at a glance"
+#~ msgstr "Все 7 команд одним взглядом"
+
+#: src/components/sections/how-to-use-wizard-section.tsx:225
 msgid "All paths"
 msgstr "Все пути"
 
 #: src/content/how-to-use/use-context.tsx:50
-msgid "All three load into the agent's working set before you ask it to change anything. The session hook does this automatically when you open a billing file."
-msgstr "Все три документа окажутся в рабочем контексте агента до того, как вы попросите что-то изменить. Хук сессии делает это автоматически, когда вы открываете файл биллинга."
+#~ msgid "All three load into the agent's working set before you ask it to change anything. The session hook does this automatically when you open a billing file."
+#~ msgstr "Все три документа окажутся в рабочем контексте агента до того, как вы попросите что-то изменить. Хук сессии делает это автоматически, когда вы открываете файл биллинга."
 
 #: src/components/sections/migration-section.tsx:61
 msgid "Already have instruction files?"
 msgstr "Уже есть файлы инструкций?"
 
-#: src/content/how-to-use/install.tsx:95
+#: src/content/how-to-use/install.tsx:97
 msgid "Anthropic's terminal coding agent."
 msgstr "Терминальный кодинг-агент от Anthropic."
 
-#: src/components/sections/cli-agents-section.tsx:86
-msgid "Anything else that speaks MCP works the same way — the CLI is a local MCP server, not an integration per vendor."
-msgstr "Всё остальное, что говорит на MCP, работает так же: CLI — это локальный MCP-сервер, а не отдельная интеграция под каждого вендора."
+#: src/components/sections/cli-agents-section.tsx:105
+#~ msgid "Anything else that speaks MCP works the same way — the CLI is a local MCP server, not an integration per vendor."
+#~ msgstr "Всё остальное, что говорит на MCP, работает так же: CLI — это локальный MCP-сервер, а не отдельная интеграция под каждого вендора."
+
+#: src/components/sections/cli-agents-section.tsx:105
+msgid "Anything else that speaks MCP works the same way. The CLI is a local MCP server, not an integration per vendor."
+msgstr "Всё остальное, что говорит на MCP, работает так же: CLI поднимается как локальный MCP-сервер, а не как отдельная интеграция под каждого вендора."
 
 #: src/pages/cli.tsx:22
 msgid "Archcore CLI — repo memory for every AI coding agent"
@@ -168,53 +212,81 @@ msgstr "Archcore CLI создаёт <0>.archcore/</0>, настраивает MC
 msgid "archcore init creating .archcore/ in a project"
 msgstr "archcore init создаёт .archcore/ в проекте"
 
-#: src/components/sections/star-cta-section.tsx:56
-msgid "Archcore is open source and built in public. A star helps more developers find it — and tells us which direction to push next."
-msgstr "Archcore — open source, разрабатывается публично. Звезда помогает другим разработчикам его найти и подсказывает нам, куда двигаться дальше."
+#: src/components/sections/star-cta-section.tsx:63
+#~ msgid "Archcore is open source and built in public. A star helps more developers find it — and tells us which direction to push next."
+#~ msgstr "Archcore — open source, разрабатывается публично. Звезда помогает другим разработчикам его найти и подсказывает нам, куда двигаться дальше."
+
+#: src/components/sections/star-cta-section.tsx:63
+msgid "Archcore is open source and built in public. A star helps more developers find it, and tells us which direction to push next."
+msgstr "У Archcore открытый исходный код, и мы разрабатываем его публично. Звезда помогает большему числу разработчиков его найти и подсказывает нам, куда двигаться дальше."
 
 #: src/components/sections/hero-section.tsx:65
-msgid "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
-msgstr "Archcore хранит ваши решения, правила и архитектуру как структурированные документы прямо в репозитории — и подгружает их агенту по MCP до того, как он начнёт править код."
+#~ msgid "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits."
+#~ msgstr "Archcore хранит ваши решения, правила и архитектуру как структурированные документы прямо в репозитории — и подгружает их агенту по MCP до того, как он начнёт править код."
+
+#: src/components/sections/hero-section.tsx:65
+msgid "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
+msgstr "Archcore держит ваши решения, правила и архитектуру структурированными документами в репозитории и отдаёт их агенту через MCP до того, как он начнёт править код."
+
+#: src/pages/plugin.tsx:24
+msgid "Archcore Plugin — repo memory for AI coding agents"
+msgstr "Archcore Plugin — память репозитория для AI-агентов"
 
 #: src/pages/plugin.tsx:22
-msgid "Archcore Plugin — repo memory in Claude Code, Cursor, Codex"
-msgstr "Archcore Plugin — память репозитория в Claude Code, Cursor, Codex"
+#~ msgid "Archcore Plugin — repo memory in Claude Code, Cursor, Codex"
+#~ msgstr "Archcore Plugin — память репозитория в Claude Code, Cursor, Codex"
 
 #: src/components/sections/plugin-showcase-section.tsx:46
 msgid "Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands"
 msgstr "Плагин Archcore в маркетплейсе плагинов Cursor с MCP и slash-командами"
 
-#: src/content/how-to-use/install.tsx:234
+#: src/content/how-to-use/idea-no-context.tsx:67
+#~ msgid "Ask for the next document when you're ready — you drive the cascade one call at a time."
+#~ msgstr "Запросите следующий документ, когда будете готовы, — вы ведёте каскад шаг за шагом."
+
+#: src/content/how-to-use/idea-no-context.tsx:67
+msgid "Ask for the next document when you're ready. You drive the cascade one call at a time."
+msgstr "Запросите следующий документ, когда будете готовы. Каскадом управляете вы, по одному вызову за раз."
+
+#: src/content/how-to-use/install.tsx:258
 msgid "Ask in your agent:"
 msgstr "Спросите у агента:"
 
 #: src/content/how-to-use/capture-existing.tsx:59
-#: src/content/how-to-use/idea-no-context.tsx:57
-#: src/content/how-to-use/quick-start.tsx:50
-#: src/content/how-to-use/quick-start.tsx:110
-#: src/content/how-to-use/use-context.tsx:58
+#: src/content/how-to-use/idea-no-context.tsx:58
+#: src/content/how-to-use/quick-start.tsx:62
+#: src/content/how-to-use/quick-start.tsx:124
+#: src/content/how-to-use/use-context.tsx:60
 msgid "Ask your agent in plain English:"
 msgstr "Спросите агента обычными словами:"
 
 #: src/content/how-to-use/capture-existing.tsx:119
 #: src/content/how-to-use/capture-existing.tsx:178
 #: src/content/how-to-use/idea-no-context.tsx:119
-#: src/content/how-to-use/idea-no-context.tsx:178
-#: src/content/how-to-use/idea-no-context.tsx:240
-#: src/content/how-to-use/quick-start.tsx:149
-#: src/content/how-to-use/use-context.tsx:117
+#: src/content/how-to-use/idea-no-context.tsx:179
+#: src/content/how-to-use/idea-no-context.tsx:241
+#: src/content/how-to-use/quick-start.tsx:163
+#: src/content/how-to-use/use-context.tsx:121
 msgid "Ask your agent:"
 msgstr "Спросите агента:"
 
 #: src/content/how-to-use/capture-existing.tsx:128
-msgid "Asking for type explicitly skips the agent's heuristic — the output type is predictable."
-msgstr "Явный запрос типа отключает эвристику агента — на выходе получаете предсказуемый тип."
+#~ msgid "Asking for type explicitly skips the agent's heuristic — the output type is predictable."
+#~ msgstr "Явный запрос типа отключает эвристику агента — на выходе получаете предсказуемый тип."
+
+#: src/content/how-to-use/capture-existing.tsx:128
+msgid "Asking for type explicitly skips the agent's heuristic. The output type is predictable."
+msgstr "Явный запрос типа отключает эвристику агента. Тип результата становится предсказуемым."
 
 #: src/content/how-to-use/capture-existing.tsx:45
-msgid "Asks for approval before writing — you can override the type or edit the draft first."
-msgstr "Спросит подтверждения перед записью — тип можно переопределить, черновик отредактировать."
+#~ msgid "Asks for approval before writing — you can override the type or edit the draft first."
+#~ msgstr "Спросит подтверждения перед записью — тип можно переопределить, черновик отредактировать."
 
-#: src/content/how-to-use/use-context.tsx:87
+#: src/content/how-to-use/capture-existing.tsx:45
+msgid "Asks for approval before writing. You can override the type or edit the draft first."
+msgstr "Спрашивает подтверждение перед записью. Вы можете сменить тип или сначала поправить черновик."
+
+#: src/content/how-to-use/use-context.tsx:89
 msgid "Audit after your change."
 msgstr "Аудит после правок."
 
@@ -226,26 +298,42 @@ msgstr "Авто-загрузка в начале сессии"
 msgid "Auto-loads relevant context when a session starts."
 msgstr "Подгружает нужный контекст при старте сессии."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:198
+#: src/components/sections/plugin-pillars-section.tsx:50
+msgid "automatic"
+msgstr "автоматически"
+
+#: src/components/sections/how-to-use-wizard-section.tsx:227
 msgid "Back"
 msgstr "Назад"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:634
+#: src/components/sections/how-to-use-wizard-section.tsx:663
 msgid "Back to all paths"
 msgstr "К списку путей"
 
-#: src/pages/teams-getting-started.tsx:64
-#: src/pages/teams-getting-started.tsx:177
+#: src/pages/teams-getting-started.tsx:79
+#: src/pages/teams-getting-started.tsx:192
 msgid "Back to home"
 msgstr "На главную"
 
-#: src/content/how-to-use/install.tsx:190
-msgid "Bash — single curl line."
-msgstr "Bash — одна curl-строчка."
+#: src/content/how-to-use/install.tsx:214
+#~ msgid "Bash — single curl line."
+#~ msgstr "Bash — одна curl-строчка."
+
+#: src/content/how-to-use/install.tsx:214
+msgid "Bash: single curl line."
+msgstr "Bash: одна строка с curl."
+
+#: src/components/sections/plugin-pillars-section.tsx:93
+msgid "Before merge; --drift and --deep for audits"
+msgstr "Перед мержем; --drift и --deep для аудита"
+
+#: src/content/how-to-use/use-context.tsx:38
+msgid "Before the edit lands, the hook injects <0>billing-format.spec.md</0>."
+msgstr "Ещё до правки хук подставляет <0>billing-format.spec.md</0>."
 
 #: src/components/sections/plugin-pillars-section.tsx:42
-msgid "Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions."
-msgstr "Прежде чем агент тронет код, он сам подгружает правила, решения и паттерны для этого пути — больше не нужно переклеивать соглашения в каждый новый чат."
+#~ msgid "Before your agent touches code, it loads the rules, decisions, and patterns for that path — no more re-pasting conventions."
+#~ msgstr "Прежде чем агент тронет код, он сам подгружает правила, решения и паттерны для этого пути — больше не нужно переклеивать соглашения в каждый новый чат."
 
 #: src/components/sections/site-nav.tsx:23
 msgid "Blog"
@@ -255,11 +343,15 @@ msgstr "Блог"
 msgid "Both paths use the same <0>.archcore/</0> directory. The difference is the experience layer."
 msgstr "Оба пути работают с одной и той же папкой <0>.archcore/</0>. Разница — в слое опыта."
 
-#: src/components/sections/plugin-hero-section.tsx:89
+#: src/components/sections/plugin-hero-section.tsx:98
+msgid "Both steps are required:"
+msgstr "Нужны оба шага:"
+
+#: src/components/sections/plugin-hero-section.tsx:118
 msgid "Built on Archcore CLI · Skills · Subagents · Hooks"
 msgstr "Работает поверх Archcore CLI · Skills · Subagents · Hooks"
 
-#: src/components/sections/plugin-faq-section.tsx:29
+#: src/components/sections/plugin-faq-section.tsx:36
 msgid "Can I use my own CLI install?"
 msgstr "Можно ли использовать свою установку CLI?"
 
@@ -273,31 +365,59 @@ msgstr "Сначала зафиксируйте сырую идею."
 
 #: src/content/how-to-use/capture-existing.tsx:17
 msgid "Capture what already lives in code so the agent stops re-explaining."
-msgstr "Зафиксируйте то, что уже живёт в коде, — агент перестанет переоткрывать одно и то же."
+msgstr "Зафиксируйте то, что уже живёт в коде, и агент перестанет переоткрывать одно и то же."
 
-#: src/content/how-to-use/quick-start.tsx:140
+#: src/components/sections/plugin-pillars-section.tsx:62
+msgid "Catch drift before you merge"
+msgstr "Ловите расхождения до мержа"
+
+#: src/content/how-to-use/quick-start.tsx:154
 msgid "Check what was created."
 msgstr "Проверьте, что получилось."
 
-#: src/components/sections/hero-section.tsx:160
-#: src/components/sections/plugin-hero-section.tsx:49
-#: src/content/how-to-use/install.tsx:94
+#: src/components/sections/plugin-pillars-section.tsx:92
+msgid "Check your changes and your docs against each other"
+msgstr "Сверить изменения и документацию друг с другом"
+
+#: src/components/sections/hero-section.tsx:165
+#: src/components/sections/plugin-hero-section.tsx:56
+#: src/content/how-to-use/install.tsx:96
 msgid "Claude Code"
 msgstr "Claude Code"
 
 #: src/components/sections/plugin-faq-section.tsx:25
-msgid "Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is on the roadmap. For other MCP-capable agents, use the CLI directly."
-msgstr "Claude Code (production), Cursor 2.5+ (реализовано) и Codex CLI 0.117+ (реализовано). GitHub Copilot — в планах. Для других агентов с MCP используйте CLI напрямую."
+#~ msgid "Claude Code (production), Cursor 2.5+ (implemented), and Codex CLI 0.117+ (implemented). GitHub Copilot is on the roadmap. For other MCP-capable agents, use the CLI directly."
+#~ msgstr "Claude Code (production), Cursor 2.5+ (реализовано) и Codex CLI 0.117+ (реализовано). GitHub Copilot — в планах. Для других агентов с MCP используйте CLI напрямую."
+
+#: src/components/sections/plugin-faq-section.tsx:26
+#~ msgid "Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot you must also run archcore init --agent copilot once per repo — the plugin ships no MCP server there. For other MCP-capable agents, use the CLI directly."
+#~ msgstr "Claude Code (production), а также Cursor 2.5+, Codex CLI 0.117+ и GitHub Copilot CLI (реализовано). В Copilot нужно дополнительно выполнить archcore init --agent copilot один раз на репозиторий — туда плагин не поставляет MCP-сервер. Для других агентов с MCP используйте CLI напрямую."
+
+#: src/components/sections/plugin-faq-section.tsx:26
+msgid "Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot you must also run archcore init --agent copilot once per repo, because the plugin ships no MCP server there. For other MCP-capable agents, use the CLI directly."
+msgstr "Claude Code (production), а также Cursor 2.5+, Codex CLI 0.117+ и GitHub Copilot CLI (реализовано). В Copilot нужно дополнительно выполнить archcore init --agent copilot один раз на репозиторий, потому что туда плагин не поставляет MCP-сервер. Для других агентов с MCP используйте CLI напрямую."
 
 #: src/components/sections/plugin-problem-section.tsx:25
-msgid "Claude Code, Cursor, and Codex CLI produce code that ignores your conventions, your ADRs, and your prior decisions."
-msgstr "Claude Code, Cursor и Codex CLI выдают код, который игнорирует ваши соглашения, ADR и ранее принятые решения."
+#~ msgid "Claude Code, Cursor, and Codex CLI produce code that ignores your conventions, your ADRs, and your prior decisions."
+#~ msgstr "Claude Code, Cursor и Codex CLI выдают код, который игнорирует ваши соглашения, ADR и ранее принятые решения."
 
 #: src/components/sections/cli-repo-layout-section.tsx:41
-msgid "Claude Code, Cursor, Codex CLI — same source of truth."
-msgstr "Claude Code, Cursor, Codex CLI — один источник истины."
+#~ msgid "Claude Code, Cursor, Codex CLI — same source of truth."
+#~ msgstr "Claude Code, Cursor, Codex CLI — один источник истины."
 
-#: src/components/sections/cli-agents-section.tsx:110
+#: src/components/sections/plugin-problem-section.tsx:25
+msgid "Claude Code, Cursor, Codex, and Copilot produce code that ignores your conventions, your ADRs, and your prior decisions."
+msgstr "Claude Code, Cursor, Codex и Copilot выдают код, который игнорирует ваши соглашения, ADR и ранее принятые решения."
+
+#: src/components/sections/cli-repo-layout-section.tsx:41
+#~ msgid "Claude Code, Cursor, Codex, Copilot — same source of truth."
+#~ msgstr "Claude Code, Cursor, Codex, Copilot — один источник правды."
+
+#: src/components/sections/cli-repo-layout-section.tsx:41
+msgid "Claude Code, Cursor, Codex, Copilot. One source of truth."
+msgstr "Claude Code, Cursor, Codex, Copilot. Один источник правды."
+
+#: src/components/sections/cli-agents-section.tsx:129
 msgid "Claude Code, Cursor, Codex? See the plugin"
 msgstr "Claude Code, Cursor, Codex? Смотрите плагин"
 
@@ -306,10 +426,10 @@ msgid "CLAUDE.md (190 lines, growing)"
 msgstr "CLAUDE.md (190 строк, и растёт)"
 
 #: src/components/sections/hero-section.tsx:77
-#: src/components/sections/how-to-use-wizard-section.tsx:516
+#: src/components/sections/how-to-use-wizard-section.tsx:545
 #: src/components/sections/site-nav.tsx:21
-#: src/components/sections/sticky-header.tsx:33
-#: src/content/how-to-use/install.tsx:58
+#: src/components/sections/sticky-header.tsx:32
+#: src/content/how-to-use/install.tsx:60
 msgid "CLI"
 msgstr "CLI"
 
@@ -317,12 +437,12 @@ msgstr "CLI"
 msgid "CLI = one binary · Plugin = slash commands."
 msgstr "CLI — один бинарь · Plugin — слэш-команды."
 
-#: src/components/sections/cli-hero-section.tsx:71
-#: src/components/sections/hero-section.tsx:150
+#: src/components/sections/cli-hero-section.tsx:76
+#: src/components/sections/hero-section.tsx:155
 msgid "CLI docs"
 msgstr "Документация CLI"
 
-#: src/components/sections/cli-faq-section.tsx:44
+#: src/components/sections/cli-faq-section.tsx:45
 msgid "CLI FAQ"
 msgstr "FAQ по CLI"
 
@@ -330,7 +450,7 @@ msgstr "FAQ по CLI"
 msgid "CLI in action"
 msgstr "CLI в действии"
 
-#: src/components/sections/sticky-header.tsx:155
+#: src/components/sections/sticky-header.tsx:163
 msgid "Close menu"
 msgstr "Закрыть меню"
 
@@ -338,8 +458,8 @@ msgstr "Закрыть меню"
 msgid "Code that matches your architecture on the first try."
 msgstr "Код, соответствующий вашей архитектуре с первого раза."
 
-#: src/components/sections/plugin-hero-section.tsx:55
-#: src/content/how-to-use/install.tsx:127
+#: src/components/sections/plugin-hero-section.tsx:62
+#: src/content/how-to-use/install.tsx:129
 msgid "Codex CLI 0.117+"
 msgstr "Codex CLI 0.117+"
 
@@ -355,7 +475,7 @@ msgstr "Сообщество"
 msgid "Community channels"
 msgstr "Каналы сообщества"
 
-#: src/content/how-to-use/quick-start.tsx:142
+#: src/content/how-to-use/quick-start.tsx:156
 msgid "Confirm the context layer holds what you expect before you start editing real code with it loaded."
 msgstr "Убедитесь, что слой контекста содержит ровно то, что вы ждёте, прежде чем начнёте править код с этим контекстом."
 
@@ -364,21 +484,33 @@ msgid "Context auto-injected at session start"
 msgstr "Контекст подгружается в начале сессии"
 
 #: src/components/sections/plugin-pillars-section.tsx:40
-msgid "Context-aware edits"
-msgstr "Правки с учётом контекста"
+#~ msgid "Context-aware edits"
+#~ msgstr "Правки с учётом контекста"
+
+#: src/components/sections/plugin-pillars-section.tsx:45
+msgid "Context-aware edits, no command"
+msgstr "Правки с контекстом — без команд"
 
 #: src/content/how-to-use/idea-no-context.tsx:96
 msgid "Continue the cascade:"
 msgstr "Продолжите каскад:"
+
+#: src/components/sections/plugin-hero-section.tsx:65
+msgid "Copilot CLI"
+msgstr "Copilot CLI"
+
+#: src/components/sections/plugin-hosts-section.tsx:48
+msgid "copilot plugin install + archcore init"
+msgstr "copilot plugin install + archcore init"
 
 #: src/components/cta/copy-button.tsx:24
 msgid "Copy"
 msgstr "Копировать"
 
 #: src/components/cta/docker-start-dialog.tsx:67
-#: src/components/cta/install-command.tsx:201
-#: src/components/cta/install-command.tsx:233
-#: src/components/cta/install-command.tsx:261
+#: src/components/cta/install-command.tsx:234
+#: src/components/cta/install-command.tsx:267
+#: src/components/cta/install-command.tsx:296
 msgid "Copy command"
 msgstr "Скопировать команду"
 
@@ -387,12 +519,12 @@ msgid "Copy-paste rules every session"
 msgstr "Копируете правила каждую сессию"
 
 #: src/components/cta/team-setup-dialog.tsx:74
-#: src/pages/teams-getting-started.tsx:96
+#: src/pages/teams-getting-started.tsx:111
 msgid "Create <0>.env</0> file"
 msgstr "Создайте файл <0>.env</0>"
 
 #: src/components/cta/team-setup-dialog.tsx:90
-#: src/pages/teams-getting-started.tsx:119
+#: src/pages/teams-getting-started.tsx:134
 msgid "Create <0>docker-compose.yml</0> file"
 msgstr "Создайте файл <0>docker-compose.yml</0>"
 
@@ -400,16 +532,16 @@ msgstr "Создайте файл <0>docker-compose.yml</0>"
 msgid "Creates .archcore/"
 msgstr "Создаёт .archcore/"
 
-#: src/components/sections/plugin-hero-section.tsx:52
-#: src/content/how-to-use/install.tsx:110
+#: src/components/sections/plugin-hero-section.tsx:59
+#: src/content/how-to-use/install.tsx:112
 msgid "Cursor 2.5+"
 msgstr "Cursor 2.5+"
 
 #: src/components/sections/plugin-pillars-section.tsx:75
-msgid "Daily, before editing"
-msgstr "Каждый день, перед правками"
+#~ msgid "Daily, before editing"
+#~ msgstr "Каждый день, перед правками"
 
-#: src/components/sections/plugin-pillars-section.tsx:56
+#: src/components/sections/plugin-pillars-section.tsx:54
 msgid "Decisions stop dying in chat"
 msgstr "Решения перестают умирать в чате"
 
@@ -426,16 +558,16 @@ msgid "Decisions, rules, and patterns as docs"
 msgstr "Решения, правила и паттерны как документы"
 
 #: src/content/how-to-use/idea-no-context.tsx:48
-msgid "Default <0>product</0> track means idea → PRD → plan. Swap to <1>--track feature</1> when you need a spec layer too."
-msgstr "Трек <0>product</0> по умолчанию — это idea → PRD → план. Переключитесь на <1>--track feature</1>, когда нужен ещё слой спецификации."
+#~ msgid "Default <0>product</0> track means idea → PRD → plan. Swap to <1>--track feature</1> when you need a spec layer too."
+#~ msgstr "Трек <0>product</0> по умолчанию — это idea → PRD → план. Переключитесь на <1>--track feature</1>, когда нужен ещё слой спецификации."
 
 #: src/components/cta/team-setup-dialog.tsx:53
-#: src/pages/teams-getting-started.tsx:71
+#: src/pages/teams-getting-started.tsx:86
 msgid "Deploy Archcore Team"
 msgstr "Разверните Archcore Team"
 
 #: src/components/cta/team-setup-dialog.tsx:60
-#: src/pages/teams-getting-started.tsx:81
+#: src/pages/teams-getting-started.tsx:96
 msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 msgstr "Разверните полный стек Archcore Team с помощью Docker Compose за 3 шага."
 
@@ -443,32 +575,40 @@ msgstr "Разверните полный стек Archcore Team с помощь
 msgid "Describe the pipeline, not a path:"
 msgstr "Опишите пайплайн, а не путь:"
 
-#: src/components/sections/plugin-pillars-section.tsx:124
-msgid "Describe what you want in plain English — Archcore routes it. The <0>/archcore:*</0> commands below are just shortcuts to the same workflows."
-msgstr "Опишите задачу обычным языком — Archcore сам направит её куда нужно. Команды <0>/archcore:*</0> ниже — это просто шорткаты к тем же сценариям."
+#: src/components/sections/plugin-pillars-section.tsx:112
+#~ msgid "Describe what you want in plain English — Archcore routes it. The <0>/archcore:*</0> commands below are just shortcuts to the same workflows."
+#~ msgstr "Опишите задачу обычным языком — Archcore сам направит её куда нужно. Команды <0>/archcore:*</0> ниже — это просто шорткаты к тем же сценариям."
+
+#: src/components/sections/plugin-pillars-section.tsx:112
+msgid "Describe what you want in plain English and Archcore routes it. The <0>/archcore:*</0> commands below are just shortcuts to the same workflows."
+msgstr "Опишите задачу обычными словами, и Archcore сам её направит. Команды <0>/archcore:*</0> ниже просто дают быстрый доступ к тем же сценариям."
 
 #: src/components/sections/cli-pillars-section.tsx:32
 msgid "Detects installed agents"
 msgstr "Находит установленных агентов"
 
-#: src/content/how-to-use/quick-start.tsx:34
-msgid "Detects your stack and proposes a stack rule."
-msgstr "Распознаёт стек и предлагает правило для стека."
+#: src/content/how-to-use/quick-start.tsx:35
+msgid "Detects your repo's scale and shape, then composes a whole first-day seed: stack rule, run guide, data model, entry points, and specs for your hotspot modules."
+msgstr "Определяет масштаб и форму репозитория и собирает полный стартовый набор: правило стека, гайд по запуску, модель данных, точки входа и спеки для самых горячих модулей."
 
-#: src/components/sections/cli-faq-section.tsx:29
+#: src/content/how-to-use/quick-start.tsx:34
+#~ msgid "Detects your stack and proposes a stack rule."
+#~ msgstr "Распознаёт стек и предлагает правило для стека."
+
+#: src/components/sections/cli-faq-section.tsx:30
 msgid "Do I need any external services?"
 msgstr "Нужны ли внешние сервисы?"
 
-#: src/components/sections/faq-section.tsx:47
+#: src/components/sections/faq-section.tsx:48
 msgid "Do I need both the plugin and the CLI?"
 msgstr "Нужны ли мне одновременно плагин и CLI?"
 
-#: src/components/sections/plugin-faq-section.tsx:17
+#: src/components/sections/plugin-faq-section.tsx:18
 msgid "Do I need to install the CLI separately?"
 msgstr "Нужно ли устанавливать CLI отдельно?"
 
 #: src/components/sections/site-nav.tsx:22
-#: src/components/sections/sticky-header.tsx:34
+#: src/components/sections/sticky-header.tsx:33
 msgid "Docs"
 msgstr "Документация"
 
@@ -477,22 +617,22 @@ msgid "Document existing code"
 msgstr "Описать существующий код"
 
 #: src/components/sections/plugin-pillars-section.tsx:80
-msgid "Document what already lives in code"
-msgstr "Задокументировать то, что уже живёт в коде"
+#~ msgid "Document what already lives in code"
+#~ msgstr "Задокументировать то, что уже живёт в коде"
 
 #: src/components/sections/plugin-pillars-section.tsx:48
-msgid "Document what's already in code"
-msgstr "Задокументировать то, что уже есть в коде"
+#~ msgid "Document what's already in code"
+#~ msgstr "Задокументировать то, что уже есть в коде"
 
-#: src/components/sections/faq-section.tsx:41
+#: src/components/sections/faq-section.tsx:42
 msgid "Does my code leave my machine?"
 msgstr "Мой код куда-то отправляется?"
 
-#: src/components/sections/faq-section.tsx:35
+#: src/components/sections/faq-section.tsx:36
 msgid "Does this eat my agent's context window?"
 msgstr "Это раздует контекстное окно агента?"
 
-#: src/content/how-to-use/idea-no-context.tsx:220
+#: src/content/how-to-use/idea-no-context.tsx:221
 msgid "Drafts <0>auth-redesign.plan.md</0> with phases, acceptance criteria, dependencies."
 msgstr "Готовит черновик <0>auth-redesign.plan.md</0> с фазами, критериями приёмки и зависимостями."
 
@@ -501,82 +641,122 @@ msgid "Drafts <0>auth-redesign.prd.md</0> with goals, non-goals, stakeholders, a
 msgstr "Готовит черновик <0>auth-redesign.prd.md</0> с целями, не-целями, стейкхолдерами и метриками успеха."
 
 #: src/content/how-to-use/capture-existing.tsx:40
-msgid "Drafts <0>notifications.spec.md</0> — interfaces, invariants, edge cases."
-msgstr "Готовит черновик <0>notifications.spec.md</0> — интерфейсы, инварианты, краевые случаи."
+#~ msgid "Drafts <0>notifications.spec.md</0> — interfaces, invariants, edge cases."
+#~ msgstr "Готовит черновик <0>notifications.spec.md</0> — интерфейсы, инварианты, краевые случаи."
+
+#: src/content/how-to-use/capture-existing.tsx:40
+msgid "Drafts <0>notifications.spec.md</0>: interfaces, invariants, edge cases."
+msgstr "Готовит <0>notifications.spec.md</0>: интерфейсы, инварианты, крайние случаи."
 
 #: src/content/how-to-use/quick-start.tsx:92
-msgid "Drafts <0>use-postgres.adr.md</0> with status, context, decision, consequences."
-msgstr "Готовит черновик <0>use-postgres.adr.md</0> со статусом, контекстом, решением и последствиями."
+#~ msgid "Drafts <0>use-postgres.adr.md</0> with status, context, decision, consequences."
+#~ msgstr "Готовит черновик <0>use-postgres.adr.md</0> со статусом, контекстом, решением и последствиями."
 
 #: src/content/how-to-use/quick-start.tsx:35
-msgid "Drafts a <0>how-to-run.guide.md</0> from your scripts."
-msgstr "Готовит черновик <0>how-to-run.guide.md</0> на основе ваших скриптов."
+#~ msgid "Drafts a <0>how-to-run.guide.md</0> from your scripts."
+#~ msgstr "Готовит черновик <0>how-to-run.guide.md</0> на основе ваших скриптов."
 
 #: src/content/how-to-use/capture-existing.tsx:164
 msgid "Drafts a rule that enforces the spec invariants and a guide covering common changes."
 msgstr "Готовит правило, которое фиксирует инварианты спеки, и гайд по типовым изменениям."
 
 #: src/content/how-to-use/capture-existing.tsx:105
-msgid "Drafts a spec that describes the contract — not the implementation."
-msgstr "Готовит спеку, описывающую контракт, а не реализацию."
+#~ msgid "Drafts a spec that describes the contract — not the implementation."
+#~ msgstr "Готовит спеку, описывающую контракт, а не реализацию."
+
+#: src/content/how-to-use/capture-existing.tsx:105
+msgid "Drafts a spec that describes the contract, not the implementation."
+msgstr "Готовит спеку, которая описывает контракт, а не реализацию."
 
 #: src/content/how-to-use/idea-no-context.tsx:165
 msgid "Drafts the spec from the PRD; you accept and move to the plan step."
 msgstr "Готовит спеку на основе PRD; вы принимаете и переходите к шагу плана."
 
-#: src/content/how-to-use/install.tsx:85
+#: src/content/how-to-use/install.tsx:87
 msgid "Each host installs the plugin a little differently. We'll show the one-line install for yours."
 msgstr "В каждом агенте плагин ставится чуть по-разному. Покажем установку одной командой для вашего."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:255
+#: src/components/sections/how-to-use-wizard-section.tsx:284
 msgid "Each path is a short walkthrough with copy-pasteable commands. Branches that have both a plugin and a CLI flavor carry a toggle you can flip at any step."
-msgstr "Каждый путь — короткий разбор с командами, которые можно копировать. У путей, где есть и плагин, и CLI, сверху переключатель — его можно менять на любом шаге."
+msgstr "Каждый путь — короткий разбор с командами, которые можно копировать. У путей, где есть и плагин, и CLI, сверху переключатель, и его можно менять на любом шаге."
 
 #: src/content/how-to-use/idea-no-context.tsx:42
 msgid "Each step is a gate: review the draft, edit, then accept to move on."
-msgstr "Каждый шаг — гейт: посмотрите черновик, отредактируйте, примите — и двигайтесь дальше."
+msgstr "Каждый шаг — гейт: посмотрите черновик, отредактируйте, примите и двигайтесь дальше."
 
-#: src/content/how-to-use/use-context.tsx:89
-msgid "Edits introduce drift — stale docs, broken relations, statuses that no longer match reality. The faster you spot drift, the cheaper it stays to fix."
-msgstr "Правки порождают рассинхрон — устаревшие документы, обрывы связей, статусы, оторванные от реальности. Чем раньше его заметите — тем дешевле исправить."
+#: src/content/how-to-use/use-context.tsx:91
+#~ msgid "Edits introduce drift — stale docs, broken relations, statuses that no longer match reality. The faster you spot drift, the cheaper it stays to fix."
+#~ msgstr "Правки порождают рассинхрон — устаревшие документы, обрывы связей, статусы, оторванные от реальности. Чем раньше его заметите — тем дешевле исправить."
 
-#: src/components/sections/cli-agents-section.tsx:47
+#: src/content/how-to-use/use-context.tsx:91
+msgid "Edits introduce drift: stale docs, broken relations, statuses that no longer match reality. The faster you spot drift, the cheaper it stays to fix."
+msgstr "Правки порождают расхождения: устаревшие документы, порванные связи, статусы, которые больше не совпадают с реальностью. Чем раньше вы заметите расхождение, тем дешевле его исправить."
+
+#: src/components/sections/cli-agents-section.tsx:61
 msgid "Eight agents, one .archcore/ directory."
 msgstr "Восемь агентов, одна директория .archcore/."
 
+#: src/components/sections/cli-faq-section.tsx:26
+#~ msgid "Eight over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five of those also get session hooks — Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Run archcore mcp install or archcore hooks install to wire each one up."
+#~ msgstr "Восемь через MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code и Cline (ручная настройка). Пятеро из них получают ещё и хуки сессии — Claude Code, Cursor, Gemini CLI, Codex CLI и GitHub Copilot. Выполните archcore mcp install или archcore hooks install, чтобы подключить каждого."
+
+#: src/components/sections/cli-faq-section.tsx:26
+msgid "Eight over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five of those also get session hooks: Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Run archcore mcp install or archcore hooks install to wire each one up."
+msgstr "Восемь через MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code и Cline (ручная настройка). Пятеро из них получают ещё и хуки сессии: Claude Code, Cursor, Gemini CLI, Codex CLI и GitHub Copilot. Выполните archcore mcp install или archcore hooks install, чтобы подключить каждого."
+
 #: src/components/sections/cli-faq-section.tsx:25
-msgid "Eight today via MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Run archcore mcp install or archcore hooks install to wire each one up."
-msgstr "На сегодня восемь — через MCP и хуки сессий: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code и Cline. Запустите archcore mcp install или archcore hooks install, чтобы подключить нужного."
+#~ msgid "Eight today via MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Run archcore mcp install or archcore hooks install to wire each one up."
+#~ msgstr "На сегодня восемь — через MCP и хуки сессий: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code и Cline. Запустите archcore mcp install или archcore hooks install, чтобы подключить нужного."
 
 #: src/components/cta/inline-email-capture.tsx:30
 msgid "Enter your work email"
 msgstr "Введите рабочий email"
 
-#: src/content/how-to-use/quick-start.tsx:207
-msgid "Every command writes to <0>.archcore/</0> — review in the PR, accept what fits, edit the rest."
-msgstr "Каждая команда пишет в <0>.archcore/</0> — посмотрите в PR, примите подходящее, остальное отредактируйте."
+#: src/content/how-to-use/quick-start.tsx:221
+#~ msgid "Every command writes to <0>.archcore/</0> — review in the PR, accept what fits, edit the rest."
+#~ msgstr "Каждая команда пишет в <0>.archcore/</0> — посмотрите в PR, примите подходящее, остальное отредактируйте."
+
+#: src/content/how-to-use/quick-start.tsx:221
+msgid "Every command writes to <0>.archcore/</0>. Review in the PR, accept what fits, edit the rest."
+msgstr "Каждая команда пишет в <0>.archcore/</0>. Смотрите в PR, принимайте то, что подходит, остальное правьте."
+
+#: src/content/how-to-use/install.tsx:49
+#~ msgid "Everyday context needs no command — hooks inject the applicable rules as the agent edits. The CLI installs as a prerequisite: the plugin invokes <0>archcore</0> from your PATH."
+#~ msgstr "Повседневный контекст не требует команд — хуки подставляют подходящие правила прямо во время правок. CLI нужен как обязательное условие: плагин вызывает <0>archcore</0> из вашего PATH."
+
+#: src/content/how-to-use/install.tsx:49
+msgid "Everyday context needs no command. Hooks inject the applicable rules as the agent edits. The CLI installs as a prerequisite: the plugin invokes <0>archcore</0> from your PATH."
+msgstr "Повседневный контекст не требует команд. Хуки подставляют подходящие правила прямо во время правок. CLI нужен как обязательное условие: плагин вызывает <0>archcore</0> из вашего PATH."
 
 #: src/content/how-to-use/quick-start.tsx:42
-msgid "Everything writes to <0>.archcore/</0> as plain markdown — you review the diff like any other commit."
-msgstr "Всё пишется в <0>.archcore/</0> обычным markdown — diff смотрите как любой другой коммит."
+#~ msgid "Everything writes to <0>.archcore/</0> as plain markdown — you review the diff like any other commit."
+#~ msgstr "Всё пишется в <0>.archcore/</0> обычным markdown — diff смотрите как любой другой коммит."
 
-#: src/content/how-to-use/idea-no-context.tsx:248
+#: src/content/how-to-use/quick-start.tsx:53
+#~ msgid "Everything writes to <0>.archcore/</0> as plain markdown — you review the diff like any other commit. The same confirm wires host configs, so CLI-only teammates get it too."
+#~ msgstr "Всё пишется в <0>.archcore/</0> обычным markdown — вы смотрите диф как в любом коммите. То же подтверждение настраивает конфиги хостов, поэтому коллеги на одном лишь CLI тоже всё получат."
+
+#: src/content/how-to-use/quick-start.tsx:53
+msgid "Everything writes to <0>.archcore/</0> as plain markdown. You review the diff like any other commit. The same confirm wires host configs, so CLI-only teammates get it too."
+msgstr "Всё пишется в <0>.archcore/</0> обычным markdown. Вы смотрите диф как в любом коммите. То же подтверждение настраивает конфиги хостов, поэтому коллеги на одном лишь CLI тоже всё получат."
+
+#: src/content/how-to-use/idea-no-context.tsx:249
 msgid "Final relation: <0>add_relation(plan implements spec)</0>."
 msgstr "Финальная связь: <0>add_relation(plan implements spec)</0>."
 
 #: src/components/sections/plugin-pillars-section.tsx:98
-msgid "Find stale, missing, or drifting docs"
-msgstr "Найти устаревшие, отсутствующие или расходящиеся с кодом доки"
+#~ msgid "Find stale, missing, or drifting docs"
+#~ msgstr "Найти устаревшие, отсутствующие или расходящиеся с кодом доки"
 
 #: src/components/sections/cli-pillars-section.tsx:34
 msgid "Finds supported coding agents and picks the right integration path."
 msgstr "Находит поддерживаемых агентов и выбирает правильный путь интеграции."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:220
+#: src/components/sections/how-to-use-wizard-section.tsx:249
 msgid "Finish"
 msgstr "Готово"
 
-#: src/components/sections/plugin-pillars-section.tsx:69
+#: src/components/sections/plugin-pillars-section.tsx:75
 msgid "First-time setup"
 msgstr "Первая настройка"
 
@@ -588,15 +768,35 @@ msgstr "Плоская память работает для одного раз�
 msgid "Formalize the contract with a spec."
 msgstr "Зафиксируйте контракт спекой."
 
-#: src/components/sections/star-cta-section.tsx:26
+#: src/components/sections/plugin-hosts-section.tsx:61
+msgid "Four hosts today. Any MCP agent through the CLI."
+msgstr "Четыре хоста сегодня. Любой MCP-агент — через CLI."
+
+#: src/components/sections/plugin-pillars-section.tsx:107
+#~ msgid "Four slash commands — and the everyday context needs none of them."
+#~ msgstr "Четыре slash-команды — а повседневный контекст не требует ни одной."
+
+#: src/components/sections/plugin-pillars-section.tsx:107
+msgid "Four slash commands. The everyday context needs none of them."
+msgstr "Четыре slash-команды. Повседневному контексту не нужна ни одна из них."
+
+#: src/components/sections/plugin-faq-section.tsx:32
+#~ msgid "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command — hooks inject the applicable rules and specs as the agent edits."
+#~ msgstr "Четыре: /archcore:init (первичная настройка), /archcore:plan (от идеи до проработанного плана), /archcore:document (зафиксировать решение или описать существующий код) и /archcore:review (сверить изменения и документацию). Повседневный контекст не требует команд — хуки подставляют нужные правила и спеки во время правок."
+
+#: src/components/sections/plugin-faq-section.tsx:32
+msgid "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command at all, because hooks inject the applicable rules and specs as the agent edits."
+msgstr "Четыре: /archcore:init (первичная настройка), /archcore:plan (от идеи до проработанного плана), /archcore:document (зафиксировать решение или описать существующий код) и /archcore:review (сверить изменения и документацию). Повседневный контекст не требует команд вовсе, потому что хуки подставляют нужные правила и спеки во время правок."
+
+#: src/components/sections/star-cta-section.tsx:27
 msgid "Free and local today."
 msgstr "Сегодня — бесплатно и локально."
 
-#: src/components/sections/faq-section.tsx:56
+#: src/components/sections/faq-section.tsx:57
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
-#: src/components/sections/plugin-hosts-section.tsx:135
+#: src/components/sections/plugin-hosts-section.tsx:148
 msgid "Full host matrix"
 msgstr "Полная матрица хостов"
 
@@ -612,27 +812,43 @@ msgstr "Подписаться на обновления"
 msgid "Git-native context for AI coding agents."
 msgstr "Git-нативный контекст для AI-агентов разработки."
 
+#: src/content/how-to-use/install.tsx:147
+msgid "GitHub Copilot CLI"
+msgstr "GitHub Copilot CLI"
+
 #: src/components/sections/plugin-hero-section.tsx:30
-msgid "Give Claude Code, Cursor & Codex CLI<0/>a brain for your codebase."
-msgstr "Дайте Claude Code, Cursor и Codex CLI<0/>понимание вашей кодовой базы."
+#~ msgid "Give Claude Code, Cursor & Codex CLI<0/>a brain for your codebase."
+#~ msgstr "Дайте Claude Code, Cursor и Codex CLI<0/>понимание вашей кодовой базы."
+
+#: src/components/sections/plugin-hero-section.tsx:37
+msgid "Give Claude Code, Cursor, Codex & Copilot<0/>a brain for your codebase."
+msgstr "Дайте Claude Code, Cursor, Codex и Copilot<0/>понимание вашей кодовой базы."
 
 #: src/components/sections/migration-section.tsx:49
 msgid "Guides, specs, and plans"
 msgstr "Гайды, спеки и планы"
 
 #: src/components/sections/plugin-pillars-section.tsx:99
-msgid "Health check"
-msgstr "Проверка здоровья документации"
+#~ msgid "Health check"
+#~ msgstr "Проверка здоровья документации"
+
+#: src/components/sections/plugin-pillars-section.tsx:47
+msgid "Hooks inject the rules and specs that apply to the file your agent is editing, and every session opens with a recap of what's decided and in progress."
+msgstr "Хуки подставляют правила и спеки, относящиеся к файлу, который правит агент, а каждая сессия начинается со сводки того, что решено и что в работе."
+
+#: src/components/sections/cli-agents-section.tsx:39
+msgid "Hooks need Codex's experimental flag; not on Windows"
+msgstr "Хукам нужен экспериментальный флаг Codex; на Windows не работают"
 
 #: src/components/sections/plugin-hosts-section.tsx:75
 msgid "Host"
 msgstr "Хост"
 
-#: src/components/sections/plugin-hosts-section.tsx:118
+#: src/components/sections/plugin-hosts-section.tsx:131
 msgid "Host support resources"
 msgstr "Материалы о поддержке хостов"
 
-#: src/components/sections/faq-section.tsx:17
+#: src/components/sections/faq-section.tsx:18
 msgid "How is this different from CLAUDE.md or AGENTS.md?"
 msgstr "Чем это отличается от CLAUDE.md или AGENTS.md?"
 
@@ -644,7 +860,7 @@ msgstr "Как это работает"
 msgid "How to install Archcore"
 msgstr "Как установить Archcore"
 
-#: src/components/sections/sticky-header.tsx:22
+#: src/components/sections/sticky-header.tsx:21
 msgid "How to use"
 msgstr "Как использовать"
 
@@ -660,7 +876,7 @@ msgstr "Как установить"
 msgid "how-tos"
 msgstr "how-to"
 
-#: src/components/sections/faq-section.tsx:23
+#: src/components/sections/faq-section.tsx:24
 msgid "I already have a CLAUDE.md or .cursor/rules. Do I start over?"
 msgstr "У меня уже есть CLAUDE.md или .cursor/rules. Начинать заново?"
 
@@ -669,8 +885,12 @@ msgid "I have an idea, no context yet"
 msgstr "Есть идея, контекста ещё нет"
 
 #: src/components/sections/cli-faq-section.tsx:37
-msgid "If you use Claude Code or Cursor, yes — the plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
-msgstr "Если вы пользуетесь Claude Code или Cursor — да: плагин использует CLI под капотом и добавляет intent-based слэш-команды. Ставьте CLI отдельно, если нужен базовый слой контекста или вы работаете с другим MCP-совместимым агентом."
+#~ msgid "If you use Claude Code or Cursor, yes — the plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
+#~ msgstr "Если вы пользуетесь Claude Code или Cursor — да: плагин использует CLI под капотом и добавляет intent-based слэш-команды. Ставьте CLI отдельно, если нужен базовый слой контекста или вы работаете с другим MCP-совместимым агентом."
+
+#: src/components/sections/cli-faq-section.tsx:38
+msgid "If you use Claude Code, Cursor, Codex CLI, or GitHub Copilot CLI, the plugin adds intent-based slash commands on top of the same CLI. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
+msgstr "Если вы работаете в Claude Code, Cursor, Codex CLI или GitHub Copilot CLI, плагин добавляет slash-команды по намерению поверх того же CLI. Ставьте CLI отдельно, если нужен голый слой контекста или другой агент с поддержкой MCP."
 
 #: src/components/sections/before-after-section.tsx:26
 msgid "Ignores the Redis store you already use"
@@ -678,62 +898,95 @@ msgstr "Игнорирует Redis, который вы уже использу�
 
 #: src/components/sections/plugin-hosts-section.tsx:35
 #: src/components/sections/plugin-hosts-section.tsx:41
+#: src/components/sections/plugin-hosts-section.tsx:47
 msgid "Implemented"
 msgstr "Реализовано"
 
-#: src/components/sections/plugin-faq-section.tsx:37
+#: src/content/how-to-use/quick-start.tsx:40
+msgid "Imports an existing <0>CLAUDE.md</0>, <1>AGENTS.md</1>, or <2>.cursorrules</2> instead of making you start over."
+msgstr "Импортирует существующие <0>CLAUDE.md</0>, <1>AGENTS.md</1> или <2>.cursorrules</2>, чтобы не начинать с нуля."
+
+#: src/components/sections/plugin-faq-section.tsx:44
 msgid "In .archcore/ inside your repository. Markdown with YAML frontmatter, versioned with your code. No external services, accounts, or databases."
 msgstr "В .archcore/ внутри вашего репозитория. Markdown с YAML-фронтматтером, версионируется вместе с кодом. Без внешних сервисов, аккаунтов и баз данных."
 
 #: src/content/how-to-use/install.tsx:157
-msgid "In a fresh conversation, run:"
-msgstr "В новом диалоге выполните:"
+#~ msgid "In a fresh conversation, run:"
+#~ msgstr "В новом диалоге выполните:"
+
+#: src/content/how-to-use/install.tsx:177
+msgid "In a fresh conversation, type:"
+msgstr "В новом диалоге наберите:"
+
+#: src/content/how-to-use/install.tsx:135
+#~ msgid "In Codex, run <0>/plugins</0>, open Archcore, select Install plugin. MCP is auto-registered. Hooks are experimental on Codex — turn them on with <1>codex --enable hooks</1>, and note they don't run on Windows."
+#~ msgstr "В Codex выполните <0>/plugins</0>, откройте Archcore и выберите Install plugin. MCP регистрируется автоматически. Хуки в Codex экспериментальные — включите их через <1>codex --enable hooks</1>; на Windows они не работают."
+
+#: src/content/how-to-use/install.tsx:135
+msgid "In Codex, run <0>/plugins</0>, open Archcore, select Install plugin. MCP is auto-registered. Hooks are experimental on Codex. Turn them on with <1>codex --enable hooks</1>, and note they don't run on Windows."
+msgstr "В Codex выполните <0>/plugins</0>, откройте Archcore и выберите Install plugin. MCP регистрируется автоматически. Хуки в Codex экспериментальные. Включите их через <1>codex --enable hooks</1> и учтите, что на Windows они не работают."
 
 #: src/components/cta/docker-start-dialog.tsx:34
 msgid "Install Archcore"
 msgstr "Установка Archcore"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:627
+#: src/components/sections/how-to-use-wizard-section.tsx:656
 msgid "Install CLI"
 msgstr "Установить CLI"
 
-#: src/components/sections/plugin-hero-section.tsx:80
+#: src/components/sections/plugin-hero-section.tsx:90
 msgid "Install in Codex:"
 msgstr "Установите в Codex:"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:625
+#: src/components/sections/how-to-use-wizard-section.tsx:654
 msgid "Install plugin"
 msgstr "Установить плагин"
 
 #: src/components/sections/how-to-use-cta-section.tsx:32
-msgid "Install, quick start, capture, or use context — pick a path."
-msgstr "Установка, быстрый старт, захват кода или использование контекста — выберите путь."
+#~ msgid "Install, quick start, capture, or use context — pick a path."
+#~ msgstr "Установка, быстрый старт, захват кода или использование контекста — выберите путь."
+
+#: src/components/sections/how-to-use-cta-section.tsx:32
+msgid "Install, quick start, capture, or use context. Pick a path."
+msgstr "Установка, быстрый старт, захват кода или работа с контекстом. Выберите путь."
 
 #: src/components/sections/cli-pillars-section.tsx:46
 msgid "Installs session hooks"
 msgstr "Ставит хуки сессии"
 
-#: src/components/sections/faq-section.tsx:19
-msgid "Instruction files are flat memory — one tool, one file. Archcore is structured: typed documents (ADR, rule, plan, guide, spec) with relations, versioned history, read and written during real work, and reused across every agent."
-msgstr "Файлы-инструкции — плоская память: один инструмент, один файл. Archcore структурирован: типизированные документы (ADR, правила, планы, гайды, спеки) со связями, версионируемой историей, которые читаются и пишутся во время реальной работы и переиспользуются всеми агентами."
+#: src/components/sections/faq-section.tsx:20
+#~ msgid "Instruction files are flat memory — one tool, one file. Archcore is structured: typed documents (ADR, rule, plan, guide, spec) with relations, versioned history, read and written during real work, and reused across every agent."
+#~ msgstr "Файлы-инструкции — плоская память: один инструмент, один файл. Archcore структурирован: типизированные документы (ADR, правила, планы, гайды, спеки) со связями, версионируемой историей, которые читаются и пишутся во время реальной работы и переиспользуются всеми агентами."
+
+#: src/components/sections/faq-section.tsx:20
+msgid "Instruction files are flat memory: one tool, one file. Archcore is structured. It stores typed documents (ADR, rule, plan, guide, spec) with relations and versioned history, read and written during real work, and reused across every agent."
+msgstr "Файлы инструкций дают плоскую память: один инструмент, один файл. У Archcore есть структура. Он хранит типизированные документы (ADR, rule, plan, guide, spec) со связями и историей версий, которые читаются и пишутся во время реальной работы и переиспользуются каждым агентом."
 
 #: src/components/sections/cli-problem-section.tsx:37
 msgid "Instruction files don't scale."
 msgstr "Файлы инструкций не масштабируются."
 
-#: src/components/sections/sticky-header.tsx:24
+#: src/components/sections/sticky-header.tsx:23
 msgid "Interactive walkthrough"
 msgstr "Интерактивный тур"
 
-#: src/content/how-to-use/idea-no-context.tsx:207
+#: src/content/how-to-use/idea-no-context.tsx:156
+msgid "Keep going in the same session:"
+msgstr "Продолжайте в той же сессии:"
+
+#: src/content/how-to-use/idea-no-context.tsx:208
 msgid "Land on a plan."
 msgstr "Сформируйте план."
 
-#: src/content/how-to-use/quick-start.tsx:24
-msgid "Land your first piece of structured context — a stack rule, a run guide, or your first decision — so the agent has something to read."
-msgstr "Положите в репозиторий первую единицу структурированного контекста — правило для стека, гайд по запуску или первое решение, — чтобы агенту было что читать."
+#: src/content/how-to-use/quick-start.tsx:25
+#~ msgid "Land your first piece of structured context — a stack rule, a run guide, or your first decision — so the agent has something to read."
+#~ msgstr "Положите в репозиторий первую единицу структурированного контекста — правило для стека, гайд по запуску или первое решение, — чтобы агенту было что читать."
 
-#: src/content/how-to-use/idea-no-context.tsx:216
+#: src/content/how-to-use/quick-start.tsx:25
+msgid "Land your first piece of structured context: a stack rule, a run guide, or your first decision, so the agent has something to read."
+msgstr "Заведите первый кусок структурированного контекста: правило стека, гайд по запуску или первое решение, чтобы агенту было что читать."
+
+#: src/content/how-to-use/idea-no-context.tsx:217
 msgid "Last gate of the cascade:"
 msgstr "Последний гейт каскада:"
 
@@ -749,7 +1002,7 @@ msgstr "Материалы"
 msgid "Lets agents browse, search, and update Archcore docs."
 msgstr "Даёт агентам просматривать, искать и обновлять документы Archcore."
 
-#: src/components/sections/star-cta-section.tsx:52
+#: src/components/sections/star-cta-section.tsx:59
 msgid "Like where this is going? Star it on GitHub."
 msgstr "Нравится, куда это движется? Поставьте звезду на GitHub."
 
@@ -758,20 +1011,20 @@ msgid "Live"
 msgstr "Live"
 
 #: src/content/how-to-use/use-context.tsx:23
-msgid "Load the right context before editing."
-msgstr "Загрузите нужный контекст до правок."
+#~ msgid "Load the right context before editing."
+#~ msgstr "Загрузите нужный контекст до правок."
 
 #: src/content/how-to-use/use-context.tsx:17
-msgid "Load the right rules and ADRs before editing, and audit after."
-msgstr "Перед правками подгрузите нужные правила и ADR, после правок — запустите аудит."
+#~ msgid "Load the right rules and ADRs before editing, and audit after."
+#~ msgstr "Перед правками подгрузите нужные правила и ADR, после правок — запустите аудит."
 
 #: src/components/sections/plugin-pillars-section.tsx:74
-msgid "Load what's already decided before you change code"
-msgstr "Загрузить уже принятые решения перед тем, как менять код"
+#~ msgid "Load what's already decided before you change code"
+#~ msgstr "Загрузить уже принятые решения перед тем, как менять код"
 
 #: src/components/sections/how-it-works-section.tsx:25
 msgid "Loaded over local MCP, before they edit"
-msgstr "Подгружается через локальный MCP — до правок"
+msgstr "Подгружается через локальный MCP ещё до правок"
 
 #: src/components/sections/before-after-section.tsx:37
 msgid "Loads the ADR: \"Rate limiting via Redis token bucket\""
@@ -786,19 +1039,23 @@ msgid "Local MCP, agent-ready, versioned with your code."
 msgstr "Локальный MCP, готов для агентов, версионируется вместе с кодом."
 
 #: src/components/sections/before-after-section.tsx:30
-msgid "Logical code — just not how this repo works."
-msgstr "Логичный код — просто не так, как устроен этот репозиторий."
+#~ msgid "Logical code — just not how this repo works."
+#~ msgstr "Логичный код — просто не так, как устроен этот репозиторий."
 
-#: src/components/cta/install-command.tsx:128
-#: src/content/how-to-use/install.tsx:189
+#: src/components/sections/before-after-section.tsx:30
+msgid "Logical code. Just not how this repo works."
+msgstr "Логичный код. Просто не так, как устроен этот репозиторий."
+
+#: src/components/cta/install-command.tsx:148
+#: src/content/how-to-use/install.tsx:213
 msgid "macOS / Linux"
 msgstr "macOS / Linux"
 
-#: src/components/sections/plugin-pillars-section.tsx:68
+#: src/components/sections/plugin-pillars-section.tsx:74
 msgid "Make your repo legible to AI agents"
 msgstr "Сделать репозиторий понятным для AI-агентов"
 
-#: src/components/sections/star-cta-section.tsx:32
+#: src/components/sections/star-cta-section.tsx:39
 msgid "Managed when your team needs it"
 msgstr "Управляемое развёртывание, когда понадобится команде"
 
@@ -806,33 +1063,44 @@ msgstr "Управляемое развёртывание, когда понад
 msgid "Marketplace or local directory"
 msgstr "Маркетплейс или локальная директория"
 
-#: src/components/sections/cli-agents-section.tsx:32
-#: src/components/sections/cli-agents-section.tsx:33
-#: src/components/sections/cli-agents-section.tsx:34
-#: src/components/sections/cli-agents-section.tsx:35
-#: src/components/sections/cli-agents-section.tsx:36
+#: src/components/sections/cli-agents-section.tsx:48
+#: src/components/sections/cli-agents-section.tsx:49
 msgid "MCP"
 msgstr "MCP"
 
-#: src/components/sections/cli-hero-section.tsx:78
+#: src/components/sections/cli-agents-section.tsx:50
+#~ msgid "MCP — manual setup"
+#~ msgstr "MCP — ручная настройка"
+
+#: src/components/sections/cli-hero-section.tsx:83
 msgid "MCP · Local · Works on macOS, Linux, Windows"
 msgstr "MCP · Локально · Работает на macOS, Linux, Windows"
 
-#: src/components/sections/cli-agents-section.tsx:27
-#: src/components/sections/cli-agents-section.tsx:30
+#: src/components/sections/cli-agents-section.tsx:50
+msgid "MCP (manual setup)"
+msgstr "MCP (ручная настройка)"
+
 #: src/components/sections/cli-agents-section.tsx:31
+#: src/components/sections/cli-agents-section.tsx:34
+#: src/components/sections/cli-agents-section.tsx:37
+#: src/components/sections/cli-agents-section.tsx:43
+#: src/components/sections/cli-agents-section.tsx:47
 msgid "MCP + session hooks"
 msgstr "MCP + хуки сессии"
 
+#: src/content/how-to-use/install.tsx:71
+msgid "MCP exposes 10 document tools. Use this for Gemini CLI, OpenCode, Roo Code, Cline, or pipelines."
+msgstr "MCP даёт 10 инструментов для работы с документами. Подходит для Gemini CLI, OpenCode, Roo Code, Cline и пайплайнов."
+
 #: src/content/how-to-use/install.tsx:69
-msgid "MCP exposes 10 tools and 5 prompt cascades. Use this for Copilot, Gemini CLI, OpenCode, Cline, or pipelines."
-msgstr "MCP отдаёт 10 инструментов и 5 промпт-каскадов. Подходит для Copilot, Gemini CLI, OpenCode, Cline и пайплайнов."
+#~ msgid "MCP exposes 10 tools and 5 prompt cascades. Use this for Copilot, Gemini CLI, OpenCode, Cline, or pipelines."
+#~ msgstr "MCP отдаёт 10 инструментов и 5 промпт-каскадов. Подходит для Copilot, Gemini CLI, OpenCode, Cline и пайплайнов."
 
 #: src/content/how-to-use/install.tsx:134
-msgid "MCP is auto-registered. <0>plugin_hooks</0> is a feature flag (default off) — enable it for validation, cascade, and pre-edit injection."
-msgstr "MCP регистрируется автоматически. <0>plugin_hooks</0> — фича-флаг (по умолчанию выключен) — включите его для валидации, каскадов и инъекции контекста перед правкой."
+#~ msgid "MCP is auto-registered. <0>plugin_hooks</0> is a feature flag (default off) — enable it for validation, cascade, and pre-edit injection."
+#~ msgstr "MCP регистрируется автоматически. <0>plugin_hooks</0> — фича-флаг (по умолчанию выключен) — включите его для валидации, каскадов и инъекции контекста перед правкой."
 
-#: src/content/how-to-use/install.tsx:101
+#: src/content/how-to-use/install.tsx:103
 msgid "MCP is auto-registered. The CLI is auto-installed on first use if it's not already on PATH."
 msgstr "MCP регистрируется автоматически. CLI поставится сам при первом вызове, если его ещё нет в PATH."
 
@@ -848,8 +1116,8 @@ msgstr "Гайд по миграции"
 msgid "Migration resources"
 msgstr "Материалы по миграции"
 
-#: src/components/sections/plugin-pillars-section.tsx:188
-#: src/components/sections/plugin-pillars-section.tsx:192
+#: src/components/sections/plugin-pillars-section.tsx:182
+#: src/components/sections/plugin-pillars-section.tsx:186
 msgid "More info"
 msgstr "Подробнее"
 
@@ -858,10 +1126,10 @@ msgid "Move from idea to PRD."
 msgstr "Перейдите от идеи к PRD."
 
 #: src/components/sections/plugin-pillars-section.tsx:104
-msgid "Navigate the skill catalog"
-msgstr "Найти нужный скилл в каталоге"
+#~ msgid "Navigate the skill catalog"
+#~ msgstr "Найти нужный скилл в каталоге"
 
-#: src/components/sections/plugin-pillars-section.tsx:87
+#: src/components/sections/plugin-pillars-section.tsx:81
 msgid "New feature, refactor, or initiative"
 msgstr "Новая фича, рефакторинг или инициатива"
 
@@ -869,15 +1137,23 @@ msgstr "Новая фича, рефакторинг или инициатива"
 msgid "New to Archcore? Walk through it in 5 minutes."
 msgstr "Впервые в Archcore? Пройдите тур за 5 минут."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:222
+#: src/components/sections/how-to-use-wizard-section.tsx:251
 msgid "Next"
 msgstr "Далее"
+
+#: src/content/how-to-use/use-context.tsx:34
+#~ msgid "No command — just ask for the change:"
+#~ msgstr "Без команд — просто попросите внести правку:"
+
+#: src/content/how-to-use/use-context.tsx:34
+msgid "No command. Just ask for the change:"
+msgstr "Без команд. Просто попросите внести правку:"
 
 #: src/components/sections/cli-repo-layout-section.tsx:35
 msgid "No external service, no account, no telemetry."
 msgstr "Никаких внешних сервисов, аккаунтов и телеметрии."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:158
+#: src/components/sections/how-to-use-wizard-section.tsx:187
 msgid "No install needed. See exactly what you'd run."
 msgstr "Без установки. Посмотри, что именно запустишь."
 
@@ -885,49 +1161,125 @@ msgstr "Без установки. Посмотри, что именно зап�
 msgid "No new service to run. Your context lives in the repo and travels with it."
 msgstr "Никаких новых сервисов. Контекст живёт в репозитории и путешествует вместе с ним."
 
-#: src/components/sections/faq-section.tsx:25
-msgid "No. archcore init imports your existing instruction files — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as structured documents, so the context you already wrote carries over."
-msgstr "Нет. archcore init импортирует существующие файлы инструкций — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — как структурированные документы, так что уже написанный контекст переносится."
+#: src/components/sections/cli-agents-section.tsx:45
+msgid "No pre-write context injection"
+msgstr "Нет подстановки контекста перед записью"
 
-#: src/components/sections/faq-section.tsx:37
-msgid "No. At session start the agent gets a compact index of your documents; full documents are pulled on demand over MCP — search, relations, single reads — not loaded wholesale."
-msgstr "Нет. В начале сессии агент получает компактный индекс ваших документов; полные документы подтягиваются по запросу через MCP — поиск, связи, точечное чтение — а не загружаются целиком."
+#: src/components/sections/faq-section.tsx:26
+#~ msgid "No. archcore init imports your existing instruction files — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as structured documents, so the context you already wrote carries over."
+#~ msgstr "Нет. archcore init импортирует существующие файлы инструкций — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — как структурированные документы, так что уже написанный контекст переносится."
 
-#: src/components/sections/cli-faq-section.tsx:31
-msgid "No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies."
-msgstr "Нет. Автономный бинарник. Всё в .archcore/ остаётся в вашем репозитории — без серверов, баз данных, аккаунтов и внешних зависимостей."
+#: src/components/sections/faq-section.tsx:26
+msgid "No. archcore init imports your existing instruction files (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as structured documents, so the context you already wrote carries over."
+msgstr "Нет. archcore init импортирует ваши существующие файлы инструкций (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) как структурированные документы, поэтому написанный вами контекст переносится."
 
-#: src/components/sections/faq-section.tsx:43
-msgid "No. The plugin and CLI run fully local — no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo."
-msgstr "Нет. Плагин и CLI работают полностью локально — без аккаунтов, телеметрии и внешних сервисов. .archcore/ — это обычный markdown, версионируемый в вашем Git-репозитории."
+#: src/components/sections/faq-section.tsx:38
+#~ msgid "No. At session start the agent gets a compact index of your documents; full documents are pulled on demand over MCP — search, relations, single reads — not loaded wholesale."
+#~ msgstr "Нет. В начале сессии агент получает компактный индекс ваших документов; полные документы подтягиваются по запросу через MCP — поиск, связи, точечное чтение — а не загружаются целиком."
 
-#: src/components/sections/faq-section.tsx:49
-msgid "No. The plugin runs on the CLI under the hood — install the plugin and you get both. Want just the core context layer? Install the CLI on its own."
-msgstr "Нет. Плагин работает на CLI под капотом — поставь плагин и получишь оба. Нужен только базовый слой контекста? Поставь CLI отдельно."
+#: src/components/sections/faq-section.tsx:38
+msgid "No. At session start the agent gets a compact index of your documents. Full documents are pulled on demand over MCP, through search, relations, and single reads, instead of being loaded wholesale."
+msgstr "Нет. В начале сессии агент получает компактный индекс ваших документов. Полные документы подтягиваются по требованию через MCP: поиском, по связям, по одиночным чтениям, а не грузятся целиком."
+
+#: src/components/sections/cli-faq-section.tsx:32
+#~ msgid "No. Standalone binary. Everything in .archcore/ stays in your repo — no servers, databases, accounts, or external dependencies."
+#~ msgstr "Нет. Автономный бинарник. Всё в .archcore/ остаётся в вашем репозитории — без серверов, баз данных, аккаунтов и внешних зависимостей."
+
+#: src/components/sections/cli-faq-section.tsx:32
+msgid "No. Standalone binary. Everything in .archcore/ stays in your repo: no servers, databases, accounts, or external dependencies."
+msgstr "Нет. Отдельный бинарник. Всё в .archcore/ остаётся в вашем репозитории: ни серверов, ни баз, ни аккаунтов, ни внешних зависимостей."
+
+#: src/components/sections/faq-section.tsx:44
+#~ msgid "No. The plugin and CLI run fully local — no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo."
+#~ msgstr "Нет. Плагин и CLI работают полностью локально — без аккаунтов, телеметрии и внешних сервисов. .archcore/ — это обычный markdown, версионируемый в вашем Git-репозитории."
+
+#: src/components/sections/faq-section.tsx:44
+msgid "No. The plugin and CLI run fully local: no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo."
+msgstr "Нет. Плагин и CLI работают полностью локально: без аккаунтов, без телеметрии, без внешних сервисов. .archcore/ хранится обычным markdown в вашем Git-репозитории."
+
+#: src/components/sections/faq-section.tsx:50
+#~ msgid "No. The plugin runs on the CLI under the hood — install the plugin and you get both. Want just the core context layer? Install the CLI on its own."
+#~ msgstr "Нет. Плагин работает на CLI под капотом — поставь плагин и получишь оба. Нужен только базовый слой контекста? Поставь CLI отдельно."
+
+#: src/components/sections/faq-section.tsx:50
+msgid "No. The plugin runs on the CLI under the hood, so installing the plugin gets you both. Want just the core context layer? Install the CLI on its own."
+msgstr "Нет. Плагин работает поверх CLI, поэтому вместе с плагином вы получаете и то и другое. Нужен только базовый слой контекста? Ставьте CLI отдельно."
 
 #: src/components/sections/how-to-use-cta-section.tsx:59
 msgid "Not sure where to start?"
 msgstr "Не знаете, с чего начать?"
 
 #: src/content/how-to-use/install.tsx:163
-msgid "Nothing listed? See plugin troubleshooting in the docs. Usually it's the CLI not on PATH, or Codex's <0>plugin_hooks</0> flag is off."
-msgstr "Список пуст? Посмотрите раздел plugin troubleshooting в доках. Обычно дело в том, что CLI нет в PATH, либо в Codex выключен флаг <0>plugin_hooks</0>."
+#~ msgid "Nothing listed? See plugin troubleshooting in the docs. Usually it's the CLI not on PATH, or Codex's <0>plugin_hooks</0> flag is off."
+#~ msgstr "Список пуст? Посмотрите раздел plugin troubleshooting в доках. Обычно дело в том, что CLI нет в PATH, либо в Codex выключен флаг <0>plugin_hooks</0>."
 
-#: src/content/how-to-use/quick-start.tsx:96
-msgid "Offers an <0>adr → rule → guide</0> cascade — accept to also generate the team rule and a migration guide."
-msgstr "Предлагает каскад <0>adr → rule → guide</0> — примите, чтобы заодно получить командное правило и миграционный гайд."
+#: src/content/how-to-use/install.tsx:185
+#~ msgid "Nothing listed? Usually it's the CLI not on PATH — check <0>archcore --version</0>. On Copilot, missing document tools mean step 2 (<1>archcore init --agent copilot</1>) was skipped."
+#~ msgstr "Ничего не появилось? Обычно дело в том, что CLI нет в PATH — проверьте <0>archcore --version</0>. В Copilot отсутствие инструментов означает, что пропущен шаг 2 (<1>archcore init --agent copilot</1>)."
+
+#: src/content/how-to-use/install.tsx:185
+msgid "Nothing listed? Usually it's the CLI not on PATH. Check <0>archcore --version</0>. On Copilot, missing document tools mean step 2 (<1>archcore init --agent copilot</1>) was skipped."
+msgstr "Ничего не появилось? Обычно дело в том, что CLI нет в PATH. Проверьте <0>archcore --version</0>. В Copilot отсутствие инструментов для документов означает, что пропущен шаг 2 (<1>archcore init --agent copilot</1>)."
+
+#: src/content/how-to-use/idea-no-context.tsx:171
+#~ msgid "Nothing to lock down yet? Say \"just a plan\" — gates an existing document already covers close themselves, and the rest run question-free."
+#~ msgstr "Пока нечего фиксировать? Скажите «просто план» — шаги, которые уже закрыты существующим документом, закроются сами, а остальные пройдут без вопросов."
+
+#: src/content/how-to-use/idea-no-context.tsx:171
+msgid "Nothing to lock down yet? Say \"just a plan\". Gates an existing document already covers close themselves, and the rest run question-free."
+msgstr "Пока нечего фиксировать? Скажите «просто план». Шаги, которые уже закрыты существующим документом, закроются сами, а остальные пройдут без вопросов."
+
+#: src/content/how-to-use/quick-start.tsx:110
+#~ msgid "Offers an <0>adr → rule → guide</0> cascade — accept to also generate the team rule and a migration guide."
+#~ msgstr "Предлагает каскад <0>adr → rule → guide</0> — примите, чтобы заодно получить командное правило и миграционный гайд."
+
+#: src/content/how-to-use/quick-start.tsx:110
+msgid "Offers an <0>adr → rule → guide</0> cascade. Accept to also generate the team rule and a migration guide."
+msgstr "Предлагает каскад <0>adr → rule → guide</0>. Согласитесь, и он заодно сгенерирует командное правило и гайд по миграции."
+
+#: src/content/how-to-use/install.tsx:154
+#~ msgid "On Copilot the plugin ships no MCP server, so step 2 registers a project-level one — skip it and you get no document tools at all. Run it once per repo and commit the result. Copilot CLI only: VS Code agent mode has no self-serve plugin install."
+#~ msgstr "В Copilot плагин не поставляет MCP-сервер, поэтому шаг 2 регистрирует его на уровне проекта — без него инструментов для документов не будет вовсе. Выполните один раз на репозиторий и закоммитьте результат. Только Copilot CLI: в режиме агента VS Code самостоятельная установка плагина недоступна."
+
+#: src/content/how-to-use/install.tsx:154
+msgid "On Copilot the plugin ships no MCP server, so step 2 registers a project-level one. Skip it and you get no document tools at all. Run it once per repo and commit the result. Copilot CLI only: VS Code agent mode has no self-serve plugin install."
+msgstr "В Copilot плагин не поставляет MCP-сервер, поэтому шаг 2 регистрирует его на уровне проекта. Пропустите его, и инструментов для документов не будет вовсе. Выполните один раз на репозиторий и закоммитьте результат. Только Copilot CLI: в режиме агента VS Code самостоятельная установка плагина недоступна."
+
+#: src/components/sections/plugin-hero-section.tsx:105
+#~ msgid "On Copilot the plugin ships no MCP server, so step 2 wires it per repo — skip it and the agent has no document tools. Copilot CLI only; VS Code agent mode has no self-serve plugin install."
+#~ msgstr "В Copilot плагин не поставляет MCP-сервер, поэтому шаг 2 настраивает его для репозитория — без него у агента не будет инструментов для документов. Только Copilot CLI; в режиме агента VS Code самостоятельная установка плагина недоступна."
+
+#: src/components/sections/plugin-hero-section.tsx:105
+msgid "On Copilot the plugin ships no MCP server, so step 2 wires it per repo. Skip it and the agent has no document tools. Copilot CLI only; VS Code agent mode has no self-serve plugin install."
+msgstr "В Copilot плагин не поставляет MCP-сервер, поэтому шаг 2 настраивает его для репозитория. Пропустите его, и у агента не будет инструментов для документов. Только Copilot CLI; в режиме агента VS Code самостоятельная установка плагина недоступна."
+
+#: src/components/sections/plugin-hosts-section.tsx:112
+#~ msgid "On GitHub Copilot CLI the plugin cannot carry its own MCP server, so wiring the project once with <0>archcore init --agent copilot</0> is required, not optional — without it the document tools are missing."
+#~ msgstr "В GitHub Copilot CLI плагин не может нести собственный MCP-сервер, поэтому однократная настройка проекта через <0>archcore init --agent copilot</0> обязательна, а не опциональна — без неё инструментов для документов не будет."
+
+#: src/components/sections/plugin-hosts-section.tsx:112
+msgid "On GitHub Copilot CLI the plugin cannot carry its own MCP server, so wiring the project once with <0>archcore init --agent copilot</0> is required, not optional. Without it the document tools are missing."
+msgstr "В GitHub Copilot CLI плагин не может нести собственный MCP-сервер, поэтому однократная настройка проекта через <0>archcore init --agent copilot</0> обязательна, а не опциональна. Без неё инструментов для документов не будет."
 
 #: src/components/sections/hero-section.tsx:137
-msgid "One binary, local MCP in your repo — macOS, Linux, Windows."
-msgstr "Один бинарь, локальный MCP в репозитории — macOS, Linux, Windows."
+#~ msgid "One binary, local MCP in your repo — macOS, Linux, Windows."
+#~ msgstr "Один бинарь, локальный MCP в репозитории — macOS, Linux, Windows."
 
-#: src/content/how-to-use/install.tsx:178
+#: src/components/sections/hero-section.tsx:137
+msgid "One binary, local MCP in your repo. macOS, Linux, Windows."
+msgstr "Один бинарник, локальный MCP в репозитории. macOS, Linux, Windows."
+
+#: src/content/how-to-use/install.tsx:202
 msgid "One binary, no daemon, no account. After install, <0>archcore init</0> wires <1>.archcore/</1>, registers MCP, and installs session hooks for every coding agent it finds."
 msgstr "Один бинарник, без демона и аккаунта. После установки <0>archcore init</0> создаст <1>.archcore/</1>, зарегистрирует MCP и поставит session-хуки для каждого найденного агента."
 
 #: src/components/sections/cli-hero-section.tsx:43
-msgid "One binary. Local MCP in your repo. macOS, Linux, Windows — no external services."
-msgstr "Один бинарник. Локальный MCP внутри вашего репозитория. macOS, Linux, Windows — без внешних сервисов."
+#~ msgid "One binary. Local MCP in your repo. macOS, Linux, Windows — no external services."
+#~ msgstr "Один бинарник. Локальный MCP внутри вашего репозитория. macOS, Linux, Windows — без внешних сервисов."
+
+#: src/components/sections/cli-hero-section.tsx:43
+msgid "One binary. Local MCP in your repo. macOS, Linux, Windows, with no external services."
+msgstr "Один бинарник. Локальный MCP в репозитории. macOS, Linux, Windows, без внешних сервисов."
 
 #: src/components/sections/cli-repo-layout-section.tsx:60
 msgid "One command turns your repo into structured context."
@@ -938,26 +1290,38 @@ msgid "One config, every agent"
 msgstr "Один конфиг — все агенты"
 
 #: src/components/sections/migration-section.tsx:35
-msgid "One flat file for one tool becomes typed documents every agent can read — conventions as rules, the reasoning behind them as ADRs."
-msgstr "Один плоский файл под один инструмент превращается в типизированные документы, которые прочитает любой агент: соглашения — в правила, причины за ними — в ADR."
+#~ msgid "One flat file for one tool becomes typed documents every agent can read — conventions as rules, the reasoning behind them as ADRs."
+#~ msgstr "Один плоский файл под один инструмент превращается в типизированные документы, которые прочитает любой агент: соглашения — в правила, причины за ними — в ADR."
 
-#: src/content/how-to-use/install.tsx:128
+#: src/components/sections/migration-section.tsx:35
+msgid "One flat file for one tool becomes typed documents every agent can read: conventions as rules, the reasoning behind them as ADRs."
+msgstr "Один плоский файл под один инструмент превращается в типизированные документы, которые читает любой агент: соглашения становятся правилами, а рассуждения за ними превращаются в ADR."
+
+#: src/components/sections/plugin-problem-section.tsx:55
+#~ msgid "One install gives Claude Code, Cursor, Codex, and Copilot a memory that lives next to the code — injected automatically as the agent edits, with slash commands to capture new decisions as they happen."
+#~ msgstr "Одна установка даёт Claude Code, Cursor, Codex и Copilot память, которая живёт рядом с кодом: она подставляется автоматически во время правок, а slash-команды фиксируют новые решения по ходу работы."
+
+#: src/components/sections/plugin-problem-section.tsx:55
+msgid "One install gives Claude Code, Cursor, Codex, and Copilot a memory that lives next to the code, injected automatically as the agent edits, with slash commands to capture new decisions as they happen."
+msgstr "Одна установка даёт Claude Code, Cursor, Codex и Copilot память, которая живёт рядом с кодом и подставляется автоматически во время правок, а slash-команды фиксируют новые решения по ходу работы."
+
+#: src/content/how-to-use/install.tsx:130
 msgid "One marketplace command."
 msgstr "Одна команда из маркетплейса."
 
-#: src/content/how-to-use/install.tsx:213
+#: src/content/how-to-use/install.tsx:237
 msgid "Open a new PowerShell window after install so the PATH change is picked up. Then <0>archcore init</0> from your repo root."
 msgstr "После установки откройте новое окно PowerShell, чтобы PATH обновился. Затем выполните <0>archcore init</0> в корне репозитория."
 
-#: src/content/how-to-use/install.tsx:113
+#: src/content/how-to-use/install.tsx:115
 msgid "Open Cursor → Plugins → paste this URL:"
 msgstr "Откройте Cursor → Plugins → вставьте этот URL:"
 
-#: src/components/sections/sticky-header.tsx:155
+#: src/components/sections/sticky-header.tsx:163
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: src/components/sections/plugin-hero-section.tsx:72
+#: src/components/sections/plugin-hero-section.tsx:82
 msgid "Open Plugins → Add and paste URL:"
 msgstr "Откройте Plugins → Add и вставьте URL:"
 
@@ -966,7 +1330,7 @@ msgid "Open source · Local-first · No telemetry"
 msgstr "Open source · Local-first · Без телеметрии"
 
 #: src/components/sections/how-to-use-cta-section.tsx:91
-#: src/components/sections/sticky-header.tsx:23
+#: src/components/sections/sticky-header.tsx:22
 msgid "Open the interactive walkthrough"
 msgstr "Открыть интерактивный тур"
 
@@ -978,19 +1342,23 @@ msgstr "Открыть тур"
 msgid "Open walkthrough"
 msgstr "Открыть тур"
 
-#: src/content/how-to-use/install.tsx:228
+#: src/content/how-to-use/install.tsx:252
 msgid "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
-msgstr "Откройте кодинг-агента в корне проекта и задайте вопрос, для которого нужен MCP. Если агент отвечает — MCP подключён."
+msgstr "Откройте кодинг-агента в корне проекта и задайте вопрос, для которого нужен MCP. Если агент отвечает, значит, MCP подключён."
 
 #: src/content/how-to-use/idea-no-context.tsx:66
-msgid "Or invoke the MCP <0>product_track</0> prompt directly for the full cascade."
-msgstr "Или вызовите MCP-промпт <0>product_track</0> напрямую — он отработает весь каскад."
+#~ msgid "Or invoke the MCP <0>product_track</0> prompt directly for the full cascade."
+#~ msgstr "Или вызовите MCP-промпт <0>product_track</0> напрямую — он отработает весь каскад."
 
 #: src/components/sections/migration-section.tsx:43
-msgid "Path-scoped instruction files keep their scope, but gain status, timestamps, and relations — so you can see what is still accepted and what a later decision superseded."
-msgstr "Файлы инструкций, привязанные к путям, сохраняют свою область действия, но получают статус, даты и связи — видно, что ещё в силе, а что перекрыто более поздним решением."
+#~ msgid "Path-scoped instruction files keep their scope, but gain status, timestamps, and relations — so you can see what is still accepted and what a later decision superseded."
+#~ msgstr "Файлы инструкций, привязанные к путям, сохраняют свою область действия, но получают статус, даты и связи — видно, что ещё в силе, а что перекрыто более поздним решением."
 
-#: src/components/sections/cli-agents-section.tsx:103
+#: src/components/sections/migration-section.tsx:43
+msgid "Path-scoped instruction files keep their scope, but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded."
+msgstr "Файлы инструкций с привязкой к путям сохраняют свою область, но получают статус, отметки времени и связи, поэтому вы видите, что ещё в силе, а что отменило более позднее решение."
+
+#: src/components/sections/cli-agents-section.tsx:122
 msgid "Per-agent setup"
 msgstr "Настройка по каждому агенту"
 
@@ -998,15 +1366,19 @@ msgstr "Настройка по каждому агенту"
 msgid "Pick a module to capture."
 msgstr "Выберите модуль для захвата."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:249
+#: src/components/sections/how-to-use-wizard-section.tsx:278
 msgid "Pick a path"
 msgstr "Выберите путь"
 
 #: src/components/sections/how-to-use-cta-section.tsx:67
-msgid "Pick a path — install, quick start, capture existing code, or use a decision — and walk through copy-pasteable commands. Branches with both plugin and CLI flavors carry a toggle."
-msgstr "Выберите путь — установка, быстрый старт, захват существующего кода или использование решения — и пройдите по командам, которые можно скопировать. У веток с plugin и CLI есть переключатель."
+#~ msgid "Pick a path — install, quick start, capture existing code, or use a decision — and walk through copy-pasteable commands. Branches with both plugin and CLI flavors carry a toggle."
+#~ msgstr "Выберите путь — установка, быстрый старт, захват существующего кода или использование решения — и пройдите по командам, которые можно скопировать. У веток с plugin и CLI есть переключатель."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:455
+#: src/components/sections/how-to-use-cta-section.tsx:67
+msgid "Pick a path: install, quick start, capture existing code, or use a decision. Then walk through copy-pasteable commands. Branches with both plugin and CLI flavors carry a toggle."
+msgstr "Выберите путь: установка, быстрый старт, описание существующего кода или работа с решением. Дальше пройдите по командам, которые можно копировать. Ветки, где есть и плагин, и CLI, дают переключатель."
+
+#: src/components/sections/how-to-use-wizard-section.tsx:484
 msgid "Pick an option to continue."
 msgstr "Выберите вариант, чтобы продолжить."
 
@@ -1019,10 +1391,10 @@ msgid "Picks a random library it knows"
 msgstr "Берёт первую попавшуюся знакомую библиотеку"
 
 #: src/components/sections/plugin-hosts-section.tsx:47
-msgid "Planned"
-msgstr "В планах"
+#~ msgid "Planned"
+#~ msgstr "В планах"
 
-#: src/content/how-to-use/idea-no-context.tsx:209
+#: src/content/how-to-use/idea-no-context.tsx:210
 msgid "Plans break a spec into named, ordered tasks. This is the document the implementing agent reads at the start of every session."
 msgstr "План разбивает спеку на именованные упорядоченные задачи. Это документ, который реализующий агент читает в начале каждой сессии."
 
@@ -1031,9 +1403,9 @@ msgid "Please enter a valid email."
 msgstr "Введите корректный email."
 
 #: src/components/sections/hero-section.tsx:81
-#: src/components/sections/how-to-use-wizard-section.tsx:501
+#: src/components/sections/how-to-use-wizard-section.tsx:530
 #: src/components/sections/site-nav.tsx:20
-#: src/components/sections/sticky-header.tsx:32
+#: src/components/sections/sticky-header.tsx:31
 #: src/content/how-to-use/install.tsx:36
 msgid "Plugin"
 msgstr "Плагин"
@@ -1042,17 +1414,17 @@ msgstr "Плагин"
 #~ msgid "Plugin (recommended)"
 #~ msgstr "Плагин (рекомендуем)"
 
-#: src/components/sections/hero-section.tsx:181
-#: src/components/sections/plugin-hero-section.tsx:148
-#: src/components/sections/plugin-pillars-section.tsx:202
+#: src/components/sections/hero-section.tsx:186
+#: src/components/sections/plugin-hero-section.tsx:189
+#: src/components/sections/plugin-pillars-section.tsx:196
 msgid "Plugin docs"
 msgstr "Документация плагина"
 
-#: src/components/sections/plugin-faq-section.tsx:44
+#: src/components/sections/plugin-faq-section.tsx:51
 msgid "Plugin FAQ"
 msgstr "FAQ по плагину"
 
-#: src/components/sections/cli-agents-section.tsx:78
+#: src/components/sections/cli-agents-section.tsx:92
 msgid "Plugin host too"
 msgstr "Ещё и хост плагина"
 
@@ -1064,7 +1436,7 @@ msgstr "Плагин в действии"
 msgid "Plugin marketplace"
 msgstr "Маркетплейс плагинов"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:485
+#: src/components/sections/how-to-use-wizard-section.tsx:514
 msgid "Plugin or CLI surface"
 msgstr "Плагин или CLI"
 
@@ -1072,21 +1444,25 @@ msgstr "Плагин или CLI"
 msgid "Plugin or CLI?"
 msgstr "Плагин или CLI?"
 
-#: src/components/sections/plugin-pillars-section.tsx:212
+#: src/components/sections/plugin-pillars-section.tsx:206
 msgid "Plugin repo"
 msgstr "Репозиторий плагина"
 
-#: src/content/how-to-use/install.tsx:111
+#: src/content/how-to-use/install.tsx:113
 msgid "Plugins panel → paste URL."
 msgstr "Раздел Plugins → вставить URL."
 
-#: src/content/how-to-use/install.tsx:207
-msgid "PowerShell — single irm line."
-msgstr "PowerShell — одна irm-строчка."
+#: src/content/how-to-use/install.tsx:231
+#~ msgid "PowerShell — single irm line."
+#~ msgstr "PowerShell — одна irm-строчка."
+
+#: src/content/how-to-use/install.tsx:231
+msgid "PowerShell: single irm line."
+msgstr "PowerShell: одна строка с irm."
 
 #: src/content/how-to-use/idea-no-context.tsx:88
 msgid "PRDs answer the \"why now, and how do we know it worked\" questions an idea deliberately skips. The agent reads the idea and asks you only what's still missing."
-msgstr "PRD отвечает на вопросы «почему сейчас» и «как мы поймём, что сработало» — идея их сознательно пропускает. Агент читает идею и спрашивает только то, чего не хватает."
+msgstr "PRD отвечает на вопросы «почему сейчас» и «как мы поймём, что сработало». Идея их сознательно пропускает. Агент читает идею и спрашивает только то, чего не хватает."
 
 #: src/components/sections/cli-repo-layout-section.tsx:25
 msgid "PRDs, roadmaps"
@@ -1102,7 +1478,7 @@ msgstr "Production"
 
 #: src/components/sections/migration-section.tsx:51
 msgid "Prose your team already wrote gets a type and a place in the graph, so an agent pulls the guide for the directory it is editing instead of grepping the whole folder."
-msgstr "Текст, который команда уже написала, получает тип и место в графе — агент подтягивает гайд для той директории, которую правит, вместо грепа по всей папке."
+msgstr "Текст, который команда уже написала, получает тип и место в графе, и агент подтягивает гайд для той директории, которую правит, вместо грепа по всей папке."
 
 #: src/components/sections/before-after-section.tsx:38
 msgid "Pulls the rule for src/auth/ error shapes"
@@ -1112,7 +1488,7 @@ msgstr "Подтягивает правило по форматам ошибок
 msgid "Queryable across agents"
 msgstr "Доступно из любых агентов"
 
-#: src/content/how-to-use/quick-start.tsx:15
+#: src/content/how-to-use/quick-start.tsx:16
 msgid "Quick start in your project"
 msgstr "Быстрый старт в вашем проекте"
 
@@ -1128,29 +1504,53 @@ msgstr "Читать документацию CLI"
 msgid "Reads the folder, picks <0>type=spec</0> automatically."
 msgstr "Читает папку, сам выбирает <0>type=spec</0>."
 
-#: src/components/sections/star-cta-section.tsx:97
+#: src/components/sections/star-cta-section.tsx:115
 msgid "Ready to try? Install now"
 msgstr "Готовы попробовать? К установке"
 
-#: src/components/sections/plugin-pillars-section.tsx:92
-msgid "Record a decision and make it a team rule"
-msgstr "Зафиксировать решение и превратить его в командное правило"
+#: src/content/how-to-use/quick-start.tsx:104
+#~ msgid "Recognizes this as a decision and runs the decision track — drafting <0>use-postgres.adr.md</0> with status, context, decision, consequences."
+#~ msgstr "Распознаёт это как решение и запускает трек решений — готовит <0>use-postgres.adr.md</0> со статусом, контекстом, решением и последствиями."
 
-#: src/content/how-to-use/quick-start.tsx:79
+#: src/content/how-to-use/quick-start.tsx:104
+msgid "Recognizes this as a decision and runs the decision track, drafting <0>use-postgres.adr.md</0> with status, context, decision, consequences."
+msgstr "Распознаёт это как решение и запускает трек решений, готовя <0>use-postgres.adr.md</0> со статусом, контекстом, решением и последствиями."
+
+#: src/components/sections/plugin-pillars-section.tsx:92
+#~ msgid "Record a decision and make it a team rule"
+#~ msgstr "Зафиксировать решение и превратить его в командное правило"
+
+#: src/components/sections/plugin-pillars-section.tsx:86
+msgid "Record a decision or document what lives in code"
+msgstr "Зафиксировать решение или описать то, что живёт в коде"
+
+#: src/content/how-to-use/quick-start.tsx:91
 msgid "Record a real decision."
 msgstr "Запишите реальное решение."
 
 #: src/components/sections/plugin-pillars-section.tsx:58
-msgid "Record an ADR and (optionally) make it a team rule that auto-applies to every future edit in the same area."
-msgstr "Записать ADR и (при желании) превратить его в командное правило, которое автоматически применится ко всем будущим правкам в этой области."
+#~ msgid "Record an ADR and (optionally) make it a team rule that auto-applies to every future edit in the same area."
+#~ msgstr "Записать ADR и (при желании) превратить его в командное правило, которое автоматически применится ко всем будущим правкам в этой области."
+
+#: src/components/sections/plugin-pillars-section.tsx:56
+#~ msgid "Record an ADR or RFC, optionally codified as a team rule that auto-applies to every future edit in the same area — or document a module that only lives in someone's head."
+#~ msgstr "Запишите ADR или RFC и при желании закрепите его командным правилом, которое само применяется ко всем будущим правкам в этой области, — или опишите модуль, который существует только в чьей-то голове."
+
+#: src/components/sections/plugin-pillars-section.tsx:56
+msgid "Record an ADR or RFC, optionally codified as a team rule that auto-applies to every future edit in the same area. Or document a module that only lives in someone's head."
+msgstr "Запишите ADR или RFC и при желании закрепите его командным правилом, которое само применяется ко всем будущим правкам в этой области. Или опишите модуль, который существует только в чьей-то голове."
 
 #: src/components/sections/before-after-section.tsx:27
 msgid "Reinvents conventions the team already settled"
 msgstr "Заново изобретает соглашения, уже принятые командой"
 
 #: src/content/how-to-use/capture-existing.tsx:170
-msgid "Relations are wired automatically — the rule <0>implements</0> the spec, the guide is <1>related</1> to the rule."
-msgstr "Связи прописываются автоматически — правило <0>implements</0> спеку, гайд <1>related</1> правилу."
+#~ msgid "Relations are wired automatically — the rule <0>implements</0> the spec, the guide is <1>related</1> to the rule."
+#~ msgstr "Связи прописываются автоматически — правило <0>implements</0> спеку, гайд <1>related</1> правилу."
+
+#: src/content/how-to-use/capture-existing.tsx:170
+msgid "Relations are wired automatically: the rule <0>implements</0> the spec, the guide is <1>related</1> to the rule."
+msgstr "Связи проставляются автоматически: правило <0>implements</0> спеку, а гайд <1>related</1> к правилу."
 
 #: src/components/sections/cli-hero-section.tsx:19
 msgid "Repo memory<0/>for every AI coding agent."
@@ -1161,18 +1561,18 @@ msgid "Repo-native directory for decisions, rules, plans, guides, and specs."
 msgstr "Папка прямо в репозитории для решений, правил, планов, гайдов и спецификаций."
 
 #: src/content/how-to-use/use-context.tsx:104
-msgid "Reports missing relations, orphaned documents, and decisions whose target code paths have moved."
-msgstr "Покажет недостающие связи, осиротевшие документы и решения, чьи целевые пути в коде уехали."
+#~ msgid "Reports missing relations, orphaned documents, and decisions whose target code paths have moved."
+#~ msgstr "Покажет недостающие связи, осиротевшие документы и решения, чьи целевые пути в коде уехали."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:211
+#: src/components/sections/how-to-use-wizard-section.tsx:240
 msgid "Restart"
 msgstr "Сначала"
 
-#: src/content/how-to-use/install.tsx:151
+#: src/content/how-to-use/install.tsx:171
 msgid "Restart the host so the session-start hook can run, then check that the slash commands are wired up."
 msgstr "Перезапустите агента, чтобы сработал session-start хук, и убедитесь, что slash-команды подцепились."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:208
+#: src/components/sections/how-to-use-wizard-section.tsx:237
 msgid "Restart walkthrough"
 msgstr "Пройти заново"
 
@@ -1180,58 +1580,85 @@ msgstr "Пройти заново"
 msgid "Reuses the existing middleware pattern"
 msgstr "Переиспользует существующий паттерн middleware"
 
+#: src/components/sections/plugin-pillars-section.tsx:64
+#~ msgid "Review the branch against your recorded rules and decisions, in both directions — code that broke a doc, and docs the code left behind."
+#~ msgstr "Сверьте ветку с записанными правилами и решениями в обе стороны — код, сломавший документ, и документы, от которых код ушёл вперёд."
+
+#: src/components/sections/plugin-pillars-section.tsx:64
+msgid "Review the branch against your recorded rules and decisions, in both directions: code that broke a doc, and docs the code left behind."
+msgstr "Сверьте ветку с записанными правилами и решениями в обе стороны: код, который сломал документ, и документы, от которых код ушёл вперёд."
+
+#: src/content/how-to-use/use-context.tsx:102
+#~ msgid "Reviews the branch both ways — code that broke a document, and documents the code left behind."
+#~ msgstr "Проверяет ветку в обе стороны — код, сломавший документ, и документы, от которых код ушёл вперёд."
+
+#: src/content/how-to-use/use-context.tsx:102
+msgid "Reviews the branch both ways: code that broke a document, and documents the code left behind."
+msgstr "Проверяет ветку в обе стороны: код, который сломал документ, и документы, от которых код ушёл вперёд."
+
 #: src/components/sections/migration-section.tsx:33
 msgid "Rules and decisions"
 msgstr "Правила и решения"
 
-#: src/content/how-to-use/install.tsx:209
+#: src/content/how-to-use/install.tsx:233
 msgid "Run in PowerShell:"
 msgstr "Запустите в PowerShell:"
 
-#: src/content/how-to-use/install.tsx:130
+#: src/content/how-to-use/install.tsx:132
+msgid "Run in your shell, then install from /plugins:"
+msgstr "Выполните в терминале, затем установите через /plugins:"
+
+#: src/content/how-to-use/install.tsx:150
 msgid "Run in your shell:"
 msgstr "Запустите в терминале:"
 
 #: src/components/cta/team-setup-dialog.tsx:106
-#: src/pages/teams-getting-started.tsx:142
+#: src/pages/teams-getting-started.tsx:157
 msgid "Run in your terminal"
 msgstr "Запустите в терминале"
 
 #: src/components/cta/docker-start-dialog.tsx:51
-#: src/components/cta/install-command.tsx:218
-#: src/content/how-to-use/install.tsx:192
+#: src/components/cta/install-command.tsx:252
+#: src/content/how-to-use/install.tsx:216
 msgid "Run in your terminal:"
 msgstr "Запустите в терминале:"
 
-#: src/components/sections/hero-section.tsx:161
-#: src/components/sections/plugin-hero-section.tsx:61
-#: src/content/how-to-use/install.tsx:97
+#: src/components/sections/hero-section.tsx:166
+#: src/components/sections/plugin-hero-section.tsx:71
+#: src/content/how-to-use/install.tsx:99
 msgid "Run inside Claude Code:"
 msgstr "Запустите внутри Claude Code:"
 
 #: src/content/how-to-use/capture-existing.tsx:33
 #: src/content/how-to-use/capture-existing.tsx:156
 #: src/content/how-to-use/idea-no-context.tsx:34
-#: src/content/how-to-use/quick-start.tsx:31
-#: src/content/how-to-use/quick-start.tsx:89
-#: src/content/how-to-use/use-context.tsx:33
-#: src/content/how-to-use/use-context.tsx:97
+#: src/content/how-to-use/quick-start.tsx:32
+#: src/content/how-to-use/quick-start.tsx:101
+#: src/content/how-to-use/use-context.tsx:99
 msgid "Run inside your agent:"
 msgstr "Запустите внутри агента:"
 
-#: src/content/how-to-use/quick-start.tsx:168
+#: src/content/how-to-use/use-context.tsx:113
+msgid "Run it before merging anything that touches documented code. On the default branch or an empty diff it reports project health instead."
+msgstr "Запускайте перед мержем всего, что затрагивает документированный код. На основной ветке или при пустом дифе вместо этого выводится сводка о здоровье проекта."
+
+#: src/content/how-to-use/quick-start.tsx:182
 msgid "Run on the shell, then ask:"
 msgstr "Запустите в шелле, затем спросите:"
 
 #: src/content/how-to-use/use-context.tsx:110
-msgid "Run this before merging anything that touches code under captured documents — three seconds, one report."
-msgstr "Запускайте перед мёрджем всего, что трогает код под захваченными документами — три секунды, один отчёт."
+#~ msgid "Run this before merging anything that touches code under captured documents — three seconds, one report."
+#~ msgstr "Запускайте перед мёрджем всего, что трогает код под захваченными документами — три секунды, один отчёт."
 
 #: src/components/sections/migration-section.tsx:67
-msgid "Running <0>{importCommand}</0> imports the instruction files you already wrote — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as typed documents. The context you wrote carries over; it just stops being one flat file per tool."
-msgstr "<0>{importCommand}</0> импортирует файлы инструкций, которые вы уже написали — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — как типизированные документы. Написанный вами контекст переносится; он просто перестаёт быть одним плоским файлом на инструмент."
+#~ msgid "Running <0>{importCommand}</0> imports the instruction files you already wrote — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as typed documents. The context you wrote carries over; it just stops being one flat file per tool."
+#~ msgstr "<0>{importCommand}</0> импортирует файлы инструкций, которые вы уже написали — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — как типизированные документы. Написанный вами контекст переносится; он просто перестаёт быть одним плоским файлом на инструмент."
 
-#: src/components/sections/plugin-hosts-section.tsx:111
+#: src/components/sections/migration-section.tsx:67
+msgid "Running <0>{importCommand}</0> imports the instruction files you already wrote (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents. The context you wrote carries over; it just stops being one flat file per tool."
+msgstr "Команда <0>{importCommand}</0> импортирует файлы инструкций, которые вы уже написали (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*), как типизированные документы. Написанный вами контекст переносится, он просто перестаёт быть одним плоским файлом на инструмент."
+
+#: src/components/sections/plugin-hosts-section.tsx:123
 msgid "Running Gemini CLI, OpenCode, Roo Code, or Cline? The CLI wires all eight supported agents over MCP and session hooks."
 msgstr "Работаете в Gemini CLI, OpenCode, Roo Code или Cline? CLI подключает все восемь поддерживаемых агентов через MCP и хуки сессии."
 
@@ -1243,15 +1670,23 @@ msgstr "Работаете в Gemini CLI, OpenCode, Roo Code или Cline? CLI �
 msgid "Same prompt. Different agent."
 msgstr "Тот же промпт. Другой агент."
 
+#: src/content/how-to-use/capture-existing.tsx:159
+msgid "Say \"make this our team standard\" and the decision track offers a <0>spec → rule → guide</0> continuation cascade."
+msgstr "Скажите «сделай это нашим стандартом», и трек решений предложит продолжающий каскад <0>spec → rule → guide</0>."
+
 #: src/components/sections/migration-section.tsx:41
 msgid "Scoped rules"
 msgstr "Правила с областью действия"
 
 #: src/components/sections/how-to-use-cta-section.tsx:63
-msgid "See it in action — an interactive walkthrough."
-msgstr "Посмотрите, как это работает — интерактивный тур."
+#~ msgid "See it in action — an interactive walkthrough."
+#~ msgstr "Посмотрите, как это работает — интерактивный тур."
 
-#: src/components/sections/plugin-hosts-section.tsx:125
+#: src/components/sections/how-to-use-cta-section.tsx:63
+msgid "See it in action, in an interactive walkthrough."
+msgstr "Посмотрите в действии, в интерактивном разборе."
+
+#: src/components/sections/plugin-hosts-section.tsx:138
 msgid "See the CLI path"
 msgstr "Посмотреть путь через CLI"
 
@@ -1261,7 +1696,7 @@ msgstr "Почувствуйте разницу"
 
 #: src/content/how-to-use/capture-existing.tsx:222
 msgid "See the document-types reference in the docs for when to reach for spec vs doc vs guide."
-msgstr "Когда использовать spec, doc или guide — смотрите справочник типов документов в документации."
+msgstr "Когда использовать spec, doc или guide, смотрите справочник типов документов в документации."
 
 #: src/components/sections/cli-repo-layout-section.tsx:48
 msgid "Session hooks load the rules and ADRs for what you're touching."
@@ -1271,9 +1706,21 @@ msgstr "Хуки сессии подгружают правила и ADR для 
 msgid "Set up .archcore/ in your repo"
 msgstr "Создаёт .archcore/ в репозитории"
 
-#: src/components/sections/cli-faq-section.tsx:35
+#: src/components/sections/cli-faq-section.tsx:36
 msgid "Should I install the plugin instead?"
 msgstr "Не лучше ли установить плагин?"
+
+#: src/content/how-to-use/quick-start.tsx:47
+#~ msgid "Shows all of it in one preview — nothing is written until you confirm once."
+#~ msgstr "Показывает всё это одним превью — до вашего единственного подтверждения ничего не пишется."
+
+#: src/content/how-to-use/quick-start.tsx:47
+msgid "Shows all of it in one preview. Nothing is written until you confirm once."
+msgstr "Показывает всё это одним превью. До вашего единственного подтверждения ничего не пишется."
+
+#: src/content/how-to-use/use-context.tsx:52
+msgid "Since v0.7.0 this needs no command at all: the pre-write hook matches the file being edited and injects what applies, and the session opens with a recap of what's decided and in progress."
+msgstr "С версии v0.7.0 для этого не нужна никакая команда: хук перед записью определяет правимый файл и подставляет то, что к нему относится, а сессия начинается со сводки решённого и текущего."
 
 #: src/components/sections/site-nav.tsx:46
 msgid "Site navigation"
@@ -1283,13 +1730,17 @@ msgstr "Навигация по сайту"
 #~ msgid "So your agents follow your architecture instead of guessing from a flat CLAUDE.md."
 #~ msgstr "Чтобы агенты следовали твоей архитектуре, а не гадали по плоскому CLAUDE.md."
 
-#: src/content/how-to-use/use-context.tsx:16
+#: src/content/how-to-use/use-context.tsx:17
 msgid "Solve tasks with existing context"
 msgstr "Решайте задачи с уже существующим контекстом"
 
 #: src/content/how-to-use/capture-existing.tsx:90
-msgid "Some behavior lives across many folders — webhook delivery, auth middleware, queue retry. These are the highest-value specs because they're the hardest for an agent to grep for."
-msgstr "Часть поведения живёт сразу в нескольких папках — доставка вебхуков, auth-middleware, ретраи в очереди. Эти спеки самые ценные — их агенту тяжелее всего нагрепать."
+#~ msgid "Some behavior lives across many folders — webhook delivery, auth middleware, queue retry. These are the highest-value specs because they're the hardest for an agent to grep for."
+#~ msgstr "Часть поведения живёт сразу в нескольких папках — доставка вебхуков, auth-middleware, ретраи в очереди. Эти спеки самые ценные — их агенту тяжелее всего нагрепать."
+
+#: src/content/how-to-use/capture-existing.tsx:90
+msgid "Some behavior lives across many folders: webhook delivery, auth middleware, queue retry. These are the highest-value specs because they're the hardest for an agent to grep for."
+msgstr "Часть поведения живёт сразу в нескольких папках: доставка вебхуков, auth-middleware, ретраи в очереди. Эти спеки самые ценные, потому что их агенту тяжелее всего нагрепать."
 
 #: src/components/cta/inline-email-capture.tsx:53
 #: src/components/cta/inline-email-capture.tsx:57
@@ -1301,52 +1752,69 @@ msgid "Specs describe what the system does. Rules describe what humans (and agen
 msgstr "Спеки описывают, что делает система. Правила — что должны делать люди (и агенты), когда её меняют. Гайды проводят новых через это."
 
 #: src/content/how-to-use/idea-no-context.tsx:149
-msgid "Specs describe what the system must do — interfaces, invariants, edge cases. They sit between PRDs (the \"why\") and plans (the \"how\")."
-msgstr "Спеки описывают, что система должна делать — интерфейсы, инварианты, краевые случаи. Они стоят между PRD («зачем») и планами («как»)."
+#~ msgid "Specs describe what the system must do — interfaces, invariants, edge cases. They sit between PRDs (the \"why\") and plans (the \"how\")."
+#~ msgstr "Спеки описывают, что система должна делать — интерфейсы, инварианты, краевые случаи. Они стоят между PRD («зачем») и планами («как»)."
 
-#: src/components/sections/star-cta-section.tsx:67
-#: src/components/sections/sticky-header.tsx:126
+#: src/content/how-to-use/idea-no-context.tsx:149
+msgid "Specs describe what the system must do: interfaces, invariants, edge cases. They sit between PRDs (the \"why\") and plans (the \"how\")."
+msgstr "Спеки описывают, что система обязана делать: интерфейсы, инварианты, крайние случаи. Они стоят между PRD (это «зачем») и планами (это «как»)."
+
+#: src/components/sections/star-cta-section.tsx:74
+#: src/components/sections/sticky-header.tsx:125
 msgid "Star Archcore on GitHub"
 msgstr "Поставить звезду Archcore на GitHub"
 
-#: src/components/sections/cli-hero-section.tsx:58
-#: src/components/sections/hero-section.tsx:148
+#: src/components/sections/cli-hero-section.tsx:63
+#: src/components/sections/hero-section.tsx:153
 msgid "Star CLI on GitHub"
 msgstr "Поставить звезду CLI на GitHub"
 
 #: src/components/sections/cli-repo-layout-section.tsx:130
-#: src/components/sections/star-cta-section.tsx:85
+#: src/components/sections/star-cta-section.tsx:97
 msgid "Star on GitHub"
 msgstr "Поставить звезду на GitHub"
 
-#: src/components/sections/hero-section.tsx:179
-#: src/components/sections/plugin-hero-section.tsx:66
-#: src/components/sections/plugin-hero-section.tsx:74
-#: src/components/sections/plugin-hero-section.tsx:82
+#: src/components/sections/hero-section.tsx:184
+#: src/components/sections/plugin-hero-section.tsx:76
+#: src/components/sections/plugin-hero-section.tsx:84
+#: src/components/sections/plugin-hero-section.tsx:92
+#: src/components/sections/plugin-hero-section.tsx:103
 msgid "Star plugin on GitHub"
 msgstr "Поставить звезду плагину на GitHub"
 
-#: src/components/sections/cli-hero-section.tsx:92
+#: src/components/sections/cli-hero-section.tsx:97
 msgid "Star the CLI on GitHub"
 msgstr "Поставить звезду CLI на GitHub"
 
-#: src/components/sections/plugin-hero-section.tsx:103
+#: src/components/sections/plugin-hero-section.tsx:132
 msgid "Star the plugin on GitHub"
 msgstr "Поставить звезду плагину на GitHub"
 
 #: src/content/how-to-use/capture-existing.tsx:25
-msgid "Start with one folder that an agent keeps re-discovering. The output is usually a <0>.spec.md</0> — a contract describing what the module guarantees."
-msgstr "Начните с одной папки, которую агент постоянно переоткрывает заново. На выходе обычно <0>.spec.md</0> — контракт того, что модуль гарантирует."
+#~ msgid "Start with one folder that an agent keeps re-discovering. The output is usually a <0>.spec.md</0> — a contract describing what the module guarantees."
+#~ msgstr "Начните с одной папки, которую агент постоянно переоткрывает заново. На выходе обычно <0>.spec.md</0> — контракт того, что модуль гарантирует."
+
+#: src/content/how-to-use/capture-existing.tsx:25
+msgid "Start with one folder that an agent keeps re-discovering. The output is usually a <0>.spec.md</0>, a contract describing what the module guarantees."
+msgstr "Начните с одной папки, которую агент раз за разом переоткрывает. На выходе обычно получается <0>.spec.md</0>, контракт с описанием того, что модуль гарантирует."
 
 #: src/content/how-to-use/idea-no-context.tsx:37
-msgid "Starts the <0>product</0> track cascade — first stop is an <1>.idea.md</1>."
-msgstr "Запускает каскад трека <0>product</0> — первая остановка — <1>.idea.md</1>."
+#~ msgid "Starts the <0>product</0> track cascade — first stop is an <1>.idea.md</1>."
+#~ msgstr "Запускает каскад трека <0>product</0> — первая остановка — <1>.idea.md</1>."
+
+#: src/content/how-to-use/idea-no-context.tsx:37
+#~ msgid "Starts the default <0>sdd</0> track — first stop is an <1>.idea.md</1>."
+#~ msgstr "Запускает трек <0>sdd</0> по умолчанию — первая остановка <1>.idea.md</1>."
+
+#: src/content/how-to-use/idea-no-context.tsx:37
+msgid "Starts the default <0>sdd</0> track: first stop is an <1>.idea.md</1>."
+msgstr "Запускает трек <0>sdd</0> по умолчанию. Первая остановка: <1>.idea.md</1>."
 
 #: src/components/sections/plugin-hosts-section.tsx:78
 msgid "Status"
 msgstr "Статус"
 
-#: src/components/sections/how-to-use-wizard-section.tsx:565
+#: src/components/sections/how-to-use-wizard-section.tsx:594
 msgid "Step {current} of {total}"
 msgstr "Шаг {current} из {total}"
 
@@ -1354,91 +1822,135 @@ msgstr "Шаг {current} из {total}"
 msgid "Stop re-explaining your repo<0/>to every AI agent."
 msgstr "Перестаньте заново объяснять свой репозиторий<0/>каждому AI-агенту."
 
-#: src/content/how-to-use/quick-start.tsx:215
+#: src/content/how-to-use/quick-start.tsx:229
 msgid "Suggested next asks:"
 msgstr "Что спросить дальше:"
 
-#: src/content/how-to-use/quick-start.tsx:203
+#: src/content/how-to-use/quick-start.tsx:217
 msgid "Suggested next commands:"
 msgstr "Какие команды попробовать дальше:"
 
-#: src/components/sections/cli-agents-section.tsx:44
+#: src/components/sections/cli-agents-section.tsx:58
 msgid "Supported agents"
 msgstr "Поддерживаемые агенты"
 
 #: src/content/how-to-use/use-context.tsx:36
-msgid "Surfaces <0>billing-format.spec.md</0>."
-msgstr "Подтягивает <0>billing-format.spec.md</0>."
+#~ msgid "Surfaces <0>billing-format.spec.md</0>."
+#~ msgstr "Подтягивает <0>billing-format.spec.md</0>."
 
 #: src/content/how-to-use/quick-start.tsx:39
-msgid "Surfaces 2-3 hotspot modules worth capturing next."
-msgstr "Подсветит 2-3 «горячих» модуля, которые стоит захватить следующими."
+#~ msgid "Surfaces 2-3 hotspot modules worth capturing next."
+#~ msgstr "Подсветит 2-3 «горячих» модуля, которые стоит захватить следующими."
 
 #: src/content/how-to-use/idea-no-context.tsx:156
-msgid "Switch the cascade track:"
-msgstr "Переключите трек каскада:"
+#~ msgid "Switch the cascade track:"
+#~ msgstr "Переключите трек каскада:"
 
 #: src/components/cta/inline-email-capture.tsx:33
 msgid "Thanks! We'll be in touch."
 msgstr "Спасибо! Мы свяжемся с вами."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:616
+#: src/components/sections/how-to-use-wizard-section.tsx:645
 msgid "That's the gist. Pick another path to keep exploring, or jump straight to the install commands."
 msgstr "Вот, собственно, и всё. Выберите другой путь или сразу переходите к командам установки."
 
 #: src/content/how-to-use/idea-no-context.tsx:160
-msgid "The <0>feature</0> track inserts a <1>.spec.md</1> stop between PRD and plan."
-msgstr "Трек <0>feature</0> вставляет остановку <1>.spec.md</1> между PRD и планом."
+#~ msgid "The <0>feature</0> track inserts a <1>.spec.md</1> stop between PRD and plan."
+#~ msgstr "Трек <0>feature</0> вставляет остановку <1>.spec.md</1> между PRD и планом."
 
 #: src/content/how-to-use/idea-no-context.tsx:128
-msgid "The <0>implements</0> relation is an explicit MCP call — review and approve."
-msgstr "Связь <0>implements</0> — отдельный MCP-вызов, посмотрите и подтвердите."
+#~ msgid "The <0>implements</0> relation is an explicit MCP call — review and approve."
+#~ msgstr "Связь <0>implements</0> — отдельный MCP-вызов, посмотрите и подтвердите."
 
-#: src/content/how-to-use/quick-start.tsx:176
+#: src/content/how-to-use/idea-no-context.tsx:128
+msgid "The <0>implements</0> relation is an explicit MCP call: review and approve."
+msgstr "Связь <0>implements</0> ставится явным вызовом MCP: посмотрите и подтвердите."
+
+#: src/content/how-to-use/idea-no-context.tsx:160
+msgid "The <0>sdd</0> track puts a <1>.spec.md</1> stop between PRD and plan by default."
+msgstr "Трек <0>sdd</0> по умолчанию ставит остановку <1>.spec.md</1> между PRD и планом."
+
+#: src/content/how-to-use/idea-no-context.tsx:48
+msgid "The <0>sdd</0> track runs idea → PRD → spec → plan. Name <1>sources</1> for market discovery (MRD → BRD → URD) or <2>iso</2> for an ISO 29148 cascade."
+msgstr "Трек <0>sdd</0> идёт idea → PRD → spec → plan. Укажите <1>sources</1> для исследования рынка (MRD → BRD → URD) или <2>iso</2> для каскада по ISO 29148."
+
+#: src/content/how-to-use/quick-start.tsx:190
 msgid "The agent's <0>list_relations</0> call returns the explicit edges you wired."
 msgstr "Вызов <0>list_relations</0> у агента вернёт связи, которые вы прописали."
 
 #: src/components/sections/plugin-hero-section.tsx:38
-msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
-msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI — чтобы агент перестал угадывать и начал следовать команде."
+#~ msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth."
+#~ msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI — чтобы агент перестал угадывать и начал следовать команде."
 
 #: src/pages/plugin.tsx:25
-msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth."
-msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI, чтобы агент следовал договорённостям вашей команды."
+#~ msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI, so the agent follows your team's truth."
+#~ msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor и Codex CLI, чтобы агент следовал договорённостям вашей команды."
 
-#: src/content/how-to-use/idea-no-context.tsx:270
+#: src/components/sections/plugin-hero-section.tsx:45
+#~ msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI — so the agent stops guessing and starts following your team's truth."
+#~ msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor, Codex CLI и GitHub Copilot CLI — чтобы агент перестал угадывать и начал следовать правде вашей команды."
+
+#: src/components/sections/plugin-hero-section.tsx:45
+msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI, so the agent stops guessing and starts following your team's truth."
+msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor, Codex CLI и GitHub Copilot CLI, чтобы агент перестал угадывать и начал следовать правде вашей команды."
+
+#: src/pages/plugin.tsx:26
+msgid "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex, and Copilot CLI, so the agent follows your team's truth."
+msgstr "Плагин Archcore загружает вашу архитектуру, правила и решения в Claude Code, Cursor, Codex и Copilot CLI, чтобы агент следовал правде вашей команды."
+
+#: src/content/how-to-use/idea-no-context.tsx:271
 msgid "The cascade gave you four linked documents. Here's how to put them to work in your next coding session."
 msgstr "Каскад выдал вам четыре связанных документа. Как пустить их в работу в следующей сессии кодинга — ниже."
 
 #: src/content/how-to-use/idea-no-context.tsx:112
-msgid "The cascade pauses at each gate — you can edit the draft in your editor before accepting and moving on."
-msgstr "Каскад замирает на каждом гейте — черновик можно поправить в редакторе, потом принять и двигаться дальше."
+#~ msgid "The cascade pauses at each gate — you can edit the draft in your editor before accepting and moving on."
+#~ msgstr "Каскад замирает на каждом гейте — черновик можно поправить в редакторе, потом принять и двигаться дальше."
+
+#: src/content/how-to-use/idea-no-context.tsx:112
+msgid "The cascade pauses at each gate. You can edit the draft in your editor before accepting and moving on."
+msgstr "Каскад останавливается на каждом шаге. Вы можете поправить черновик в редакторе, прежде чем принять его и идти дальше."
 
 #: src/content/how-to-use/idea-no-context.tsx:26
-msgid "The cheapest unit of vision context is an <0>.idea.md</0> — one paragraph of intent, no commitment yet. Land that before you reach for PRD or plan."
-msgstr "Самая дешёвая единица «видения» — <0>.idea.md</0>: один абзац намерения, без обязательств. Сделайте её до того, как браться за PRD или план."
+#~ msgid "The cheapest unit of vision context is an <0>.idea.md</0> — one paragraph of intent, no commitment yet. Land that before you reach for PRD or plan."
+#~ msgstr "Самая дешёвая единица «видения» — <0>.idea.md</0>: один абзац намерения, без обязательств. Сделайте её до того, как браться за PRD или план."
+
+#: src/content/how-to-use/idea-no-context.tsx:26
+msgid "The cheapest unit of vision context is an <0>.idea.md</0>, one paragraph of intent, no commitment yet. Land that before you reach for PRD or plan."
+msgstr "Самая дешёвая единица vision-контекста называется <0>.idea.md</0>: один абзац намерения, пока без обязательств. Заведите его прежде, чем браться за PRD или план."
 
 #: src/content/how-to-use/install.tsx:49
-msgid "The CLI installs as a prerequisite — the plugin invokes <0>archcore</0> from your PATH."
-msgstr "CLI ставится как предусловие — плагин вызывает <0>archcore</0> из PATH."
+#~ msgid "The CLI installs as a prerequisite — the plugin invokes <0>archcore</0> from your PATH."
+#~ msgstr "CLI ставится как предусловие — плагин вызывает <0>archcore</0> из PATH."
 
 #: src/content/how-to-use/install.tsx:60
-msgid "The core context layer for any MCP-aware agent — Copilot, Gemini CLI, OpenCode, Cline. One binary, scriptable in CI."
-msgstr "Базовый слой контекста для любого MCP-агента — Copilot, Gemini CLI, OpenCode, Cline. Один бинарник, скриптуется в CI."
+#~ msgid "The core context layer for any MCP-aware agent — Copilot, Gemini CLI, OpenCode, Cline. One binary, scriptable in CI."
+#~ msgstr "Базовый слой контекста для любого MCP-агента — Copilot, Gemini CLI, OpenCode, Cline. Один бинарник, скриптуется в CI."
+
+#: src/content/how-to-use/install.tsx:62
+#~ msgid "The core context layer for any MCP-aware agent — Gemini CLI, OpenCode, Roo Code, Cline. One binary, scriptable in CI."
+#~ msgstr "Базовый слой контекста для любого агента с MCP — Gemini CLI, OpenCode, Roo Code, Cline. Один бинарник, скриптуется в CI."
+
+#: src/content/how-to-use/install.tsx:62
+msgid "The core context layer for any MCP-aware agent: Gemini CLI, OpenCode, Roo Code, Cline. One binary, scriptable in CI."
+msgstr "Базовый слой контекста для любого агента с MCP: Gemini CLI, OpenCode, Roo Code, Cline. Один бинарник, скриптуется в CI."
 
 #: src/content/how-to-use/install.tsx:59
 #~ msgid "The core context layer. One binary plus MCP — works with any MCP-aware agent, scriptable in CI."
 #~ msgstr "Базовый слой контекста. Один бинарник плюс MCP — работает с любым агентом, поддерживающим MCP, и подходит для CI."
 
 #: src/content/how-to-use/idea-no-context.tsx:171
-msgid "The feature track is the right tool when there's a real API or schema to lock down. Skip it for ideation-stage work."
-msgstr "Трек feature уместен, когда есть реальный API или схема, которые нужно зафиксировать. На стадии ideation его пропускайте."
+#~ msgid "The feature track is the right tool when there's a real API or schema to lock down. Skip it for ideation-stage work."
+#~ msgstr "Трек feature уместен, когда есть реальный API или схема, которые нужно зафиксировать. На стадии ideation его пропускайте."
 
 #: src/content/how-to-use/install.tsx:38
-msgid "The most polished experience for Claude Code, Cursor, and Codex CLI. Seven slash commands, automatic context injection, guardrails."
-msgstr "Самый удобный вариант для Claude Code, Cursor и Codex CLI. Семь слэш-команд, автоматическая подгрузка контекста, guardrails."
+#~ msgid "The most polished experience for Claude Code, Cursor, and Codex CLI. Seven slash commands, automatic context injection, guardrails."
+#~ msgstr "Самый удобный вариант для Claude Code, Cursor и Codex CLI. Семь слэш-команд, автоматическая подгрузка контекста, guardrails."
 
-#: src/content/how-to-use/quick-start.tsx:59
+#: src/content/how-to-use/install.tsx:38
+msgid "The most polished experience for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. Four slash commands, automatic context injection, guardrails."
+msgstr "Самый отполированный опыт для Claude Code, Cursor, Codex CLI и GitHub Copilot CLI. Четыре slash-команды, автоматическая подстановка контекста, ограждения."
+
+#: src/content/how-to-use/quick-start.tsx:71
 msgid "The new file lands in <0>.archcore/</0> with frontmatter already filled."
 msgstr "Новый файл окажется в <0>.archcore/</0> с уже заполненным frontmatter."
 
@@ -1446,87 +1958,119 @@ msgstr "Новый файл окажется в <0>.archcore/</0> с уже за
 msgid "The only difference is whether it could see your decisions, rules, and patterns first."
 msgstr "Разница лишь в том, видел ли он сперва ваши решения, правила и паттерны."
 
-#: src/content/how-to-use/idea-no-context.tsx:281
+#: src/content/how-to-use/idea-no-context.tsx:282
 msgid "The plan you just created is now the agent's source of truth for this work."
 msgstr "Только что созданный план — теперь источник истины для агента в этой работе."
 
 #: src/content/how-to-use/capture-existing.tsx:51
 msgid "The plugin chooses the document type from what it reads. Approve and the file lands in <0>.archcore/</0> ready for review."
-msgstr "Плагин выбирает тип документа по тому, что прочитал. Подтвердите — файл окажется в <0>.archcore/</0> и пойдёт на ревью."
+msgstr "Плагин выбирает тип документа по тому, что прочитал. Подтвердите, и файл окажется в <0>.archcore/</0> и пойдёт на ревью."
 
 #: src/components/sections/plugin-pillars-section.tsx:119
-msgid "The plugin is 7 slash commands. Here's what each one does for you."
-msgstr "Плагин — это 7 slash-команд. Вот что каждая из них даёт вам."
+#~ msgid "The plugin is 7 slash commands. Here's what each one does for you."
+#~ msgstr "Плагин — это 7 slash-команд. Вот что каждая из них даёт вам."
 
-#: src/components/sections/plugin-problem-section.tsx:90
+#: src/components/sections/plugin-problem-section.tsx:91
 msgid "The plugin loads the right context before edits and captures every new decision back into Git."
 msgstr "Плагин подгружает нужный контекст перед правками и фиксирует каждое новое решение обратно в Git."
 
 #: src/components/sections/plugin-hosts-section.tsx:64
-msgid "The plugin needs a host with a plugin runtime. Every other MCP-aware agent reads the same .archcore/ directory through the CLI — same source of truth, different entry point."
-msgstr "Плагину нужен хост с рантаймом плагинов. Любой другой MCP-агент читает ту же директорию .archcore/ через CLI — тот же источник правды, другая точка входа."
+#~ msgid "The plugin needs a host with a plugin runtime. Every other MCP-aware agent reads the same .archcore/ directory through the CLI — same source of truth, different entry point."
+#~ msgstr "Плагину нужен хост с рантаймом плагинов. Любой другой MCP-агент читает ту же директорию .archcore/ через CLI — тот же источник правды, другая точка входа."
+
+#: src/components/sections/plugin-hosts-section.tsx:64
+msgid "The plugin needs a host with a plugin runtime. Every other MCP-aware agent reads the same .archcore/ directory through the CLI: same source of truth, different entry point."
+msgstr "Плагину нужен хост со средой плагинов. Любой другой агент с MCP читает тот же каталог .archcore/ через CLI: источник правды один, точка входа разная."
 
 #: src/components/sections/faq-section.tsx:31
-msgid "The plugin runs inside Claude Code, Cursor 2.5+, and Codex CLI 0.117+. The CLI works with any MCP-aware agent — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
-msgstr "Плагин работает внутри Claude Code, Cursor 2.5+ и Codex CLI 0.117+. CLI работает с любым MCP-агентом — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — и скриптуется в CI."
+#~ msgid "The plugin runs inside Claude Code, Cursor 2.5+, and Codex CLI 0.117+. The CLI works with any MCP-aware agent — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
+#~ msgstr "Плагин работает внутри Claude Code, Cursor 2.5+ и Codex CLI 0.117+. CLI работает с любым MCP-агентом — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — и скриптуется в CI."
+
+#: src/components/sections/faq-section.tsx:32
+#~ msgid "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent — those four plus Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
+#~ msgstr "Плагин работает в Claude Code, Cursor 2.5+, Codex CLI 0.117+ и GitHub Copilot CLI. CLI работает с любым агентом, поддерживающим MCP, — эти четыре плюс Gemini CLI, OpenCode, Roo Code, Cline — и скриптуется в CI."
+
+#: src/components/sections/faq-section.tsx:32
+msgid "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI."
+msgstr "Плагин работает в Claude Code, Cursor 2.5+, Codex CLI 0.117+ и GitHub Copilot CLI. CLI работает с любым агентом, поддерживающим MCP: эти четыре плюс Gemini CLI, OpenCode, Roo Code и Cline. Он ещё и скриптуется в CI."
 
 #: src/content/how-to-use/capture-existing.tsx:111
 msgid "The plugin treats the topic as a search query first, then writes the spec. Works just as well for \"auth flow\", \"billing\", \"the report export job\"."
 msgstr "Плагин сначала обходит тему как поисковый запрос, потом пишет спеку. Точно так же работает для «auth flow», «биллинга», «job экспорта отчётов»."
 
-#: src/content/how-to-use/quick-start.tsx:161
+#: src/content/how-to-use/quick-start.tsx:175
 msgid "The plugin's session hook will now auto-inject these documents the next time you edit anything they apply to."
 msgstr "Хук сессии плагина теперь сам подмешает эти документы в следующий раз, когда вы тронете что-то, на что они распространяются."
 
-#: src/content/how-to-use/use-context.tsx:25
-msgid "The point of having decisions, rules, and guides in the repo is that they're loaded into the agent's working set automatically — before you start changing code, not after."
-msgstr "Решения, правила и гайды живут в репозитории ровно ради того, чтобы попадать в рабочий контекст агента автоматически — до правок, а не после."
+#: src/content/how-to-use/use-context.tsx:26
+#~ msgid "The point of having decisions, rules, and guides in the repo is that they're loaded into the agent's working set automatically — before you start changing code, not after."
+#~ msgstr "Решения, правила и гайды живут в репозитории ровно ради того, чтобы попадать в рабочий контекст агента автоматически — до правок, а не после."
 
-#: src/content/how-to-use/quick-start.tsx:158
+#: src/content/how-to-use/use-context.tsx:26
+msgid "The point of having decisions, rules, and guides in the repo is that they're loaded into the agent's working set automatically, before you start changing code, not after."
+msgstr "Смысл держать решения, правила и гайды в репозитории в том, что они попадают в рабочий набор агента автоматически, до того как вы начнёте менять код, а не после."
+
+#: src/content/how-to-use/quick-start.tsx:172
 msgid "The relation graph already wires them together."
 msgstr "Граф связей уже соединил их между собой."
 
+#: src/content/how-to-use/use-context.tsx:24
+msgid "The right context arrives before your edit."
+msgstr "Нужный контекст приходит до вашей правки."
+
+#: src/content/how-to-use/use-context.tsx:18
+#~ msgid "The right rules and ADRs arrive before your edit — then review the branch."
+#~ msgstr "Нужные правила и ADR приходят до вашей правки — а потом проверьте ветку."
+
+#: src/content/how-to-use/use-context.tsx:18
+msgid "The right rules and ADRs arrive before your edit, then review the branch."
+msgstr "Нужные правила и ADR приходят до вашей правки, а потом вы проверяете ветку."
+
 #: src/content/how-to-use/use-context.tsx:160
-msgid "The session hook auto-loads relevant context on the next conversation — you don't need to remember to run /context every time."
-msgstr "Хук сессии сам подгрузит нужный контекст в следующем разговоре — /context каждый раз вызывать не надо."
+#~ msgid "The session hook auto-loads relevant context on the next conversation — you don't need to remember to run /context every time."
+#~ msgstr "Хук сессии сам подгрузит нужный контекст в следующем разговоре — /context каждый раз вызывать не надо."
 
 #: src/content/how-to-use/capture-existing.tsx:187
 msgid "Then <0>add_relation(rule implements spec)</0> and <1>add_relation(guide related rule)</1>."
 msgstr "Затем <0>add_relation(rule implements spec)</0> и <1>add_relation(guide related rule)</1>."
 
-#: src/content/how-to-use/idea-no-context.tsx:187
+#: src/content/how-to-use/idea-no-context.tsx:188
 msgid "Then <0>add_relation(spec implements prd)</0>."
 msgstr "Затем <0>add_relation(spec implements prd)</0>."
 
-#: src/content/how-to-use/use-context.tsx:67
+#: src/content/how-to-use/use-context.tsx:69
 msgid "Then <0>list_documents</0> + <1>list_relations</1> to walk the graph."
 msgstr "Затем <0>list_documents</0> + <1>list_relations</1>, чтобы пройтись по графу."
 
-#: src/content/how-to-use/quick-start.tsx:118
+#: src/content/how-to-use/quick-start.tsx:132
 msgid "Then ask the agent to link them: <0>add_relation(rule implements adr)</0>, <1>add_relation(guide related rule)</1>."
-msgstr "После — попросите агента связать их: <0>add_relation(rule implements adr)</0>, <1>add_relation(guide related rule)</1>."
+msgstr "Потом попросите агента связать их: <0>add_relation(rule implements adr)</0>, <1>add_relation(guide related rule)</1>."
 
-#: src/content/how-to-use/install.tsx:116
+#: src/content/how-to-use/install.tsx:118
 msgid "Then copy <0>cursor.mcp.json</0> from the installed plugin root into <1>~/.cursor/mcp.json</1>. Cursor doesn't auto-register plugin MCP."
 msgstr "Затем скопируйте <0>cursor.mcp.json</0> из корня установленного плагина в <1>~/.cursor/mcp.json</1>. Cursor не регистрирует MCP плагина автоматически."
 
-#: src/content/how-to-use/quick-start.tsx:114
-msgid "Three <0>create_document</0> calls via MCP — one ADR, one rule, one guide."
-msgstr "Три вызова <0>create_document</0> через MCP — один ADR, одно правило, один гайд."
+#: src/content/how-to-use/quick-start.tsx:128
+#~ msgid "Three <0>create_document</0> calls via MCP — one ADR, one rule, one guide."
+#~ msgstr "Три вызова <0>create_document</0> через MCP — один ADR, одно правило, один гайд."
+
+#: src/content/how-to-use/quick-start.tsx:128
+msgid "Three <0>create_document</0> calls via MCP: one ADR, one rule, one guide."
+msgstr "Три вызова <0>create_document</0> через MCP: один ADR, одно правило, один гайд."
 
 #: src/components/sections/plugin-hosts-section.tsx:61
-msgid "Three hosts today. Any MCP agent through the CLI."
-msgstr "Три хоста сегодня. Любой MCP-агент — через CLI."
+#~ msgid "Three hosts today. Any MCP agent through the CLI."
+#~ msgstr "Три хоста сегодня. Любой MCP-агент — через CLI."
 
 #: src/components/sections/plugin-problem-section.tsx:55
-msgid "Three install commands give Claude Code, Cursor, and Codex CLI a memory that lives next to the code — and slash commands to capture new decisions as they happen."
-msgstr "Три команды установки дают Claude Code, Cursor и Codex CLI память, которая живёт рядом с кодом — и slash-команды, чтобы фиксировать новые решения по ходу работы."
+#~ msgid "Three install commands give Claude Code, Cursor, and Codex CLI a memory that lives next to the code — and slash commands to capture new decisions as they happen."
+#~ msgstr "Три команды установки дают Claude Code, Cursor и Codex CLI память, которая живёт рядом с кодом — и slash-команды, чтобы фиксировать новые решения по ходу работы."
 
 #: src/components/sections/cli-repo-layout-section.tsx:114
 msgid "Try it in your repo."
 msgstr "Попробуйте в своём репозитории."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:155
+#: src/components/sections/how-to-use-wizard-section.tsx:184
 msgid "Try it right here"
 msgstr "Попробуйте прямо здесь"
 
@@ -1534,7 +2078,7 @@ msgstr "Попробуйте прямо здесь"
 msgid "Turn a plain-English idea into PRD → spec → plan."
 msgstr "Превратите идею на обычном языке в PRD → спеку → план."
 
-#: src/components/sections/plugin-pillars-section.tsx:86
+#: src/components/sections/plugin-pillars-section.tsx:80
 msgid "Turn an idea into a scoped implementation plan"
 msgstr "Превратить идею в чёткий план реализации"
 
@@ -1543,16 +2087,28 @@ msgid "Turn the spec into a rule + guide."
 msgstr "Превратите спеку в правило + гайд."
 
 #: src/components/sections/plugin-pillars-section.tsx:50
-msgid "Turn tribal knowledge into versioned docs — modules, APIs, integrations — captured straight into your repo."
-msgstr "Превратить знание в головах в версионируемые доки — модули, API, интеграции — прямо в репозитории."
+#~ msgid "Turn tribal knowledge into versioned docs — modules, APIs, integrations — captured straight into your repo."
+#~ msgstr "Превратить знание в головах в версионируемые доки — модули, API, интеграции — прямо в репозитории."
 
 #: src/content/how-to-use/capture-existing.tsx:182
-msgid "Two <0>create_document</0> calls — one rule, one guide."
-msgstr "Два вызова <0>create_document</0> — одно правило, один гайд."
+#~ msgid "Two <0>create_document</0> calls — one rule, one guide."
+#~ msgstr "Два вызова <0>create_document</0> — одно правило, один гайд."
 
-#: src/components/sections/cli-agents-section.tsx:50
+#: src/content/how-to-use/capture-existing.tsx:182
+msgid "Two <0>create_document</0> calls: one rule, one guide."
+msgstr "Два вызова <0>create_document</0>: одно правило, один гайд."
+
+#: src/components/sections/cli-agents-section.tsx:64
 msgid "Two commands wire each one up: <0>archcore mcp install</0> registers the local MCP server, <1>archcore hooks install</1> adds session hooks where the host supports them."
 msgstr "Подключение — две команды: <0>archcore mcp install</0> регистрирует локальный MCP-сервер, <1>archcore hooks install</1> добавляет хуки сессии там, где хост их поддерживает."
+
+#: src/content/how-to-use/install.tsx:148
+#~ msgid "Two steps — both required."
+#~ msgstr "Два шага — оба обязательны."
+
+#: src/content/how-to-use/install.tsx:148
+msgid "Two steps, both required."
+msgstr "Два шага, оба обязательны."
 
 #: src/components/sections/cli-repo-layout-section.tsx:27
 msgid "typed contracts"
@@ -1563,27 +2119,27 @@ msgid "Typed decisions (ADRs)"
 msgstr "Типизированные решения (ADR)"
 
 #: src/components/sections/plugin-hosts-section.tsx:48
-msgid "Use the CLI path for now"
-msgstr "Пока используйте путь через CLI"
+#~ msgid "Use the CLI path for now"
+#~ msgstr "Пока используйте путь через CLI"
 
 #: src/content/how-to-use/capture-existing.tsx:229
-#: src/content/how-to-use/idea-no-context.tsx:288
-#: src/content/how-to-use/use-context.tsx:168
+#: src/content/how-to-use/idea-no-context.tsx:289
+#: src/content/how-to-use/use-context.tsx:171
 msgid "Useful follow-up asks:"
 msgstr "Полезные следующие запросы:"
 
 #: src/content/how-to-use/capture-existing.tsx:218
-#: src/content/how-to-use/idea-no-context.tsx:277
-#: src/content/how-to-use/use-context.tsx:156
+#: src/content/how-to-use/idea-no-context.tsx:278
+#: src/content/how-to-use/use-context.tsx:160
 msgid "Useful follow-ups:"
 msgstr "Полезные следующие шаги:"
 
-#: src/components/sections/hero-section.tsx:172
+#: src/components/sections/hero-section.tsx:177
 msgid "Using Cursor or Codex CLI? See all install paths"
 msgstr "Используешь Cursor или Codex CLI? Все способы установки"
 
-#: src/content/how-to-use/install.tsx:149
-#: src/content/how-to-use/install.tsx:226
+#: src/content/how-to-use/install.tsx:169
+#: src/content/how-to-use/install.tsx:250
 msgid "Verify the install"
 msgstr "Проверка установки"
 
@@ -1592,8 +2148,8 @@ msgid "Versioned rules in Git"
 msgstr "Версионированные правила в Git"
 
 #: src/content/how-to-use/use-context.tsx:100
-msgid "Walks every document, compares status fields against last-edit timestamps, and flags drift."
-msgstr "Пройдёт по каждому документу, сверит поле статуса с датой последней правки и отметит рассинхрон."
+#~ msgid "Walks every document, compares status fields against last-edit timestamps, and flags drift."
+#~ msgstr "Пройдёт по каждому документу, сверит поле статуса с датой последней правки и отметит рассинхрон."
 
 #: src/content/how-to-use/capture-existing.tsx:67
 msgid "Want a different shape? Ask for <0>type=doc</0> (reference material) or <1>type=guide</1> (how-to) instead."
@@ -1603,7 +2159,11 @@ msgstr "Нужен другой формат? Попросите <0>type=doc</0>
 msgid "What archcore init does"
 msgstr "Что делает archcore init"
 
-#: src/components/sections/cli-faq-section.tsx:17
+#: src/components/sections/plugin-faq-section.tsx:30
+msgid "What are the plugin's commands?"
+msgstr "Какие команды у плагина?"
+
+#: src/components/sections/cli-faq-section.tsx:18
 msgid "What does archcore init create?"
 msgstr "Что создаёт archcore init?"
 
@@ -1616,17 +2176,17 @@ msgid "What teams actually need"
 msgstr "Что нужно командам"
 
 #: src/content/how-to-use/capture-existing.tsx:209
-#: src/content/how-to-use/idea-no-context.tsx:268
-#: src/content/how-to-use/quick-start.tsx:194
-#: src/content/how-to-use/use-context.tsx:147
+#: src/content/how-to-use/idea-no-context.tsx:269
+#: src/content/how-to-use/quick-start.tsx:208
+#: src/content/how-to-use/use-context.tsx:151
 msgid "What to try next."
 msgstr "Что попробовать дальше."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:252
+#: src/components/sections/how-to-use-wizard-section.tsx:281
 msgid "What would you like to do with Archcore?"
 msgstr "Что вы хотите сделать с Archcore?"
 
-#: src/components/sections/plugin-pillars-section.tsx:116
+#: src/components/sections/plugin-pillars-section.tsx:104
 msgid "What you get"
 msgstr "Что вы получаете"
 
@@ -1638,7 +2198,7 @@ msgstr "Что вы получаете после init"
 msgid "What you get inside the agent:"
 msgstr "Что вы получаете внутри агента:"
 
-#: src/content/how-to-use/install.tsx:66
+#: src/content/how-to-use/install.tsx:68
 msgid "What you get on the shell:"
 msgstr "Что вы получаете в терминале:"
 
@@ -1646,19 +2206,19 @@ msgstr "Что вы получаете в терминале:"
 msgid "What you have today"
 msgstr "Что у вас сейчас"
 
-#: src/content/how-to-use/quick-start.tsx:22
+#: src/content/how-to-use/quick-start.tsx:23
 msgid "What's the fastest first action?"
 msgstr "Какое первое действие даст результат быстрее всего?"
 
 #: src/content/how-to-use/capture-existing.tsx:159
-msgid "When triggered after a recent capture, decide offers a <0>spec → rule → guide</0> continuation cascade."
-msgstr "Если вызвать сразу после захвата, decide предложит продолжающий каскад <0>spec → rule → guide</0>."
+#~ msgid "When triggered after a recent capture, decide offers a <0>spec → rule → guide</0> continuation cascade."
+#~ msgstr "Если вызвать сразу после захвата, decide предложит продолжающий каскад <0>spec → rule → guide</0>."
 
 #: src/components/sections/plugin-pillars-section.tsx:105
-msgid "When you forget which command fits"
-msgstr "Когда забыли, какая команда подходит"
+#~ msgid "When you forget which command fits"
+#~ msgstr "Когда забыли, какая команда подходит"
 
-#: src/components/sections/plugin-faq-section.tsx:35
+#: src/components/sections/plugin-faq-section.tsx:42
 msgid "Where do my docs live?"
 msgstr "Где живут мои документы?"
 
@@ -1666,89 +2226,157 @@ msgstr "Где живут мои документы?"
 msgid "Where the plugin runs"
 msgstr "Где работает плагин"
 
-#: src/components/sections/plugin-faq-section.tsx:23
+#: src/components/sections/plugin-faq-section.tsx:24
 msgid "Which agents are supported?"
 msgstr "Какие агенты поддерживаются?"
 
-#: src/components/sections/faq-section.tsx:29
+#: src/components/sections/faq-section.tsx:30
 msgid "Which AI agents are supported?"
 msgstr "Какие AI-агенты поддерживаются?"
 
-#: src/components/sections/cli-faq-section.tsx:23
+#: src/components/sections/cli-faq-section.tsx:24
 msgid "Which AI agents does the CLI support?"
 msgstr "Каких AI-агентов поддерживает CLI?"
 
-#: src/content/how-to-use/install.tsx:83
+#: src/content/how-to-use/install.tsx:85
 msgid "Which host are you using?"
 msgstr "Какой агент вы используете?"
 
-#: src/content/how-to-use/install.tsx:176
+#: src/content/how-to-use/install.tsx:200
 msgid "Which platform?"
 msgstr "Какая платформа?"
 
 #: src/content/how-to-use/capture-existing.tsx:196
-msgid "Why CLI here: finer control — choose your own relation types (related vs depends_on, etc.) instead of accepting the plugin's defaults."
-msgstr "Зачем здесь CLI: больше контроля — вы сами выбираете типы связей (related / depends_on и т.д.), а не принимаете дефолты плагина."
+#~ msgid "Why CLI here: finer control — choose your own relation types (related vs depends_on, etc.) instead of accepting the plugin's defaults."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы сами выбираете типы связей (related / depends_on и т.д.), а не принимаете дефолты плагина."
 
-#: src/content/how-to-use/quick-start.tsx:219
-msgid "Why CLI here: finer control — every action is a named MCP call you can replay, version, or run in CI."
-msgstr "Зачем здесь CLI: больше контроля — каждое действие — это именованный MCP-вызов, который можно переиграть, версионировать или гонять в CI."
+#: src/content/how-to-use/quick-start.tsx:233
+#~ msgid "Why CLI here: finer control — every action is a named MCP call you can replay, version, or run in CI."
+#~ msgstr "Зачем здесь CLI: больше контроля — каждое действие — это именованный MCP-вызов, который можно переиграть, версионировать или гонять в CI."
 
-#: src/content/how-to-use/idea-no-context.tsx:292
-msgid "Why CLI here: finer control — every action is a named MCP call you can reuse, version, or run in CI."
-msgstr "Зачем здесь CLI: больше контроля — каждое действие — это именованный MCP-вызов, который можно переиспользовать, версионировать или гонять в CI."
+#: src/content/how-to-use/idea-no-context.tsx:293
+#~ msgid "Why CLI here: finer control — every action is a named MCP call you can reuse, version, or run in CI."
+#~ msgstr "Зачем здесь CLI: больше контроля — каждое действие — это именованный MCP-вызов, который можно переиспользовать, версионировать или гонять в CI."
 
-#: src/content/how-to-use/use-context.tsx:74
-msgid "Why CLI here: finer control — every related document goes through one explicit MCP call. Scriptable to seed any custom agent with the right context at session start."
-msgstr "Зачем здесь CLI: больше контроля — каждый связанный документ проходит через явный MCP-вызов. Можно собрать скрипт и засевать любому своему агенту нужный контекст на старте сессии."
+#: src/content/how-to-use/use-context.tsx:76
+#~ msgid "Why CLI here: finer control — every related document goes through one explicit MCP call. Scriptable to seed any custom agent with the right context at session start."
+#~ msgstr "Зачем здесь CLI: больше контроля — каждый связанный документ проходит через явный MCP-вызов. Можно собрать скрипт и засевать любому своему агенту нужный контекст на старте сессии."
 
 #: src/content/how-to-use/capture-existing.tsx:134
-msgid "Why CLI here: finer control — predictable type means the document lands exactly where you want in the category structure (knowledge / vision / experience)."
-msgstr "Зачем здесь CLI: больше контроля — предсказуемый тип значит, что документ ляжет именно туда, куда нужно, в структуре категорий (knowledge / vision / experience)."
+#~ msgid "Why CLI here: finer control — predictable type means the document lands exactly where you want in the category structure (knowledge / vision / experience)."
+#~ msgstr "Зачем здесь CLI: больше контроля — предсказуемый тип значит, что документ ляжет именно туда, куда нужно, в структуре категорий (knowledge / vision / experience)."
 
 #: src/content/how-to-use/idea-no-context.tsx:134
-msgid "Why CLI here: finer control — relations are explicit, reviewable, and replayable. Good for compliance-sensitive work like this auth example."
-msgstr "Зачем здесь CLI: больше контроля — связи явные, их видно на ревью, их можно переиграть. Удобно для compliance-чувствительных задач вроде этого auth-примера."
+#~ msgid "Why CLI here: finer control — relations are explicit, reviewable, and replayable. Good for compliance-sensitive work like this auth example."
+#~ msgstr "Зачем здесь CLI: больше контроля — связи явные, их видно на ревью, их можно переиграть. Удобно для compliance-чувствительных задач вроде этого auth-примера."
 
 #: src/content/how-to-use/capture-existing.tsx:233
-msgid "Why CLI here: finer control — these asks compose into a single CI job that audits coverage on every push."
-msgstr "Зачем здесь CLI: больше контроля — эти запросы складываются в одну CI-задачу, которая аудитит покрытие на каждом пуше."
+#~ msgid "Why CLI here: finer control — these asks compose into a single CI job that audits coverage on every push."
+#~ msgstr "Зачем здесь CLI: больше контроля — эти запросы складываются в одну CI-задачу, которая аудитит покрытие на каждом пуше."
 
-#: src/content/how-to-use/use-context.tsx:172
-msgid "Why CLI here: finer control — these asks plug straight into GitHub Actions or pre-commit hooks. The audit step becomes a real merge gate."
-msgstr "Зачем здесь CLI: больше контроля — эти запросы прямо встают в GitHub Actions или pre-commit-хуки. Шаг аудита становится настоящим гейтом мёрджа."
+#: src/content/how-to-use/use-context.tsx:175
+#~ msgid "Why CLI here: finer control — these asks plug straight into GitHub Actions or pre-commit hooks. The audit step becomes a real merge gate."
+#~ msgstr "Зачем здесь CLI: больше контроля — эти запросы прямо встают в GitHub Actions или pre-commit-хуки. Шаг аудита становится настоящим гейтом мёрджа."
 
-#: src/content/how-to-use/use-context.tsx:135
-msgid "Why CLI here: finer control — wire this into a pre-merge CI step so drift can never slip past code review."
-msgstr "Зачем здесь CLI: больше контроля — повесьте это в pre-merge CI-шаг, и рассинхрон уже не проскочит мимо ревью."
+#: src/content/how-to-use/use-context.tsx:139
+#~ msgid "Why CLI here: finer control — wire this into a pre-merge CI step so drift can never slip past code review."
+#~ msgstr "Зачем здесь CLI: больше контроля — повесьте это в pre-merge CI-шаг, и рассинхрон уже не проскочит мимо ревью."
 
 #: src/content/how-to-use/quick-start.tsx:66
-msgid "Why CLI here: finer control — you choose the document type, the path, and exactly when the agent writes. Works with any MCP-aware agent (Copilot, Gemini CLI, OpenCode, Cline)."
-msgstr "Зачем здесь CLI: больше контроля — вы выбираете тип документа, путь и момент, когда агент пишет. Работает с любым MCP-агентом (Copilot, Gemini CLI, OpenCode, Cline)."
+#~ msgid "Why CLI here: finer control — you choose the document type, the path, and exactly when the agent writes. Works with any MCP-aware agent (Copilot, Gemini CLI, OpenCode, Cline)."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы выбираете тип документа, путь и момент, когда агент пишет. Работает с любым MCP-агентом (Copilot, Gemini CLI, OpenCode, Cline)."
+
+#: src/content/how-to-use/quick-start.tsx:78
+#~ msgid "Why CLI here: finer control — you choose the document type, the path, and exactly when the agent writes. Works with any MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline)."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы выбираете тип документа, путь и момент записи. Работает с любым агентом с MCP (Gemini CLI, OpenCode, Roo Code, Cline)."
 
 #: src/content/how-to-use/capture-existing.tsx:75
-msgid "Why CLI here: finer control — you choose the type explicitly instead of accepting the plugin's heuristic. Useful when the module fits \"doc\" or \"guide\" better than \"spec\"."
-msgstr "Зачем здесь CLI: больше контроля — вы выбираете тип явно, не полагаясь на эвристику плагина. Полезно, когда модуль ближе к «doc» или «guide», чем к «spec»."
+#~ msgid "Why CLI here: finer control — you choose the type explicitly instead of accepting the plugin's heuristic. Useful when the module fits \"doc\" or \"guide\" better than \"spec\"."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы выбираете тип явно, не полагаясь на эвристику плагина. Полезно, когда модуль ближе к «doc» или «guide», чем к «spec»."
 
-#: src/content/how-to-use/idea-no-context.tsx:255
-msgid "Why CLI here: finer control — you decide phase granularity and the relations explicitly. Scriptable to generate plans from a batch of specs."
-msgstr "Зачем здесь CLI: больше контроля — вы сами решаете гранулярность фаз и связи. Можно собрать скрипт, который генерирует планы из пачки спек."
+#: src/content/how-to-use/idea-no-context.tsx:256
+#~ msgid "Why CLI here: finer control — you decide phase granularity and the relations explicitly. Scriptable to generate plans from a batch of specs."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы сами решаете гранулярность фаз и связи. Можно собрать скрипт, который генерирует планы из пачки спек."
 
 #: src/content/how-to-use/idea-no-context.tsx:73
-msgid "Why CLI here: finer control — you decide when (and whether) to advance to PRD. Useful when the idea may still die in discussion."
-msgstr "Зачем здесь CLI: больше контроля — вы решаете, когда (и стоит ли) переходить к PRD. Удобно, если идея ещё может умереть в обсуждении."
+#~ msgid "Why CLI here: finer control — you decide when (and whether) to advance to PRD. Useful when the idea may still die in discussion."
+#~ msgstr "Зачем здесь CLI: больше контроля — вы решаете, когда (и стоит ли) переходить к PRD. Удобно, если идея ещё может умереть в обсуждении."
 
-#: src/content/how-to-use/quick-start.tsx:127
-msgid "Why CLI here: finer control — you pick the cascade shape and the relation types by hand instead of accepting the plugin's default. Scriptable in CI for batch operations."
-msgstr "Зачем здесь CLI: больше контроля — форму каскада и типы связей выбираете вручную, не принимая дефолты плагина. Скриптуется для пакетных операций в CI."
+#: src/content/how-to-use/quick-start.tsx:141
+#~ msgid "Why CLI here: finer control — you pick the cascade shape and the relation types by hand instead of accepting the plugin's default. Scriptable in CI for batch operations."
+#~ msgstr "Зачем здесь CLI: больше контроля — форму каскада и типы связей выбираете вручную, не принимая дефолты плагина. Скриптуется для пакетных операций в CI."
 
-#: src/content/how-to-use/idea-no-context.tsx:194
-msgid "Why CLI here: finer control — you pick the spec's scope and exclusions yourself, instead of accepting the default the plugin would generate."
-msgstr "Зачем здесь CLI: больше контроля — границы и исключения спеки задаёте сами, а не принимаете то, что предложил бы плагин."
+#: src/content/how-to-use/idea-no-context.tsx:195
+#~ msgid "Why CLI here: finer control — you pick the spec's scope and exclusions yourself, instead of accepting the default the plugin would generate."
+#~ msgstr "Зачем здесь CLI: больше контроля — границы и исключения спеки задаёте сами, а не принимаете то, что предложил бы плагин."
 
-#: src/content/how-to-use/quick-start.tsx:182
-msgid "Why CLI here: status is one shell command — no agent round-trip. Useful in pre-commit hooks or PR checks."
-msgstr "Зачем здесь CLI: status — одна шелл-команда, без похода к агенту. Удобно для pre-commit-хуков или PR-проверок."
+#: src/content/how-to-use/capture-existing.tsx:196
+msgid "Why CLI here: finer control. Choose your own relation types (related vs depends_on, etc.) instead of accepting the plugin's defaults."
+msgstr "Зачем здесь CLI: больше контроля. Вы сами выбираете типы связей (related против depends_on и так далее), а не соглашаетесь с тем, что предложит плагин."
+
+#: src/content/how-to-use/quick-start.tsx:233
+msgid "Why CLI here: finer control. Every action is a named MCP call you can replay, version, or run in CI."
+msgstr "Зачем здесь CLI: больше контроля. Каждое действие сводится к именованному вызову MCP: его можно повторить, версионировать или запустить в CI."
+
+#: src/content/how-to-use/idea-no-context.tsx:293
+msgid "Why CLI here: finer control. Every action is a named MCP call you can reuse, version, or run in CI."
+msgstr "Зачем здесь CLI: больше контроля. Каждое действие сводится к именованному вызову MCP: его можно переиспользовать, версионировать или запустить в CI."
+
+#: src/content/how-to-use/use-context.tsx:76
+msgid "Why CLI here: finer control. Every related document goes through one explicit MCP call. Scriptable to seed any custom agent with the right context at session start."
+msgstr "Зачем здесь CLI: больше контроля. Каждый связанный документ проходит через один явный вызов MCP. Это можно заскриптовать и подсовывать нужный контекст любому своему агенту в начале сессии."
+
+#: src/content/how-to-use/capture-existing.tsx:134
+msgid "Why CLI here: finer control. Predictable type means the document lands exactly where you want in the category structure (knowledge / vision / experience)."
+msgstr "Зачем здесь CLI: больше контроля. Предсказуемый тип означает, что документ ляжет ровно туда, куда вы хотите, в структуре категорий (knowledge / vision / experience)."
+
+#: src/content/how-to-use/idea-no-context.tsx:134
+msgid "Why CLI here: finer control. Relations are explicit, reviewable, and replayable. Good for compliance-sensitive work like this auth example."
+msgstr "Зачем здесь CLI: больше контроля. Связи явные, их видно на ревью и можно переиграть. Удобно для задач, чувствительных к комплаенсу, вроде этого примера с auth."
+
+#: src/content/how-to-use/capture-existing.tsx:233
+msgid "Why CLI here: finer control. These asks compose into a single CI job that audits coverage on every push."
+msgstr "Зачем здесь CLI: больше контроля. Эти запросы складываются в одну CI-задачу, которая проверяет покрытие на каждый пуш."
+
+#: src/content/how-to-use/use-context.tsx:175
+msgid "Why CLI here: finer control. These asks plug straight into GitHub Actions or pre-commit hooks. The audit step becomes a real merge gate."
+msgstr "Зачем здесь CLI: больше контроля. Эти запросы напрямую вставляются в GitHub Actions или pre-commit хуки. Шаг аудита превращается в настоящий барьер перед мержем."
+
+#: src/content/how-to-use/use-context.tsx:139
+msgid "Why CLI here: finer control. Wire this into a pre-merge CI step so drift can never slip past code review."
+msgstr "Зачем здесь CLI: больше контроля. Вставьте это в CI-шаг перед мержем, и расхождения перестанут проскакивать мимо ревью."
+
+#: src/content/how-to-use/quick-start.tsx:78
+msgid "Why CLI here: finer control. You choose the document type, the path, and exactly when the agent writes. Works with any MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline)."
+msgstr "Зачем здесь CLI: больше контроля. Вы выбираете тип документа, путь и момент записи. Работает с любым агентом с MCP (Gemini CLI, OpenCode, Roo Code, Cline)."
+
+#: src/content/how-to-use/capture-existing.tsx:75
+msgid "Why CLI here: finer control. You choose the type explicitly instead of accepting the plugin's heuristic. Useful when the module fits \"doc\" or \"guide\" better than \"spec\"."
+msgstr "Зачем здесь CLI: больше контроля. Вы задаёте тип явно, а не полагаетесь на эвристику плагина. Полезно, когда модулю больше подходит «doc» или «guide», чем «spec»."
+
+#: src/content/how-to-use/idea-no-context.tsx:256
+msgid "Why CLI here: finer control. You decide phase granularity and the relations explicitly. Scriptable to generate plans from a batch of specs."
+msgstr "Зачем здесь CLI: больше контроля. Вы сами решаете, насколько дробить фазы и какие ставить связи. Можно заскриптовать генерацию планов по пачке спек."
+
+#: src/content/how-to-use/idea-no-context.tsx:73
+msgid "Why CLI here: finer control. You decide when (and whether) to advance to PRD. Useful when the idea may still die in discussion."
+msgstr "Зачем здесь CLI: больше контроля. Вы решаете, когда и стоит ли вообще переходить к PRD. Полезно, когда идея ещё может умереть в обсуждении."
+
+#: src/content/how-to-use/quick-start.tsx:141
+msgid "Why CLI here: finer control. You pick the cascade shape and the relation types by hand instead of accepting the plugin's default. Scriptable in CI for batch operations."
+msgstr "Зачем здесь CLI: больше контроля. Вы вручную задаёте форму каскада и типы связей, а не соглашаетесь с тем, что предложит плагин. Скриптуется в CI для пакетных операций."
+
+#: src/content/how-to-use/idea-no-context.tsx:195
+msgid "Why CLI here: finer control. You pick the spec's scope and exclusions yourself, instead of accepting the default the plugin would generate."
+msgstr "Зачем здесь CLI: больше контроля. Вы сами определяете область спеки и исключения, а не берёте то, что сгенерировал бы плагин."
+
+#: src/content/how-to-use/quick-start.tsx:196
+#~ msgid "Why CLI here: status is one shell command — no agent round-trip. Useful in pre-commit hooks or PR checks."
+#~ msgstr "Зачем здесь CLI: status — одна шелл-команда, без похода к агенту. Удобно для pre-commit-хуков или PR-проверок."
+
+#: src/content/how-to-use/quick-start.tsx:196
+msgid "Why CLI here: status is one shell command, no agent round-trip. Useful in pre-commit hooks or PR checks."
+msgstr "Зачем здесь CLI: статус занимает одну команду в терминале, без похода к агенту. Удобно в pre-commit хуках и проверках на PR."
 
 #: src/components/sections/cli-problem-section.tsx:33
 msgid "Why you need a CLI"
@@ -1758,12 +2386,12 @@ msgstr "Зачем нужен CLI"
 msgid "Why you need the plugin"
 msgstr "Зачем нужен плагин"
 
-#: src/components/cta/install-command.tsx:131
-#: src/content/how-to-use/install.tsx:206
+#: src/components/cta/install-command.tsx:151
+#: src/content/how-to-use/install.tsx:230
 msgid "Windows"
 msgstr "Windows"
 
-#: src/content/how-to-use/idea-no-context.tsx:225
+#: src/content/how-to-use/idea-no-context.tsx:226
 msgid "Wires <0>add_relation(plan implements spec)</0>."
 msgstr "Прописывает <0>add_relation(plan implements spec)</0>."
 
@@ -1795,13 +2423,21 @@ msgstr "Пишет конфиг MCP"
 msgid "Writes the decision back as a versioned doc"
 msgstr "Записывает решение обратно как versioned-документ"
 
-#: src/components/sections/plugin-faq-section.tsx:19
-msgid "Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH."
-msgstr "Да — одна глобальная установка. Запустите curl -fsSL https://archcore.ai/install.sh | bash (или эквивалент на PowerShell в Windows), затем добавьте плагин. MCP запускает archcore из вашего PATH."
+#: src/components/sections/plugin-faq-section.tsx:20
+#~ msgid "Yes — one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH."
+#~ msgstr "Да — одна глобальная установка. Запустите curl -fsSL https://archcore.ai/install.sh | bash (или эквивалент на PowerShell в Windows), затем добавьте плагин. MCP запускает archcore из вашего PATH."
 
-#: src/components/sections/plugin-faq-section.tsx:31
-msgid "Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/."
-msgstr "Да — плагин всегда использует тот archcore, который найдёт в PATH. Ставьте его как удобно (curl, PowerShell, сборка из исходников) — см. https://docs.archcore.ai/cli/install/."
+#: src/components/sections/plugin-faq-section.tsx:38
+#~ msgid "Yes — the plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source) — see https://docs.archcore.ai/cli/install/."
+#~ msgstr "Да — плагин всегда использует тот archcore, который найдёт в PATH. Ставьте его как удобно (curl, PowerShell, сборка из исходников) — см. https://docs.archcore.ai/cli/install/."
+
+#: src/components/sections/plugin-faq-section.tsx:20
+msgid "Yes, one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH."
+msgstr "Да, одна глобальная установка. Выполните curl -fsSL https://archcore.ai/install.sh | bash (или эквивалент в PowerShell на Windows), затем добавьте плагин. MCP запускает archcore из вашего PATH."
+
+#: src/components/sections/plugin-faq-section.tsx:38
+msgid "Yes. The plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source). See https://docs.archcore.ai/cli/install/."
+msgstr "Да. Плагин всегда использует тот archcore, который лежит в вашем PATH. Ставьте его как удобно: curl, PowerShell, сборка из исходников. Подробности на https://docs.archcore.ai/cli/install/."
 
 #: src/components/sections/before-after-section.tsx:90
 msgid "You"
@@ -1811,7 +2447,7 @@ msgstr "Вы"
 msgid "You copy-paste the same architecture rules into every new conversation. The agent forgets the moment it ends."
 msgstr "Вы копируете одни и те же правила архитектуры в каждый новый чат. Агент забывает их сразу, как только разговор заканчивается."
 
-#: src/content/how-to-use/use-context.tsx:127
+#: src/content/how-to-use/use-context.tsx:131
 msgid "You decide which findings warrant <0>update_document</0>, <1>remove_relation</1>, or a status bump."
 msgstr "Вы решаете, какие находки тянут на <0>update_document</0>, <1>remove_relation</1> или смену статуса."
 
@@ -1819,35 +2455,59 @@ msgstr "Вы решаете, какие находки тянут на <0>update
 msgid "You don't start over."
 msgstr "Начинать заново не нужно."
 
-#: src/content/how-to-use/quick-start.tsx:103
-msgid "You get the full chain of decisions, rules, and guides in one pass — relations are wired automatically."
-msgstr "За один проход получаете полную цепочку решений, правил и гайдов — связи прописываются автоматически."
+#: src/content/how-to-use/quick-start.tsx:117
+#~ msgid "You get the full chain of decisions, rules, and guides in one pass — relations are wired automatically."
+#~ msgstr "За один проход получаете полную цепочку решений, правил и гайдов — связи прописываются автоматически."
+
+#: src/content/how-to-use/quick-start.tsx:117
+msgid "You get the full chain of decisions, rules, and guides in one pass. Relations are wired automatically."
+msgstr "Вы получаете всю цепочку решений, правил и гайдов за один проход. Связи проставляются автоматически."
 
 #: src/components/sections/plugin-problem-section.tsx:31
-msgid "You make a real call inside the agent — and a week later nobody, including the agent, remembers why."
-msgstr "Вы принимаете реальное решение внутри агента — а через неделю никто, включая самого агента, не помнит почему."
+#~ msgid "You make a real call inside the agent — and a week later nobody, including the agent, remembers why."
+#~ msgstr "Вы принимаете реальное решение внутри агента — а через неделю никто, включая самого агента, не помнит почему."
 
-#: src/content/how-to-use/idea-no-context.tsx:232
-msgid "You now have the full chain — idea, PRD, spec, plan — wired together. The next session that opens any of them auto-loads the rest."
-msgstr "У вас есть полная цепочка — идея, PRD, спека, план — связанная между собой. Следующая сессия, открывшая любой из них, сама подтянет остальные."
+#: src/components/sections/plugin-problem-section.tsx:31
+msgid "You make a real call inside the agent, and a week later nobody, including the agent, remembers why."
+msgstr "Вы принимаете реальное решение внутри агента, а через неделю никто, включая самого агента, не помнит почему."
+
+#: src/content/how-to-use/use-context.tsx:164
+#~ msgid "You never need to remember a \"load context\" command — the hooks do it on every edit, in every new conversation."
+#~ msgstr "Вам не нужно помнить команду «загрузить контекст» — хуки делают это при каждой правке и в каждом новом диалоге."
+
+#: src/content/how-to-use/use-context.tsx:164
+msgid "You never need to remember a \"load context\" command. The hooks do it on every edit, in every new conversation."
+msgstr "Вам не нужно помнить команду «загрузить контекст». Хуки делают это при каждой правке и в каждом новом диалоге."
+
+#: src/content/how-to-use/idea-no-context.tsx:233
+#~ msgid "You now have the full chain — idea, PRD, spec, plan — wired together. The next session that opens any of them auto-loads the rest."
+#~ msgstr "У вас есть полная цепочка — идея, PRD, спека, план — связанная между собой. Следующая сессия, открывшая любой из них, сама подтянет остальные."
+
+#: src/content/how-to-use/idea-no-context.tsx:233
+msgid "You now have the full chain (idea, PRD, spec, plan) wired together. The next session that opens any of them auto-loads the rest."
+msgstr "Теперь у вас есть вся цепочка (idea, PRD, spec, plan), связанная воедино. Следующая сессия, которая откроет любой из них, подтянет остальные."
 
 #: src/components/sections/before-after-section.tsx:28
 msgid "You re-explain the same rules. Again."
 msgstr "Вы снова объясняете те же правила. Опять."
 
-#: src/content/how-to-use/install.tsx:237
+#: src/content/how-to-use/install.tsx:261
 msgid "You should get a \"none yet\" answer (or a list, if you've already created docs)."
-msgstr "Должен прийти ответ «пока нет» (или список — если документы уже создавали)."
+msgstr "Должен прийти ответ «пока нет» (или список, если документы уже создавали)."
 
-#: src/content/how-to-use/quick-start.tsx:152
+#: src/content/how-to-use/quick-start.tsx:166
 msgid "You should see <0>use-postgres.adr.md</0>, <1>postgres-only.rule.md</1>, and <2>postgres-migration.guide.md</2>."
 msgstr "Вы должны увидеть <0>use-postgres.adr.md</0>, <1>postgres-only.rule.md</1> и <2>postgres-migration.guide.md</2>."
 
-#: src/content/how-to-use/install.tsx:160
-msgid "You should see the seven /archcore:* commands."
-msgstr "Должны появиться семь команд /archcore:*."
+#: src/content/how-to-use/install.tsx:180
+msgid "You should see four commands: init, plan, document, review."
+msgstr "Вы должны увидеть четыре команды: init, plan, document, review."
 
-#: src/components/sections/how-to-use-wizard-section.tsx:613
+#: src/content/how-to-use/install.tsx:160
+#~ msgid "You should see the seven /archcore:* commands."
+#~ msgstr "Должны появиться семь команд /archcore:*."
+
+#: src/components/sections/how-to-use-wizard-section.tsx:642
 msgid "You're all set."
 msgstr "Готово."
 
@@ -1855,11 +2515,11 @@ msgstr "Готово."
 msgid "You've captured one module. The compounding value of Archcore comes from capturing the 3-5 modules an agent keeps re-discovering."
 msgstr "Один модуль уже захвачен. Накопительный эффект Archcore приходит, когда захвачены те 3-5 модулей, которые агент постоянно переоткрывает."
 
-#: src/content/how-to-use/use-context.tsx:149
+#: src/content/how-to-use/use-context.tsx:153
 msgid "You've closed the loop: load context, change code, audit. The next win is making this automatic in your daily flow."
 msgstr "Цикл замкнут: загрузили контекст, поменяли код, провели аудит. Следующая победа — сделать это автоматической частью повседневного флоу."
 
-#: src/content/how-to-use/quick-start.tsx:196
+#: src/content/how-to-use/quick-start.tsx:210
 msgid "You've landed a decision, a rule, and a guide in under five minutes. Pick one of these to keep the loop going."
 msgstr "За пять минут у вас уже есть решение, правило и гайд. Выберите одну из опций ниже, чтобы продолжить цикл."
 
@@ -1871,6 +2531,6 @@ msgstr "Ваш агент забывает правила в каждой сес
 msgid "your conventions"
 msgstr "ваши соглашения"
 
-#: src/content/how-to-use/quick-start.tsx:16
+#: src/content/how-to-use/quick-start.tsx:17
 msgid "Your first useful command after install, on a fresh repo."
 msgstr "Ваша первая полезная команда после установки — на свежем репозитории."

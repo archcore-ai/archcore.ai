@@ -64,7 +64,7 @@ export function CLIPillarsSection() {
             <code className="font-mono text-[0.85em] rounded bg-muted px-1.5 py-0.5">
               archcore init
             </code>{" "}
-            — one command, four things wired up for you.
+            One command, four things wired up for you.
           </Trans>
         </h2>
       </div>

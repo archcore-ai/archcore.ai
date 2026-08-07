@@ -17,37 +17,37 @@ export function FAQSection() {
     {
       question: _(msg`How is this different from CLAUDE.md or AGENTS.md?`),
       answer: _(
-        msg`Instruction files are flat memory — one tool, one file. Archcore is structured: typed documents (ADR, rule, plan, guide, spec) with relations, versioned history, read and written during real work, and reused across every agent.`
+        msg`Instruction files are flat memory: one tool, one file. Archcore is structured. It stores typed documents (ADR, rule, plan, guide, spec) with relations and versioned history, read and written during real work, and reused across every agent.`
       ),
     },
     {
       question: _(msg`I already have a CLAUDE.md or .cursor/rules. Do I start over?`),
       answer: _(
-        msg`No. archcore init imports your existing instruction files — CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/* — as structured documents, so the context you already wrote carries over.`
+        msg`No. archcore init imports your existing instruction files (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as structured documents, so the context you already wrote carries over.`
       ),
     },
     {
       question: _(msg`Which AI agents are supported?`),
       answer: _(
-        msg`The plugin runs inside Claude Code, Cursor 2.5+, and Codex CLI 0.117+. The CLI works with any MCP-aware agent — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI.`
+        msg`The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI.`
       ),
     },
     {
       question: _(msg`Does this eat my agent's context window?`),
       answer: _(
-        msg`No. At session start the agent gets a compact index of your documents; full documents are pulled on demand over MCP — search, relations, single reads — not loaded wholesale.`
+        msg`No. At session start the agent gets a compact index of your documents. Full documents are pulled on demand over MCP, through search, relations, and single reads, instead of being loaded wholesale.`
       ),
     },
     {
       question: _(msg`Does my code leave my machine?`),
       answer: _(
-        msg`No. The plugin and CLI run fully local — no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo.`
+        msg`No. The plugin and CLI run fully local: no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo.`
       ),
     },
     {
       question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`No. The plugin runs on the CLI under the hood — install the plugin and you get both. Want just the core context layer? Install the CLI on its own.`
+        msg`No. The plugin runs on the CLI under the hood, so installing the plugin gets you both. Want just the core context layer? Install the CLI on its own.`
       ),
     },
   ];

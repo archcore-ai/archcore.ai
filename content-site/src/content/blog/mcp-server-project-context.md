@@ -42,7 +42,7 @@ The full parameter reference lives in the [MCP tools docs](https://docs.archcore
 
 Two design points deserve emphasis. The write path is not optional: context that only humans update goes stale, and the whole point collapses. And the instructions-on-connect matter more than they sound, because an agent that doesn't know when to use `create_document` versus `update_document` will do neither.
 
-Archcore's server also ships 5 MCP prompts (`product_track`, `architecture_track`, `standard_track`, `sources_track`, `iso_track`): pre-orchestrated document cascades that most hosts surface as slash commands. Running `/product_track feature_name="user notifications"` drafts a PRD, waits for your confirmation, then derives a plan and links it back. Useful, but secondary to the tool surface.
+Archcore's server used to ship MCP prompts as well: pre-orchestrated document cascades that hosts surfaced as slash commands. They were removed in CLI v0.7.0. Prompt support was uneven across hosts, and the same cascades now live in the plugin's skills, where they can gate on what the repo already contains. If you want a guided flow, reach for the plugin's `/archcore:plan` or `/archcore:document`. The MCP surface stays deliberately tool-only.
 
 ## How does the agent get context at the right moment?
 

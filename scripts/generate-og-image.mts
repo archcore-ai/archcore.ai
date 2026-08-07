@@ -43,19 +43,19 @@ const VARIANTS: Variant[] = [
       "to every AI agent.",
     ],
     subtitle:
-      "Archcore keeps your decisions, rules, and architecture as structured docs in your repo — loaded into your agent over MCP before it edits.",
+      "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits.",
     bottomLabel: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
   },
   {
     output: "og-image-plugin.png",
     headline: [
-      "Claude Code, Cursor &",
-      "Codex CLI plugin for AI agents.",
+      "Claude Code, Cursor, Codex &",
+      "Copilot plugin for AI agents.",
     ],
     subtitle:
-      "Archcore loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.",
+      "Archcore loads your architecture, rules, and decisions into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI, so the agent stops guessing and starts following your team's truth.",
     bottomLabel:
-      "Claude Code · Cursor · Codex CLI plugin  ·  Intent-based slash commands",
+      "Claude Code · Cursor · Codex · Copilot  ·  Intent-based slash commands",
   },
   {
     output: "og-image-cli.png",
@@ -74,7 +74,7 @@ const VARIANTS: Variant[] = [
       "Interactive walkthrough.",
     ],
     subtitle:
-      "Answer 3-5 questions and see the exact commands. Pick plugin vs CLI for your stack — no signup, no video.",
+      "Answer 3-5 questions and see the exact commands. Pick plugin vs CLI for your stack. No signup, no video.",
     bottomLabel: "Interactive walkthrough  ·  3-5 steps  ·  Plugin · CLI",
   },
 ];

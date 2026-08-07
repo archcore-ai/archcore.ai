@@ -13,7 +13,7 @@ export function HowToUsePage() {
   usePageMeta({
     title: _(msg`How to use Archcore — interactive walkthrough`),
     description: _(
-      msg`A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent — in 3-5 steps.`
+      msg`A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps.`
     ),
     canonical: "/how-to-use/",
     ogImage: "/og-image-how-to-use.png",
