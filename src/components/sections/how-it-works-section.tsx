@@ -4,25 +4,38 @@ import { useLingui } from "@lingui/react";
 import { SectionContainer } from "@/components/section-container";
 
 interface Step {
-  token: string;
+  verb: string;
   caption: string;
 }
 
 /**
- * The light "mechanic" beat between the card-heavy Before/After and the
- * interactive wizard. Three verbs on a plain background, no card grid — the
- * deliberate whitespace break that keeps the page from reading as one long
+ * Section 7 of the canonical homepage sequence: Capture → Connect → Apply →
+ * Evolve (product/surface-descriptors). Four verbs on a muted band, no card
+ * grid — the whitespace break that keeps the page from reading as one long
  * field of bordered cards.
+ *
+ * This replaced the earlier init → write → agents read framing, which
+ * described the install rather than the loop.
  */
 export function HowItWorksSection() {
   const { _ } = useLingui();
 
   const steps: Step[] = [
-    { token: "archcore init", caption: _(msg`Set up .archcore/ in your repo`) },
-    { token: "write", caption: _(msg`Decisions, rules, and patterns as docs`) },
     {
-      token: "agents read",
-      caption: _(msg`Loaded over local MCP, before they edit`),
+      verb: _(msg`Capture`),
+      caption: _(msg`Specs, decisions, rules, plans, and project knowledge.`),
+    },
+    {
+      verb: _(msg`Connect`),
+      caption: _(msg`Related artifacts link into one project context.`),
+    },
+    {
+      verb: _(msg`Apply`),
+      caption: _(msg`The relevant context loads while agents work.`),
+    },
+    {
+      verb: _(msg`Evolve`),
+      caption: _(msg`Context moves with the codebase, through Git.`),
     },
   ];
 
@@ -37,11 +50,12 @@ export function HowItWorksSection() {
             <Trans>How it works</Trans>
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-            <span className="font-mono">init</span>
-            <span className="text-muted-foreground/50"> → </span>
-            <span className="font-mono">write</span>
-            <span className="text-muted-foreground/50"> → </span>
-            <span className="font-mono">agents read</span>
+            {steps.map((step, i) => (
+              <span key={step.verb}>
+                {i > 0 && <span className="text-muted-foreground/50"> → </span>}
+                <span>{step.verb}</span>
+              </span>
+            ))}
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xl mx-auto">
             <Trans>
@@ -51,15 +65,15 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        <ol className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
           {steps.map((step, i) => (
-            <li key={step.token} className="flex flex-col items-center gap-3">
+            <li key={step.verb} className="flex flex-col items-center gap-3">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-sm font-semibold text-muted-foreground">
                 {i + 1}
               </span>
-              <code className="font-mono text-sm font-semibold text-foreground">
-                {step.token}
-              </code>
+              <span className="text-sm font-semibold text-foreground">
+                {step.verb}
+              </span>
               <p className="text-sm text-muted-foreground leading-snug max-w-[14rem]">
                 {step.caption}
               </p>

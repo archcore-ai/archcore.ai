@@ -1,6 +1,11 @@
 export { StickyHeader } from "./sticky-header";
 export { HeroSection } from "./hero-section";
+export { ProblemSection } from "./problem-section";
 export { BeforeAfterSection } from "./before-after-section";
+export { SpecDrivenSection } from "./spec-driven-section";
+export { ContextEngineeringSection } from "./context-engineering-section";
+export { GitNativeSection } from "./git-native-section";
+export { CrossAgentSection } from "./cross-agent-section";
 export { HowItWorksSection } from "./how-it-works-section";
 export { FAQSection } from "./faq-section";
 export { StarCtaSection } from "./star-cta-section";

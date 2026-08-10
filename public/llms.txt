@@ -1,14 +1,47 @@
 # Archcore
 
-> Git-native repo memory for AI coding agents. Archcore keeps decisions, rules, specs, and plans as typed markdown documents in a .archcore/ directory inside your repository, and loads them into Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, and any MCP-aware agent through MCP tools, session hooks, and slash commands. Local-first: no accounts, no telemetry, no external services.
+> Archcore is a git-native context layer for AI coding agents, covering spec-driven development and context engineering. Archcore keeps specs, architecture, decisions, rules, and plans as typed markdown documents in a .archcore/ directory inside your repository, and loads them into Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, and any MCP-aware agent through MCP tools, session hooks, and slash commands. Local-first: no accounts, no telemetry, no external services.
 
 ## Main pages
 
 - [Home](https://archcore.ai/): what Archcore is and how to install the CLI or plugin
-- [Plugin](https://archcore.ai/plugin/): /archcore slash commands for Claude Code, Cursor, and Codex CLI
+- [Plugin](https://archcore.ai/plugin/): /archcore slash commands, skills, and guardrails for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI
 - [CLI](https://archcore.ai/cli/): single cross-platform binary that scaffolds .archcore/, runs a local MCP server, and wires session hooks for 8 AI coding agents
-- [How to use](https://archcore.ai/how-to-use/): interactive walkthrough covering install, quick start, and day-to-day workflows
+- [How to use](https://archcore.ai/how-to-use/): interactive walkthrough covering install, quick start, and day-to-day use
 - [Privacy policy](https://archcore.ai/privacy/): local-first data practices
+
+## Reference
+
+- [Context Engineering for AI Coding Agents](https://archcore.ai/context-engineering/): the five properties of engineered context (explicit, structured, selective, versioned, portable), how it differs from prompt engineering and RAG, and what belongs in project context
+- [Spec-Driven Development for AI Coding Agents](https://archcore.ai/spec-driven-development/): what a spec is and is not, EARS and BCP 14 clause form, the idea to PRD to spec to plan track, and how specs stay connected after the merge
+- [Project Context for AI Coding Agents](https://archcore.ai/project-context/): what belongs in project context, how it differs from agent memory and retrieval, and the three ways persistence usually fails
+- [Why Project Context Belongs in Git](https://archcore.ai/git-native-context/): reviewable, versioned, branch-aware, portable, team-owned, and what the alternatives give up
+- [MCP for AI Coding Agent Context](https://archcore.ai/mcp/): why a protocol rather than a file, what a context server should expose, local stdio, and how MCP and hooks divide the work
+
+## Agent integrations
+
+- [Claude Code](https://archcore.ai/claude-code/): production plugin host, full hook set, compared with CLAUDE.md and Claude Code memory
+- [Cursor](https://archcore.ai/cursor/): plugin on Cursor 2.5+, MCP setup, compared with .cursor/rules and the removed Memories feature
+- [Codex CLI](https://archcore.ai/codex/): plugin on 0.117+, hooks behind the experimental flag and unavailable on Windows, compared with AGENTS.md
+- [GitHub Copilot](https://archcore.ai/github-copilot/): two required install steps and why (github/copilot-cli#4234), no pre-write injection, compared with custom instructions
+- [Gemini CLI](https://archcore.ai/gemini-cli/): CLI path with the full hook set, no plugin needed, one context across several agents
+
+## Comparisons and migration
+
+- [Beyond AGENTS.md](https://archcore.ai/agents-md/): what the convention gets right, the three signals that a flat file has outgrown its shape, and how to migrate without rewriting
+- [Beyond CLAUDE.md](https://archcore.ai/claude-md/): CLAUDE.md, Claude Code memory, and project context compared, and what delivery looks like afterwards
+- [AI agent memory vs project context](https://archcore.ai/learn/agent-memory-vs-project-context/): what each one holds, what memory is the wrong instrument for, and the two questions that settle any case
+- [Context engineering vs prompt engineering](https://archcore.ai/learn/context-engineering-vs-prompt-engineering/): where the leverage moved on coding agents, and the test for which kind of problem you have
+- [Spec-driven development vs context engineering](https://archcore.ai/learn/spec-driven-development-vs-context-engineering/): intent versus understanding, the collapse in both directions, and where the two practices meet
+
+## Concepts and explainers
+
+- [What Is Harness Engineering?](https://archcore.ai/learn/harness-engineering/): the guides-and-sensors taxonomy, how harness engineering nests inside context engineering rather than superseding it, where loop engineering ends, and which half of the harness belongs to your project
+- [What Is Repo Memory?](https://archcore.ai/learn/repo-memory/): project context stored as versioned files in the repository, compared with cloud agent memory, vector retrieval, and flat instruction files
+- [MCP server for project context](https://archcore.ai/blog/mcp-server-project-context/): exposing repository context to coding agents over MCP
+- [Claude Code memory](https://archcore.ai/blog/claude-code-memory/): CLAUDE.md limits and what belongs in structured project context instead
+- [Cursor Memories removed](https://archcore.ai/blog/cursor-memories-removed/): what changed in Cursor and what to use instead
+- [All explainers](https://archcore.ai/learn/) and [all guides](https://archcore.ai/blog/)
 
 ## Documentation
 

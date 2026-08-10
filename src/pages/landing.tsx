@@ -2,7 +2,12 @@ import { lazy, Suspense } from "react";
 import {
   StickyHeader,
   HeroSection,
+  ProblemSection,
   BeforeAfterSection,
+  SpecDrivenSection,
+  ContextEngineeringSection,
+  GitNativeSection,
+  CrossAgentSection,
   HowItWorksSection,
   SiteNav,
 } from "@/components/sections";
@@ -31,8 +36,23 @@ export function LandingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <StickyHeader />
       <main id="main-content">
+        {/*
+          The canonical homepage sequence in product/surface-descriptors:
+          category + product (hero), problem, spec-driven development, context
+          engineering, git-native, cross-agent, how it works. Before/After sits
+          between the problem and the two category sections as its concrete
+          proof — it is the Job 1 demonstration that product/jobs-to-be-done
+          keeps first, and the categories are what the reader searched for.
+          Backgrounds alternate page / band so the page does not read as one
+          field of bordered cards.
+        */}
         <HeroSection />
+        <ProblemSection />
         <BeforeAfterSection />
+        <SpecDrivenSection />
+        <ContextEngineeringSection />
+        <GitNativeSection />
+        <CrossAgentSection />
         <HowItWorksSection />
         <Suspense fallback={null}>
           <HowToUseWizardSection embedded />

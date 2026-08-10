@@ -5,19 +5,24 @@ status: accepted
 
 ## Rule
 
-All user-facing copy on the landing site MUST align with the canonical messaging below. This document is the single source of truth for landing copy across **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and across all meta surfaces (OG cards, Twitter cards, `index.html` static shell, prerendered route HTML, the OG image generator).
+All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, `index.html` static shell, prerendered route HTML, the OG image generator).
 
-**Primary phrase (Hero H1):** "Stop re-explaining your repo to every AI agent."
+**The strings themselves live in the global context and are not restated here:**
 
-**Meta title (home `<title>`, ≤60 chars):** "Archcore — repo memory for AI coding agents" — the title tag is category-led for SERPs and brand disambiguation and intentionally does NOT mirror the H1 (decision: `landing/home-title-category-keyword.adr.md`).
+- `product/canonical-narrative` — the fixed strings, the message hierarchy, the terminology style, and the avoid-list.
+- `product/surface-descriptors` — the resolved homepage slots (`<title>`, meta description, OG title and description, eyebrow, H1, hero subhead, supporting promise, CTAs) and the homepage section sequence.
+- `product/two-discovery-categories` — the decision behind them.
 
-**Secondary phrase (hero subhead):** "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
+Where a slot is listed in `product/surface-descriptors`, copy it. Do not compose a variant for this site.
 
-**Meta description (home, ≤160 chars):** "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
+**Site-local strings not covered globally:**
 
-**Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
+- **`/plugin` `<title>`:** "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names do not fit a ≤60-char title, so the hosts live in the description instead.
+- **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents".
+- **Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
+- **Short tagline (footer):** "Git-native context for AI coding agents."
 
-**Short tagline (footer):** "Git-native context for AI coding agents."
+**"Repo memory" is retired as of 2026-08-10.** It was the home and `/plugin` category term under `landing/home-title-category-keyword.adr.md`, now superseded by `product/two-discovery-categories`. The term survives only in `/learn/repo-memory/` and the two memory-cluster blog posts, where it names the topic the reader searched for and is never asserted as what Archcore is.
 
 ## Product surface (plugin v0.7.0)
 
@@ -25,7 +30,7 @@ Updated 2026-08-07 for the v0.7.0 release. These counts and names are load-beari
 
 - **The plugin has FOUR slash commands**, not seven: `/archcore:init`, `/archcore:plan`, `/archcore:document`, `/archcore:review`. The v0.6-era `context`, `capture`, `decide`, `audit`, and `help` commands were removed. `capture` and `decide` folded into `document`; `audit` folded into `review` (`--drift`, `--deep`); `context` became automatic; `help` was dropped.
 - **Everyday context needs no command.** Hooks inject the applicable rules and specs when the agent edits a file, and each session opens with a recap of what is decided and in progress. Copy MUST NOT tell users to run a command to load context.
-- **`/archcore:plan` takes a positional track**, not a `--track` flag: `sdd` (default; idea → PRD → spec → plan), `sources` (MRD → BRD → URD), `iso` (BRS → StRS → SyRS → SRS).
+- **`/archcore:plan` takes a positional track**, not a `--track` flag: `sdd` (default; idea → PRD → spec → plan), `sources` (MRD → BRD → URD), `iso` (BRS → StRS → SyRS → SRS), `research` (RnD). Source of truth: `plugins/archcore/skills/plan/SKILL.md` in the plugin repo. The `research` track was missing from this list until 2026-08-10 while the docs already carried it.
 - **MCP prompts no longer exist.** The `product_track` / `architecture_track` / `standard_track` / `sources_track` / `iso_track` prompt cascades were removed from the CLI in v0.7.0. The MCP surface is tool-only: 10 document tools.
 - **Document-type count:** the product exposes **19** typed document types (vision incl. RnD) — every count mention on any surface says 19, matching docs.
 
@@ -35,7 +40,9 @@ The full writing profile lives in `AGENTS.md` at the repository root. It sets IS
 
 Two conventions this rule pins directly, because they touch the canonical phrases:
 
-- **No em dashes in prose.** The `humanizer` skill treats the em dash as a hard constraint, and this site had 252 of them in the English catalog. Replace with a period, comma, colon, or parentheses. Two exceptions: the brand separator in a `<title>` or OG title (`Archcore — repo memory for AI coding agents`), which is a typographic convention rather than a prose tell, and code comments, which no reader sees.
+- **No em dashes in prose.** The `humanizer` skill treats the em dash as a hard constraint, and this site had 252 of them in the English catalog. Replace with a period, comma, colon, or parentheses. Two exceptions: the brand separator in a `<title>` or OG title (`Archcore — Spec-Driven Development & Context Engineering`), which is a typographic convention rather than a prose tell, and code comments, which no reader sees.
+
+This is why the hero subhead uses the **comma variant** of the canonical expanded definition. `product/canonical-narrative` clause 17 defers to this policy; the wording is identical either way.
 - **Russian keeps its grammatical dash.** `humanizer-ru` bans «—» outright, but Russian requires it for an omitted copula («Настройка MCP — рутина», «Один конфиг — все агенты»). Strip the dash only where it is calqued from English: appositives, parenthetical asides, and consequence clauses that a comma or «и» carries better. Stripping a grammatical dash produces broken Russian, which is worse than the pattern it removes.
 
 The pinned secondary phrase and meta description changed punctuation on 2026-08-07 (em dash to comma) under this policy. The wording is identical; the claim did not move. Any surface repeating them must use the comma form.
@@ -51,13 +58,34 @@ Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" fram
 
 ## Copy hierarchy (home `/`)
 
-- **Hero H1:** Primary phrase
-- **Hero subhead:** Secondary phrase
-- **Meta title (`<title>`):** "Archcore — repo memory for AI coding agents"
-- **OG title / Twitter title / og:image:alt:** "Archcore — Stop re-explaining your repo to every AI agent"
-- **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** Meta description phrase
+Every slot below takes its string from `product/surface-descriptors`, homepage table.
+
+- **Hero eyebrow → H1 → subhead → supporting promise**, in that order
+- **Meta title (`<title>`) / OG title / Twitter title / og:image:alt:** the same category-led string, so the SERP entry, the social card, and the image alt all agree
+- **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** the homepage meta description; OG and Twitter may use the OG description variant
 - **Works-with strip:** directly under the install tabs, above the "CLI = one binary · Plugin = slash commands." line
-- **OG image subtitle (`og-image.png`):** Secondary phrase verbatim
+- **OG image subtitle (`og-image.png`):** the hero subhead verbatim
+
+### Section order (`landing.tsx`)
+
+The canonical sequence in `product/surface-descriptors`, with one addition. Component ids match the section anchors.
+
+| # | Section | Component | Background |
+|---|---------|-----------|------------|
+| 1 | Category and product | `hero-section` | page |
+| 2 | Problem | `problem-section` (`#problem`) | page |
+| 3 | Proof | `before-after-section` | page, cards |
+| 4 | Spec-driven development | `spec-driven-section` (`#spec-driven-development`) | band |
+| 5 | Context engineering | `context-engineering-section` (`#context-engineering`) | page |
+| 6 | Git-native | `git-native-section` (`#git-native`) | band |
+| 7 | Cross-agent | `cross-agent-section` (`#cross-agent`) | page |
+| 8 | How it works | `how-it-works-section` | band |
+
+**Before/After is the addition, and it is deliberate.** `product/jobs-to-be-done` keeps Job 1 (build by this repo's rules) as the primary product scenario, so the page needs its concrete demonstration before it argues categories. It sits between the problem and the two category sections: problem stated, problem shown, then the two categories the reader searched for.
+
+Backgrounds alternate page / band from section 4 on, so the page does not read as one field of bordered cards. A new section picks the background that continues the alternation.
+
+**Sections 4 and 5 carry the category terms in their H2s.** Those two headings are SEO-load-bearing. Do not soften them into a benefit phrase.
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
 - **Visible FAQ (`faq-section.tsx`) and the FAQPage JSON-LD in `index.html` MUST mirror each other** — same questions, same answers, same order.
 
@@ -72,9 +100,10 @@ Added 2026-07-30 after the home FAQPage block was found shipping on every preren
 
 ## Per-page heroes (`/plugin`, `/cli`)
 
-- **`/plugin` H1:** "Give Claude Code, Cursor, Codex & Copilot a brain for your codebase."
-- **`/cli` H1:** "Repo-native context for any AI agent."
-- **`/plugin` `<title>` is category-led**, not host-enumerated: "Archcore Plugin — repo memory for AI coding agents". Four host names no longer fit a ≤60-char title, so the hosts live in the description instead. This mirrors the home title's rationale.
+- **`/plugin` H1:** "Make your AI coding agent work like it already knows your repo." Same opener as the plugin README, so the page and the repository read as one surface.
+- **`/cli` H1:** "Git-native project context for every AI coding agent."
+- **`/plugin` `<title>` is category-led**, not host-enumerated: "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names no longer fit a ≤60-char title, so the hosts live in the description instead. This mirrors the home title's rationale.
+- **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents", matching the CLI README H1.
 
 Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments, and each route's static `body.paragraphs` must state the same claims as the page's visible sections — that body is what non-JS crawlers read.
 
@@ -86,7 +115,7 @@ Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these
 - **CLI over MCP (8):** Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline (manual setup).
 - **CLI session hooks (5):** Claude Code, Cursor, Gemini CLI, Codex CLI, GitHub Copilot. OpenCode is never wired — its hooks are JavaScript plugins that cannot be written declaratively. Codex hooks need its experimental flag (`codex --enable hooks`) and do not run on Windows. Copilot has no pre-write context injection.
 - **GitHub Copilot CLI resolved 2026-08-07.** The earlier "landing follows the docs, which say planned" carve-out is retired: plugin v0.7.0 ships Copilot support with tests. **Copilot needs two install steps** — `copilot plugin install archcore-ai/plugin:plugins/archcore` AND `archcore init --agent copilot --project "$PWD"`. The second is required, not optional: the plugin deliberately ships no MCP server to Copilot, so a project that skips it has no document tools. Any surface showing the Copilot install path must show both steps.
-- **`docs.archcore.ai` is behind as of 2026-08-07** (last content update ~v0.5.5): its host matrix still says Copilot is planned and it references removed commands. Where docs and shipped code disagree, the landing follows the **code**. Fix the docs, don't re-stale the landing.
+- **`docs.archcore.ai` caught up on 2026-08-10.** The earlier warning here (host matrix said Copilot was planned, removed commands still documented) no longer holds: docs state Copilot as implemented with both install steps and the `github/copilot-cli#4234` rationale, carry only the four commands, list all four `/archcore:plan` tracks, and say 19 document types. The standing rule is unchanged: **where docs and shipped code disagree, the landing follows the code** — and this time the drift ran the other way, with this rule missing the `research` track the docs already had.
 
 ## CTA vocabulary
 
@@ -108,15 +137,17 @@ The `/plugin` page's Install section is a **4-tab** Radix Tabs widget: "Claude C
 
 ## Rationale
 
-Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the four plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel. The pain-first H1 outperformed the earlier category-first phrase ("Turn your repository into structured, machine-readable context") in clarity; the category statement now lives in the subhead where it answers "what is this" immediately after the hook.
+Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the four plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel.
 
-The meta title is the one deliberate exception to single-phrase purity: SERPs need the category term and disambiguation from unrelated Archcore-named companies (archcore.com steel), while social cards and the page itself keep the pain hook. See `landing/home-title-category-keyword.adr.md`.
+The home H1 went category-led on 2026-08-10 under `product/two-discovery-categories`, which reverses the 2026-07-06 pain-first decision for the H1 slot specifically. The pain phrase did not disappear: it moved down one line as the supporting promise, where it still does the hook's job while the H1 states what Archcore is and what it competes for. The eyebrow ("Git-native context layer") keeps the product definition visible above the category line, so the reader gets the narrow answer before the broad one.
+
+The `<title>` no longer diverges from the H1. Both are category-led, so SERP entry, social card, OG image, and page all state the same claim. That removes the exception `landing/home-title-category-keyword.adr.md` was written to sanction, and the ADR is superseded.
 
 Host support and structured data get their own invariants because both failed silently: a stale host claim or an inherited FAQ block produces no build error, ships to production, and is only visible in the rendered HTML or a rich-results test. The command set now gets the same treatment: `/archcore:context` survived on the landing for a full release after it was deleted, because nothing in the build knows which commands exist.
 
 ## Examples
 
-**Good (Hero):** "Stop re-explaining your repo to every AI agent. Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
+**Good (Hero):** eyebrow "Git-native context layer", H1 "Spec-Driven Development & Context Engineering for AI Coding Agents", subhead "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work.", then "Stop re-explaining your repo to every AI coding agent."
 
 **Good (entry-point choice):** "Both paths use the same `.archcore/` directory. The difference is the experience layer."
 
@@ -126,7 +157,9 @@ Host support and structured data get their own invariants because both failed si
 
 **Bad:** "Turn your repository into structured, machine-readable context." — superseded primary phrase.
 
-**Bad:** `<title>Archcore — Stop re-explaining your repo to every AI agent</title>` — superseded title; the `<title>` is category-led, the pain phrase stays on H1/OG/Twitter.
+**Bad:** `<title>Archcore — repo memory for AI coding agents</title>` — superseded title; memory is retired as positioning on every surface, `<title>` included.
+
+**Bad:** "Give Claude Code, Cursor, Codex & Copilot a brain for your codebase." — the superseded `/plugin` H1; "a brain for your codebase" is memory framing in a costume.
 
 **Bad:** "Plugin (recommended)" — recommendation labels are retired; frame by the user's agent instead.
 

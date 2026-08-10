@@ -53,20 +53,30 @@ export function HeroSection() {
     >
       <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
-          <h1 className="type-hero text-balance">
-            <Trans>
-              Stop re-explaining your repo
-              <br />
-              to every AI agent.
-            </Trans>
-          </h1>
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+              <Trans>Git-native context layer</Trans>
+            </p>
+
+            <h1 className="type-hero text-balance">
+              <Trans>
+                Spec-Driven Development &amp; Context Engineering
+                <br />
+                for AI Coding Agents
+              </Trans>
+            </h1>
+          </div>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
-              Archcore keeps your decisions, rules, and architecture as
-              structured docs in your repo, loaded into your agent over MCP
-              before it edits.
+              Archcore keeps specs, architecture, decisions, rules, and plans in
+              Git, and makes the right project context available to AI coding
+              agents as they work.
             </Trans>
+          </p>
+
+          <p className="type-body font-medium max-w-[var(--container-narrow)] mx-auto">
+            <Trans>Stop re-explaining your repo to every AI coding agent.</Trans>
           </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">

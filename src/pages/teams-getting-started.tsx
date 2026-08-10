@@ -33,15 +33,15 @@ export function TeamsGettingStarted() {
       );
     }
     return () => {
-      // Canonical home meta, per .archcore/messaging-alignment.rule.md. This
-      // restore path shipped the superseded "turns your repository into
-      // structured, machine-readable context" phrase and the old title.
-      document.title = "Archcore — repo memory for AI coding agents";
+      // Canonical home meta, per .archcore/messaging-alignment.rule.md. Meta
+      // written imperatively here is copy, and it drifts where nobody looks:
+      // this restore path has already shipped two superseded phrases.
+      document.title = "Archcore — Spec-Driven Development & Context Engineering";
       const meta = document.querySelector('meta[name="description"]');
       if (meta) {
         meta.setAttribute(
           "content",
-          "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
+          "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code."
         );
       }
     };

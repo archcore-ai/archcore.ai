@@ -18,12 +18,12 @@ export function PluginPage() {
   const { _ } = useLingui();
 
   usePageMeta({
-    // Four hosts no longer fit a ≤60-char title, so the title went
+    // Four hosts no longer fit a ≤60-char title, so the title stays
     // category-led (like the home title) and the hosts moved to the
     // description, which has room for all four.
-    title: _(msg`Archcore Plugin — repo memory for AI coding agents`),
+    title: _(msg`Archcore Plugin — Spec-Driven Development for Coding Agents`),
     description: _(
-      msg`The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex, and Copilot CLI, so the agent follows your team's truth.`
+      msg`Add spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.`
     ),
     canonical: "/plugin/",
     ogImage: "/og-image-plugin.png",

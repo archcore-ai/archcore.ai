@@ -1,7 +1,9 @@
 ---
 title: "Home meta title carries the category keyword (repo memory), H1 stays pain-first"
-status: accepted
+status: rejected
 ---
+
+> **Superseded 2026-08-10 by `product/two-discovery-categories`.** The category term is no longer "repo memory": memory is retired as positioning on every surface, `<title>` included. The `<title>` and the H1 are now both category-led ("Spec-Driven Development & Context Engineering"), so the title/H1 decoupling this ADR introduced no longer exists. The brand-disambiguation problem it identified is real and is now solved by the category line rather than by the memory term. Kept for the reasoning trail.
 
 ## Context
 

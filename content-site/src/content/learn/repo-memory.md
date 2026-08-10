@@ -73,7 +73,7 @@ Individually, none of these is exotic. A vendor memory layer can be reviewable i
 
 ## What does structured repo memory look like?
 
-A worked example, using the `.archcore/` layout from [Archcore](https://archcore.ai/) (our tool, and the reason this page exists):
+A worked example, using the `.archcore/` layout from [Archcore](https://archcore.ai/), a git-native context layer for AI coding agents (our tool, and the reason this page exists):
 
 ```
 .archcore/
@@ -86,6 +86,6 @@ A worked example, using the `.archcore/` layout from [Archcore](https://archcore
   run-and-test.guide.md          # how to run this repo
 ```
 
-Each document is markdown with typed frontmatter (`adr`, `rule`, `spec`, `plan`, `guide` and more), a status, and named relations to other documents (`informs`, `blocks`, `refines`, `supersedes`), so an agent can walk from the file it's editing to the rule that governs it and the decision that explains why. The [CLI](https://archcore.ai/cli/) scaffolds the directory and runs a local MCP server; the [plugin](https://archcore.ai/plugin/) adds slash commands for capturing decisions and plans without leaving the session. Details live in the [docs](https://docs.archcore.ai/).
+Each document is markdown with typed frontmatter (`adr`, `rule`, `spec`, `plan`, `guide` and more), a status, and named relations to other documents (`implements`, `extends`, `depends_on`, `related`), so an agent can walk from the file it's editing to the rule that governs it and the decision that explains why. The [CLI](https://archcore.ai/cli/) scaffolds the directory and runs a local MCP server; the [plugin](https://archcore.ai/plugin/) adds slash commands for capturing decisions and plans without leaving the session. Details live in the [docs](https://docs.archcore.ai/).
 
 But the pattern is bigger than any one tool: if your project's decisions, rules, and specs live as versioned, typed files that agents load before they edit, then you have repo memory, whatever you build it with.

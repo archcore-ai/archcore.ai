@@ -27,6 +27,23 @@ export const INTERNAL_LINKS = {
   blog: "/blog/",
   learn: "/learn/",
   repoMemory: "/learn/repo-memory/",
+  harnessEngineering: "/learn/harness-engineering/",
+  // Root-level pillar pages, one canonical owner per query cluster
+  // (product/seo-information-architecture). Static Astro pages from the
+  // content-site sub-build, so link them with a full page load.
+  contextEngineering: "/context-engineering/",
+  specDrivenDevelopment: "/spec-driven-development/",
+  projectContext: "/project-context/",
+  gitNativeContext: "/git-native-context/",
+  mcp: "/mcp/",
+  // Per-host integration pages, same collection and same rule.
+  claudeCode: "/claude-code/",
+  cursor: "/cursor/",
+  codex: "/codex/",
+  githubCopilot: "/github-copilot/",
+  geminiCli: "/gemini-cli/",
+  agentsMd: "/agents-md/",
+  claudeMd: "/claude-md/",
 } as const;
 
 export const ANCHORS = {

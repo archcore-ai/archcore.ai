@@ -22,10 +22,10 @@
 
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
-    <title>Archcore — repo memory for AI coding agents</title>
+    <title>Archcore — Spec-Driven Development &amp; Context Engineering</title>
     <meta
       name="description"
-      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      content="Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code."
     />
     <link rel="canonical" href="https://archcore.ai/" />
 
@@ -70,11 +70,11 @@
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Archcore — Stop re-explaining your repo to every AI agent"
+      content="Archcore — Spec-Driven Development &amp; Context Engineering"
     />
     <meta
       property="og:description"
-      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      content="Git-native project context for AI coding agents. Keep specs, architecture, decisions, rules, and plans in Git, and make them available to every agent."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://archcore.ai/" />
@@ -82,7 +82,7 @@
     <meta property="og:image" content="https://archcore.ai/og-image.png" />
     <meta
       property="og:image:alt"
-      content="Archcore — Stop re-explaining your repo to every AI agent"
+      content="Archcore — Spec-Driven Development &amp; Context Engineering"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -93,11 +93,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Archcore — Stop re-explaining your repo to every AI agent"
+      content="Archcore — Spec-Driven Development &amp; Context Engineering"
     />
     <meta
       name="twitter:description"
-      content="Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      content="Git-native project context for AI coding agents. Keep specs, architecture, decisions, rules, and plans in Git, and make them available to every agent."
     />
     <meta name="twitter:site" content="@archcore_ai" />
     <meta name="twitter:creator" content="@archcore_ai" />
@@ -133,7 +133,7 @@
         "operatingSystem": "Linux, macOS, Windows",
         "url": "https://archcore.ai",
         "downloadUrl": "https://archcore.ai/install.sh",
-        "description": "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into Claude Code, Cursor, and any MCP agent before they edit.",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -204,58 +204,102 @@
     <a href="#main-content" class="archcore-skip-link">Skip to main content</a>
     <div id="root">
       <main id="main-content">
-        <h1>Archcore — Stop re-explaining your repo to every AI agent</h1>
+        <h1>
+          Spec-Driven Development &amp; Context Engineering for AI Coding
+          Agents
+        </h1>
         <p>
-          A Git-native context layer for AI coding agents. The project keeps
-          architectural decisions (ADRs), team rules, how-to guides, named
-          patterns, action plans, and product requirements in your repository
-          so Claude Code, Cursor, GitHub Copilot, Gemini CLI, and other agents
+          Archcore is a git-native context layer for AI coding agents. It keeps
+          specs, architecture, decisions, rules, and plans in Git, and makes the
+          right project context available to AI coding agents as they work, so
+          Claude Code, Cursor, GitHub Copilot, Gemini CLI, and other agents
           follow your real architecture instead of guessing.
         </p>
-        <h2>Why instruction files like CLAUDE.md and AGENTS.md aren't enough</h2>
+        <h2>Your code is in Git. Your project understanding should be too.</h2>
         <p>
-          Single instruction files are flat, tool-specific, and weakly
-          structured. They pile up without type, link, or history. As a
-          codebase grows, the agent has no way to find which rule applies to
-          which directory, which decision blocks a refactor, or which spec
-          governs a contract. The replacement here is nineteen typed document
-          categories, named relations between them (informs, blocks, refines,
-          supersedes), and versioned history: the same artifacts senior
-          engineers already write but that agents can read, write, and reason
-          about during real work.
+          Decisions disappear into chat history. Instruction files like
+          CLAUDE.md and AGENTS.md grow into walls of text. Every agent sees a
+          different version of the project. Specs become stale handoff
+          artifacts, and architecture and conventions get re-explained every
+          session. Single instruction files are flat, tool-specific, and weakly
+          structured: they pile up without type, link, or history, so the agent
+          has no way to find which rule applies to which directory, which
+          decision blocks a refactor, or which spec governs a contract. The
+          replacement here is nineteen typed document categories, named
+          relations between them (implements, extends, depends_on, related), and
+          versioned history: the same artifacts senior engineers already write,
+          but that agents can read, write, and reason about during real work.
         </p>
-        <h2>Two ways to use it</h2>
+        <h2>Specs that stay connected to implementation</h2>
         <p>
-          Install the <a href="/plugin/">plugin</a> for the most polished
-          experience inside Claude Code, Cursor, Codex CLI, and GitHub Copilot
-          CLI, with architecture-aware <code>/archcore</code> slash commands.
-          Or use the <a href="/cli/">CLI</a> directly with MCP and session
-          hooks to support custom agent flows, minimal setups, and the eight AI
-          coding agents the CLI integrates with today: Claude Code, Cursor,
-          Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and
-          Cline.
+          Use structured specs and plans to define what should be built, then
+          keep them alongside the decisions, rules, and architecture the agent
+          needs during implementation. The spec-driven track runs idea → PRD →
+          spec → plan, and a requirements cascade is available for market
+          discovery (MRD → BRD → URD) and for regulated work (BRS → StRS →
+          SyRS → SRS). A spec is one part of context, not the whole context: it
+          ships next to the architecture, prior decisions, constraints, and
+          team rules the agent also needs.
         </p>
-        <h2>How the context loop works</h2>
+        <h2>Engineer the context your coding agents work from</h2>
         <p>
-          Session hooks inject the right documents at the start of every
-          conversation. MCP exposes tools (list, get, create, update) so the
-          agent can browse and edit <code>.archcore/</code> documents during a
-          session. Everyday context needs no command: hooks inject the rules
-          and specs that apply to the file being edited. Four slash commands
-          (<code>/archcore:init</code>, <code>/archcore:plan</code>,
-          <code>/archcore:document</code>, <code>/archcore:review</code>) give
-          you a clean way to set up, plan, capture, and check work without
-          breaking flow.
+          Context is more than a prompt or a bigger context window. Archcore
+          makes project knowledge explicit (decisions and constraints are
+          written down, not inferred from code), structured (typed documents
+          with relations, not one growing file), selective (the agent loads
+          what applies to the file in front of it), versioned (context changes
+          ship in the same pull request as the code), and portable across
+          coding agents.
         </p>
-        <h2>Local-first, open source</h2>
+        <p>
+          Designing what an agent is told before it acts, and what checks it
+          afterwards, is called harness engineering: guides that steer the
+          agent ahead of an edit, and sensors that verify the result. A harness
+          for a coding agent is a specific form of context engineering, not a
+          successor to it. Your agent already ships the loop, the tools, the
+          permissions, and the sandbox. Archcore holds the half no vendor can
+          ship for you, because it has never seen your repository: what your
+          project decided, what it requires, and what it forbids. See
+          <a href="/learn/harness-engineering/"
+            >harness engineering, explained</a
+          >.
+        </p>
+        <h2>Project context belongs in Git</h2>
         <p>
           Everything lives in <code>.archcore/</code> inside your repository,
-          versioned alongside the code it documents. No servers, no databases,
-          no accounts, no telemetry. The CLI is a single cross-platform binary;
-          the MCP server runs locally as a child process; install scripts pull
-          release binaries from GitHub Releases. See the
-          <a href="https://docs.archcore.ai/">documentation</a> or read the
-          <a href="/privacy/">privacy policy</a> for details.
+          versioned alongside the code it documents: reviewable in pull
+          requests, portable across tools, team-owned, and with no opaque agent
+          memory holding anything you cannot read or edit. No servers, no
+          databases, no accounts, no telemetry. The CLI is a single
+          cross-platform binary; the MCP server runs locally as a child
+          process; install scripts pull release binaries from GitHub Releases.
+          See the <a href="https://docs.archcore.ai/">documentation</a> or read
+          the <a href="/privacy/">privacy policy</a> for details.
+        </p>
+        <h2>One project context. Every coding agent.</h2>
+        <p>
+          Both entry points read and write the same <code>.archcore/</code>
+          directory; pick by the agent you run. The
+          <a href="/plugin/">plugin</a> adds architecture-aware
+          <code>/archcore</code> slash commands, skills, and guardrails inside
+          Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. The
+          <a href="/cli/">CLI</a> provides the context layer itself over MCP
+          and session hooks for every other MCP-aware agent and for CI,
+          covering eight agents today: Claude Code, Cursor, Gemini CLI, GitHub
+          Copilot, OpenCode, Codex CLI, Roo Code, and Cline.
+        </p>
+        <h2>Capture, connect, apply, evolve</h2>
+        <p>
+          Capture specs, decisions, rules, plans, and project knowledge.
+          Connect related artifacts into one project context. Apply the
+          relevant context while agents work: session hooks inject the right
+          documents at the start of every conversation, and MCP exposes tools
+          (list, get, create, update) so the agent can browse and edit
+          documents during a session. Everyday context needs no command at all.
+          Four slash commands (<code>/archcore:init</code>,
+          <code>/archcore:plan</code>, <code>/archcore:document</code>,
+          <code>/archcore:review</code>) cover setup, planning, capture, and
+          review. Evolve context with the codebase, through Git.
         </p>
         <nav aria-label="Site">
           <a href="/plugin/">Plugin</a>

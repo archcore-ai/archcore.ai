@@ -40,19 +40,19 @@ interface FaqEntry {
 const ROUTES: RouteMeta[] = [
   {
     path: "plugin",
-    title: "Archcore Plugin — repo memory for AI coding agents",
+    title: "Archcore Plugin — Spec-Driven Development for Coding Agents",
     description:
-      "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, Codex, and Copilot CLI, so the agent follows your team's truth.",
+      "Add spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
     ogImage: "/og-image-plugin.png",
     body: {
-      h1: "Give Claude Code, Cursor, Codex & Copilot a brain for your codebase.",
+      h1: "Make your AI coding agent work like it already knows your repo.",
       paragraphs: [
         "The plugin gives Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI access to the architectural context already in your repository: decisions, specs, team rules, patterns, and plans — so the agent edits code with the same constraints your team works under, not its best guess from a flat instruction file.",
         "One install wires up architecture-aware /archcore slash commands inside your agent, four of them, no subcommands: /archcore:init, /archcore:plan, /archcore:document, /archcore:review. Everyday context needs no command at all: hooks inject the rules and specs that apply to the file being edited, and each session opens with a recap of what is decided and in progress. Use /archcore:document to record a finalized decision as an ADR (optionally codified as a team rule) or to document a module that only lives in someone's head, /archcore:plan to break a feature into a requirements cascade and an implementation plan, and /archcore:review before merge to check changed code against the documents that claim it.",
         "Capture decisions, standards, and plans without leaving chat. The plugin uses the underlying CLI for execution, so you also get MCP tools (list, get, create, update) for browsing and editing .archcore/ documents, and session hooks that inject the relevant context automatically at the start of a conversation.",
         "Plugin hosts: Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot the plugin ships no MCP server, so wiring the project once with archcore init --agent copilot is required rather than optional — without it the agent has no document tools. The plugin needs a host with a plugin runtime; every other MCP-aware agent reads the same .archcore/ directory through the CLI, which supports eight agents over MCP and session hooks for five of them. Open source, fully local — no servers, no accounts, no telemetry. Everything is stored in .archcore/ inside your repo and versioned with your code.",
         "Already have instruction files? You don't start over. /archcore:init detects your repo's scale and composes a full first-day seed: stack rule, run guide, data model, entry points, and specs for hotspot modules — shown in one preview and written on a single confirm. It also imports the ones you already wrote (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded.",
-        "Common workflows: record an ADR for a finalized decision, propose an RFC when the team needs to weigh in, document a module nobody has written down, or extend a feature plan after scope changes. The slash commands are tuned for these patterns, and the document graph means relevant rules and specs surface automatically when an agent reads a file under their scope. Reviewers can audit decisions and standards in code review like any other diff, since the documents live in Git.",
+        "Common tracks: record an ADR for a finalized decision, propose an RFC when the team needs to weigh in, document a module nobody has written down, or extend a feature plan after scope changes. The slash commands are tuned for these patterns, and the document graph means relevant rules and specs surface automatically when an agent reads a file under their scope. Reviewers can audit decisions and standards in code review like any other diff, since the documents live in Git.",
       ],
     },
     // Mirrors src/components/sections/plugin-faq-section.tsx.
@@ -86,15 +86,15 @@ const ROUTES: RouteMeta[] = [
   },
   {
     path: "cli",
-    title: "Archcore CLI — repo memory for every AI coding agent",
+    title: "Archcore CLI — Git-Native Context for AI Coding Agents",
     description:
-      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write decisions, rules, plans, and guides from Git.",
+      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.",
     ogImage: "/og-image-cli.png",
     body: {
-      h1: "Archcore CLI — repo memory for every AI coding agent",
+      h1: "Git-native project context for every AI coding agent.",
       paragraphs: [
         "The CLI is a single cross-platform binary that creates a .archcore/ directory in your repo, wires up MCP and session hooks, and exposes 19 typed document categories. Vision: PRD, Idea, Plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS. Knowledge: ADR, RFC, Rule, Guide, Doc, Spec. Experience: Task Type, CPAT.",
-        "Each document is markdown with YAML frontmatter, versioned alongside your code. Documents have explicit types and named relations (informs, blocks, refines, supersedes), so the agent can navigate the dependency graph instead of grepping a flat instruction file. Status fields and timestamps are stored in frontmatter, so reviewers can scan a directory and see what is accepted, draft, deprecated, or superseded.",
+        "Each document is markdown with YAML frontmatter, versioned alongside your code. Documents have explicit types and named relations (implements, extends, depends_on, related), so the agent can navigate the dependency graph instead of grepping a flat instruction file. Status fields and timestamps are stored in frontmatter, so reviewers can scan a directory and see what is accepted, draft, deprecated, or superseded.",
         "Works with 8 AI coding agents today over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five also get session hooks — Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot; OpenCode is never wired for hooks because its hooks are JavaScript plugins that cannot be written declaratively. Two commands wire each one up — archcore mcp install registers the local MCP server, archcore hooks install adds session hooks where the host supports them. Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI are also plugin hosts. Anything else that speaks MCP works the same way: the CLI is a local MCP server, not an integration per vendor. The MCP server runs locally as a child process and exposes tools to list, get, create, and update documents during a real session. Hooks pre-load relevant context based on the files in scope, so the agent starts each turn with the right rules and specs already in view.",
         "Already have instruction files? You don't start over. archcore init imports the ones you already wrote (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as typed documents: conventions become rules, the reasoning behind them becomes ADRs, and prose already sitting in docs/ becomes guides, specs, and plans. Path-scoped instruction files keep their scope but gain status, timestamps, and relations, so an agent pulls the guide for the directory it is editing instead of grepping the whole folder.",
         "Install with curl -fsSL https://archcore.ai/install.sh | bash on macOS or Linux, or irm https://archcore.ai/install.ps1 | iex on Windows. Cross-platform binary on amd64 and arm64. Run archcore doctor to verify setup, archcore update to self-update, archcore hooks install and archcore mcp install to wire up the integrations. No Node, no Python, no external services required.",

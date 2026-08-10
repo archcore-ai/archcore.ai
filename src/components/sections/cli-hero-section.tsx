@@ -17,7 +17,7 @@ export function CLIHeroSection() {
         <div className="space-y-8 text-center">
           <h1 className="type-hero text-balance">
             <Trans>
-              Repo memory
+              Git-native project context
               <br />
               for every AI coding agent.
             </Trans>

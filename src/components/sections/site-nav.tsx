@@ -26,6 +26,38 @@ export function SiteNav() {
     { label: _(msg`Privacy`), href: INTERNAL_LINKS.privacy, external: false },
   ];
 
+  // The five pillar pages, one canonical owner per query cluster
+  // (product/seo-information-architecture). Linked here so /project-context/
+  // and /mcp/ are reachable from every page rather than only from siblings.
+  // Static Astro routes from the content-site sub-build: full page load.
+  const referenceLinks: NavLink[] = [
+    {
+      label: _(msg`Context engineering`),
+      href: INTERNAL_LINKS.contextEngineering,
+      external: false,
+      reload: true,
+    },
+    {
+      label: _(msg`Spec-driven development`),
+      href: INTERNAL_LINKS.specDrivenDevelopment,
+      external: false,
+      reload: true,
+    },
+    {
+      label: _(msg`Project context`),
+      href: INTERNAL_LINKS.projectContext,
+      external: false,
+      reload: true,
+    },
+    {
+      label: _(msg`Git-native context`),
+      href: INTERNAL_LINKS.gitNativeContext,
+      external: false,
+      reload: true,
+    },
+    { label: "MCP", href: INTERNAL_LINKS.mcp, external: false, reload: true },
+  ];
+
   const communityLinks: NavLink[] = [
     { label: "Discord", href: LINKS.discord, external: true },
     { label: "X", href: LINKS.x, external: true },
@@ -48,6 +80,18 @@ export function SiteNav() {
         >
           {primaryLinks.map((link) => (
             <NavItem key={link.label} link={link} />
+          ))}
+        </nav>
+
+        <nav
+          aria-label={_(msg`Reference`)}
+          className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground"
+        >
+          <span className="font-medium">
+            <Trans>Reference</Trans>
+          </span>
+          {referenceLinks.map((link) => (
+            <NavItem key={link.label} link={link} muted />
           ))}
         </nav>
 

@@ -35,17 +35,18 @@ export function PluginHeroSection() {
         <div className="space-y-8 text-center">
           <h1 className="type-hero text-balance">
             <Trans>
-              Give Claude Code, Cursor, Codex & Copilot
+              Make your AI coding agent work
               <br />
-              a brain for your codebase.
+              like it already knows your repo.
             </Trans>
           </h1>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
             <Trans>
-              The Archcore plugin loads your architecture, rules, and decisions
-              into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI, so
-              the agent stops guessing and starts following your team's truth.
+              The Archcore plugin brings spec-driven development and automatic
+              project context to Claude Code, Cursor, Codex CLI, and GitHub
+              Copilot CLI. Specs, architecture, decisions, rules, and plans live
+              in Git and are applied as the agent works.
             </Trans>
           </p>
 

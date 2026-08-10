@@ -14,7 +14,24 @@ import fs from "fs";
 const ROOT = process.cwd();
 const SRC = path.join(ROOT, "content-site", "dist");
 const DEST = path.join(ROOT, "dist");
-const SECTIONS = ["blog", "learn", "alternatives"];
+const HUBS = ["blog", "learn", "alternatives"];
+
+/**
+ * Root-level pillar pages are one directory each at the top of the Astro
+ * build (dist/context-engineering/, …). Derived from the content directory
+ * rather than hard-coded: adding a markdown file under content/pillars/ is
+ * all it takes to ship one, and a forgotten list entry is a whole class of
+ * silent drift this repo has been bitten by before.
+ */
+const PILLAR_DIR = path.join(ROOT, "content-site", "src", "content", "pillars");
+const PILLARS = fs.existsSync(PILLAR_DIR)
+  ? fs
+      .readdirSync(PILLAR_DIR)
+      .filter((f) => f.endsWith(".md"))
+      .map((f) => f.replace(/\.md$/, ""))
+  : [];
+
+const SECTIONS = [...HUBS, ...PILLARS];
 /** Astro emits hashed CSS/JS here; no clash with Vite's dist/assets. */
 const ASSET_DIR = "_astro";
 
@@ -33,6 +50,21 @@ for (const dir of [...SECTIONS, ASSET_DIR]) {
   if (!fs.existsSync(from)) continue;
   fs.cpSync(from, path.join(DEST, dir), { recursive: true });
   copied.push(dir);
+}
+
+/**
+ * Raw-markdown twins of the pillar pages sit at the root of the Astro build
+ * (dist/context-engineering.md), not inside their page directory the way the
+ * hub twins do (dist/blog/<slug>.md). The directory copy above misses them,
+ * and PillarLayout links each one as <link rel="alternate">, so a missed file
+ * ships a dead link rather than a build error.
+ */
+for (const slug of PILLARS) {
+  const file = `${slug}.md`;
+  const from = path.join(SRC, file);
+  if (!fs.existsSync(from)) continue;
+  fs.copyFileSync(from, path.join(DEST, file));
+  copied.push(file);
 }
 
 /** Collect routes: every index.html under a section dir becomes a URL. */

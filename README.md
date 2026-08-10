@@ -2,7 +2,7 @@
 
 <https://archcore.ai>
 
-Archcore is a git-native context layer for AI coding agents. It helps teams turn scattered repo knowledge into structured context that AI coding agents can find, reuse, and follow.
+Archcore is a git-native context layer for AI coding agents. It keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work.
 
 ## Links
 

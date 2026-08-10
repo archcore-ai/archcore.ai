@@ -39,32 +39,32 @@ const VARIANTS: Variant[] = [
   {
     output: "og-image.png",
     headline: [
-      "Stop re-explaining your repo",
-      "to every AI agent.",
+      "Spec-Driven Development &",
+      "Context Engineering.",
     ],
     subtitle:
-      "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits.",
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work.",
     bottomLabel: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
   },
   {
     output: "og-image-plugin.png",
     headline: [
-      "Claude Code, Cursor, Codex &",
-      "Copilot plugin for AI agents.",
+      "Make your AI coding agent work",
+      "like it already knows your repo.",
     ],
     subtitle:
-      "Archcore loads your architecture, rules, and decisions into Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI, so the agent stops guessing and starts following your team's truth.",
+      "Archcore brings spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. Specs, architecture, decisions, rules, and plans live in Git.",
     bottomLabel:
       "Claude Code · Cursor · Codex · Copilot  ·  Intent-based slash commands",
   },
   {
     output: "og-image-cli.png",
     headline: [
-      "Repo memory for every",
-      "AI coding agent.",
+      "Git-native project context",
+      "for every AI coding agent.",
     ],
     subtitle:
-      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets your agents read and write decisions, rules, plans, and guides from Git.",
+      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets your agents read and write specs, decisions, rules, and plans from Git.",
     bottomLabel: "Standalone binary  ·  MCP + hooks  ·  8 AI coding agents",
   },
   {

@@ -57,6 +57,12 @@ None of the eight competitors can say: "memory lives in your repo, versioned by 
 
 Dev-topic AI answers cite official docs, GitHub READMEs, arXiv, vendor engineering blogs, dev.to. Requirements: answer-first structure (definition in first 2 sentences, question-form H2s, tables), citable numbers (available: SkillsBench 6.2/12, +16.2pp curated; Snyk 36% injectable skills; MEMORY.md 200-line limit; arXiv "LLM-generated AGENTS.md = −2% success, +23% cost"), freshness (clusters flip quarterly), and an original data study — "we analyzed N public CLAUDE.md/AGENTS.md files" does not exist in public and would be the flagship citable asset.
 
+## Status note (2026-08-10)
+
+`product/two-discovery-categories` overrode one part of this research: Archcore now claims "Spec-Driven Development" and "Context Engineering" as its two discovery categories, and "repo memory" is retired as positioning. That is a positioning and entity-consistency decision, not a bet that these heads can be outranked. The head analysis below stands.
+
+Everything else in this document stands and remains the basis for the content program: the wedge findings, the competitor patterns, the AEO/GEO notes, and the foundation fixes. The memory-cluster articles keep their URLs and target keywords; they now link to the canonical definition instead of asserting repo memory as what Archcore is.
+
 ## Recommendation
 
 Do not fight the heads. Build a three-wedge content program on the apex domain (`/blog/`, `/learn/`, `/alternatives/`): (1) {host} memory cluster with the two freshness windows first, (2) empty product-key SERPs ("MCP project context", "repo memory" term claim), (3) SDD afterlife + skills junction. Fix foundation first (GSC, sitemap bug, llms.txt, docs titles, catalog listings). Keep pain-first H1 per messaging rule; carry category terms in title tags and new pages instead.

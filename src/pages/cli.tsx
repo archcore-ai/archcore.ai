@@ -19,9 +19,9 @@ export function CLIPage() {
   const { _ } = useLingui();
 
   usePageMeta({
-    title: _(msg`Archcore CLI — repo memory for every AI coding agent`),
+    title: _(msg`Archcore CLI — Git-Native Context for AI Coding Agents`),
     description: _(
-      msg`Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write decisions, rules, plans, and guides from Git.`
+      msg`Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.`
     ),
     canonical: "/cli/",
     ogImage: "/og-image-cli.png",

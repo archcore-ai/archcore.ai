@@ -33,4 +33,34 @@ const alternatives = defineCollection({
   schema: articleSchema,
 });
 
-export const collections = { blog, learn, alternatives };
+/**
+ * Root-level reference pages: the canonical owner of one query cluster each,
+ * per product/seo-information-architecture in the shared context. Holds both
+ * the category pillars (/context-engineering/, …) and the per-host
+ * integration pages (/claude-code/, …), which share the same shape: evergreen
+ * reference, no publication event, one owner per query. `updatedDate`
+ * replaces `pubDate` and the layout emits WebPage rather than Article.
+ *
+ * Adding a file here is all it takes to ship a pillar: the route, the raw
+ * markdown twin, the sitemap entry, and the dist merge all derive from the
+ * collection.
+ */
+const pillarSchema = z.object({
+  title: z.string().max(70),
+  /** Visible H1. Differs from `title` where the SERP intent differs. */
+  heading: z.string(),
+  description: z.string().max(170),
+  updatedDate: z.coerce.date(),
+  faq: z.array(faqEntry).optional(),
+  ogImage: z.string().optional(),
+  /** Sibling pillars to link, by slug. Order is preserved. */
+  related: z.array(z.string()).default([]),
+  draft: z.boolean().default(false),
+});
+
+const pillars = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/pillars" }),
+  schema: pillarSchema,
+});
+
+export const collections = { blog, learn, alternatives, pillars };

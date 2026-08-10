@@ -102,7 +102,7 @@ Cadence: 2–4 evergreen pieces/month. Every piece: answer-first layout, Article
 - [ ] PRs: awesome-claude-code-plugins, awesome-claude-plugins, awesome-ai-plugins
 - [ ] Catalogs: mcpservers.org, glama.ai, mcp.so, mcpserver.directory, openalternative.co, AlternativeTo
 - [ ] Listicle pitches: MarkTechPost SDD tools, intent-driven.dev alternatives pages
-- [ ] GitHub taglines/topics: "Git-native repo memory for AI coding agents"; README funnel to archcore.ai
+- [ ] GitHub taglines/topics: use the strings in `product/surface-descriptors` (CLI, Plugin, organization); README funnel to archcore.ai. The earlier "Git-native repo memory for AI coding agents" phrasing is retired.
 - [ ] Per published article: dev.to cross-post; Reddit/HN when warranted; YouTube walkthrough for flagship pieces
 - Already listed: claudepluginhub.com, cursor.directory
 

@@ -114,7 +114,7 @@ export function PluginPillarsSection() {
             <code className="font-mono text-[0.9em] rounded bg-muted px-1.5 py-0.5">
               /archcore:*
             </code>{" "}
-            commands below are just shortcuts to the same workflows.
+            commands below are just shortcuts to the same tracks.
           </Trans>
         </p>
       </div>

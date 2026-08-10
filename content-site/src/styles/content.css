@@ -451,3 +451,53 @@ html.dark .site-header__brand .logo-dark {
     padding-bottom: 72px;
   }
 }
+
+/* ---------- Pillar pages: contents + related ---------- */
+
+/*
+ * Pillar pages run long by design (product/seo-information-architecture:
+ * "a pillar page without examples does not ship"), so they get a contents
+ * list that the dated articles do not. Rendered only when the page has more
+ * than two h2 sections, per PillarLayout.
+ */
+.pillar-toc {
+  margin: 2rem 0 2.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+}
+
+.pillar-toc__label {
+  margin: 0 0 0.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.pillar-toc ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.pillar-toc li {
+  margin: 0.3rem 0;
+  font-size: 14px;
+}
+
+.pillar-related {
+  margin-top: 3rem;
+  border-top: 1px solid var(--color-border-default);
+  padding-top: 0.75rem;
+}
+
+.pillar-related ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.pillar-related li {
+  margin: 0.35rem 0;
+}

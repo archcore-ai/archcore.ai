@@ -72,7 +72,7 @@ Apply to every reader-facing surface.
 ### Words
 
 12. Use one term for one concept, and keep it stable across the page and across related pages.
-13. Do not swap in a synonym for variety. In this repository, "repo memory", "context layer", and "documents" are not interchangeable.
+13. Do not swap in a synonym for variety. In this repository, "project context", "context layer", and "documents" are not interchangeable.
 14. Define a term before relying on it, unless it is the term the reader searched for.
 15. Prefer the concrete noun over the abstraction: "an ADR" beats "an artifact".
 16. Replace a qualitative claim with a fact, a version, a number, or an observable outcome.
