@@ -486,7 +486,7 @@ msgid "CLAUDE.md (190 lines, growing)"
 msgstr "CLAUDE.md (190 строк, и растёт)"
 
 #: src/components/sections/cross-agent-section.tsx:46
-#: src/components/sections/hero-section.tsx:87
+#: src/components/sections/hero-section.tsx:91
 #: src/components/sections/how-to-use-wizard-section.tsx:545
 #: src/components/sections/site-nav.tsx:21
 #: src/components/sections/sticky-header.tsx:32
@@ -495,8 +495,8 @@ msgid "CLI"
 msgstr "CLI"
 
 #: src/components/sections/hero-section.tsx:111
-msgid "CLI = one binary · Plugin = slash commands."
-msgstr "CLI — один бинарь · Plugin — слэш-команды."
+#~ msgid "CLI = one binary · Plugin = slash commands."
+#~ msgstr "CLI — один бинарь · Plugin — слэш-команды."
 
 #: src/components/sections/cli-hero-section.tsx:76
 #: src/components/sections/hero-section.tsx:165
@@ -1584,7 +1584,7 @@ msgid "Please enter a valid email."
 msgstr "Введите корректный email."
 
 #: src/components/sections/cross-agent-section.tsx:39
-#: src/components/sections/hero-section.tsx:91
+#: src/components/sections/hero-section.tsx:87
 #: src/components/sections/how-to-use-wizard-section.tsx:530
 #: src/components/sections/site-nav.tsx:20
 #: src/components/sections/sticky-header.tsx:31
@@ -1595,6 +1595,10 @@ msgstr "Плагин"
 #: src/content/how-to-use/install.tsx:36
 #~ msgid "Plugin (recommended)"
 #~ msgstr "Плагин (рекомендуем)"
+
+#: src/components/sections/hero-section.tsx:111
+msgid "Plugin = slash commands · CLI = one binary."
+msgstr "Plugin — слэш-команды · CLI — один бинарь."
 
 #: src/components/sections/hero-section.tsx:196
 #: src/components/sections/plugin-hero-section.tsx:190
@@ -1932,7 +1936,6 @@ msgstr "Хуки сессии подгружают правила и ADR для 
 #: src/components/sections/cross-agent-section.tsx:116
 msgid "Setting up a specific agent?"
 msgstr "Настраиваете конкретного агента?"
-
 
 #: src/components/sections/cli-faq-section.tsx:36
 msgid "Should I install the plugin instead?"

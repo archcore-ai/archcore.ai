@@ -486,7 +486,7 @@ msgid "CLAUDE.md (190 lines, growing)"
 msgstr "CLAUDE.md (190 lines, growing)"
 
 #: src/components/sections/cross-agent-section.tsx:46
-#: src/components/sections/hero-section.tsx:87
+#: src/components/sections/hero-section.tsx:91
 #: src/components/sections/how-to-use-wizard-section.tsx:545
 #: src/components/sections/site-nav.tsx:21
 #: src/components/sections/sticky-header.tsx:32
@@ -495,8 +495,8 @@ msgid "CLI"
 msgstr "CLI"
 
 #: src/components/sections/hero-section.tsx:111
-msgid "CLI = one binary · Plugin = slash commands."
-msgstr "CLI = one binary · Plugin = slash commands."
+#~ msgid "CLI = one binary · Plugin = slash commands."
+#~ msgstr "CLI = one binary · Plugin = slash commands."
 
 #: src/components/sections/cli-hero-section.tsx:76
 #: src/components/sections/hero-section.tsx:165
@@ -1584,13 +1584,17 @@ msgid "Please enter a valid email."
 msgstr "Please enter a valid email."
 
 #: src/components/sections/cross-agent-section.tsx:39
-#: src/components/sections/hero-section.tsx:91
+#: src/components/sections/hero-section.tsx:87
 #: src/components/sections/how-to-use-wizard-section.tsx:530
 #: src/components/sections/site-nav.tsx:20
 #: src/components/sections/sticky-header.tsx:31
 #: src/content/how-to-use/install.tsx:36
 msgid "Plugin"
 msgstr "Plugin"
+
+#: src/components/sections/hero-section.tsx:111
+msgid "Plugin = slash commands · CLI = one binary."
+msgstr "Plugin = slash commands · CLI = one binary."
 
 #: src/components/sections/hero-section.tsx:196
 #: src/components/sections/plugin-hero-section.tsx:190

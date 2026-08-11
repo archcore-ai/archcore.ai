@@ -14,13 +14,13 @@ const HASH_CLI = "#install-cli";
 const HASH_PLUGIN = "#install-plugin";
 
 function readTabFromHash(): InstallTab {
-  if (typeof window === "undefined") return "cli";
-  if (window.location.hash === HASH_PLUGIN) return "plugin";
-  return "cli";
+  if (typeof window === "undefined") return "plugin";
+  if (window.location.hash === HASH_CLI) return "cli";
+  return "plugin";
 }
 
 function hashForTab(tab: InstallTab): string {
-  return tab === "plugin" ? HASH_PLUGIN : HASH_CLI;
+  return tab === "cli" ? HASH_CLI : HASH_PLUGIN;
 }
 
 export function HeroSection() {
@@ -38,7 +38,7 @@ export function HeroSection() {
   }, []);
 
   const handleTabChange = (value: string) => {
-    const next: InstallTab = value === "plugin" ? "plugin" : "cli";
+    const next: InstallTab = value === "cli" ? "cli" : "plugin";
     setTab(next);
     const targetHash = hashForTab(next);
     if (typeof window !== "undefined" && window.location.hash !== targetHash) {
@@ -82,22 +82,22 @@ export function HeroSection() {
           <div className="max-w-2xl mx-auto text-left" id="install">
             <Tabs value={tab} onValueChange={handleTabChange}>
               <TabsList className="mx-auto flex h-auto w-full max-w-md">
-                <TabsTrigger value="cli" className="flex-1 gap-2 py-2">
-                  <Terminal className="h-3.5 w-3.5" />
-                  <Trans>CLI</Trans>
-                </TabsTrigger>
                 <TabsTrigger value="plugin" className="flex-1 gap-2 py-2">
                   <Puzzle className="h-3.5 w-3.5" />
                   <Trans>Plugin</Trans>
                 </TabsTrigger>
+                <TabsTrigger value="cli" className="flex-1 gap-2 py-2">
+                  <Terminal className="h-3.5 w-3.5" />
+                  <Trans>CLI</Trans>
+                </TabsTrigger>
               </TabsList>
-
-              <TabsContent value="cli" className="mt-5">
-                <CLIPanel _={_} />
-              </TabsContent>
 
               <TabsContent value="plugin" className="mt-5">
                 <PluginPanel _={_} />
+              </TabsContent>
+
+              <TabsContent value="cli" className="mt-5">
+                <CLIPanel _={_} />
               </TabsContent>
             </Tabs>
             <div className="mt-4 space-y-1.5 text-center text-sm text-muted-foreground/70">
@@ -108,7 +108,7 @@ export function HeroSection() {
                 </Trans>
               </p>
               <p>
-                <Trans>CLI = one binary · Plugin = slash commands.</Trans>
+                <Trans>Plugin = slash commands · CLI = one binary.</Trans>
               </p>
               <p>
                 <Trans>Open source · Local-first · No telemetry</Trans>
@@ -182,10 +182,10 @@ function PluginPanel({ _ }: { _: ReturnType<typeof useLingui>["_"] }) {
 
       <Link
         to={INTERNAL_LINKS.plugin}
-        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
       >
         <Trans>Using Cursor or Codex CLI? See all install paths</Trans>
-        <ArrowRight className="h-3 w-3" />
+        <ArrowRight className="h-3.5 w-3.5" />
       </Link>
 
       <PanelLinks

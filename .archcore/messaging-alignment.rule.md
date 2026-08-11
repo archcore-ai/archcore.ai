@@ -20,6 +20,7 @@ Where a slot is listed in `product/surface-descriptors`, copy it. Do not compose
 - **`/plugin` `<title>`:** "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names do not fit a ≤60-char title, so the hosts live in the description instead.
 - **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents".
 - **Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
+- **Entry-point shorthand (under the works-with strip):** "Plugin = slash commands · CLI = one binary." The order follows the tab order and changed on 2026-08-11 with it.
 - **Short tagline (footer):** "Git-native context for AI coding agents."
 
 **"Repo memory" is retired as of 2026-08-10.** It was the home and `/plugin` category term under `landing/home-title-category-keyword.adr.md`, now superseded by `product/two-discovery-categories`. The term survives only in `/learn/repo-memory/` and the two memory-cluster blog posts, where it names the topic the reader searched for and is never asserted as what Archcore is.
@@ -53,7 +54,7 @@ Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" fram
 
 - **Both entry points are equals.** No "(recommended)" labels anywhere on the site — including the static prerendered route bodies in `scripts/prerender-routes.mts`, which are crawler-visible copy and drifted on this exact point once (fixed 2026-07-30).
 - **Gentle plugin emphasis is allowed:** plugin copy may call itself "the most polished experience for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI". Never frame the CLI as a fallback.
-- **The home hero install block defaults to the CLI tab** (the one-line curl is the universal entry). The Plugin tab is pre-selected when the user lands via `#install-plugin`; `#install-cli` selects the CLI tab.
+- **The home hero install block leads with the Plugin tab.** Changed 2026-08-11; it was CLI-first from 2026-07-06 on the argument that the one-line curl is the universal entry. Plugin is now the first tab and the default; CLI is second. `#install-cli` pre-selects the CLI tab, `#install-plugin` pre-selects the Plugin tab, and the tab the user picks writes its hash back. **Tab order is not a recommendation.** The equal-paths framing above is unchanged: no tab carries a "(recommended)" label and no copy calls the CLI a fallback. Every other homepage surface already ran plugin-first (the nav in `sticky-header.tsx` and `site-nav.tsx`, the two cards in `cross-agent-section.tsx`, the `index.html` static fallback body), so the hero was the last CLI-first surface.
 - **Frame the choice by the user's agent, not by recommendation:** Plugin — for Claude Code / Cursor 2.5+ / Codex CLI 0.117+ / GitHub Copilot CLI; CLI — any MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline), scriptable in CI.
 
 ## Copy hierarchy (home `/`)
@@ -63,7 +64,7 @@ Every slot below takes its string from `product/surface-descriptors`, homepage t
 - **Hero eyebrow → H1 → subhead → supporting promise**, in that order
 - **Meta title (`<title>`) / OG title / Twitter title / og:image:alt:** the same category-led string, so the SERP entry, the social card, and the image alt all agree
 - **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** the homepage meta description; OG and Twitter may use the OG description variant
-- **Works-with strip:** directly under the install tabs, above the "CLI = one binary · Plugin = slash commands." line
+- **Works-with strip:** directly under the install tabs, above the "Plugin = slash commands · CLI = one binary." line
 - **OG image subtitle (`og-image.png`):** the hero subhead verbatim
 
 ### Section order (`landing.tsx`)
@@ -119,7 +120,7 @@ Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these
 
 ## CTA vocabulary
 
-- **Home install anchors:** all install CTAs scroll to the hero install tabs — `#install` (CLI tab default) or `#install-plugin` (Plugin tab pre-selected). Never link install CTAs to external destinations; the page renders the real copyable commands.
+- **Home install anchors:** all install CTAs scroll to the hero install tabs — `#install` (Plugin tab default) or `#install-cli` (CLI tab pre-selected). Never link install CTAs to external destinations; the page renders the real copyable commands.
 - **Header CTA:** "How to use" → `/how-to-use` (interactive walkthrough).
 - **Star CTA block (bottom of home):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`.
 - **Dedicated page CTAs:** `/plugin` uses "Install plugin" (primary) and "View on GitHub" (secondary); `/cli` uses "Install CLI" (primary) and "View on GitHub" (secondary). Each anchors to the page's own `#install` section.
@@ -138,6 +139,8 @@ The `/plugin` page's Install section is a **4-tab** Radix Tabs widget: "Claude C
 ## Rationale
 
 Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the four plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel.
+
+The hero tab order went plugin-first on 2026-08-11 because every other homepage surface already led with the plugin, and a CLI-first hero made the page contradict itself within one scroll. Ordering is not ranking: the copy still frames the choice by the agent the reader runs, and the CLI keeps its own tab, its own panel, and its own hash.
 
 The home H1 went category-led on 2026-08-10 under `product/two-discovery-categories`, which reverses the 2026-07-06 pain-first decision for the H1 slot specifically. The pain phrase did not disappear: it moved down one line as the supporting promise, where it still does the hook's job while the H1 states what Archcore is and what it competes for. The eyebrow ("Git-native context layer") keeps the product definition visible above the category line, so the reader gets the narrow answer before the broad one.
 
@@ -161,7 +164,7 @@ Host support and structured data get their own invariants because both failed si
 
 **Bad:** "Give Claude Code, Cursor, Codex & Copilot a brain for your codebase." — the superseded `/plugin` H1; "a brain for your codebase" is memory framing in a costume.
 
-**Bad:** "Plugin (recommended)" — recommendation labels are retired; frame by the user's agent instead.
+**Bad:** "Plugin (recommended)" — recommendation labels are retired; frame by the user's agent instead. Putting the Plugin tab first does not license the label.
 
 **Bad:** "The Plugin is the recommended runtime for Claude Code, Cursor, and Codex CLI" — same violation, in the prerendered `/how-to-use` body; shipped for months because nobody reads the static bodies.
 
