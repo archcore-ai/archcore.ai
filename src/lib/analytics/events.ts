@@ -264,6 +264,88 @@ export interface ExternalAnalyticsEventMap {
       | "done";
   };
   /**
+   * The CLI replaced its own binary with a newer release. Sent both by
+   * `archcore update` a user typed (`trigger: "manual"`) and by the unattended
+   * policy the MCP server starts in the background (`trigger: "auto"`).
+   *
+   * `trigger` separates evidence of intent from evidence that a mechanism ran:
+   * an adoption query filters on "manual", a rollout query on "auto". Summing
+   * the two and calling it adoption counts the background job as users.
+   *
+   * `distinct_id` is the same ~/.local/state/archcore/install-id the installers
+   * write, so an install and every later update on that machine collapse to one
+   * person. Emitted only from a binary the release workflow injected a PostHog
+   * key into, and never when DO_NOT_TRACK or ARCHCORE_TELEMETRY_OPTOUT is set.
+   *
+   * Normative contract: .archcore/telemetry/cli-update-telemetry.spec.md in
+   * archcore-ai/cli. Renaming any of the three names below empties a dashboard
+   * without failing a build on either side.
+   */
+  cli_updated: {
+    source: "cli";
+    /** PostHog library properties, set once in internal/telemetry. */
+    $lib: "archcore-cli";
+    /** The version that was running when the event was sent. */
+    $lib_version: string;
+    /**
+     * runtime.GOOS and runtime.GOARCH. No "unknown" member, unlike the
+     * installer events: those parse uname output and can fail to classify it,
+     * while these are compile-time constants and the release workflow builds
+     * only these six combinations.
+     */
+    os: "darwin" | "linux" | "windows";
+    arch: "amd64" | "arm64";
+    /** A CI environment variable was present. Segment these out of adoption. */
+    ci: boolean;
+    /** What caused the run: what a user typed, or what a mechanism did. */
+    trigger: "manual" | "auto";
+    from_version: string;
+    to_version: string;
+  };
+  /**
+   * An attempted update step did not complete. `stage` is a coarse category
+   * read off a typed error — never the message and never a path, which are
+   * deliberately never transmitted.
+   *
+   * A refusal is not a failure and never arrives here: a fork, a development
+   * build, a CI runner, and a machine whose state directory is unwritable all
+   * stop silently. Read a flat `cli_update_failed` series next to a live
+   * `cli_updated` one as "the mechanism runs and one step breaks", not as
+   * "nobody updates".
+   *
+   * Both versions are optional: a failure at `check` never resolved a tag, and
+   * a placeholder would read as a version the run really aimed at.
+   */
+  cli_update_failed: Omit<
+    ExternalAnalyticsEventMap["cli_updated"],
+    "from_version" | "to_version"
+  > & {
+    from_version?: string;
+    to_version?: string;
+    stage: "check" | "download" | "checksum" | "extract" | "replace";
+  };
+  /**
+   * An unattended attempt reached a terminal state without replacing anything,
+   * for a reason worth counting. Only the background trigger sends it — a typed
+   * `archcore update` that finds nothing newer reports it to the user's
+   * terminal and sends no event at all.
+   *
+   * Bounded by the policy's 24 h claim window, so the series counts machines
+   * rather than MCP server starts: a host that restarts its servers often would
+   * otherwise outweigh every other machine.
+   *
+   * `not_writable` is the supported operator answer for a machine that must not
+   * self-update — a root-owned install directory yields it on every attempt —
+   * so a rising `not_writable` share is a deployment shape, not an incident.
+   */
+  cli_update_skipped: Omit<
+    ExternalAnalyticsEventMap["cli_updated"],
+    "from_version" | "to_version" | "trigger"
+  > & {
+    trigger: "auto";
+    reason: "current" | "not_writable";
+  };
+  /**
    * Daily cumulative gauge of GitHub release asset downloads, from
    * .github/workflows/install-stats.yml. Anonymous — there is no person.
    *

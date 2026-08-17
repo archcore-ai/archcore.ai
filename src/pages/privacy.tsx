@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
-const LAST_UPDATED = "July 30, 2026";
+const LAST_UPDATED = "August 17, 2026";
 const CONTACT_EMAIL = "archcore-ai@proton.me";
 
 export function PrivacyPage() {
@@ -75,13 +75,15 @@ export function PrivacyPage() {
               </li>
               <li>
                 <span className="text-foreground">
-                  No telemetry in the tools.
+                  No telemetry about your work.
                 </span>{" "}
-                The plugin and the installed CLI binary send us nothing. Once
-                Archcore is on your machine it makes no analytics request of any
-                kind: no usage tracking, no crash reports, no check-in on
-                start. The one exception is the installer itself, described
-                below.
+                Neither the plugin nor the CLI reports what you do with
+                Archcore: no document contents, no document titles, no file
+                paths, no repository or branch names, no commands you ran, no
+                usage tracking, and no crash reports. The plugin sends nothing
+                at all. The CLI reports two things and nothing else — that it
+                was installed, and that it updated itself — both described
+                below, and both carrying only version and platform fields.
               </li>
               <li>
                 <span className="text-foreground">
@@ -118,24 +120,71 @@ export function PrivacyPage() {
                 Archcore. It contains the version installed, your operating
                 system and CPU architecture, whether this was a first install or
                 a repeat one, whether the run looked like a CI environment, and,
-                if it failed, which of the eight steps it stopped at. It
-                never contains an error message, a file path, a directory name,
-                a user name, a hostname, or anything about your repository.
+                if it failed, which of the eight steps it stopped at. It never
+                contains an error message, a file path, a directory name, a user
+                name, a hostname, or anything about your repository.
               </li>
               <li>
                 <span className="text-foreground">
-                  The install identifier.
+                  The CLI keeps itself up to date.
                 </span>{" "}
-                That event is keyed to a random value generated at install time
-                and kept in{" "}
+                From version 0.8.0 the installed binary can replace itself with
+                a newer release without being asked. The check runs in the
+                background of{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  archcore mcp
+                </code>
+                , the local server your coding agent starts, at most once every
+                24 hours per machine. It installs only a release published by
+                this project, verified against its SHA-256 checksum and run once
+                to prove it starts before anything is replaced. Your running
+                process is never restarted or interrupted; a new version takes
+                effect the next time the binary starts.
+              </li>
+              <li>
+                <span className="text-foreground">
+                  There is no switch that turns updating off.
+                </span>{" "}
+                Unattended update has no opt-out variable and no setting in{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  .archcore/settings.json
+                </code>
+                , because replacing a binary is machine-wide and a per-project
+                file cannot govern it. If a machine must not update itself,
+                install the binary into a directory its user cannot write — a
+                root-owned location is the supported answer, and every attempt
+                then stops before it downloads anything. Builds you compile
+                yourself, forks, and CI runners never self-update at all.
+              </li>
+              <li>
+                <span className="text-foreground">Update analytics.</span> The
+                binary sends us one event per update attempt, so we can tell
+                whether a release actually reaches machines: one when it
+                replaced itself, one when a step failed, and one when a
+                background attempt stopped because nothing newer existed or
+                because the install directory was not writable. Each contains
+                the version it came from and the version it went to, your
+                operating system and CPU architecture, whether the run looked
+                like a CI environment, whether you typed the command or the
+                background check ran it, and, if it failed, which of the five
+                steps it stopped at. It never contains an error message, a file
+                path, a directory name, a user name, a hostname, or anything
+                about your repository.
+              </li>
+              <li>
+                <span className="text-foreground">The install identifier.</span>{" "}
+                Those events are keyed to a random value generated at install
+                time and kept in{" "}
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
                   ~/.local/state/archcore/install-id
                 </code>
                 , so reinstalling on the same machine is counted once rather
-                than as a new person. It is random, not derived from your
-                hardware, your account, or your network, and deleting that file
-                gives you a new one. Events reach the same PostHog project as
-                the website analytics, through{" "}
+                than as a new person. The installers and the CLI read and write
+                that one file, so an install and every later update on a machine
+                count as one person rather than several. It is random, not
+                derived from your hardware, your account, or your network, and
+                deleting that file gives you a new one. Events reach the same
+                PostHog project as the website analytics, through{" "}
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
                   ph.archcore.ai
                 </code>
@@ -150,10 +199,17 @@ export function PrivacyPage() {
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
                   ARCHCORE_TELEMETRY_OPTOUT=1
                 </code>{" "}
-                before running the installer. Nothing is sent and no identifier
+                in the environment. Set before the installer runs, it covers the
+                install event; set for your shell or for your coding agent, it
+                covers the update events too. Nothing is sent and no identifier
                 file is written, so opting out leaves no trace on your disk. The
-                installer also prints a one-line notice when it does send the
-                event, so you are never told about this only here.
+                installer and a typed{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  archcore update
+                </code>{" "}
+                each print a one-line notice when they do send an event, so you
+                are never told about this only here. These two variables govern
+                analytics only: they do not stop the CLI from updating itself.
               </li>
               <li>
                 <span className="text-foreground">Download counts.</span> We
