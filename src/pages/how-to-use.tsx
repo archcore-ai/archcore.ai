@@ -2,7 +2,9 @@ import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
   StickyHeader,
-  HowToUseWizardSection,
+  HowToUseStartSection,
+  HowToUseCycleSection,
+  StarCtaSection,
   SiteNav,
 } from "@/components/sections";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -11,9 +13,9 @@ export function HowToUsePage() {
   const { _ } = useLingui();
 
   usePageMeta({
-    title: _(msg`How to use Archcore — interactive walkthrough`),
+    title: _(msg`How to use Archcore — one loop from init to review`),
     description: _(
-      msg`A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps.`
+      msg`One loop through Archcore on a real feature: init, plan, document, review. Each step shows the sentence you say to your agent and the slash-command shortcut that does the same thing.`
     ),
     canonical: "/how-to-use/",
     ogImage: "/og-image-how-to-use.png",
@@ -23,7 +25,9 @@ export function HowToUsePage() {
     <div className="min-h-screen bg-background text-foreground">
       <StickyHeader />
       <main id="main-content">
-        <HowToUseWizardSection />
+        <HowToUseStartSection />
+        <HowToUseCycleSection />
+        <StarCtaSection />
       </main>
       <SiteNav />
     </div>

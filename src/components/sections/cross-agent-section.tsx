@@ -1,13 +1,16 @@
 import { Trans } from "@lingui/react/macro";
-import { msg } from "@lingui/core/macro";
-import { useLingui } from "@lingui/react";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { SectionContainer } from "@/components/section-container";
 import { INTERNAL_LINKS } from "@/lib/links";
 
 /**
- * Section 6 of the canonical homepage sequence.
+ * Section 7 of the canonical homepage sequence.
+ *
+ * This was a two-card Plugin vs CLI comparison until 2026-08-27. The cards
+ * asked the reader to compare two things and pick one, which is not a choice
+ * the reader has to make any more: `archcore init` installs the CLI and the
+ * plugin together on the hosts that take a plugin. The homepage now presents
+ * one product and one agent list; the entry-point split lives on /plugin and
+ * /cli, which the nav and the footer link.
  *
  * This is a summary, not a matrix. The single source for CLI agent support is
  * `cli-agents-section.tsx` on /cli, and for plugin hosts it is
@@ -15,10 +18,16 @@ import { INTERNAL_LINKS } from "@/lib/links";
  * Names listed here must appear there; wiring details must not be restated.
  */
 export function CrossAgentSection() {
-  const { _ } = useLingui();
-
-  const pluginHosts = ["Claude Code", "Cursor", "Codex CLI", "GitHub Copilot"];
-  const cliOnly = ["Gemini CLI", "OpenCode", "Roo Code", "Cline"];
+  const agents = [
+    "Claude Code",
+    "Cursor",
+    "Codex CLI",
+    "GitHub Copilot",
+    "Gemini CLI",
+    "OpenCode",
+    "Roo Code",
+    "Cline",
+  ];
 
   const hostPages = [
     { label: "Claude Code", href: INTERNAL_LINKS.claudeCode },
@@ -26,29 +35,6 @@ export function CrossAgentSection() {
     { label: "Codex CLI", href: INTERNAL_LINKS.codex },
     { label: "GitHub Copilot", href: INTERNAL_LINKS.githubCopilot },
     { label: "Gemini CLI", href: INTERNAL_LINKS.geminiCli },
-  ];
-
-  const paths: {
-    title: string;
-    body: string;
-    agents: string[];
-    href: string;
-    cta: string;
-  }[] = [
-    {
-      title: _(msg`Plugin`),
-      body: _(msg`Slash commands, skills, and guardrails inside the host.`),
-      agents: pluginHosts,
-      href: INTERNAL_LINKS.plugin,
-      cta: _(msg`See the plugin`),
-    },
-    {
-      title: _(msg`CLI`),
-      body: _(msg`One binary and a local MCP server for every other agent, and for CI.`),
-      agents: [...pluginHosts, ...cliOnly],
-      href: INTERNAL_LINKS.cli,
-      cta: _(msg`See the CLI`),
-    },
   ];
 
   return (
@@ -62,48 +48,33 @@ export function CrossAgentSection() {
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           <Trans>
-            Both entry points read and write the same{" "}
-            <code className="font-mono text-[0.9em]">.archcore/</code> directory.
-            Pick by the agent you run, not by a recommendation.
+            <code className="font-mono text-[0.9em]">archcore init</code> wires
+            whichever agents you already run. Each one reads and writes the same{" "}
+            <code className="font-mono text-[0.9em]">.archcore/</code> directory
+            in your repo.
           </Trans>
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-        {paths.map((path) => (
-          <article
-            key={path.title}
-            className="rounded-xl border border-border bg-card p-6 flex flex-col gap-4"
-          >
-            <div className="space-y-1.5">
-              <h3 className="text-lg font-semibold leading-tight">
-                {path.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {path.body}
-              </p>
-            </div>
-
-            <ul className="flex flex-wrap gap-1.5">
-              {path.agents.map((agent) => (
-                <li
-                  key={agent}
-                  className="rounded-full border border-border bg-muted/50 px-2.5 py-1 text-xs text-foreground/80"
-                >
-                  {agent}
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              to={path.href}
-              className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-[var(--color-action)] transition-colors"
+      <div className="max-w-3xl mx-auto rounded-xl border border-border bg-card p-6 space-y-5">
+        <ul className="flex flex-wrap justify-center gap-2">
+          {agents.map((agent) => (
+            <li
+              key={agent}
+              className="rounded-full border border-border bg-muted/50 px-3 py-1.5 text-sm text-foreground/80"
             >
-              {path.cta}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </article>
-        ))}
+              {agent}
+            </li>
+          ))}
+        </ul>
+
+        <p className="text-sm text-muted-foreground leading-relaxed text-center">
+          <Trans>
+            Slash commands, skills, and guardrails run inside Claude Code,
+            Cursor, Codex CLI, and GitHub Copilot. Every other agent reaches the
+            same context over MCP and session hooks.
+          </Trans>
+        </p>
       </div>
 
       {/*

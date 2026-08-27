@@ -1,55 +1,20 @@
 import type { ReactNode } from "react";
-import type { MessageDescriptor } from "@lingui/core";
 
-export type Surface = "plugin" | "cli";
-
-export interface ExampleVariant {
-  caption: ReactNode;
-  command: string;
-  outputLines?: ReactNode[];
-  note: ReactNode;
-}
-
-export interface Choice {
+/**
+ * One stage of the init → plan → document → review cycle.
+ *
+ * `skill` and `prompt` sit side by side on purpose: the prompt is what works
+ * in any MCP-aware agent, the skill is the shortcut for the same instrument on
+ * the four plugin hosts. Showing one without the other misrepresents the
+ * product (.archcore/landing/how-to-use-cases.adr.md).
+ */
+export interface CycleStage {
   id: string;
-  label: ReactNode;
-  blurb?: ReactNode;
-  example: ReactNode | ExampleVariant;
-}
-
-interface BaseStep {
-  id: string;
-  question: ReactNode;
-  description?: ReactNode;
-  next?: (answer: string) => string | undefined;
-  // Marks the last step on a branching path. When true, the wizard treats the
-  // step as a terminus instead of falling through to the next entry in the
-  // `steps[]` array. Required for branches whose paths converge on a single
-  // flat list (e.g. install: plugin-verify must not fall through to cli-os).
-  terminal?: boolean;
-}
-
-interface ChoiceStep extends BaseStep {
-  kind: "choice";
-  choices: Choice[];
-}
-
-interface VariantStep extends BaseStep {
-  kind: "variant";
-  variants: Record<Surface, ExampleVariant>;
-}
-
-interface InfoStep extends BaseStep {
-  kind: "info";
-  example: ReactNode | ExampleVariant;
-}
-
-export type Step = ChoiceStep | VariantStep | InfoStep;
-
-export interface Branch {
-  id: string;
-  label: MessageDescriptor;
-  blurb: MessageDescriptor;
-  supportsToggle: boolean;
-  steps: Step[];
+  /** The slash command. Literal, never translated. */
+  skill: string;
+  title: ReactNode;
+  /** The sentence the reader types. Lifted from the skill's own triggers. */
+  prompt: ReactNode;
+  /** What lands, in one sentence. */
+  result: ReactNode;
 }

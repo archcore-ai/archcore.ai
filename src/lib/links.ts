@@ -48,8 +48,9 @@ export const INTERNAL_LINKS = {
 
 export const ANCHORS = {
   top: "#top",
+  // The hero install block is one path, so #install-cli / #install-plugin are
+  // gone with the tabs they pre-selected (see hero-section.tsx).
   install: "#install",
-  installCli: "#install-cli",
   compare: "#problem",
   whyArchcore: "#why-archcore",
   faq: "#faq",

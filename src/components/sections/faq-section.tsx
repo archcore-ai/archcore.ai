@@ -47,7 +47,7 @@ export function FAQSection() {
     {
       question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`No. The plugin runs on the CLI under the hood, so installing the plugin gets you both. Want just the core context layer? Install the CLI on its own.`
+        msg`You install one thing. The plugin runs on the CLI, so the CLI comes first: archcore init wires your agents and installs the plugin on the hosts you pick (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). On any other MCP-aware agent the CLI is all there is to install.`
       ),
     },
   ];

@@ -193,7 +193,7 @@
             "name": "Do I need both the plugin and the CLI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. The plugin runs on the CLI under the hood, so installing the plugin gets you both. Want just the core context layer? Install the CLI on its own."
+              "text": "You install one thing. The plugin runs on the CLI, so the CLI comes first: archcore init wires your agents and installs the plugin on the hosts you pick (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). On any other MCP-aware agent the CLI is all there is to install."
             }
           }
         ]
@@ -278,28 +278,34 @@
         </p>
         <h2>One project context. Every coding agent.</h2>
         <p>
-          Both entry points read and write the same <code>.archcore/</code>
-          directory; pick by the agent you run. The
-          <a href="/plugin/">plugin</a> adds architecture-aware
-          <code>/archcore</code> slash commands, skills, and guardrails inside
-          Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. The
-          <a href="/cli/">CLI</a> provides the context layer itself over MCP
-          and session hooks for every other MCP-aware agent and for CI,
-          covering eight agents today: Claude Code, Cursor, Gemini CLI, GitHub
-          Copilot, OpenCode, Codex CLI, Roo Code, and Cline.
+          <code>archcore init</code> wires whichever agents you already run,
+          and each one reads and writes the same <code>.archcore/</code>
+          directory in your repo. Eight agents today: Claude Code, Cursor,
+          Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and
+          Cline. Architecture-aware <code>/archcore</code> slash commands,
+          skills, and guardrails run inside Claude Code, Cursor, Codex CLI,
+          and GitHub Copilot CLI; every other agent reaches the same context
+          over MCP and session hooks, and the whole thing is scriptable in CI.
         </p>
-        <h2>Capture, connect, apply, evolve</h2>
+        <h2>How it works: the loop</h2>
         <p>
-          Capture specs, decisions, rules, plans, and project knowledge.
-          Connect related artifacts into one project context. Apply the
-          relevant context while agents work: session hooks inject the right
-          documents at the start of every conversation, and MCP exposes tools
-          (list, get, create, update) so the agent can browse and edit
-          documents during a session. Everyday context needs no command at all.
-          Four slash commands (<code>/archcore:init</code>,
-          <code>/archcore:plan</code>, <code>/archcore:document</code>,
-          <code>/archcore:review</code>) cover setup, planning, capture, and
-          review. Evolve context with the codebase, through Git.
+          Four steps on one feature, from an empty repo to a merged branch.
+          Say the sentence or type the shortcut: they do the same thing.
+          <code>/archcore:init</code> ("Set up Archcore in this repo") reads the
+          project and proposes a stack rule, a run guide, an architecture
+          overview, and a spec for each module that changes most.
+          <code>/archcore:plan</code> ("Plan rate limiting for the public API")
+          returns a spec and a plan sized from what the change actually touches.
+          <code>/archcore:document</code> ("Record the decision to use a token
+          bucket in Redis") writes an ADR holding the reasoning as well as the
+          verdict. <code>/archcore:review</code> ("Review my branch before
+          merge") reads the diff against both, in both directions. Between the
+          four there is no command at all: hooks bring the applicable spec and
+          ADR to the agent while it edits, and each session opens with a recap
+          of what is decided and what is in progress. No new service to run:
+          your context lives in the repo, moves with it through Git, and
+          reaches every agent you open. See
+          <a href="/how-to-use/">how to use Archcore</a> for the whole loop.
         </p>
         <nav aria-label="Site">
           <a href="/plugin/">Plugin</a>

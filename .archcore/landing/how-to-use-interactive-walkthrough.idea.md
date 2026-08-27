@@ -1,6 +1,6 @@
 ---
 title: "Interactive walkthrough for /how-to-use with plugin/cli toggle"
-status: accepted
+status: rejected
 ---
 
 ## Idea

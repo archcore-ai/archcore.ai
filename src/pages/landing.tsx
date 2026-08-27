@@ -8,16 +8,14 @@ import {
   ContextEngineeringSection,
   GitNativeSection,
   CrossAgentSection,
-  HowItWorksSection,
   SiteNav,
 } from "@/components/sections";
 
-// Below-fold sections are code-split so the wizard (the heaviest chunk)
-// stays out of the initial bundle. Fallback is null: the sections render
+// Below-fold sections are code-split. Fallback is null: the sections render
 // into empty space below the fold once their chunk arrives.
-const HowToUseWizardSection = lazy(() =>
-  import("@/components/sections/how-to-use-wizard-section").then((m) => ({
-    default: m.HowToUseWizardSection,
+const HowToUseCycleSection = lazy(() =>
+  import("@/components/sections/how-to-use-cycle-section").then((m) => ({
+    default: m.HowToUseCycleSection,
   })),
 );
 const FAQSection = lazy(() =>
@@ -43,6 +41,9 @@ export function LandingPage() {
           between the problem and the two category sections as its concrete
           proof — it is the Job 1 demonstration that product/jobs-to-be-done
           keeps first, and the categories are what the reader searched for.
+          The how-it-works slot is the loop itself (HowToUseCycleSection):
+          the abstract Capture → Connect → Apply → Evolve verbs described the
+          same four moves one screen from the concrete ones.
           Backgrounds alternate page / band so the page does not read as one
           field of bordered cards.
         */}
@@ -53,9 +54,8 @@ export function LandingPage() {
         <ContextEngineeringSection />
         <GitNativeSection />
         <CrossAgentSection />
-        <HowItWorksSection />
         <Suspense fallback={null}>
-          <HowToUseWizardSection embedded />
+          <HowToUseCycleSection variant="home" />
           <FAQSection />
           <StarCtaSection />
         </Suspense>

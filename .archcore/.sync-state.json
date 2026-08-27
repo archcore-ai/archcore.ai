@@ -176,6 +176,31 @@
       "source": "landing/analytics-event-taxonomy.doc.md",
       "target": "landing-tech-stack.doc.md",
       "type": "related"
+    },
+    {
+      "source": "landing/home-install-single-path.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-install-single-path.adr.md",
+      "target": "landing/analytics-event-taxonomy.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/how-to-use-cases.adr.md",
+      "target": "landing/how-to-use-interactive-walkthrough.prd.md",
+      "type": "extends"
+    },
+    {
+      "source": "landing/how-to-use-cases.adr.md",
+      "target": "landing/home-install-single-path.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/how-to-use-cases.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
     }
   ]
 }

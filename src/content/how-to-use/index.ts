@@ -1,24 +1,8 @@
-/* Branch registry for the /how-to-use wizard.
+/* Content registry for /how-to-use.
  *
- * Each branch is one path through the wizard. Branches 2-5 carry a per-step
- * Plugin/CLI toggle. Branch 1 (install) is the only branch without a toggle,
- * because the plugin-vs-cli choice IS that branch.
- *
- * Order here is the order shown on the branch picker.
+ * The page was a five-branch wizard with a per-step Plugin / CLI toggle, then
+ * a catalog of six jobs. It is now one init → plan → document → review cycle:
+ * see .archcore/landing/how-to-use-cases.adr.md.
  */
-import { installBranch } from "./install";
-import { quickStartBranch } from "./quick-start";
-import { ideaNoContextBranch } from "./idea-no-context";
-import { captureExistingBranch } from "./capture-existing";
-import { useContextBranch } from "./use-context";
-import type { Branch } from "./types";
-
-export const BRANCHES: Branch[] = [
-  installBranch,
-  quickStartBranch,
-  ideaNoContextBranch,
-  captureExistingBranch,
-  useContextBranch,
-];
-
-export type { Branch, Choice, ExampleVariant, Step, Surface } from "./types";
+export { CYCLE_STAGES, INSTALL_COMMANDS } from "./cycle";
+export type { CycleStage } from "./types";

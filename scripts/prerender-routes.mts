@@ -127,16 +127,20 @@ const ROUTES: RouteMeta[] = [
   },
   {
     path: "how-to-use",
-    title: "How to use Archcore — interactive walkthrough",
+    title: "How to use Archcore — one loop from init to review",
     description:
-      "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps.",
+      "One loop through Archcore on a real feature: init, plan, document, review. Each step shows the sentence you say to your agent and the slash-command shortcut that does the same thing.",
     ogImage: "/og-image-how-to-use.png",
     body: {
-      h1: "How to use Archcore.",
+      h1: "Tell your agent what you want. Archcore writes it down.",
       paragraphs: [
-        "A short interactive walkthrough with five branches you can pick from the entry screen. Each branch is 3-5 steps with copy-pasteable commands, expected output, and a one-line note on what just happened. Branches that have both a plugin and a CLI flavor carry a Plugin / CLI toggle you can flip on every step.",
-        "Same product, two entry points. Pick by the agent you run, not by a recommendation. The Plugin runs inside Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI: four /archcore slash commands, plus automatic context injection that needs no command at all. The CLI is the core context layer for any MCP-aware agent — finer control, scriptable in CI, the way to integrate with Gemini CLI, OpenCode, Roo Code, Cline, and the rest.",
-        "What the five branches deliver. How to install Archcore: pick Plugin or CLI, walk through install and verification. Quick start in your project: your first useful command after install on a fresh repo. I have an idea, no context yet — turn a plain-English idea into PRD → spec → plan. Document existing code — capture what already lives in code as decisions, rules, plans, and guides. Solve tasks with existing context — the right docs arrive before your edit, then review the branch for drift.",
+        "One thing to install, and nothing to configure after that. Run curl -fsSL https://archcore.ai/install.sh | bash, then archcore init in the repo you want to work in: it picks up the coding agents you already have and wires MCP and hooks for them.",
+        "After that the work is one loop, shown here on a single feature: rate limiting for a public API. Each step is a sentence you say to your agent. The sentence works in any MCP-aware agent; on Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI the same instrument has a slash-command shortcut.",
+        "Step 1, /archcore:init. \"Set up Archcore in this repo.\" Your agent reads the project and proposes a stack rule, a run guide, an architecture overview, and a spec for each module that changes most, in one preview, writing nothing until you confirm.",
+        "Step 2, /archcore:plan. \"Plan rate limiting for the public API.\" You get a spec and a plan, sized from what the change actually touches. A layout fix would produce no documents at all.",
+        "Step 3, /archcore:document. \"Record the decision to use a token bucket in Redis.\" You get an ADR holding the reasoning as well as the verdict, and an offer to write the team rule that follows from it.",
+        "Step 4, /archcore:review. \"Review my branch before merge.\" Your diff is read against the spec from step 2 and the ADR from step 3, in both directions: code that drifted, and documents the change made wrong.",
+        "Between the four there is no command at all. Hooks bring the spec and the ADR to the agent while it edits, and each session opens with a recap of what is decided and what is in progress. Then the loop runs again, and the next plan starts from everything the last three steps wrote down.",
       ],
     },
   },

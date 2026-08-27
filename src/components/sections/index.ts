@@ -6,7 +6,6 @@ export { SpecDrivenSection } from "./spec-driven-section";
 export { ContextEngineeringSection } from "./context-engineering-section";
 export { GitNativeSection } from "./git-native-section";
 export { CrossAgentSection } from "./cross-agent-section";
-export { HowItWorksSection } from "./how-it-works-section";
 export { FAQSection } from "./faq-section";
 export { StarCtaSection } from "./star-cta-section";
 export { SiteNav } from "./site-nav";
@@ -27,5 +26,6 @@ export { PluginPillarsSection } from "./plugin-pillars-section";
 export { PluginHostsSection } from "./plugin-hosts-section";
 export { PluginFAQSection } from "./plugin-faq-section";
 
-export { HowToUseWizardSection } from "./how-to-use-wizard-section";
+export { HowToUseStartSection } from "./how-to-use-start-section";
+export { HowToUseCycleSection } from "./how-to-use-cycle-section";
 export { HowToUseCtaSection } from "./how-to-use-cta-section";

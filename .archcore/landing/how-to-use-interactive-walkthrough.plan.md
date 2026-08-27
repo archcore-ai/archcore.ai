@@ -1,6 +1,6 @@
 ---
 title: "/how-to-use interactive walkthrough — implementation plan"
-status: draft
+status: rejected
 ---
 
 ## Goal

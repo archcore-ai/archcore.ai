@@ -114,12 +114,43 @@ before the FAQ and CTA, so it is not a duplicate of 100 % scroll depth).
 Docs: `docs_search_opened`, `docs_search_submitted` (debounced to one event per
 settled query; search terms are the strongest content-backlog signal available).
 
-Walkthrough: `wizard_branch_started`, `wizard_step_viewed`,
-`wizard_mode_switched`, `wizard_completed`, `wizard_restarted`. Property names
-follow the walkthrough's own vocabulary (branch, mode, step).
-
 `faq_item_opened.question` carries localised text, so break FAQ reports down by
 the `locale` super property rather than expecting one string per question.
+
+### Install surfaces
+
+`install_command_copied.surface` names the page region, not the variant, because
+several regions share a variant. The current landing surfaces are
+`home_hero_install`, `how_to_use_first_run`, `cli_hero`, and
+`plugin_hero_host_panel`.
+
+The home hero reported two surfaces, `home_hero_plugin_panel` and
+`home_hero_cli_panel`, until 2026-08-27, when it collapsed to a single install
+path (`landing/home-install-single-path.adr.md`). Any funnel that splits home
+hero copies by plugin against CLI stops receiving data at that date; the split
+now lives in `install_target` and in the per-page surfaces.
+
+### Retired: the walkthrough funnel
+
+`wizard_branch_started`, `wizard_step_viewed`, `wizard_mode_switched`,
+`wizard_completed`, and `wizard_restarted` were removed from `AnalyticsEventMap`
+on 2026-08-27 with the wizard itself (`landing/how-to-use-cases.adr.md`).
+`/how-to-use` is now a scrollable page with no branch state, so there is no step
+funnel to measure. It reports `section_viewed`, `scroll_depth_reached`, and
+`install_command_copied` on `how_to_use_first_run`; the home page's link into it
+reports `cta_clicked` with `cta: "home_cases_how_to_use"`.
+
+Any saved PostHog insight built on a `wizard_*` event goes flat at that date.
+Do not reintroduce these names for a different mechanic; pick new ones, so the
+historical series stays readable.
+
+### Star counts
+
+`github_star_clicked.stars` still carries the star count baked in by
+`scripts/fetch-github-stars.mts`, but **no surface renders the number any more**
+(removed 2026-08-27). The header and the bottom CTA show the GitHub mark and the
+word "Star". `useGitHubStars` is therefore an analytics-only dependency; treat
+`formatStars` as dead the moment nothing imports it.
 
 ### Deliberate gaps
 
@@ -150,12 +181,10 @@ reads the repo-root `.env`.
 ### Firing an event
 
 ```ts
-import { track } from "@/lib/analytics";
-
 track("install_command_copied", {
   command,
   platform,
-  surface: "home_hero_cli_panel",
+  surface: "home_hero_install",
   install_target: "cli",
 });
 ```

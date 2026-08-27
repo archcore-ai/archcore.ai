@@ -172,35 +172,6 @@ export interface AnalyticsEventMap {
   // where no script runs. Agents fetch them directly, which is only visible in
   // server logs that GitHub Pages does not expose.
 
-  // ---------------------------------------------------------------- wizard
-  //
-  // Property names follow the walkthrough's own vocabulary — a "branch" is a
-  // path through it, a "mode" is the plugin/CLI toggle — so the funnel in
-  // PostHog reads the same way as src/content/how-to-use.
-  /** Funnel entry: which path the visitor picked. */
-  wizard_branch_started: {
-    branch: string;
-  };
-  wizard_step_viewed: {
-    branch: string;
-    step: string;
-    step_index: number;
-    mode: string;
-  };
-  wizard_mode_switched: {
-    branch: string;
-    from: string;
-    to: string;
-  };
-  wizard_completed: {
-    branch: string;
-    mode: string;
-  };
-  /** Restarting mid-walkthrough is the clearest signal a step confused someone. */
-  wizard_restarted: {
-    branch?: string;
-    step?: string;
-  };
 }
 
 export type AnalyticsEventName = keyof AnalyticsEventMap;

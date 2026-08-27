@@ -191,10 +191,11 @@ typography:
 
   desktop:
     hero:
-      size: "56px"
-      line_height: "0.96"
+      size: "clamp(30px, 4.4vw, 44px)"
+      line_height: "1.06"
       weight: 700
-      tracking: "-0.045em"
+      tracking: "-0.03em"
+      note: "Fluid, so there is no mobile override. Same on every hero."
 
     h2:
       size: "34px"
@@ -218,12 +219,6 @@ typography:
       weight: 400
 
   mobile:
-    hero:
-      size: "36px"
-      line_height: "1.0"
-      weight: 700
-      tracking: "-0.04em"
-
     h2:
       size: "28px"
       line_height: "1.08"

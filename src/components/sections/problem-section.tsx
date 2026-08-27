@@ -5,9 +5,12 @@ import { SectionContainer } from "@/components/section-container";
 
 /**
  * Section 2 of the canonical homepage sequence (product/surface-descriptors).
- * Names the five failures that make project understanding evaporate. Plain
- * list on the page background, so the card-heavy Before/After that follows
- * lands as a contrast rather than as more of the same.
+ * Names the five failures that make project understanding evaporate.
+ *
+ * A left rail rather than bullets: the list sits under a centred heading, and
+ * free-floating bullet dots read as a ragged fragment dropped into the middle
+ * of the page. The rail gives the block an edge to hang from without turning
+ * it into a card, which would blunt the card-heavy Before/After that follows.
  */
 export function ProblemSection() {
   const { _ } = useLingui();
@@ -38,17 +41,13 @@ export function ProblemSection() {
         </p>
       </div>
 
-      <ul className="max-w-2xl mx-auto space-y-3">
+      <ul className="max-w-xl mx-auto border-l-2 border-border">
         {failures.map((failure) => (
           <li
             key={failure}
-            className="flex items-start gap-3 text-base leading-relaxed"
+            className="pl-5 py-2.5 text-base md:text-lg leading-relaxed text-foreground/80"
           >
-            <span
-              aria-hidden="true"
-              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40"
-            />
-            <span className="text-foreground/80">{failure}</span>
+            {failure}
           </li>
         ))}
       </ul>

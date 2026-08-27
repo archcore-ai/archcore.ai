@@ -1,6 +1,6 @@
 ---
 title: "/how-to-use interactive walkthrough — product requirements"
-status: accepted
+status: rejected
 ---
 
 ## Vision

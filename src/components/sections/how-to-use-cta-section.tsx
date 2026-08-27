@@ -26,16 +26,16 @@ export function HowToUseCtaSection({
         >
           <div className="min-w-0 space-y-1">
             <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug">
-              <Trans>New to Archcore? Walk through it in 5 minutes.</Trans>
+              <Trans>New to Archcore? See what a week with it looks like.</Trans>
             </h3>
             <p className="text-sm text-muted-foreground leading-snug">
               <Trans>
-                Install, quick start, capture, or use context. Pick a path.
+                One loop on a real feature: init, plan, document, review.
               </Trans>
             </p>
           </div>
           <WalkthroughLink size="sm">
-            <Trans>Open walkthrough</Trans>
+            <Trans>See how it works</Trans>
           </WalkthroughLink>
         </div>
       </SectionContainer>
@@ -60,20 +60,20 @@ export function HowToUseCtaSection({
         </p>
 
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance max-w-2xl">
-          <Trans>See it in action, in an interactive walkthrough.</Trans>
+          <Trans>See what it looks like before you install it.</Trans>
         </h2>
 
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl">
           <Trans>
-            Pick a path: install, quick start, capture existing code, or use a
-            decision. Then walk through copy-pasteable commands. Branches with
-            both plugin and CLI flavors carry a toggle.
+            One loop through Archcore on a real feature, from init to review.
+            Every step is a sentence you say to your agent, with the file it
+            leaves behind.
           </Trans>
         </p>
 
         <div className="pt-2">
           <WalkthroughLink size="md">
-            <Trans>Open the walkthrough</Trans>
+            <Trans>See how it works</Trans>
           </WalkthroughLink>
         </div>
       </div>
@@ -88,7 +88,7 @@ interface WalkthroughLinkProps {
 
 function WalkthroughLink({ size, children }: WalkthroughLinkProps) {
   const { _ } = useLingui();
-  const ariaLabel = _(msg`Open the interactive walkthrough`);
+  const ariaLabel = _(msg`See how Archcore is used`);
 
   return (
     <Link

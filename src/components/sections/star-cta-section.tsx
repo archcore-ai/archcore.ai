@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUp, Github, Star } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
-import { useGitHubStars, formatStars } from "@/hooks/use-github-stars";
+import { useGitHubStars } from "@/hooks/use-github-stars";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 import { track } from "@/lib/analytics";
 
@@ -96,9 +96,6 @@ export function StarCtaSection() {
             <span className="text-center leading-snug">
               <Trans>Star on GitHub</Trans>
             </span>
-            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--color-text-inverse)]/15 px-2 py-0.5 text-xs font-bold tabular-nums">
-              {formatStars(total)}
-            </span>
           </a>
 
           <a
@@ -133,7 +130,6 @@ export function StarCtaSection() {
             >
               <Github className="h-3 w-3" />
               archcore-ai/cli
-              <span className="not-italic tabular-nums">★ {formatStars(cli)}</span>
             </a>
             <a
               href={LINKS.pluginRepo}
@@ -151,9 +147,6 @@ export function StarCtaSection() {
             >
               <Github className="h-3 w-3" />
               archcore-ai/plugin
-              <span className="not-italic tabular-nums">
-                ★ {formatStars(plugin)}
-              </span>
             </a>
           </div>
         </div>
