@@ -4,8 +4,17 @@ import { useLingui } from "@lingui/react";
 import { SectionContainer } from "@/components/section-container";
 
 /**
- * Section 2 of the canonical homepage sequence (product/surface-descriptors).
- * Names the five failures that make project understanding evaporate.
+ * Section 2 of the homepage sequence. Names the failures that make project
+ * understanding evaporate.
+ *
+ * Three, not the five in product/surface-descriptors, under
+ * landing/home-loop-before-categories.adr.md. The three kept are the ones the
+ * rest of the page then answers: the loop answers the first, spec-driven the
+ * second, cross-agent the third. Of the two cut, "architecture and conventions
+ * get re-explained, every session" restated the hero's supporting promise one
+ * screen below it, and "instruction files grow into walls of text" is argued
+ * where it converts, in the FAQ and on /claude-md/ and /agents-md/. The static
+ * crawler body keeps the CLAUDE.md and AGENTS.md sentence.
  *
  * A left rail rather than bullets: the list sits under a centred heading, and
  * free-floating bullet dots read as a ragged fragment dropped into the middle
@@ -17,10 +26,8 @@ export function ProblemSection() {
 
   const failures: string[] = [
     _(msg`Decisions disappear into chat history.`),
-    _(msg`Instruction files grow into walls of text.`),
-    _(msg`Every agent sees a different version of the project.`),
     _(msg`Specs become stale handoff artifacts.`),
-    _(msg`Architecture and conventions get re-explained, every session.`),
+    _(msg`Every agent sees a different version of the project.`),
   ];
 
   return (

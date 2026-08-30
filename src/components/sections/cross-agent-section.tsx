@@ -37,8 +37,13 @@ export function CrossAgentSection() {
     { label: "Gemini CLI", href: INTERNAL_LINKS.geminiCli },
   ];
 
+  // Band background: slot 8 in the sequence fixed by
+  // landing/home-loop-before-categories.adr.md.
   return (
-    <SectionContainer id="cross-agent">
+    <SectionContainer
+      id="cross-agent"
+      className="bg-muted/30 border-y border-border"
+    >
       <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
         <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
           <Trans>Cross-agent</Trans>

@@ -44,11 +44,11 @@ export function GitNativeSection() {
     },
   ];
 
+  // Page background: slot 7 in the sequence fixed by
+  // landing/home-loop-before-categories.adr.md. This section was a band while
+  // it sat at slot 6; the alternation moved with it.
   return (
-    <SectionContainer
-      id="git-native"
-      className="bg-muted/30 border-y border-border"
-    >
+    <SectionContainer id="git-native">
       <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
         <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
           <Trans>Git-native</Trans>

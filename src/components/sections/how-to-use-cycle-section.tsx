@@ -82,6 +82,24 @@ export function HowToUseCycleSection({
       >
         {isHome ? (
           <>
+            {/*
+              The verdict tokens are the ones the review skill emits, grouped
+              exactly this way (plugin skills/review/SKILL.md). They are the
+              most concrete outcome the product has, and the home page named
+              none of them before landing/home-loop-before-categories.adr.md.
+              Re-read that file on any release that touches review.
+            */}
+            <p>
+              <Trans>
+                Step four ends in a verdict on each finding:{" "}
+                <code className="font-mono text-[0.9em]">spec-wrong</code> when
+                the document is stale,{" "}
+                <code className="font-mono text-[0.9em]">code-wrong</code> when
+                the branch broke a decision, and{" "}
+                <code className="font-mono text-[0.9em]">ok</code> when the two
+                agree.
+              </Trans>
+            </p>
             <p>
               <Trans>
                 No new service to run. Your context lives in the repo, moves

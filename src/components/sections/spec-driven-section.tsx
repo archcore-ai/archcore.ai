@@ -5,10 +5,22 @@ import { SectionContainer } from "@/components/section-container";
 import { INTERNAL_LINKS } from "@/lib/links";
 
 /**
- * Section 3 of the canonical homepage sequence. Carries the
- * spec-driven-development category term in its H2. The chain is the shipped
- * `sdd` track from the plugin's plan skill, so the example is the product,
- * not an illustration of one.
+ * Slot 6. Carries the spec-driven-development category term in its eyebrow and
+ * its H2. The chain is the shipped `sdd` track from the plugin's plan skill,
+ * so the example is the product, not an illustration of one.
+ *
+ * Reframed from "what spec-driven development is" to where the spec lives
+ * after the feature ships, and given the differentiation the page never
+ * carried, under landing/home-loop-before-categories.adr.md. The definition
+ * belongs to /spec-driven-development/, which owns that query
+ * (product/seo-information-architecture); the home page argues the part the
+ * pillar cannot, which is what the product does with the spec afterwards.
+ *
+ * The differentiation sentence is the competitive framing line from
+ * product/surface-descriptors, not a new claim. It states what Archcore does
+ * rather than what another tool fails to do, so a competitor's release cannot
+ * falsify it. "Workflow" is banned in positioning copy
+ * (product/messaging-and-voice); do not reintroduce it here.
  */
 export function SpecDrivenSection() {
   const { _ } = useLingui();
@@ -34,9 +46,9 @@ export function SpecDrivenSection() {
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           <Trans>
-            Use structured specs and plans to define what should be built, then
-            keep them alongside the decisions, rules, and architecture the agent
-            needs during implementation.
+            Define what to build, then keep the definition where the work
+            happens. The spec that scoped the feature is the one review reads
+            your branch against, and the one the next plan starts from.
           </Trans>
         </p>
       </div>
@@ -64,9 +76,11 @@ export function SpecDrivenSection() {
 
       <p className="max-w-2xl mx-auto mt-8 text-center text-sm leading-relaxed text-muted-foreground">
         <Trans>
-          A spec is one part of context, not the whole context. It ships next to
-          the architecture, prior decisions, constraints, and team rules the
-          agent also needs.{" "}
+          Methodology tools define a development process. Archcore keeps the
+          resulting project knowledge alive, connected, versioned, and available
+          to agents throughout implementation. A spec is one part of that
+          context, not the whole of it: it ships next to the architecture, prior
+          decisions, constraints, and team rules the agent also needs.{" "}
           <a
             href={INTERNAL_LINKS.specDrivenDevelopment}
             className="underline underline-offset-4 decoration-border hover:text-foreground transition-colors"

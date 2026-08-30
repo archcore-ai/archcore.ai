@@ -215,77 +215,40 @@
           Claude Code, Cursor, GitHub Copilot, Gemini CLI, and other agents
           follow your real architecture instead of guessing.
         </p>
+        <!--
+          Section order mirrors src/pages/landing.tsx, which is fixed by
+          .archcore/landing/home-loop-before-categories.adr.md: problem, proof,
+          the loop, context engineering, spec-driven development, git-native,
+          cross-agent. Before/After lives here now; it was rendered only by the
+          SPA, so no crawler and no answer engine ever read the page's
+          strongest block. Nothing in the build checks this file against the
+          components. Change them together.
+        -->
         <h2>Your code is in Git. Your project understanding should be too.</h2>
         <p>
-          Decisions disappear into chat history. Instruction files like
-          CLAUDE.md and AGENTS.md grow into walls of text. Every agent sees a
-          different version of the project. Specs become stale handoff
-          artifacts, and architecture and conventions get re-explained every
-          session. Single instruction files are flat, tool-specific, and weakly
-          structured: they pile up without type, link, or history, so the agent
-          has no way to find which rule applies to which directory, which
-          decision blocks a refactor, or which spec governs a contract. The
-          replacement here is nineteen typed document categories, named
-          relations between them (implements, extends, depends_on, related), and
-          versioned history: the same artifacts senior engineers already write,
-          but that agents can read, write, and reason about during real work.
+          Decisions disappear into chat history. Specs become stale handoff
+          artifacts. Every agent sees a different version of the project.
+          Instruction files like CLAUDE.md and AGENTS.md are flat,
+          tool-specific, and weakly structured: they pile up without type,
+          link, or history, so the agent has no way to find which rule applies
+          to which directory, which decision blocks a refactor, or which spec
+          governs a contract. The replacement here is nineteen typed document
+          categories, named relations between them (implements, extends,
+          depends_on, related), and versioned history: the same artifacts
+          senior engineers already write, but that agents can read, write, and
+          reason about during real work.
         </p>
-        <h2>Specs that stay connected to implementation</h2>
+        <h2>Same prompt. Different agent.</h2>
         <p>
-          Use structured specs and plans to define what should be built, then
-          keep them alongside the decisions, rules, and architecture the agent
-          needs during implementation. The spec-driven track runs idea → PRD →
-          spec → plan, and a requirements cascade is available for market
-          discovery (MRD → BRD → URD) and for regulated work (BRS → StRS →
-          SyRS → SRS). A spec is one part of context, not the whole context: it
-          ships next to the architecture, prior decisions, constraints, and
-          team rules the agent also needs.
-        </p>
-        <h2>Engineer the context your coding agents work from</h2>
-        <p>
-          Context is more than a prompt or a bigger context window. Archcore
-          makes project knowledge explicit (decisions and constraints are
-          written down, not inferred from code), structured (typed documents
-          with relations, not one growing file), selective (the agent loads
-          what applies to the file in front of it), versioned (context changes
-          ship in the same pull request as the code), and portable across
-          coding agents.
-        </p>
-        <p>
-          Designing what an agent is told before it acts, and what checks it
-          afterwards, is called harness engineering: guides that steer the
-          agent ahead of an edit, and sensors that verify the result. A harness
-          for a coding agent is a specific form of context engineering, not a
-          successor to it. Your agent already ships the loop, the tools, the
-          permissions, and the sandbox. Archcore holds the half no vendor can
-          ship for you, because it has never seen your repository: what your
-          project decided, what it requires, and what it forbids. See
-          <a href="/learn/harness-engineering/"
-            >harness engineering, explained</a
-          >.
-        </p>
-        <h2>Project context belongs in Git</h2>
-        <p>
-          Everything lives in <code>.archcore/</code> inside your repository,
-          versioned alongside the code it documents: reviewable in pull
-          requests, portable across tools, team-owned, and with no opaque agent
-          memory holding anything you cannot read or edit. No servers, no
-          databases, no accounts, no telemetry. The CLI is a single
-          cross-platform binary; the MCP server runs locally as a child
-          process; install scripts pull release binaries from GitHub Releases.
-          See the <a href="https://docs.archcore.ai/">documentation</a> or read
-          the <a href="/privacy/">privacy policy</a> for details.
-        </p>
-        <h2>One project context. Every coding agent.</h2>
-        <p>
-          <code>archcore init</code> wires whichever agents you already run,
-          and each one reads and writes the same <code>.archcore/</code>
-          directory in your repo. Eight agents today: Claude Code, Cursor,
-          Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and
-          Cline. Architecture-aware <code>/archcore</code> slash commands,
-          skills, and guardrails run inside Claude Code, Cursor, Codex CLI,
-          and GitHub Copilot CLI; every other agent reaches the same context
-          over MCP and session hooks, and the whole thing is scriptable in CI.
+          Ask both to add rate limiting to the auth endpoints. Without Archcore
+          the agent picks a library it happens to know, ignores the Redis store
+          you already run, reinvents conventions the team settled months ago,
+          and you re-explain the same rules again: logical code that is not how
+          this repo works. With Archcore it loads the ADR that chose a Redis
+          token bucket, pulls the rule for error shapes in src/auth/, reuses
+          the middleware pattern already there, and writes the new decision
+          back as a versioned document. The only difference is whether it could
+          see your decisions, rules, and patterns first.
         </p>
         <h2>How it works: the loop</h2>
         <p>
@@ -299,13 +262,82 @@
           <code>/archcore:document</code> ("Record the decision to use a token
           bucket in Redis") writes an ADR holding the reasoning as well as the
           verdict. <code>/archcore:review</code> ("Review my branch before
-          merge") reads the diff against both, in both directions. Between the
-          four there is no command at all: hooks bring the applicable spec and
-          ADR to the agent while it edits, and each session opens with a recap
-          of what is decided and what is in progress. No new service to run:
-          your context lives in the repo, moves with it through Git, and
-          reaches every agent you open. See
-          <a href="/how-to-use/">how to use Archcore</a> for the whole loop.
+          merge") reads the diff against both, in both directions, and ends in a
+          verdict on each finding: <code>spec-wrong</code> when the document is
+          stale, <code>code-wrong</code> when the branch broke a decision, and
+          <code>ok</code> when the two agree. Between the four there is no
+          command at all: hooks bring the applicable spec and ADR to the agent
+          while it edits, and each session opens with a recap of what is decided
+          and what is in progress. No new service to run: your context lives in
+          the repo, moves with it through Git, and reaches every agent you open.
+          See <a href="/how-to-use/">how to use Archcore</a> for the whole loop.
+        </p>
+        <h2>Engineer the context your coding agents work from</h2>
+        <p>
+          The four commands are the part you type. The rest happens on its own:
+          when the agent opens <code>src/api/rate-limit.ts</code>, Archcore
+          gives it the documents that constrain that file before the edit: the
+          spec for public API rate limiting, the ADR that chose a Redis token
+          bucket, and the rule for error shapes in <code>src/api/</code>. The
+          agent gets them without being asked. That is what makes it engineered
+          context rather than a longer prompt: explicit (decisions and
+          constraints are
+          written down, not inferred from code), structured (typed documents
+          with relations, not one growing file), selective (the agent loads
+          what applies to the file in front of it), versioned (context changes
+          ship in the same pull request as the code), and portable across
+          coding agents. See
+          <a href="/context-engineering/"
+            >context engineering for AI coding agents</a
+          >.
+        </p>
+        <p>
+          Designing what an agent is told before it acts, and what checks it
+          afterwards, is called harness engineering. See
+          <a href="/learn/harness-engineering/"
+            >harness engineering, explained</a
+          >.
+        </p>
+        <h2>Specs that stay connected to implementation</h2>
+        <p>
+          Methodology tools define a development process. Archcore keeps the
+          resulting project knowledge alive, connected, versioned, and
+          available to agents throughout implementation. Define what to build,
+          then keep the definition where the work happens: the spec that scoped
+          the feature is the one review reads your branch against, and the one
+          the next plan starts from. The spec-driven track runs idea → PRD →
+          spec → plan, and a requirements cascade is available for market
+          discovery (MRD → BRD → URD) and for regulated work (BRS → StRS →
+          SyRS → SRS). A spec is one part of that context, not the whole of it:
+          it ships next to the architecture, prior decisions, constraints, and
+          team rules the agent also needs. See
+          <a href="/spec-driven-development/"
+            >spec-driven development for AI coding agents</a
+          >.
+        </p>
+        <h2>Project context belongs in Git</h2>
+        <p>
+          Everything lives in <code>.archcore/</code> inside your repository,
+          versioned alongside the code it documents: reviewable in pull
+          requests, portable across tools, team-owned, and with no opaque agent
+          memory holding anything you cannot read or edit. No servers, no
+          databases, no accounts, no telemetry. The CLI is a single
+          cross-platform binary; the MCP server runs locally as a child
+          process; install scripts pull release binaries from GitHub Releases.
+          See <a href="/git-native-context/">why project context belongs in Git</a>,
+          the <a href="https://docs.archcore.ai/">documentation</a>, or the
+          <a href="/privacy/">privacy policy</a> for details.
+        </p>
+        <h2>One project context. Every coding agent.</h2>
+        <p>
+          <code>archcore init</code> wires whichever agents you already run,
+          and each one reads and writes the same <code>.archcore/</code>
+          directory in your repo. Eight agents today: Claude Code, Cursor,
+          Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and
+          Cline. Architecture-aware <code>/archcore</code> slash commands,
+          skills, and guardrails run inside Claude Code, Cursor, Codex CLI,
+          and GitHub Copilot CLI; every other agent reaches the same context
+          over MCP and session hooks, and the whole thing is scriptable in CI.
         </p>
         <nav aria-label="Site">
           <a href="/plugin/">Plugin</a>

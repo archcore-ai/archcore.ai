@@ -201,6 +201,36 @@
       "source": "landing/how-to-use-cases.adr.md",
       "target": "messaging-alignment.rule.md",
       "type": "related"
+    },
+    {
+      "source": "landing/home-information-hierarchy.plan.md",
+      "target": "landing/home-loop-before-categories.adr.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/home-loop-before-categories.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-loop-before-categories.adr.md",
+      "target": "landing/how-to-use-cases.adr.md",
+      "type": "extends"
+    },
+    {
+      "source": "landing/home-loop-before-categories.adr.md",
+      "target": "landing/seo-research-sdd-context-skills.rnd.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/home-loop-before-categories.adr.md",
+      "target": "landing/home-install-single-path.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/home-information-hierarchy.plan.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "depends_on"
     }
   ]
 }
