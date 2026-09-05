@@ -14,7 +14,7 @@ import { track } from "@/lib/analytics";
 
 export function StickyHeader() {
   const { _ } = useLingui();
-  const { total } = useGitHubStars();
+  const { plugin } = useGitHubStars();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -123,7 +123,7 @@ export function StickyHeader() {
             </div>
 
             <a
-              href={LINKS.org}
+              href={LINKS.pluginRepo}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={_(msg`Star Archcore on GitHub`)}
@@ -132,8 +132,8 @@ export function StickyHeader() {
               data-analytics-handled
               onClick={() =>
                 track("github_star_clicked", {
-                  repo: "org",
-                  stars: total,
+                  repo: "plugin",
+                  stars: plugin,
                   surface: "navbar",
                 })
               }

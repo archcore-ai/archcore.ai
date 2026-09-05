@@ -19,7 +19,7 @@ const SURFACE = "star_cta_section";
  */
 export function StarCtaSection() {
   const { _ } = useLingui();
-  const { cli, plugin, total } = useGitHubStars();
+  const { cli, plugin } = useGitHubStars();
 
   return (
     <SectionContainer narrow className="py-12 md:py-16">
@@ -68,15 +68,15 @@ export function StarCtaSection() {
 
         <div className="pt-2 flex flex-col items-center gap-3">
           <a
-            href={LINKS.org}
+            href={LINKS.pluginRepo}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={_(msg`Star Archcore on GitHub`)}
             data-analytics-handled
             onClick={() =>
               track("github_star_clicked", {
-                repo: "org",
-                stars: total,
+                repo: "plugin",
+                stars: plugin,
                 surface: SURFACE,
               })
             }
