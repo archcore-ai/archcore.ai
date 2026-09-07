@@ -112,21 +112,19 @@ jobs:
           # files.
 
       # The installers carry their own host, baked into the CLI repo rather
-      # than read from vars.POSTHOG_HOST, and copies already on disk cannot be
-      # re-pointed — so this is checked separately from the site host above.
+      # than read from vars.POSTHOG_HOST, so this is checked separately from
+      # the site host above. It runs after the sync step on purpose: what is
+      # checked is the copy this deploy is about to publish, not the one
+      # committed here.
       #
-      # MODE=warn, not fail: the installers still carry ph.archcore.ai, which
-      # is down and is being replaced by edge.archcore.ai. Blocking every
-      # deploy on a host owned by another repository would hold the site
-      # hostage to a change that cannot be made here. Flip this to the default
-      # fail mode once the CLI repo ships edge.archcore.ai and the proxy
-      # answers — see
-      # .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
+      # This gates the deploy. It spent one day at MODE=warn while the CLI repo
+      # still carried the dead ph.archcore.ai, since blocking the whole site on
+      # a host owned by another repository would have been the wrong trade —
+      # see .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
       - name: Check the analytics host the installers will ship
         env:
           POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
           LABEL: install.sh and install.ps1 (baked into the CLI repo)
-          MODE: warn
         run: |
           set -euo pipefail
           POSTHOG_HOST="$(sed -n 's/^POSTHOG_HOST="\(.*\)"$/\1/p' public/install.sh)"
