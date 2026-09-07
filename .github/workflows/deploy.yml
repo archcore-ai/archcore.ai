@@ -115,10 +115,12 @@ jobs:
       # than read from vars.POSTHOG_HOST, and copies already on disk cannot be
       # re-pointed — so this is checked separately from the site host above.
       #
-      # MODE=warn, not fail: ph.archcore.ai is currently down and being
-      # restored as a PostHog managed reverse proxy. Blocking every deploy on
-      # it would hold the site hostage to a DNS change. Flip this to the
-      # default fail mode once the proxy answers — see
+      # MODE=warn, not fail: the installers still carry ph.archcore.ai, which
+      # is down and is being replaced by edge.archcore.ai. Blocking every
+      # deploy on a host owned by another repository would hold the site
+      # hostage to a change that cannot be made here. Flip this to the default
+      # fail mode once the CLI repo ships edge.archcore.ai and the proxy
+      # answers — see
       # .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
       - name: Check the analytics host the installers will ship
         env:

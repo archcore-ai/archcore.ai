@@ -45,7 +45,7 @@ jobs:
       # Public project key, same repository variable the site build uses.
       POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
       # PostHog's ingest host directly — deliberately NOT vars.POSTHOG_HOST,
-      # which points at ph.archcore.ai, the first-party proxy the browser
+      # which points at edge.archcore.ai, the first-party proxy the browser
       # bundle uses to keep ingestion off a domain content blockers filter by
       # name. A GitHub Actions runner has no ad blocker, so the proxy buys
       # this job nothing, and it costs the job the proxy's own uptime: a run

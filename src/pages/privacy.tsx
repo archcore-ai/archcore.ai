@@ -186,9 +186,13 @@ export function PrivacyPage() {
                 deleting that file gives you a new one. Events reach the same
                 PostHog project as the website analytics, through{" "}
                 <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
-                  ph.archcore.ai
+                  edge.archcore.ai
                 </code>
-                .
+                . CLI builds released before that change use{" "}
+                <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
+                  ph.archcore.ai
+                </code>{" "}
+                until they update.
               </li>
               <li>
                 <span className="text-foreground">Opting out of it.</span> Set{" "}

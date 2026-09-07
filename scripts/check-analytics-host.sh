@@ -12,6 +12,10 @@
 # — and nothing failed, anywhere. A dashboard that goes quiet looks exactly
 # like a site nobody visits.
 #
+# The replacement is edge.archcore.ai. ph.archcore.ai is kept alongside it
+# only so CLI builds that hardcode it keep reporting until they self-update.
+# This script checks whichever host it is handed, so it covers both.
+#
 # Two probes, because a host can pass one and fail the other:
 #
 #   GET  /array/<key>/config   the remote config posthog-js fetches on init.
