@@ -231,6 +231,16 @@
       "source": "landing/home-information-hierarchy.plan.md",
       "target": "messaging-alignment.rule.md",
       "type": "depends_on"
+    },
+    {
+      "source": "infrastructure/analytics-host-must-reach-posthog.adr.md",
+      "target": "infrastructure/migrate-hosting-to-github-pages.adr.md",
+      "type": "extends"
+    },
+    {
+      "source": "infrastructure/analytics-host-must-reach-posthog.adr.md",
+      "target": "landing/analytics-event-taxonomy.doc.md",
+      "type": "related"
     }
   ]
 }

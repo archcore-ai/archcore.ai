@@ -27,6 +27,20 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # A deploy must never ship a bundle that posts to a host which is not
+      # PostHog. vars.POSTHOG_HOST once pointed at a deleted Vercel proxy and
+      # every event from every visitor was dropped for months without a single
+      # failure anywhere — see scripts/check-analytics-host.sh for the full
+      # story. This gate is what makes that outage impossible to redeploy.
+      - name: Check the analytics host the site will ship
+        env:
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          # Mirrors the fallback in src/lib/analytics/core.ts, so an unset
+          # variable is checked against the host the bundle would really use.
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || 'https://us.i.posthog.com' }}
+          LABEL: site bundle and content hub (vars.POSTHOG_HOST)
+        run: ./scripts/check-analytics-host.sh
+
       # archcore.ai/install.{sh,ps1} serves the real installer rather than a
       # one-line redirect to raw.githubusercontent.com. That keeps one fewer
       # host in the critical path of `curl … | bash` and moves the only fetch
@@ -96,6 +110,30 @@ jobs:
           # uploads dist/ only — but a future step that pushed public/ back to
           # git would leak it, so this must stay the last mutation of these two
           # files.
+
+      # The installers carry their own host, baked into the CLI repo rather
+      # than read from vars.POSTHOG_HOST, and copies already on disk cannot be
+      # re-pointed — so this is checked separately from the site host above.
+      #
+      # MODE=warn, not fail: ph.archcore.ai is currently down and being
+      # restored as a PostHog managed reverse proxy. Blocking every deploy on
+      # it would hold the site hostage to a DNS change. Flip this to the
+      # default fail mode once the proxy answers — see
+      # .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
+      - name: Check the analytics host the installers will ship
+        env:
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          LABEL: install.sh and install.ps1 (baked into the CLI repo)
+          MODE: warn
+        run: |
+          set -euo pipefail
+          POSTHOG_HOST="$(sed -n 's/^POSTHOG_HOST="\(.*\)"$/\1/p' public/install.sh)"
+          if [ -z "$POSTHOG_HOST" ]; then
+            echo "::error::could not read POSTHOG_HOST out of public/install.sh"
+            exit 1
+          fi
+          export POSTHOG_HOST
+          ./scripts/check-analytics-host.sh
 
       - uses: actions/setup-node@v6
         with:

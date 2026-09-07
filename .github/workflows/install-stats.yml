@@ -59,20 +59,28 @@ jobs:
       CLI_REPO: archcore-ai/cli
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Check the PostHog key
-        run: |
-          set -euo pipefail
-          case "${POSTHOG_KEY:-}" in
-            phc_*) ;;
-            '')
-              echo "::error::POSTHOG_KEY variable is not set"
-              exit 1
-              ;;
-            *)
-              echo "::error::POSTHOG_KEY does not look like a PostHog *project* key (expected a phc_ prefix)"
-              exit 1
-              ;;
-          esac
+      - uses: actions/checkout@v6
+
+      # Checks this job's own ingest host, which is the direct PostHog
+      # endpoint. Replaces the key-shape check that used to live here: the
+      # script validates the key too, and by using it against a live host it
+      # catches a revoked or wrong-project key, which a `phc_` prefix test
+      # never could.
+      - name: Check this job's ingest host
+        env:
+          LABEL: install-stats ingest host
+        run: ./scripts/check-analytics-host.sh
+
+      # The daily watchdog for the host the *site* ships. deploy.yml gates the
+      # same host, but only at deploy time — and the outage this guards against
+      # (a proxy whose backing deployment disappears) happens long after the
+      # last deploy. This job already runs every night, so the check costs one
+      # step and turns a silent dashboard into a failed run.
+      - name: Check the analytics host the site is shipping
+        env:
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || 'https://us.i.posthog.com' }}
+          LABEL: site bundle and content hub (vars.POSTHOG_HOST)
+        run: ./scripts/check-analytics-host.sh
 
       - name: Fetch release download counts
         run: |
