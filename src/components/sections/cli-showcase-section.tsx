@@ -5,7 +5,10 @@ export function CLIShowcaseSection() {
   const { _ } = useLingui();
 
   return (
-    <section aria-label={_(msg`CLI in action`)} className="relative px-6 pb-16">
+    <section
+      aria-label={_(msg`CLI in action`)}
+      className="relative site-gutters pb-16"
+    >
       <div className="relative max-w-5xl mx-auto">
         <img
           src="/images/cli-init-light.png"

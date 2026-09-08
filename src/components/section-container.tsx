@@ -15,11 +15,13 @@ export function SectionContainer({
   narrow = false,
 }: SectionContainerProps) {
   return (
-    <section id={id} className={cn("px-6 py-12 md:py-16", className)}>
+    <section id={id} className={cn("site-gutters py-12 md:py-16", className)}>
       <div
         className={cn(
           "mx-auto",
-          narrow ? "max-w-[var(--container-narrow)]" : "max-w-[var(--container-max)]"
+          narrow
+            ? "max-w-[var(--container-narrow)]"
+            : "max-w-[var(--container-max)]"
         )}
       >
         {children}

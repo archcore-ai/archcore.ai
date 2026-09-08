@@ -9,7 +9,7 @@ export function PluginShowcaseSection() {
   return (
     <section
       aria-label={_(msg`Plugin in action`)}
-      className="relative px-6 py-20 md:py-24"
+      className="relative site-gutters py-20 md:py-24"
     >
       <div className="relative max-w-3xl mx-auto">
         <div className="relative rounded-2xl border border-border bg-card overflow-hidden">

@@ -101,6 +101,10 @@
 
   --container-max: 1040px;
   --container-narrow: 760px;
+  --site-gutter: 20px;
+  --page-start: 40px;
+  --page-end: 72px;
+  --page-heading-gap: 32px;
 
   --radius-card: 16px;
   --radius-control: 10px;
@@ -145,6 +149,7 @@
   }
 
   html {
+    scrollbar-gutter: stable;
     @apply overflow-x-hidden;
   }
 
@@ -176,18 +181,97 @@
   }
 }
 
-/* Type scale (DESIGN.md, lines 178-217) */
-/* One fluid size, applied identically on every hero (home, /plugin, /cli,
-   /how-to-use). 56px read as a poster rather than a page opener, and the
-   0.96 line-height that carried it needed a separate mobile rule to stay
-   legible. clamp() removes the breakpoint jump; the looser tracking keeps
-   the smaller size from feeling cramped. */
-.type-hero {
+/* One page grid. Reading columns stay on its left edge. */
+.site-container,
+.site-header__inner,
+.site-footer__inner,
+.page {
+  width: 100%;
+  max-width: calc(var(--container-max) + 2 * var(--site-gutter));
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+
+.site-gutters {
+  padding-inline: var(--site-gutter);
+}
+
+.reading-column,
+.page--reading > *,
+.page--listing > * {
+  max-width: var(--container-narrow);
+}
+
+.page-hero {
+  padding-top: var(--page-start);
+}
+
+.page-back {
+  display: inline-flex;
+  margin-bottom: var(--page-heading-gap);
+}
+
+.type-hero,
+.page-title,
+.article h1,
+.recipe-head h1 {
   font-family: var(--font-sans);
   font-size: clamp(30px, 4.4vw, 44px);
-  line-height: 1.06;
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.article h1 {
+  margin-bottom: 16px;
+}
+
+.page-title + p {
+  margin-top: 16px;
+}
+
+.page-intro {
+  margin-bottom: var(--page-heading-gap);
+}
+
+.page-intro__description {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.listing-outro {
+  margin-top: var(--page-heading-gap);
+  color: var(--color-text-secondary);
+}
+
+.listing-outro a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-gutter: 24px;
+    --page-start: 64px;
+    --page-end: 96px;
+    --page-heading-gap: 40px;
+  }
+
+  /* Reserve three intro lines across the hub pages; mobile flows naturally. */
+  .page-intro__description {
+    min-height: 4.8em;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --site-gutter: 16px;
+  }
 }
 
 .type-h2 {

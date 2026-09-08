@@ -44,11 +44,11 @@ export function TeamsGettingStarted() {
 
   return (
     <main id="main-content" className="bg-background text-foreground">
-      <div className="max-w-2xl mx-auto px-6 py-12 md:py-16">
+      <div className="page page--reading">
         {/* Back link */}
         <a
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors page-back"
         >
           <ArrowLeft className="h-4 w-4" />
           <Trans>Back to home</Trans>
@@ -57,7 +57,7 @@ export function TeamsGettingStarted() {
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="page-title">
               <Trans>Deploy Archcore Team</Trans>
             </h1>
             <Badge

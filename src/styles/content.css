@@ -1,35 +1,14 @@
 /* ---------- Header (quiet, no border, black pill CTA) ---------- */
 
-/* The chrome spans the wide container (DESIGN.md container_max) while an
-   article body stays at the narrow measure inside it — a 1040px line of prose
-   reads badly, and the two containers are what the design system already has.
-   .page--wide opts a page out of the measure: the catalog is a grid, not a
-   column, and a two-column grid inside 760px is two thin columns. */
-.site-header__inner,
-.site-footer__inner {
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: 24px;
-}
-
-.page {
-  max-width: var(--container-narrow);
-  margin-inline: auto;
-  padding-inline: 24px;
-}
-
-.page--wide {
-  max-width: var(--container-max);
-}
-
 .site-header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  height: 60px;
+  height: 64px;
 }
 
 .site-header__brand {
+  justify-self: start;
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -128,19 +107,8 @@ html.dark .site-header__brand .logo-dark {
 /* ---------- Page / article ---------- */
 
 .page {
-  padding-top: 48px;
-  padding-bottom: 96px;
-}
-
-.article h1,
-.page > h1,
-.catalog-head h1 {
-  font-size: clamp(30px, 5vw, 40px);
-  line-height: 1.04;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-  margin: 0 0 0.8rem;
-  text-wrap: balance;
+  padding-top: var(--page-start);
+  padding-bottom: var(--page-end);
 }
 
 .article__meta {
@@ -298,7 +266,7 @@ html.dark .site-header__brand .logo-dark {
 .post-list {
   list-style: none;
   padding: 0;
-  margin: 2.25rem 0 0;
+  margin: 0;
 }
 
 .post-list li {
@@ -409,19 +377,8 @@ html.dark .site-header__brand .logo-dark {
 }
 
 @media (max-width: 520px) {
-  .site-header__inner,
-  .site-footer__inner,
-  .page {
-    padding-inline: 20px;
-  }
-
   .site-header__nav {
     gap: 14px;
-  }
-
-  .page {
-    padding-top: 36px;
-    padding-bottom: 72px;
   }
 }
 
@@ -622,19 +579,8 @@ html.dark .recipe-mark__tile .logo-dark {
 
 /* ---------- Catalog index ---------- */
 
-.catalog-head {
-  margin-bottom: 2.5rem;
-}
-
-.catalog-head__intro {
-  max-width: 62ch;
-  font-size: 16px;
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
 .catalog-grid {
-  max-width: 680px;
+  max-width: var(--container-narrow);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -705,7 +651,7 @@ html.dark .recipe-mark__tile .logo-dark {
   margin-top: 3rem;
   padding-top: 1.75rem;
   border-top: 1px solid var(--color-border-subtle);
-  max-width: 62ch;
+  max-width: var(--container-narrow);
 }
 
 .catalog-foot h2 {
@@ -719,10 +665,6 @@ html.dark .recipe-mark__tile .logo-dark {
 }
 
 /* ---------- Integration detail ---------- */
-.recipe-page {
-  padding-top: 32px;
-  padding-bottom: 48px;
-}
 .recipe-page a:not(.btn) {
   color: var(--color-text);
   text-underline-offset: 4px;
@@ -733,7 +675,7 @@ html.dark .recipe-mark__tile .logo-dark {
 }
 .recipe-crumb {
   font-size: 13px;
-  margin-bottom: 28px;
+  margin-bottom: var(--page-heading-gap);
 }
 .recipe-crumb a {
   text-decoration: none;
@@ -754,12 +696,7 @@ html.dark .recipe-mark__tile .logo-dark {
   margin-bottom: 24px;
 }
 .recipe-head h1 {
-  font-weight: 700;
-  font-size: clamp(32px, 3.6vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.045em;
-  margin: 0 0 20px;
-  text-wrap: balance;
+  margin-bottom: 20px;
 }
 .recipe-head__summary {
   font-size: 18px;
@@ -1080,11 +1017,6 @@ body:has(.recipe-dialog[open]) {
   overflow-x: auto;
 }
 @media (max-width: 900px) {
-  .recipe-page {
-    max-width: 640px;
-    padding-top: 24px;
-    padding-bottom: 40px;
-  }
   .recipe-body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "head" "setup" "overview";
@@ -1126,9 +1058,6 @@ body:has(.recipe-dialog[open]) {
   }
 }
 @media (max-width: 420px) {
-  .recipe-crumb {
-    margin-bottom: 20px;
-  }
   .recipe-setup {
     padding: 20px;
   }
@@ -1158,16 +1087,12 @@ body:has(.recipe-dialog[open]) {
 }
 
 /* Shared site shell: the same reading grid on marketing and content routes. */
-.site-header__inner,
-.site-footer__inner,
-.page--wide {
-  max-width: calc(var(--container-max) + 48px);
-}
 .site-header__inner {
   height: 64px;
   gap: 24px;
 }
 .site-header__actions {
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1312,6 +1237,9 @@ body:has(.recipe-dialog[open]) {
   padding-bottom: 20px;
 }
 @media (max-width: 900px) {
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
   .site-header__inner > .site-header__nav {
     display: none;
   }
@@ -1326,8 +1254,8 @@ body:has(.recipe-dialog[open]) {
   .site-header__mobile .site-header__nav {
     position: absolute;
     top: 60px;
-    left: 24px;
-    right: 24px;
+    left: var(--site-gutter);
+    right: var(--site-gutter);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1345,7 +1273,6 @@ body:has(.recipe-dialog[open]) {
 @media (max-width: 360px) {
   .site-header__inner {
     gap: 8px;
-    padding-inline: 16px;
   }
   .site-header__actions {
     gap: 8px;

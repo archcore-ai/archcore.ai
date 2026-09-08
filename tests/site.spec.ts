@@ -61,6 +61,17 @@ for (const route of routes) {
       ).toBeGreaterThanOrEqual(30);
       await expect(page.locator(".site-header")).toHaveCount(1);
       await expect(page.locator(".site-footer")).toHaveCount(1);
+      // Content titles must share the chrome's left edge, even on narrow screens.
+      if (!["/", "/cli/", "/plugin/", "/how-to-use/"].includes(route)) {
+        const heading = await page.locator("h1").boundingBox();
+        const brand = await page
+          .locator(".site-header .site-header__brand")
+          .boundingBox();
+        expect(
+          Math.abs(heading!.x - brand!.x),
+          `Grid alignment at ${width}px`
+        ).toBeLessThan(1);
+      }
       const overflows = await page.evaluate(() =>
         [
           ...document.querySelectorAll<HTMLElement>(
@@ -222,4 +233,55 @@ test("Russian chrome fits a narrow screen", async ({ page }) => {
     .locator(".site-header__actions")
     .evaluate((el) => el.getBoundingClientRect().right);
   expect(edge).toBeLessThanOrEqual(320);
+});
+
+test("hub headings and collections stay aligned between pages", async ({
+  page,
+}) => {
+  for (const width of [390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const positions = [];
+    for (const route of ["/blog/", "/learn/", "/integrations/"]) {
+      await page.goto(route);
+      await page.evaluate(() => document.fonts.ready);
+      positions.push(
+        await page.evaluate(() => {
+          const rect = (selector: string) => {
+            const { x, y, width } = document
+              .querySelector(selector)!
+              .getBoundingClientRect();
+            return { x, y, width };
+          };
+          return {
+            title: rect("h1"),
+            intro: rect(".page-intro__description"),
+            collection: rect(".post-list, .catalog-grid"),
+          };
+        })
+      );
+    }
+    for (const position of positions.slice(1)) {
+      expect(position.title).toEqual(positions[0].title);
+      expect(position.intro.x).toBe(positions[0].intro.x);
+      expect(position.intro.y).toBe(positions[0].intro.y);
+      expect(position.collection.x).toBe(positions[0].collection.x);
+      expect(position.collection.width).toBe(positions[0].collection.width);
+      if (width >= 768)
+        expect(position.collection.y).toBe(positions[0].collection.y);
+    }
+  }
+});
+
+test("desktop navigation stays in place with and without the locale selector", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  let reference;
+  for (const route of ["/", "/blog/", "/integrations/", "/how-to-use/"]) {
+    await page.goto(route + "?lang=en");
+    await page.evaluate(() => document.fonts.ready);
+    const box = await page.locator(".site-header__inner > nav").boundingBox();
+    if (reference) expect(box).toEqual(reference);
+    else reference = box;
+  }
 });

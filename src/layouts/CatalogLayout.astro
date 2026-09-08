@@ -1,21 +1,8 @@
 ---
+import PageIntro from "../components/PageIntro.astro";
 import SiteLayout from "./SiteLayout.astro";
 import RecipeMark from "../components/RecipeMark.astro";
 
-/**
- * The catalog index — a card grid, not the article listing the hubs use.
- *
- * ListingLayout was the wrong shape here and bending it would have cost both:
- * its items are dated posts in a vertical rule-separated list, and a recipe has
- * no date and needs a mark, a category, and a status. This layout is wide where
- * ListingLayout is narrow, because a two-column grid inside a 760px measure is
- * two thin columns.
- *
- * The grid deliberately carries no placeholder entries for planned recipes.
- * One real card beside the explanatory tile reads as a catalog that is starting;
- * six greyed-out names that lead nowhere read as a catalog that is broken, and
- * the SEO research this site follows argues against publishing them at all.
- */
 interface CatalogItem {
   href: string;
   title: string;
@@ -80,11 +67,8 @@ const listingSchema = {
       set:html={JSON.stringify(listingSchema)}
     />
   </Fragment>
-  <main id="main-content" class="page page--wide">
-    <header class="catalog-head">
-      <h1>{h1}</h1>
-      <p class="catalog-head__intro">{intro}</p>
-    </header>
+  <main id="main-content" class="page page--listing">
+    <PageIntro title={h1} description={intro} />
 
     <ul class="catalog-grid">
       {

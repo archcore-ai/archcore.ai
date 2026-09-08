@@ -320,27 +320,36 @@ Do not use:
 
 ## Layout System
 
-### Container
+### Container and page alignment
 
-Default desktop container:
+Use the shared layout rules in `src/index.css`. Container widths describe the
+usable content area; horizontal gutters are added outside that width.
 
-```css
-.container {
-  max-width: 1040px;
-  margin-inline: auto;
-  padding-inline: 32px;
-}
-```
+| Token | Value | Purpose |
+| --- | --- | --- |
+| `--container-max` | 1040px | Shared outer grid for header, page sections, and footer |
+| `--container-narrow` | 760px | Reading measure inside the outer grid |
+| `--site-gutter` | 16px up to 360px; 20px up to 767px; 24px above | One horizontal inset for every surface |
+| `--page-start` | 40px mobile; 64px from 768px | Space below the site header |
+| `--page-heading-gap` | 32px mobile; 40px from 768px | Space after page introductions and back links |
+| `--page-end` | 72px mobile; 96px from 768px | Space before the footer |
 
-Narrow content container:
-
-```css
-.container-narrow {
-  max-width: 760px;
-  margin-inline: auto;
-  padding-inline: 24px;
-}
-```
+- Use `.page` for Astro page containers and `.site-gutters` for full-width
+  React sections. `SectionContainer` applies those gutters automatically.
+- Use `.page--reading` for articles and service pages. Limit the reading
+  column to 760px and align it to the outer grid's **left edge**.
+- Use `.page--listing` and `PageIntro.astro` for Blog, Learn, and Integrations.
+  The heading, intro, list, and closing text share a 760px measure. Desktop
+  intros reserve three lines so the first collection row stays aligned when
+  switching hubs. Mobile intros use their natural height.
+- Use `.page-title` for page titles. It shares the fluid 30–44px scale,
+  weight, tracking, and line height of `.type-hero` and article titles.
+- Keep marketing heroes and their section introductions centered within
+  the shared outer grid. Detail pages may put identity or back navigation
+  before the title; those elements use the same outer alignment and spacing.
+- Keep desktop navigation centered independently of the language selector.
+- Do not center a reading column independently of the outer grid or add
+  page-specific gutter and page-start overrides.
 
 ### Section spacing
 

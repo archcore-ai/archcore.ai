@@ -1,4 +1,5 @@
 ---
+import PageIntro from "../components/PageIntro.astro";
 import SiteLayout from "./SiteLayout.astro";
 
 interface ListingItem {
@@ -77,9 +78,8 @@ const fmt = (d: Date) =>
       set:html={JSON.stringify(listingSchema)}
     />
   </Fragment>
-  <main id="main-content" class="page">
-    <h1>{h1}</h1>
-    <p>{intro}</p>
+  <main id="main-content" class="page page--listing">
+    <PageIntro title={h1} description={intro} />
     <ul class="post-list">
       {
         items.map((item) => (
@@ -93,6 +93,6 @@ const fmt = (d: Date) =>
         ))
       }
     </ul>
-    <slot />
+    <div class="listing-outro"><slot /></div>
   </main>
 </SiteLayout>
