@@ -3,6 +3,13 @@ title: "Home page rebuild — new section order, mechanism-first category sectio
 status: draft
 ---
 
+
+## Astro migration update (2026-09-09)
+
+The home section order and positioning remain intact. Astro now renders the same @src/components/pages/landing.tsx tree for initial HTML and hydration, replacing the separate crawler body described in completed historical tasks. The shared header and footer live in Astro layouts.
+
+The remaining sections record the original implementation history.
+
 ## Goal
 
 Execute `landing/home-loop-before-categories.adr.md` on `archcore.ai/`. Move the loop above the two category sections, rewrite those two sections from definition to mechanism, add the differentiation the page has never carried, and bring the static crawler body to parity with what the browser renders.

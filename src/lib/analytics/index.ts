@@ -1,5 +1,5 @@
 /**
- * Analytics entry point for the Vite SPA.
+ * Analytics entry point for the React islands.
  *
  * There is no React context or provider: PostHog is a singleton, so `track`
  * is imported directly wherever an event is fired. That keeps the same call

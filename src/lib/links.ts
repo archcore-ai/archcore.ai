@@ -20,17 +20,14 @@ export const INTERNAL_LINKS = {
   plugin: "/plugin/",
   cli: "/cli/",
   howToUse: "/how-to-use/",
-  teamsGettingStarted: "/teams/getting-started",
+  teamsGettingStarted: "/teams/getting-started/",
   privacy: "/privacy/",
-  // Static Astro pages (content-site build), not SPA routes — link with a
-  // full page load, never through React Router.
   blog: "/blog/",
   learn: "/learn/",
+  integrations: "/integrations/",
   repoMemory: "/learn/repo-memory/",
   harnessEngineering: "/learn/harness-engineering/",
-  // Root-level pillar pages, one canonical owner per query cluster
-  // (product/seo-information-architecture). Static Astro pages from the
-  // content-site sub-build, so link them with a full page load.
+  // Root-level reference pages, one canonical owner per query cluster.
   contextEngineering: "/context-engineering/",
   specDrivenDevelopment: "/spec-driven-development/",
   projectContext: "/project-context/",

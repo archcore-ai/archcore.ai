@@ -85,7 +85,7 @@ export function CrossAgentSection() {
       {/*
         Per-host reference pages, one canonical owner per "{agent} context"
         query (product/seo-information-architecture). Static Astro routes from
-        the content-site sub-build, so plain anchors with a full page load.
+        the Astro content collections, so plain anchors with a full page load.
       */}
       <div className="max-w-4xl mx-auto mt-8 text-center">
         <p className="text-sm text-muted-foreground">

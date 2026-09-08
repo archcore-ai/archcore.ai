@@ -1,0 +1,56 @@
+---
+/**
+ * The visual anchor of a recipe: one tile per participating tool, joined by a
+ * multiplication sign.
+ *
+ * Every comparable catalog — Claude's marketplace, Linear, Raycast — leads with
+ * a logo, and it is the single element that separates a marketplace card from a
+ * blog link. A recipe has no logo of its own because it is a pairing, so the
+ * pair itself becomes the mark.
+ *
+ * A tool without an `icon` gets a monogram tile rather than a borrowed logo.
+ * That is a deliberate default: dropping a partner's official mark onto our
+ * pages is a decision about their branding, not a styling detail, and the
+ * schema leaves `icon` open so one can be added later without touching markup.
+ */
+interface Tool {
+  name: string;
+  icon?: string | undefined;
+  iconDark?: string | undefined;
+}
+
+interface Props {
+  tools: Tool[];
+  /** "sm" for cards, "lg" for the page header. */
+  size?: "sm" | "lg";
+}
+
+const { tools, size = "sm" } = Astro.props;
+---
+
+<span class:list={["recipe-mark", `recipe-mark--${size}`]} aria-hidden="true">
+  {
+    tools.map((tool, i) => (
+      <>
+        {i > 0 && <span class="recipe-mark__join">×</span>}
+        <span class="recipe-mark__tile">
+          {tool.icon ? (
+            <>
+              <img class="logo-light" src={tool.icon} alt="" loading="lazy" />
+              {tool.iconDark && (
+                <img
+                  class="logo-dark"
+                  src={tool.iconDark}
+                  alt=""
+                  loading="lazy"
+                />
+              )}
+            </>
+          ) : (
+            <span class="recipe-mark__mono">{tool.name.slice(0, 1)}</span>
+          )}
+        </span>
+      </>
+    ))
+  }
+</span>

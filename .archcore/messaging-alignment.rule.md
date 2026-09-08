@@ -3,9 +3,10 @@ title: "Landing site messaging alignment with positioning"
 status: accepted
 ---
 
+
 ## Rule
 
-All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, `index.html` static shell, prerendered route HTML, the OG image generator).
+All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, Astro-generated HTML, shared layouts, the OG image generator).
 
 **The strings themselves live in the global context and are not restated here:**
 
@@ -72,12 +73,12 @@ Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" fram
 
 - **Both entry points are equals.** No "(recommended)" labels anywhere on the site — including the static prerendered route bodies in `scripts/prerender-routes.mts`, which are crawler-visible copy and drifted on this exact point once (fixed 2026-07-30).
 - **Gentle plugin emphasis is allowed:** plugin copy may call itself "the most polished experience for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI". Never frame the CLI as a fallback.
-- **The home page shows one install path and no Plugin / CLI comparison.** Changed 2026-08-27 under `landing/home-install-single-path.adr.md`. The hero install block carries platform tabs only (macOS / Linux against Windows), `#install` is its single anchor, `cross-agent-section.tsx` states the cross-agent claim over one flat agent list instead of two cards, and the header nav carries "How to use" and "Docs" only. The prior decisions this replaces: the CLI-first hero (2026-07-06), the plugin-first tab order (2026-08-11), and the `#install-cli` / `#install-plugin` hashes.
+- **The home page shows one install path and no Plugin / CLI comparison.** Changed 2026-08-27 under `landing/home-install-single-path.adr.md`. The hero install block carries platform tabs only (macOS / Linux against Windows), `#install` is its single anchor, `cross-agent-section.tsx` states the cross-agent claim over one flat agent list instead of two cards, and the shared header provides How to use, Blog, Learn, Integrations, Docs, and Install. The prior decisions this replaces: the CLI-first hero (2026-07-06), the plugin-first tab order (2026-08-11), and the `#install-cli` / `#install-plugin` hashes.
 - **The install block stays in the hero.** Reaffirmed 2026-08-31 during the section reorder, when moving it below the loop was considered and rejected by the owner. `landing/home-install-single-path.adr.md` is unchanged.
 - **`/how-to-use` presents no surface choice either.** Changed 2026-08-27 under `landing/how-to-use-cases.adr.md`. Each stage of the loop leads with a slash command and the sentence that does the same thing in any agent. There is no Plugin / CLI toggle, and the page never asks which one the reader has.
 - **The equal-paths framing is unchanged by both.** What changed is where the reader meets the two entry points: `/plugin` and `/cli`, not the install step, not the header, not the walkthrough.
 - **Frame the choice by the user's agent, not by recommendation**, on the surfaces that still present one — `/plugin` and `/cli`: Plugin — for Claude Code / Cursor 2.5+ / Codex CLI 0.117+ / GitHub Copilot CLI; CLI — any MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline), scriptable in CI.
-- **`/plugin` and `/cli` stay as pages, and left the header nav on 2026-08-27.** Both MUST stay in the footer nav (`site-nav.tsx`), the `index.html` static nav, and the `renderBody()` nav in `scripts/prerender-routes.mts`. Those three are now the only paths to them from the home page, and none of them carries a build check.
+- **`/plugin` and `/cli` stay as pages, and left the header nav on 2026-08-27.** Both MUST stay in @src/components/SiteFooter.astro through @src/data/navigation.ts.
 
 ## Copy hierarchy (home `/`)
 
@@ -122,18 +123,18 @@ Backgrounds alternate page / band from section 4 on, so the page does not read a
 
 **Section 8 states the plugin-host set in prose, not in a card.** It reads: slash commands, skills, and guardrails run inside the four plugin hosts; every other agent reaches the same context over MCP and session hooks. That sentence and the `index.html` static paragraph under the same H2 must change together, and both must agree with `plugin-hosts-section.tsx` and `cli-agents-section.tsx`.
 
-**The `index.html` static body carries every home section, under the same H2s, in the same order.** Before/After was missing from it until 2026-08-31, so the page's strongest block was invisible to crawlers that do not execute JavaScript and to answer engines reading the same HTML. Nothing in the build compares the two files. A section added to `landing.tsx` is added here in the same PR.
+**Astro renders every home section directly from @src/components/pages/landing.tsx.** The generated HTML and hydrated page use the same component tree.
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
-- **Visible FAQ (`faq-section.tsx`) and the FAQPage JSON-LD in `index.html` MUST mirror each other** — same questions, same answers, same order.
+- **Visible FAQ and FAQPage JSON-LD MUST use the same question and answer array.** @src/components/faq-list.tsx owns both representations.
 
 ## Structured data per route
 
-Added 2026-07-30 after the home FAQPage block was found shipping on every prerendered route (including `/privacy/`, which claimed the product FAQ as its own structured data).
+1. Pages without a visible FAQ MUST NOT emit FAQPage markup.
+2. Marketing FAQ components MUST pass their visible question and answer arrays to @src/components/faq-list.tsx.
+3. Article layouts MUST generate visible FAQs and JSON-LD from the same collection frontmatter.
+4. Metadata changes MUST preserve canonical URLs unless an explicit URL migration is approved.
 
-- **A route's FAQPage JSON-LD is per-route or absent — never inherited.** `scripts/prerender-routes.mts` clones `dist/index.html`, so every entry in `ROUTES` either supplies its own `faq[]` (which replaces the home block) or supplies none (which strips it). A page with no visible FAQ MUST NOT carry FAQPage markup.
-- **`ROUTES[].faq` MUST mirror the page's visible FAQ section** — same questions, same answers, same order — exactly as the home FAQ mirrors `faq-section.tsx`. Today: `/plugin` mirrors `plugin-faq-section.tsx`, `/cli` mirrors `cli-faq-section.tsx`. Change the component and the `faq[]` array in the same PR.
-- `Organization` and `SoftwareApplication` are site/app-level and correctly stay on every route.
-- Content-hub listings (`/blog/`, `/learn/`) carry `CollectionPage` + `ItemList` via `content-site/src/layouts/ListingLayout.astro`; articles carry `Article` (+ `FAQPage` when the frontmatter has `faq`) via `ArticleLayout.astro`.
+@src/layouts/MarketingLayout.astro reads marketing metadata from @src/data/marketing-meta.json. @src/layouts/ListingLayout.astro emits CollectionPage; article layouts emit Article; pillar and recipe layouts emit WebPage. Sitemap generation lives in @src/pages/sitemap.xml.ts.
 
 ## Per-page heroes (`/plugin`, `/cli`, `/how-to-use`)
 
@@ -282,16 +283,17 @@ Host support and structured data get their own invariants because both failed si
 
 ## Enforcement
 
-Review all copy changes against this rule before merging. Copy lives in more layers than the component — update **all** that apply in the same PR:
+The Astro migration removed the hand-written crawler bodies and the second content build. Historical references to index.html and prerender-routes.mts above describe former failure cases; use the source map below for current changes.
 
-1. **Home hero/subhead/FAQ:** component `<Trans>`/`msg` strings + `index.html` (title, description, OG, Twitter, SoftwareApplication and FAQPage JSON-LD, static fallback body) + `scripts/generate-og-image.mts` home variant.
-2. **Home section claims that the static body mirrors:** every home section has a paragraph under the matching H2 in `index.html`, in the same order — `problem-section.tsx`, `before-after-section.tsx`, `how-to-use-cycle-section.tsx`, `context-engineering-section.tsx`, `spec-driven-section.tsx`, `git-native-section.tsx`, and `cross-agent-section.tsx`. No pairing here carries a build check, and a missing section produces no error at all.
-3. **Navigation:** `sticky-header.tsx` (header and mobile menu), `site-nav.tsx` (footer), the `index.html` static nav, and `renderBody()` in `scripts/prerender-routes.mts`. A route removed from one and left in the others produces no build error.
-4. **`/plugin`, `/cli`, `/how-to-use` heroes/meta:** page component `<Trans>` + `usePageMeta` + `scripts/prerender-routes.mts` `ROUTES[]` (title, description, **`body.paragraphs`**, and **`faq[]`**) + `scripts/generate-og-image.mts` `VARIANTS[]`.
-5. **Host/agent support:** `plugin-hosts-section.tsx` or `cli-agents-section.tsx` + the matching docs page + the repo tagline — never one without the others.
-6. **Install mechanics:** the home hero block, `src/content/how-to-use/cycle.tsx`, both FAQ layers, and the `/plugin` and `/cli` heroes state who installs what. Check them against `cli/cmd/init.go` and the plugin README, not against each other.
-7. **Command-set and skill-behavior changes:** sweep `src/content/how-to-use/cycle.tsx` (all four `CYCLE_STAGES`), the `/how-to-use` `body.paragraphs` in `scripts/prerender-routes.mts`, the `index.html` loop paragraph, the home loop section's verdict tokens, `plugin-pillars-section.tsx`, both FAQ components, and `content-site/src/content/`. `cycle.tsx` quotes the skills' own trigger phrases, so a renamed trigger breaks it silently, and one edit there must reach two rendered surfaces plus two static bodies.
-8. **Section order changes:** `landing.tsx`, the H2 order in the `index.html` static body, the background alternation on both moved sections, and the table in this rule. A reorder is a positioning change, so it needs an ADR before it needs a diff.
-9. **Screenshots are copy too.** `public/images/cursor-plugin-{light,dark}.png` shows the plugin's skill list in the Cursor marketplace; it goes stale on every command-set change and must be re-captured. Nothing in the build catches this.
-10. Run the `humanizer` pass on new English strings **before** `npm run i18n:extract`, then translate new RU strings (formal «вы» throughout — never «ты»), run `humanizer-ru` on them, then `npm run i18n:compile` and `npm run build`. Rewriting an English string after extraction orphans its translation and leaves an obsolete empty entry in the catalog.
-11. Visually inspect the regenerated `public/og-image*.png` and the rewritten `dist/<route>/index.html` meta. Check the built HTML, not just the dev server: prerender bodies, per-route JSON-LD, and the content-hub pages only exist in `dist/`.
+1. Copy edits MUST preserve the pinned positioning and section order in this rule.
+2. Marketing metadata edits MUST update @src/data/marketing-meta.json and the applicable localized page metadata.
+3. Navigation edits MUST update @src/data/navigation.ts, which supplies the shared Astro header and footer.
+4. FAQ edits MUST retain one source for visible answers and structured data.
+5. Command and host claims MUST remain consistent across @src/components/sections/, @src/content/how-to-use/, and @src/content/.
+6. OG copy edits MUST update the matching variant in @scripts/generate-og-image.mts.
+7. English copy edits MUST receive the humanizer pass before extraction.
+8. Russian translations MUST preserve the English claims and formal address.
+9. Validation MUST include i18n extraction, translation, compilation, the full build, and browser checks against dist/.
+10. Migration baseline updates MUST correspond to an intentional content or SEO change.
+
+@scripts/verify-build.mts compares existing URL metadata and article content with @scripts/fixtures/seo-baseline.json. @tests/site.spec.ts checks rendered routes, localization, installation, and native navigation. Review @public/og-image*.png when its source copy changes.

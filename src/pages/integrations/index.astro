@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import CatalogLayout from "../../layouts/CatalogLayout.astro";
+
+const recipes = (
+  await getCollection("integrations", ({ data }) => !data.draft)
+).sort((a, b) => a.data.heading.localeCompare(b.data.heading));
+
+const items = recipes.map((entry) => {
+  const verified = entry.data.evidence.filter((e) => e.outcome === "passed");
+  return {
+    href: `/integrations/${entry.id}/`,
+    title: entry.data.heading,
+    summary: entry.data.summary,
+    category: entry.data.category,
+    status: verified.length > 0 ? "Verified in part" : "Experimental",
+    tools: entry.data.tools,
+  };
+});
+---
+
+<CatalogLayout
+  title="Archcore Integrations — Recipes for Existing Agent Setups"
+  description="Connect Archcore with your agent’s tools. Explore integrations and copy the setup instructions for your project."
+  h1="Integrations"
+  intro="Bring your project context to the tools you already use."
+  items={items}
+>
+  <p class="catalog-foot">
+    Experimental integrations have setup instructions available. Joint runs have
+    not been verified yet.
+  </p>
+</CatalogLayout>

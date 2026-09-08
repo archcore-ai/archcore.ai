@@ -1,6 +1,6 @@
 ---
 title: "Content hub (/blog, /learn, /alternatives) as an Astro sub-build merged into the GitHub Pages deploy"
-status: accepted
+status: rejected
 ---
 
 ## Context

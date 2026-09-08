@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from "astro:content";
+import RecipeLayout from "../../layouts/RecipeLayout.astro";
+import {
+  readRecipeSource,
+  evidenceForDigest,
+} from "../../lib/recipe-source.ts";
+
+// The instruction file is read and checked here, not in the layout, so a
+// digest that no longer matches its file fails getStaticPaths — before any
+// page is emitted, rather than shipping one page with the wrong text.
+export async function getStaticPaths() {
+  const recipes = await getCollection(
+    "integrations",
+    ({ data }) => !data.draft
+  );
+
+  return recipes.map((entry) => {
+    const source = readRecipeSource(
+      entry.data.recipe,
+      entry.data.instructions,
+      entry.data.digest
+    );
+    return {
+      params: { slug: entry.id },
+      props: {
+        entry,
+        source,
+        // Records made against an older instruction revision describe a
+        // different recipe, so they are dropped rather than shown with a note.
+        evidence: evidenceForDigest(entry.data.evidence, entry.data.digest),
+      },
+    };
+  });
+}
+
+const { entry, source, evidence } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<RecipeLayout
+  title={data.title}
+  heading={data.heading}
+  description={data.description}
+  summary={data.summary}
+  category={data.category}
+  updatedDate={data.updatedDate}
+  recipe={data.recipe}
+  digest={source.digest}
+  instructions={source.text}
+  filename={source.filename}
+  downloadHref={`/integrations/${entry.id}/${source.filename}`}
+  markdownTwin={`/integrations/${entry.id}.md`}
+  sourceRepo={data.source.repo}
+  sourcePath={data.source.path}
+  sourceRevision={data.source.revision}
+  tools={data.tools}
+  hosts={data.hosts}
+  evidence={evidence}
+  limits={data.limits}
+  maintainer={data.maintainer}
+>
+  <Content />
+</RecipeLayout>

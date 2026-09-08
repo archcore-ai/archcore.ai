@@ -1,0 +1,215 @@
+---
+interface Host {
+  id: string;
+  label: string;
+  instructionFile: string;
+  note: string | null;
+  verified: boolean;
+}
+interface Props {
+  downloadHref: string;
+  verificationNote: string;
+  hosts: Host[];
+  tools: { name: string; url: string }[];
+}
+const { downloadHref, hosts, tools, verificationNote } = Astro.props;
+const setupHosts = [
+  ...hosts,
+  {
+    id: "other",
+    label: "Another agent",
+    instructionFile: "Your project instruction file",
+    note: "Your agent must be able to read these instructions and access both tools’ skills and Archcore MCP.",
+    verified: false,
+  },
+];
+---
+
+<section class="recipe-setup" id="install" aria-labelledby="setup-heading">
+  <span id="connect" class="recipe-anchor" aria-hidden="true"></span>
+  <h2 id="setup-heading">Set up the integration</h2>
+  <p class="recipe-setup__lead">
+    You’ll need {
+      tools.map((tool, i) => (
+        <>
+          {i > 0 && " and "}
+          <a href={tool.name === "Archcore" ? "/#install" : tool.url}>
+            {tool.name}
+          </a>
+        </>
+      ))
+    } installed in your agent.
+  </p>
+
+  <div class="recipe-hosts" data-recipe-hosts>
+    <div class="recipe-agent-picker" hidden>
+      <label for="recipe-agent"
+        ><span class="recipe-step-number">1</span> Choose your agent</label
+      >
+      <select id="recipe-agent" data-recipe-agent>
+        {
+          setupHosts.map((host) => (
+            <option value={host.id}>{host.label}</option>
+          ))
+        }
+      </select>
+    </div>
+
+    <div class="recipe-add">
+      <h3><span class="recipe-step-number">2</span> Add the instructions</h3>
+      {
+        setupHosts.map((host, i) => (
+          <div
+            data-panel={host.id}
+            data-initial={i === 0 ? "true" : "false"}
+            class="recipe-host-panel"
+          >
+            <h4>{host.label}</h4>
+            <p class="recipe-destination">
+              <>
+                <span>Project file</span>
+                <code>{host.instructionFile}</code>
+              </>
+            </p>
+            {host.note && <p class="recipe-host-note">{host.note}</p>}
+          </div>
+        ))
+      }
+      <p class="recipe-paste-hint">
+        Copy the text and paste it at the end of this file.
+      </p>
+      <div class="recipe-setup__actions" data-analytics-recipe>
+        <button type="button" class="btn btn--primary" data-recipe-copy hidden
+          >Copy instructions</button
+        >
+        <a href={downloadHref} download data-recipe-download>Download .md</a>
+      </div>
+      <p
+        class="recipe-copy-status"
+        role="status"
+        aria-live="polite"
+        data-copy-status
+      >
+      </p>
+    </div>
+
+    <div class="recipe-restart">
+      <h3><span class="recipe-step-number">3</span> Start a new session</h3>
+      <p>
+        Ask your agent to confirm it has both tools and the integration
+        instructions.
+      </p>
+    </div>
+  </div>
+
+  <div class="recipe-setup__footer">
+    <span>{verificationNote}</span>
+    <a href={downloadHref} data-recipe-details
+      >View instructions &amp; details ↗</a
+    >
+  </div>
+</section>
+
+<script>
+  import { track } from "../lib/analytics/core";
+
+  const page = document.querySelector<HTMLElement>("[data-recipe-root]");
+  const recipe = page?.dataset.recipe ?? "";
+  const digest = page?.dataset.digest ?? "";
+  const select = document.querySelector<HTMLSelectElement>(
+    "[data-recipe-agent]"
+  );
+  const panels = [...document.querySelectorAll<HTMLElement>("[data-panel]")];
+  const dialog = document.querySelector<HTMLDialogElement>("#recipe-details");
+  const pre = document.querySelector<HTMLElement>("[data-recipe-text]");
+  const feedback = document.querySelector<HTMLElement>("[data-copy-status]");
+  let selectedHost = select?.value ?? "all";
+
+  if (select) {
+    const showHost = () => {
+      selectedHost = select.value;
+      for (const panel of panels)
+        panel.hidden = panel.dataset.panel !== selectedHost;
+      if (feedback) feedback.textContent = "";
+    };
+    showHost();
+    document.querySelector<HTMLElement>(".recipe-agent-picker")!.hidden = false;
+    document.querySelector("[data-recipe-hosts]")?.classList.add("is-enhanced");
+    select.addEventListener("change", () => {
+      showHost();
+      track("recipe_host_selected", { recipe, host: selectedHost });
+    });
+  }
+
+  document
+    .querySelector<HTMLAnchorElement>("[data-recipe-details]")
+    ?.addEventListener("click", (event) => {
+      if (!dialog?.showModal) return;
+      event.preventDefault();
+      dialog.showModal();
+    });
+
+  dialog?.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    )
+      dialog.close();
+  });
+
+  const copyBtn =
+    document.querySelector<HTMLButtonElement>("[data-recipe-copy]");
+  if (copyBtn) {
+    copyBtn.hidden = false;
+    let reset: ReturnType<typeof setTimeout>;
+    copyBtn.addEventListener("click", async () => {
+      clearTimeout(reset);
+      try {
+        await navigator.clipboard.writeText(pre?.textContent ?? "");
+        copyBtn.textContent = "Copied ✓";
+        const file = panels
+          .find((panel) => panel.dataset.panel === selectedHost)
+          ?.querySelector("code")?.textContent;
+        if (feedback)
+          feedback.textContent = `Paste into ${file ?? "your project instruction file"}.`;
+        track("recipe_instructions_copied", {
+          recipe,
+          digest,
+          host: selectedHost,
+          via: "button",
+        });
+        reset = setTimeout(() => {
+          copyBtn.textContent = "Copy instructions";
+        }, 2200);
+      } catch {
+        if (dialog && !dialog.open) dialog.showModal();
+        pre?.focus();
+        if (feedback)
+          feedback.textContent =
+            "Select and copy the instruction text, or download the file.";
+      }
+    });
+  }
+
+  pre?.addEventListener("copy", () => {
+    track("recipe_instructions_copied", {
+      recipe,
+      digest,
+      host: selectedHost,
+      via: "selection",
+    });
+  });
+  document
+    .querySelector<HTMLAnchorElement>("[data-recipe-download]")
+    ?.addEventListener("click", () => {
+      track("recipe_instructions_downloaded", {
+        recipe,
+        digest,
+        host: selectedHost,
+      });
+    });
+</script>

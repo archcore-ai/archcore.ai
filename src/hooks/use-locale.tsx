@@ -49,7 +49,9 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
         urlParams.delete("locale");
         const newSearch = urlParams.toString();
         const newUrl =
-          window.location.pathname + (newSearch ? `?${newSearch}` : "");
+          window.location.pathname +
+          (newSearch ? `?${newSearch}` : "") +
+          window.location.hash;
         window.history.replaceState({}, "", newUrl);
       }
 
@@ -80,6 +82,25 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    const select = document.querySelector<HTMLSelectElement>(
+      "[data-locale-select]"
+    );
+    if (!select) return;
+    select.value = locale;
+    select.disabled = isLoading;
+    document.querySelectorAll<HTMLElement>("[data-ru]").forEach((node) => {
+      node.textContent =
+        (locale === "ru" ? node.dataset.ru : node.dataset.en) ??
+        node.textContent;
+    });
+    const change = () => {
+      void setLocale(select.value as SupportedLocale);
+    };
+    select.addEventListener("change", change);
+    return () => select.removeEventListener("change", change);
+  }, [locale, isLoading, setLocale]);
+
   const contextValue = useMemo(
     () => ({ locale, setLocale, isLoading }),
     [locale, setLocale, isLoading]
@@ -92,6 +113,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// The provider and hook share a private context; consumers are hydrated by Astro.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useLocale() {
   const context = useContext(LocaleContext);
   if (!context) {

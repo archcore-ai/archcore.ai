@@ -1,0 +1,21 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout>
+  <Fragment slot="head">
+    <title>Page not found — Archcore</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta
+      name="description"
+      content="This page could not be found. Return to Archcore or browse the documentation."
+    />
+  </Fragment>
+  <main id="main-content" class="page article">
+    <p class="type-small">404</p>
+    <h1>Page not found</h1>
+    <p>The page may have moved, or the address may be incomplete.</p>
+    <p><a href="/">Back to Archcore →</a></p>
+    <p><a href="https://docs.archcore.ai/">Browse the documentation</a></p>
+  </main>
+</SiteLayout>

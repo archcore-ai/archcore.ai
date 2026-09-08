@@ -3,6 +3,13 @@ title: "SEO growth plan — foundation, three-wedge content program, authority a
 status: draft
 ---
 
+
+## Astro migration update (2026-09-09)
+
+The root Astro build replaces A4's sub-build and the separate crawler bodies mentioned in A3/A9. Static HTML and hydrated marketing content share one component tree; FAQ JSON-LD uses the visible question/answer source. Existing slugs, article content, dates, canonicals and metadata are checked by @scripts/verify-build.mts. This migration does not complete the plan's content program, author page, or organic-growth goals.
+
+The remaining sections record the original implementation history.
+
 ## Goal
 
 Grow non-brand organic traffic from ~zero by fixing the technical/measurement foundation, then shipping a three-wedge content program ({host}-memory cluster, empty product-key SERPs, SDD-afterlife + skills junction) on the apex domain. Grounded in `landing/seo-research-sdd-context-skills.rnd.md`. Must not violate `messaging-alignment.rule.md`: H1 stays pain-first; category keywords move into title tags, subheads, and new pages.

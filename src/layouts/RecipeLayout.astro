@@ -1,0 +1,332 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import RecipeMark from "../components/RecipeMark.astro";
+import RecipeSetup from "../components/RecipeSetup.astro";
+
+// Static recipe page. Evidence and source details remain available on demand.
+interface Tool {
+  name: string;
+  url: string;
+  role: string;
+  icon?: string | undefined;
+  iconDark?: string | undefined;
+}
+
+interface Host {
+  id: string;
+  label: string;
+  instructionFile: string;
+  note: string | null;
+  verified: boolean;
+}
+
+interface EvidenceRecord {
+  digest: string;
+  date: Date;
+  host: string;
+  model: string;
+  scenario: string;
+  outcome: "passed" | "failed" | "unexecuted";
+  notes?: string | undefined;
+}
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  summary: string;
+  category: string;
+  updatedDate: Date;
+  recipe: string;
+  digest: string;
+  instructions: string;
+  filename: string;
+  downloadHref: string;
+  markdownTwin: string;
+  sourceRepo: string;
+  sourcePath: string;
+  sourceRevision: string | null;
+  tools: Tool[];
+  hosts: Host[];
+  evidence: EvidenceRecord[];
+  limits: string[];
+  maintainer: string;
+}
+
+const SITE_URL = "https://archcore.ai";
+const {
+  title,
+  heading,
+  description,
+  summary,
+  category,
+  updatedDate,
+  recipe,
+  digest,
+  instructions,
+  filename,
+  downloadHref,
+  markdownTwin,
+  sourceRepo,
+  sourcePath,
+  sourceRevision,
+  tools,
+  hosts,
+  evidence,
+  limits,
+  maintainer,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const image = `${SITE_URL}/og-image.png`;
+const shortDigest = digest.slice(0, 12);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+// Status is derived, never authored. No evidence means experimental, and no
+// amount of editing this page can make it say otherwise.
+const verified = evidence.filter((e) => e.outcome === "passed");
+const status = verified.length > 0 ? "Verified in part" : "Experimental";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: heading,
+  headline: title,
+  description,
+  dateModified: updatedDate.toISOString(),
+  url: canonical,
+  primaryImageOfPage: image,
+  isPartOf: { "@type": "WebSite", name: "Archcore", url: SITE_URL },
+  publisher: {
+    "@type": "Organization",
+    name: "Archcore",
+    url: SITE_URL,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Integrations",
+      item: `${SITE_URL}/integrations/`,
+    },
+    { "@type": "ListItem", position: 2, name: heading, item: canonical },
+  ],
+};
+---
+
+<SiteLayout>
+  <Fragment slot="head">
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/markdown" href={markdownTwin} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@archcore_ai" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(pageSchema)}
+    />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
+  </Fragment>
+  <main
+    id="main-content"
+    class="page page--wide recipe-page"
+    data-recipe-root
+    data-recipe={recipe}
+    data-digest={digest}
+  >
+    <nav class="recipe-crumb" aria-label="Breadcrumb">
+      <a href="/integrations/">← All integrations</a>
+    </nav>
+
+    <div class="recipe-body">
+      <div class="recipe-story">
+        <header class="recipe-head">
+          <div class="recipe-head__identity">
+            <RecipeMark tools={tools} />
+            <span class="badge">{status}</span>
+          </div>
+          <h1>{heading}</h1>
+          <p class="recipe-head__summary">{summary}</p>
+        </header>
+        <section class="recipe-overview" aria-label="About this integration">
+          <div class="recipe-prose"><slot /></div>
+          <dl class="recipe-tools">
+            {
+              tools.map((tool) => (
+                <div>
+                  <dt>
+                    <a href={tool.url}>{tool.name} ↗</a>
+                  </dt>
+                  <dd>{tool.role}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+      </div>
+      <RecipeSetup
+        hosts={hosts}
+        tools={tools}
+        downloadHref={downloadHref}
+        verificationNote={verified.length > 0
+          ? "Verification covers recorded runs only"
+          : "Experimental · Not yet verified"}
+      />
+    </div>
+
+    <section class="recipe-cta" data-analytics-cta="recipe_install">
+      <div>
+        <h2>Start with Archcore.</h2>
+        <p>Keep your project decisions ready for the next task.</p>
+      </div>
+      <div class="recipe-cta__actions">
+        <a class="btn btn--primary" href="/#install">Install Archcore →</a>
+        <a href="/how-to-use/">See how it works</a>
+      </div>
+    </section>
+
+    <dialog
+      class="recipe-dialog"
+      id="recipe-details"
+      aria-labelledby="recipe-dialog-title"
+    >
+      <div class="recipe-dialog__header">
+        <div>
+          <p class="recipe-eyebrow">{heading}</p><h2 id="recipe-dialog-title">
+            Integration instructions
+          </h2>
+        </div>
+        <form method="dialog">
+          <button
+            class="recipe-dialog__close"
+            aria-label="Close instructions"
+            autofocus>✕</button
+          >
+        </form>
+      </div>
+      <div class="recipe-dialog__body">
+        <p class="recipe-dialog__intro">
+          Add this text to your project instruction file. Keep your existing
+          instructions.
+        </p>
+        <figure class="recipe-file" data-analytics-recipe>
+          <figcaption>{filename}</figcaption>
+          <pre
+            data-recipe-text
+            tabindex="0"
+            aria-label="Integration instructions">{instructions}</pre>
+        </figure>
+        <h2>Source &amp; verification</h2>
+        <dl class="recipe-facts">
+          <div><dt>Category</dt><dd>{category}</dd></div>
+          <div>
+            <dt>Instruction revision</dt><dd>
+              <code title={digest}>{shortDigest}</code>
+            </dd>
+          </div>
+          <div>
+            <dt>Source</dt><dd>
+              {
+                sourceRevision ? (
+                  <a
+                    href={`${sourceRepo}/blob/${sourceRevision}/${sourcePath}`}
+                  >
+                    {sourcePath}
+                  </a>
+                ) : (
+                  <>
+                    <a href={sourceRepo}>Plugin repository</a> · Source not
+                    published yet.
+                  </>
+                )
+              }
+            </dd>
+          </div>
+          <div><dt>Maintainer</dt><dd>{maintainer}</dd></div>
+          <div><dt>Page updated</dt><dd>{fmt(updatedDate)}</dd></div>
+        </dl>
+        <h2>Verification</h2>
+        {
+          evidence.length === 0 ? (
+            <p>No joint run has been recorded for this instruction revision.</p>
+          ) : (
+            <div
+              class="recipe-evidence-scroll"
+              tabindex="0"
+              role="region"
+              aria-label="Verification records"
+            >
+              <table>
+                <thead>
+                  <tr>
+                    <>
+                      <th>Date</th>
+                      <th>Agent</th>
+                      <th>Model</th>
+                      <th>Scenario</th>
+                      <th>Outcome</th>
+                    </>
+                  </tr>
+                </thead>
+                <tbody>
+                  {evidence.map((record) => (
+                    <tr>
+                      <td>{fmt(record.date)}</td>
+                      <td>{record.host}</td>
+                      <td>{record.model}</td>
+                      <td>{record.scenario}</td>
+                      <td>{record.outcome}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+        {
+          limits.length > 0 && (
+            <ul>
+              {limits.map((limit) => (
+                <li>{limit}</li>
+              ))}
+            </ul>
+          )
+        }
+        <h2>Update or disconnect</h2>
+        <p>
+          To update, review changes to the instructions before replacing your
+          copy. To disconnect, remove the added instructions from your project
+          file. Both tools and their documents stay in place.
+        </p>
+      </div>
+    </dialog>
+  </main>
+</SiteLayout>

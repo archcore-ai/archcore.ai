@@ -1,0 +1,222 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+
+interface FaqEntry {
+  question: string;
+  answer: string;
+}
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface RelatedLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  updatedDate: Date;
+  faq?: FaqEntry[] | undefined;
+  ogImage?: string | undefined;
+  headings: Heading[];
+  related: RelatedLink[];
+  markdownTwin: string;
+}
+
+const SITE_URL = "https://archcore.ai";
+const {
+  title,
+  heading,
+  description,
+  updatedDate,
+  faq,
+  ogImage,
+  headings,
+  related,
+  markdownTwin,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const [pillarSlug = ""] = Astro.url.pathname.split("/").filter(Boolean);
+const image = ogImage
+  ? new URL(ogImage, SITE_URL).href
+  : `${SITE_URL}/og-image.png`;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+// Only h2 makes the contents list. Pillars run long and a three-level tree
+// reads as an outline of an outline.
+const toc = headings.filter((h) => h.depth === 2);
+
+// WebPage, not Article: these are evergreen reference pages with no author
+// byline and no publication event. Article would assert a news-like semantic
+// the page does not have.
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: heading,
+  headline: title,
+  description,
+  dateModified: updatedDate.toISOString(),
+  url: canonical,
+  primaryImageOfPage: image,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Archcore",
+    url: SITE_URL,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Archcore",
+    url: SITE_URL,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+  },
+};
+
+const faqSchema =
+  faq && faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+---
+
+<SiteLayout>
+  <Fragment slot="head">
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/markdown" href={markdownTwin} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@archcore_ai" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(pageSchema)}
+    />
+    {
+      faqSchema && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(faqSchema)}
+        />
+      )
+    }
+  </Fragment>
+  <main id="main-content" class="page">
+    <article class="article">
+      <h1>{heading}</h1>
+      <p class="article__meta">Reference · Updated {fmt(updatedDate)}</p>
+
+      {
+        toc.length > 2 && (
+          <nav class="pillar-toc" aria-label="On this page">
+            <p class="pillar-toc__label">On this page</p>
+            <ul>
+              {toc.map((h) => (
+                <li>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+
+      <slot />
+
+      <div
+        data-article-end
+        data-slug={pillarSlug}
+        data-section="pillar"
+        aria-hidden="true"
+      >
+      </div>
+
+      {
+        faq && faq.length > 0 && (
+          <section class="faq">
+            <h2>FAQ</h2>
+            {faq.map((f) => (
+              <>
+                <h3>{f.question}</h3>
+                <p>{f.answer}</p>
+              </>
+            ))}
+          </section>
+        )
+      }
+
+      {
+        related.length > 0 && (
+          <nav class="pillar-related" aria-label="Related reference pages">
+            <h2>Related</h2>
+            <ul>
+              {related.map((r) => (
+                <li>
+                  <a href={r.href}>{r.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+
+      <aside class="cta" data-analytics-cta="pillar_install">
+        <p>
+          Archcore keeps specs, architecture, decisions, rules, and plans in
+          Git, and makes the right project context available to AI coding agents
+          as they work.
+        </p>
+        <a href="/#install">Install Archcore →</a>
+      </aside>
+    </article>
+  </main>
+  <script>
+    document.querySelectorAll(".article pre").forEach((pre) => {
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "Copy";
+      btn.dataset.analyticsCopy = "pillar_code_block";
+      btn.addEventListener("click", () => {
+        const text =
+          pre.querySelector("code")?.textContent ?? pre.textContent ?? "";
+        navigator.clipboard.writeText(text.replace(/\n$/, "")).then(
+          () => (btn.textContent = "Copied"),
+          () => (btn.textContent = "Copy failed")
+        );
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
+      });
+      pre.appendChild(btn);
+    });
+  </script>
+</SiteLayout>

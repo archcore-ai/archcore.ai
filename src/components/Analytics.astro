@@ -1,0 +1,21 @@
+<script>
+  import {
+    setupAnalytics,
+    trackArticleCompletion,
+  } from "../lib/analytics/core";
+  import type { ContentSection } from "../lib/analytics/events";
+  import { detectLocale } from "../lib/locale";
+
+  const site = document.body.dataset.site === "landing" ? "landing" : "content";
+  setupAnalytics({
+    site,
+    key: import.meta.env.PUBLIC_POSTHOG_KEY,
+    host: import.meta.env.PUBLIC_POSTHOG_HOST,
+    locale: site === "landing" ? detectLocale() : "en",
+    debug: import.meta.env.DEV,
+  });
+  const marker = document.querySelector<HTMLElement>("[data-article-end]");
+  const slug = marker?.dataset.slug;
+  const section = marker?.dataset.section as ContentSection | undefined;
+  if (marker && slug && section) trackArticleCompletion(marker, slug, section);
+</script>

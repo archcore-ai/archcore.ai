@@ -25,7 +25,7 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="hero-section relative pt-28 lg:pt-32 pb-8 md:pb-10 px-6 overflow-hidden"
+      className="hero-section relative pt-12 lg:pt-16 pb-8 md:pb-10 px-6 overflow-hidden"
     >
       <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
@@ -52,7 +52,9 @@ export function HeroSection() {
           </p>
 
           <p className="type-body font-medium max-w-[var(--container-narrow)] mx-auto">
-            <Trans>Stop re-explaining your repo to every AI coding agent.</Trans>
+            <Trans>
+              Stop re-explaining your repo to every AI coding agent.
+            </Trans>
           </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">
@@ -114,8 +116,8 @@ export function HeroSection() {
             <div className="mt-4 space-y-1.5 text-center text-sm text-muted-foreground/70">
               <p>
                 <Trans>
-                  Works with Claude Code · Cursor · Codex CLI · Copilot ·
-                  Gemini CLI · any MCP agent
+                  Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini
+                  CLI · any MCP agent
                 </Trans>
               </p>
               <p>

@@ -2,8 +2,8 @@
  * The single source of truth for every PostHog event fired by archcore.ai.
  *
  * This file is deliberately dependency-free and alias-free (no `@/` imports)
- * because it is shared verbatim across build systems: the Vite SPA imports it
- * directly, and the Astro content-site imports it by relative path. The docs
+ * because it is shared verbatim across build systems: the React islands imports it
+ * directly, and the Astro layouts imports it by relative path. The docs
  * site lives in a separate repository and keeps a trimmed copy — see
  * .archcore/landing/analytics-event-taxonomy.doc.md for the sync contract.
  *
@@ -21,8 +21,20 @@ export type Site = "landing" | "content" | "docs";
 /** Platform an install command targets. */
 export type InstallPlatform = "unix" | "windows";
 
-/** Section of the content hub an article belongs to. */
-export type ContentSection = "blog" | "learn" | "alternatives";
+/**
+ * Section of the content hub a page belongs to.
+ *
+ * "pillar" was already being reported by PillarLayout while this union listed
+ * only the three article hubs, so the cast in Analytics.astro was quietly
+ * widening a value the type said could not exist. Listing it here makes the
+ * data and the type agree again.
+ */
+export type ContentSection =
+  | "blog"
+  | "learn"
+  | "alternatives"
+  | "pillar"
+  | "integrations";
 
 /**
  * Where a navigation click happened. Everything but "body" is site chrome;
@@ -153,6 +165,48 @@ export interface AnalyticsEventMap {
   // traffic is only visible in server logs, which GitHub Pages does not give
   // us. Add one here only if a visible link to them ever ships.
 
+  // ---------------------------------------------------------- integrations
+  //
+  // These three measure acquisition intent on a recipe page and nothing more.
+  // A copy is not an install, an install is not a working setup, and none of
+  // them can be observed from here — a visitor who copies the instructions and
+  // never pastes them fires the same event as one who ships the integration.
+  // Read them as "wanted it", never as "has it".
+  //
+  // `digest` rather than a version number: the recipe source has no release
+  // identity yet, so the instruction digest is the only thing that pins which
+  // text was actually taken. When releases exist, keep the digest — it is what
+  // makes an old event comparable to a new one.
+  /**
+   * The instruction text was copied from the recipe page — by the button, or
+   * by selecting the text and copying it, which is the path a visitor takes
+   * when the clipboard API is refused. Both are the same intent and both are
+   * reported here, so a blocked clipboard shows up as a `via` breakdown rather
+   * than as missing traffic.
+   */
+  recipe_instructions_copied: {
+    recipe: string;
+    digest: string;
+    /** Selected host tab, or "all" when the visitor never picked one. */
+    host: string;
+    via: "button" | "selection";
+  };
+  /** The instruction file was downloaded from the recipe page. */
+  recipe_instructions_downloaded: {
+    recipe: string;
+    digest: string;
+    host: string;
+  };
+  /**
+   * A host tab was chosen. The most useful property on this page: it says which
+   * agents people actually arrive with, which is what decides where the next
+   * setup path gets written and verified.
+   */
+  recipe_host_selected: {
+    recipe: string;
+    host: string;
+  };
+
   // ------------------------------------------------------------------ docs
   docs_search_opened: Record<string, never>;
   /**
@@ -171,7 +225,6 @@ export interface AnalyticsEventMap {
   // nothing in the docs UI links to them, and they are served as plain text
   // where no script runs. Agents fetch them directly, which is only visible in
   // server logs that GitHub Pages does not expose.
-
 }
 
 export type AnalyticsEventName = keyof AnalyticsEventMap;

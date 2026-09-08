@@ -1,6 +1,5 @@
 import { Trans } from "@lingui/react/macro";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { SectionContainer } from "@/components/section-container";
 import { CYCLE_STAGES } from "@/content/how-to-use";
 import type { CycleStage } from "@/content/how-to-use";
@@ -107,14 +106,14 @@ export function HowToUseCycleSection({
               </Trans>
             </p>
             <p>
-              <Link
-                to={INTERNAL_LINKS.howToUse}
+              <a
+                href={INTERNAL_LINKS.howToUse}
                 data-analytics-cta="home_loop_how_to_use"
                 className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-[var(--color-action)] transition-colors"
               >
                 <Trans>Walk the whole loop</Trans>
                 <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              </a>
             </p>
           </>
         ) : (

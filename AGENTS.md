@@ -15,14 +15,14 @@ This policy is an internal writing profile. It is not a claim of compliance, cer
 
 ## Scope
 
-| Surface | Files | Profile |
-| --- | --- | --- |
-| Landing copy | `src/components/**`, `src/pages/**`, `src/content/how-to-use/**` | Plain language + humanizer |
-| Articles | `content-site/src/content/**` | Plain language + humanizer + SEO |
-| Crawler and social copy | `index.html`, `scripts/prerender-routes.mts`, `scripts/generate-og-image.mts` | Plain language + SEO |
-| Russian translations | `src/locales/ru/messages.po` | Plain language + humanizer-ru |
-| Archcore documents | `.archcore/**/*.md` | Controlled style |
-| Agent instructions | `AGENTS.md`, `CLAUDE.md`, `.claude/skills/**`, `.claude/agents/**` | Controlled style |
+| Surface                 | Files                                                                             | Profile                          |
+| ----------------------- | --------------------------------------------------------------------------------- | -------------------------------- |
+| Landing copy            | `src/components/**`, `src/pages/**`, `src/content/how-to-use/**`                  | Plain language + humanizer       |
+| Articles                | `src/content/{blog,learn,pillars,integrations}/**`                                | Plain language + humanizer + SEO |
+| Crawler and social copy | `src/layouts/**`, `src/data/marketing-meta.json`, `scripts/generate-og-image.mts` | Plain language + SEO             |
+| Russian translations    | `src/locales/ru/messages.po`                                                      | Plain language + humanizer-ru    |
+| Archcore documents      | `.archcore/**/*.md`                                                               | Controlled style                 |
+| Agent instructions      | `AGENTS.md`, `CLAUDE.md`, `.claude/skills/**`, `.claude/agents/**`                | Controlled style                 |
 
 Do not rewrite or translate:
 
@@ -152,18 +152,16 @@ Use `create_document`, `update_document`, and `remove_document` for `.archcore/`
 
 ## Copy lives in more than one file
 
-A claim on this site appears in up to six places. Changing one and not the others ships a contradiction that no build step catches.
+Astro renders visible content and crawler HTML from the same components. Update each applicable source in the same change:
 
-Before finishing a copy change, update every layer that applies:
+1. The component string in `<Trans>` or `` msg`…` ``.
+2. `src/data/marketing-meta.json` and `src/layouts/MarketingLayout.astro` for marketing metadata and site schemas.
+3. `src/components/faq-list.tsx` generates visible FAQ answers and FAQPage JSON-LD from the same data. Keep that shared source.
+4. `scripts/generate-og-image.mts` for the matching OG image variant.
+5. `src/content/**` when an article states the same fact.
+6. The Russian catalog. Navigation strings live in `src/data/navigation.ts` and use the same catalogs.
 
-1. The component string, in `<Trans>` or `` msg`…` ``.
-2. `index.html` — title, description, OG, Twitter, JSON-LD, and the static fallback body.
-3. `scripts/prerender-routes.mts` — `ROUTES[]` title, description, `body.paragraphs`, and `faq[]`.
-4. `scripts/generate-og-image.mts` — the matching `VARIANTS[]` entry.
-5. `content-site/src/content/**` when an article states the same fact.
-6. The Russian catalog.
-
-`messaging-alignment.rule.md` §Enforcement holds the full list and the failure history.
+Preserve the migration baseline in `scripts/fixtures/seo-baseline.json`. Update a baseline assertion only for an intentional, reviewed SEO or content change.
 
 ## Workflow
 
@@ -173,7 +171,7 @@ Before finishing a copy change, update every layer that applies:
 4. Check the SEO invariants.
 5. Run `npm run i18n:extract`, translate new Russian strings, then `npm run i18n:compile`.
 6. Run `npm run build`.
-7. Inspect the built output under `dist/`, not the dev server. Prerendered bodies, per-route JSON-LD, and the content-hub pages exist only after a build.
+7. Inspect the built output under `dist/`, not the dev server. Check generated HTML, per-route JSON-LD, sitemap, and downloadable files. Run `npm run test:browser` against the built site.
 
 ## Review checklist
 

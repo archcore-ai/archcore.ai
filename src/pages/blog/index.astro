@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import ListingLayout from "../../layouts/ListingLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const items = posts.map((post) => ({
+  href: `/blog/${post.id}/`,
+  title: post.data.title,
+  description: post.data.description,
+  pubDate: post.data.pubDate,
+}));
+---
+
+<ListingLayout
+  title="Archcore Blog — Context Engineering for AI Coding Agents"
+  description="Guides and comparisons on context engineering, spec-driven development, project context, and agent tooling from the team behind Archcore."
+  sectionPath="/blog/"
+  h1="Blog"
+  intro="Practical guides on context engineering, spec-driven development, project context, and AI coding agent tooling, from the team building Archcore."
+  items={items}
+>
+  <p>
+    Looking for the definitions instead? <a href="/learn/">Learn</a> holds the reference
+    pieces on project context and how agents read it.
+  </p>
+</ListingLayout>

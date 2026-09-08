@@ -1,0 +1,105 @@
+---
+import { LINKS } from "../lib/links";
+import { headerLinks as links, chromeLabels } from "../data/navigation";
+interface Props {
+  localizable?: boolean;
+}
+const { localizable = false } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__brand" aria-label="Archcore home">
+      <img class="logo-light" src="/logo.png" alt="" width="274" height="269" />
+      <img
+        class="logo-dark"
+        src="/logo-dark.png"
+        alt=""
+        width="274"
+        height="269"
+      />
+      <span>archcore</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Main navigation">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={
+              Astro.url.pathname.startsWith(link.href) ? "page" : undefined
+            }
+            data-en={link.en}
+            data-ru={link.ru}
+          >
+            {link.en}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="site-header__actions">
+      {
+        localizable && (
+          <select data-locale-select aria-label="Language" disabled>
+            <>
+              <option value="en">EN</option>
+              <option value="ru">RU</option>
+            </>
+          </select>
+        )
+      }
+      <a
+        class="nav-cta"
+        href="/#install"
+        data-analytics-cta="header_install"
+        data-en={chromeLabels.install.en}
+        data-ru={chromeLabels.install.ru}>{chromeLabels.install.en}</a
+      >
+      <details class="site-header__mobile">
+        <summary aria-label="Navigation menu"
+          ><span
+            class="sr-only"
+            data-en={chromeLabels.menu.en}
+            data-ru={chromeLabels.menu.ru}>{chromeLabels.menu.en}</span
+          ><svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg
+          ></summary
+        >
+        <nav class="site-header__nav" aria-label="Mobile navigation">
+          {
+            links.map((link) => (
+              <a href={link.href} data-en={link.en} data-ru={link.ru}>
+                {link.en}
+              </a>
+            ))
+          }
+          <a href={LINKS.org}>GitHub ↗</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>(
+    ".site-header__mobile"
+  );
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu?.open) {
+      menu.open = false;
+      menu.querySelector("summary")?.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (
+      menu?.open &&
+      event.target instanceof Node &&
+      !menu.contains(event.target)
+    )
+      menu.open = false;
+  });
+</script>

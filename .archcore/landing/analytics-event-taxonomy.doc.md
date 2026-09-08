@@ -3,6 +3,7 @@ title: "PostHog analytics — event taxonomy and wiring across the three surface
 status: accepted
 ---
 
+
 ## Overview
 
 One PostHog project covers all three deployed surfaces. They are told apart by
@@ -11,8 +12,8 @@ break every cross-surface funnel.
 
 | Surface | Build | `site` | Analytics entry |
 | --- | --- | --- | --- |
-| archcore.ai SPA | Vite + React (repo root) | `landing` | `src/main.tsx` → `setupAnalytics` |
-| /blog, /learn, /alternatives | Astro (`content-site/`) | `content` | `content-site/src/components/Analytics.astro` |
+| Marketing routes | Astro with React islands | `landing` | @src/components/Analytics.astro |
+| Articles, pillars, integrations | Astro | `content` | @src/components/Analytics.astro |
 | docs.archcore.ai | Astro Starlight (separate repo) | `docs` | `docs/src/components/Analytics.astro` via the Head override |
 
 Cross-subdomain identity works because posthog-js scopes its cookie to
@@ -29,19 +30,13 @@ session.
 - `events.ts` — the typed `AnalyticsEventMap`. `track()` is generic over it, so
   a renamed or misspelled event is a build error rather than an empty funnel.
 - `core.ts` — config, deferred loading, and all automatic instrumentation.
-- `faq.ts` — landing-only Radix accordion helper (not shared).
-- `index.ts` — barrel for the SPA.
+- `faq.ts` — the marketing FAQ open-event helper.
+- `index.ts` — the React component import surface.
 
 `events.ts` and `core.ts` are alias-free and depend only on posthog-js so they
 can cross build systems:
 
-- `content-site` imports them by relative path (`../../../src/lib/analytics/`).
-  `astro.config.mjs` sets `vite.server.fs.allow: ['..']` for dev.
-  It deliberately does **not** declare posthog-js: the `import "posthog-js"`
-  statement lives in the parent project's source tree, so it resolves from the
-  repo-root `node_modules`. Both builds therefore share one copy at one
-  version. Adding posthog-js to `content-site/package.json` would create a
-  second copy free to drift to a different version — don't.
+- All archcore.ai pages import the same modules from @src/lib/analytics/ and use the same package-lock.json.
 - `docs` is a separate repository and vendors byte-for-byte copies in
   `docs/src/lib/analytics/`, plus its own posthog-js dependency pinned to the
   same version. Re-sync after any change to the shared core and verify with:
@@ -167,14 +162,9 @@ word "Star". `useGitHubStars` is therefore an analytics-only dependency; treat
 
 The project API key is public by design (it ships in every client bundle) and
 lives in a GitHub **repository variable** `POSTHOG_KEY` (plus optional
-`POSTHOG_HOST`), set identically in both repositories. Each workflow maps it to
-the prefix its bundler reads — Vite wants `VITE_PUBLIC_*`, Astro wants
-`PUBLIC_*`.
+`POSTHOG_HOST`), set identically in both repositories. Both site workflows expose `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_HOST`.
 
-Locally, only the `VITE_` names go in `.env` (gitignored);
-`scripts/build-content.mts` mirrors them into `PUBLIC_*` before spawning the
-content build, because Astro's project root is `content-site/` and it never
-reads the repo-root `.env`.
+Local .env files use the same PUBLIC_ names. @astro.config.mjs also accepts the old VITE_PUBLIC_ names for existing local checkouts.
 
 ## Examples
 
@@ -192,7 +182,7 @@ track("install_command_copied", {
 ### Marking a CTA instead of wiring a handler
 
 ```tsx
-<Link to={INTERNAL_LINKS.howToUse} data-analytics-cta="header_how_to_use">
+<a href={INTERNAL_LINKS.howToUse} data-analytics-cta="header_how_to_use">
 ```
 
 ### Opting a link out of generic tracking
@@ -207,11 +197,7 @@ archcore.ai shipped for an unknown period calling
 `posthog.init(undefined, { api_host: undefined })`: `.env` is gitignored and the
 deploy workflow never passed the variable through, so every visit downloaded the
 analytics bundle and reported nothing. A runtime warning goes to a console
-nobody watches in production, so both builds now fail instead:
-
-- landing — `requireAnalyticsKeyPlugin` in `vite.config.ts`
-- docs — `requireAnalyticsKey` in `astro.config.mjs`
-- content hub — the check in `scripts/build-content.mts`
+nobody watches in production, so the build fails instead. The landing gate lives in @astro.config.mjs; the docs repository keeps its own gate.
 
 Escape hatch for a deliberate build without analytics:
 `ALLOW_MISSING_ANALYTICS_KEY=1`.

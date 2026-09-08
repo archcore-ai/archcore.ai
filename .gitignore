@@ -37,3 +37,6 @@ scripts/demo-export/out/
 .claude/agents/
 
 .env
+# Browser verification output
+test-results/
+playwright-report/

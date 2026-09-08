@@ -1,0 +1,109 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import RecipeMark from "../components/RecipeMark.astro";
+
+/**
+ * The catalog index — a card grid, not the article listing the hubs use.
+ *
+ * ListingLayout was the wrong shape here and bending it would have cost both:
+ * its items are dated posts in a vertical rule-separated list, and a recipe has
+ * no date and needs a mark, a category, and a status. This layout is wide where
+ * ListingLayout is narrow, because a two-column grid inside a 760px measure is
+ * two thin columns.
+ *
+ * The grid deliberately carries no placeholder entries for planned recipes.
+ * One real card beside the explanatory tile reads as a catalog that is starting;
+ * six greyed-out names that lead nowhere read as a catalog that is broken, and
+ * the SEO research this site follows argues against publishing them at all.
+ */
+interface CatalogItem {
+  href: string;
+  title: string;
+  summary: string;
+  category: string;
+  status: string;
+  tools: {
+    name: string;
+    icon?: string | undefined;
+    iconDark?: string | undefined;
+  }[];
+}
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  items: CatalogItem[];
+}
+
+const SITE_URL = "https://archcore.ai";
+const { title, description, h1, intro, items } = Astro.props;
+const canonical = `${SITE_URL}/integrations/`;
+
+const listingSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: h1,
+  description,
+  url: canonical,
+  isPartOf: { "@type": "WebSite", name: "Archcore", url: SITE_URL },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: items.map((item, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SITE_URL}${item.href}`,
+      name: item.title,
+    })),
+  },
+};
+---
+
+<SiteLayout>
+  <Fragment slot="head">
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Archcore" />
+    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@archcore_ai" />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(listingSchema)}
+    />
+  </Fragment>
+  <main id="main-content" class="page page--wide">
+    <header class="catalog-head">
+      <h1>{h1}</h1>
+      <p class="catalog-head__intro">{intro}</p>
+    </header>
+
+    <ul class="catalog-grid">
+      {
+        items.map((item) => (
+          <li class="catalog-card">
+            <a href={item.href} class="catalog-card__link">
+              <RecipeMark tools={item.tools} />
+              <h2 class="catalog-card__title">{item.title}</h2>
+              <p class="catalog-card__summary">{item.summary}</p>
+              <p class="catalog-card__foot">
+                <span class="badge">{item.category}</span>
+                <span class="badge badge--quiet">{item.status}</span>
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <slot />
+  </main>
+</SiteLayout>

@@ -1,13 +1,7 @@
 import { msg } from "@lingui/core/macro";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { FaqList } from "@/components/faq-list";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { faqOpenHandler } from "@/lib/analytics";
 import { useLingui } from "@lingui/react";
 
 export function FAQSection() {
@@ -21,7 +15,9 @@ export function FAQSection() {
       ),
     },
     {
-      question: _(msg`I already have a CLAUDE.md or .cursor/rules. Do I start over?`),
+      question: _(
+        msg`I already have a CLAUDE.md or .cursor/rules. Do I start over?`
+      ),
       answer: _(
         msg`No. archcore init imports your existing instruction files (CLAUDE.md, AGENTS.md, .cursorrules, .cursor/rules/*) as structured documents, so the context you already wrote carries over.`
       ),
@@ -56,23 +52,7 @@ export function FAQSection() {
     <SectionContainer id="faq">
       <SectionHeader title={_(msg`Frequently Asked Questions`)} />
 
-      <Accordion
-        type="single"
-        collapsible
-        onValueChange={faqOpenHandler(faqs, "home_faq")}
-        className="w-full max-w-3xl mx-auto"
-      >
-        {faqs.map((faq, idx) => (
-          <AccordionItem key={faq.question} value={`item-${idx}`}>
-            <AccordionTrigger className="text-left">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground [&_a]:!no-underline [&_a:hover]:!no-underline">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <FaqList faqs={faqs} surface="home_faq" />
     </SectionContainer>
   );
 }

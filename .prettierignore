@@ -33,4 +33,11 @@ pnpm-lock.yaml
 
 # Lingui compiled messages
 src/locales/**/*.ts
-!src/locales/**/messages.ts
+
+.astro/
+.archcore/
+content-site/
+src/recipes/
+scripts/fixtures/
+test-results/
+playwright-report/

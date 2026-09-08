@@ -1,0 +1,47 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "../index.css";
+import "../styles/content.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import ThemeScript from "../components/ThemeScript.astro";
+import Analytics from "../components/Analytics.astro";
+interface Props {
+  localizable?: boolean;
+}
+const { localizable = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <ThemeScript />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f8f1e8"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#1a1816"
+    />
+    <slot name="head" />
+    <Analytics />
+  </head>
+  <body
+    data-site={localizable || Astro.url.pathname === "/privacy/"
+      ? "landing"
+      : "content"}
+  >
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader localizable={localizable} />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

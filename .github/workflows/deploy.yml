@@ -141,32 +141,57 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm ci --prefix content-site
       - run: npm run build
         env:
           # Raises the build-time star fetch from 60 to 1000 req/hour so a busy
           # Actions runner IP cannot rate-limit the deploy.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # PostHog's project API key is public by design — it ships in every
-          # client bundle — so it lives in a repository *variable*, not a
-          # secret. Passing it here is not optional: without it the build now
-          # fails instead of deploying a site that loads analytics and reports
-          # nothing, which is what happened before this was wired up.
-          #
-          # Both names come from the one variable because the two build systems
-          # expose different prefixes: Vite reads VITE_PUBLIC_*, Astro reads
-          # PUBLIC_*. The same POSTHOG_KEY variable is set in the docs
-          # repository, so all three surfaces report into one project.
-          VITE_PUBLIC_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
-          VITE_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          # Astro exposes PUBLIC_* to browser code. Keep the build guard so
+          # an unset repository variable fails instead of disabling analytics.
           PUBLIC_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+
+      - name: Install Chromium for browser checks
+        run: npx playwright install --with-deps chromium
+
+      # Browser checks serve dist locally and block external requests, including
+      # analytics. Verify the exact production build before archiving it.
+      - name: Check the built site in Chromium
+        run: npm run test:browser
+
+      - name: Archive this release for rollback
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+          RELEASE_REPOSITORY: ${{ github.repository }}
+          RELEASE_RUN_ID: ${{ github.run_id }}
+          RELEASE_RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          tar -czf release/site.tar.gz -C dist .
+          (cd release && sha256sum site.tar.gz > site.tar.gz.sha256)
+          jq -n \
+            --arg sha "$RELEASE_SHA" \
+            --arg repository "$RELEASE_REPOSITORY" \
+            --arg run_id "$RELEASE_RUN_ID" \
+            --arg run_attempt "$RELEASE_RUN_ATTEMPT" \
+            '{sha: $sha, repository: $repository, run_id: $run_id, run_attempt: $run_attempt}' \
+            > release/manifest.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-release
+          path: release/
+          retention-days: 30
+          if-no-files-found: error
+          overwrite: true
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+          retention-days: 30
 
       - id: deployment
         uses: actions/deploy-pages@v4

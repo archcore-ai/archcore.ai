@@ -14,7 +14,7 @@ export function HowToUseStartSection() {
   return (
     <section
       id="top"
-      className="hero-section relative pt-28 lg:pt-32 pb-6 px-6 overflow-hidden"
+      className="hero-section relative pt-12 lg:pt-16 pb-6 px-6 overflow-hidden"
     >
       <div className="relative z-10 max-w-2xl mx-auto text-center space-y-6">
         <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">

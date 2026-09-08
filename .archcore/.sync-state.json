@@ -241,6 +241,36 @@
       "source": "infrastructure/analytics-host-must-reach-posthog.adr.md",
       "target": "landing/analytics-event-taxonomy.doc.md",
       "type": "related"
+    },
+    {
+      "source": "landing/integration-catalog-pilot.plan.md",
+      "target": "infrastructure/keep-github-api-out-of-visitor-paths.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/integration-catalog-pilot.plan.md",
+      "target": "landing/analytics-event-taxonomy.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/integration-catalog-pilot.plan.md",
+      "target": "landing/content-hub-astro-subbuild.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/integration-catalog-pilot.plan.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/single-astro-site.adr.md",
+      "target": "landing/content-hub-astro-subbuild.adr.md",
+      "type": "supersedes"
+    },
+    {
+      "source": "landing/single-astro-site.adr.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
     }
   ]
 }

@@ -1,0 +1,177 @@
+{
+  "home": {
+    "title": "Archcore — Spec-Driven Development & Context Engineering",
+    "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+    "ogImage": "https://archcore.ai/og-image.png",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+  "plugin": {
+    "title": "Archcore Plugin — Spec-Driven Development for Coding Agents",
+    "description": "Add spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
+    "ogImage": "https://archcore.ai/og-image-plugin.png",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+  "cli": {
+    "title": "Archcore CLI — Git-Native Context for AI Coding Agents",
+    "description": "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.",
+    "ogImage": "https://archcore.ai/og-image-cli.png",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+  "how-to-use": {
+    "title": "How to use Archcore — one loop from init to review",
+    "description": "One loop through Archcore on a real feature: init, plan, document, review. Each step shows the sentence you say to your agent and the slash-command shortcut that does the same thing.",
+    "ogImage": "https://archcore.ai/og-image-how-to-use.png",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy — Archcore plugin, CLI & website",
+    "description": "Privacy policy for the Archcore plugin, the Archcore CLI, and the archcore.ai marketing website. Local-first, no telemetry, no accounts, no data sale.",
+    "ogImage": "https://archcore.ai/og-image.png",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Archcore",
+        "url": "https://archcore.ai",
+        "logo": "https://archcore.ai/logo.png",
+        "sameAs": [
+          "https://github.com/archcore-ai",
+          "https://x.com/archcore_ai",
+          "https://discord.gg/5YC8pdjD",
+          "https://t.me/archcore_ai"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Archcore",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://archcore.ai",
+        "downloadUrl": "https://archcore.ai/install.sh",
+        "description": "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+}

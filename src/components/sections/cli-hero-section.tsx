@@ -11,7 +11,7 @@ export function CLIHeroSection() {
   return (
     <section
       id="top"
-      className="hero-section relative pt-28 lg:pt-32 pb-14 md:pb-16 px-6 overflow-hidden"
+      className="hero-section relative pt-12 lg:pt-16 pb-14 md:pb-16 px-6 overflow-hidden"
     >
       <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
@@ -34,15 +34,12 @@ export function CLIHeroSection() {
             </Trans>
           </p>
 
-          <div
-            className="max-w-2xl mx-auto text-left"
-            id="install"
-          >
+          <div className="max-w-2xl mx-auto text-left" id="install">
             <div className="rounded-xl border border-border bg-card p-5 space-y-4">
               <p className="text-sm text-muted-foreground">
                 <Trans>
-                  One binary. Local MCP in your repo. macOS, Linux, Windows, with no
-                  external services.
+                  One binary. Local MCP in your repo. macOS, Linux, Windows,
+                  with no external services.
                 </Trans>
               </p>
               <div className="space-y-2">
@@ -80,9 +77,7 @@ export function CLIHeroSection() {
           </div>
 
           <p className="text-sm text-muted-foreground/70">
-            <Trans>
-              MCP · Local · Works on macOS, Linux, Windows
-            </Trans>
+            <Trans>MCP · Local · Works on macOS, Linux, Windows</Trans>
             {" · "}
             <a
               href={LINKS.cliRepo}

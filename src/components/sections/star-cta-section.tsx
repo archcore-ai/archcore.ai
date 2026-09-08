@@ -1,7 +1,6 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUp, Github, Star } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
@@ -25,8 +24,8 @@ export function StarCtaSection() {
     <SectionContainer narrow className="py-12 md:py-16">
       <p className="mb-6 text-center text-base text-muted-foreground">
         <Trans>Free and local today.</Trans>{" "}
-        <Link
-          to={INTERNAL_LINKS.teamsGettingStarted}
+        <a
+          href={INTERNAL_LINKS.teamsGettingStarted}
           onClick={() =>
             track("cta_clicked", {
               cta: "teams_managed",
@@ -38,7 +37,7 @@ export function StarCtaSection() {
         >
           <Trans>Managed when your team needs it</Trans>
           <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+        </a>
       </p>
 
       <div

@@ -123,9 +123,8 @@ function resolveAbsolute(value: string): string {
  * Sets per-page document meta tags (title, description, canonical, OG, Twitter)
  * and restores the previous values on unmount.
  *
- * Pre-rendered HTML files at build time (see scripts/prerender-routes.mts)
- * provide static meta for social scrapers. This hook covers client-side
- * navigation and ensures Google's JS-rendered crawl sees the right tags.
+ * Astro layouts provide the initial English metadata. This hook updates it
+ * when the visitor switches the language inside a hydrated React page.
  */
 export function usePageMeta({
   title,

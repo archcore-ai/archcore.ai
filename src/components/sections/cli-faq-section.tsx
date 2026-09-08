@@ -1,14 +1,8 @@
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { FaqList } from "@/components/faq-list";
 import { SectionContainer } from "@/components/section-container";
 import { SectionHeader } from "@/components/section-header";
-import { faqOpenHandler } from "@/lib/analytics";
 
 export function CLIFAQSection() {
   const { _ } = useLingui();
@@ -44,23 +38,7 @@ export function CLIFAQSection() {
     <SectionContainer id="faq">
       <SectionHeader title={_(msg`CLI FAQ`)} />
 
-      <Accordion
-        type="single"
-        collapsible
-        onValueChange={faqOpenHandler(faqs, "cli_faq")}
-        className="w-full max-w-3xl mx-auto"
-      >
-        {faqs.map((faq, idx) => (
-          <AccordionItem key={faq.question} value={`item-${idx}`}>
-            <AccordionTrigger className="text-left">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground [&_a]:!no-underline [&_a:hover]:!no-underline">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <FaqList faqs={faqs} surface="cli_faq" />
     </SectionContainer>
   );
 }

@@ -2,7 +2,7 @@
  * Framework-agnostic PostHog wiring shared by every archcore.ai surface.
  *
  * Like events.ts this file is alias-free and imports nothing but posthog-js,
- * so the Astro content-site can import it by relative path and the docs
+ * so the Astro layouts can import it by relative path and the docs
  * repository can vendor it unchanged.
  *
  * Three things it exists to guarantee:
@@ -42,7 +42,7 @@ const DEFAULT_UI_HOST = "https://us.posthog.com";
 /** Hosts that belong to the project and must not count as outbound. */
 const OWN_DOMAIN = "archcore.ai";
 
-/** Path prefixes served by the Astro content-site build. */
+/** Path prefixes served by the Astro content routes. */
 const CONTENT_PREFIXES = ["/blog", "/learn", "/alternatives"] as const;
 
 export interface AnalyticsConfig {
@@ -156,7 +156,9 @@ function flushQueue() {
   const pending = queue;
   queue = [];
   for (const event of pending) {
-    client.capture(event.name, event.properties, { timestamp: event.timestamp });
+    client.capture(event.name, event.properties, {
+      timestamp: event.timestamp,
+    });
   }
 }
 
@@ -511,6 +513,7 @@ function attachCodeCopyTracking() {
       const button = target.closest("button");
       if (!button) return;
       if (button.closest("[data-analytics-install]")) return;
+      if (button.closest("[data-analytics-recipe]")) return;
 
       // Covers our own markup (data-analytics-copy), Starlight/Expressive
       // Code (a `data-code` button wrapped in div.copy, labelled by title
@@ -548,6 +551,10 @@ function attachCodeCopyTracking() {
     const block = element?.closest(CODE_BLOCK);
     if (!block) return;
     if (block.closest("[data-analytics-install]")) return;
+    // Recipe instructions report their own copy event, with the recipe and
+    // instruction digest attached. Both paths are covered there — button and
+    // selection — so this generic one would only duplicate them.
+    if (block.closest("[data-analytics-recipe]")) return;
 
     report(block, selection?.toString() ?? "", "code_block", "selection");
   });

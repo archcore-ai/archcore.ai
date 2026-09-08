@@ -2,7 +2,6 @@ import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { ArrowRight, ArrowUpRight, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
 import { SectionContainer } from "@/components/section-container";
 import { INTERNAL_LINKS, LINKS } from "@/lib/links";
 
@@ -103,8 +102,8 @@ export function CLIAgentsSection() {
 
         <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
           <Trans>
-            Anything else that speaks MCP works the same way. The CLI is a
-            local MCP server, not an integration per vendor.
+            Anything else that speaks MCP works the same way. The CLI is a local
+            MCP server, not an integration per vendor.
           </Trans>
         </p>
 
@@ -122,13 +121,13 @@ export function CLIAgentsSection() {
             <Trans>Per-agent setup</Trans>
             <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
           </a>
-          <Link
-            to={INTERNAL_LINKS.plugin}
+          <a
+            href={INTERNAL_LINKS.plugin}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground hover:bg-muted transition-colors"
           >
             <Trans>Claude Code, Cursor, Codex? See the plugin</Trans>
             <ArrowRight className="h-3.5 w-3.5 opacity-60" />
-          </Link>
+          </a>
         </nav>
       </div>
     </SectionContainer>

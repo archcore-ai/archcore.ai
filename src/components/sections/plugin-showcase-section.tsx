@@ -2,12 +2,9 @@ import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { Badge } from "@/components/ui/badge";
-import { useTheme } from "@/hooks/use-theme";
 
 export function PluginShowcaseSection() {
   const { _ } = useLingui();
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
 
   return (
     <section
@@ -36,12 +33,7 @@ export function PluginShowcaseSection() {
           </div>
           <div className="relative bg-background">
             <img
-              key={isDark ? "dark" : "light"}
-              src={
-                isDark
-                  ? "/images/cursor-plugin-dark.png"
-                  : "/images/cursor-plugin-light.png"
-              }
+              src="/images/cursor-plugin-light.png"
               alt={_(
                 msg`Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands`
               )}
@@ -49,7 +41,18 @@ export function PluginShowcaseSection() {
               height={1142}
               loading="lazy"
               decoding="async"
-              className="block w-full h-auto integration-card-image"
+              className="w-full h-auto integration-card-image block dark:hidden"
+            />
+            <img
+              src="/images/cursor-plugin-dark.png"
+              alt={_(
+                msg`Archcore plugin in the Cursor plugin marketplace, showing MCP and slash commands`
+              )}
+              width={1436}
+              height={1142}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto integration-card-image hidden dark:block"
             />
           </div>
         </div>

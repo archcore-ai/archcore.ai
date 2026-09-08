@@ -7,11 +7,24 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import { globalIgnores } from "eslint/config";
 
 export default tseslint.config(
-  globalIgnores(["dist", "scripts", "tmp", "content-site"]),
+  globalIgnores([
+    "dist",
+    "scripts",
+    "tmp",
+    "content-site",
+    ".astro",
+    "astro.config.mjs",
+    "tests",
+    "playwright.config.ts",
+    "test-results",
+    "playwright-report",
+    "src/locales/**/*.ts",
+  ]),
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   eslintConfigPrettier,
   {
+    files: ["src/**/*.{ts,tsx}", "*.config.{js,ts}"],
     languageOptions: {
       globals: {
         ...globals.browser,

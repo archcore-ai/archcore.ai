@@ -1,0 +1,42 @@
+---
+import { LINKS } from "../lib/links";
+import { primaryLinks, referenceLinks, chromeLabels } from "../data/navigation";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__intro">
+      <a href="/" class="site-header__brand">archcore</a><p
+        data-en={chromeLabels.tagline.en}
+        data-ru={chromeLabels.tagline.ru}
+      >
+        {chromeLabels.tagline.en}
+      </p>
+    </div>
+    <nav aria-label="Site navigation">
+      {
+        primaryLinks.map((link) => (
+          <a href={link.href} data-en={link.en} data-ru={link.ru}>
+            {link.en}
+          </a>
+        ))
+      }
+    </nav>
+    <nav class="site-footer__reference" aria-label="Reference">
+      {
+        referenceLinks.map((link) => (
+          <a href={link.href} data-en={link.en} data-ru={link.ru}>
+            {link.en}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="site-footer__bottom">
+      <nav aria-label="Community">
+        <a href={LINKS.discord}>Discord</a><a href={LINKS.x}>X</a><a
+          href={LINKS.telegram}>Telegram</a
+        >
+      </nav><span>© {new Date().getFullYear()} archcore.ai</span>
+    </div>
+  </div>
+</footer>

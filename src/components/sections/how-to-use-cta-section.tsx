@@ -1,7 +1,6 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Link } from "react-router-dom";
 import { ArrowRight, Compass } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
@@ -26,7 +25,9 @@ export function HowToUseCtaSection({
         >
           <div className="min-w-0 space-y-1">
             <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug">
-              <Trans>New to Archcore? See what a week with it looks like.</Trans>
+              <Trans>
+                New to Archcore? See what a week with it looks like.
+              </Trans>
             </h3>
             <p className="text-sm text-muted-foreground leading-snug">
               <Trans>
@@ -91,8 +92,8 @@ function WalkthroughLink({ size, children }: WalkthroughLinkProps) {
   const ariaLabel = _(msg`See how Archcore is used`);
 
   return (
-    <Link
-      to={INTERNAL_LINKS.howToUse}
+    <a
+      href={INTERNAL_LINKS.howToUse}
       aria-label={ariaLabel}
       className={cn(
         "group inline-flex items-center gap-2 rounded-md",
@@ -125,6 +126,6 @@ function WalkthroughLink({ size, children }: WalkthroughLinkProps) {
         )}
         aria-hidden="true"
       />
-    </Link>
+    </a>
   );
 }
