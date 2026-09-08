@@ -1477,17 +1477,4 @@ body:has(.recipe-dialog[open]) {
   .privacy-sections > section > :nth-child(2) {
     margin-top: 0;
   }
-  .team-steps {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    align-items: start;
-  }
-  .team-steps > :last-child {
-    grid-column: 1 / -1;
-  }
-  .team-steps > * {
-    min-width: 0;
-    margin: 0;
-  }
 }

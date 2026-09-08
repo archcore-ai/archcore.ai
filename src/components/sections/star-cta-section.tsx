@@ -1,11 +1,11 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { ArrowRight, ArrowUp, Github, Star } from "lucide-react";
+import { ArrowUp, Github, Star } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { cn } from "@/lib/utils";
 import { useGitHubStars } from "@/hooks/use-github-stars";
-import { INTERNAL_LINKS, LINKS } from "@/lib/links";
+import { LINKS } from "@/lib/links";
 import { track } from "@/lib/analytics";
 
 const SURFACE = "star_cta_section";
@@ -22,24 +22,6 @@ export function StarCtaSection() {
 
   return (
     <SectionContainer narrow className="py-12 md:py-16">
-      <p className="mb-6 text-center text-base text-muted-foreground">
-        <Trans>Free and local today.</Trans>{" "}
-        <a
-          href={INTERNAL_LINKS.teamsGettingStarted}
-          onClick={() =>
-            track("cta_clicked", {
-              cta: "teams_managed",
-              destination: INTERNAL_LINKS.teamsGettingStarted,
-              surface: SURFACE,
-            })
-          }
-          className="inline-flex items-center gap-1 font-medium text-foreground underline underline-offset-4 hover:text-[var(--color-action)] transition-colors"
-        >
-          <Trans>Managed when your team needs it</Trans>
-          <ArrowRight className="h-3.5 w-3.5" />
-        </a>
-      </p>
-
       <div
         className={cn(
           "rounded-2xl border border-border bg-card/60 backdrop-blur-sm",

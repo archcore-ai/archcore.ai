@@ -183,8 +183,6 @@ msgid "ADRs, RFCs"
 msgstr "ADR, RFC"
 
 #: src/components/cta/docker-start-dialog.tsx:72
-#: src/components/cta/team-setup-dialog.tsx:116
-#: src/components/pages/teams-getting-started.tsx:145
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "После запуска откройте <0>http://localhost</0> в браузере."
 
@@ -329,7 +327,7 @@ msgstr "archcore init создаёт .archcore/ в проекте"
 #~ msgid "Archcore is open source and built in public. A star helps more developers find it — and tells us which direction to push next."
 #~ msgstr "Archcore — open source, разрабатывается публично. Звезда помогает другим разработчикам его найти и подсказывает нам, куда двигаться дальше."
 
-#: src/components/sections/star-cta-section.tsx:62
+#: src/components/sections/star-cta-section.tsx:44
 msgid "Archcore is open source and built in public. A star helps more developers find it, and tells us which direction to push next."
 msgstr "У Archcore открытый исходный код, и мы разрабатываем его публично. Звезда помогает большему числу разработчиков его найти и подсказывает нам, куда двигаться дальше."
 
@@ -446,8 +444,8 @@ msgstr "автоматически"
 
 #: src/components/pages/teams-getting-started.tsx:54
 #: src/components/pages/teams-getting-started.tsx:164
-msgid "Back to home"
-msgstr "На главную"
+#~ msgid "Back to home"
+#~ msgstr "На главную"
 
 #: src/content/how-to-use/install.tsx:214
 #~ msgid "Bash — single curl line."
@@ -706,13 +704,13 @@ msgstr "Копируете правила каждую сессию"
 
 #: src/components/cta/team-setup-dialog.tsx:74
 #: src/components/pages/teams-getting-started.tsx:86
-msgid "Create <0>.env</0> file"
-msgstr "Создайте файл <0>.env</0>"
+#~ msgid "Create <0>.env</0> file"
+#~ msgstr "Создайте файл <0>.env</0>"
 
 #: src/components/cta/team-setup-dialog.tsx:90
 #: src/components/pages/teams-getting-started.tsx:109
-msgid "Create <0>docker-compose.yml</0> file"
-msgstr "Создайте файл <0>docker-compose.yml</0>"
+#~ msgid "Create <0>docker-compose.yml</0> file"
+#~ msgstr "Создайте файл <0>docker-compose.yml</0>"
 
 #: src/components/sections/cli-pillars-section.tsx:25
 msgid "Creates .archcore/"
@@ -764,13 +762,13 @@ msgstr "Определите, что строите, и держите опре�
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/components/pages/teams-getting-started.tsx:61
-msgid "Deploy Archcore Team"
-msgstr "Разверните Archcore Team"
+#~ msgid "Deploy Archcore Team"
+#~ msgstr "Разверните Archcore Team"
 
 #: src/components/cta/team-setup-dialog.tsx:60
 #: src/components/pages/teams-getting-started.tsx:71
-msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
-msgstr "Разверните полный стек Archcore Team с помощью Docker Compose за 3 шага."
+#~ msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
+#~ msgstr "Разверните полный стек Archcore Team с помощью Docker Compose за 3 шага."
 
 #: src/content/how-to-use/capture-existing.tsx:98
 #~ msgid "Describe the pipeline, not a path:"
@@ -1053,8 +1051,8 @@ msgid "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped p
 msgstr "Четыре: /archcore:init (первичная настройка), /archcore:plan (от идеи до проработанного плана), /archcore:document (зафиксировать решение или описать существующий код) и /archcore:review (сверить изменения и документацию). Повседневный контекст не требует команд вовсе, потому что хуки подставляют нужные правила и спеки во время правок."
 
 #: src/components/sections/star-cta-section.tsx:26
-msgid "Free and local today."
-msgstr "Сегодня — бесплатно и локально."
+#~ msgid "Free and local today."
+#~ msgstr "Сегодня — бесплатно и локально."
 
 #: src/components/sections/faq-section.tsx:53
 msgid "Frequently Asked Questions"
@@ -1338,7 +1336,7 @@ msgstr "Материалы"
 msgid "Lets agents browse, search, and update Archcore docs."
 msgstr "Даёт агентам просматривать, искать и обновлять документы Archcore."
 
-#: src/components/sections/star-cta-section.tsx:58
+#: src/components/sections/star-cta-section.tsx:40
 msgid "Like where this is going? Star it on GitHub."
 msgstr "Нравится, куда это движется? Поставьте звезду на GitHub."
 
@@ -1399,8 +1397,8 @@ msgid "Make your repo legible to AI agents"
 msgstr "Сделать репозиторий понятным для AI-агентов"
 
 #: src/components/sections/star-cta-section.tsx:38
-msgid "Managed when your team needs it"
-msgstr "Управляемое развёртывание, когда понадобится команде"
+#~ msgid "Managed when your team needs it"
+#~ msgstr "Управляемое развёртывание, когда понадобится команде"
 
 #: src/components/sections/plugin-hosts-section.tsx:35
 msgid "Marketplace or local directory"
@@ -1965,7 +1963,7 @@ msgstr "Читать документацию CLI"
 #~ msgid "Reads the folder, picks <0>type=spec</0> automatically."
 #~ msgstr "Читает папку, сам выбирает <0>type=spec</0>."
 
-#: src/components/sections/star-cta-section.tsx:111
+#: src/components/sections/star-cta-section.tsx:93
 msgid "Ready to try? Install now"
 msgstr "Готовы попробовать? К установке"
 
@@ -2109,8 +2107,8 @@ msgstr "Правила и решения"
 
 #: src/components/cta/team-setup-dialog.tsx:106
 #: src/components/pages/teams-getting-started.tsx:132
-msgid "Run in your terminal"
-msgstr "Запустите в терминале"
+#~ msgid "Run in your terminal"
+#~ msgstr "Запустите в терминале"
 
 #: src/components/cta/docker-start-dialog.tsx:51
 #: src/components/cta/install-command.tsx:252
@@ -2348,7 +2346,7 @@ msgstr "Спецификации, которые не отрываются от 
 msgid "Star"
 msgstr "Star"
 
-#: src/components/sections/star-cta-section.tsx:73
+#: src/components/sections/star-cta-section.tsx:55
 #: src/data/navigation.ts:42
 msgid "Star Archcore on GitHub"
 msgstr "Поставить звезду Archcore на GitHub"
@@ -2359,7 +2357,7 @@ msgid "Star CLI on GitHub"
 msgstr "Поставить звезду CLI на GitHub"
 
 #: src/components/sections/cli-repo-layout-section.tsx:130
-#: src/components/sections/star-cta-section.tsx:96
+#: src/components/sections/star-cta-section.tsx:78
 msgid "Star on GitHub"
 msgstr "Поставить звезду на GitHub"
 

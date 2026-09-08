@@ -174,8 +174,9 @@ check(
   "404 must not canonicalize to home"
 );
 check(
-  routes.includes("/teams/getting-started/"),
-  "Team setup must be a real indexed route"
+  !routes.includes("/teams/getting-started/") &&
+    !fs.existsSync(path.join(root, "teams/getting-started/index.html")),
+  "Removed team setup route must not be published"
 );
 if (errors.length)
   throw new Error(`Build verification failed:\n${errors.join("\n")}`);

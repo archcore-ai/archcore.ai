@@ -2,20 +2,11 @@
 import SiteLayout from "./SiteLayout.astro";
 import metadata from "../data/marketing-meta.json";
 interface Props {
-  page: keyof typeof metadata | "teams/getting-started";
+  page: keyof typeof metadata;
   localizable?: boolean;
 }
 const { page, localizable = false } = Astro.props;
-const meta =
-  page === "teams/getting-started"
-    ? {
-        title: "Deploy Archcore Team — Archcore",
-        description:
-          "Deploy the full Archcore Team stack with Docker Compose in 3 steps. Self-hosted, no external dependencies.",
-        ogImage: "https://archcore.ai/og-image.png",
-        schemas: [],
-      }
-    : metadata[page];
+const meta = metadata[page];
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 

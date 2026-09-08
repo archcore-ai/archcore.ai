@@ -183,8 +183,6 @@ msgid "ADRs, RFCs"
 msgstr "ADRs, RFCs"
 
 #: src/components/cta/docker-start-dialog.tsx:72
-#: src/components/cta/team-setup-dialog.tsx:116
-#: src/components/pages/teams-getting-started.tsx:145
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "After launch, open <0>http://localhost</0> in your browser."
 
@@ -329,7 +327,7 @@ msgstr "archcore init creating .archcore/ in a project"
 #~ msgid "Archcore is open source and built in public. A star helps more developers find it — and tells us which direction to push next."
 #~ msgstr "Archcore is open source and built in public. A star helps more developers find it — and tells us which direction to push next."
 
-#: src/components/sections/star-cta-section.tsx:62
+#: src/components/sections/star-cta-section.tsx:44
 msgid "Archcore is open source and built in public. A star helps more developers find it, and tells us which direction to push next."
 msgstr "Archcore is open source and built in public. A star helps more developers find it, and tells us which direction to push next."
 
@@ -446,8 +444,8 @@ msgstr "automatic"
 
 #: src/components/pages/teams-getting-started.tsx:54
 #: src/components/pages/teams-getting-started.tsx:164
-msgid "Back to home"
-msgstr "Back to home"
+#~ msgid "Back to home"
+#~ msgstr "Back to home"
 
 #: src/content/how-to-use/install.tsx:214
 #~ msgid "Bash — single curl line."
@@ -706,13 +704,13 @@ msgstr "Copy-paste rules every session"
 
 #: src/components/cta/team-setup-dialog.tsx:74
 #: src/components/pages/teams-getting-started.tsx:86
-msgid "Create <0>.env</0> file"
-msgstr "Create <0>.env</0> file"
+#~ msgid "Create <0>.env</0> file"
+#~ msgstr "Create <0>.env</0> file"
 
 #: src/components/cta/team-setup-dialog.tsx:90
 #: src/components/pages/teams-getting-started.tsx:109
-msgid "Create <0>docker-compose.yml</0> file"
-msgstr "Create <0>docker-compose.yml</0> file"
+#~ msgid "Create <0>docker-compose.yml</0> file"
+#~ msgstr "Create <0>docker-compose.yml</0> file"
 
 #: src/components/sections/cli-pillars-section.tsx:25
 msgid "Creates .archcore/"
@@ -764,13 +762,13 @@ msgstr "Define what to build, then keep the definition where the work happens. T
 
 #: src/components/cta/team-setup-dialog.tsx:53
 #: src/components/pages/teams-getting-started.tsx:61
-msgid "Deploy Archcore Team"
-msgstr "Deploy Archcore Team"
+#~ msgid "Deploy Archcore Team"
+#~ msgstr "Deploy Archcore Team"
 
 #: src/components/cta/team-setup-dialog.tsx:60
 #: src/components/pages/teams-getting-started.tsx:71
-msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
-msgstr "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
+#~ msgid "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
+#~ msgstr "Deploy the full Archcore Team stack with Docker Compose in 3 steps."
 
 #: src/content/how-to-use/capture-existing.tsx:98
 #~ msgid "Describe the pipeline, not a path:"
@@ -1053,8 +1051,8 @@ msgid "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped p
 msgstr "Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command at all, because hooks inject the applicable rules and specs as the agent edits."
 
 #: src/components/sections/star-cta-section.tsx:26
-msgid "Free and local today."
-msgstr "Free and local today."
+#~ msgid "Free and local today."
+#~ msgstr "Free and local today."
 
 #: src/components/sections/faq-section.tsx:53
 msgid "Frequently Asked Questions"
@@ -1338,7 +1336,7 @@ msgstr "Learn"
 msgid "Lets agents browse, search, and update Archcore docs."
 msgstr "Lets agents browse, search, and update Archcore docs."
 
-#: src/components/sections/star-cta-section.tsx:58
+#: src/components/sections/star-cta-section.tsx:40
 msgid "Like where this is going? Star it on GitHub."
 msgstr "Like where this is going? Star it on GitHub."
 
@@ -1399,8 +1397,8 @@ msgid "Make your repo legible to AI agents"
 msgstr "Make your repo legible to AI agents"
 
 #: src/components/sections/star-cta-section.tsx:38
-msgid "Managed when your team needs it"
-msgstr "Managed when your team needs it"
+#~ msgid "Managed when your team needs it"
+#~ msgstr "Managed when your team needs it"
 
 #: src/components/sections/plugin-hosts-section.tsx:35
 msgid "Marketplace or local directory"
@@ -1965,7 +1963,7 @@ msgstr "Read the CLI docs"
 #~ msgid "Reads the folder, picks <0>type=spec</0> automatically."
 #~ msgstr "Reads the folder, picks <0>type=spec</0> automatically."
 
-#: src/components/sections/star-cta-section.tsx:111
+#: src/components/sections/star-cta-section.tsx:93
 msgid "Ready to try? Install now"
 msgstr "Ready to try? Install now"
 
@@ -2109,8 +2107,8 @@ msgstr "Rules and decisions"
 
 #: src/components/cta/team-setup-dialog.tsx:106
 #: src/components/pages/teams-getting-started.tsx:132
-msgid "Run in your terminal"
-msgstr "Run in your terminal"
+#~ msgid "Run in your terminal"
+#~ msgstr "Run in your terminal"
 
 #: src/components/cta/docker-start-dialog.tsx:51
 #: src/components/cta/install-command.tsx:252
@@ -2340,7 +2338,7 @@ msgstr "Specs that stay connected to implementation"
 msgid "Star"
 msgstr "Star"
 
-#: src/components/sections/star-cta-section.tsx:73
+#: src/components/sections/star-cta-section.tsx:55
 #: src/data/navigation.ts:42
 msgid "Star Archcore on GitHub"
 msgstr "Star Archcore on GitHub"
@@ -2351,7 +2349,7 @@ msgid "Star CLI on GitHub"
 msgstr "Star CLI on GitHub"
 
 #: src/components/sections/cli-repo-layout-section.tsx:130
-#: src/components/sections/star-cta-section.tsx:96
+#: src/components/sections/star-cta-section.tsx:78
 msgid "Star on GitHub"
 msgstr "Star on GitHub"
 

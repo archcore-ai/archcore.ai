@@ -348,8 +348,7 @@ usable content area; horizontal gutters are added outside that width.
 - Integration entries use full-width horizontal rows: tool identity, text,
   and an arrow. Do not leave an empty grid cell for an unpublished integration.
 - Service pages use the full container. Privacy sections pair labels with a
-  reading column. Team setup places its two files side by side and the launch
-  command below. These layouts collapse into one column on mobile.
+  reading column. This layout collapses into one column on mobile.
 - Use `.page-title` for page titles. It shares the fluid 30–44px scale,
   weight, tracking, and line height of `.type-hero` and article titles.
 - Keep marketing heroes and their section introductions centered within

@@ -3,6 +3,7 @@ title: "Landing site tech stack"
 status: accepted
 ---
 
+
 ## Overview
 
 Archcore.ai is one static Astro site deployed to GitHub Pages. @astro.config.mjs owns routing and generation; @package.json and @package-lock.json define one dependency installation.
@@ -24,7 +25,7 @@ Exact installed versions live in @package-lock.json.
 
 ## Pages
 
-Astro routes live in @src/pages/. Marketing routes are /, /plugin/, /cli/, /how-to-use/, /teams/getting-started/, and /privacy/. Blog and learn collections provide listings and articles. The pillars collection provides root-level reference pages. The integrations collection provides a catalog, recipes, raw Markdown, and digest-checked instruction downloads.
+Astro routes live in @src/pages/. Marketing routes are /, /plugin/, /cli/, /how-to-use/, and /privacy/. Blog and learn collections provide listings and articles. The pillars collection provides root-level reference pages. The integrations collection provides a catalog, recipes, raw Markdown, and digest-checked instruction downloads.
 
 The alternatives collection remains empty. The public /install/ redirect preserves query parameters and hash fragments. @src/pages/404.astro produces a noindex error page without a home canonical.
 

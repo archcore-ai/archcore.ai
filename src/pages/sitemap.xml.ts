@@ -8,7 +8,6 @@ export const GET: APIRoute = async ({ site }) => {
     "/cli/",
     "/how-to-use/",
     "/privacy/",
-    "/teams/getting-started/",
     "/blog/",
     "/learn/",
     "/integrations/",

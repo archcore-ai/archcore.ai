@@ -4,9 +4,10 @@ status: accepted
 ---
 
 
+
 ## Rule
 
-All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, Astro-generated HTML, shared layouts, the OG image generator).
+All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, Astro-generated HTML, shared layouts, the OG image generator).
 
 **The strings themselves live in the global context and are not restated here:**
 

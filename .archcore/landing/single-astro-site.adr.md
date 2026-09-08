@@ -6,6 +6,7 @@ tags:
   - "web"
 ---
 
+
 ## Context
 
 The site used a React/Vite build and a separate Astro content build with duplicated navigation, style tokens, and crawler copy. The production audit on 2026-09-08 found 27 sitemap URLs and a React team-setup route that returned HTTP 404. The owner requested a complete Astro migration and one visual style; @scripts/fixtures/seo-baseline.json records the existing metadata and article content.
@@ -27,7 +28,7 @@ Positive:
 - @astro.config.mjs and @package.json define one build producing every route in dist/.
 - @src/layouts/SiteLayout.astro shares navigation, footer, fonts, theme, and analytics across all pages.
 - @src/components/faq-list.tsx renders visible FAQ answers and JSON-LD from one array.
-- @src/pages/teams/getting-started/index.astro produces a real page instead of depending on a 404 fallback.
+- The migration initially restored the team-setup route. On 2026-09-09, the owner removed that page and its links; the retired URL now returns the standard 404.
 - @scripts/verify-build.mts compares 29 pre-migration routes, article content, schemas, and public downloads.
 
 Tradeoffs:

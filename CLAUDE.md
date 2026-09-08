@@ -65,7 +65,7 @@ Inspect the built output under `dist/`, not the dev server. Prerendered route bo
 
 A Vite and React single-page app for the marketing site, plus an Astro sub-build for the content hub. The two are built separately and merged into one `dist/`.
 
-- `src/pages/` — SPA routes: home, `/plugin`, `/cli`, `/how-to-use`, `/teams/getting-started`, `/privacy`.
+- `src/pages/` — Astro routes: home, `/plugin/`, `/cli/`, `/how-to-use/`, `/privacy/`, content hubs, and integrations.
 - `src/components/sections/` — page sections. Most user-facing copy lives here.
 - `src/content/how-to-use/` — the five branches of the interactive walkthrough.
 - `src/locales/` — Lingui catalogs for English and Russian.
