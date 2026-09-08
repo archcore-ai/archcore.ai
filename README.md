@@ -40,6 +40,7 @@ The build runs type checking, ESLint, Astro generation, and output verification.
 - `src/pages/`: Astro routes and static download endpoints.
 - `src/layouts/SiteLayout.astro`: shared HTML shell, navigation, footer, theme, and analytics.
 - `src/components/pages/`: React page bodies and their Lingui providers. No client-side router.
+- `src/lib/site-locale.ts`: language selection for the shared header/footer and translated React pages. English-only content retains its content language.
 - `src/content/`: articles, reference pages, integration recipes, and walkthrough content.
 - `src/index.css`: shared design tokens and Tailwind utilities.
 - `src/styles/content.css`: shared shell and article/integration layouts.

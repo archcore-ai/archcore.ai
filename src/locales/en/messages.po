@@ -320,8 +320,8 @@ msgstr "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents re
 msgid "Archcore CLI creates <0>.archcore/</0>, wires MCP and hooks, and lets your agents read and write decisions, rules, plans, and guides from Git."
 msgstr "Archcore CLI creates <0>.archcore/</0>, wires MCP and hooks, and lets your agents read and write decisions, rules, plans, and guides from Git."
 
-#: src/components/sections/cli-showcase-section.tsx:12
-#: src/components/sections/cli-showcase-section.tsx:21
+#: src/components/sections/cli-showcase-section.tsx:15
+#: src/components/sections/cli-showcase-section.tsx:24
 msgid "archcore init creating .archcore/ in a project"
 msgstr "archcore init creating .archcore/ in a project"
 
@@ -601,7 +601,7 @@ msgstr "CLI docs"
 msgid "CLI FAQ"
 msgstr "CLI FAQ"
 
-#: src/components/sections/cli-showcase-section.tsx:8
+#: src/components/sections/cli-showcase-section.tsx:9
 msgid "CLI in action"
 msgstr "CLI in action"
 
@@ -1084,7 +1084,7 @@ msgstr "Git-native"
 msgid "Git-native context"
 msgstr "Git-native context"
 
-#: src/data/navigation.ts:43
+#: src/data/navigation.ts:45
 msgid "Git-native context for AI coding agents."
 msgstr "Git-native context for AI coding agents."
 
@@ -1230,7 +1230,7 @@ msgstr "In .archcore/ inside your repository. Markdown with YAML frontmatter, ve
 #~ msgid "In Codex, run <0>/plugins</0>, open Archcore, select Install plugin. MCP is auto-registered. Hooks are experimental on Codex. Turn them on with <1>codex --enable hooks</1>, and note they don't run on Windows."
 #~ msgstr "In Codex, run <0>/plugins</0>, open Archcore, select Install plugin. MCP is auto-registered. Hooks are experimental on Codex. Turn them on with <1>codex --enable hooks</1>, and note they don't run on Windows."
 
-#: src/data/navigation.ts:41
+#: src/data/navigation.ts:43
 msgid "Install"
 msgstr "Install"
 
@@ -1455,7 +1455,7 @@ msgstr "MCP + session hooks"
 msgid "MCP setup is a chore"
 msgstr "MCP setup is a chore"
 
-#: src/data/navigation.ts:42
+#: src/data/navigation.ts:44
 msgid "Menu"
 msgstr "Menu"
 
@@ -2336,11 +2336,12 @@ msgstr "Specs that stay connected to implementation"
 #~ msgid "Specs, decisions, rules, plans, and project knowledge."
 #~ msgstr "Specs, decisions, rules, plans, and project knowledge."
 
-#: src/components/sections/sticky-header.tsx:148
-#~ msgid "Star"
-#~ msgstr "Star"
+#: src/data/navigation.ts:41
+msgid "Star"
+msgstr "Star"
 
 #: src/components/sections/star-cta-section.tsx:73
+#: src/data/navigation.ts:42
 msgid "Star Archcore on GitHub"
 msgstr "Star Archcore on GitHub"
 

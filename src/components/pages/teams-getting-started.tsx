@@ -44,7 +44,7 @@ export function TeamsGettingStarted() {
 
   return (
     <main id="main-content" className="bg-background text-foreground">
-      <div className="page page--reading">
+      <div className="page page--service">
         {/* Back link */}
         <a
           href="/"
@@ -76,7 +76,7 @@ export function TeamsGettingStarted() {
         </div>
 
         {/* Steps */}
-        <div className="space-y-8">
+        <div className="team-steps space-y-8">
           {/* Step 1: .env */}
           <div className="space-y-3">
             <div className="flex items-center gap-2.5 font-medium">
@@ -91,7 +91,7 @@ export function TeamsGettingStarted() {
                 file
               </Trans>
             </div>
-            <div className="relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-xs break-all whitespace-pre-wrap max-h-60 overflow-y-auto">
+            <div className="relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-xs whitespace-pre max-h-60 overflow-auto">
               {ENV_CONTENT}
               <CopyButton
                 copied={copiedKey === "env"}
@@ -114,7 +114,7 @@ export function TeamsGettingStarted() {
                 file
               </Trans>
             </div>
-            <div className="relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-xs break-all whitespace-pre-wrap max-h-96 overflow-y-auto">
+            <div className="relative rounded-lg bg-muted/50 border p-4 pr-12 font-mono text-xs whitespace-pre max-h-96 overflow-auto">
               {COMPOSE_CONTENT}
               <CopyButton
                 copied={copiedKey === "compose"}

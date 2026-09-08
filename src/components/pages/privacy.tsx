@@ -6,7 +6,7 @@ const CONTACT_EMAIL = "archcore-ai@proton.me";
 export function PrivacyPage() {
   return (
     <main id="main-content" className="bg-background text-foreground">
-      <div className="page page--reading">
+      <div className="page page--service">
         <a
           href="/"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors page-back"
@@ -22,7 +22,7 @@ export function PrivacyPage() {
           </p>
         </header>
 
-        <div className="space-y-10 text-[15px] leading-relaxed">
+        <div className="privacy-sections space-y-10 text-[15px] leading-relaxed">
           <section className="space-y-3">
             <p>
               This policy explains what data the Archcore project processes

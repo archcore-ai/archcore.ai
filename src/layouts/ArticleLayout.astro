@@ -7,6 +7,7 @@ interface FaqEntry {
 }
 
 interface Props {
+  headings?: { depth: number; slug: string; text: string }[];
   title: string;
   description: string;
   pubDate: Date;
@@ -20,6 +21,10 @@ interface Props {
 const SITE_URL = "https://archcore.ai";
 const { title, description, pubDate, updatedDate, faq, ogImage, markdownTwin } =
   Astro.props;
+
+const toc = (Astro.props.headings ?? []).filter(
+  (heading) => heading.depth === 2
+);
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 // "/blog/claude-code-memory/" → section "blog", slug "claude-code-memory".
@@ -115,7 +120,10 @@ const faqSchema =
       )
     }
   </Fragment>
-  <main id="main-content" class="page page--reading">
+  <main
+    id="main-content"
+    class:list={["page page--reading", { "page--with-toc": toc.length > 2 }]}
+  >
     <article class="article">
       <h1>{title}</h1>
       <p class="article__meta">
@@ -160,6 +168,20 @@ const faqSchema =
         <a href="/#install">Install Archcore →</a>
       </aside>
     </article>
+    {
+      toc.length > 2 && (
+        <nav class="article-toc" aria-label="On this page">
+          <p class="pillar-toc__label">On this page</p>
+          <ul>
+            {toc.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
   </main>
   <script>
     // DESIGN.md: every command snippet gets a copy button.

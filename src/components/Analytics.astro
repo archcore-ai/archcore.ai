@@ -11,7 +11,7 @@
     site,
     key: import.meta.env.PUBLIC_POSTHOG_KEY,
     host: import.meta.env.PUBLIC_POSTHOG_HOST,
-    locale: site === "landing" ? detectLocale() : "en",
+    locale: detectLocale(),
     debug: import.meta.env.DEV,
   });
   const marker = document.querySelector<HTMLElement>("[data-article-end]");

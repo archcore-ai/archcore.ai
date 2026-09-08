@@ -1,10 +1,6 @@
 ---
 import { LINKS } from "../lib/links";
 import { headerLinks as links, chromeLabels } from "../data/navigation";
-interface Props {
-  localizable?: boolean;
-}
-const { localizable = false } = Astro.props;
 ---
 
 <header class="site-header">
@@ -25,6 +21,8 @@ const { localizable = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
+            target={link.href === LINKS.docs ? "_blank" : undefined}
+            rel={link.href === LINKS.docs ? "noopener noreferrer" : undefined}
             aria-current={
               Astro.url.pathname.startsWith(link.href) ? "page" : undefined
             }
@@ -37,16 +35,40 @@ const { localizable = false } = Astro.props;
       }
     </nav>
     <div class="site-header__actions">
-      {
-        localizable && (
-          <select data-locale-select aria-label="Language" disabled>
-            <>
-              <option value="en">EN</option>
-              <option value="ru">RU</option>
-            </>
-          </select>
-        )
-      }
+      <select data-locale-select aria-label="Language" disabled>
+        <option value="en">EN</option>
+        <option value="ru">RU</option>
+      </select>
+      <a
+        class="nav-star"
+        href={LINKS.pluginRepo}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={chromeLabels.starLabel.en}
+        title={chromeLabels.starLabel.en}
+        data-en-label={chromeLabels.starLabel.en}
+        data-ru-label={chromeLabels.starLabel.ru}
+        data-analytics-handled
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path
+            d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+          ></path>
+        </svg>
+        <span data-en={chromeLabels.star.en} data-ru={chromeLabels.star.ru}
+          >{chromeLabels.star.en}</span
+        >
+      </a>
       <a
         class="nav-cta"
         href="/#install"
@@ -73,7 +95,15 @@ const { localizable = false } = Astro.props;
         <nav class="site-header__nav" aria-label="Mobile navigation">
           {
             links.map((link) => (
-              <a href={link.href} data-en={link.en} data-ru={link.ru}>
+              <a
+                href={link.href}
+                target={link.href === LINKS.docs ? "_blank" : undefined}
+                rel={
+                  link.href === LINKS.docs ? "noopener noreferrer" : undefined
+                }
+                data-en={link.en}
+                data-ru={link.ru}
+              >
                 {link.en}
               </a>
             ))
@@ -85,6 +115,14 @@ const { localizable = false } = Astro.props;
   </div>
 </header>
 <script>
+  import { initializeSiteLocale } from "../lib/site-locale";
+  import { track } from "../lib/analytics";
+
+  initializeSiteLocale();
+  document.querySelector(".nav-star")?.addEventListener("click", () => {
+    track("github_star_clicked", { repo: "plugin", surface: "navbar" });
+  });
+
   const menu = document.querySelector<HTMLDetailsElement>(
     ".site-header__mobile"
   );

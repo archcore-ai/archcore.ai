@@ -7,20 +7,18 @@ import {
   useEffect,
   useCallback,
   useMemo,
-  useRef,
   type ReactNode,
 } from "react";
+import { activateLocale, type SupportedLocale } from "@/i18n";
 import {
-  activateLocale,
-  detectLocale,
-  saveLocale,
-  type SupportedLocale,
-} from "@/i18n";
-import { registerSuperProperties, track } from "@/lib/analytics";
+  initializeSiteLocale,
+  setSiteLocale,
+  SITE_LOCALE_EVENT,
+} from "@/lib/site-locale";
 
 interface LocaleContextValue {
   locale: SupportedLocale;
-  setLocale: (locale: SupportedLocale) => Promise<void>;
+  setLocale: (locale: SupportedLocale) => void;
   isLoading: boolean;
 }
 
@@ -29,77 +27,32 @@ const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<SupportedLocale>("en");
   const [isLoading, setIsLoading] = useState(true);
-  const localeRef = useRef<SupportedLocale>("en");
-
   useEffect(() => {
-    const initLocale = async () => {
-      const detected = detectLocale();
-
-      // Check if locale was detected from URL query parameter
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get("lang") || urlParams.get("locale");
-      const isFromUrl = langParam === detected;
-
-      // Save to localStorage if it came from URL
-      if (isFromUrl) {
-        saveLocale(detected);
-
-        // Remove query parameter for cleaner URLs
-        urlParams.delete("lang");
-        urlParams.delete("locale");
-        const newSearch = urlParams.toString();
-        const newUrl =
-          window.location.pathname +
-          (newSearch ? `?${newSearch}` : "") +
-          window.location.hash;
-        window.history.replaceState({}, "", newUrl);
-      }
-
-      await activateLocale(detected);
-      localeRef.current = detected;
-      setLocaleState(detected);
-      document.documentElement.lang = detected;
+    let active = true;
+    let request = 0;
+    const syncContent = async (next: SupportedLocale) => {
+      const pending = ++request;
+      setIsLoading(true);
+      await activateLocale(next);
+      if (!active || pending !== request) return;
+      setLocaleState(next);
+      document.documentElement.lang = next;
       setIsLoading(false);
     };
-
-    void initLocale();
-  }, []);
-
-  const setLocale = useCallback(async (newLocale: SupportedLocale) => {
-    setIsLoading(true);
-    await activateLocale(newLocale);
-    // Read through a ref rather than a state updater: an updater runs twice
-    // under StrictMode and would double-count the switch.
-    const previous = localeRef.current;
-    if (previous !== newLocale) {
-      track("locale_switched", { from: previous, to: newLocale });
-      registerSuperProperties({ locale: newLocale });
-    }
-    localeRef.current = newLocale;
-    setLocaleState(newLocale);
-    document.documentElement.lang = newLocale;
-    saveLocale(newLocale);
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    const select = document.querySelector<HTMLSelectElement>(
-      "[data-locale-select]"
-    );
-    if (!select) return;
-    select.value = locale;
-    select.disabled = isLoading;
-    document.querySelectorAll<HTMLElement>("[data-ru]").forEach((node) => {
-      node.textContent =
-        (locale === "ru" ? node.dataset.ru : node.dataset.en) ??
-        node.textContent;
-    });
-    const change = () => {
-      void setLocale(select.value as SupportedLocale);
+    const change = (event: Event) => {
+      void syncContent((event as CustomEvent<SupportedLocale>).detail);
     };
-    select.addEventListener("change", change);
-    return () => select.removeEventListener("change", change);
-  }, [locale, isLoading, setLocale]);
+    window.addEventListener(SITE_LOCALE_EVENT, change);
+    void syncContent(initializeSiteLocale());
+    return () => {
+      active = false;
+      window.removeEventListener(SITE_LOCALE_EVENT, change);
+    };
+  }, []);
+
+  const setLocale = useCallback((next: SupportedLocale) => {
+    setSiteLocale(next);
+  }, []);
 
   const contextValue = useMemo(
     () => ({ locale, setLocale, isLoading }),

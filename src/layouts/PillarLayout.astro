@@ -131,7 +131,10 @@ const faqSchema =
       )
     }
   </Fragment>
-  <main id="main-content" class="page page--reading">
+  <main
+    id="main-content"
+    class:list={["page page--reading", { "page--with-toc": toc.length > 2 }]}
+  >
     <article class="article">
       <h1>{heading}</h1>
       <p class="article__meta">Reference · Updated {fmt(updatedDate)}</p>

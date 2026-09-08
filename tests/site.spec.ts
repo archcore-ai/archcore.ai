@@ -266,13 +266,11 @@ test("hub headings and collections stay aligned between pages", async ({
       expect(position.intro.y).toBe(positions[0].intro.y);
       expect(position.collection.x).toBe(positions[0].collection.x);
       expect(position.collection.width).toBe(positions[0].collection.width);
-      if (width >= 768)
-        expect(position.collection.y).toBe(positions[0].collection.y);
     }
   }
 });
 
-test("desktop navigation stays in place with and without the locale selector", async ({
+test("desktop navigation stays in place across page types", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -283,5 +281,119 @@ test("desktop navigation stays in place with and without the locale selector", a
     const box = await page.locator(".site-header__inner > nav").boundingBox();
     if (reference) expect(box).toEqual(reference);
     else reference = box;
+  }
+});
+
+test("shared header retains language across static and translated pages", async ({
+  page,
+}) => {
+  await page.goto(
+    "/integrations/?lang=ru&utm_source=header-check#main-content"
+  );
+  for (const route of [
+    null,
+    "/blog/",
+    "/learn/",
+    "/blog/claude-code-memory/",
+    "/privacy/",
+  ]) {
+    if (route) await page.goto(route);
+    await expect(page.getByRole("combobox", { name: "Language" })).toHaveValue(
+      "ru"
+    );
+    await expect(page.locator(".site-header")).toHaveAttribute("lang", "ru");
+    await expect(page.locator(".site-header .nav-cta")).toHaveText(
+      "Установить"
+    );
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  }
+  await page.getByRole("combobox", { name: "Language" }).selectOption("en");
+  await page.goto("/cli/");
+  await expect(page.getByRole("combobox", { name: "Language" })).toHaveValue(
+    "en"
+  );
+  await page.getByRole("combobox", { name: "Language" }).selectOption("ru");
+  await expect(page.locator("html")).toHaveAttribute("lang", "ru");
+  await page.goto("/integrations/");
+  await expect(page.locator(".site-header .nav-cta")).toHaveText("Установить");
+});
+
+test("header Star, Install, language and menu fit; Docs opens a new tab", async ({
+  page,
+}) => {
+  for (const width of [320, 390, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/blog/?lang=ru");
+    await expect(
+      page.getByRole("combobox", { name: "Language" })
+    ).toBeEnabled();
+    const star = page.locator(".nav-star");
+    await expect(star).toBeVisible();
+    await expect(star).toHaveAttribute(
+      "href",
+      "https://github.com/archcore-ai/plugin"
+    );
+    await expect(star).toHaveAttribute("target", "_blank");
+    for (const docs of await page
+      .locator('.site-header a[href="https://docs.archcore.ai/"]')
+      .all()) {
+      await expect(docs).toHaveAttribute("target", "_blank");
+      await expect(docs).toHaveAttribute("rel", "noopener noreferrer");
+    }
+    const boxes = await page
+      .locator(
+        ".site-header__brand, .site-header__inner > nav, .site-header__actions > *"
+      )
+      .evaluateAll((elements) =>
+        elements
+          .filter(
+            (el) =>
+              el.closest(".site-header") && el.getBoundingClientRect().width > 0
+          )
+          .map((el) => {
+            const { x, right } = el.getBoundingClientRect();
+            return { x, right };
+          })
+          .sort((a, b) => a.x - b.x)
+      );
+    for (let i = 0; i < boxes.length; i++) {
+      expect(boxes[i].x).toBeGreaterThanOrEqual(0);
+      expect(boxes[i].right).toBeLessThanOrEqual(width);
+      if (i) expect(boxes[i].x).toBeGreaterThanOrEqual(boxes[i - 1].right);
+    }
+  }
+});
+
+test("collections fill the outer grid and articles use the right rail", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  for (const route of ["/blog/", "/learn/", "/integrations/"]) {
+    await page.goto(route);
+    const collection = await page
+      .locator(".post-list, .catalog-grid")
+      .boundingBox();
+    const footer = await page.locator(".site-header .nav-cta").boundingBox();
+    expect(collection!.x + collection!.width).toBeCloseTo(
+      footer!.x + footer!.width,
+      0
+    );
+    if (route !== "/integrations/") {
+      const items = page.locator(".post-list > li");
+      const first = await items.nth(0).boundingBox();
+      const second = await items.nth(1).boundingBox();
+      expect(first!.y).toBe(second!.y);
+      expect(second!.x).toBeGreaterThan(first!.x + first!.width);
+    }
+  }
+  for (const route of ["/blog/claude-code-memory/", "/context-engineering/"]) {
+    await page.goto(route);
+    const toc = page.getByRole("navigation", { name: "On this page" });
+    await expect(toc).toBeVisible();
+    const heading = await page.locator("h1").boundingBox();
+    const sidebar = await toc.boundingBox();
+    expect(sidebar!.x).toBeGreaterThan(heading!.x + heading!.width);
+    await toc.locator("a").first().click();
+    expect(new URL(page.url()).hash).not.toBe("");
   }
 });

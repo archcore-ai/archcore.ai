@@ -4,7 +4,7 @@ import { messages as enMessages } from "../locales/en/messages";
 import { messages as ruMessages } from "../locales/ru/messages";
 import { LINKS } from "../lib/links";
 
-// Build-time translations for the Astro shell. React only switches the DOM labels.
+// Build-time translations for the shared Astro shell.
 const en = setupI18n({ locale: "en", messages: { en: enMessages } });
 const ru = setupI18n({ locale: "ru", messages: { ru: ruMessages } });
 export const label = (message: MessageDescriptor) => ({
@@ -38,6 +38,8 @@ export const referenceLinks = [
   { href: "/mcp/", en: "MCP", ru: "MCP" },
 ];
 export const chromeLabels = {
+  star: label(msg`Star`),
+  starLabel: label(msg`Star Archcore on GitHub`),
   install: label(msg`Install`),
   menu: label(msg`Menu`),
   tagline: label(msg`Git-native context for AI coding agents.`),

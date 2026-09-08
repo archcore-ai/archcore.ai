@@ -197,8 +197,7 @@
 }
 
 .reading-column,
-.page--reading > *,
-.page--listing > * {
+.page--reading > * {
   max-width: var(--container-narrow);
 }
 
@@ -262,9 +261,16 @@
     --page-heading-gap: 40px;
   }
 
-  /* Reserve three intro lines across the hub pages; mobile flows naturally. */
-  .page-intro__description {
-    min-height: 4.8em;
+  /* Titles and summaries use both columns of the hub grid. */
+  .page-intro {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    align-items: start;
+  }
+
+  .page-intro .page-intro__description {
+    margin: 0;
   }
 }
 

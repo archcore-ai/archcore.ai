@@ -336,18 +336,34 @@ usable content area; horizontal gutters are added outside that width.
 
 - Use `.page` for Astro page containers and `.site-gutters` for full-width
   React sections. `SectionContainer` applies those gutters automatically.
-- Use `.page--reading` for articles and service pages. Limit the reading
-  column to 760px and align it to the outer grid's **left edge**.
+- Use `.page--reading` for article text, limited to 760px. Pages with an
+  outline use `.page--with-toc`: a reading column plus a 240px right rail,
+  separated by 40px, from 1000px. Below that width the article flows in one
+  column; pillar outlines remain inline.
 - Use `.page--listing` and `PageIntro.astro` for Blog, Learn, and Integrations.
-  The heading, intro, list, and closing text share a 760px measure. Desktop
-  intros reserve three lines so the first collection row stays aligned when
-  switching hubs. Mobile intros use their natural height.
+  From 768px, titles and descriptions occupy two equal columns. Descriptions
+  use their natural height; do not reserve empty lines to align unequal copy.
+- Blog and Learn use two equal columns across the full container. An odd last
+  entry spans the row, with its title and description in separate columns.
+- Integration entries use full-width horizontal rows: tool identity, text,
+  and an arrow. Do not leave an empty grid cell for an unpublished integration.
+- Service pages use the full container. Privacy sections pair labels with a
+  reading column. Team setup places its two files side by side and the launch
+  command below. These layouts collapse into one column on mobile.
 - Use `.page-title` for page titles. It shares the fluid 30–44px scale,
   weight, tracking, and line height of `.type-hero` and article titles.
 - Keep marketing heroes and their section introductions centered within
   the shared outer grid. Detail pages may put identity or back navigation
   before the title; those elements use the same outer alignment and spacing.
-- Keep desktop navigation centered independently of the language selector.
+- Keep desktop navigation centered independently of the action controls.
+  Every page shows the language selector, GitHub Star, and Install. Docs and
+  Star open a new tab. Below 1024px, navigation links move into the menu.
+- On small screens, Star uses its GitHub icon and an accessible label. Below
+  381px, the brand uses its logo so all controls remain visible.
+- The shared shell owns language selection and persists it across routes.
+  English-only articles keep `html[lang=en]`; header and footer declare their
+  selected language independently. Translated React pages update their content
+  through the same language controller.
 - Do not center a reading column independently of the outer grid or add
   page-specific gutter and page-start overrides.
 
