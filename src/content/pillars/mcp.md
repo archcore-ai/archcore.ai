@@ -2,7 +2,7 @@
 title: "MCP Server for AI Coding Agent Context — Archcore"
 heading: "MCP for AI Coding Agent Context"
 description: "Expose structured project context to AI coding agents through MCP, including specs, ADRs, rules, plans, and project knowledge."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - project-context
   - context-engineering
@@ -10,7 +10,7 @@ faq:
   - question: "What is MCP?"
     answer: "The Model Context Protocol is an open standard for connecting AI agents to external tools and data. An MCP server exposes a set of tools; any MCP-aware agent can call them. It removes the need for a separate integration per agent, because the agent speaks the protocol rather than your API."
   - question: "Why serve project context over MCP instead of a file the agent reads?"
-    answer: "A file is read whole, at whatever moment the agent decides, and it cannot be written back. MCP makes context a set of operations: search for what applies, read one document, create a decision, link two documents. The agent pulls what it needs during the work and records what it learns, which a static file cannot do."
+    answer: "Both file tools and MCP can read and write project documents. MCP gives agents a common API for filtering by type or status, searching, validating writes, and managing relations. Whether that saves context depends on which documents the agent loads."
   - question: "Does an MCP context server fill the context window?"
     answer: "Not if it is built for retrieval rather than dumping. The session opens with a compact index of available documents, and full documents are fetched on demand through search, relations, and single reads. The alternative, pasting everything at session start, is what actually fills the window."
   - question: "Does the MCP server need to run remotely?"
@@ -23,21 +23,15 @@ The **Model Context Protocol** is an open standard for connecting AI agents to t
 
 For project context that matters more than it first appears, because it changes context from something an agent *is given* into something an agent can *use*.
 
-*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## Why a protocol and not a file
 
-The simplest way to give an agent project knowledge is a file it reads. That works, and it has three limits that show up quickly on a real codebase.
+An agent with file tools can read selected files, search text, and write a decision back to Markdown. Nested instruction files and scoped rules can also limit what loads. These are useful starting points.
 
-**It is read whole.** A file has no way to say "only the part about `src/api/`". Everything in it arrives on every turn, competing for attention with the actual task.
+MCP adds a shared interface for operations that would otherwise depend on each agent's scripts and conventions. Archcore tools expose document types, status filters, validated writes, and relations. The agent can follow a link from a spec to its supporting decision without inventing that operation anew.
 
-**It is read on the agent's schedule.** The agent decides when to look, which in practice means at the start, before it knows what the work needs.
-
-**It cannot be written back.** A decision made during a session has nowhere to go. The next session starts without it, which is how project knowledge fails to accumulate.
-
-Tools fix all three. The agent searches for what applies to the file in front of it, reads one document in full when it matters, and writes a new decision when one gets made. Context becomes part of the working loop rather than a preamble to it.
-
-And because it is a protocol rather than an API, one server serves every agent. There is no Claude Code integration and a separate Cursor integration; there is a server, and clients that speak the standard.
+The [MCP tools specification](https://modelcontextprotocol.io/specification/latest/server/tools) defines how servers expose callable operations. It does not guarantee that an agent chooses the right documents or that retrieval uses fewer tokens in every task. Those properties depend on the server, host, and workflow.
 
 ## What a context server should expose
 
@@ -95,7 +89,7 @@ This distinction is easy to miss and decides how much the setup does for you.
 
 **MCP is pull.** The agent asks: search, read, create, link. It happens because the agent decided it needed something.
 
-**Hooks are push.** The runtime injects the applicable rules and specs when the agent is about to edit a file, and opens a session with a recap of what is decided and in progress. It happens whether or not the agent thought to ask.
+**Hooks provide context at host events.** Session-start hooks deliver a recap. On hosts that support pre-write context injection, rules and specs can arrive before an edit. See the [host matrix](https://docs.archcore.ai/plugin/supported-hosts/) for the differences.
 
 Pull alone means the agent has to know that context exists before it can use it, which is exactly the thing a fresh session does not know. Push alone cannot answer a question that arises mid-task. Both together are what makes the everyday case require no command at all.
 
@@ -109,6 +103,7 @@ Put the other way round: MCP solves the distribution problem, and only the distr
 
 ## Where to go next
 
+- [Set up an MCP server for project context](/blog/mcp-server-project-context/) gives a worked installation and verification procedure.
 - [Project context](/project-context/) covers what belongs in the documents this server exposes.
 - [Git-native context](/git-native-context/) covers why they live in the repository rather than a database.
 - The [CLI](/cli/) page has the full command surface and the agent support matrix.

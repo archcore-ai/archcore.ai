@@ -2,7 +2,7 @@
 title: "Git-Native Context Engineering — Archcore"
 heading: "Why Project Context Belongs in Git"
 description: "Keep AI coding agent context reviewable, portable, and versioned with code. Learn why specs, decisions, rules, and plans belong in Git."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - project-context
   - context-engineering
@@ -10,18 +10,20 @@ faq:
   - question: "What does git-native context mean?"
     answer: "Git-native context means the knowledge an AI coding agent works from lives as files in the repository it describes, versioned with the code, reviewed in pull requests, and owned by the team. It is the opposite of context held in a vendor's store, a local database, or a per-tool cache."
   - question: "Why not store agent context in a database?"
-    answer: "A database gives you queries and loses everything else that matters here. Context in a database has no diff, so it cannot be reviewed. It has no branch, so it cannot change alongside the code it constrains. And it has no history tied to the commit that made it true, so you cannot tell which version of a rule applied when a bug was written."
+    answer: "A database can provide review, version history, and access control if those features are implemented. Git already gives a code-reviewing team branches and diffs tied to code revisions. A database can be preferable for shared queries or cross-repository access, but needs an explicit link to the code version."
   - question: "Does keeping context in Git bloat the repository?"
-    answer: "No. Project context is plain Markdown measured in kilobytes. A repository with a hundred context documents carries less weight than a single dependency lockfile, and Git stores text diffs efficiently."
+    answer: "Markdown adds repository size like any other text. Measure the actual corpus and avoid storing large logs or generated dumps as project documents. Keep the files focused on decisions, rules, contracts, and active work."
   - question: "What happens when context and code disagree?"
-    answer: "In Git the disagreement is visible: the code changed on a branch and the document did not, which a review or a drift check surfaces. In an external store the disagreement is silent, because nothing connects the two, and the first person to notice is whoever trusted the stale document."
+    answer: "Review or drift checks need to catch the disagreement. Git makes it possible to inspect both in one diff, but does not guarantee they agree. An external store needs an equivalent revision link and review process."
   - question: "Does git-native context work with private repositories?"
-    answer: "Yes, and the access model comes free. Anyone who can clone the repository can read the context; anyone who cannot, cannot. There is no second permission system to configure and no way for context to leak somewhere the code does not go."
+    answer: "Yes. Repository access controls apply to the stored documents. When an agent reads them, its own permissions and data-handling settings still apply. Keeping a file in a private repository does not by itself prevent an agent from sending its contents elsewhere."
 ---
 
 **Git-native context** means the knowledge an AI coding agent works from lives as files in the repository it describes: versioned with the code, reviewed in pull requests, and owned by the team rather than by whichever tool wrote it.
 
-This page argues that this is not one storage option among several. For project context specifically, the properties Git already has are precisely the properties the problem requires.
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
+
+For teams that already review code in Git, storing project documents beside it reuses that review process. The trade-off is maintaining document structure and keeping the record current; Git does neither automatically.
 
 ## The problem storage choice actually solves
 
@@ -43,11 +45,11 @@ Seen that way, the question becomes: what mechanism keeps a document and the cod
 
 Each one is worth stating concretely, because they sound abstract until they bite.
 
-**Reviewable.** Someone changes "handlers return typed errors" to something weaker. In Git that arrives as a diff, in a pull request, with a reviewer. Anywhere else it is a silent edit by whoever had the tool open.
+**Reviewable.** Someone changes "handlers return typed errors" to something weaker. In Git that arrives as a diff, in a pull request, with a reviewer. An external store needs its own change-review mechanism.
 
-**Versioned.** A bug was written in June. Which version of the rule was in force then? With context in Git you check out the commit and read it. Without, you guess.
+**Versioned.** A bug was written in June. Which version of the rule was in force then? With context in Git you check out the commit and read it. An external store needs a recorded association between its document revision and that commit.
 
-**Branch-aware.** A refactor changes an architectural boundary. The ADR that described the old boundary changes on the same branch, ships in the same merge, and reverts in the same revert. There is no window where main disagrees with itself.
+**Branch-aware.** A refactor changes an architectural boundary. The ADR that described the old boundary changes on the same branch, ships in the same merge, and reverts in the same revert. A reviewer can check both changes before merging.
 
 **Portable.** A team moves from one agent to another, or runs three at once. The context does not move, because it was never in the agent.
 
@@ -55,15 +57,16 @@ Each one is worth stating concretely, because they sound abstract until they bit
 
 ## What the alternatives give up
 
-None of these are bad tools. Each one gives up something specific for project context.
+Compare the review and revision workflow, not just the storage format.
 
-**Vendor memory stores.** Fast to start, and structurally unable to be reviewed: there is no diff and no pull request. Context and code drift with nothing to detect it, and the knowledge leaves with the vendor.
+| Option | Useful property | What to arrange for project context |
+| --- | --- | --- |
+| Vendor memory service | Managed access and retrieval | Export, approval, and links to code revisions |
+| Local database | Queries under your control | Sharing, backups, and a reviewed change history |
+| Wiki or docs site | Browsable team documentation | Coordination with the code-review process |
+| Instruction files in Git | Existing diffs and directory conventions | Explicit status and relationships if the record needs them |
 
-**A local database.** Queryable and invisible to your teammates. It also puts context outside the artifact that ships, so a checkout of last quarter's tag has the code and none of the reasoning.
-
-**A wiki or docs site.** Reviewable in its own system, on its own schedule, by its own reviewers. It answers to a different change process than the code, which is exactly how the two get out of step.
-
-**One instruction file per tool.** Genuinely git-native, and it stops scaling at the point where you need types, scope, lifecycle, or a second agent. This is a starting point rather than a wrong answer, and it is the one most teams already have.
+A database-backed system can implement all of these. Git is attractive when branches and pull requests are already where your team makes engineering decisions. [Git's branching model](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) explains the revision mechanism this approach reuses.
 
 ## The objection worth taking seriously
 
@@ -127,7 +130,7 @@ A reviewer sees the scope widen, in the same pull request as the code that made 
 - **19 typed document types** across three categories, each with a template and validated frontmatter.
 - **Named relations** (`implements`, `extends`, `depends_on`, `related`) recorded as data, so agents can walk the graph.
 - **Status and history** in frontmatter, so a directory listing shows what is accepted, draft, or rejected.
-- **No database and no service.** The [CLI](/cli/) is a single binary that reads the directory and serves it over [MCP](/mcp/); nothing runs remotely and nothing is stored outside the repository.
+- **No database and no service.** The [CLI](/cli/) is a single binary that reads the directory and serves it over [MCP](/mcp/); document access is local. The [privacy policy](/privacy/) covers installation and update analytics.
 
 ```bash
 curl -fsSL https://archcore.ai/install.sh | bash

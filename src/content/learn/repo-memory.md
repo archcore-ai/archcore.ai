@@ -1,41 +1,46 @@
 ---
-title: "What Is Repo Memory? Project Context That Lives in Git"
+title: "What Is Repo Memory?"
 description: "Repo memory is project context: decisions, rules, specs, and plans versioned in your repository, readable by any AI coding agent. What it is and how it works."
 pubDate: 2026-07-30
+updatedDate: 2026-09-09
 faq:
   - question: "Is repo memory the same as a vector database memory?"
-    answer: "No. Vector memory stores embeddings of past conversations or code in a database and retrieves them by similarity. Repo memory stores explicit, human-written documents as files in the repository. Vector memory answers 'what did we talk about before'; repo memory answers 'what did we decide, and what are the rules here'."
+    answer: "Repo memory describes storage and ownership: documents versioned with the project. A vector index describes retrieval and can index those same documents. A memory service can use either or both. Compare authority, review, and access separately from the retrieval method."
   - question: "Does repo memory eat the agent's context window?"
-    answer: "Not if it's served properly. The agent should get a compact index of available documents at session start and pull full documents on demand, through MCP tools or file reads, instead of loading everything wholesale."
+    answer: "Yes. Indexes, tool definitions, and loaded documents consume context. A compact index and on-demand reads can reduce unnecessary loading compared with including every document at session start."
   - question: "Which AI coding agents can use repo memory?"
     answer: "Any agent that can read files in the repository, and any MCP-aware agent if the memory is exposed over MCP: Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, Cline, and others."
   - question: "How is repo memory different from CLAUDE.md?"
-    answer: "CLAUDE.md is repo memory in its simplest form: one flat instruction file for one tool. Structured repo memory adds types (decision, rule, spec, plan), relations between documents, per-document status and history, and works across agents instead of being tied to one."
+    answer: "CLAUDE.md is one way to keep instructions in the repository, with imports and nested files supported by its readers. Structured project documents add explicit types, status, and relations. The approaches can coexist."
 ---
 
 **Repo memory** is project context (decisions, rules, specs, and plans) stored as versioned files in the repository itself, so AI coding agents can read it in every session. Unlike memory layers that live in a vendor's cloud or a local database, repo memory lives in git: it is reviewed in pull requests, versioned with the code it describes, and available to any agent that can read files or speak [MCP](https://modelcontextprotocol.io/).
 
-## Why do coding agents need memory at all?
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
-Every agent session starts from zero. The model may be excellent, but it does not know why your auth module is split the way it is, which migration is halfway done, or that your team banned default exports two quarters ago. So it guesses, and you correct it, again, in every session.
+<span id="why-do-coding-agents-need-memory-at-all"></span>
 
-Teams first patched this with instruction files: [`CLAUDE.md`](/blog/claude-code-memory/), `AGENTS.md`, `.cursor/rules/`. These work, and they are the simplest form of repo memory. But they are flat text for one tool at a time, and as the codebase grows they turn into unstructured dumps: nothing separates a binding decision from a stale note, and nothing records which rule governs which directory or what superseded what.
+## Why use repo memory for coding agents?
+
+A fresh agent session needs a way to recover project knowledge. The model may be excellent, but it does not know why your auth module is split the way it is, which migration is halfway done, or that your team banned default exports two quarters ago. So it guesses, and you correct it, again, in every session.
+
+Instruction files such as [`CLAUDE.md`](/blog/claude-code-memory/), `AGENTS.md`, and `.cursor/rules/` already retain project context. Some support nested scope, conditional loading, or multiple agents. Explicit document types and relations help when the team needs a more detailed record of decisions and their dependencies.
 
 The other patch was automatic memory inside the tool, and that path has its own failure mode. Cursor shipped Memories in mid-2025 and [removed the feature six months later](/blog/cursor-memories-removed/) with no changelog entry, leaving users to export what they could. Memory in a vendor's opaque layer sits one product decision away from gone.
 
 ## How is repo memory different from agent memory and RAG?
 
-| | Repo memory | Cloud agent memory (mem0, Zep style) | Vector / RAG memory | Instruction files |
+| | Repo memory | Conversation memory service | Vector / RAG memory | Instruction files |
 |---|---|---|---|---|
-| What is stored | Explicit documents: decisions, rules, specs, plans | Extracted facts from conversations | Embeddings of text or code | Flat instructions |
+| What is stored | Explicit documents: decisions, rules, specs, plans | Extracted facts from conversations | Embeddings of text or code | Instructions, potentially split and scoped |
 | Where it lives | Your git repository | Vendor cloud or local DB | Vector database | Your git repository |
-| How it's written | Deliberately during work, by people or agents, reviewed like code | Automatically, in the background | Automatically, by indexing | Manually, occasionally |
-| Reviewable in PRs | Yes | No | No | Yes |
-| Works across agents | Yes, via files + MCP | Depends on integrations | Depends on integrations | Mostly one tool per file |
-| Survives vendor decisions | Yes | No | Partially | Yes |
-| Best at | "What did we decide and why" | "What did the user say before" | "What code looks similar" | Short-lived small projects |
+| How it's written | Deliberately during work, by people or agents, reviewed like code | Automatically, in the background | Automatically, by indexing | By people or agents; reviewed like other files |
+| Reviewable in PRs | Yes | Requires an export or integration | Review the source documents | Yes |
+| Works across agents | Via files or MCP | Depends on integrations | Depends on integrations | Depends on the readers; AGENTS.md and CLAUDE.md overlap |
+| Survives vendor decisions | Files remain available | Depends on export and hosting | Depends on source retention | Files remain available |
+| Useful for | Reviewed project records | Retaining facts across sessions | Retrieving indexed code or documents | Instructions with host-specific loading |
 
-These are complements, not rivals. Conversation-fact memory is genuinely useful for personal preferences, and retrieval over code is useful for navigation. Repo memory covers the layer neither of them holds: the engineering record, meaning decisions with reasons, rules with scope, and specs with status.
+Storage, retrieval, and approval are separate choices. A vector index can retrieve ADRs if they are among its sources; an MCP memory server can expose a local graph. Project context needs a maintained engineering record, whichever retrieval method you choose. See the [reference MCP memory server](https://github.com/modelcontextprotocol/servers/blob/main/src/memory/README.md) for one implementation.
 
 ## What belongs in repo memory?
 
@@ -55,9 +60,9 @@ Three mechanisms, in increasing order of integration:
 
 1. Plain file reads. The documents are markdown in the repo; any agent can open them. This works with zero setup but relies on the agent noticing the files.
 2. Session hooks. A hook injects a compact index of available documents at the start of every conversation, so the agent knows what exists before it starts guessing.
-3. MCP tools. The agent lists, searches, reads, and writes documents on demand during the session. Context is pulled when needed instead of loaded wholesale, which keeps the context window cost near zero until a document is actually used.
+3. MCP tools. The agent lists, searches, reads, and writes documents on demand during the session. Context is pulled when needed instead of loaded wholesale, so the token cost depends on the index, tool definitions, and documents actually loaded.
 
-The write path matters as much as the read path, because memory that only humans update goes stale. In practice the agent itself should capture decisions and plans as it works, as reviewable diffs rather than silent background writes.
+The write path matters as much as the read path, because the record needs to change when the project does. In practice the agent itself should capture decisions and plans as it works, as reviewable diffs rather than silent background writes.
 
 ## Why git specifically?
 

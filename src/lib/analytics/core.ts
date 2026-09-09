@@ -190,7 +190,8 @@ export function track<K extends AnalyticsEventName>(
   if (queue.length < 50) {
     queue.push({ name, properties, timestamp: new Date() });
   }
-  void loadClient();
+  // setupAnalytics starts the client on interaction, tab hide, or its timer.
+  // Passive section observations must not bypass that delay.
 }
 
 /**
@@ -625,8 +626,8 @@ export function trackArticleCompletion(
 /**
  * Registers automatic instrumentation immediately and defers loading
  * posthog-js until the visitor interacts, hides the tab, or goes idle —
- * whichever happens first. Analytics never competes with first paint, and a
- * visitor who bounces without interacting is still counted.
+ * whichever happens first. Passive observations stay queued during initial rendering. A tab-hide
+ * trigger also attempts to capture visits without interaction.
  */
 export function setupAnalytics(cfg: AnalyticsConfig): void {
   if (config) return;

@@ -2,7 +2,7 @@
 title: "Spec-Driven Development & Context for Cursor — Archcore"
 heading: "Project Context for Cursor"
 description: "Give Cursor structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - project-context
   - spec-driven-development
@@ -17,14 +17,14 @@ faq:
   - question: "Do I need to configure MCP by hand?"
     answer: "Running archcore init wires it for you. If you install the plugin through the marketplace instead, there is a one-time MCP setup: copy the example config into ~/.cursor/mcp.json for all projects, or .cursor/mcp.json for one."
   - question: "Does my code leave my machine?"
-    answer: "No. The MCP server runs locally as a child process and reads a directory in your repository. Document access requires no account or hosted backend."
+    answer: "Archcore reads project documents locally through its stdio MCP server. Document access requires no account or hosted backend. Your coding agent has separate data-handling settings; check those before using it with private code."
 ---
 
 Archcore gives Cursor structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
 
-Cursor 2.5 and later is a **plugin host**, so it gets slash commands, skills, gated tracks, and guardrails on top of the MCP tools and session hooks that every supported agent receives.
+Cursor 2.5 and later is a **plugin host**, so it gets slash commands, skills, gated tracks, and guardrails alongside MCP tools and the hooks supported by Cursor. Hook delivery differs across agents; see the [host matrix](https://docs.archcore.ai/plugin/supported-hosts/).
 
-*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## What Archcore adds to Cursor
 
@@ -75,7 +75,9 @@ Documents carry a type, a status, and named relations (`implements`, `extends`, 
 
 ## Spec-driven development
 
-`/archcore:plan` runs a gated track for work that needs a contract before implementation: idea → PRD → spec → plan. Gates that an existing document already covers are skipped.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+
+For an explicit SDD path, use:
 
 ```
 /archcore:plan sdd checkout redesign
@@ -119,6 +121,8 @@ Cursor has its own mechanisms. They solve adjacent problems, and the distinction
 `archcore init` imports `.cursorrules` and `.cursor/rules/*` as typed documents. Path-scoped rules keep their scope and gain status, history, and relations.
 
 ## Worked example
+
+This is an illustrative scenario. The outcome depends on the agent reading the relevant documents and on review catching violations; it is not a measured comparison.
 
 You ask Cursor to add a new endpoint to the billing service.
 

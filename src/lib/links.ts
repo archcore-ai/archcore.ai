@@ -38,8 +38,6 @@ export const INTERNAL_LINKS = {
   codex: "/codex/",
   githubCopilot: "/github-copilot/",
   geminiCli: "/gemini-cli/",
-  agentsMd: "/agents-md/",
-  claudeMd: "/claude-md/",
 } as const;
 
 export const ANCHORS = {

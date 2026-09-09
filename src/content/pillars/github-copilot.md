@@ -2,7 +2,7 @@
 title: "Project Context for GitHub Copilot — Archcore"
 heading: "Context Engineering for GitHub Copilot"
 description: "Give GitHub Copilot CLI structured project context from Git: specs, architecture decisions, rules, and plans, served over a local MCP server."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - project-context
@@ -21,6 +21,8 @@ faq:
 ---
 
 Archcore gives GitHub Copilot CLI structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
+
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
 Copilot CLI is a **plugin host** with two host-specific constraints that shape how you set it up. Both are covered below rather than buried, because getting either wrong produces an agent with no document tools.
 
@@ -73,7 +75,9 @@ Each document carries a type, a status, and named relations (`implements`, `exte
 
 ## Spec-driven development
 
-`/archcore:plan` runs a gated track: idea → PRD → spec → plan, skipping gates an existing document already covers.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+
+For an explicit SDD path, use:
 
 ```
 /archcore:plan sdd billing webhooks
@@ -103,7 +107,7 @@ The project-level MCP server is what makes everything else work here.
 archcore init --agent copilot --project "$PWD"
 ```
 
-That writes the project-scoped configuration pointing at your repository. The server runs locally over stdio as a child process, with no account and no network call. See the [MCP page](/mcp/) for the tool surface.
+That writes the project-scoped configuration pointing at your repository. The server reads documents locally over stdio as a child process. Document access requires no hosted backend; the [privacy policy](/privacy/) covers installation and update analytics. See the [MCP page](/mcp/) for the tool surface.
 
 ## Compared with Copilot custom instructions
 
@@ -111,14 +115,16 @@ That writes the project-scoped configuration pointing at your repository. The se
 | --- | --- | --- |
 | **Holds** | Preferences for this tool | What the project says is true |
 | **Structure** | Flat text | Typed documents with relations |
-| **Scope** | Repository-wide | Per directory where it applies |
+| **Scope** | Repository instructions or path-specific instruction files | Per-document scope |
 | **Status** | None | `draft → accepted → rejected` |
-| **Rationale** | Absent | Decisions, linked to the rules they produced |
+| **Rationale** | Can be written in the instructions | Decisions linked to the rules they produced |
 | **Other agents** | No | Yes, the same directory |
 
-Custom instructions answer "how should you behave". Project context answers "what is already true here". The second is what a new session, a new teammate, or a different agent needs, and it is the one that has to be reviewable.
+[Copilot custom instructions](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) can describe project knowledge and use path-specific files where supported. Archcore adds explicit document types, status, and relations. Choose that structure when the team needs to trace a rule back to the decision that produced it.
 
 ## Worked example
+
+This is an illustrative scenario. The outcome depends on the agent reading the relevant documents and on review catching violations; it is not a measured comparison.
 
 You ask Copilot to add a new column to the orders table and expose it through the API.
 

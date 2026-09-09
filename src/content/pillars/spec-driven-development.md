@@ -2,7 +2,7 @@
 title: "Spec-Driven Development for AI Coding Agents — Archcore"
 heading: "Spec-Driven Development for AI Coding Agents"
 description: "Use spec-driven development with AI coding agents while keeping specs connected to architecture, decisions, rules, plans, and implementation context."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - project-context
@@ -21,9 +21,13 @@ faq:
 
 **Spec-driven development** is a practice where a written specification defines what should be built before implementation starts, and the result is measured against it. It is an old idea that AI coding agents made urgent again, because an agent will produce something plausible from almost any instruction, and the only way to tell whether the something is right is to have said in advance what right meant.
 
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
+
 The version of the practice that works with coding agents differs from the classic one in a specific way: the spec does not stop being useful when the code lands.
 
-## Why specs came back
+<span id="why-specs-came-back"></span>
+
+## Why use spec-driven development with coding agents?
 
 For most of the last two decades the honest answer to "where is the spec" was that it was in the ticket, or in someone's head, or in a design doc nobody reopened. That was workable while a human wrote every line, because the person writing the code carried the intent in their head as they typed.
 
@@ -65,36 +69,57 @@ Prose specifications fail on agents for the same reason they fail on new enginee
    and MUST NOT create a partial session record.
 ```
 
-Three properties make this usable. Each numbered line carries one obligation, one modal, and one named actor. Error paths are stated rather than implied. And every clause is testable, which means a review can check a diff against it instead of arguing about intent.
+The clauses name the trigger, the API response, and the error paths. In a full contract, split compound obligations into separately numbered requirements. Use [BCP 14](https://www.rfc-editor.org/rfc/rfc8174) to distinguish normative keywords from ordinary prose.
+
+
+## How can you check a spec against code?
+
+Turn a contract clause into an executable check, then prove the check catches a violation. The [session contract example](/examples/session-contract.test.mjs) contains a small in-memory implementation and two Node.js tests for the rate-limit clause above.
+
+The task prompt is: "When a client IP is rate limited, return 429 with a Retry-After header. Preserve session creation below the limit." The implementation returns a response object; it does not run a server, authenticate clients, or calculate rate limits.
+
+Download the source and run it with Node.js 22 or later:
+
+```bash
+curl -fsSL https://archcore.ai/examples/session-contract.test.mjs -o session-contract.test.mjs
+node --test session-contract.test.mjs
+```
+
+Both checks pass. To remove the required header deliberately, run this in a POSIX shell:
+
+```bash
+SESSION_DEMO_OMIT_RETRY_AFTER=1 node --test session-contract.test.mjs
+```
+
+The rate-limit check fails because `Retry-After` is missing; the below-limit check still passes. We ran both commands with Node.js v25.2.0 on September 9, 2026. The downloadable file includes the implementation and assertions so you can inspect the result.
+
+This demonstrates a contract check and a failing mutation. It is not an agent benchmark or a claim that Archcore guarantees compliance. A full API needs additional tests for authentication, storage failures, concurrency, and the actual HTTP response.
 
 ## The spec-driven track
 
-In Archcore, spec-driven development runs as a **gated track**: a short chain where each step produces a typed, linked document.
+Archcore computes the document package from the requested change and the existing project record.
 
-```
-idea  →  prd  →  spec  →  plan  →  implementation
- │        │       │        │
- │        │       │        └── how it gets built, step by step
- │        │       └── the contract the boundary must hold
- │        └── what it must do, and why
- └── what we might build
-```
+| Change | Typical documents |
+| --- | --- |
+| Small fix within existing decisions | No new documents |
+| One capability or API boundary | A spec and an implementation plan |
+| Initiative spanning capabilities | An umbrella PRD, specs for the capabilities, and a plan |
 
-Each gate skips itself when an existing document already covers it, so a well-specified request runs without questions and a vague one stays inside a handful. The chain is reached by describing the work, not by selecting a mode:
+Ask the agent to plan the work in plain language. It checks what is already recorded before deciding which documents are missing. For an explicit SDD path:
 
 ```bash
 /archcore:plan sdd auth redesign
 ```
 
-Two other tracks exist for the cases where the source of requirements is not a product idea: a requirements cascade for market discovery (MRD → BRD → URD) and the ISO 29148 cascade for regulated work (BRS → StRS → SyRS → SRS).
+The expert paths are `sdd`, `sources`, `iso`, and `research`. Use `sources` for market discovery, `iso` for the ISO requirements workflow, and `research` for an investigation. See the [planning reference](https://docs.archcore.ai/plugin/skills/) for their scope.
 
 ## Keeping specs connected after the merge
 
 This is the part that separates a spec practice that survives from one that becomes archaeology.
 
-**The spec lives in the repository**, next to the code it constrains, so a change to the contract is a diff in the same pull request as the change to the behaviour. Nothing has to be kept in sync manually because they move together.
+**The spec lives in the repository**, next to the code it constrains, so a change to the contract is a diff in the same pull request as the change to the behaviour. A reviewer still needs to check that the document and implementation agree; sharing a commit makes that review possible.
 
-**The spec is loaded when the boundary is edited.** Session hooks inject the applicable spec at the moment an agent touches the code it describes, so the contract arrives when it is relevant rather than at the top of a long prompt.
+**The spec is loaded when the boundary is edited.** On hosts with pre-write context injection, hooks deliver the applicable spec before an edit, so the contract arrives when it is relevant rather than at the top of a long prompt.
 
 **The spec is checked against the diff.** Before merge, `/archcore:review` compares the branch against the documents that claim it, and `--drift` looks for the case where the code moved and the spec did not.
 
@@ -138,3 +163,5 @@ Do not specify the system. Specify the next boundary you touch.
 2. **Write its current behaviour as a spec**, not its ideal behaviour. A spec that describes what is true is immediately useful; one that describes an aspiration is a plan in disguise.
 3. **Link it to the decision that explains it**, so the next reader gets the reasoning with the contract.
 4. **Let coverage follow the work.** Every boundary you change gets a spec on the way past. After a quarter, the parts of the system that change most are the parts that are specified, which is the correct distribution.
+
+Read [spec-driven development vs context engineering](/learn/spec-driven-development-vs-context-engineering/) for how contracts and broader project knowledge work together.

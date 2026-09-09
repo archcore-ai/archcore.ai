@@ -117,20 +117,6 @@
           "https://discord.gg/5YC8pdjD",
           "https://t.me/archcore_ai"
         ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Archcore",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Linux, macOS, Windows",
-        "url": "https://archcore.ai",
-        "downloadUrl": "https://archcore.ai/install.sh",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
       }
     ],
     "descriptionKey": "howToDescription"
@@ -151,20 +137,6 @@
           "https://discord.gg/5YC8pdjD",
           "https://t.me/archcore_ai"
         ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Archcore",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Linux, macOS, Windows",
-        "url": "https://archcore.ai",
-        "downloadUrl": "https://archcore.ai/install.sh",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
       }
     ],
     "descriptionKey": "privacyDescription"

@@ -7,13 +7,13 @@ const faqEntry = z.object({
 });
 
 const articleSchema = z.object({
-  title: z.string().max(70),
-  description: z.string().max(170),
+  title: z.string().max(49),
+  description: z.string().max(160),
   pubDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
   /** Rendered as a FAQPage JSON-LD block and a visible FAQ section. */
   faq: z.array(faqEntry).optional(),
-  /** Absolute or site-relative OG image. Defaults to the site-wide card. */
+  /** Absolute or site-relative OG image. Defaults to a generated card using the article title and description. */
   ogImage: z.string().optional(),
   draft: z.boolean().default(false),
 });
@@ -46,10 +46,10 @@ const alternatives = defineCollection({
  * collection.
  */
 const pillarSchema = z.object({
-  title: z.string().max(70),
+  title: z.string().max(60),
   /** Visible H1. Differs from `title` where the SERP intent differs. */
   heading: z.string(),
-  description: z.string().max(170),
+  description: z.string().max(160),
   updatedDate: z.coerce.date(),
   faq: z.array(faqEntry).optional(),
   ogImage: z.string().optional(),
@@ -132,10 +132,10 @@ const recipeEvidenceSchema = z.object({
 });
 
 const integrationSchema = z.object({
-  title: z.string().max(70),
+  title: z.string().max(60),
   /** Visible H1. Differs from `title` where the SERP intent differs. */
   heading: z.string(),
-  description: z.string().max(170),
+  description: z.string().max(160),
   updatedDate: z.coerce.date(),
   /** Recipe id. Matches the entry filename and the URL slug. */
   recipe: z.string(),

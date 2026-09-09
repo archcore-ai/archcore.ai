@@ -50,13 +50,13 @@ export function ContextEngineeringSection() {
           <Trans>Context Engineering</Trans>
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-          <Trans>Engineer the context your coding agents work from</Trans>
+          <Trans>Context engineering for the code being changed</Trans>
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           <Trans>
-            The four commands above are the part you type. The rest happens on
-            its own: when the agent opens a file, Archcore gives it the
-            documents that constrain that file, before the edit.
+            On hosts with pre-write hooks, Archcore delivers the documents that
+            constrain a file before the agent edits it. Other MCP agents can
+            search and read the same documents during the task.
           </Trans>
         </p>
       </div>

@@ -626,3 +626,51 @@ test("editorial closing CTAs fit the full page grid and keep navigation in the s
   await cta.getByRole("link", { name: "Install Archcore →" }).click();
   await expect(page).toHaveURL(/\/how-to-use\/$/);
 });
+
+for (const slug of ["agents-md", "claude-md"]) {
+  test(`${slug} HTML and Markdown routes are retired`, async ({ request }) => {
+    for (const route of [`/${slug}/`, `/${slug}.md`]) {
+      const response = await request.get(route);
+      expect(response.status()).toBe(404);
+    }
+  });
+}
+
+for (const trigger of ["interaction", "idle"] as const) {
+  test(`analytics queues passive views until ${trigger}`, async ({ page }) => {
+    await page.clock.install();
+    let sdkRequests = 0;
+    await page.route("**/_astro/module.*.js", async (route) => {
+      sdkRequests++;
+      await route.fulfill({
+        contentType: "application/javascript",
+        body: `export default {
+          init(key, config) { config.loaded(this); },
+          register() {},
+          capture(name, properties) {
+            (window.__capturedEvents ||= []).push({ name, properties });
+          }
+        };`,
+      });
+    });
+    await page.goto("/?lang=en");
+    await page.clock.runFor(1000);
+    expect(sdkRequests).toBe(0);
+    if (trigger === "interaction") await page.locator("h1").click();
+    else await page.clock.runFor(1600);
+    await expect.poll(() => sdkRequests).toBe(1);
+    await expect
+      .poll(() =>
+        page.evaluate(() => {
+          const events =
+            (
+              window as unknown as {
+                __capturedEvents?: { name: string }[];
+              }
+            ).__capturedEvents ?? [];
+          return events.some((event) => event.name === "section_viewed");
+        })
+      )
+      .toBe(true);
+  });
+}

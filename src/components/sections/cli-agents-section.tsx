@@ -13,7 +13,7 @@ export function CLIAgentsSection() {
     {
       name: "Codex CLI",
       detail: _(
-        msg`MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows.`
+        msg`MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them.`
       ),
     },
     {

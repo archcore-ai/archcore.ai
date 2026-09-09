@@ -2,7 +2,7 @@
 title: "Project Context for Gemini CLI — Archcore"
 heading: "Context Engineering for Gemini CLI"
 description: "Give Gemini CLI structured project context from Git: specs, architecture decisions, rules, and plans, over a local MCP server and session hooks."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - project-context
@@ -11,16 +11,18 @@ faq:
   - question: "Is there an Archcore plugin for Gemini CLI?"
     answer: "No, and you do not need one. The plugin is a command surface for hosts with a plugin runtime; the context layer itself is the CLI. On Gemini CLI you install the CLI, which gives you the MCP tools and session hooks against the same .archcore/ directory every other agent reads."
   - question: "Is the CLI path worse than the plugin path?"
-    answer: "No. They are two entry points into the same context, chosen by the agent you run. The plugin adds slash commands, skills, and guardrails inside four hosts. What actually delivers context, the documents, the MCP server, and the hooks, is the CLI in both cases."
+    answer: "Archcore uses the CLI to serve documents over MCP and configure hooks on Gemini CLI. The plugin adds skills on hosts with a supported plugin runtime. The documents and MCP tools are shared; the available command and hook surfaces depend on the host."
   - question: "Does Archcore replace GEMINI.md?"
     answer: "Not on day one. A flat instruction file is project context in its simplest form. Archcore adds types, per-directory scope, relations, and status, and serves the same knowledge to every other agent you use. archcore init imports the instruction files you already wrote."
   - question: "Which hooks work on Gemini CLI?"
     answer: "The full set. Gemini CLI is one of the five agents with session hooks wired, so the applicable rules and specs are injected before an edit rather than only on request."
   - question: "Does anything leave my machine?"
-    answer: "No. The MCP server runs locally over stdio as a child process of Gemini CLI and reads a directory in your repository. No account, no hosted component, no network call."
+    answer: "Archcore reads project documents locally through its stdio MCP server. Installation and updates send limited analytics unless you opt out, as described in the privacy policy. The coding agent has its own data-handling settings, which are separate from Archcore."
 ---
 
-Archcore gives Gemini CLI structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
+Archcore gives Gemini CLI structured project context from Git: specs, architecture decisions, rules, plans, and project knowledge. Documents are read locally. The [privacy policy](/privacy/) explains installation and update analytics.
+
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
 Gemini CLI runs the **CLI path**: MCP tools plus the full session hook set. There is no plugin for this host, and on the part that matters, delivering context, that changes nothing.
 
@@ -80,7 +82,7 @@ Documents carry a type, a status, and named relations (`implements`, `extends`, 
 
 ## Spec-driven development
 
-The gated tracks are a plugin feature, so on Gemini CLI you drive the same chain through the MCP tools and plain language rather than a slash command. The artifacts are identical: an idea, a PRD, a spec for the boundary, and a plan, linked to each other and to the architecture they belong to.
+On Gemini CLI, ask for the documents the task needs through MCP and plain language. A change to an API contract may need a spec and a plan. A small correction may need neither. Link any new spec to the decisions and architecture it depends on.
 
 Ask for them directly:
 
@@ -115,7 +117,7 @@ Because it is a protocol implementation rather than a per-vendor integration, th
 | | Instruction file | Archcore |
 | --- | --- | --- |
 | **Structure** | One file, prose | Typed documents with relations |
-| **Scope** | Whole repository | Per directory where it applies |
+| **Scope** | Depends on the host and its nested-file support | Per-document scope |
 | **Status** | None | `draft → accepted → rejected` |
 | **Rationale** | Mixed into instructions | Decisions, linked to the rules they produced |
 | **Delivery** | Read whole | Injected when it applies, pulled on demand |

@@ -1,14 +1,15 @@
 ---
-title: "How to Serve Project Context to AI Coding Agents over MCP"
+title: "MCP Server for Project Context: Setup Guide"
 description: "An MCP server for project context lets any agent load your decisions, rules, and specs on demand. Why it beats flat instruction files, and how to set one up."
 pubDate: 2026-07-30
+updatedDate: 2026-09-09
 faq:
   - question: "What is an MCP server for project context?"
     answer: "A local Model Context Protocol server that exposes your project's documents (decisions, rules, specs, plans) to AI coding agents as tools: list, search, read, create, update. The agent pulls context on demand during the session instead of having everything pasted into its prompt up front."
   - question: "Which coding agents can use an MCP context server?"
     answer: "Any MCP-aware agent. For Archcore specifically that means Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, and Cline, all reading the same documents from the same repository."
   - question: "Does serving context over MCP use up the context window?"
-    answer: "Far less than instruction files do. The agent gets a compact index at session start; full documents load only when a tool call actually requests one. A document that is never needed costs nothing."
+    answer: "Yes. Tool definitions, the document index, and retrieved content use context. Selective reads can avoid loading unrelated documents, but savings depend on the task and the host. Measure what actually loads."
   - question: "Can the agent write context back through MCP?"
     answer: "Yes, and it should. Write tools (create, update, link) let the agent record decisions and plans as it works, as normal file diffs you review in git rather than notes lost in chat history."
 ---
@@ -17,17 +18,19 @@ An MCP server for project context exposes your repository's engineering record (
 
 This is a practical guide to that pattern: why it beats flat files, what a good context server exposes, and how to stand one up. The walkthrough uses [Archcore](https://archcore.ai/), which is our tool; the design requirements apply to anything you build or adopt.
 
-*Updated September 9, 2026: Clarified installation and update analytics and the current init-to-review walkthrough.*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified installation and update analytics and the current init-to-review walkthrough.*
 
-## Why serve context over MCP instead of instruction files?
+<span id="why-serve-context-over-mcp-instead-of-instruction-files"></span>
+
+## Why use an MCP server for project context?
 
 Instruction files have two structural problems that get worse as the project grows.
 
-First, they load wholesale. Every line of `CLAUDE.md` or `.cursor/rules/` occupies context in every session, whether the session touches that area or not. The official guidance for Claude Code is to keep `CLAUDE.md` [under 200 lines](/blog/claude-code-memory/) precisely because adherence drops as the file grows. A real project's decisions and specs don't fit in 200 lines.
+A root instruction file can load content the current task does not need. But scoped files already address part of that problem: [Cursor Rules](https://cursor.com/docs/rules) support conditional loading, and Claude Code supports path-scoped rules and nested instruction files. The [CLAUDE.md guidance](/blog/claude-code-memory/) recommends concise startup instructions; 200 lines is a recommendation for CLAUDE.md, not its read limit.
 
-Second, they are per-tool. Claude Code reads `CLAUDE.md` and [does not read AGENTS.md](https://code.claude.com/docs/en/memory#agents-md). Cursor has its own rules format. Copilot has another. The same knowledge gets duplicated and drifts.
+Instruction loaders differ across tools. Claude Code [does not load AGENTS.md directly](https://code.claude.com/docs/en/memory#agents-md), but supports an import or symlink; Cursor reads both AGENTS.md and CLAUDE.md. Reusing files is possible. MCP becomes useful when you also need a common API for document search, validation, and relations.
 
-MCP flips both properties. Context lives in one place, the agent queries it when a task actually needs it, and every MCP-aware host speaks the same protocol. One integration covers Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, and Cline.
+MCP exposes those operations through one server. Archcore can register it with Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, and Cline. Check each host's tool permissions and hook support before relying on automatic delivery.
 
 ## What should a project-context server expose?
 
@@ -52,13 +55,13 @@ Tools alone leave one gap: the agent has to know the documents exist before it t
 
 Session hooks inject a compact index of available documents at the start of every conversation. The agent starts each session knowing what the project has already decided, at the cost of a few hundred tokens.
 
-On-demand loading does the rest. Full documents only enter the context window when a tool call requests one. A spec the session never touches costs zero tokens. This is the property flat files can't have, and it's why the approach scales past the point where `CLAUDE.md` files [start being truncated or ignored](/blog/claude-code-memory/).
+On-demand loading lets the agent fetch individual documents. The session index and tool definitions still use context, and retrieval can return material the task does not need. Measure the actual calls and token usage before claiming savings. The [memory guide](/blog/claude-code-memory/) distinguishes startup instructions from the separate MEMORY.md index limit.
 
 ## What about generic MCP memory servers?
 
-Servers like OpenMemory or Cipher also serve "memory" over MCP, and they solve a different problem: recalling facts from past conversations ("the user prefers pnpm"). That layer is personal and automatic.
+Memory servers vary in what they store and how they retrieve it. Some use local graphs; others use a database or hosted service. The [reference MCP memory server](https://github.com/modelcontextprotocol/servers/blob/main/src/memory/README.md) is one example of portable, structured memory. Evaluate its review, scoping, and export behavior rather than assuming those features are absent.
 
-Project context is a different layer: the [engineering record](/learn/repo-memory/), written deliberately, versioned in git, shared by the whole team. A conversation-memory server can't tell you which ADR blocks a refactor, and a document server shouldn't be storing your personal preferences. Plenty of teams run both.
+Project context is the [engineering record](/learn/repo-memory/): decisions the team accepts, rules with scope, and contracts other code depends on. A memory server can store such information, but storage alone does not establish approval or keep a spec aligned with implementation.
 
 The storage question is where the two diverge hardest. Conversation memory typically lives in a database, local or cloud. Project context belongs in the repository, where it's reviewed in pull requests and survives vendor decisions. Cursor's Memories removal made the case for that [better than we ever could](/blog/cursor-memories-removed/).
 

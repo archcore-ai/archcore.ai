@@ -2,7 +2,7 @@
 title: "Project Context for Codex CLI — Archcore"
 heading: "Context Engineering for Codex CLI"
 description: "Give Codex CLI structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - project-context
@@ -10,21 +10,21 @@ related:
 faq:
   - question: "Which Codex CLI version do I need?"
     answer: "Codex CLI 0.117.0 or later for the plugin. On earlier versions, use the Archcore CLI directly: it gives Codex the MCP tools against the same .archcore/ directory, without the plugin layer."
-  - question: "Why do session hooks need a flag on Codex?"
-    answer: "Codex ships hooks behind an experimental flag, so they run only when you start it with codex --enable hooks. They also do not run on Windows today. MCP tools work either way, so context is still available on demand; what you lose without hooks is the automatic injection before an edit."
+  - question: "How do I enable session hooks on Codex?"
+    answer: "Check the hooks feature on your installed Codex version and review the project and hook trust settings. You can enable hooks with codex --enable hooks. MCP tools remain available without hook injection. The Archcore host reference documents the version-specific setup."
   - question: "Does Archcore replace AGENTS.md?"
     answer: "Not on day one. AGENTS.md is project context in its simplest form: one flat file, read by whatever supports the convention. Archcore adds types, per-directory scope, relations, and status, and serves the same knowledge to every other agent. archcore init imports your AGENTS.md as typed documents."
   - question: "Can I use this in CI?"
     answer: "Yes. The CLI is a single binary with no daemon and no account, so it is scriptable. That is also the reason the CLI path exists independently of any plugin: automation does not run inside a coding host."
   - question: "Does anything leave my machine?"
-    answer: "No. The MCP server runs locally over stdio as a child process and reads a directory in your repository. Document access requires no account or hosted backend."
+    answer: "Archcore reads project documents locally through its stdio MCP server. Installation and updates send limited analytics unless you opt out, as described in the privacy policy. The coding agent has its own data-handling settings, which are separate from Archcore."
 ---
 
 Archcore gives Codex CLI structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
 
 Codex CLI 0.117 and later is a **plugin host**. It also has one host-specific caveat worth knowing before you set it up, covered under hooks below.
 
-*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## What Archcore adds to Codex CLI
 
@@ -50,7 +50,7 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 cd your-project && archcore init
 ```
 
-Then add the plugin:
+When you select Codex in `archcore init`, Archcore installs the plugin for that host. For a separate manual installation:
 
 ```bash
 codex plugin marketplace add archcore-ai/plugin
@@ -58,7 +58,7 @@ codex
 # then run /plugins, open Archcore, select Install plugin
 ```
 
-To enable session hooks, start Codex with the experimental flag:
+If hooks are disabled in your Codex installation, enable them explicitly:
 
 ```bash
 codex --enable hooks
@@ -83,7 +83,9 @@ Documents carry a type, a status, and named relations (`implements`, `extends`, 
 
 ## Spec-driven development
 
-`/archcore:plan` runs a gated track: idea → PRD → spec → plan, with gates skipped when a document already covers them.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+
+For an explicit SDD path, use:
 
 ```
 /archcore:plan sdd payments webhook
@@ -98,12 +100,12 @@ This is the host-specific part, and it is worth being precise rather than optimi
 | | Status on Codex CLI |
 | --- | --- |
 | **MCP tools** | Always available |
-| **Session hooks** | Behind Codex's experimental flag (`codex --enable hooks`) |
-| **Hooks on Windows** | Not available today |
+| **Session hooks** | Require the `hooks` feature to be enabled |
+| **Project and hook trust** | Review and approve both before expecting project hooks to run |
 
 What that means in practice: **MCP is the reliable path on Codex**, and hooks are an improvement on top when your platform and flags allow. Without hooks the agent still reaches every document, it just has to ask rather than being handed the applicable rules before an edit.
 
-If you work on Windows, plan around MCP and use `/archcore:review` before merge as the checkpoint that hooks would otherwise cover continuously.
+Check the [current host instructions](https://docs.archcore.ai/plugin/supported-hosts/#codex-cli) for your version and platform. Use `/archcore:review` before merge to check the change against the documents, whether or not hooks ran during the edit.
 
 ## MCP
 
@@ -123,17 +125,19 @@ Codex reads `AGENTS.md`, and the convention is genuinely useful. It has the limi
 | | AGENTS.md | Archcore |
 | --- | --- | --- |
 | **Structure** | One file, prose | Typed documents with relations |
-| **Scope** | Whole repository | Per directory where it applies |
+| **Scope** | Directory hierarchy through nested AGENTS.md files | Document scope, delivered through supported hooks |
 | **Status** | None | `draft → accepted → rejected` |
 | **Rationale** | Mixed into instructions | Recorded as decisions, linked to the rules they produced |
 | **Delivery** | Read whole | Injected when it applies, pulled on demand |
 | **Other agents** | Whatever supports the convention | Every MCP-aware agent |
 
-The practical break point is size. `AGENTS.md` works well while it is short. Once it passes a few hundred lines, nothing in it says which rule governs which directory, which decision superseded which, or whether a line is binding or a leftover. Those are structural gaps, not writing problems, and a longer file does not close them.
+[AGENTS.md supports nested files](https://agents.md/) with instructions for individual directories. Keep that mechanism when it meets your needs. Typed documents become useful when you need explicit status, links between a decision and a spec, or a shared review workflow beyond instruction-file precedence.
 
 `archcore init` imports `AGENTS.md` as typed documents so you do not start over: conventions become rules, the reasoning behind them becomes decision records.
 
 ## Worked example
+
+This is an illustrative scenario. The outcome depends on the agent reading the relevant documents and on review catching violations; it is not a measured comparison.
 
 You ask Codex to add a retry to the webhook consumer.
 

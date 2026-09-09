@@ -769,6 +769,10 @@ msgstr "Context between commands"
 msgid "Context Engineering"
 msgstr "Context Engineering"
 
+#: src/components/sections/context-engineering-section.tsx:53
+msgid "Context engineering for the code being changed"
+msgstr "Context engineering for the code being changed"
+
 #: src/components/sections/context-engineering-section.tsx:48
 #~ msgid "Context is more than a prompt or a bigger context window. Archcore makes project knowledge explicit, structured, selective, versioned, and available across coding agents."
 #~ msgstr "Context is more than a prompt or a bigger context window. Archcore makes project knowledge explicit, structured, selective, versioned, and available across coding agents."
@@ -1065,8 +1069,8 @@ msgstr "During setup, choose the agents you use. Archcore configures their conne
 #~ msgstr "Eight today via MCP and session hooks: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline. Run archcore mcp install or archcore hooks install to wire each one up."
 
 #: src/components/sections/context-engineering-section.tsx:53
-msgid "Engineer the context your coding agents work from"
-msgstr "Engineer the context your coding agents work from"
+#~ msgid "Engineer the context your coding agents work from"
+#~ msgstr "Engineer the context your coding agents work from"
 
 #: src/components/cta/inline-email-capture.tsx:30
 msgid "Enter your work email"
@@ -1641,12 +1645,16 @@ msgstr "Manual MCP configuration."
 #~ msgstr "MCP + session hooks"
 
 #: src/components/sections/cli-agents-section.tsx:16
-msgid "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
-msgstr "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
+#~ msgid "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
+#~ msgstr "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
 
 #: src/components/sections/cli-agents-section.tsx:17
 #~ msgid "MCP and hooks. Check the hooks feature in your installed Codex version."
 #~ msgstr "MCP and hooks. Check the hooks feature in your installed Codex version."
+
+#: src/components/sections/cli-agents-section.tsx:16
+msgid "MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them."
+msgstr "MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them."
 
 #: src/components/sections/cli-agents-section.tsx:11
 msgid "MCP and session hooks."
@@ -1876,6 +1884,10 @@ msgstr "Nothing is stored where you cannot read or edit it."
 #: src/components/sections/plugin-pillars-section.tsx:47
 #~ msgid "On hosts with pre-write hooks, applicable rules and specs arrive before edits. Session hooks provide a recap of what's decided and in progress. The CLI page lists support by host."
 #~ msgstr "On hosts with pre-write hooks, applicable rules and specs arrive before edits. Session hooks provide a recap of what's decided and in progress. The CLI page lists support by host."
+
+#: src/components/sections/context-engineering-section.tsx:56
+msgid "On hosts with pre-write hooks, Archcore delivers the documents that constrain a file before the agent edits it. Other MCP agents can search and read the same documents during the task."
+msgstr "On hosts with pre-write hooks, Archcore delivers the documents that constrain a file before the agent edits it. Other MCP agents can search and read the same documents during the task."
 
 #: src/components/guide-page-layout.tsx:23
 #: src/components/guide-page-layout.tsx:25
@@ -2645,6 +2657,10 @@ msgstr "Spec-Driven Development & Context Engineering<0/>for AI Coding Agents"
 msgid "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code."
 msgstr "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code."
 
+#: src/components/sections/spec-driven-section.tsx:45
+msgid "Spec-driven development beyond the merge"
+msgstr "Spec-driven development beyond the merge"
+
 #: src/components/pages/plugin.tsx:34
 #: src/components/sections/plugin-pillars-section.tsx:33
 #~ msgid "Spec-driven development with the Archcore plugin"
@@ -2667,8 +2683,8 @@ msgstr "Specs become stale handoff artifacts."
 #~ msgstr "Specs describe what the system must do: interfaces, invariants, edge cases. They sit between PRDs (the \"why\") and plans (the \"how\")."
 
 #: src/components/sections/spec-driven-section.tsx:45
-msgid "Specs that stay connected to implementation"
-msgstr "Specs that stay connected to implementation"
+#~ msgid "Specs that stay connected to implementation"
+#~ msgstr "Specs that stay connected to implementation"
 
 #: src/components/sections/how-it-works-section.tsx:26
 #~ msgid "Specs, decisions, rules, plans, and project knowledge."
@@ -2963,8 +2979,8 @@ msgstr "The decision that already picked the store."
 #~ msgstr "The first fifteen minutes, then the six jobs people run it for."
 
 #: src/components/sections/context-engineering-section.tsx:56
-msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
-msgstr "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
+#~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
+#~ msgstr "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 
 #: src/components/sections/how-to-use-cases-section.tsx:35
 #~ msgid "The jobs"

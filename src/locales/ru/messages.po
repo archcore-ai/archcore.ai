@@ -769,6 +769,10 @@ msgstr "Контекст между командами"
 msgid "Context Engineering"
 msgstr "Context Engineering"
 
+#: src/components/sections/context-engineering-section.tsx:53
+msgid "Context engineering for the code being changed"
+msgstr "Контекстная инженерия для кода, который вы меняете"
+
 #: src/components/sections/context-engineering-section.tsx:48
 #~ msgid "Context is more than a prompt or a bigger context window. Archcore makes project knowledge explicit, structured, selective, versioned, and available across coding agents."
 #~ msgstr "Контекст — это не промпт и не окно побольше. Archcore делает знание о проекте явным, структурным, выборочным, версионируемым и доступным всем агентам разработки."
@@ -1065,8 +1069,8 @@ msgstr "При настройке выберите агентов, которы�
 #~ msgstr "На сегодня восемь — через MCP и хуки сессий: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code и Cline. Запустите archcore mcp install или archcore hooks install, чтобы подключить нужного."
 
 #: src/components/sections/context-engineering-section.tsx:53
-msgid "Engineer the context your coding agents work from"
-msgstr "Спроектируйте контекст, с которым работают ваши агенты"
+#~ msgid "Engineer the context your coding agents work from"
+#~ msgstr "Спроектируйте контекст, с которым работают ваши агенты"
 
 #: src/components/cta/inline-email-capture.tsx:30
 msgid "Enter your work email"
@@ -1641,12 +1645,16 @@ msgstr "Ручная настройка MCP."
 #~ msgstr "MCP + хуки сессии"
 
 #: src/components/sections/cli-agents-section.tsx:16
-msgid "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
-msgstr "MCP и хуки. Проверьте параметр hooks в вашей версии Codex. В Windows хуки не работают."
+#~ msgid "MCP and hooks. Check the hooks feature in your Codex version; hooks do not run on Windows."
+#~ msgstr "MCP и хуки. Проверьте параметр hooks в вашей версии Codex. В Windows хуки не работают."
 
 #: src/components/sections/cli-agents-section.tsx:17
 #~ msgid "MCP and hooks. Check the hooks feature in your installed Codex version."
 #~ msgstr "MCP и хуки. Проверьте параметр hooks в установленной версии Codex."
+
+#: src/components/sections/cli-agents-section.tsx:16
+msgid "MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them."
+msgstr "MCP и хуки. Проверьте версию Codex, отметьте проект как доверенный и разрешите хуки, прежде чем рассчитывать на их работу."
 
 #: src/components/sections/cli-agents-section.tsx:11
 msgid "MCP and session hooks."
@@ -1872,6 +1880,10 @@ msgstr "Ничего не хранится там, где вы не можете
 #: src/components/sections/plugin-pillars-section.tsx:47
 #~ msgid "On hosts with pre-write hooks, applicable rules and specs arrive before edits. Session hooks provide a recap of what's decided and in progress. The CLI page lists support by host."
 #~ msgstr "Если среда поддерживает хуки перед записью, нужные правила и спецификации поступают до правок. Хуки сессии дают сводку принятых решений и текущей работы. Поддержка для каждой среды указана на странице CLI."
+
+#: src/components/sections/context-engineering-section.tsx:56
+msgid "On hosts with pre-write hooks, Archcore delivers the documents that constrain a file before the agent edits it. Other MCP agents can search and read the same documents during the task."
+msgstr "Если среда поддерживает хуки перед записью, Archcore передаёт документы с требованиями к файлу до того, как агент его изменит. Остальные MCP-агенты могут находить и читать те же документы во время работы."
 
 #: src/components/guide-page-layout.tsx:23
 #: src/components/guide-page-layout.tsx:25
@@ -2653,6 +2665,10 @@ msgstr "Spec-Driven Development и контекстная инженерия<0/>
 msgid "Spec-driven development and context engineering for AI coding agents. Keep specs, architecture, decisions, rules, and plans versioned with code."
 msgstr "Spec-driven разработка и context engineering для AI-агентов. Храните спецификации, архитектуру, решения, правила и планы вместе с кодом в Git."
 
+#: src/components/sections/spec-driven-section.tsx:45
+msgid "Spec-driven development beyond the merge"
+msgstr "Разработка по спецификациям после слияния кода"
+
 #: src/components/pages/plugin.tsx:34
 #: src/components/sections/plugin-pillars-section.tsx:33
 #~ msgid "Spec-driven development with the Archcore plugin"
@@ -2675,8 +2691,8 @@ msgstr "Спецификации превращаются в устаревши�
 #~ msgstr "Спеки описывают, что система обязана делать: интерфейсы, инварианты, крайние случаи. Они стоят между PRD (это «зачем») и планами (это «как»)."
 
 #: src/components/sections/spec-driven-section.tsx:45
-msgid "Specs that stay connected to implementation"
-msgstr "Спецификации, которые не отрываются от реализации"
+#~ msgid "Specs that stay connected to implementation"
+#~ msgstr "Спецификации, которые не отрываются от реализации"
 
 #: src/components/sections/how-it-works-section.tsx:26
 #~ msgid "Specs, decisions, rules, plans, and project knowledge."
@@ -2971,8 +2987,8 @@ msgstr "Решение, которое уже выбрало хранилище.
 #~ msgstr "Первые пятнадцать минут, а дальше шесть задач, ради которых его запускают."
 
 #: src/components/sections/context-engineering-section.tsx:56
-msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
-msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
+#~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
+#~ msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
 
 #: src/components/sections/how-to-use-cases-section.tsx:35
 #~ msgid "The jobs"

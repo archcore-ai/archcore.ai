@@ -42,7 +42,7 @@ export function SpecDrivenSection() {
           <Trans>Spec-Driven Development</Trans>
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-          <Trans>Specs that stay connected to implementation</Trans>
+          <Trans>Spec-driven development beyond the merge</Trans>
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           <Trans>

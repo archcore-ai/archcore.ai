@@ -12,9 +12,9 @@ interface ListingItem {
 }
 
 interface Props {
-  /** Full <title>; keep ≤70 characters so SERPs don't truncate it. */
+  /** Full <title>; the site limit is 60 characters. */
   title: string;
-  /** Meta description; keep ≤170 characters. */
+  /** Meta description; keep ≤160 characters. */
   description: string;
   /** Section path with slashes, e.g. "/learn/". */
   sectionPath: string;

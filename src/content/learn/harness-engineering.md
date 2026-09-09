@@ -1,10 +1,11 @@
 ---
-title: "What Is Harness Engineering? Guides, Sensors, Project Context"
-description: "Harness engineering designs the guides and sensors around an AI coding agent. What a harness is, how it relates to context engineering, and which parts are yours."
+title: "What Is Harness Engineering?"
+description: "Harness engineering designs the tools, guidance, and checks around an AI coding agent. See how it relates to context engineering and what your team controls."
 pubDate: 2026-08-10
+updatedDate: 2026-09-09
 faq:
   - question: "What is the difference between harness engineering and prompt engineering?"
-    answer: "Prompt engineering optimizes the instruction you hand a model for one turn. Harness engineering designs everything around the model: the tools it can call, the constraints it is given before it acts, and the checks that run after it acts. A better prompt improves one response; a better harness improves every response, including the ones you never read."
+    answer: "Prompt engineering designs task, system, and tool instructions, which can be reused across turns. Harness engineering also covers tool access, execution controls, and checks on the output. Prompt quality is one part of that surrounding system."
   - question: "Is harness engineering replacing context engineering?"
     answer: "No, and the canonical source says the opposite. Birgitta Böckeler, writing on martinfowler.com, states that context engineering provides the means to make guides and sensors available to the agent, and that engineering a harness for a coding agent is a specific form of context engineering. Several vendor posts present a prompt to context to harness progression; that framing is not in the source it cites."
   - question: "What is the difference between a harness and an agent loop?"
@@ -12,14 +13,18 @@ faq:
   - question: "Which parts of the harness do I build, and which come with my agent?"
     answer: "Your coding agent ships a default harness: a loop, file and shell tools, permissions, and a sandbox. What it cannot ship is anything specific to your project, because it has never seen your repository. The architecture your code follows, the decisions already settled, the rules your team enforces, and the specs your boundaries must hold are the half of the harness only you can build."
   - question: "Where should the project half of a harness live?"
-    answer: "In the repository it describes. A guide that lives in a vendor's cloud cannot be reviewed in a pull request, cannot be versioned with the code it constrains, and does not travel when you switch agents. Keeping it in git makes the harness reviewable, portable, and owned by the team."
+    answer: "Git is a practical place for project guidance when the team already reviews code there. Hosted storage can also work if it provides review, revision history, and links to the code version. The requirement is a maintained, accessible record."
 ---
 
-**Harness engineering** is the practice of designing everything around an AI coding agent except the model itself: the tools it can call, the guidance it receives before it acts, and the checks that verify what it produced. The term was named and systematized in early 2026, and the shorthand that made it stick is Mitchell Hashimoto's formula, **Agent = Model + Harness**.
+**Harness engineering** means designing the tools, guidance, and checks around an AI coding model. [Birgitta Böckeler's account](https://martinfowler.com/articles/harness-engineering.html) describes guidance before the agent acts and checks on its output.
+
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
 The point of the discipline is simple. You cannot retrain the model, but you can change almost everything else about the conditions it works under, and those conditions decide whether an agent is useful on real work or merely impressive in a demo.
 
-## What is in a harness?
+<span id="what-is-in-a-harness"></span>
+
+## What does harness engineering cover?
 
 The clearest taxonomy comes from Birgitta Böckeler, writing on [martinfowler.com](https://martinfowler.com/articles/harness-engineering.html). It splits the harness into two kinds of control:
 
@@ -36,11 +41,11 @@ These three are often presented as a progression, where each supersedes the last
 
 | | What it designs | Scope | What it cannot do |
 |---|---|---|---|
-| **Prompt engineering** | The instruction for one turn | A single request | Survive the end of the conversation |
-| **Context engineering** | What knowledge the agent has, and when | Every turn, every session | Verify what the agent produced |
+| **Prompt engineering** | Task, system, and tool instructions | A request or reusable workflow | Supply facts that were never recorded |
+| **Context engineering** | What information the agent has, and when | Retrieval, tools, and state across a task | Establish correctness without checks |
 | **Harness engineering** | The guides and sensors around the model | The whole agent, including its tools and checks | Change the model |
 
-Böckeler is explicit that context engineering provides the means to make guides and sensors available to the agent, and that engineering a harness for a coding agent is a specific form of context engineering. The two are nested, not sequential. Prompt engineering is the narrowest of the three: still useful, but it operates on one turn while the other two operate on the system.
+Böckeler is explicit that context engineering provides the means to make guides and sensors available to the agent, and that engineering a harness for a coding agent is a specific form of context engineering. The two are nested, not sequential. Prompt design also includes reusable system and tool instructions, so it can affect many turns. Define which controls you mean when comparing these terms.
 
 ## What about loop engineering?
 
@@ -68,8 +73,8 @@ Two properties decide whether the project half of a harness holds up over time.
 
 **It has to be structured.** A single instruction file is a guide, technically, and it works until it becomes a wall of text with no way to say which rule governs which directory or which decision superseded which. Typed documents with relations, status, and history scale where flat files stop. This is the same argument as [structured project context versus flat instruction files](/learn/repo-memory/).
 
-**It has to live in the repository.** A guide stored in a vendor's cloud cannot be reviewed in a pull request, cannot be versioned alongside the code it constrains, and does not travel when your team switches agents. Keeping the harness in git makes it reviewable, portable, and owned by the team rather than by whichever tool happened to write it.
+**Keep the review process close to the code.** Git lets a guide change in the same pull request as the implementation. A hosted system can also provide review and versioning, but needs an explicit association with the code revision it describes.
 
-This is what [Archcore](https://archcore.ai/) is built for, and yes, it is our tool. Specs, architecture, decisions, rules, and plans live as typed Markdown in a `.archcore/` directory, versioned with the code. Session hooks inject the applicable guides when the agent edits a file, so guidance arrives at the moment of the edit rather than at the top of a long prompt. The [CLI](https://archcore.ai/cli/) serves them to any [MCP](https://modelcontextprotocol.io/) aware agent, and the [plugin](https://archcore.ai/plugin/) adds review that checks a branch against the decisions it claims to follow, which is the inferential sensor half of the same taxonomy.
+This is what [Archcore](https://archcore.ai/) is built for, and yes, it is our tool. Specs, architecture, decisions, rules, and plans live as typed Markdown in a `.archcore/` directory, versioned with the code. On hosts with pre-write context injection, hooks deliver applicable guides before an edit, so guidance arrives at the moment of the edit rather than at the top of a long prompt. The [CLI](https://archcore.ai/cli/) serves them to any [MCP](https://modelcontextprotocol.io/) aware agent, and the [plugin](https://archcore.ai/plugin/) adds review that checks a branch against the decisions it claims to follow, which is the inferential sensor half of the same taxonomy.
 
 The model is not yours to change. The project half of the harness is, and it is the half that knows what your system is.

@@ -1,4 +1,6 @@
 ---
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { LINKS } from "../lib/links";
 import ClosingCta from "../components/ClosingCta.astro";
 import SiteLayout from "./SiteLayout.astro";
 
@@ -35,7 +37,7 @@ const [articleSection = "blog", articleSlug = ""] = Astro.url.pathname
   .filter(Boolean);
 const image = ogImage
   ? new URL(ogImage, SITE_URL).href
-  : `${SITE_URL}/og-image.png`;
+  : `${SITE_URL}/og/${articleSection}/${articleSlug}.png`;
 const pageTitle = `${title} | Archcore`;
 const modified = updatedDate ?? pubDate;
 
@@ -58,7 +60,7 @@ const articleSchema = {
   author: {
     "@type": "Organization",
     name: "Archcore",
-    url: SITE_URL,
+    url: LINKS.org,
   },
   publisher: {
     "@type": "Organization",
@@ -126,11 +128,28 @@ const faqSchema =
     class:list={["page page--reading", { "page--with-toc": toc.length > 2 }]}
   >
     <article class="article">
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          {
+            name:
+              articleSection === "blog"
+                ? "Blog"
+                : articleSection === "learn"
+                  ? "Learn"
+                  : "Alternatives",
+            href: `/${articleSection}/`,
+          },
+          { name: title, href: Astro.url.pathname },
+        ]}
+      />
       <h1>{title}</h1>
       <p class="article__meta">
         Published {fmt(pubDate)}
         {updatedDate && <> · Updated {fmt(updatedDate)}</>}
-        {" "}· Archcore team
+        {" "}· <a href={LINKS.org} target="_blank" rel="noopener noreferrer"
+          >Archcore team</a
+        >
       </p>
       <slot />
       {

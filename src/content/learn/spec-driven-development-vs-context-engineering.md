@@ -2,24 +2,29 @@
 title: "Spec-Driven Development vs Context Engineering"
 description: "Spec-driven development defines intent. Context engineering supplies the understanding needed to execute it. Why a spec is one part of context, not the whole."
 pubDate: 2026-08-10
+updatedDate: 2026-09-09
 faq:
   - question: "Is spec-driven development a kind of context engineering?"
     answer: "A spec is one artifact within project context, so in that sense yes. But the practices differ in what they optimize. Spec-driven development is about defining intent precisely before implementation. Context engineering is about what the agent knows while implementing, of which the spec is one piece among architecture, decisions, rules, and plans."
   - question: "Can I do spec-driven development without context engineering?"
-    answer: "You can, and the result is a common failure: a precise spec implemented in a way that fits no part of the existing system. The contract is satisfied and the code still has to be rewritten, because nothing told the agent where this kind of code lives here or which decision the obvious implementation violates."
+    answer: "Yes. A self-contained spec may supply enough information for a small task. In an existing system, check whether it also provides or links the architecture, conventions, and decisions the implementation must respect."
   - question: "Can I do context engineering without specs?"
     answer: "Yes, and for many teams that is the right starting point. Architecture, decisions, and scoped rules deliver value immediately. Specs earn their cost at boundaries other code depends on, which is a subset of the system rather than all of it."
   - question: "Which should I start with?"
     answer: "Context, unless you are about to change a boundary other teams depend on. Writing down the decision you keep re-explaining pays off on the next session. Specifying a boundary nobody depends on is cost with no reader."
   - question: "What happens to a spec after the feature ships?"
-    answer: "This is where the two practices meet. A spec treated as a handoff artifact goes stale the day it merges. A spec kept as project context stays useful: it is loaded when the boundary is edited and it is what a review measures the diff against."
+    answer: "Keep a useful spec with the code, update it when the contract changes, and use it in review. On hosts with pre-write context injection, Archcore can also deliver it before an edit. A spec stays current only if the team maintains it."
 ---
 
 **Spec-driven development defines intent. Context engineering supplies the broader understanding required to execute that intent correctly.**
 
-That single sentence is most of the answer. The rest of this page is why the distinction is worth holding onto, and what goes wrong when it collapses in either direction.
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
-## What each practice optimizes
+A spec is one input to the agent. The comparison below separates the work of defining a contract from the work of supplying that contract with the relevant project background. [GitHub Spec Kit](https://github.com/github/spec-kit) illustrates specification-led workflows; [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) describes the broader context-management problem.
+
+<span id="what-each-practice-optimizes"></span>
+
+## Spec-driven development vs context engineering: what differs?
 
 | | Spec-driven development | Context engineering |
 | --- | --- | --- |
@@ -33,7 +38,7 @@ Note the two failure modes at the bottom. They are opposite, and each practice i
 
 ## What a spec cannot tell the agent
 
-A specification for a session API can be precise, testable, and complete about behaviour. It still does not say:
+A specification for a session API can define behavior precisely while leaving these implementation constraints unstated:
 
 - where in this repository that kind of code lives
 - which library the team already chose, and which it rejected last quarter
@@ -41,13 +46,13 @@ A specification for a session API can be precise, testable, and complete about b
 - which prior decision the obvious implementation would violate
 - what is already half-built on another branch
 
-None of that belongs in the spec. Putting it there would make the contract unreadable and would duplicate knowledge that applies to far more than one boundary. It belongs in [project context](https://archcore.ai/project-context/), which is the broader set.
+A spec can include these constraints or link to them. Shared background is usually easier to maintain once, with references from the contracts that depend on it. It belongs in [project context](https://archcore.ai/project-context/), which is the broader set.
 
 ## What context cannot tell the agent
 
 The reverse gap is just as real, and it is the one teams hit after their context practice matures.
 
-Architecture, decisions, and rules describe how the system *is*. They say nothing about what a new feature is supposed to *do*. An agent that knows your conventions perfectly will still build the wrong thing if nobody stated what "right" meant. Context makes an implementation fit; a spec makes it correct.
+Architecture, decisions, and rules describe how the system *is*. They may leave the intended behavior of a new feature unspecified. An agent that knows your conventions perfectly will still build the wrong thing if nobody stated what "right" meant. Context helps the agent account for the system; the spec supplies criteria for checking the requested behavior. Tests and review still establish whether the implementation meets them.
 
 ## The collapse in both directions
 
@@ -77,14 +82,14 @@ The practices converge at exactly the point where spec practices usually fail.
 
 A spec written as a handoff artifact stops being read the day the feature ships. Six weeks later the code and the spec disagree and nobody knows which is wrong.
 
-A spec kept as project context does not have that problem, because it is subject to the same mechanisms as everything else in the repository:
+Keeping a spec as project context gives the team mechanisms to detect and address drift:
 
-- It lives next to the code it constrains, so it changes on the same branch.
-- It is loaded when the agent edits the boundary it describes.
+- It lives next to the code it constrains, so both can change on the same branch.
+- It can be retrieved during a task or delivered before an edit on hosts with pre-write context injection.
 - It is what a review measures the diff against.
 - It has a status, so a superseded spec is visibly superseded.
 
-**Context engineering is what gives a spec an afterlife.** Without it, spec-driven development produces good documents that rot on a schedule.
+**A spec remains useful after release when the team keeps reading and maintaining it.** Storage and retrieval make that workflow possible; they do not keep the document current on their own.
 
 ## Practical sequencing
 
@@ -99,7 +104,7 @@ The distribution this produces is the correct one: the parts of the system that 
 
 ## Reading further
 
-- [Spec-driven development for AI coding agents](https://archcore.ai/spec-driven-development/): what a spec is and is not, EARS clause form, and the gated track
+- [Spec-driven development for AI coding agents](https://archcore.ai/spec-driven-development/): what a spec is and is not, EARS clause form, and the computed planning routes
 - [Context engineering for AI coding agents](https://archcore.ai/context-engineering/): the five properties and why selective delivery matters most
 - [Project context](https://archcore.ai/project-context/): what belongs in each document type
 

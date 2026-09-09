@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/inter";
+import interLatinFont from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 import "@fontsource-variable/jetbrains-mono";
 import "../index.css";
 import "../styles/content.css";
@@ -19,6 +20,13 @@ const { localizable = false } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <ThemeScript />
+    <link
+      rel="preload"
+      href={interLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta

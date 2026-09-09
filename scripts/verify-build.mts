@@ -57,7 +57,22 @@ const llms = fs.readFileSync("public/llms.txt", "utf8");
 for (const key of ["definition", "expanded", "delivery"] as const) {
   check(llms.includes(productCopy[key].message), `llms.txt: shared ${key}`);
 }
+const titles = new Set<string>();
+const descriptions = new Set<string>();
 for (const [route, $] of pages) {
+  const title = $("title").text();
+  const description = $("meta[name=description]").attr("content") ?? "";
+  check($("title").length === 1 && title.length > 0 && title.length <= 60, `${route}: title must have 1–60 characters`);
+  check($("meta[name=description]").length === 1 && description.length > 0 && description.length <= 160, `${route}: description must have 1–160 characters`);
+  check(!titles.has(title), `${route}: unique title`);
+  check(!descriptions.has(description), `${route}: unique description`);
+  titles.add(title);
+  descriptions.add(description);
+  const ogImage = $('meta[property="og:image"]').attr("content");
+  if (ogImage?.startsWith("https://archcore.ai/")) {
+    check(fs.existsSync(path.join(root, new URL(ogImage).pathname)), `${route}: OG image exists`);
+  }
+
   const prose = normalize(
     $("main").clone().find("script, style").remove().end().text()
   );
@@ -242,6 +257,21 @@ for (const [route, $] of pages) {
   check(new Set(ids).size === ids.length, `${route}: unique IDs`);
   for (const script of $('script[type="application/ld+json"]')) {
     const schema = JSON.parse($(script).text());
+    if (schema["@type"] === "Article" || schema["@type"] === "WebPage") {
+      if (schema.dateModified) {
+        const lastmod = sitemap("url").filter((_, el) => sitemap(el).find("loc").text() === `https://archcore.ai${route}`).find("lastmod").text();
+        check(lastmod === schema.dateModified.slice(0, 10), `${route}: sitemap and schema modification dates agree`);
+      }
+    }
+    if (schema["@type"] === "Article") {
+      check($("nav[aria-label=Breadcrumb]").length === 1, `${route}: visible article breadcrumbs`);
+      check(new Date(schema.dateModified) >= new Date(schema.datePublished), `${route}: updated date follows publication`);
+    }
+    if (schema["@type"] === "BreadcrumbList") {
+      for (const item of schema.itemListElement.slice(0, -1)) {
+        check($(`nav a[href="${new URL(item.item).pathname}"]`).length > 0, `${route}: breadcrumb link matches schema`);
+      }
+    }
     if (schema["@type"] === "FAQPage") {
       for (const question of schema.mainEntity) {
         check(
@@ -364,6 +394,24 @@ check(
     !fs.existsSync(path.join(root, "teams/getting-started/index.html")),
   "Removed team setup route must not be published"
 );
+for (const slug of ["agents-md", "claude-md"]) {
+  check(!routes.includes(`/${slug}/`) && !fs.existsSync(path.join(root, slug, "index.html")) && !fs.existsSync(path.join(root, `${slug}.md`)), `${slug}: retired HTML and Markdown routes stay unpublished`);
+  check(!llms.includes(`https://archcore.ai/${slug}/`), `${slug}: retired route absent from llms.txt`);
+}
+const reached = new Set<string>(["/"]);
+const pending = ["/"];
+while (pending.length) {
+  const route = pending.shift()!;
+  const $ = pages.get(route)!;
+  for (const a of $("a[href]")) {
+    const url = new URL($(a).attr("href")!, `https://archcore.ai${route}`);
+    if (url.origin === "https://archcore.ai" && pages.has(url.pathname) && !reached.has(url.pathname)) {
+      reached.add(url.pathname);
+      pending.push(url.pathname);
+    }
+  }
+}
+for (const route of routes) check(reached.has(route), `${route}: reachable from home through HTML links`);
 if (errors.length)
   throw new Error(`Build verification failed:\n${errors.join("\n")}`);
 console.log(

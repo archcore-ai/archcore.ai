@@ -2,13 +2,14 @@
 title: "Cursor Removed Memories: What to Use Instead"
 description: "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep project context in Git."
 pubDate: 2026-07-29
+updatedDate: 2026-09-09
 faq:
   - question: "Why did Cursor remove Memories?"
     answer: "Cursor never gave a public reason. The removal shipped in v2.1 (November 21, 2025) without a changelog entry. Staff confirmed on the official forum that the feature was intentionally removed starting from version 2.1.x."
   - question: "How do I recover my old Cursor memories?"
     answer: "Open the command palette and run Export memories to save them as an .mdc file, then move the content into Project Rules (.cursor/rules/) or User Rules. If leftover memories still leak into your agent's context, Cursor staff advised downgrading to 2.0.77, deleting them there, and upgrading back."
   - question: "Does Cursor have a memory feature in 2026?"
-    answer: "No. As of Cursor 3.11 (July 2026) there is no automatic memory. Cursor offers Project Rules, User Rules, Team Rules, AGENTS.md support, and Agent Skills, all of them manually authored."
+    answer: "No. As of Cursor 3.11 (July 2026) there is no automatic memory. Cursor offers Project Rules, User Rules, Team Rules, AGENTS.md support, and Agent Skills, with rules and skills authored by people or agents rather than the retired Memories capture flow."
   - question: "What is the best replacement for Cursor Memories?"
     answer: "It depends on what you actually used it for. Static preferences belong in Rules. Automatic cross-session recall needs an MCP memory server. If you want memory that is versioned with your code, reviewable in pull requests, and shared across agents, keep it as structured documents in your repository."
 ---
@@ -17,7 +18,7 @@ Cursor removed its Memories feature in version 2.1, released November 21, 2025, 
 
 One disclosure before we start: [Archcore](https://archcore.ai/) is our product, and it appears in the comparison below. Read the last section with that in mind.
 
-*Updated September 9, 2026: Clarified Archcore’s project-context framing and the explicit step for recording decisions.*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified Archcore’s project-context framing and the explicit step for recording decisions.*
 
 ## What happened to Cursor Memories?
 
@@ -41,11 +42,11 @@ If your workflow depended on Memories, six months of accumulated context disappe
 
 ## What does Cursor offer instead?
 
-Cursor's [current context toolbox](https://cursor.com/docs/context/rules) has four mechanisms, all manually authored:
+Cursor's [current context toolbox](https://cursor.com/docs/context/rules) has these instruction mechanisms:
 
 | Mechanism | What it is | Limits |
 |---|---|---|
-| Project Rules | `.cursor/rules/*.mdc`, versioned in git, four activation modes (always, intelligent, glob-scoped, manual) | Static; the agent never updates them itself. Docs recommend staying under 500 lines per rule, and plain `.md` files in the folder are ignored |
+| Project Rules | `.cursor/rules/*.mdc`, versioned in git, four activation modes (always, intelligent, glob-scoped, manual) | Authored files; the agent can create or edit them on request. Docs recommend staying under 500 lines per rule, and plain `.md` files in the folder are ignored |
 | User Rules | Global personal preferences in settings | Not in git, not shared with the team |
 | Team Rules | Centrally managed rules ([since 1.7](https://cursor.com/changelog/1-7)) | Live in the Cursor dashboard, not your repo. Team/Enterprise plans only |
 | AGENTS.md | Plain-markdown instructions, nested files supported | No frontmatter scoping, and no global AGENTS.md ([open feature request](https://forum.cursor.com/t/support-global-agents-md/150406)) |
@@ -54,7 +55,7 @@ Cursor 2.4 (January 2026) also added [Agent Skills](https://cursor.com/changelog
 
 ## What did Memories do that Rules don't?
 
-The point of Memories was automatic capture. A background process watched your sessions, proposed facts worth remembering, and you approved or rejected them. Rules invert that: nothing gets remembered unless someone sits down and writes it.
+Memories used a background capture flow with user approval. Rules are explicit instruction files. You can ask the agent to create or update them; [Cursor documents `/create-rule`](https://cursor.com/docs/rules). That differs from relying on the retired background Memories feature.
 
 To be fair, Memories earned plenty of criticism while it existed. The beta required Privacy Mode off (staff [acknowledged the training-data concern](https://forum.cursor.com/t/0-51-memories-feature/98509) directly), memories were tied to your account rather than the project, they [vanished on window reloads](https://forum.cursor.com/t/memories-get-deleted-when-reloading-window/137462), didn't persist in [dev containers](https://forum.cursor.com/t/cursor-memories-are-not-persistent-dev-container/122460), and there was no import/export until the export command appeared for migration. The feature was opaque in exactly the way that made its removal painful.
 

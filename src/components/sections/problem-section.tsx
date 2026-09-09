@@ -13,7 +13,7 @@ import { SectionContainer } from "@/components/section-container";
  * second, cross-agent the third. Of the two cut, "architecture and conventions
  * get re-explained, every session" restated the hero's supporting promise one
  * screen below it, and "instruction files grow into walls of text" is argued
- * where it converts, in the FAQ and on /claude-md/ and /agents-md/. The static
+ * where it converts, in the FAQ and the instruction-file comparisons in the content hub. The static
  * crawler body keeps the CLAUDE.md and AGENTS.md sentence.
  *
  * A left rail rather than bullets: the list sits under a centred heading, and

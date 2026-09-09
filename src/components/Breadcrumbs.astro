@@ -1,0 +1,59 @@
+---
+interface Props {
+  items: { name: string; href: string }[];
+}
+const { items } = Astro.props;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: new URL(item.href, "https://archcore.ai").href,
+  })),
+};
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {
+      items.map((item, index) => (
+        <li>
+          {index === items.length - 1 ? (
+            <span aria-current="page">{item.name}</span>
+          ) : (
+            <a href={item.href}>{item.name}</a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>
+<style>
+  .breadcrumbs {
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+  }
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.65rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .breadcrumbs li {
+    margin: 0;
+  }
+  .breadcrumbs li + li::before {
+    content: "/";
+    margin-right: 0.65rem;
+    opacity: 0.5;
+  }
+</style>

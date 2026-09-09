@@ -2,7 +2,7 @@
 title: "Project Context for AI Coding Agents — Archcore"
 heading: "Project Context for AI Coding Agents"
 description: "Give AI coding agents persistent project context that lives in Git: specs, architecture decisions, rules, plans, and project knowledge."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - git-native-context
@@ -21,6 +21,8 @@ faq:
 ---
 
 **Project context** is the knowledge about a specific codebase that an AI coding agent needs and cannot obtain by reading the code: the architecture and the reasoning behind its shape, the decisions already made, the rules the team enforces, the contracts its boundaries must hold, and the work currently in flight.
+
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
 It is the answer to a question every agent session asks implicitly and no repository answers: *what is already true here?*
 
@@ -135,3 +137,5 @@ The instinct is to document the system. Resist it: a large first pass produces d
 5. **Review it in pull requests** so it stays true.
 
 You will know it is working when the agent stops asking about the things you already settled, and when a teammate's session starts from the same understanding as yours.
+
+Compare [agent memory and project context](/learn/agent-memory-vs-project-context/) before choosing what to store and how the team will review it.

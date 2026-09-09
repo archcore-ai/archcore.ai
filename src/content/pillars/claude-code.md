@@ -2,7 +2,7 @@
 title: "Context Engineering for Claude Code — Archcore"
 heading: "Persistent Project Context for Claude Code"
 description: "Give Claude Code structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - context-engineering
   - project-context
@@ -13,14 +13,16 @@ faq:
   - question: "Does this fill up Claude Code's context window?"
     answer: "No. The session opens with a compact index of available documents rather than their contents. Full documents are pulled on demand over MCP through search, relations, and single reads, and the pre-write hook injects only the rules and specs that apply to the file being edited."
   - question: "Do I need the plugin, or is the CLI enough?"
-    answer: "Either works, and both read the same .archcore/ directory. The plugin adds slash commands, skills, gated tracks, and guardrails inside Claude Code. The CLI gives you the MCP tools and session hooks directly, which is what you want for scripting or CI."
+    answer: "The CLI handles project setup, MCP tools, and hooks. The plugin adds skills for planning, documentation, and review using that CLI and the same project documents. Select Claude Code during archcore init to install and configure the supported components."
   - question: "Does anything leave my machine?"
-    answer: "No. The MCP server runs locally as a child process of Claude Code and reads a directory in your repository. There is no account, no hosted component, and no network call."
+    answer: "Archcore reads project documents locally through its stdio MCP server. Installation and updates send limited analytics unless you opt out, as described in the privacy policy. The coding agent has its own data-handling settings, which are separate from Archcore."
   - question: "What happens in a fresh session?"
     answer: "The session-start hook gives Claude Code a recap of what is decided and what is in progress, plus the document index. You do not re-explain the architecture, and you do not run a command to load context."
 ---
 
-Archcore gives Claude Code structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
+Archcore gives Claude Code structured project context from Git: specs, architecture decisions, rules, plans, and project knowledge. Documents are read locally. The [privacy policy](/privacy/) explains installation and update analytics.
+
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
 Claude Code is Archcore's **production plugin host**. It gets the full surface: slash commands, skills, gated tracks, guardrails, MCP tools, and session hooks.
 
@@ -48,7 +50,7 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 cd your-project && archcore init
 ```
 
-Then add the plugin from inside Claude Code:
+When you select Claude Code in `archcore init`, Archcore installs the plugin for that host. If you need to install the plugin separately, run these commands inside Claude Code:
 
 ```
 /plugin marketplace add archcore-ai/plugin
@@ -57,7 +59,7 @@ Then add the plugin from inside Claude Code:
 
 `archcore init` scaffolds `.archcore/`, registers the MCP server, installs the session hooks, and imports the `CLAUDE.md` you already wrote.
 
-Prefer no plugin? The CLI alone gives Claude Code MCP tools and hooks. Both paths read the same directory.
+The CLI provides setup, MCP tools, and hooks. The plugin adds the planning, documentation, and review skills that use those tools and the same project documents.
 
 ## Project context
 
@@ -78,7 +80,9 @@ Each document has a type, a status, and named relations (`implements`, `extends`
 
 ## Spec-driven development
 
-For work that needs a specification before implementation, `/archcore:plan` runs a gated track: idea → PRD → spec → plan. Each gate skips itself when a document already covers it, so a well-specified request runs without questions.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+
+For an explicit SDD path, use:
 
 ```
 /archcore:plan sdd auth redesign
@@ -126,17 +130,19 @@ Claude Code has its own instruction and memory features. They solve adjacent pro
 | | CLAUDE.md | Claude Code memory | Archcore |
 | --- | --- | --- | --- |
 | **Holds** | Instructions for this tool | What happened in past sessions | What the project says is true |
-| **Structure** | One flat file | Session log | Typed documents with relations |
-| **Scope** | Whole repository | User or project | Per-directory where it matters |
+| **Structure** | Markdown files and imports | Markdown index and typed notes | Typed documents with relations |
+| **Scope** | User, project, and nested directory files | Repository-local memory on the machine | Per-document scope |
 | **Delivery** | Read at start | Recalled | Injected when it applies, pulled on demand |
-| **Review** | A diff, unstructured | None | A diff, per document, with status |
-| **Other agents** | No | No | Yes, the same directory |
+| **Review** | Git diff for committed files | Files can be inspected and edited | Git diff with document type and status |
+| **Other agents** | Supported by Claude Code and Cursor | Depends on integration or export | The same directory over MCP |
 
-A useful way to hold it: **CLAUDE.md tells Claude Code what you want. Archcore tells it how your system works.** The first is a preference, the second is a fact about the repository, and the second is the one that has to survive a new session, a new teammate, and a different agent.
+[Claude Code documents](https://code.claude.com/docs/en/memory) both nested CLAUDE.md files and editable Auto Memory notes. [Cursor also reads CLAUDE.md](https://cursor.com/help/customization/rules). Archcore adds an explicit engineering-document workflow: types, status, relationships, and review against the branch.
 
 You do not have to choose immediately. `archcore init` imports your existing `CLAUDE.md` as typed documents: conventions become rules, the reasoning behind them becomes decision records, and path-scoped instruction files keep their scope while gaining status and history.
 
 ## Worked example
+
+This is an illustrative scenario. The outcome depends on the agent reading the relevant documents and on review catching violations; it is not a measured comparison.
 
 You ask Claude Code to add rate limiting to the auth endpoints.
 

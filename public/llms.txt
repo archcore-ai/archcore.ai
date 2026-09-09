@@ -28,8 +28,6 @@
 
 ## Comparisons and migration
 
-- [Beyond AGENTS.md](https://archcore.ai/agents-md/): what the convention gets right, the three signals that a flat file has outgrown its shape, and how to migrate without rewriting
-- [Beyond CLAUDE.md](https://archcore.ai/claude-md/): CLAUDE.md, Claude Code memory, and project context compared, and what delivery looks like afterwards
 - [AI agent memory vs project context](https://archcore.ai/learn/agent-memory-vs-project-context/): what each one holds, what memory is the wrong instrument for, and the two questions that settle any case
 - [Context engineering vs prompt engineering](https://archcore.ai/learn/context-engineering-vs-prompt-engineering/): where the leverage moved on coding agents, and the test for which kind of problem you have
 - [Spec-driven development vs context engineering](https://archcore.ai/learn/spec-driven-development-vs-context-engineering/): intent versus understanding, the collapse in both directions, and where the two practices meet

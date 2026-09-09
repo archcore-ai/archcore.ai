@@ -1,36 +1,43 @@
 ---
-title: "Context Engineering vs Prompt Engineering for Coding Agents"
-description: "Prompt engineering optimizes one instruction. Context engineering designs what the agent knows across every session. Where each one pays off, and where it stops."
+title: "Context Engineering vs Prompt Engineering"
+description: "Compare prompt engineering and context engineering for coding agents: task instructions, context delivery, and a worked example of using both."
 pubDate: 2026-08-10
+updatedDate: 2026-09-09
 faq:
   - question: "What is the difference between prompt engineering and context engineering?"
-    answer: "Prompt engineering optimizes the instruction for a single turn. Context engineering designs what the agent knows across every turn and every session, and builds the system that delivers it. A better prompt improves one response; better context improves the responses you never read."
+    answer: "Prompt engineering designs instructions for a request or reusable workflow. Context engineering also manages the surrounding information, including retrieved documents, tool results, and task state. A coding agent needs both throughout a task."
   - question: "Is prompt engineering obsolete?"
-    answer: "No. It is narrower than it was, not dead. Clear task framing still matters on every request, and it is still the fastest thing to improve. What changed is that on a long-running coding agent, most turns are not written by you, so per-turn optimization reaches a smaller share of the work."
+    answer: "No. Task, system, and tool instructions still shape an agent throughout its work. Context engineering adds the problem of selecting and maintaining the information those instructions operate on."
   - question: "Does a bigger context window replace context engineering?"
     answer: "No. A larger window changes how much the agent can read, not what is authoritative, current, or relevant. Loading the whole repository still leaves the agent guessing which decision is binding and which rule governs which directory, because that was never in the code."
   - question: "Where does harness engineering fit?"
-    answer: "It nests inside context engineering rather than succeeding it. A harness is everything in an agent except the model: its tools, the guides it receives before acting, and the sensors that check it after. Building one is a specific form of context engineering, per the canonical source."
+    answer: "Harness engineering covers the tools, guidance, and checks around a model. Our guide uses Birgitta B\u00f6ckeler's framework to relate those controls to context delivery. The terms overlap, so define the responsibilities rather than assuming a universal hierarchy."
   - question: "What should I do first?"
     answer: "Write down the decision you are tired of re-explaining, with its rationale, and scope one rule to the directory it governs. That is a smaller first step than a prompt library and it compounds, because it applies to every future session instead of one."
 ---
 
-**Prompt engineering** optimizes the instruction you hand a model for one turn. **Context engineering** designs what the model knows across every turn and every session, and builds the system that delivers it.
+**Context engineering vs prompt engineering** is a difference in scope. Prompt engineering designs instructions, including reusable system and tool prompts. Context engineering also manages the documents, tool results, and other information available when a model acts.
 
-Both are real. The reason to be precise about the difference is that on a coding agent, most of the turns are not written by you.
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
 
-## The core difference
+A coding agent uses both throughout a task. Improving a recurring instruction can affect many turns; improving retrieval changes which project facts accompany those instructions.
+
+<span id="the-core-difference"></span>
+
+## Context engineering vs prompt engineering: what differs?
+
+Prompt engineering shapes instructions; context engineering manages the larger input around them. [Anthropic's engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) treats prompts, tools, retrieval, and context management as connected concerns.
 
 | | Prompt engineering | Context engineering |
 | --- | --- | --- |
-| **Designs** | The instruction for one request | What the agent knows, and when |
-| **Scope** | A single turn | Every turn, every session |
-| **Who authors it** | The person typing | The team, in review |
-| **Where it lives** | The message, or a prompt library | The repository |
-| **Improves** | The response you asked for | The responses you never read |
-| **Cannot** | Survive the end of the conversation | Verify what the agent produced |
+| **Designs** | Task, system, and tool instructions | The full information available to the agent |
+| **Scope** | One request or a reusable workflow | Retrieval, tools, state, and instructions across a task |
+| **Who authors it** | A user or the application team | The team configuring the agent and project |
+| **Where it lives** | Messages, configuration, prompt libraries | Repository files, application state, or services |
+| **Improves** | How the task and constraints are expressed | Which relevant information reaches each step |
+| **Still needs** | Relevant facts and validation | Clear instructions and validation |
 
-The row that decides it for coding agents is the fifth one. When an agent runs a multi-step task, you write the first message and it takes twenty actions. Prompt engineering reaches the first one.
+For example, an instruction can require the agent to read the API contract before editing. Retrieval and hooks determine how that contract actually reaches it.
 
 ## Why prompt engineering felt sufficient, and stopped
 
@@ -48,7 +55,7 @@ Both address failures, and the failures are different.
 
 **A context problem** looks like: the code is correct in general and wrong for this repository. It uses a library you rejected, puts a handler where your architecture does not, reinvents a pattern that exists, or reopens a settled decision. Signal: rewording does not fix it, and you find yourself explaining the same background again.
 
-The test is simple. **If you have explained the same thing to the agent more than twice, it is a context problem, and no prompt will close it.**
+If you keep repeating project background, record it and check how the agent retrieves it. Repetition alone does not prove that phrasing is irrelevant; test both the instruction and the delivery path.
 
 ## Both, in the right order
 
@@ -65,9 +72,9 @@ Step 3 is the one people skip, and it is where a lot of context efforts quietly 
 
 Two more terms circulate, and both get placed wrongly.
 
-**RAG is not context engineering.** Retrieval over your codebase answers "where is this mentioned". It cannot answer "what did we decide and why", because that was never in the code to retrieve.
+**Retrieval is one part of context engineering.** It can retrieve code, decision records, or other documents if they are in its sources. It cannot recover reasoning nobody recorded. [Anthropic's context-engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) describes retrieval alongside tool design and context management.
 
-**Harness engineering nests inside context engineering.** A harness is everything in an agent except the model: its tools, the guides it gets before acting, and the sensors that verify it after. [Building one is a specific form of context engineering](/learn/harness-engineering/), which is what the canonical source says. The "prompt to context to harness" progression that circulates in vendor posts is not in the material it cites.
+**Harness engineering covers the agent's tools, guidance, and checks.** [Our harness-engineering guide](/learn/harness-engineering/) uses Birgitta Böckeler's framework to explain its relationship to context engineering. Terminology varies between authors; the practical task is to identify which inputs and checks your team controls.
 
 ## A worked comparison
 
@@ -77,7 +84,7 @@ The task: add rate limiting to the auth endpoints.
 
 **Context-engineered.** You ask for rate limiting. The agent receives the decision recording Redis token buckets and why, the rule for error shapes under `src/auth/`, and the spec for the session API, because those documents are scoped to the code it is about to touch. The constraints arrive whether or not the person asking knew them.
 
-The second one is more work once and no work afterwards. That is the whole trade.
+The second setup moves recurring constraints into maintained documents. That costs time to create and review, and the documents still need updates when the code changes.
 
 ## Where to start
 

@@ -2,7 +2,7 @@
 title: "Context Engineering for AI Coding Agents — Archcore"
 heading: "Context Engineering for AI Coding Agents"
 description: "Learn how context engineering gives AI coding agents structured, relevant project knowledge: specs, architecture, decisions, rules, plans, and more."
-updatedDate: 2026-08-10
+updatedDate: 2026-09-09
 related:
   - spec-driven-development
   - project-context
@@ -11,20 +11,24 @@ faq:
   - question: "What is context engineering?"
     answer: "Context engineering is the practice of deciding what an AI model sees before it acts, and building the system that delivers it. For coding agents it means making project knowledge explicit, structured, selective, versioned, and portable, instead of hoping a longer prompt or a bigger context window covers the gap."
   - question: "How is context engineering different from prompt engineering?"
-    answer: "Prompt engineering optimizes the instruction for one turn. Context engineering designs what the agent knows across every turn and every session. A better prompt improves one response; better context improves the responses you never read, which on a coding agent is most of them."
+    answer: "Prompt engineering designs task, system, and tool instructions. Context engineering also manages retrieved documents, tool results, and task state. Both affect a coding agent throughout a task."
   - question: "Does a bigger context window remove the need for context engineering?"
     answer: "No. A larger window changes how much the agent can read, not what is authoritative, current, or relevant. Loading an entire repository tells the agent what the code says and still leaves it guessing which decision is binding, which rule governs which directory, and what was already rejected."
   - question: "What belongs in an AI coding agent's context?"
-    answer: "The knowledge that is not recoverable from the code: architecture and why it is shaped that way, decisions with their rationale, constraints, team rules with the scope they apply to, specs for boundaries others depend on, and plans in flight. Code, secrets, and personal preferences do not belong."
+    answer: "An agent may need source code, tool results, instructions, and project knowledge. Archcore stores the engineering record within that larger context: decisions, scoped rules, specs, and plans. Keep secrets out of documents intended for general agent access."
   - question: "How does context engineering relate to harness engineering?"
     answer: "They nest. A harness is everything in an agent except the model: its tools, the guides it gets before acting, and the sensors that check it after. Building that harness is a specific form of context engineering, per the canonical source. It is not a successor to it."
 ---
 
 **Context engineering** is the practice of deciding what an AI model sees before it acts, and building the system that delivers it. For AI coding agents it means turning project knowledge into something explicit, structured, selective, versioned, and portable, rather than hoping a longer prompt covers the gap.
 
+*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
+
 The reason it exists as a discipline is narrow and practical. You cannot retrain the model. You can change almost everything about what it knows when it starts working, and on real codebases that is what separates an agent that fits your system from one that writes plausible code in the wrong place.
 
-## Why coding agents need engineered context
+<span id="why-coding-agents-need-engineered-context"></span>
+
+## Why use context engineering for coding agents?
 
 An agent reads your code. It cannot read the reasoning behind your code.
 
@@ -66,7 +70,7 @@ These terms get used interchangeably and describe different scopes.
 
 Two of these are worth being precise about, because the confusion is expensive.
 
-**RAG is not context engineering.** Retrieval over a codebase answers "where is this mentioned". It cannot answer "what did we decide and why", because that information was never in the code to retrieve. Similarity search over documents you have not written returns nothing.
+**Retrieval is one part of context engineering.** It can retrieve code, decision records, or other documents if they are in its sources. It cannot recover reasoning nobody recorded. [Anthropic's context-engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) describes retrieval alongside tool design and context management.
 
 **Harness engineering nests inside context engineering.** A harness is everything in an agent except the model itself. [Building one is a specific form of context engineering](/learn/harness-engineering/), which is what the canonical source says, not a discipline that replaces it.
 
@@ -139,3 +143,5 @@ You do not need a complete map of your system before this pays off. Start with t
 4. **Review context in pull requests**, so it stays true as the code moves.
 
 The measure of success is not how many documents exist. It is whether the agent stops guessing about the things you have already settled.
+
+For a worked comparison of instructions and delivery, read [context engineering vs prompt engineering](/learn/context-engineering-vs-prompt-engineering/).

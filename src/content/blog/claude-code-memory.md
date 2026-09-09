@@ -1,25 +1,28 @@
 ---
-title: "How Claude Code Memory Works: CLAUDE.md, Auto Memory, MEMORY.md"
-description: "Claude Code stacks CLAUDE.md, path-scoped rules, and Auto Memory, but the memory index loads only 200 lines and lives outside your repo. Every layer and its limits."
+title: "Claude Code Memory: CLAUDE.md and Auto Memory"
+description: "How Claude Code memory works: CLAUDE.md, scoped rules, and Auto Memory. Check the 200-line memory index limit, sharing options, and project context."
 pubDate: 2026-07-30
+updatedDate: 2026-09-09
 faq:
   - question: "Where does Claude Code store its memory?"
-    answer: "Auto Memory lives in ~/.claude/projects/<project>/memory/ on your machine: per repository, but outside the repository and not synced anywhere. CLAUDE.md files live in the repo (project level), your home directory (user level), or a managed policy path."
+    answer: "By default, Auto Memory lives in ~/.claude/projects/<project>/memory/ on your machine, outside the repository. The autoMemoryDirectory setting can change that location. CLAUDE.md files live in the repo (project level), your home directory (user level), or a managed policy path."
   - question: "What is the MEMORY.md limit?"
     answer: "Claude Code loads the first 200 lines or the first 25KB of MEMORY.md, whichever comes first, at the start of every conversation. Topic files referenced from the index are read on demand. The limit started out undocumented, and a hard error on overflow instead of silent truncation only shipped in v2.1.210 (July 2026)."
   - question: "Does Claude Code read AGENTS.md?"
-    answer: "No. The docs state it plainly: Claude Code reads CLAUDE.md, not AGENTS.md. The official workarounds are an @AGENTS.md import inside CLAUDE.md or a symlink. The feature request (#6235) has been open since August 2025 and is the most-upvoted issue in the repository."
+    answer: "Claude Code reads CLAUDE.md directly. To share AGENTS.md with it, import @AGENTS.md from CLAUDE.md or use a symlink. The official memory documentation describes both options."
   - question: "How do I share Claude Code memory with my team?"
-    answer: "Auto Memory is machine-local by design; there is no documented team sharing. What ships through git today: CLAUDE.md, .claude/rules/, skills, and project-scoped subagent memory (.claude/agent-memory/). For decisions, rules, and specs the whole team's agents should follow, keep them as versioned documents in the repository itself."
+    answer: "Auto Memory defaults to a machine-local directory. You can configure autoMemoryDirectory, but a shared location still needs an explicit review workflow. Common files teams share through git include: CLAUDE.md, .claude/rules/, skills, and project-scoped subagent memory (.claude/agent-memory/). For decisions, rules, and specs the whole team's agents should follow, keep them as versioned documents in the repository itself."
 ---
 
-Claude Code assembles context from five layers: a hierarchy of `CLAUDE.md` files, path-scoped rules in `.claude/rules/`, Auto Memory (a `MEMORY.md` index plus topic files), skills, and per-subagent memory. Two facts surprise most teams. Only the first 200 lines or 25KB of the memory index load per session, and the memory itself lives outside your repository: per machine, per user, invisible to your teammates.
+Claude Code assembles context from five layers: a hierarchy of `CLAUDE.md` files, path-scoped rules in `.claude/rules/`, Auto Memory (a `MEMORY.md` index plus topic files), skills, and per-subagent memory. Only the first 200 lines or 25KB of the memory index load at session start. Auto Memory defaults to a directory outside your repository; `autoMemoryDirectory` can change that location.
 
-Here is how each layer works as of Claude Code v2.1.220 (July 2026), with the limits from the [official docs](https://code.claude.com/docs/en/memory) and changelog, plus what none of the layers cover.
+The limits and configuration below follow the [official docs](https://code.claude.com/docs/en/memory). The release history is dated separately from the current setup guidance.
 
-*Updated September 9, 2026: Clarified that Archcore stores project context, distinct from agent memory.*
+*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified that Archcore stores project context, distinct from agent memory.*
 
-## What are the layers?
+<span id="what-are-the-layers"></span>
+
+## What are the layers of Claude Code memory?
 
 | Layer | Where it lives | When it loads | Shared via git? |
 |---|---|---|---|
@@ -27,9 +30,9 @@ Here is how each layer works as of Claude Code v2.1.220 (July 2026), with the li
 | User CLAUDE.md | `~/.claude/CLAUDE.md` | Every session | No |
 | Project CLAUDE.md | `./CLAUDE.md` or `./.claude/CLAUDE.md` | Every session; subdirectory files load on demand | Yes |
 | Rules | `.claude/rules/*.md` (+ `~/.claude/rules/`) | At start, or on demand with `paths:` globs | Yes |
-| Auto Memory | `~/.claude/projects/<project>/memory/` | First 200 lines / 25KB of `MEMORY.md` per session | No |
+| Auto Memory | `~/.claude/projects/<project>/memory/` by default; configurable | First 200 lines / 25KB of `MEMORY.md` per session | Not by default |
 | Skills | `.claude/skills/*/SKILL.md` | Listing at start; body on invocation | Yes |
-| Subagent memory | `.claude/agent-memory/<name>/` (project scope) | Injected into that subagent | Yes (the only memory layer that is) |
+| Subagent memory | `.claude/agent-memory/<name>/` (project scope) | Injected into that subagent | Yes |
 
 ## How does CLAUDE.md actually load?
 
@@ -46,25 +49,25 @@ Auto Memory shipped in v2.1.32 (February 5, 2026) and is on by default. As Claud
 
 The limit has a telling history. It began as an undocumented 200-line cutoff that users discovered the hard way ([#25006](https://github.com/anthropics/claude-code/issues/25006)). A 25KB cap was added in v2.1.83 after reports of the index [silently losing recent entries](https://github.com/anthropics/claude-code/issues/57574). A visible error on overflow, instead of silent truncation, only arrived in v2.1.210 in July 2026. Within a day of the feature's release, the top requests were [how to turn it off](https://github.com/anthropics/claude-code/issues/23544), and early users hit [index corruption cascading into bad answers](https://github.com/anthropics/claude-code/issues/23769). It has improved steadily since then, but silent background memory earned its skeptics early.
 
-Two design facts matter more than any bug, though. Auto Memory is per repository but machine-local: the docs say directly that files "are not shared across machines or cloud environments." And it is unstructured: an index plus free-form topic files, no types, no relations, no search. Claude reads the index linearly and opens topic files by name.
+Auto Memory is stored locally by default. Its files are editable Markdown, and current Claude Code versions use memory types in frontmatter. Those categories differ from engineering-document types such as ADRs and specs; see the [current memory reference](https://code.claude.com/docs/en/memory#auto-memory).
 
 ## What about rules, skills, and subagent memory?
 
 - **Rules** (`.claude/rules/`, since v2.0.64) are CLAUDE.md split into files, with one genuinely useful property: a `paths:` frontmatter glob loads a rule only when Claude touches matching files. This is the right tool for directory-scoped standards.
 - **Skills** load as a listing at startup (descriptions capped at 1,536 characters) and pull their body on invocation. They're portable procedures: how to do things, not what this project decided.
-- **Subagent memory** (`memory: project` in an agent's frontmatter) writes to `.claude/agent-memory/<name>/`, which is committable, making it the only official memory layer your team can share through git. It feeds that one subagent, not the main session.
+- **Subagent memory** (`memory: project` in an agent's frontmatter) writes to `.claude/agent-memory/<name>/`, which is committable and can be reviewed with the code. It feeds that one subagent, not the main session.
 
 ## What can none of these layers hold?
 
-Run one question over the table above: where does the project's engineering record live? Nowhere in particular, it turns out.
+The built-in layers can hold engineering knowledge. The question is which knowledge your team has approved and how other agents find it.
 
-1. The memory isn't in your repo. Auto Memory accumulates on each developer's machine separately. Your teammate's Claude learns the same lessons yours did, from scratch. Nothing goes through a pull request, so a wrong "memory" never gets caught in review. (We wrote about [where this road ends for vendor-side memory](/blog/cursor-memories-removed/) when Cursor removed its Memories feature.)
-2. It's tied to one tool. Claude Code [explicitly does not read AGENTS.md](https://code.claude.com/docs/en/memory#agents-md), and the request is the [most-upvoted open issue in the repository](https://github.com/anthropics/claude-code/issues/6235) (4,475 upvotes as of July 2026). Your CLAUDE.md means nothing to Cursor or Copilot, and their files mean nothing to Claude Code.
-3. Nothing is typed or linked. A decision, a team rule, and a debugging note all look identical in free-form markdown. Nothing marks what's binding, what's stale, or which rule governs which directory, which is precisely the structure that keeps instruction files useful past the 200-line mark.
-4. None of it is enforced. Every layer is advisory context; only hooks are deterministic.
+1. Default Auto Memory is outside the repository. A normal clone does not share those notes with teammates. An export and review workflow makes the difference; [Cursor's Memories removal](/blog/cursor-memories-removed/) shows why that needs planning.
+2. Instruction formats overlap. Claude Code [does not load AGENTS.md directly](https://code.claude.com/docs/en/memory#agents-md), but an import or symlink works. The [native-support request](https://github.com/anthropics/claude-code/issues/6235) tracks that distinction. [Cursor reads CLAUDE.md](https://cursor.com/help/customization/rules), so two agents do not inherently need two copies.
+3. Memory types do not establish team approval. Add explicit status and review if other people depend on a decision. Archcore provides types and relations for that engineering record.
+4. Instructions remain advisory. Hooks can enforce specific checks, but delivering a document does not prove that generated code follows it.
 
 ## How do you give Claude Code durable project memory?
 
-Use the official layers for what they're good at: a lean CLAUDE.md for session-critical facts, `paths:`-scoped rules for directory standards, skills for procedures, hooks for anything that must always happen.
+Use the official layers for what they're good at: a lean CLAUDE.md for session-critical facts, `paths:`-scoped rules for directory standards, skills for procedures, hooks for explicit checks that must run at supported lifecycle events.
 
 For the engineering record (decisions with reasons, rules with scope, specs with status), keep [project context](https://archcore.ai/project-context/): typed, versioned documents in the repository itself, reviewed like code. That's what we build [Archcore](https://archcore.ai/) for; disclosure, it's our tool. Documents live in `.archcore/` with types and relations, load into Claude Code through MCP and session hooks, and the same files serve Cursor, Copilot, Gemini CLI, and any MCP-aware agent. The project context belongs to the repository and is available across agents. `archcore init` [imports your existing CLAUDE.md](https://archcore.ai/how-to-use/) and instruction files, so the 200 lines you've already written carry over.
