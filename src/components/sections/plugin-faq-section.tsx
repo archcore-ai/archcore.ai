@@ -23,7 +23,7 @@ export function PluginFAQSection() {
     {
       question: _(msg`What are the plugin's commands?`),
       answer: _(
-        msg`Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). Everyday context needs no command at all, because hooks inject the applicable rules and specs as the agent edits.`
+        msg`Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). On hosts with pre-write hooks, applicable rules and specs arrive automatically before edits. Other hosts access the same project context through MCP.`
       ),
     },
     {

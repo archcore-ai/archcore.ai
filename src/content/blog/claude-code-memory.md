@@ -17,6 +17,8 @@ Claude Code assembles context from five layers: a hierarchy of `CLAUDE.md` files
 
 Here is how each layer works as of Claude Code v2.1.220 (July 2026), with the limits from the [official docs](https://code.claude.com/docs/en/memory) and changelog, plus what none of the layers cover.
 
+*Updated September 9, 2026: Clarified that Archcore stores project context, distinct from agent memory.*
+
 ## What are the layers?
 
 | Layer | Where it lives | When it loads | Shared via git? |
@@ -65,4 +67,4 @@ Run one question over the table above: where does the project's engineering reco
 
 Use the official layers for what they're good at: a lean CLAUDE.md for session-critical facts, `paths:`-scoped rules for directory standards, skills for procedures, hooks for anything that must always happen.
 
-For the engineering record (decisions with reasons, rules with scope, specs with status), keep [project context](https://archcore.ai/project-context/): typed, versioned documents in the repository itself, reviewed like code. That's what we build [Archcore](https://archcore.ai/) for; disclosure, it's our tool. Documents live in `.archcore/` with types and relations, load into Claude Code through MCP and session hooks, and the same files serve Cursor, Copilot, Gemini CLI, and any MCP-aware agent. The memory ends up belonging to the project rather than to one tool on one laptop. `archcore init` [imports your existing CLAUDE.md](https://archcore.ai/how-to-use/) and instruction files, so the 200 lines you've already written carry over.
+For the engineering record (decisions with reasons, rules with scope, specs with status), keep [project context](https://archcore.ai/project-context/): typed, versioned documents in the repository itself, reviewed like code. That's what we build [Archcore](https://archcore.ai/) for; disclosure, it's our tool. Documents live in `.archcore/` with types and relations, load into Claude Code through MCP and session hooks, and the same files serve Cursor, Copilot, Gemini CLI, and any MCP-aware agent. The project context belongs to the repository and is available across agents. `archcore init` [imports your existing CLAUDE.md](https://archcore.ai/how-to-use/) and instruction files, so the 200 lines you've already written carry over.

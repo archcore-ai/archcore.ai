@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
+import { setupI18n } from "@lingui/core";
+import { productCopy } from "../src/data/product-copy";
+import { messages as ruMessages } from "../src/locales/ru/messages";
 
 const routes = [
   ...fs
@@ -16,6 +19,32 @@ test.beforeEach(async ({ page }) => {
       ? route.continue()
       : route.abort();
   });
+});
+
+test("shared product descriptions render in English and Russian after hydration", async ({
+  page,
+}) => {
+  const ru = setupI18n({ locale: "ru", messages: { ru: ruMessages } });
+  for (const locale of ["en", "ru"] as const) {
+    for (const [route, hero, description] of [
+      ["/", productCopy.expanded, null],
+      ["/cli/", productCopy.cliDescription, productCopy.cliDescription],
+      ["/plugin/", productCopy.pluginExpanded, productCopy.pluginDescription],
+    ] as const) {
+      await page.goto(`${route}?lang=${locale}`);
+      const expected = locale === "en" ? hero.message : ru._(hero);
+      if (locale === "ru") expect(expected).not.toBe(hero.message);
+      await expect(
+        page.locator(".hero-section").getByText(expected, { exact: true })
+      ).toBeVisible();
+      if (description) {
+        await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+          "content",
+          locale === "en" ? description.message : ru._(description)
+        );
+      }
+    }
+  }
 });
 
 for (const route of routes) {
@@ -62,7 +91,7 @@ for (const route of routes) {
       await expect(page.locator(".site-header")).toHaveCount(1);
       await expect(page.locator(".site-footer")).toHaveCount(1);
       // Content titles must share the chrome's left edge, even on narrow screens.
-      if (!["/", "/cli/", "/plugin/", "/how-to-use/"].includes(route)) {
+      if (!["/", "/cli/", "/plugin/"].includes(route)) {
         const heading = await page.locator("h1").boundingBox();
         const brand = await page
           .locator(".site-header .site-header__brand")
@@ -138,14 +167,14 @@ test("installation switches platform and copies the selected command", async ({
   );
 });
 
-test("integration setup changes destination, copies and downloads the same instructions", async ({
+test("integration displays, copies and exports the same Markdown", async ({
   page,
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/integrations/superpowers/");
-  await page.locator("#recipe-agent").selectOption("cursor");
-  await expect(page.locator(".recipe-setup")).toContainText("AGENTS.md");
+  await page.getByRole("button", { name: "Install", exact: true }).click();
+  await expect(page.locator("#install")).toContainText("AGENTS.md");
   await page
     .getByRole("button", { name: "Copy instructions", exact: true })
     .click();
@@ -156,12 +185,31 @@ test("integration setup changes destination, copies and downloads the same instr
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
     expected
   );
-  const downloadEvent = page.waitForEvent("download");
-  await page.getByRole("link", { name: /Download/ }).click();
-  const downloaded = await downloadEvent;
-  const downloadedPath = await downloaded.path();
   expect(
-    createHash("sha256").update(fs.readFileSync(downloadedPath!)).digest("hex")
+    await page.locator("#install-instructions [data-recipe-text]").textContent()
+  ).toBe(expected);
+  const markdown = page.locator("#install-instructions [data-recipe-text]");
+  expect((await markdown.boundingBox())!.height).toBeLessThanOrEqual(224);
+  const expand = page.locator("[data-recipe-expand]");
+  await expand.click();
+  await expect(expand).toHaveAttribute("aria-expanded", "true");
+  expect((await markdown.boundingBox())!.height).toBeGreaterThan(224);
+  await page.locator("[data-recipe-copy]").click();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    expected
+  );
+  await expand.click();
+  await expect(expand).toHaveAttribute("aria-expanded", "false");
+  expect((await markdown.boundingBox())!.height).toBeLessThanOrEqual(224);
+
+  const exported = await page.request.get(
+    "/integrations/superpowers/cooperation.md"
+  );
+  expect(exported.ok()).toBe(true);
+  expect(
+    createHash("sha256")
+      .update(await exported.body())
+      .digest("hex")
   ).toBe(createHash("sha256").update(expected).digest("hex"));
 });
 
@@ -201,6 +249,7 @@ test("integration details stay usable when clipboard access fails", async ({
   page,
 }) => {
   await page.goto("/integrations/superpowers/");
+  await page.getByRole("button", { name: "Install", exact: true }).click();
   await page.evaluate(() =>
     Object.defineProperty(navigator, "clipboard", {
       value: {
@@ -212,9 +261,13 @@ test("integration details stay usable when clipboard access fails", async ({
   await page
     .getByRole("button", { name: "Copy instructions", exact: true })
     .click();
-  await expect(page.locator("[data-copy-status]")).toContainText("download");
-  await expect(page.locator("#recipe-details")).toBeVisible();
-  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-copy-status]")).toContainText("manually");
+  await expect(page.locator("[data-recipe-text]")).toBeFocused();
+  expect(
+    await page.evaluate(
+      () => window.getSelection()?.getRangeAt(0).cloneContents().textContent
+    )
+  ).toBe(fs.readFileSync("src/recipes/superpowers/cooperation.md", "utf8"));
   await expect(page.locator("#recipe-details")).not.toBeVisible();
   await page.locator("[data-recipe-details]").click();
   await expect(page.locator("#recipe-details")).toBeVisible();
@@ -396,4 +449,43 @@ test("collections fill the outer grid and articles use the right rail", async ({
     await toc.locator("a").first().click();
     expect(new URL(page.url()).hash).not.toBe("");
   }
+});
+
+test("how-to guide keeps its article layout, install actions and translated outline", async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/how-to-use/?lang=en");
+  await expect(page.locator("main > article.article")).toBeVisible();
+  await expect(page.locator(".hero-section")).toHaveCount(0);
+  await expect(page.locator("#cycle h3")).toHaveCount(4);
+  expect(
+    await page
+      .locator("#cycle section")
+      .evaluateAll((nodes) => nodes.map((node) => node.id))
+  ).toEqual(["init", "plan", "document", "review"]);
+  const copy = page
+    .locator("#install")
+    .getByRole("button", { name: "Copy command" });
+  await copy.nth(0).click();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    "curl -fsSL https://archcore.ai/install.sh | bash"
+  );
+  await copy.nth(1).click();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    "archcore init"
+  );
+  await page
+    .getByRole("navigation", { name: "On this page" })
+    .locator('a[href="#review"]')
+    .click();
+  expect(new URL(page.url()).hash).toBe("#review");
+  await page.getByRole("combobox", { name: "Language" }).selectOption("ru");
+  await expect(
+    page.getByRole("navigation", { name: "На этой странице" })
+  ).toBeVisible();
+  await expect(page.locator("h1")).toHaveText("Как пользоваться Archcore");
+  await expect(page.locator("#plan blockquote")).toContainText("Спланируйте");
 });

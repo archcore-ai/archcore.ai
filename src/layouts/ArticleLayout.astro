@@ -1,4 +1,5 @@
 ---
+import { productCopy } from "../data/product-copy";
 import SiteLayout from "./SiteLayout.astro";
 
 interface FaqEntry {
@@ -160,11 +161,7 @@ const faqSchema =
         )
       }
       <aside class="cta" data-analytics-cta="article_install">
-        <p>
-          Archcore keeps decisions, rules, specs, and plans as typed markdown
-          documents in your repo — loaded into Claude Code, Cursor, and any MCP
-          agent before they edit.
-        </p>
+        <p>{productCopy.expanded.message}</p>
         <a href="/#install">Install Archcore →</a>
       </aside>
     </article>

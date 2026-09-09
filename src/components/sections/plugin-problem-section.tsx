@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -52,12 +53,7 @@ export function PluginProblemSection() {
           </h2>
 
           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-            <Trans>
-              One install gives Claude Code, Cursor, Codex, and Copilot a memory
-              that lives next to the code, injected automatically as the agent
-              edits, with slash commands to capture new decisions as they
-              happen.
-            </Trans>
+            {_(productCopy.definition)} {_(productCopy.delivery)}
           </p>
         </div>
 
@@ -88,10 +84,7 @@ export function PluginProblemSection() {
         </div>
 
         <p className="text-center text-sm text-muted-foreground/80 max-w-2xl mx-auto">
-          <Trans>
-            The plugin loads the right context before edits and captures every
-            new decision back into Git.
-          </Trans>
+          <Trans>Ask your agent to record a decision as an ADR in Git.</Trans>
         </p>
       </div>
     </SectionContainer>

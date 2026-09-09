@@ -163,6 +163,29 @@ const integrationSchema = z.object({
   hosts: z.array(recipeHostSchema).default([]),
   /** Empty until a joint run is recorded. Empty means experimental. */
   evidence: z.array(recipeEvidenceSchema).default([]),
+  workflow: z
+    .object({
+      heading: z.string(),
+      steps: z.array(z.object({ title: z.string(), description: z.string() })),
+      note: z.string(),
+    })
+    .optional(),
+  pilot: z
+    .object({
+      heading: z.string(),
+      summary: z.string(),
+      limitation: z.string(),
+      findings: z
+        .array(
+          z.object({
+            scenario: z.string(),
+            result: z.string(),
+            caveat: z.string(),
+          })
+        )
+        .default([]),
+    })
+    .optional(),
   limits: z.array(z.string()).default([]),
   maintainer: z.string(),
   draft: z.boolean().default(false),

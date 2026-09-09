@@ -49,17 +49,17 @@ const { data } = entry;
   recipe={data.recipe}
   digest={source.digest}
   instructions={source.text}
-  filename={source.filename}
   downloadHref={`/integrations/${entry.id}/${source.filename}`}
   markdownTwin={`/integrations/${entry.id}.md`}
   sourceRepo={data.source.repo}
   sourcePath={data.source.path}
   sourceRevision={data.source.revision}
   tools={data.tools}
-  hosts={data.hosts}
   evidence={evidence}
   limits={data.limits}
   maintainer={data.maintainer}
+  pilot={data.pilot}
+  workflow={data.workflow}
 >
   <Content />
 </RecipeLayout>

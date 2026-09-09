@@ -121,7 +121,8 @@ export function PluginHostsSection() {
           <p className="text-center text-sm text-muted-foreground/80">
             <Trans>
               Running Gemini CLI, OpenCode, Roo Code, or Cline? The CLI wires
-              all eight supported agents over MCP and session hooks.
+              all eight supported agents over MCP. Five also support session
+              hooks; the CLI page lists the differences.
             </Trans>
           </p>
         </div>

@@ -77,7 +77,8 @@ export function CrossAgentSection() {
           <Trans>
             Slash commands, skills, and guardrails run inside Claude Code,
             Cursor, Codex CLI, and GitHub Copilot. Every other agent reaches the
-            same context over MCP and session hooks.
+            same context over MCP. Hooks add automatic context delivery where
+            the host supports them.
           </Trans>
         </p>
       </div>

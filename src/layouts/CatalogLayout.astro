@@ -67,7 +67,11 @@ const listingSchema = {
       set:html={JSON.stringify(listingSchema)}
     />
   </Fragment>
-  <main id="main-content" class="page page--listing">
+  <main
+    id="main-content"
+    class="page page--listing"
+    data-hide-integration-branding
+  >
     <PageIntro title={h1} description={intro} />
 
     <ul class="catalog-grid">

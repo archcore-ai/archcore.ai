@@ -50,7 +50,7 @@
   {
     "route": "/plugin/",
     "title": "Archcore Plugin — Spec-Driven Development for Coding Agents",
-    "description": "Add spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
+    "description": "Add spec-driven development and project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
     "canonical": "https://archcore.ai/plugin/",
     "ogImage": "https://archcore.ai/og-image-plugin.png",
     "headings": [
@@ -131,12 +131,12 @@
   },
   {
     "route": "/how-to-use/",
-    "title": "How to use Archcore — one loop from init to review",
-    "description": "One loop through Archcore on a real feature: init, plan, document, review. Each step shows the sentence you say to your agent and the slash-command shortcut that does the same thing.",
+    "title": "How to use Archcore",
+    "description": "Install Archcore and give your coding agent project context. Plan changes, save decisions, and check that code follows them.",
     "canonical": "https://archcore.ai/how-to-use/",
     "ogImage": "https://archcore.ai/og-image-how-to-use.png",
     "headings": [
-      "Tell your agent what you want. Archcore writes it down."
+      "How to use Archcore"
     ],
     "article": null,
     "schemas": [
@@ -173,7 +173,7 @@
   {
     "route": "/privacy/",
     "title": "Privacy Policy — Archcore plugin, CLI & website",
-    "description": "Privacy policy for the Archcore plugin, the Archcore CLI, and the archcore.ai marketing website. Local-first, no telemetry, no accounts, no data sale.",
+    "description": "How Archcore handles project data, install and update analytics, and website analytics. Local storage, AI host providers, and analytics opt-out options.",
     "canonical": "https://archcore.ai/privacy/",
     "ogImage": "https://archcore.ai/og-image.png",
     "headings": [
@@ -306,6 +306,7 @@
       "Published July 30, 2026 · Archcore team",
       "Claude Code assembles context from five layers: a hierarchy of CLAUDE.md files, path-scoped rules in .claude/rules/, Auto Memory (a MEMORY.md index plus topic files), skills, and per-subagent memory. Two facts surprise most teams. Only the first 200 lines or 25KB of the memory index load per session, and the memory itself lives outside your repository: per machine, per user, invisible to your teammates.",
       "Here is how each layer works as of Claude Code v2.1.220 (July 2026), with the limits from the official docs and changelog, plus what none of the layers cover.",
+      "Updated September 9, 2026: Clarified that Archcore stores project context, distinct from agent memory.",
       "What are the layers?",
       "Layer",
       "Where it lives",
@@ -360,7 +361,7 @@
       "None of it is enforced. Every layer is advisory context; only hooks are deterministic.",
       "How do you give Claude Code durable project memory?",
       "Use the official layers for what they’re good at: a lean CLAUDE.md for session-critical facts, paths:-scoped rules for directory standards, skills for procedures, hooks for anything that must always happen.",
-      "For the engineering record (decisions with reasons, rules with scope, specs with status), keep project context: typed, versioned documents in the repository itself, reviewed like code. That’s what we build Archcore for; disclosure, it’s our tool. Documents live in .archcore/ with types and relations, load into Claude Code through MCP and session hooks, and the same files serve Cursor, Copilot, Gemini CLI, and any MCP-aware agent. The memory ends up belonging to the project rather than to one tool on one laptop. archcore init imports your existing CLAUDE.md and instruction files, so the 200 lines you’ve already written carry over.",
+      "For the engineering record (decisions with reasons, rules with scope, specs with status), keep project context: typed, versioned documents in the repository itself, reviewed like code. That’s what we build Archcore for; disclosure, it’s our tool. Documents live in .archcore/ with types and relations, load into Claude Code through MCP and session hooks, and the same files serve Cursor, Copilot, Gemini CLI, and any MCP-aware agent. The project context belongs to the repository and is available across agents. archcore init imports your existing CLAUDE.md and instruction files, so the 200 lines you’ve already written carry over.",
       "FAQ",
       "Where does Claude Code store its memory?",
       "Auto Memory lives in ~/.claude/projects/<project>/memory/ on your machine: per repository, but outside the repository and not synced anywhere. CLAUDE.md files live in the repo (project level), your home directory (user level), or a managed policy path.",
@@ -370,13 +371,13 @@
       "No. The docs state it plainly: Claude Code reads CLAUDE.md, not AGENTS.md. The official workarounds are an @AGENTS.md import inside CLAUDE.md or a symlink. The feature request (#6235) has been open since August 2025 and is the most-upvoted issue in the repository.",
       "How do I share Claude Code memory with my team?",
       "Auto Memory is machine-local by design; there is no documented team sharing. What ships through git today: CLAUDE.md, .claude/rules/, skills, and project-scoped subagent memory (.claude/agent-memory/). For decisions, rules, and specs the whole team's agents should follow, keep them as versioned documents in the repository itself.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
     "route": "/blog/cursor-memories-removed/",
     "title": "Cursor Removed Memories: What to Use Instead | Archcore",
-    "description": "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep agent memory in git.",
+    "description": "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep project context in Git.",
     "canonical": "https://archcore.ai/blog/cursor-memories-removed/",
     "ogImage": "https://archcore.ai/og-image.png",
     "headings": [
@@ -393,7 +394,7 @@
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "Cursor Removed Memories: What to Use Instead",
-        "description": "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep agent memory in git.",
+        "description": "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep project context in Git.",
         "datePublished": "2026-07-29T00:00:00.000Z",
         "dateModified": "2026-07-29T00:00:00.000Z",
         "mainEntityOfPage": "https://archcore.ai/blog/cursor-memories-removed/",
@@ -419,6 +420,7 @@
       "Published July 29, 2026 · Archcore team",
       "Cursor removed its Memories feature in version 2.1, released November 21, 2025, and has not brought it back: as of Cursor 3.11 (July 2026) there is no automatic memory in the product. The official replacement is a one-time export into Rules. Everything beyond that (automatic capture, cross-session recall, team-wide memory) you now have to provide yourself.",
       "One disclosure before we start: Archcore is our product, and it appears in the comparison below. Read the last section with that in mind.",
+      "Updated September 9, 2026: Clarified Archcore’s project-context framing and the explicit step for recording decisions.",
       "What happened to Cursor Memories?",
       "The short life of the feature, from primary sources:",
       "Date",
@@ -480,12 +482,12 @@
       "Automatic cross-session recall over MCP; OpenMemory runs locally",
       "Memory lives outside git, so it is not versioned per decision or reviewed in PRs. It’s a separate service to run, and team sync usually means someone’s cloud",
       "Structured docs in your repo (Archcore)",
-      "Typed documents (decisions, rules, specs, plans) in .archcore/, versioned in git, loaded into the agent over MCP; capture happens during work via slash commands",
+      "Typed documents (decisions, rules, specs, plans) in .archcore/, versioned in git, loaded into the agent over MCP; ask your agent to record decisions during work, or use the slash-command shortcut",
       "You review what gets written; capture is a deliberate step rather than silent background writing",
       "Which one is right depends on what you actually used Memories for. Personal preferences (“I use pnpm, stop suggesting npm”) belong in User Rules and take two minutes to move. Automatic recall of conversation facts is what MCP memory servers do. Project knowledge (why the auth module is structured this way, which decision blocks that refactor, what the API contract promises) is the piece we’d argue never belonged in a proprietary per-account store in the first place.",
       "The lesson: memory you don’t own disappears",
       "Cursor Memories is the clearest example so far: context stored in a vendor’s opaque layer sits one minor release away from gone. No changelog entry, no stated reason, no UI to clean up what was left behind.",
-      "The alternative is boring and it works: keep project memory as files in the repository. That’s the design principle behind Archcore. Decisions, rules, specs, and plans live as typed markdown in .archcore/, with named relations between them. It rides along with git, so every piece of context is versioned, shows up in pull requests, and survives any tool’s product decisions. It loads into Cursor over MCP and session hooks, and the same documents work in Claude Code, Copilot, Gemini CLI, and any other MCP-aware agent, so the memory isn’t married to one editor either.",
+      "Archcore is a git-native context layer for AI coding agents. It keeps project context as files in the repository. Decisions, rules, specs, and plans live as typed markdown in .archcore/, with named relations between them. It rides along with git, so every piece of context is versioned, shows up in pull requests, and survives any tool’s product decisions. It loads into Cursor over MCP and session hooks, and the same documents work in Claude Code, Copilot, Gemini CLI, and any other MCP-aware agent, so the project context stays available when you change editors.",
       "If your Rules files are short and under control, keep using Rules; they’re good at what they do. The moment you catch yourself re-explaining the same architecture to your agent, or your .mdc files turn into an unstructured dump, that’s the signal the project needs real project context rather than a bigger instruction file. Agent memory and project context covers why the two are not interchangeable, which is exactly what the Memories removal made concrete.",
       "Migrating off exported memories takes one command: archcore init imports existing instruction files (.cursor/rules/*, .cursorrules, CLAUDE.md, AGENTS.md) as structured documents, so the context you already wrote carries over. The install guide walks through the rest.",
       "FAQ",
@@ -497,7 +499,7 @@
       "No. As of Cursor 3.11 (July 2026) there is no automatic memory. Cursor offers Project Rules, User Rules, Team Rules, AGENTS.md support, and Agent Skills, all of them manually authored.",
       "What is the best replacement for Cursor Memories?",
       "It depends on what you actually used it for. Static preferences belong in Rules. Automatic cross-session recall needs an MCP memory server. If you want memory that is versioned with your code, reviewable in pull requests, and shared across agents, keep it as structured documents in your repository.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -546,6 +548,7 @@
       "Published July 30, 2026 · Archcore team",
       "An MCP server for project context exposes your repository’s engineering record (decisions, rules, specs, plans) to AI coding agents as callable tools. Instead of pasting instructions into every prompt or maintaining a per-tool file like CLAUDE.md, the agent lists, searches, and reads project documents on demand, in any MCP-aware host, from Claude Code to Copilot.",
       "This is a practical guide to that pattern: why it beats flat files, what a good context server exposes, and how to stand one up. The walkthrough uses Archcore, which is our tool; the design requirements apply to anything you build or adopt.",
+      "Updated September 9, 2026: Clarified installation and update analytics and the current init-to-review walkthrough.",
       "Why serve context over MCP instead of instruction files?",
       "Instruction files have two structural problems that get worse as the project grows.",
       "First, they load wholesale. Every line of CLAUDE.md or .cursor/rules/ occupies context in every session, whether the session touches that area or not. The official guidance for Claude Code is to keep CLAUDE.md under 200 lines precisely because adherence drops as the file grows. A real project’s decisions and specs don’t fit in 200 lines.",
@@ -582,8 +585,8 @@
       "How do you set it up?",
       "With Archcore, the local MCP server ships inside the CLI binary. Three commands:",
       "curl -fsSL https://archcore.ai/install.sh | bash archcore init archcore mcp install",
-      "archcore init scaffolds .archcore/ (and imports existing CLAUDE.md, AGENTS.md, or .cursor/rules/ files as structured documents, so you don’t start from scratch). archcore mcp install registers the server with your agents; archcore hooks install adds the session-start index injection. The server runs locally as a child process. No accounts, no telemetry, no external services, and the documents it serves are plain markdown in your repo.",
-      "From there, ask your agent something that needs project knowledge (“what did we decide about auth?”, “which rules apply to src/payments/?”) and watch the tool calls. The MCP server docs cover manual configuration, and the how-to-use walkthrough covers the day-to-day workflows.",
+      "archcore init scaffolds .archcore/ (and imports existing CLAUDE.md, AGENTS.md, or .cursor/rules/ files as structured documents, so you don’t start from scratch). archcore mcp install registers the server with your agents; archcore hooks install adds the session-start index injection. The server runs locally as a child process. The documents it serves are plain Markdown in your repo. No account or hosted backend is required. Installation and updates send limited analytics, with opt-out options described in the privacy policy.",
+      "From there, ask your agent something that needs project knowledge (“what did we decide about auth?”, “which rules apply to src/payments/?”) and watch the tool calls. The MCP server docs cover manual configuration, and the how-to-use walkthrough covers the init, plan, document, review loop.",
       "FAQ",
       "What is an MCP server for project context?",
       "A local Model Context Protocol server that exposes your project's documents (decisions, rules, specs, plans) to AI coding agents as tools: list, search, read, create, update. The agent pulls context on demand during the session instead of having everything pasted into its prompt up front.",
@@ -593,7 +596,7 @@
       "Far less than instruction files do. The agent gets a compact index at session start; full documents load only when a tool call actually requests one. A document that is never needed costs nothing.",
       "Can the agent write context back through MCP?",
       "Yes, and it should. Write tools (create, update, link) let the agent record decisions and plans as it works, as normal file diffs you review in git rather than notes lost in chat history.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -782,7 +785,7 @@
       "In the repository it describes. That is what makes it reviewable in pull requests, versioned with the code it constrains, and portable when you switch tools. A store outside the repository loses all three.",
       "What happens to memory when I switch agents?",
       "It does not come with you, because it belongs to the tool. This is the practical test that separates the two categories: project context survives a tool change because it was never in the tool.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -899,7 +902,7 @@
       "It nests inside context engineering rather than succeeding it. A harness is everything in an agent except the model: its tools, the guides it receives before acting, and the sensors that check it after. Building one is a specific form of context engineering, per the canonical source.",
       "What should I do first?",
       "Write down the decision you are tired of re-explaining, with its rationale, and scope one rule to the directory it governs. That is a smaller first step than a prompt library and it compounds, because it applies to every future session instead of one.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -1002,7 +1005,7 @@
       "Your coding agent ships a default harness: a loop, file and shell tools, permissions, and a sandbox. What it cannot ship is anything specific to your project, because it has never seen your repository. The architecture your code follows, the decisions already settled, the rules your team enforces, and the specs your boundaries must hold are the half of the harness only you can build.",
       "Where should the project half of a harness live?",
       "In the repository it describes. A guide that lives in a vendor's cloud cannot be reviewed in a pull request, cannot be versioned with the code it constrains, and does not travel when you switch agents. Keeping it in git makes the harness reviewable, portable, and owned by the team.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -1133,7 +1136,7 @@
       "Any agent that can read files in the repository, and any MCP-aware agent if the memory is exposed over MCP: Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, Cline, and others.",
       "How is repo memory different from CLAUDE.md?",
       "CLAUDE.md is repo memory in its simplest form: one flat instruction file for one tool. Structured repo memory adds types (decision, rule, spec, plan), relations between documents, per-document status and history, and works across agents instead of being tied to one.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -1267,7 +1270,7 @@
       "Context, unless you are about to change a boundary other teams depend on. Writing down the decision you keep re-explaining pays off on the next session. Specifying a boundary nobody depends on is cost with no reader.",
       "What happens to a spec after the feature ships?",
       "This is where the two practices meet. A spec treated as a handoff artifact goes stale the day it merges. A spec kept as project context stays useful: it is loaded when the boundary is edited and it is what a review measures the diff against.",
-      "Archcore keeps decisions, rules, specs, and plans as typed markdown documents in your repo — loaded into Claude Code, Cursor, and any MCP agent before they edit."
+      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
     ]
   },
   {
@@ -1914,6 +1917,7 @@
       "Next",
       "Archcore gives Codex CLI structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.",
       "Codex CLI 0.117 and later is a plugin host. It also has one host-specific caveat worth knowing before you set it up, covered under hooks below.",
+      "Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the privacy policy.",
       "What Archcore adds to Codex CLI",
       "Codex reads code and runs commands. It does not know which decisions your team has already settled, which rules bind which directories, or what a boundary must guarantee, because none of that is in the source.",
       "Archcore supplies that and delivers it:",
@@ -1995,7 +1999,7 @@
       "Can I use this in CI?",
       "Yes. The CLI is a single binary with no daemon and no account, so it is scriptable. That is also the reason the CLI path exists independently of any plugin: automation does not run inside a coding host.",
       "Does anything leave my machine?",
-      "No. The MCP server runs locally over stdio as a child process and reads a directory in your repository. No account, no hosted component, no network call.",
+      "No. The MCP server runs locally over stdio as a child process and reads a directory in your repository. Document access requires no account or hosted backend.",
       "Related",
       "Context Engineering for AI Coding Agents",
       "Project Context for AI Coding Agents",
@@ -2226,6 +2230,7 @@
       "Next",
       "Archcore gives Cursor structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.",
       "Cursor 2.5 and later is a plugin host, so it gets slash commands, skills, gated tracks, and guardrails on top of the MCP tools and session hooks that every supported agent receives.",
+      "Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the privacy policy.",
       "What Archcore adds to Cursor",
       "Cursor reads your codebase well. What it cannot recover from the code is the reasoning behind it: why a boundary falls where it does, which library was evaluated and dropped, which convention is binding and which is an accident.",
       "Archcore supplies that layer and delivers it at the right moment:",
@@ -2301,7 +2306,7 @@
       "Do I need to configure MCP by hand?",
       "Running archcore init wires it for you. If you install the plugin through the marketplace instead, there is a one-time MCP setup: copy the example config into ~/.cursor/mcp.json for all projects, or .cursor/mcp.json for one.",
       "Does my code leave my machine?",
-      "No. The MCP server runs locally as a child process and reads a directory in your repository. No account, no hosted service, no network call.",
+      "No. The MCP server runs locally as a child process and reads a directory in your repository. Document access requires no account or hosted backend.",
       "Related",
       "Project Context for AI Coding Agents",
       "Spec-Driven Development for AI Coding Agents",
@@ -2801,6 +2806,7 @@
       "Where to go next",
       "The Model Context Protocol is an open standard for connecting AI agents to tools and data. An MCP server exposes a set of tools; any MCP-aware agent can call them without a bespoke integration.",
       "For project context that matters more than it first appears, because it changes context from something an agent is given into something an agent can use.",
+      "Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the privacy policy.",
       "Why a protocol and not a file",
       "The simplest way to give an agent project knowledge is a file it reads. That works, and it has three limits that show up quickly on a real codebase.",
       "It is read whole. A file has no way to say “only the part about src/api/”. Everything in it arrives on every turn, competing for attention with the actual task.",
@@ -2826,7 +2832,7 @@
       "The index comes first. Opening a session with a compact list of what exists, rather than the content of everything, is what keeps the context window free. The agent then pulls the two documents it actually needs.",
       "Writes must validate. A tool that accepts any Markdown produces a store that degrades. Rejecting a document with missing or malformed frontmatter is what keeps the corpus machine-readable a year later.",
       "Local stdio, and why it matters",
-      "Archcore’s MCP server runs locally, over stdio, as a child process of your agent. It reads a directory inside your repository. There is no account, no hosted component, and no network call.",
+      "Archcore’s MCP server runs locally, over stdio, as a child process of your agent. It reads a directory inside your repository. Document access requires no account or hosted backend.",
       "That is not only a privacy position, though it is that too. It is what makes the server usable at all in the places project context is needed: on private code, inside CI, on a machine with no outbound access, and in a repository whose contents cannot leave the building.",
       "It also removes a class of failure. A hosted context service is one more thing that can be down, rate-limited, or slow while an agent waits on it.",
       "Wiring it up",
@@ -2858,7 +2864,7 @@
       "Does an MCP context server fill the context window?",
       "Not if it is built for retrieval rather than dumping. The session opens with a compact index of available documents, and full documents are fetched on demand through search, relations, and single reads. The alternative, pasting everything at session start, is what actually fills the window.",
       "Does the MCP server need to run remotely?",
-      "No. Archcore's server runs locally over stdio as a child process of your agent, reading a directory in your repository. No account, no network call, no external service. Local stdio is also what makes it usable in CI and on private code.",
+      "No. Archcore's server runs locally over stdio as a child process of your agent, reading a directory in your repository. Document access requires no account or hosted backend. Local stdio is also what makes it usable in CI and on private code.",
       "Which agents can use an MCP context server?",
       "Any MCP-aware agent. Archcore's CLI is wired for eight today: Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Anything else that speaks the protocol works the same way, because the server is not an integration per vendor.",
       "Related",

@@ -1,146 +1,211 @@
 ---
-interface Host {
-  id: string;
-  label: string;
-  instructionFile: string;
-  note: string | null;
-  verified: boolean;
-}
 interface Props {
   downloadHref: string;
+  instructions: string;
   verificationNote: string;
-  hosts: Host[];
   tools: { name: string; url: string }[];
 }
-const { downloadHref, hosts, tools, verificationNote } = Astro.props;
-const setupHosts = [
-  ...hosts,
-  {
-    id: "other",
-    label: "Another agent",
-    instructionFile: "Your project instruction file",
-    note: "Your agent must be able to read these instructions and access both tools’ skills and Archcore MCP.",
-    verified: false,
-  },
-];
+const { downloadHref, instructions, tools, verificationNote } = Astro.props;
+const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}`;
 ---
 
-<section class="recipe-setup" id="install" aria-labelledby="setup-heading">
-  <span id="connect" class="recipe-anchor" aria-hidden="true"></span>
-  <h2 id="setup-heading">Set up the integration</h2>
-  <p class="recipe-setup__lead">
-    You’ll need {
-      tools.map((tool, i) => (
-        <>
-          {i > 0 && " and "}
-          <a href={tool.name === "Archcore" ? "/#install" : tool.url}>
-            {tool.name}
-          </a>
-        </>
-      ))
-    } installed in your agent.
-  </p>
-
-  <div class="recipe-hosts" data-recipe-hosts>
-    <div class="recipe-agent-picker" hidden>
-      <label for="recipe-agent"
-        ><span class="recipe-step-number">1</span> Choose your agent</label
+<dialog
+  class="recipe-dialog recipe-install-dialog"
+  id="install"
+  aria-labelledby="setup-heading"
+  open
+>
+  <header class="recipe-dialog__header">
+    <h2 id="setup-heading">Connect the two tools</h2>
+    <form method="dialog" data-install-close hidden>
+      <button
+        class="recipe-dialog__close"
+        aria-label="Close installation"
+        autofocus>✕</button
       >
-      <select id="recipe-agent" data-recipe-agent>
-        {
-          setupHosts.map((host) => (
-            <option value={host.id}>{host.label}</option>
-          ))
-        }
-      </select>
-    </div>
-
-    <div class="recipe-add">
-      <h3><span class="recipe-step-number">2</span> Add the instructions</h3>
-      {
-        setupHosts.map((host, i) => (
-          <div
-            data-panel={host.id}
-            data-initial={i === 0 ? "true" : "false"}
-            class="recipe-host-panel"
-          >
-            <h4>{host.label}</h4>
-            <p class="recipe-destination">
+    </form>
+  </header>
+  <div class="recipe-install-body">
+    <span id="connect" class="recipe-anchor" aria-hidden="true"></span>
+    <article class="article how-to-guide recipe-install-guide">
+      <section id="install-agent">
+        <h3>{installTitle}</h3>
+        <p>
+          Install {
+            tools.map((tool, i) => (
               <>
-                <span>Project file</span>
-                <code>{host.instructionFile}</code>
+                {i > 0 && " and "}
+                <a
+                  href={tool.name === "Archcore" ? "/how-to-use/" : tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {tool.name}
+                </a>
               </>
-            </p>
-            {host.note && <p class="recipe-host-note">{host.note}</p>}
-          </div>
-        ))
-      }
-      <p class="recipe-paste-hint">
-        Copy the text and paste it at the end of this file.
-      </p>
-      <div class="recipe-setup__actions" data-analytics-recipe>
-        <button type="button" class="btn btn--primary" data-recipe-copy hidden
-          >Copy instructions</button
+            ))
+          } in the agent you use for this project.
+        </p>
+      </section>
+
+      <section id="install-instructions">
+        <h3>2. Add instructions</h3>
+        <figure class="recipe-instructions" data-analytics-recipe>
+          <figcaption>
+            <span>CLAUDE.md / AGENTS.md / GEMINI.md</span>
+            <button
+              type="button"
+              class="btn btn--ghost"
+              data-recipe-copy
+              hidden
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                ></path>
+              </svg>
+              <span data-copy-label>Copy instructions</span>
+            </button>
+          </figcaption>
+          <pre
+            id="recipe-instruction-text"
+            data-recipe-text
+            tabindex="0"
+            aria-label="Integration instructions">{instructions}</pre>
+          <button
+            type="button"
+            class="recipe-instructions__toggle"
+            data-recipe-expand
+            aria-expanded="false"
+            aria-controls="recipe-instruction-text"
+            hidden>Show full instructions ↓</button
+          >
+        </figure>
+        <p
+          class="recipe-copy-status"
+          role="status"
+          aria-live="polite"
+          data-copy-status
         >
-        <a href={downloadHref} download data-recipe-download>Download .md</a>
-      </div>
-      <p
-        class="recipe-copy-status"
-        role="status"
-        aria-live="polite"
-        data-copy-status
-      >
-      </p>
-    </div>
+        </p>
+      </section>
 
-    <div class="recipe-restart">
-      <h3><span class="recipe-step-number">3</span> Start a new session</h3>
-      <p>
-        Ask your agent to confirm it has both tools and the integration
-        instructions.
-      </p>
-    </div>
-  </div>
+      <section id="install-check">
+        <h3>3. Check in a new session</h3>
+        <p>Start a new session in this project and ask your agent:</p>
+        <blockquote>
+          <p>
+            Confirm you can use Archcore and Superpowers, and have read this
+            project’s cooperation instructions.
+          </p>
+        </blockquote>
+        <p>
+          If the agent reports a missing tool or instruction file, finish that
+          setup before starting work.
+        </p>
+      </section>
+    </article>
 
-  <div class="recipe-setup__footer">
-    <span>{verificationNote}</span>
-    <a href={downloadHref} data-recipe-details
-      >View instructions &amp; details ↗</a
-    >
+    <footer class="recipe-install-source">
+      <a href={downloadHref} data-recipe-details>Source &amp; verification ↗</a>
+      <p class="recipe-verification-note" hidden>{verificationNote}</p>
+    </footer>
   </div>
-</section>
+</dialog>
 
 <script>
   import { track } from "../lib/analytics/core";
 
+  const installDialog = document.querySelector<HTMLDialogElement>("#install");
+  const installButton = document.querySelector<HTMLButtonElement>(
+    "[data-recipe-install]"
+  );
+  if (installDialog && installButton) {
+    installDialog.removeAttribute("open");
+    installDialog.dataset.installReady = "true";
+    installButton.hidden = false;
+    installDialog.querySelector<HTMLElement>("[data-install-close]")!.hidden =
+      false;
+    let previousHash = "#how-it-works";
+    const openInstall = () => {
+      if (!installDialog.open) {
+        installDialog.showModal();
+        installDialog.scrollTop = 0;
+      }
+    };
+    installButton.addEventListener("click", () => {
+      previousHash = location.hash || "#how-it-works";
+      openInstall();
+      history.replaceState(null, "", "#install");
+    });
+    const syncInstallHash = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.closest("#install")) {
+        openInstall();
+        if (target !== installDialog && target.id !== "connect")
+          target.scrollIntoView({ block: "start" });
+      } else if (installDialog.open) {
+        installDialog.close();
+      }
+    };
+    installDialog.addEventListener("close", () => {
+      if (
+        document.getElementById(location.hash.slice(1))?.closest("#install")
+      ) {
+        history.replaceState(null, "", previousHash);
+      }
+      installButton.focus({ preventScroll: true });
+    });
+    installDialog.addEventListener("click", (event) => {
+      if (event.target !== installDialog) return;
+      const rect = installDialog.getBoundingClientRect();
+      if (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      )
+        installDialog.close();
+    });
+    syncInstallHash();
+    window.addEventListener("hashchange", syncInstallHash);
+  }
+
   const page = document.querySelector<HTMLElement>("[data-recipe-root]");
   const recipe = page?.dataset.recipe ?? "";
   const digest = page?.dataset.digest ?? "";
-  const select = document.querySelector<HTMLSelectElement>(
-    "[data-recipe-agent]"
-  );
-  const panels = [...document.querySelectorAll<HTMLElement>("[data-panel]")];
   const dialog = document.querySelector<HTMLDialogElement>("#recipe-details");
   const pre = document.querySelector<HTMLElement>("[data-recipe-text]");
   const feedback = document.querySelector<HTMLElement>("[data-copy-status]");
-  let selectedHost = select?.value ?? "all";
-
-  if (select) {
-    const showHost = () => {
-      selectedHost = select.value;
-      for (const panel of panels)
-        panel.hidden = panel.dataset.panel !== selectedHost;
-      if (feedback) feedback.textContent = "";
-    };
-    showHost();
-    document.querySelector<HTMLElement>(".recipe-agent-picker")!.hidden = false;
-    document.querySelector("[data-recipe-hosts]")?.classList.add("is-enhanced");
-    select.addEventListener("change", () => {
-      showHost();
-      track("recipe_host_selected", { recipe, host: selectedHost });
+  const expandBtn = document.querySelector<HTMLButtonElement>(
+    "[data-recipe-expand]"
+  );
+  if (expandBtn && pre) {
+    expandBtn.hidden = false;
+    expandBtn.addEventListener("click", () => {
+      const expanded = expandBtn.getAttribute("aria-expanded") !== "true";
+      expandBtn.setAttribute("aria-expanded", String(expanded));
+      expandBtn.textContent = expanded
+        ? "Collapse instructions ↑"
+        : "Show full instructions ↓";
+      pre.classList.toggle("is-expanded", expanded);
+      if (!expanded) {
+        pre.scrollTop = 0;
+        pre.closest("figure")?.scrollIntoView({ block: "nearest" });
+      }
     });
   }
-
   document
     .querySelector<HTMLAnchorElement>("[data-recipe-details]")
     ?.addEventListener("click", (event) => {
@@ -164,33 +229,31 @@ const setupHosts = [
   const copyBtn =
     document.querySelector<HTMLButtonElement>("[data-recipe-copy]");
   if (copyBtn) {
+    const copyLabel = copyBtn.querySelector<HTMLElement>("[data-copy-label]")!;
     copyBtn.hidden = false;
     let reset: ReturnType<typeof setTimeout>;
     copyBtn.addEventListener("click", async () => {
       clearTimeout(reset);
       try {
         await navigator.clipboard.writeText(pre?.textContent ?? "");
-        copyBtn.textContent = "Copied ✓";
-        const file = panels
-          .find((panel) => panel.dataset.panel === selectedHost)
-          ?.querySelector("code")?.textContent;
+        copyLabel.textContent = "Copied ✓";
         if (feedback)
-          feedback.textContent = `Paste into ${file ?? "your project instruction file"}.`;
+          feedback.textContent =
+            "Paste into your project instruction file, then start a new session.";
         track("recipe_instructions_copied", {
           recipe,
           digest,
-          host: selectedHost,
+          host: "all",
           via: "button",
         });
         reset = setTimeout(() => {
-          copyBtn.textContent = "Copy instructions";
+          copyLabel.textContent = "Copy instructions";
         }, 2200);
       } catch {
-        if (dialog && !dialog.open) dialog.showModal();
         pre?.focus();
+        if (pre) window.getSelection()?.selectAllChildren(pre);
         if (feedback)
-          feedback.textContent =
-            "Select and copy the instruction text, or download the file.";
+          feedback.textContent = "Copy the selected instruction text manually.";
       }
     });
   }
@@ -199,17 +262,8 @@ const setupHosts = [
     track("recipe_instructions_copied", {
       recipe,
       digest,
-      host: selectedHost,
+      host: "all",
       via: "selection",
     });
   });
-  document
-    .querySelector<HTMLAnchorElement>("[data-recipe-download]")
-    ?.addEventListener("click", () => {
-      track("recipe_instructions_downloaded", {
-        recipe,
-        digest,
-        host: selectedHost,
-      });
-    });
 </script>

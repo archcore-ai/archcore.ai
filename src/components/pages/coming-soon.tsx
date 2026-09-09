@@ -2,7 +2,7 @@ import { Logo } from "@/components/logo";
 
 export function ComingSoonPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6">
+    <div className="min-h-screen text-foreground flex flex-col items-center justify-center px-6">
       <div className="text-center max-w-md space-y-6">
         <Logo size="lg" className="justify-center" loading="eager" />
 

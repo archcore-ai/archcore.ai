@@ -41,26 +41,31 @@ export function HowToUseCycleSection({
     >
       <div className="max-w-2xl mx-auto text-center space-y-4 mb-10 md:mb-12">
         <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-          {isHome ? <Trans>How it works</Trans> : <Trans>The loop</Trans>}
+          {isHome ? (
+            <Trans>How it works</Trans>
+          ) : (
+            <Trans>Four skills, one feature</Trans>
+          )}
         </p>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
           {isHome ? (
-            <Trans>The loop</Trans>
+            <Trans>Four skills, one feature</Trans>
           ) : (
-            <Trans>One feature, start to merge.</Trans>
+            <Trans>Use Archcore’s four skills in order</Trans>
           )}
         </h2>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           {isHome ? (
             <Trans>
-              Four steps on one feature, from an empty repo to a merged branch.
-              Say the sentence or type the shortcut: they do the same thing.
+              A skill is a workflow your agent follows for a specific job. These
+              four connect project setup, planning, decisions, and code review.
+              Each step uses the context saved before it.
             </Trans>
           ) : (
             <Trans>
-              Say the sentence, or type the shortcut. The sentence works in any
-              MCP-aware agent; the shortcut is the same thing on Claude Code,
-              Cursor, Codex CLI, and Copilot.
+              Ask your agent using the example prompt, or run the slash command
+              shown below. The commands work in Claude Code, Cursor, Codex CLI,
+              and Copilot. Other agents access Archcore through MCP.
             </Trans>
           )}
         </p>
@@ -111,7 +116,7 @@ export function HowToUseCycleSection({
                 data-analytics-cta="home_loop_how_to_use"
                 className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-[var(--color-action)] transition-colors"
               >
-                <Trans>Walk the whole loop</Trans>
+                <Trans>See the skills in action</Trans>
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </p>
@@ -120,15 +125,16 @@ export function HowToUseCycleSection({
           <>
             <p>
               <Trans>
-                Between the four there is no command at all. Hooks bring the
-                spec and the ADR to the agent while it edits, and each session
-                opens with a recap of what is decided and what is in progress.
+                While you code, supported hooks bring relevant specs and
+                decisions to your agent. At the start of a session, they provide
+                a recap of decisions and work in progress. Other agents can read
+                the same documents through MCP.
               </Trans>
             </p>
             <p>
               <Trans>
-                Then round again. The next plan starts from everything the last
-                three steps wrote down, and none of it leaves your repo.
+                The next feature starts with the context you have already saved.
+                Your specs and decisions stay in Git alongside the code.
               </Trans>
             </p>
           </>

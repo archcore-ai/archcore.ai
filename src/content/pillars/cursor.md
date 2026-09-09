@@ -17,12 +17,14 @@ faq:
   - question: "Do I need to configure MCP by hand?"
     answer: "Running archcore init wires it for you. If you install the plugin through the marketplace instead, there is a one-time MCP setup: copy the example config into ~/.cursor/mcp.json for all projects, or .cursor/mcp.json for one."
   - question: "Does my code leave my machine?"
-    answer: "No. The MCP server runs locally as a child process and reads a directory in your repository. No account, no hosted service, no network call."
+    answer: "No. The MCP server runs locally as a child process and reads a directory in your repository. Document access requires no account or hosted backend."
 ---
 
 Archcore gives Cursor structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
 
 Cursor 2.5 and later is a **plugin host**, so it gets slash commands, skills, gated tracks, and guardrails on top of the MCP tools and session hooks that every supported agent receives.
+
+*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## What Archcore adds to Cursor
 

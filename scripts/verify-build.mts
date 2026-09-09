@@ -3,6 +3,8 @@ import path from "node:path";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { load } from "cheerio";
+import { productCopy } from "../src/data/product-copy";
+import marketingMeta from "../src/data/marketing-meta.json";
 
 const root = path.resolve("dist");
 const baseline = JSON.parse(
@@ -24,7 +26,55 @@ function check(condition: unknown, message: string) {
   if (!condition) errors.push(message);
 }
 const pages = new Map(routes.map((route) => [route, readPage(route)]));
+const retiredClaims = [
+  "a memory that lives next to the code",
+  "captures every new decision back into Git",
+  "all eight supported agents over MCP and session hooks",
+  "any MCP agent before they edit",
+  "See what a week with it looks like",
+];
+for (const [page, meta] of Object.entries(marketingMeta)) {
+  const route = page === "home" ? "/" : `/${page}/`;
+  const $ = pages.get(route)!;
+  const description =
+    productCopy[meta.descriptionKey as keyof typeof productCopy].message;
+  check(description.length <= 160, `${route}: description length`);
+  check(
+    $("meta[name=description]").attr("content") === description,
+    `${route}: shared description`
+  );
+  check(
+    $('meta[property="og:description"]').attr("content") === description,
+    `${route}: shared OG description`
+  );
+  check(
+    $('meta[name="twitter:description"]').attr("content") === description,
+    `${route}: shared Twitter description`
+  );
+}
+const llms = fs.readFileSync("public/llms.txt", "utf8");
+for (const key of ["definition", "expanded", "delivery"] as const) {
+  check(llms.includes(productCopy[key].message), `llms.txt: shared ${key}`);
+}
 for (const [route, $] of pages) {
+  const prose = normalize(
+    $("main").clone().find("script, style").remove().end().text()
+  );
+  for (const claim of retiredClaims) {
+    check(!prose.includes(claim), `${route}: retired claim: ${claim}`);
+  }
+  check(
+    !/\bno telemetry(?:[.,;]|$)/i.test(prose),
+    `${route}: unqualified telemetry claim`
+  );
+  for (const cta of $(
+    '[data-analytics-cta="article_install"], [data-analytics-cta="pillar_install"]'
+  )) {
+    check(
+      normalize($(cta).find("p").text()) === productCopy.expanded.message,
+      `${route}: shared product CTA`
+    );
+  }
   check($("h1").length === 1, `${route}: exactly one H1`);
   check(
     $("main#main-content").length === 1,

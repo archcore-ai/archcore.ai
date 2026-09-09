@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -42,12 +43,7 @@ export function PluginHeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-            <Trans>
-              The Archcore plugin brings spec-driven development and automatic
-              project context to Claude Code, Cursor, Codex CLI, and GitHub
-              Copilot CLI. Specs, architecture, decisions, rules, and plans live
-              in Git and are applied as the agent works.
-            </Trans>
+            {_(productCopy.pluginExpanded)}
           </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">

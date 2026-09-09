@@ -24,6 +24,5 @@ export { PluginPillarsSection } from "./plugin-pillars-section";
 export { PluginHostsSection } from "./plugin-hosts-section";
 export { PluginFAQSection } from "./plugin-faq-section";
 
-export { HowToUseStartSection } from "./how-to-use-start-section";
 export { HowToUseCycleSection } from "./how-to-use-cycle-section";
 export { HowToUseCtaSection } from "./how-to-use-cta-section";

@@ -5,7 +5,7 @@ const CONTACT_EMAIL = "archcore-ai@proton.me";
 
 export function PrivacyPage() {
   return (
-    <main id="main-content" className="bg-background text-foreground">
+    <main id="main-content" className="text-foreground">
       <div className="page page--service">
         <a
           href="/"

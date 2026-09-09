@@ -14,7 +14,7 @@ faq:
   - question: "Does an MCP context server fill the context window?"
     answer: "Not if it is built for retrieval rather than dumping. The session opens with a compact index of available documents, and full documents are fetched on demand through search, relations, and single reads. The alternative, pasting everything at session start, is what actually fills the window."
   - question: "Does the MCP server need to run remotely?"
-    answer: "No. Archcore's server runs locally over stdio as a child process of your agent, reading a directory in your repository. No account, no network call, no external service. Local stdio is also what makes it usable in CI and on private code."
+    answer: "No. Archcore's server runs locally over stdio as a child process of your agent, reading a directory in your repository. Document access requires no account or hosted backend. Local stdio is also what makes it usable in CI and on private code."
   - question: "Which agents can use an MCP context server?"
     answer: "Any MCP-aware agent. Archcore's CLI is wired for eight today: Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Anything else that speaks the protocol works the same way, because the server is not an integration per vendor."
 ---
@@ -22,6 +22,8 @@ faq:
 The **Model Context Protocol** is an open standard for connecting AI agents to tools and data. An MCP server exposes a set of tools; any MCP-aware agent can call them without a bespoke integration.
 
 For project context that matters more than it first appears, because it changes context from something an agent *is given* into something an agent can *use*.
+
+*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## Why a protocol and not a file
 
@@ -57,7 +59,7 @@ Two design points are worth stating because they are where these servers usually
 
 ## Local stdio, and why it matters
 
-Archcore's MCP server runs **locally, over stdio**, as a child process of your agent. It reads a directory inside your repository. There is no account, no hosted component, and no network call.
+Archcore's MCP server runs **locally, over stdio**, as a child process of your agent. It reads a directory inside your repository. Document access requires no account or hosted backend.
 
 That is not only a privacy position, though it is that too. It is what makes the server usable at all in the places project context is needed: on private code, inside CI, on a machine with no outbound access, and in a repository whose contents cannot leave the building.
 

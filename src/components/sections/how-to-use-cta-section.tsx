@@ -25,9 +25,7 @@ export function HowToUseCtaSection({
         >
           <div className="min-w-0 space-y-1">
             <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug">
-              <Trans>
-                New to Archcore? See what a week with it looks like.
-              </Trans>
+              <Trans>See how to use Archcore, from init to review.</Trans>
             </h3>
             <p className="text-sm text-muted-foreground leading-snug">
               <Trans>

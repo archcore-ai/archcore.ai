@@ -1,6 +1,6 @@
 ---
 title: "Cursor Removed Memories: What to Use Instead"
-description: "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep agent memory in git."
+description: "Cursor removed Memories in v2.1 (Nov 2025) with no changelog entry. The export path, what Rules and AGENTS.md cover, and how to keep project context in Git."
 pubDate: 2026-07-29
 faq:
   - question: "Why did Cursor remove Memories?"
@@ -16,6 +16,8 @@ faq:
 Cursor removed its Memories feature in version 2.1, released November 21, 2025, and has not brought it back: as of Cursor 3.11 (July 2026) there is no automatic memory in the product. The official replacement is a one-time export into Rules. Everything beyond that (automatic capture, cross-session recall, team-wide memory) you now have to provide yourself.
 
 One disclosure before we start: [Archcore](https://archcore.ai/) is our product, and it appears in the comparison below. Read the last section with that in mind.
+
+*Updated September 9, 2026: Clarified Archcore’s project-context framing and the explicit step for recording decisions.*
 
 ## What happened to Cursor Memories?
 
@@ -65,7 +67,7 @@ So the gap left behind is specific: context that accumulates as you work, withou
 | Export → Rules (official path) | Your old memories as `.mdc` files in git; done in five minutes | One-time snapshot; nothing accumulates afterwards |
 | Memory-bank repos ([cursor-memory-bank](https://github.com/vanzan01/cursor-memory-bank), 3.1k stars) | Markdown context files in your repo, driven by slash commands | Fully manual discipline; works only if the model actually runs the commands |
 | MCP memory servers ([OpenMemory](https://mem0.ai/openmemory), [Cipher](https://github.com/campfirein/cipher), [memories.sh](https://memories.sh/docs/integrations/cursor)) | Automatic cross-session recall over MCP; OpenMemory runs locally | Memory lives outside git, so it is not versioned per decision or reviewed in PRs. It's a separate service to run, and team sync usually means someone's cloud |
-| Structured docs in your repo ([Archcore](https://archcore.ai/)) | Typed documents (decisions, rules, specs, plans) in `.archcore/`, versioned in git, loaded into the agent over MCP; capture happens during work via slash commands | You review what gets written; capture is a deliberate step rather than silent background writing |
+| Structured docs in your repo ([Archcore](https://archcore.ai/)) | Typed documents (decisions, rules, specs, plans) in `.archcore/`, versioned in git, loaded into the agent over MCP; ask your agent to record decisions during work, or use the slash-command shortcut | You review what gets written; capture is a deliberate step rather than silent background writing |
 
 Which one is right depends on what you actually used Memories for. Personal preferences ("I use pnpm, stop suggesting npm") belong in User Rules and take two minutes to move. Automatic recall of conversation facts is what MCP memory servers do. Project knowledge (why the auth module is structured this way, which decision blocks that refactor, what the API contract promises) is the piece we'd argue never belonged in a proprietary per-account store in the first place.
 
@@ -73,7 +75,7 @@ Which one is right depends on what you actually used Memories for. Personal pref
 
 Cursor Memories is the clearest example so far: context stored in a vendor's opaque layer sits one minor release away from gone. No changelog entry, no stated reason, no UI to clean up what was left behind.
 
-The alternative is boring and it works: keep project memory as files in the repository. That's the design principle behind Archcore. Decisions, rules, specs, and plans live as typed markdown in `.archcore/`, with named relations between them. It rides along with git, so every piece of context is versioned, shows up in pull requests, and survives any tool's product decisions. It loads into Cursor over MCP and session hooks, and the same documents work in Claude Code, Copilot, Gemini CLI, and any other MCP-aware agent, so the memory isn't married to one editor either.
+Archcore is a git-native context layer for AI coding agents. It keeps project context as files in the repository. Decisions, rules, specs, and plans live as typed markdown in `.archcore/`, with named relations between them. It rides along with git, so every piece of context is versioned, shows up in pull requests, and survives any tool's product decisions. It loads into Cursor over MCP and session hooks, and the same documents work in Claude Code, Copilot, Gemini CLI, and any other MCP-aware agent, so the project context stays available when you change editors.
 
 If your Rules files are short and under control, keep using Rules; they're good at what they do. The moment you catch yourself re-explaining the same architecture to your agent, or your `.mdc` files turn into an unstructured dump, that's the signal the project needs real [project context](https://archcore.ai/project-context/) rather than a bigger instruction file. [Agent memory and project context](/learn/agent-memory-vs-project-context/) covers why the two are not interchangeable, which is exactly what the Memories removal made concrete.
 

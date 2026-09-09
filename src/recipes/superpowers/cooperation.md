@@ -1,14 +1,25 @@
-# Archcore + Superpowers cooperation
+### Archcore + Superpowers
 
-Apply these project instructions when this recipe is explicitly connected. Use each tool for the contribution the current task requires.
+Applies when both plugins are loaded. An instruction naming only Archcore tools applies in any session with those tools.
 
-1. Preserve the outcome of the skill the user selected. Read that original skill and its required resources before using it. Do not replace it with a recipe summary.
-2. Before a project decision, retrieve relevant Archcore context. Confirm the target project when the workspace contains several repositories or document corpora. Treat mounted global documents as read-only context.
-3. When previous work supplies required information, check its relevance and sufficiency against the active skill's requirements. Reuse adequate answers, decisions, and artifacts. Ask about remaining gaps or contradictions; do not restart a completed interview.
-4. When the user starts with Superpowers, follow the selected Superpowers workflow. Supply Archcore context to its decisions. Use Archcore's document workflow to capture significant agreed outcomes when the task calls for durable project knowledge.
-5. When the user starts with Archcore, complete the requested Archcore outcome. Use an applicable Superpowers skill for missing design or execution work within the user's task scope. Pass prepared information into that skill. Do not start a second full planning cycle solely because both tools are available.
-6. Keep Superpowers work artifacts in the locations required by the installed Superpowers skills. Before creating an Archcore record, search for an existing record to update. Keep execution steps in their authoritative plan; let distinct Archcore records reference that plan rather than maintain a second task list.
-7. If both workflows require an artifact with the same purpose, inspect their actual requirements before writing it. Reuse or reference one authoritative artifact when both requirements permit. If they require incompatible ownership, expose the specific conflict before creating competing records. Record the unresolved case for recipe refinement.
-8. Preserve required review and approval steps. Prepared input is evidence of prior work, not automatic approval. Capture settled decisions through Archcore without accepting drafts on the user's behalf.
-9. Use Archcore MCP tools for `.archcore` document operations. If required skills, resources, or tools are unavailable, state which contribution is incomplete. Continue independent work within the user's scope; do not report the missing workflow as completed.
-10. If another connected integration also applies, preserve its applicable contribution. Expose conflicting instructions instead of assuming that separately working recipes form a verified combination.
+1. When the user names a skill or `/archcore:*` command, load that skill's own instructions and follow them rather than a summary.
+2. After `/archcore:plan`, `/archcore:document`, `/archcore:review`, or `/archcore:init` is invoked, let that command finish before invoking `superpowers:brainstorming`.
+3. When an `/archcore:*` command reports missing design or execution work, you may invoke the matching Superpowers skill with the command's prepared inputs.
+4. When the user starts through a Superpowers skill, keep to that skill's steps instead of an `/archcore:*` command.
+5. At the start of `superpowers:brainstorming`, call `search_documents` on the task topic before reading any repository file.
+6. During `superpowers:brainstorming`, write no code, tests, or `.archcore/` records until the user approves a design file under `docs/superpowers/specs/`.
+7. When `superpowers:brainstorming` writes a design file in a project with `.archcore/`, record the decisions it settles as `.archcore/**/*.adr.md`.
+8. When `superpowers:writing-plans` covers work an `.archcore/**/*.spec.md` describes, set the plan's `Spec:` field to that path.
+9. If a `docs/superpowers/plans/*.md` tracks the tasks of an `.archcore/**/*.plan.md`, report the overlap in the task result.
+10. If a `docs/superpowers/plans/*.md` tracks the tasks of an `.archcore/**/*.plan.md`, keep the `.archcore/` plan as written.
+11. When prior work in the task answers a question the active skill asks, do not ask it again.
+12. If supplied material leaves a required input unanswered, ask for that input before writing the artifact.
+13. Before recording a decision in `.archcore/`, call `search_documents` for an existing record.
+14. Create every `.archcore/**/*.md` record with status `draft`.
+15. Set status `accepted` on an `.archcore/**/*.md` record only after the user's explicit acceptance in the task.
+16. If a task conflicts with an `accepted` `.archcore/**/*.adr.md`, report the conflict and stop for the user's decision.
+17. If a document carries `read_only: true`, name its owning project instead of writing to it.
+18. If more than one writable `.archcore/` is present, confirm the target project before writing a record.
+19. If the project has no `.archcore/`, do not call `init_project` without the user's request.
+20. If a Superpowers skill or Archcore tool the user names is unavailable, name the missing contribution in the task result.
+21. If another connected recipe's instruction conflicts with an instruction here, report the conflict and preserve that recipe's applicable contribution.

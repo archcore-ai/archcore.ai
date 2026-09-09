@@ -5,6 +5,7 @@ tags:
   - "install"
 ---
 
+
 ## Context
 
 `/how-to-use` was a five-branch wizard built to `landing/how-to-use-interactive-walkthrough.prd.md`. Three things broke it at once.
@@ -34,6 +35,10 @@ One loop, shown on one piece of work, in one place per page.
 7. **The stage list is always vertical, on both pages.** A four-column grid on the home page wrapped each prompt to four or five lines and destroyed the one thing the section exists to show, which is that the stages run in order.
 8. **The home page's How-it-works slot is this loop.** `HowToUseCycleSection variant="home"` renders under the eyebrow "How it works" at `#how-it-works`, keeping the canonical slot and its anchor. `how-it-works-section.tsx` is deleted, and its two surviving claims (no new service to run; the context lives in the repo and travels with it through Git) moved into the loop's closing line.
 9. **The header carries "How to use" as a plain nav link beside "Docs".** The accent-coloured CTA button and its promoted mobile card are gone: onboarding and reference are two reads of the same depth, and the button was the last element competing with the install block for the eye.
+
+## Presentation update — 2026-09-09
+
+The owner requested the article presentation used by the blog. @src/components/pages/how-to-use.tsx now uses the shared article grid, an outline, numbered sections, copyable installation commands, and a compact closing CTA. @src/content/how-to-use/cycle.tsx still supplies the same four stages to the guide and the home loop. The home presentation is unchanged. The old how-to-use-start-section.tsx opener is removed. @scripts/generate-og-image.mts now describes the current loop rather than the retired branching wizard.
 
 ## Alternatives
 

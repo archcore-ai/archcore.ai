@@ -37,7 +37,7 @@ export function FAQSection() {
     {
       question: _(msg`Does my code leave my machine?`),
       answer: _(
-        msg`No. The plugin and CLI run fully local: no accounts, no telemetry, no external services. .archcore/ is plain markdown versioned in your Git repo.`
+        msg`Archcore stores project documents locally in .archcore/. Your coding agent may send document excerpts to its model provider. Install and update analytics contain version and platform information, not your project content. See the privacy policy for details and opt-out options.`
       ),
     },
     {

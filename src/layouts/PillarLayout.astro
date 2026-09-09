@@ -1,4 +1,5 @@
 ---
+import { productCopy } from "../data/product-copy";
 import SiteLayout from "./SiteLayout.astro";
 
 interface FaqEntry {
@@ -194,11 +195,7 @@ const faqSchema =
       }
 
       <aside class="cta" data-analytics-cta="pillar_install">
-        <p>
-          Archcore keeps specs, architecture, decisions, rules, and plans in
-          Git, and makes the right project context available to AI coding agents
-          as they work.
-        </p>
+        <p>{productCopy.expanded.message}</p>
         <a href="/#install">Install Archcore →</a>
       </aside>
     </article>

@@ -154,11 +154,17 @@
   }
 
   body {
+    min-height: 100vh;
     background-color: var(--color-page);
     background-image:
+      linear-gradient(to bottom, transparent 0%, var(--color-page) 80%),
       linear-gradient(var(--grid-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-size:
+      100% 100%,
+      32px 32px,
+      32px 32px;
+    background-repeat: no-repeat, repeat, repeat;
     color: var(--color-text);
     font-family: var(--font-sans);
     font-size: 15px;
@@ -236,6 +242,7 @@
 }
 
 .page-intro__description {
+  max-width: var(--container-narrow);
   margin: 16px 0 0;
   font-size: 16px;
   line-height: 1.6;
@@ -259,18 +266,6 @@
     --page-start: 64px;
     --page-end: 96px;
     --page-heading-gap: 40px;
-  }
-
-  /* Titles and summaries use both columns of the hub grid. */
-  .page-intro {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
-    align-items: start;
-  }
-
-  .page-intro .page-intro__description {
-    margin: 0;
   }
 }
 
@@ -312,30 +307,6 @@
     font-size: 28px;
     line-height: 1.08;
   }
-}
-
-/*
- * Hero cell-pattern background.
- * The page wrapper paints a solid bg-background that hides the body's
- * grid lines, so the hero re-applies the same pattern locally with a
- * soft radial mask to fade it out toward the edges.
- */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 32px 32px;
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    black 55%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
-  pointer-events: none;
 }
 
 /* Soften screenshots so they sit on warm cream surfaces. */

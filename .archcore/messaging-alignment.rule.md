@@ -5,6 +5,9 @@ status: accepted
 
 
 
+
+
+
 ## Rule
 
 All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, Astro-generated HTML, shared layouts, the OG image generator).
@@ -21,11 +24,11 @@ Where a slot is listed in `product/surface-descriptors`, copy it. Do not compose
 
 - **`/plugin` `<title>`:** "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names do not fit a ≤60-char title, so the hosts live in the description instead.
 - **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents".
-- **`/how-to-use` `<title>`:** "How to use Archcore — one loop from init to review".
+- **`/how-to-use` `<title>`:** "How to use Archcore".
 - **Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 - **Short tagline (footer):** "Git-native context for AI coding agents."
 
-The entry-point shorthand slot under the works-with strip is **empty as of 2026-08-27**. It held "Plugin = slash commands · CLI = one binary." until the hero tabs went, then "One install. On Claude Code, Cursor, Codex CLI, and Copilot the plugin comes with it." for one iteration. Both named the two parts on the one surface that had stopped distinguishing them, so the line was cut rather than reworded. The works-with strip and "Open source · Local-first · No telemetry" are the only lines under the install block now. Do not refill the slot with a sentence that names the plugin and the CLI as two things.
+The entry-point shorthand slot under the works-with strip is **empty as of 2026-08-27**. It held "Plugin = slash commands · CLI = one binary." until the hero tabs went, then "One install. On Claude Code, Cursor, Codex CLI, and Copilot the plugin comes with it." for one iteration. Both named the two parts on the one surface that had stopped distinguishing them, so the line was cut rather than reworded. The works-with strip and "Open source · Local-first" are the only lines under the install block now. Do not refill the slot with a sentence that names the plugin and the CLI as two things.
 
 **"Repo memory" is retired as of 2026-08-10.** It was the home and `/plugin` category term under `landing/home-title-category-keyword.adr.md`, now superseded by `product/two-discovery-categories`. The term survives only in `/learn/repo-memory/` and the two memory-cluster blog posts, where it names the topic the reader searched for and is never asserted as what Archcore is.
 
@@ -122,7 +125,7 @@ Fixed by `landing/home-loop-before-categories.adr.md` (2026-08-31). Component id
 
 Backgrounds alternate page / band from section 4 on, so the page does not read as one field of bordered cards. A new section picks the background that continues the alternation. Moving a section moves its background: `git-native-section` and `cross-agent-section` swapped on 2026-08-31 for exactly this reason.
 
-**Section 8 states the plugin-host set in prose, not in a card.** It reads: slash commands, skills, and guardrails run inside the four plugin hosts; every other agent reaches the same context over MCP and session hooks. That sentence and the `index.html` static paragraph under the same H2 must change together, and both must agree with `plugin-hosts-section.tsx` and `cli-agents-section.tsx`.
+**Section 8 states the plugin-host set in prose, not in a card.** It reads: slash commands, skills, and guardrails run inside the four plugin hosts; every other agent reaches the same context over MCP, with hook delivery only where the host supports it. That sentence and the `index.html` static paragraph under the same H2 must change together, and both must agree with `plugin-hosts-section.tsx` and `cli-agents-section.tsx`.
 
 **Astro renders every home section directly from @src/components/pages/landing.tsx.** The generated HTML and hydrated page use the same component tree.
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
@@ -141,13 +144,13 @@ Backgrounds alternate page / band from section 4 on, so the page does not read a
 
 - **`/plugin` H1:** "Make your AI coding agent work like it already knows your repo." Same opener as the plugin README, so the page and the repository read as one surface.
 - **`/cli` H1:** "Git-native project context for every AI coding agent."
-- **`/how-to-use` H1:** "Tell your agent what you want. Archcore writes it down."
+- **`/how-to-use` H1:** "How to use Archcore". The introduction MUST use `howToDescription` from @src/data/product-copy.ts. The page MUST NOT repeat the H1 as a metadata label.
 - **`/plugin` `<title>` is category-led**, not host-enumerated: "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names no longer fit a ≤60-char title, so the hosts live in the description instead. This mirrors the home title's rationale.
 - **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents", matching the CLI README H1.
 
-Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments, and each route's static `body.paragraphs` must state the same claims as the page's visible sections — that body is what non-JS crawlers read.
+Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The `/how-to-use` card may shorten the heading to name the loop. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments, and each route's static `body.paragraphs` must state the same claims as the page's visible sections — that body is what non-JS crawlers read.
 
-**The `/how-to-use` OG variant is stale.** It still carries the walkthrough wording ("How to use Archcore. / Interactive walkthrough.") after the 2026-08-27 rebuild. Regenerate it against the new H1 on the next OG pass.
+**The `/how-to-use` OG variant describes the init → plan → document → review loop.** The image MAY use the shortened heading in @scripts/generate-og-image.mts; its description MUST come from @src/data/product-copy.ts.
 
 ### The loop: content contract
 
@@ -180,7 +183,8 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 - **Home install anchor:** `#install` is the only one. All home install CTAs scroll to the hero install block, which renders the real copyable commands. `#install-cli` and `#install-plugin` were removed on 2026-08-27 with the tabs they pre-selected; do not reintroduce a hash that selects a product. Never link install CTAs to external destinations.
 - **Header:** two plain nav items, "How to use" (internal, `/how-to-use`) and "Docs" (external, `docs.archcore.ai`); a GitHub link showing the GitHub mark and the word "Star"; and the language switcher. **No accent-coloured button.** "How to use" was one until 2026-08-27; onboarding and reference are two reads of the same depth, and the button was the last element competing with the install block for the eye. The mobile menu carries the same two items in the same plain list, with no promoted card.
 - **No surface renders a star count.** The header pill and the bottom CTA button showed one until 2026-08-27. `github_star_clicked.stars` still carries the build-time number for analytics, and nothing displays it. Do not put the count back on a button: it reads as a scoreboard on a project whose number is still small.
-- **Star CTA block (bottom of home and `/how-to-use`):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`; two repo links, unadorned.
+- **Star CTA block (bottom of home):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`; two repo links, unadorned.
+- **`/how-to-use` closing CTA:** The block MUST use the `.recipe-cta` presentation from the integration page. Its heading MUST be "Start with Archcore.". Its description MUST be "Keep your project decisions ready for the next task.". The primary link MUST read "Install Archcore →" and target `#install`. The secondary link MUST read "See how it works" and target `#cycle`.
 - **Dedicated page CTAs:** `/plugin` uses "Install plugin" (primary) and "View on GitHub" (secondary); `/cli` uses "Install CLI" (primary) and "View on GitHub" (secondary). Each anchors to the page's own `#install` section.
 - Never pair these with different verbs — each page must read consistently.
 
@@ -282,12 +286,31 @@ Host support and structured data get their own invariants because both failed si
 
 **Bad:** "Install Plugin" CTA linking to `https://github.com/archcore-ai/archcore-plugin` — forces a context switch; the page has the commands.
 
+## Shared product descriptions
+
+1. Repeated product definitions and expanded descriptions MUST use @src/data/product-copy.ts.
+2. React components MUST translate the shared message descriptors through Lingui.
+3. Astro layouts and Node scripts MUST read the English message from the same descriptors.
+4. Authors MUST preserve the existing descriptor IDs when editing their messages.
+5. General article CTAs MUST use the same expanded description as the home hero.
+6. Integration descriptions MAY state Archcore's contribution to the named pair without replacing the product definition.
+7. Host summaries MUST distinguish MCP access from automatic hook delivery.
+8. Copy MUST NOT promise pre-write injection to every MCP-aware agent.
+9. Copy MUST describe recording a decision as an explicit request to the agent.
+10. Copy MUST NOT promise that Archcore automatically records every decision.
+11. Shipping copy MUST NOT make an unqualified "No telemetry" claim.
+12. Analytics descriptions MUST distinguish local project-document storage from installation, update, and website analytics.
+13. Analytics details and opt-out instructions MUST remain consistent with @src/components/pages/privacy.tsx.
+14. References to the how-to page MUST describe the init → plan → document → review loop.
+
+The owner approved these corrections after the site-wide messaging audit on 2026-09-09. The trust strip now says "Open source · Local-first". This replaces its former telemetry claim. The article CTA no longer promises automatic pre-edit delivery to every host. The CLI hero, metadata, and OG image use one description. The plugin's generic description states project-context availability; host-specific sections describe automatic delivery.
+
 ## Enforcement
 
 The Astro migration removed the hand-written crawler bodies and the second content build. Historical references to index.html and prerender-routes.mts above describe former failure cases; use the source map below for current changes.
 
 1. Copy edits MUST preserve the pinned positioning and section order in this rule.
-2. Marketing metadata edits MUST update @src/data/marketing-meta.json and the applicable localized page metadata.
+2. Marketing metadata edits MUST use the description selected by @src/data/marketing-meta.json from @src/data/product-copy.ts in both the Astro layout and localized page metadata.
 3. Navigation edits MUST update @src/data/navigation.ts, which supplies the shared Astro header and footer.
 4. FAQ edits MUST retain one source for visible answers and structured data.
 5. Command and host claims MUST remain consistent across @src/components/sections/, @src/content/how-to-use/, and @src/content/.

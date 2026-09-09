@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -24,14 +25,7 @@ export function CLIHeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-            <Trans>
-              Archcore CLI creates{" "}
-              <code className="font-mono text-base bg-muted/60 px-1.5 py-0.5 rounded">
-                .archcore/
-              </code>
-              , wires MCP and hooks, and lets your agents read and write
-              decisions, rules, plans, and guides from Git.
-            </Trans>
+            {_(productCopy.cliDescription)}
           </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">

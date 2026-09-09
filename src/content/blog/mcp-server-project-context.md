@@ -17,6 +17,8 @@ An MCP server for project context exposes your repository's engineering record (
 
 This is a practical guide to that pattern: why it beats flat files, what a good context server exposes, and how to stand one up. The walkthrough uses [Archcore](https://archcore.ai/), which is our tool; the design requirements apply to anything you build or adopt.
 
+*Updated September 9, 2026: Clarified installation and update analytics and the current init-to-review walkthrough.*
+
 ## Why serve context over MCP instead of instruction files?
 
 Instruction files have two structural problems that get worse as the project grows.
@@ -70,6 +72,6 @@ archcore init
 archcore mcp install
 ```
 
-`archcore init` scaffolds `.archcore/` (and imports existing `CLAUDE.md`, `AGENTS.md`, or `.cursor/rules/` files as structured documents, so you don't start from scratch). `archcore mcp install` registers the server with your agents; `archcore hooks install` adds the session-start index injection. The server runs locally as a child process. No accounts, no telemetry, no external services, and the documents it serves are plain markdown in your repo.
+`archcore init` scaffolds `.archcore/` (and imports existing `CLAUDE.md`, `AGENTS.md`, or `.cursor/rules/` files as structured documents, so you don't start from scratch). `archcore mcp install` registers the server with your agents; `archcore hooks install` adds the session-start index injection. The server runs locally as a child process. The documents it serves are plain Markdown in your repo. No account or hosted backend is required. Installation and updates send limited analytics, with opt-out options described in the [privacy policy](/privacy/).
 
-From there, ask your agent something that needs project knowledge ("what did we decide about auth?", "which rules apply to src/payments/?") and watch the tool calls. The [MCP server docs](https://docs.archcore.ai/cli/mcp-server/) cover manual configuration, and the [how-to-use walkthrough](https://archcore.ai/how-to-use/) covers the day-to-day workflows.
+From there, ask your agent something that needs project knowledge ("what did we decide about auth?", "which rules apply to src/payments/?") and watch the tool calls. The [MCP server docs](https://docs.archcore.ai/cli/mcp-server/) cover manual configuration, and the [how-to-use walkthrough](https://archcore.ai/how-to-use/) covers the init, plan, document, review loop.

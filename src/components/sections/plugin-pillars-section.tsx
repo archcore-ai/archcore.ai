@@ -44,7 +44,7 @@ export function PluginPillarsSection() {
       icon: Compass,
       title: _(msg`Context-aware edits, no command`),
       outcome: _(
-        msg`Hooks inject the rules and specs that apply to the file your agent is editing, and every session opens with a recap of what's decided and in progress.`
+        msg`On hosts with pre-write hooks, applicable rules and specs arrive before edits. Session hooks provide a recap of what's decided and in progress. The CLI page lists support by host.`
       ),
       command: null,
       trigger: _(msg`automatic`),
@@ -53,7 +53,7 @@ export function PluginPillarsSection() {
       icon: Gavel,
       title: _(msg`Decisions stop dying in chat`),
       outcome: _(
-        msg`Record an ADR or RFC, optionally codified as a team rule that auto-applies to every future edit in the same area. Or document a module that only lives in someone's head.`
+        msg`Record an ADR or RFC, optionally codified as a team rule scoped to future edits in the same area. Or document a module that only lives in someone's head.`
       ),
       command: "/archcore:document",
     },

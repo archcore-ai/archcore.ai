@@ -48,6 +48,36 @@ Source: ${data.source.repo} — ${data.source.path}${
 ${tools}
 
 ${entry.body ?? ""}
+${
+  data.workflow
+    ? `
+## ${data.workflow.heading}
+
+The instructions ask your agent to:
+
+${data.workflow.steps.map((step, index) => `${index + 1}. **${step.title}.** ${step.description}`).join("\n")}
+
+${data.workflow.note}
+`
+    : ""
+}
+${
+  data.pilot
+    ? `
+## Benefits & limits
+
+### ${data.pilot.heading}
+
+${data.pilot.summary}
+
+${data.pilot.findings.map((finding) => `### ${finding.scenario}\n\n${finding.result}\n\n${finding.caveat}`).join("\n\n")}
+
+### Limits
+
+${data.pilot.limitation}
+`
+    : ""
+}
 
 ## Known limits
 

@@ -12,14 +12,6 @@ interface Tool {
   iconDark?: string | undefined;
 }
 
-interface Host {
-  id: string;
-  label: string;
-  instructionFile: string;
-  note: string | null;
-  verified: boolean;
-}
-
 interface EvidenceRecord {
   digest: string;
   date: Date;
@@ -40,17 +32,30 @@ interface Props {
   recipe: string;
   digest: string;
   instructions: string;
-  filename: string;
   downloadHref: string;
   markdownTwin: string;
   sourceRepo: string;
   sourcePath: string;
   sourceRevision: string | null;
   tools: Tool[];
-  hosts: Host[];
   evidence: EvidenceRecord[];
   limits: string[];
   maintainer: string;
+  workflow?:
+    | {
+        heading: string;
+        steps: { title: string; description: string }[];
+        note: string;
+      }
+    | undefined;
+  pilot?:
+    | {
+        heading: string;
+        summary: string;
+        limitation: string;
+        findings: { scenario: string; result: string; caveat: string }[];
+      }
+    | undefined;
 }
 
 const SITE_URL = "https://archcore.ai";
@@ -64,17 +69,17 @@ const {
   recipe,
   digest,
   instructions,
-  filename,
   downloadHref,
   markdownTwin,
   sourceRepo,
   sourcePath,
   sourceRevision,
   tools,
-  hosts,
   evidence,
   limits,
   maintainer,
+  pilot,
+  workflow,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
@@ -159,6 +164,7 @@ const breadcrumbSchema = {
     id="main-content"
     class="page recipe-page"
     data-recipe-root
+    data-hide-integration-branding
     data-recipe={recipe}
     data-digest={digest}
   >
@@ -166,41 +172,149 @@ const breadcrumbSchema = {
       <a href="/integrations/">← All integrations</a>
     </nav>
 
-    <div class="recipe-body">
-      <div class="recipe-story">
-        <header class="recipe-head">
-          <div class="recipe-head__identity">
-            <RecipeMark tools={tools} />
-            <span class="badge">{status}</span>
-          </div>
-          <h1>{heading}</h1>
-          <p class="recipe-head__summary">{summary}</p>
-        </header>
-        <section class="recipe-overview" aria-label="About this integration">
-          <div class="recipe-prose"><slot /></div>
-          <dl class="recipe-tools">
-            {
-              tools.map((tool) => (
-                <div>
-                  <dt>
-                    <a href={tool.url}>{tool.name} ↗</a>
-                  </dt>
-                  <dd>{tool.role}</dd>
-                </div>
-              ))
-            }
-          </dl>
-        </section>
+    <header class="recipe-head">
+      <div class="recipe-head__identity">
+        <RecipeMark tools={tools} />
+        <span class="badge">{status}</span>
       </div>
-      <RecipeSetup
-        hosts={hosts}
-        tools={tools}
-        downloadHref={downloadHref}
-        verificationNote={verified.length > 0
-          ? "Verification covers recorded runs only"
-          : "Experimental · Not yet verified"}
-      />
+      <div class="recipe-head__content">
+        <h1>{heading}</h1>
+        <p class="recipe-head__summary">{summary}</p>
+      </div>
+      <button
+        type="button"
+        class="btn btn--primary recipe-head__install"
+        data-recipe-install
+        aria-haspopup="dialog"
+        aria-controls="install"
+        hidden>Install</button
+      >
+      <noscript
+        ><a class="btn btn--primary" href="#install">Install</a></noscript
+      >
+    </header>
+
+    <div class="recipe-toolbar">
+      <nav class="recipe-tabs" aria-label="Integration guide" data-recipe-tabs>
+        <a
+          id="recipe-tab-overview"
+          href="#how-it-works"
+          data-recipe-tab="how-it-works">How it works</a
+        >
+        {
+          pilot && (
+            <a
+              id="recipe-tab-pilot"
+              href="#pilot-results"
+              data-recipe-tab="pilot-results"
+            >
+              Benefits &amp; limits
+            </a>
+          )
+        }
+      </nav>
     </div>
+
+    <section
+      id="how-it-works"
+      class="recipe-overview"
+      aria-label="About this integration"
+      data-recipe-tab-panel
+    >
+      <div>
+        <div class="recipe-prose"><slot /></div>
+        <dl class="recipe-tools">
+          {
+            tools.map((tool) => (
+              <div>
+                <dt>
+                  <a href={tool.url} target="_blank" rel="noopener noreferrer">
+                    {tool.name} ↗
+                  </a>
+                </dt>
+                <dd>{tool.role}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      {
+        workflow && (
+          <section
+            class="recipe-workflow"
+            aria-labelledby="recipe-workflow-heading"
+          >
+            <h2 id="recipe-workflow-heading">{workflow.heading}</h2>
+            <p class="recipe-workflow-intro">
+              The instructions ask your agent to:
+            </p>
+            <ol>
+              {workflow.steps.map((step, index) => (
+                <li>
+                  <span class="recipe-workflow-number" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p class="recipe-workflow-note">{workflow.note}</p>
+          </section>
+        )
+      }
+      {
+        pilot && (
+          <div class="recipe-overview-result">
+            <a href="#pilot-results">See benefits and limits →</a>
+          </div>
+        )
+      }
+    </section>
+    <RecipeSetup
+      tools={tools}
+      downloadHref={downloadHref}
+      instructions={instructions}
+      verificationNote={verified.length > 0
+        ? "Verification covers recorded runs only"
+        : "Experimental · Not yet verified"}
+    />
+
+    {
+      pilot && (
+        <section
+          id="pilot-results"
+          class="recipe-pilot"
+          data-recipe-tab-panel
+          aria-labelledby="recipe-impact-heading"
+        >
+          <header class="recipe-pilot-heading">
+            <div>
+              <p class="recipe-eyebrow">Benefits &amp; limits</p>
+              <h2 id="recipe-impact-heading">{pilot.heading}</h2>
+            </div>
+            <p>{pilot.summary}</p>
+          </header>
+          <dl class="recipe-findings">
+            {pilot.findings.map((finding) => (
+              <div>
+                <dt>{finding.scenario}</dt>
+                <dd>
+                  <p>{finding.result}</p>
+                  <p class="recipe-finding-caveat">{finding.caveat}</p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <aside class="recipe-pilot-limit" aria-label="Limits">
+            <h3>Limits</h3>
+            <p>{pilot.limitation}</p>
+          </aside>
+        </section>
+      )
+    }
 
     <section class="recipe-cta" data-analytics-cta="recipe_install">
       <div>
@@ -208,8 +322,15 @@ const breadcrumbSchema = {
         <p>Keep your project decisions ready for the next task.</p>
       </div>
       <div class="recipe-cta__actions">
-        <a class="btn btn--primary" href="/#install">Install Archcore →</a>
-        <a href="/how-to-use/">See how it works</a>
+        <a
+          class="btn btn--primary"
+          href="/how-to-use/"
+          target="_blank"
+          rel="noopener noreferrer">Install Archcore →</a
+        >
+        <a href="/how-to-use/" target="_blank" rel="noopener noreferrer"
+          >See how it works</a
+        >
       </div>
     </section>
 
@@ -221,30 +342,18 @@ const breadcrumbSchema = {
       <div class="recipe-dialog__header">
         <div>
           <p class="recipe-eyebrow">{heading}</p><h2 id="recipe-dialog-title">
-            Integration instructions
+            Source &amp; verification
           </h2>
         </div>
         <form method="dialog">
           <button
             class="recipe-dialog__close"
-            aria-label="Close instructions"
+            aria-label="Close details"
             autofocus>✕</button
           >
         </form>
       </div>
       <div class="recipe-dialog__body">
-        <p class="recipe-dialog__intro">
-          Add this text to your project instruction file. Keep your existing
-          instructions.
-        </p>
-        <figure class="recipe-file" data-analytics-recipe>
-          <figcaption>{filename}</figcaption>
-          <pre
-            data-recipe-text
-            tabindex="0"
-            aria-label="Integration instructions">{instructions}</pre>
-        </figure>
-        <h2>Source &amp; verification</h2>
         <dl class="recipe-facts">
           <div><dt>Category</dt><dd>{category}</dd></div>
           <div>
@@ -258,13 +367,22 @@ const breadcrumbSchema = {
                 sourceRevision ? (
                   <a
                     href={`${sourceRepo}/blob/${sourceRevision}/${sourcePath}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {sourcePath}
                   </a>
                 ) : (
                   <>
-                    <a href={sourceRepo}>Plugin repository</a> · Source not
-                    published yet.
+                    <a
+                      href={sourceRepo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Plugin repository
+                    </a>{" "}
+                    · <code>{sourcePath}</code> · This revision is not published
+                    yet.
                   </>
                 )
               }
@@ -330,3 +448,72 @@ const breadcrumbSchema = {
     </dialog>
   </main>
 </SiteLayout>
+
+<script>
+  const tabList = document.querySelector<HTMLElement>("[data-recipe-tabs]");
+  const tabs = [
+    ...document.querySelectorAll<HTMLAnchorElement>("[data-recipe-tab]"),
+  ];
+  const tabPanels = [
+    ...document.querySelectorAll<HTMLElement>("[data-recipe-tab-panel]"),
+  ];
+
+  if (tabList && tabs.length && tabPanels.length) {
+    const activate = (id: string) => {
+      for (const tab of tabs) {
+        const selected = tab.dataset.recipeTab === id;
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      }
+      for (const panel of tabPanels) panel.hidden = panel.id !== id;
+    };
+    tabList.setAttribute("role", "tablist");
+    for (const tab of tabs) {
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", tab.dataset.recipeTab!);
+      const panel = tabPanels.find(
+        (panel) => panel.id === tab.dataset.recipeTab
+      );
+      panel?.setAttribute("role", "tabpanel");
+      panel?.setAttribute("aria-labelledby", tab.id);
+      if (panel) panel.tabIndex = 0;
+      tab.addEventListener("click", (event) => {
+        event.preventDefault();
+        activate(tab.dataset.recipeTab!);
+        history.replaceState(null, "", tab.hash);
+      });
+      tab.addEventListener("keydown", (event) => {
+        if (event.key === " ") {
+          event.preventDefault();
+          tab.click();
+          return;
+        }
+        const index = tabs.indexOf(tab);
+        const next =
+          event.key === "ArrowRight"
+            ? (index + 1) % tabs.length
+            : event.key === "ArrowLeft"
+              ? (index - 1 + tabs.length) % tabs.length
+              : event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? tabs.length - 1
+                  : -1;
+        if (next < 0) return;
+        event.preventDefault();
+        tabs[next].click();
+        tabs[next].focus();
+      });
+    }
+    const syncHash = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.closest("#install")) return;
+      const panel = target?.closest<HTMLElement>("[data-recipe-tab-panel]");
+      activate(panel?.id ?? "how-it-works");
+      if (target && panel && target !== panel) target.scrollIntoView();
+    };
+    activate("how-it-works");
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+  }
+</script>

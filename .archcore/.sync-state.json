@@ -271,6 +271,71 @@
       "source": "landing/single-astro-site.adr.md",
       "target": "landing-tech-stack.doc.md",
       "type": "related"
+    },
+    {
+      "source": "landing/page-authoring-and-action-standards.adr.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/editorial-page-authoring.rule.md",
+      "target": "landing/page-authoring-and-action-standards.adr.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/integration-page-authoring.rule.md",
+      "target": "landing/page-authoring-and-action-standards.adr.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/page-cta-and-links.rule.md",
+      "target": "landing/page-authoring-and-action-standards.adr.md",
+      "type": "implements"
+    },
+    {
+      "source": "landing/editorial-page-authoring.rule.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/integration-page-authoring.rule.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/page-cta-and-links.rule.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/author-and-check-content-pages.guide.md",
+      "target": "landing/editorial-page-authoring.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/author-and-check-content-pages.guide.md",
+      "target": "landing/integration-page-authoring.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/author-and-check-content-pages.guide.md",
+      "target": "landing/page-cta-and-links.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/integration-page-authoring.rule.md",
+      "target": "landing/integration-catalog-pilot.plan.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/page-cta-and-links.rule.md",
+      "target": "landing/how-to-use-cases.adr.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/page-cta-and-links.rule.md",
+      "target": "landing/home-install-single-path.adr.md",
+      "type": "related"
     }
   ]
 }

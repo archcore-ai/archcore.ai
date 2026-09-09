@@ -22,49 +22,52 @@ export const CYCLE_STAGES: CycleStage[] = [
   {
     id: "init",
     skill: "/archcore:init",
-    title: <Trans>Make the repo legible</Trans>,
+    title: <Trans>Describe the project</Trans>,
     prompt: <Trans>Set up Archcore in this repo.</Trans>,
     result: (
       <Trans>
-        Your agent reads the project and proposes a stack rule, a run guide, an
-        architecture overview, and a spec for each module that changes most. One
-        preview, and nothing is written until you confirm.
+        Your agent reads the repository and proposes documents describing its
+        architecture, rules, and key modules. You review the proposal before
+        Archcore saves it in .archcore/.
       </Trans>
     ),
   },
   {
     id: "plan",
     skill: "/archcore:plan",
-    title: <Trans>Scope the work before writing it</Trans>,
+    title: <Trans>Plan the feature</Trans>,
     prompt: <Trans>Plan rate limiting for the public API.</Trans>,
     result: (
       <Trans>
-        A spec and a plan, sized from what the change actually touches. A layout
-        fix would produce no documents at all.
+        Your agent uses the project context to define how rate limiting should
+        work in a spec and break the implementation into tasks. You can then use
+        that plan to guide the coding work.
       </Trans>
     ),
   },
   {
     id: "document",
     skill: "/archcore:document",
-    title: <Trans>Record what you settled on</Trans>,
+    title: <Trans>Save the decision</Trans>,
     prompt: <Trans>Record the decision to use a token bucket in Redis.</Trans>,
     result: (
       <Trans>
-        An ADR holding the reasoning as well as the verdict, and an offer to
-        write the team rule that follows from it.
+        Your agent saves the choice and its reasoning in an architecture
+        decision record (ADR). Future tasks can look up why you chose Redis for
+        rate limiting.
       </Trans>
     ),
   },
   {
     id: "review",
     skill: "/archcore:review",
-    title: <Trans>Check it before merge</Trans>,
+    title: <Trans>Review the code</Trans>,
     prompt: <Trans>Review my branch before merge.</Trans>,
     result: (
       <Trans>
-        Your diff read against the spec from step 2 and the ADR from step 3, in
-        both directions: code that drifted, and documents the change made wrong.
+        Your agent checks the code changes against the spec from step 2 and the
+        decision from step 3. It flags code that breaks a requirement and
+        documents that no longer match the code.
       </Trans>
     ),
   },

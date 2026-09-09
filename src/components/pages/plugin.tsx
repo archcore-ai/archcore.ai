@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
@@ -20,15 +21,13 @@ export function PluginPage() {
     // category-led (like the home title) and the hosts moved to the
     // description, which has room for all four.
     title: _(msg`Archcore Plugin — Spec-Driven Development for Coding Agents`),
-    description: _(
-      msg`Add spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.`
-    ),
+    description: _(productCopy.pluginDescription),
     canonical: "/plugin/",
     ogImage: "/og-image-plugin.png",
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <main id="main-content">
         <PluginHeroSection />
         <PluginPillarsSection />

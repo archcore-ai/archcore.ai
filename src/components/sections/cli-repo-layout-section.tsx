@@ -1,7 +1,14 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { BookOpen, Github, Server, Workflow, Zap, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Github,
+  Server,
+  Workflow,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 import { LINKS } from "@/lib/links";
 
@@ -32,20 +39,20 @@ export function CLIRepoLayoutSection() {
     {
       icon: Server,
       title: _(msg`Local MCP in your repo`),
-      body: _(msg`No external service, no account, no telemetry.`),
+      body: _(
+        msg`Project documents stay in your repo. No account or hosted backend required.`
+      ),
     },
     {
       icon: Workflow,
       title: _(msg`One config, every agent`),
-      body: _(
-        msg`Claude Code, Cursor, Codex, Copilot. One source of truth.`
-      ),
+      body: _(msg`Claude Code, Cursor, Codex, Copilot. One source of truth.`),
     },
     {
       icon: Zap,
       title: _(msg`Context auto-injected at session start`),
       body: _(
-        msg`Session hooks load the rules and ADRs for what you're touching.`
+        msg`Supported session hooks provide a document index and a recap of decided and in-progress work.`
       ),
     },
   ];

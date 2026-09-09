@@ -341,8 +341,9 @@ usable content area; horizontal gutters are added outside that width.
   separated by 40px, from 1000px. Below that width the article flows in one
   column; pillar outlines remain inline.
 - Use `.page--listing` and `PageIntro.astro` for Blog, Learn, and Integrations.
-  From 768px, titles and descriptions occupy two equal columns. Descriptions
-  use their natural height; do not reserve empty lines to align unequal copy.
+  Place the description below the title at every screen size, limited to the
+  760px reading measure. Descriptions use their natural height; do not reserve
+  empty lines to align unequal copy. The collection below uses the full grid.
 - Blog and Learn use two equal columns across the full container. An odd last
   entry spans the row, with its title and description in separate columns.
 - Integration entries use full-width horizontal rows: tool identity, text,
@@ -351,6 +352,9 @@ usable content area; horizontal gutters are added outside that width.
   reading column. This layout collapses into one column on mobile.
 - Use `.page-title` for page titles. It shares the fluid 30–44px scale,
   weight, tracking, and line height of `.type-hero` and article titles.
+- `/how-to-use/` uses the article grid with a right-hand outline, ordinary
+  numbered sections, copyable installation commands, and a compact closing CTA.
+  Its four stages share content with the home loop; they are not landing cards.
 - Keep marketing heroes and their section introductions centered within
   the shared outer grid. Detail pages may put identity or back navigation
   before the title; those elements use the same outer alignment and spacing.

@@ -1,13 +1,13 @@
 # Archcore
 
-> Archcore is a git-native context layer for AI coding agents, covering spec-driven development and context engineering. Archcore keeps specs, architecture, decisions, rules, and plans as typed markdown documents in a .archcore/ directory inside your repository, and loads them into Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, and any MCP-aware agent through MCP tools, session hooks, and slash commands. Local-first: no accounts, no telemetry, no external services.
+> Archcore is a git-native context layer for AI coding agents. Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work. Agents access project context through MCP. Supported hosts also receive context through hooks. Installation and updates send limited analytics; see the privacy policy for details and opt-out options.
 
 ## Main pages
 
-- [Home](https://archcore.ai/): what Archcore is and how to install the CLI or plugin
+- [Home](https://archcore.ai/): what Archcore is and how to install Archcore
 - [Plugin](https://archcore.ai/plugin/): /archcore slash commands, skills, and guardrails for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI
-- [CLI](https://archcore.ai/cli/): single cross-platform binary that scaffolds .archcore/, runs a local MCP server, and wires session hooks for 8 AI coding agents
-- [How to use](https://archcore.ai/how-to-use/): interactive walkthrough covering install, quick start, and day-to-day use
+- [CLI](https://archcore.ai/cli/): single cross-platform binary that scaffolds .archcore/, runs a local MCP server, and connects eight AI coding agents over MCP, with session hooks on five supported hosts
+- [How to use](https://archcore.ai/how-to-use/): one feature through init, plan, document, and review, with prompts and slash-command shortcuts
 - [Privacy policy](https://archcore.ai/privacy/): local-first data practices
 
 ## Reference

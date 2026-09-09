@@ -14,7 +14,7 @@ import { StarCtaSection } from "@/components/sections/star-cta-section";
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <main id="main-content">
         {/*
           The page releases meaning in this order: what breaks, what changes,

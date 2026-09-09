@@ -1,3 +1,4 @@
+import { productCopy } from "../src/data/product-copy";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { readFileSync, writeFileSync } from "fs";
@@ -9,7 +10,9 @@ const rootDir = join(__dirname, "..");
 const publicDir = join(rootDir, "public");
 
 const interBold = readFileSync(join(__dirname, "fonts", "Inter-Bold.ttf"));
-const interRegular = readFileSync(join(__dirname, "fonts", "Inter-Regular.ttf"));
+const interRegular = readFileSync(
+  join(__dirname, "fonts", "Inter-Regular.ttf")
+);
 
 const logoBuffer = readFileSync(join(publicDir, "logo.png"));
 const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
@@ -38,13 +41,10 @@ interface Variant {
 const VARIANTS: Variant[] = [
   {
     output: "og-image.png",
-    headline: [
-      "Spec-Driven Development &",
-      "Context Engineering.",
-    ],
-    subtitle:
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work.",
-    bottomLabel: "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
+    headline: ["Spec-Driven Development &", "Context Engineering."],
+    subtitle: productCopy.expanded.message,
+    bottomLabel:
+      "Plugin  ·  CLI + MCP  ·  Git-native context for AI coding agents",
   },
   {
     output: "og-image-plugin.png",
@@ -52,30 +52,21 @@ const VARIANTS: Variant[] = [
       "Make your AI coding agent work",
       "like it already knows your repo.",
     ],
-    subtitle:
-      "Archcore brings spec-driven development and automatic project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. Specs, architecture, decisions, rules, and plans live in Git.",
+    subtitle: productCopy.pluginExpanded.message,
     bottomLabel:
       "Claude Code · Cursor · Codex · Copilot  ·  Intent-based slash commands",
   },
   {
     output: "og-image-cli.png",
-    headline: [
-      "Git-native project context",
-      "for every AI coding agent.",
-    ],
-    subtitle:
-      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets your agents read and write specs, decisions, rules, and plans from Git.",
+    headline: ["Git-native project context", "for every AI coding agent."],
+    subtitle: productCopy.cliDescription.message,
     bottomLabel: "Standalone binary  ·  MCP + hooks  ·  8 AI coding agents",
   },
   {
     output: "og-image-how-to-use.png",
-    headline: [
-      "How to use Archcore.",
-      "Interactive walkthrough.",
-    ],
-    subtitle:
-      "Answer 3-5 questions and see the exact commands. Pick plugin vs CLI for your stack. No signup, no video.",
-    bottomLabel: "Interactive walkthrough  ·  3-5 steps  ·  Plugin · CLI",
+    headline: ["How to use Archcore."],
+    subtitle: productCopy.howToDescription.message,
+    bottomLabel: "init  ·  plan  ·  document  ·  review",
   },
 ];
 

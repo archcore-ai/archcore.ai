@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import {
@@ -18,15 +19,13 @@ export function CLIPage() {
 
   usePageMeta({
     title: _(msg`Archcore CLI — Git-Native Context for AI Coding Agents`),
-    description: _(
-      msg`Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.`
-    ),
+    description: _(productCopy.cliDescription),
     canonical: "/cli/",
     ogImage: "/og-image-cli.png",
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <main id="main-content">
         <CLIHeroSection />
         <CLIProblemSection />

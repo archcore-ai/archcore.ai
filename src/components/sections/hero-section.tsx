@@ -1,3 +1,4 @@
+import { productCopy } from "@/data/product-copy";
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -44,11 +45,7 @@ export function HeroSection() {
           </div>
 
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-            <Trans>
-              Archcore keeps specs, architecture, decisions, rules, and plans in
-              Git, and makes the right project context available to AI coding
-              agents as they work.
-            </Trans>
+            {_(productCopy.expanded)}
           </p>
 
           <p className="type-body font-medium max-w-[var(--container-narrow)] mx-auto">
@@ -121,7 +118,7 @@ export function HeroSection() {
                 </Trans>
               </p>
               <p>
-                <Trans>Open source · Local-first · No telemetry</Trans>
+                <Trans>Open source · Local-first</Trans>
               </p>
             </div>
 

@@ -17,12 +17,14 @@ faq:
   - question: "Can I use this in CI?"
     answer: "Yes. The CLI is a single binary with no daemon and no account, so it is scriptable. That is also the reason the CLI path exists independently of any plugin: automation does not run inside a coding host."
   - question: "Does anything leave my machine?"
-    answer: "No. The MCP server runs locally over stdio as a child process and reads a directory in your repository. No account, no hosted component, no network call."
+    answer: "No. The MCP server runs locally over stdio as a child process and reads a directory in your repository. Document access requires no account or hosted backend."
 ---
 
 Archcore gives Codex CLI structured project context from Git, including specs, architecture decisions, rules, plans, and project knowledge, so the agent can follow how your repository is actually built.
 
 Codex CLI 0.117 and later is a **plugin host**. It also has one host-specific caveat worth knowing before you set it up, covered under hooks below.
+
+*Updated September 9, 2026: Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
 
 ## What Archcore adds to Codex CLI
 
