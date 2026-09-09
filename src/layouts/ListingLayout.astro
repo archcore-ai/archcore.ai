@@ -1,5 +1,6 @@
 ---
 import PageIntro from "../components/PageIntro.astro";
+import ClosingCta from "../components/ClosingCta.astro";
 import SiteLayout from "./SiteLayout.astro";
 
 interface ListingItem {
@@ -94,5 +95,6 @@ const fmt = (d: Date) =>
       }
     </ul>
     <div class="listing-outro"><slot /></div>
+    <ClosingCta analyticsCta="listing_install" />
   </main>
 </SiteLayout>

@@ -18,10 +18,10 @@ const link = (href: string, message: MessageDescriptor) => ({
 
 export const headerLinks = [
   link("/how-to-use/", msg`How to use`),
-  link("/blog/", msg`Blog`),
-  link("/learn/", msg`Learn`),
   link("/integrations/", msg`Integrations`),
   link(LINKS.docs, msg`Docs`),
+  link("/blog/", msg`Blog`),
+  link("/learn/", msg`Learn`),
 ];
 export const primaryLinks = [
   link("/plugin/", msg`Plugin`),
@@ -29,13 +29,6 @@ export const primaryLinks = [
   ...headerLinks,
   { href: LINKS.org, en: "GitHub", ru: "GitHub" },
   link("/privacy/", msg`Privacy`),
-];
-export const referenceLinks = [
-  link("/context-engineering/", msg`Context engineering`),
-  link("/spec-driven-development/", msg`Spec-driven development`),
-  link("/project-context/", msg`Project context`),
-  link("/git-native-context/", msg`Git-native context`),
-  { href: "/mcp/", en: "MCP", ru: "MCP" },
 ];
 export const chromeLabels = {
   star: label(msg`Star`),

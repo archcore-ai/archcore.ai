@@ -30,11 +30,7 @@ export function HeroSection() {
     >
       <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
         <div className="space-y-8 text-center">
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-              <Trans>Git-native context layer</Trans>
-            </p>
-
+          <div className="hero-copy space-y-5">
             <h1 className="type-hero text-balance">
               <Trans>
                 Spec-Driven Development &amp; Context Engineering
@@ -42,17 +38,10 @@ export function HeroSection() {
                 for AI Coding Agents
               </Trans>
             </h1>
+            <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
+              {_(productCopy.expanded)}
+            </p>
           </div>
-
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-            {_(productCopy.expanded)}
-          </p>
-
-          <p className="type-body font-medium max-w-[var(--container-narrow)] mx-auto">
-            <Trans>
-              Stop re-explaining your repo to every AI coding agent.
-            </Trans>
-          </p>
 
           <div className="max-w-2xl mx-auto text-left" id="install">
             <div className="rounded-xl border border-border bg-card p-5 space-y-4">

@@ -34,7 +34,7 @@
     "descriptionKey": "homeDescription"
   },
   "plugin": {
-    "title": "Archcore Plugin — Spec-Driven Development for Coding Agents",
+    "title": "Archcore Plugin for AI agents",
     "ogImage": "https://archcore.ai/og-image-plugin.png",
     "schemas": [
       {
@@ -68,7 +68,7 @@
     "descriptionKey": "pluginDescription"
   },
   "cli": {
-    "title": "Archcore CLI — Git-Native Context for AI Coding Agents",
+    "title": "Archcore CLI",
     "ogImage": "https://archcore.ai/og-image-cli.png",
     "schemas": [
       {

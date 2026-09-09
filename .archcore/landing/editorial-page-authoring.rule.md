@@ -38,12 +38,12 @@ Scope: @src/content/blog/, @src/content/learn/, @src/pages/blog/, @src/pages/lea
 19. Article authors MUST provide a concrete example supporting the article's main explanation.
 20. For comparisons, article authors MUST retain the table or list that answers the comparison.
 21. Article authors MUST link factual external claims to supporting sources.
-22. Article authors MUST preserve pubDate when revising a published article.
+22. When revising a published article, authors MUST preserve pubDate.
 23. For substantive revisions, article authors MUST add updatedDate and a visible revision note.
 24. Article authors MUST supply FAQ entries through frontmatter.
 25. With FAQ frontmatter present, ArticleLayout maintainers MUST generate visible answers and FAQPage JSON-LD from that array.
-26. Article authors MUST leave the standard closing installation CTA to ArticleLayout.
-27. Article authors MUST preserve internal and primary-source links when shortening text.
+26. Article authors MUST leave the mandatory ClosingCta component to ArticleLayout.
+27. When shortening text, article authors MUST preserve internal and primary-source links.
 
 ### Reading layout and metadata
 
@@ -56,6 +56,15 @@ Scope: @src/content/blog/, @src/content/learn/, @src/pages/blog/, @src/pages/lea
 34. Authors MUST keep meta descriptions within 160 characters.
 35. Article authors MUST apply the writing and SEO requirements in @AGENTS.md.
 36. Page maintainers MUST reuse shared styles instead of defining independent page gutters or heading scales.
+
+### Shared closing CTA
+
+37. Every Blog and Learn page MUST use the Superpowers closing CTA through @src/components/ClosingCta.astro.
+38. ArticleLayout maintainers MUST render ClosingCta after the article and FAQ.
+39. ListingLayout maintainers MUST render ClosingCta after the preserved collection cross-links.
+40. Blog/Learn authors MUST NOT omit, duplicate, or replace the shared closing CTA.
+41. Blog/Learn maintainers MUST preserve the ClosingCta text and .recipe-cta presentation.
+42. Both Blog/Learn closing CTA anchors MUST navigate to /how-to-use/ in the current tab.
 
 ## Rationale
 
@@ -72,6 +81,8 @@ A Blog article explains a dated agent migration with commands and sources. A Lea
 A Learn article receives a separate page layout, repeats the frontmatter title as a Markdown H1, and manually duplicates its FAQ below the body.
 
 ## Enforcement
+
+@scripts/verify-build.mts rejects missing or divergent closing CTAs on every published Blog/Learn route. @tests/site.spec.ts checks CTA layout and same-tab navigation.
 
 Manual review checks purpose, prose, examples, layout reuse, dates, links, and the rendered title length. The schema in @src/content.config.ts allows 70/170 characters; it does not enforce the stricter 60/160 writing limits.
 

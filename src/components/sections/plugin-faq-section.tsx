@@ -1,8 +1,6 @@
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { FaqList } from "@/components/faq-list";
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeader } from "@/components/section-header";
 
 export function PluginFAQSection() {
   const { _ } = useLingui();
@@ -11,40 +9,40 @@ export function PluginFAQSection() {
     {
       question: _(msg`Do I need to install the CLI separately?`),
       answer: _(
-        msg`Yes, one global install. Run curl -fsSL https://archcore.ai/install.sh | bash (or the PowerShell equivalent on Windows), then add the plugin. MCP launches archcore from your PATH.`
+        msg`Yes. The plugin calls archcore from your PATH; it does not download the CLI. Install the CLI once, then follow the host-specific steps above.`
       ),
     },
     {
       question: _(msg`Which agents are supported?`),
       answer: _(
-        msg`Claude Code (production), plus Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI (implemented). On Copilot you must also run archcore init --agent copilot once per repo, because the plugin ships no MCP server there. For other MCP-capable agents, use the CLI directly.`
+        msg`Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. Cursor needs MCP registration; Copilot needs project-level wiring. The host table above explains these differences.`
       ),
     },
     {
       question: _(msg`What are the plugin's commands?`),
       answer: _(
-        msg`Four: /archcore:init (first-time setup), /archcore:plan (idea to scoped plan), /archcore:document (record a decision or document existing code), and /archcore:review (check changes and docs against each other). On hosts with pre-write hooks, applicable rules and specs arrive automatically before edits. Other hosts access the same project context through MCP.`
+        msg`/archcore:init, /archcore:plan, /archcore:document, and /archcore:review. They cover setup, planning, recording decisions, and checking changes. You can also ask in plain language.`
       ),
     },
     {
       question: _(msg`Can I use my own CLI install?`),
       answer: _(
-        msg`Yes. The plugin always uses whichever archcore is on your PATH. Install it however you like (curl, PowerShell, build from source). See https://docs.archcore.ai/cli/install/.`
+        msg`Yes. Put your chosen archcore binary on PATH before starting the coding agent. You can use an installed release or a build from source.`
       ),
     },
     {
       question: _(msg`Where do my docs live?`),
       answer: _(
-        msg`In .archcore/ inside your repository. Markdown with YAML frontmatter, versioned with your code. No external services, accounts, or databases.`
+        msg`In .archcore/ inside your repository, as Markdown with YAML frontmatter. You review and commit them with your code. Your coding agent's provider settings govern any context it sends to its model.`
       ),
     },
   ];
 
   return (
-    <SectionContainer id="faq">
-      <SectionHeader title={_(msg`Plugin FAQ`)} />
+    <section id="faq">
+      <h2>{_(msg`Plugin FAQ`)}</h2>
 
       <FaqList faqs={faqs} surface="plugin_faq" />
-    </SectionContainer>
+    </section>
   );
 }

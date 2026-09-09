@@ -44,7 +44,7 @@ The command prints the digest and filename. The digest field contains the hash o
 
 ## Verification
 
-For Blog/Learn, the built list includes the published entry in date order. The article has one H1, valid metadata, the expected body, a Markdown alternate, and a closing CTA. FAQ text matches FAQPage JSON-LD.
+For Blog/Learn, the built list includes the published entry in date order. The article has one H1, valid metadata, the expected body, a Markdown alternate, and the shared ClosingCta after the FAQ. Both collection listings render ClosingCta after their existing cross-links. FAQ text matches FAQPage JSON-LD.
 
 For integrations, copied instructions match the imported file in both collapsed and expanded states. The dialog opens from Install and #install, closes with Escape, and returns focus. Without JavaScript, installation remains readable inline.
 
@@ -59,5 +59,5 @@ For rendered article titles, count the brand suffix as part of the 60-character 
 - Integration build rejects a digest: compare the imported bytes with the upstream file before recomputing the hash.
 - FAQ content diverges: edit the frontmatter array, not a second handwritten FAQ.
 - External Markdown link opens in the same tab: inspect generated HTML; the current Markdown processor adds no target attributes.
-- Article installation points to the home hero: the old /#install destination remains an implementation gap against the new CTA matrix.
+- Missing or divergent Blog/Learn closing CTA: restore @src/components/ClosingCta.astro in the shared layout; npm run verify:build checks every published route.
 - New Russian text is missing: inspect extracted catalog entries before compilation.

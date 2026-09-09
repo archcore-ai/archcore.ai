@@ -76,6 +76,7 @@
 
 /* Archcore design tokens (DESIGN.md) */
 :root {
+  color-scheme: light;
   --color-page: #f8f1e8;
   --color-page-alt: #f3ede1;
   --color-surface: #fbf7ee;
@@ -117,6 +118,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --color-page: #1a1816;
   --color-page-alt: #1f1c19;
   --color-surface: #23201c;

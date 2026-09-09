@@ -1,21 +1,12 @@
 ---
 import { LINKS } from "../lib/links";
+import SiteBrand from "./SiteBrand.astro";
 import { headerLinks as links, chromeLabels } from "../data/navigation";
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a href="/" class="site-header__brand" aria-label="Archcore home">
-      <img class="logo-light" src="/logo.png" alt="" width="274" height="269" />
-      <img
-        class="logo-dark"
-        src="/logo-dark.png"
-        alt=""
-        width="274"
-        height="269"
-      />
-      <span>archcore</span>
-    </a>
+    <SiteBrand />
     <nav class="site-header__nav" aria-label="Main navigation">
       {
         links.map((link) => (
@@ -116,9 +107,16 @@ import { headerLinks as links, chromeLabels } from "../data/navigation";
 </header>
 <script>
   import { initializeSiteLocale } from "../lib/site-locale";
-  import { track } from "../lib/analytics";
+  import { registerSuperProperties, track } from "../lib/analytics";
 
   initializeSiteLocale();
+  document.addEventListener("archcore:theme-change", () => {
+    registerSuperProperties({
+      color_scheme: document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light",
+    });
+  });
   document.querySelector(".nav-star")?.addEventListener("click", () => {
     track("github_star_clicked", { repo: "plugin", surface: "navbar" });
   });

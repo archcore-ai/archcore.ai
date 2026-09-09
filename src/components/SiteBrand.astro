@@ -1,0 +1,16 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<a
+  href="/"
+  class:list={["site-header__brand", { "site-brand--compact": compact }]}
+  aria-label="Archcore home"
+>
+  <img class="logo-light" src="/logo.png" alt="" width="274" height="269" />
+  <img class="logo-dark" src="/logo-dark.png" alt="" width="274" height="269" />
+  <span>archcore</span>
+</a>

@@ -1,5 +1,5 @@
 ---
-import { productCopy } from "../data/product-copy";
+import ClosingCta from "../components/ClosingCta.astro";
 import SiteLayout from "./SiteLayout.astro";
 
 interface FaqEntry {
@@ -160,10 +160,6 @@ const faqSchema =
           </section>
         )
       }
-      <aside class="cta" data-analytics-cta="article_install">
-        <p>{productCopy.expanded.message}</p>
-        <a href="/#install">Install Archcore →</a>
-      </aside>
     </article>
     {
       toc.length > 2 && (
@@ -179,6 +175,7 @@ const faqSchema =
         </nav>
       )
     }
+    <ClosingCta analyticsCta="article_install" />
   </main>
   <script>
     // DESIGN.md: every command snippet gets a copy button.

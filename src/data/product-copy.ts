@@ -18,17 +18,17 @@ export const productCopy = {
   cliDescription: /* i18n */ {
     id: "niZVJZ",
     message:
-      "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.",
+      "The command-line tool for Archcore. It sets up project context and connects your coding agents through MCP and supported hooks.",
   },
   pluginDescription: /* i18n */ {
     id: "FiXCsC",
     message:
-      "Add spec-driven development and project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
+      "The Archcore plugin adds planning, documentation, and review skills to your coding agent. It works with the CLI and your project documents.",
   },
   pluginExpanded: /* i18n */ {
     id: "W0nOpL",
     message:
-      "The Archcore plugin brings spec-driven development and project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. Specs, architecture, decisions, rules, and plans live in Git and are available as the agent works.",
+      "The plugin adds Archcore skills to your coding agent for planning, documentation, and review. It uses the CLI and the same project documents.",
   },
   howToDescription: /* i18n */ {
     id: "T7Pc8u",

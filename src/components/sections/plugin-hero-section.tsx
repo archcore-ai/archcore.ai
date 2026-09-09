@@ -3,7 +3,7 @@ import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { useState } from "react";
-import { ExternalLink, Github, Star } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
@@ -28,108 +28,100 @@ export function PluginHeroSection() {
   };
 
   return (
-    <section
-      id="top"
-      className="hero-section relative page-hero pb-14 md:pb-16 site-gutters overflow-hidden"
-    >
-      <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
-        <div className="space-y-8 text-center">
-          <h1 className="type-hero text-balance">
-            <Trans>
-              Make your AI coding agent work
-              <br />
-              like it already knows your repo.
-            </Trans>
-          </h1>
+    <>
+      <h1>
+        <Trans>Archcore Plugin for AI agents</Trans>
+      </h1>
 
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-            {_(productCopy.pluginExpanded)}
-          </p>
+      <p>{_(productCopy.pluginExpanded)}</p>
 
-          <div className="max-w-2xl mx-auto text-left" id="install">
-            <Tabs value={host} onValueChange={handleHostChange}>
-              <TabsList className="mx-auto flex h-auto w-full max-w-xl">
-                <TabsTrigger value="claude" className="flex-1 py-2">
-                  <Trans>Claude Code</Trans>
-                </TabsTrigger>
-                <TabsTrigger value="cursor" className="flex-1 py-2">
-                  <Trans>Cursor 2.5+</Trans>
-                </TabsTrigger>
-                <TabsTrigger value="codex" className="flex-1 py-2">
-                  <Trans>Codex CLI 0.117+</Trans>
-                </TabsTrigger>
-                <TabsTrigger value="copilot" className="flex-1 py-2">
-                  <Trans>Copilot CLI</Trans>
-                </TabsTrigger>
-              </TabsList>
+      <section id="install">
+        <h2>
+          <Trans>Install plugin</Trans>
+        </h2>
+        <p className="guide-prerequisite">
+          <Trans>The plugin requires the Archcore CLI on your PATH.</Trans>{" "}
+          <a href="/cli/#install" className="underline underline-offset-4">
+            <Trans>Install the CLI first</Trans> →
+          </a>
+        </p>
+        <Tabs value={host} onValueChange={handleHostChange}>
+          <TabsList className="grid h-auto w-full grid-cols-2 sm:flex">
+            <TabsTrigger value="claude" className="flex-1 py-2">
+              <Trans>Claude Code</Trans>
+            </TabsTrigger>
+            <TabsTrigger value="cursor" className="flex-1 py-2">
+              <Trans>Cursor 2.5+</Trans>
+            </TabsTrigger>
+            <TabsTrigger value="codex" className="flex-1 py-2">
+              <Trans>Codex CLI 0.117+</Trans>
+            </TabsTrigger>
+            <TabsTrigger value="copilot" className="flex-1 py-2">
+              <Trans>Copilot CLI</Trans>
+            </TabsTrigger>
+          </TabsList>
 
-              <TabsContent value="claude" className="mt-5">
-                <HostPanel
-                  hint={<Trans>Run inside Claude Code:</Trans>}
-                  commands={[
-                    "/plugin marketplace add archcore-ai/plugin",
-                    "/plugin install archcore@archcore-plugins",
-                  ]}
-                  repoLabel={_(msg`Star plugin on GitHub`)}
-                />
-              </TabsContent>
+          <TabsContent value="claude" className="mt-5">
+            <HostPanel
+              hint={<Trans>Run inside Claude Code:</Trans>}
+              commands={[
+                "/plugin marketplace add archcore-ai/plugin",
+                "/plugin install archcore@archcore-plugins",
+              ]}
+              repoLabel={_(msg`Star plugin on GitHub`)}
+            />
+          </TabsContent>
 
-              <TabsContent value="cursor" className="mt-5">
-                <HostPanel
-                  hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
-                  commands={["https://github.com/archcore-ai/plugin"]}
-                  repoLabel={_(msg`Star plugin on GitHub`)}
-                />
-              </TabsContent>
+          <TabsContent value="cursor" className="mt-5">
+            <HostPanel
+              hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
+              commands={["https://github.com/archcore-ai/plugin"]}
+              repoLabel={_(msg`Star plugin on GitHub`)}
+              note={
+                <Trans>
+                  Then run archcore mcp install --agent cursor in your project
+                  folder to connect the document tools.
+                </Trans>
+              }
+            />
+          </TabsContent>
 
-              <TabsContent value="codex" className="mt-5">
-                <HostPanel
-                  hint={<Trans>Install in Codex:</Trans>}
-                  commands={["codex plugin marketplace add archcore-ai/plugin"]}
-                  repoLabel={_(msg`Star plugin on GitHub`)}
-                />
-              </TabsContent>
+          <TabsContent value="codex" className="mt-5">
+            <HostPanel
+              hint={<Trans>Install in Codex:</Trans>}
+              commands={[
+                "codex plugin marketplace add archcore-ai/plugin",
+                "codex plugin add archcore@archcore-plugins",
+              ]}
+              repoLabel={_(msg`Star plugin on GitHub`)}
+              note={
+                <Trans>
+                  Check the hooks feature in your Codex settings. MCP and skills
+                  work independently of hooks.
+                </Trans>
+              }
+            />
+          </TabsContent>
 
-              <TabsContent value="copilot" className="mt-5">
-                <HostPanel
-                  hint={<Trans>Both steps are required:</Trans>}
-                  commands={[
-                    "copilot plugin install archcore-ai/plugin:plugins/archcore",
-                    'archcore init --agent copilot --project "$PWD"',
-                  ]}
-                  repoLabel={_(msg`Star plugin on GitHub`)}
-                  note={
-                    <Trans>
-                      On Copilot the plugin ships no MCP server, so step 2 wires
-                      it per repo. Skip it and the agent has no document tools.
-                      Copilot CLI only; VS Code agent mode has no self-serve
-                      plugin install.
-                    </Trans>
-                  }
-                />
-              </TabsContent>
-            </Tabs>
-          </div>
-
-          <p className="text-sm text-muted-foreground/70">
-            <Trans>Built on Archcore CLI · Skills · Subagents · Hooks</Trans>
-            {" · "}
-            <a
-              href={LINKS.pluginRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-foreground transition-colors"
-            >
-              <Star
-                className="inline-block h-3.5 w-3.5 -mt-0.5 mr-1"
-                fill="currentColor"
-              />
-              <Trans>Star the plugin on GitHub</Trans>
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
+          <TabsContent value="copilot" className="mt-5">
+            <HostPanel
+              hint={<Trans>Both steps are required:</Trans>}
+              commands={[
+                "copilot plugin install archcore-ai/plugin:plugins/archcore",
+                'archcore init --agent copilot --project "$PWD"',
+              ]}
+              repoLabel={_(msg`Star plugin on GitHub`)}
+              note={
+                <Trans>
+                  The second command connects MCP to this project. Restart
+                  Copilot afterwards. This integration is for Copilot CLI.
+                </Trans>
+              }
+            />
+          </TabsContent>
+        </Tabs>
+      </section>
+    </>
   );
 }
 
@@ -143,10 +135,10 @@ interface HostPanelProps {
 
 function HostPanel({ hint, commands, repoLabel, note }: HostPanelProps) {
   return (
-    <div className="rounded-xl border border-border bg-card p-5 space-y-4">
-      <p className="text-xs text-muted-foreground">{hint}</p>
+    <div className="guide-host-panel">
+      <p className="guide-install-hint">{hint}</p>
 
-      <div className="space-y-2">
+      <div className="guide-install">
         {commands.map((cmd) => (
           <InstallCommand
             key={cmd}
@@ -158,9 +150,7 @@ function HostPanel({ hint, commands, repoLabel, note }: HostPanelProps) {
         ))}
       </div>
 
-      {note ? (
-        <p className="text-xs text-muted-foreground leading-relaxed">{note}</p>
-      ) : null}
+      {note ? <p className="guide-install-note">{note}</p> : null}
 
       <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
         <a

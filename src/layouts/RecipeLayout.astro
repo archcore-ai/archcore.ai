@@ -2,6 +2,7 @@
 import SiteLayout from "./SiteLayout.astro";
 import RecipeMark from "../components/RecipeMark.astro";
 import RecipeSetup from "../components/RecipeSetup.astro";
+import ClosingCta from "../components/ClosingCta.astro";
 
 // Static recipe page. Evidence and source details remain available on demand.
 interface Tool {
@@ -316,23 +317,7 @@ const breadcrumbSchema = {
       )
     }
 
-    <section class="recipe-cta" data-analytics-cta="recipe_install">
-      <div>
-        <h2>Start with Archcore.</h2>
-        <p>Keep your project decisions ready for the next task.</p>
-      </div>
-      <div class="recipe-cta__actions">
-        <a
-          class="btn btn--primary"
-          href="/how-to-use/"
-          target="_blank"
-          rel="noopener noreferrer">Install Archcore →</a
-        >
-        <a href="/how-to-use/" target="_blank" rel="noopener noreferrer"
-          >See how it works</a
-        >
-      </div>
-    </section>
+    <ClosingCta analyticsCta="recipe_install" newTab />
 
     <dialog
       class="recipe-dialog"

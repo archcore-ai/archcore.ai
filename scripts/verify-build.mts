@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { load } from "cheerio";
 import { productCopy } from "../src/data/product-copy";
 import marketingMeta from "../src/data/marketing-meta.json";
+import { LINKS } from "../src/lib/links";
 
 const root = path.resolve("dist");
 const baseline = JSON.parse(
@@ -67,13 +68,74 @@ for (const [route, $] of pages) {
     !/\bno telemetry(?:[.,;]|$)/i.test(prose),
     `${route}: unqualified telemetry claim`
   );
-  for (const cta of $(
-    '[data-analytics-cta="article_install"], [data-analytics-cta="pillar_install"]'
-  )) {
+  for (const cta of $('[data-analytics-cta="pillar_install"]')) {
     check(
       normalize($(cta).find("p").text()) === productCopy.expanded.message,
       `${route}: shared product CTA`
     );
+  }
+  if (
+    /^\/(blog|learn|cli|plugin)\//.test(route) ||
+    (route.startsWith("/integrations/") && route !== "/integrations/")
+  ) {
+    const cta = $("main > .recipe-cta");
+    const integration = route.startsWith("/integrations/");
+    const listing = route === "/blog/" || route === "/learn/";
+    check(cta.length === 1, `${route}: one shared closing CTA`);
+    check(
+      normalize(cta.find("h2").text()) === "Start with Archcore.",
+      `${route}: closing CTA heading`
+    );
+    check(
+      normalize(cta.find("p").text()) ===
+        "Keep your project decisions ready for the next task.",
+      `${route}: closing CTA description`
+    );
+    check(
+      cta.attr("data-analytics-cta") ===
+        (route === "/cli/"
+          ? "cli_install"
+          : route === "/plugin/"
+            ? "plugin_install"
+            : integration
+              ? "recipe_install"
+              : listing
+                ? "listing_install"
+                : "article_install"),
+      `${route}: closing CTA analytics`
+    );
+    const links = cta.find("a");
+    check(
+      links.length === 2 && cta.find(".btn--primary").length === 1,
+      `${route}: closing CTA action hierarchy`
+    );
+    check(
+      normalize(links.eq(0).text()) === "Install Archcore →" &&
+        normalize(links.eq(1).text()) === "See how it works",
+      `${route}: closing CTA labels`
+    );
+    for (const link of links) {
+      check(
+        $(link).attr("href") === "/how-to-use/",
+        `${route}: closing CTA destination`
+      );
+      check(
+        $(link).attr("target") === (integration ? "_blank" : undefined),
+        `${route}: closing CTA tab behavior`
+      );
+      if (integration)
+        check(
+          $(link).attr("rel") === "noopener noreferrer",
+          `${route}: closing CTA rel`
+        );
+    }
+    if (!integration) {
+      check(
+        $("main > :last-child").is(cta),
+        `${route}: CTA follows content and FAQ`
+      );
+      check($("article .cta").length === 0, `${route}: no legacy article CTA`);
+    }
   }
   check($("h1").length === 1, `${route}: exactly one H1`);
   check(
@@ -84,6 +146,80 @@ for (const [route, $] of pages) {
     $(".site-header").length === 1 && $(".site-footer").length === 1,
     `${route}: shared site shell`
   );
+  const navigationOrder = [
+    "/how-to-use/",
+    "/integrations/",
+    LINKS.docs,
+    "/blog/",
+    "/learn/",
+  ];
+  for (const selector of [
+    ".site-header__inner > nav",
+    ".site-header__mobile nav",
+  ]) {
+    check(
+      JSON.stringify(
+        $(selector)
+          .find("a")
+          .slice(0, 5)
+          .map((_, a) => $(a).attr("href"))
+          .get()
+      ) === JSON.stringify(navigationOrder),
+      `${route}: header navigation order`
+    );
+  }
+  check(
+    $(".site-footer__reference").length === 0,
+    `${route}: no footer reference navigation`
+  );
+  for (const href of [
+    "/context-engineering/",
+    "/spec-driven-development/",
+    "/project-context/",
+    "/git-native-context/",
+    "/mcp/",
+  ]) {
+    check(
+      $(`.site-footer a[href="${href}"]`).length === 0,
+      `${route}: removed footer reference link ${href}`
+    );
+  }
+  for (const surface of [".site-header", ".site-footer"]) {
+    const brand = $(`${surface} .site-header__brand`);
+    check(
+      brand.length === 1 &&
+        brand.attr("href") === "/" &&
+        normalize(brand.find("span").text()) === "archcore",
+      `${route}: shared ${surface} wordmark`
+    );
+    check(
+      brand.find('img.logo-light[src="/logo.png"]').length === 1 &&
+        brand.find('img.logo-dark[src="/logo-dark.png"]').length === 1,
+      `${route}: shared ${surface} logo variants`
+    );
+  }
+  if (route === "/how-to-use/") {
+    const cta = $('[data-analytics-cta="how_to_use_github"]');
+    check(
+      cta.length === 1 && cta.find("a").length === 1,
+      `${route}: one GitHub closing action`
+    );
+    const link = cta.find("a");
+    check(
+      link.attr("href") === LINKS.org &&
+        link.attr("target") === "_blank" &&
+        link.attr("rel") === "noopener noreferrer",
+      `${route}: GitHub closing destination`
+    );
+    check(
+      normalize(link.text()) === "View on GitHub →",
+      `${route}: GitHub closing label`
+    );
+    check(
+      $('[data-analytics-cta="back_to_install"]').length === 0,
+      `${route}: no closing installation CTA`
+    );
+  }
   check(
     $("link[rel=canonical]").length === 1,
     `${route}: exactly one canonical`

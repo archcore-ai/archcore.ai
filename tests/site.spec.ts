@@ -35,7 +35,7 @@ test("shared product descriptions render in English and Russian after hydration"
       const expected = locale === "en" ? hero.message : ru._(hero);
       if (locale === "ru") expect(expected).not.toBe(hero.message);
       await expect(
-        page.locator(".hero-section").getByText(expected, { exact: true })
+        page.locator("main").getByText(expected, { exact: true })
       ).toBeVisible();
       if (description) {
         await expect(page.locator('meta[name="description"]')).toHaveAttribute(
@@ -91,7 +91,7 @@ for (const route of routes) {
       await expect(page.locator(".site-header")).toHaveCount(1);
       await expect(page.locator(".site-footer")).toHaveCount(1);
       // Content titles must share the chrome's left edge, even on narrow screens.
-      if (!["/", "/cli/", "/plugin/"].includes(route)) {
+      if (route !== "/") {
         const heading = await page.locator("h1").boundingBox();
         const brand = await page
           .locator(".site-header .site-header__brand")
@@ -144,9 +144,7 @@ test("language persists across Astro routes and preserves URL hash and attributi
   );
   await page.getByRole("combobox", { name: "Language" }).selectOption("en");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page).toHaveTitle(
-    "Archcore CLI — Git-Native Context for AI Coding Agents"
-  );
+  await expect(page).toHaveTitle("Archcore CLI");
 });
 
 test("installation switches platform and copies the selected command", async ({
@@ -165,6 +163,69 @@ test("installation switches platform and copies the selected command", async ({
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
     "irm https://archcore.ai/install.ps1 | iex"
   );
+});
+
+test("plugin installation retains and copies every required host step in both languages", async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.setViewportSize({ width: 320, height: 900 });
+  const hostCommands = [
+    [
+      "Claude Code",
+      [
+        "/plugin marketplace add archcore-ai/plugin",
+        "/plugin install archcore@archcore-plugins",
+      ],
+    ],
+    ["Cursor 2.5+", ["https://github.com/archcore-ai/plugin"]],
+    [
+      "Codex CLI 0.117+",
+      [
+        "codex plugin marketplace add archcore-ai/plugin",
+        "codex plugin add archcore@archcore-plugins",
+      ],
+    ],
+    [
+      "Copilot CLI",
+      [
+        "copilot plugin install archcore-ai/plugin:plugins/archcore",
+        'archcore init --agent copilot --project "$PWD"',
+      ],
+    ],
+  ] as const;
+  for (const locale of ["en", "ru"]) {
+    await page.goto(`/plugin/?lang=${locale}`);
+    await expect(
+      page.locator('#install a[href="/cli/#install"]')
+    ).toBeVisible();
+    for (const tab of await page.getByRole("tab").all()) {
+      const bounds = await tab.boundingBox();
+      expect(bounds!.x).toBeGreaterThanOrEqual(0);
+      expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(320);
+    }
+    for (const [host, commands] of hostCommands) {
+      await page.getByRole("tab", { name: host, exact: true }).click();
+      const panel = page.getByRole("tabpanel", { name: host, exact: true });
+      await expect(panel.locator("[data-analytics-install]")).toHaveCount(
+        commands.length
+      );
+      for (let index = 0; index < commands.length; index++) {
+        const command = panel.locator("[data-analytics-install]").nth(index);
+        await expect(command).toContainText(commands[index]);
+        await command.getByRole("button").click();
+        expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+          commands[index]
+        );
+      }
+      if (host === "Cursor 2.5+") {
+        await expect(panel).toContainText(
+          "archcore mcp install --agent cursor"
+        );
+      }
+    }
+  }
 });
 
 test("integration displays, copies and exports the same Markdown", async ({
@@ -451,6 +512,39 @@ test("collections fill the outer grid and articles use the right rail", async ({
   }
 });
 
+test("product guides share the walkthrough article layout and a working localized outline", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  for (const locale of ["en", "ru"]) {
+    for (const route of ["/how-to-use/", "/cli/", "/plugin/"]) {
+      await page.goto(`${route}?lang=${locale}`);
+      await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      const article = page.locator("main > article.article");
+      const outline = page.locator("main > .article-toc");
+      await expect(article).toBeVisible();
+      await expect(page.locator(".hero-section")).toHaveCount(0);
+      await expect(outline).toBeVisible();
+      expect((await outline.boundingBox())!.x).toBeGreaterThan(
+        (await article.boundingBox())!.x + (await article.boundingBox())!.width
+      );
+      for (const link of await outline.getByRole("link").all()) {
+        const hash = await link.getAttribute("href");
+        await expect(article.locator(hash!)).toHaveCount(1);
+      }
+      const lastLink = outline.getByRole("link").last();
+      const hash = await lastLink.getAttribute("href");
+      await lastLink.click();
+      expect(new URL(page.url()).hash).toBe(hash);
+      if (route !== "/how-to-use/") {
+        await expect(page.locator("main > .recipe-cta h2")).toHaveText(
+          locale === "en" ? "Start with Archcore." : "Начните с Archcore."
+        );
+      }
+    }
+  }
+});
+
 test("how-to guide keeps its article layout, install actions and translated outline", async ({
   page,
   context,
@@ -488,4 +582,47 @@ test("how-to guide keeps its article layout, install actions and translated outl
   ).toBeVisible();
   await expect(page.locator("h1")).toHaveText("Как пользоваться Archcore");
   await expect(page.locator("#plan blockquote")).toContainText("Спланируйте");
+  const closing = page.locator('[data-analytics-cta="how_to_use_github"]');
+  await expect(closing.getByRole("link")).toHaveCount(1);
+  await expect(closing.getByRole("link")).toHaveText("Открыть на GitHub →");
+  await expect(closing.getByRole("link")).toHaveAttribute(
+    "href",
+    "https://github.com/archcore-ai"
+  );
+  await expect(closing.getByRole("link")).toHaveAttribute("target", "_blank");
+});
+
+test("editorial closing CTAs fit the full page grid and keep navigation in the same tab", async ({
+  page,
+}) => {
+  for (const route of routes.filter((route) =>
+    /^\/(blog|learn|cli|plugin)\//.test(route)
+  )) {
+    for (const width of [320, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(route);
+      const cta = page.locator("main > .recipe-cta");
+      await cta.scrollIntoViewIfNeeded();
+      const main = await page.locator("main").evaluate((el) => {
+        const rect = el.getBoundingClientRect();
+        const style = getComputedStyle(el);
+        return {
+          left: rect.left + parseFloat(style.paddingLeft),
+          right: rect.right - parseFloat(style.paddingRight),
+        };
+      });
+      const bounds = await cta.boundingBox();
+      expect(bounds!.x).toBeCloseTo(main.left, 0);
+      expect(bounds!.x + bounds!.width).toBeCloseTo(main.right, 0);
+      for (const link of await cta.getByRole("link").all()) {
+        await expect(link).toBeVisible();
+        const rect = await link.boundingBox();
+        expect(rect!.x).toBeGreaterThanOrEqual(main.left);
+        expect(rect!.x + rect!.width).toBeLessThanOrEqual(main.right + 1);
+      }
+    }
+  }
+  const cta = page.locator("main > .recipe-cta");
+  await cta.getByRole("link", { name: "Install Archcore →" }).click();
+  await expect(page).toHaveURL(/\/how-to-use\/$/);
 });

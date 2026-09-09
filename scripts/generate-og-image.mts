@@ -48,19 +48,15 @@ const VARIANTS: Variant[] = [
   },
   {
     output: "og-image-plugin.png",
-    headline: [
-      "Make your AI coding agent work",
-      "like it already knows your repo.",
-    ],
+    headline: ["Archcore Plugin for AI agents"],
     subtitle: productCopy.pluginExpanded.message,
-    bottomLabel:
-      "Claude Code · Cursor · Codex · Copilot  ·  Intent-based slash commands",
+    bottomLabel: "Archcore skills for your coding agent",
   },
   {
     output: "og-image-cli.png",
-    headline: ["Git-native project context", "for every AI coding agent."],
+    headline: ["Archcore CLI"],
     subtitle: productCopy.cliDescription.message,
-    bottomLabel: "Standalone binary  ·  MCP + hooks  ·  8 AI coding agents",
+    bottomLabel: "Archcore setup and agent connections",
   },
   {
     output: "og-image-how-to-use.png",

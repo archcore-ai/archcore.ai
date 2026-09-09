@@ -49,12 +49,12 @@
   },
   {
     "route": "/plugin/",
-    "title": "Archcore Plugin — Spec-Driven Development for Coding Agents",
-    "description": "Add spec-driven development and project context to Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI with Archcore.",
+    "title": "Archcore Plugin for AI agents",
+    "description": "The Archcore plugin adds planning, documentation, and review skills to your coding agent. It works with the CLI and your project documents.",
     "canonical": "https://archcore.ai/plugin/",
     "ogImage": "https://archcore.ai/og-image-plugin.png",
     "headings": [
-      "Make your AI coding agent work like it already knows your repo."
+      "Archcore Plugin for AI agents"
     ],
     "article": null,
     "schemas": [
@@ -90,12 +90,12 @@
   },
   {
     "route": "/cli/",
-    "title": "Archcore CLI — Git-Native Context for AI Coding Agents",
-    "description": "Archcore CLI creates .archcore/, wires MCP and hooks, and lets agents read and write specs, decisions, rules, and plans from Git.",
+    "title": "Archcore CLI",
+    "description": "The command-line tool for Archcore. It sets up project context and connects your coding agents through MCP and supported hooks.",
     "canonical": "https://archcore.ai/cli/",
     "ogImage": "https://archcore.ai/og-image-cli.png",
     "headings": [
-      "Git-native project context for every AI coding agent."
+      "Archcore CLI"
     ],
     "article": null,
     "schemas": [
@@ -370,8 +370,7 @@
       "Does Claude Code read AGENTS.md?",
       "No. The docs state it plainly: Claude Code reads CLAUDE.md, not AGENTS.md. The official workarounds are an @AGENTS.md import inside CLAUDE.md or a symlink. The feature request (#6235) has been open since August 2025 and is the most-upvoted issue in the repository.",
       "How do I share Claude Code memory with my team?",
-      "Auto Memory is machine-local by design; there is no documented team sharing. What ships through git today: CLAUDE.md, .claude/rules/, skills, and project-scoped subagent memory (.claude/agent-memory/). For decisions, rules, and specs the whole team's agents should follow, keep them as versioned documents in the repository itself.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "Auto Memory is machine-local by design; there is no documented team sharing. What ships through git today: CLAUDE.md, .claude/rules/, skills, and project-scoped subagent memory (.claude/agent-memory/). For decisions, rules, and specs the whole team's agents should follow, keep them as versioned documents in the repository itself."
     ]
   },
   {
@@ -498,8 +497,7 @@
       "Does Cursor have a memory feature in 2026?",
       "No. As of Cursor 3.11 (July 2026) there is no automatic memory. Cursor offers Project Rules, User Rules, Team Rules, AGENTS.md support, and Agent Skills, all of them manually authored.",
       "What is the best replacement for Cursor Memories?",
-      "It depends on what you actually used it for. Static preferences belong in Rules. Automatic cross-session recall needs an MCP memory server. If you want memory that is versioned with your code, reviewable in pull requests, and shared across agents, keep it as structured documents in your repository.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "It depends on what you actually used it for. Static preferences belong in Rules. Automatic cross-session recall needs an MCP memory server. If you want memory that is versioned with your code, reviewable in pull requests, and shared across agents, keep it as structured documents in your repository."
     ]
   },
   {
@@ -595,8 +593,7 @@
       "Does serving context over MCP use up the context window?",
       "Far less than instruction files do. The agent gets a compact index at session start; full documents load only when a tool call actually requests one. A document that is never needed costs nothing.",
       "Can the agent write context back through MCP?",
-      "Yes, and it should. Write tools (create, update, link) let the agent record decisions and plans as it works, as normal file diffs you review in git rather than notes lost in chat history.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "Yes, and it should. Write tools (create, update, link) let the agent record decisions and plans as it works, as normal file diffs you review in git rather than notes lost in chat history."
     ]
   },
   {
@@ -784,8 +781,7 @@
       "Where should project context live?",
       "In the repository it describes. That is what makes it reviewable in pull requests, versioned with the code it constrains, and portable when you switch tools. A store outside the repository loses all three.",
       "What happens to memory when I switch agents?",
-      "It does not come with you, because it belongs to the tool. This is the practical test that separates the two categories: project context survives a tool change because it was never in the tool.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "It does not come with you, because it belongs to the tool. This is the practical test that separates the two categories: project context survives a tool change because it was never in the tool."
     ]
   },
   {
@@ -901,8 +897,7 @@
       "Where does harness engineering fit?",
       "It nests inside context engineering rather than succeeding it. A harness is everything in an agent except the model: its tools, the guides it receives before acting, and the sensors that check it after. Building one is a specific form of context engineering, per the canonical source.",
       "What should I do first?",
-      "Write down the decision you are tired of re-explaining, with its rationale, and scope one rule to the directory it governs. That is a smaller first step than a prompt library and it compounds, because it applies to every future session instead of one.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "Write down the decision you are tired of re-explaining, with its rationale, and scope one rule to the directory it governs. That is a smaller first step than a prompt library and it compounds, because it applies to every future session instead of one."
     ]
   },
   {
@@ -1004,8 +999,7 @@
       "Which parts of the harness do I build, and which come with my agent?",
       "Your coding agent ships a default harness: a loop, file and shell tools, permissions, and a sandbox. What it cannot ship is anything specific to your project, because it has never seen your repository. The architecture your code follows, the decisions already settled, the rules your team enforces, and the specs your boundaries must hold are the half of the harness only you can build.",
       "Where should the project half of a harness live?",
-      "In the repository it describes. A guide that lives in a vendor's cloud cannot be reviewed in a pull request, cannot be versioned with the code it constrains, and does not travel when you switch agents. Keeping it in git makes the harness reviewable, portable, and owned by the team.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "In the repository it describes. A guide that lives in a vendor's cloud cannot be reviewed in a pull request, cannot be versioned with the code it constrains, and does not travel when you switch agents. Keeping it in git makes the harness reviewable, portable, and owned by the team."
     ]
   },
   {
@@ -1135,8 +1129,7 @@
       "Which AI coding agents can use repo memory?",
       "Any agent that can read files in the repository, and any MCP-aware agent if the memory is exposed over MCP: Claude Code, Cursor, GitHub Copilot, Gemini CLI, Codex CLI, OpenCode, Roo Code, Cline, and others.",
       "How is repo memory different from CLAUDE.md?",
-      "CLAUDE.md is repo memory in its simplest form: one flat instruction file for one tool. Structured repo memory adds types (decision, rule, spec, plan), relations between documents, per-document status and history, and works across agents instead of being tied to one.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "CLAUDE.md is repo memory in its simplest form: one flat instruction file for one tool. Structured repo memory adds types (decision, rule, spec, plan), relations between documents, per-document status and history, and works across agents instead of being tied to one."
     ]
   },
   {
@@ -1269,8 +1262,7 @@
       "Which should I start with?",
       "Context, unless you are about to change a boundary other teams depend on. Writing down the decision you keep re-explaining pays off on the next session. Specifying a boundary nobody depends on is cost with no reader.",
       "What happens to a spec after the feature ships?",
-      "This is where the two practices meet. A spec treated as a handoff artifact goes stale the day it merges. A spec kept as project context stays useful: it is loaded when the boundary is edited and it is what a review measures the diff against.",
-      "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work."
+      "This is where the two practices meet. A spec treated as a handoff artifact goes stale the day it merges. A spec kept as project context stays useful: it is loaded when the boundary is edited and it is what a review measures the diff against."
     ]
   },
   {

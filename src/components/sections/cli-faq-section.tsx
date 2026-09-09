@@ -1,8 +1,6 @@
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { FaqList } from "@/components/faq-list";
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeader } from "@/components/section-header";
 
 export function CLIFAQSection() {
   const { _ } = useLingui();
@@ -11,34 +9,34 @@ export function CLIFAQSection() {
     {
       question: _(msg`What does archcore init create?`),
       answer: _(
-        msg`A .archcore/ directory with templates and config for 19 document types in three layers: vision (PRD, idea, plan, RnD, MRD, BRD, URD, BRS, StRS, SyRS, SRS), knowledge (ADR, RFC, rule, guide, doc, spec), and experience (task-type, CPAT).`
+        msg`It creates .archcore/ and configures the agents you select. Project documents are created through MCP or with the plugin's skills.`
       ),
     },
     {
       question: _(msg`Which AI agents does the CLI support?`),
       answer: _(
-        msg`Eight over MCP: Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, and Cline (manual setup). Five of those also get session hooks: Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Run archcore mcp install or archcore hooks install to wire each one up.`
+        msg`Claude Code, Cursor, Codex CLI, GitHub Copilot CLI, Gemini CLI, OpenCode, Roo Code, and Cline. Cline needs manual MCP setup. Hook support differs by host; see the agent list above.`
       ),
     },
     {
       question: _(msg`Do I need any external services?`),
       answer: _(
-        msg`No. Standalone binary. Everything in .archcore/ stays in your repo: no servers, databases, accounts, or external dependencies.`
+        msg`Archcore stores project documents locally and runs an MCP server on your machine. It needs no hosted Archcore backend. Your coding agent's own provider and data settings still apply.`
       ),
     },
     {
-      question: _(msg`Should I install the plugin instead?`),
+      question: _(msg`What does the plugin add?`),
       answer: _(
-        msg`If you use Claude Code, Cursor, Codex CLI, or GitHub Copilot CLI, the plugin adds intent-based slash commands on top of the same CLI. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent.`
+        msg`The plugin adds skills for setup, planning, documentation, and review on Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI. It uses the same CLI and project documents. Other MCP agents use the CLI directly.`
       ),
     },
   ];
 
   return (
-    <SectionContainer id="faq">
-      <SectionHeader title={_(msg`CLI FAQ`)} />
+    <section id="faq">
+      <h2>{_(msg`CLI FAQ`)}</h2>
 
       <FaqList faqs={faqs} surface="cli_faq" />
-    </SectionContainer>
+    </section>
   );
 }

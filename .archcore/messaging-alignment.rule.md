@@ -3,11 +3,6 @@ title: "Landing site messaging alignment with positioning"
 status: accepted
 ---
 
-
-
-
-
-
 ## Rule
 
 All user-facing copy on the landing site MUST align with the canonical strings held in the shared context. This document governs **how** those strings are applied here — which copy layers must change together, which invariants fail silently, and which page owns which fact. It covers **all pages** — `/`, `/plugin`, `/cli`, `/how-to-use`, `/privacy` — and all meta surfaces (OG cards, Twitter cards, Astro-generated HTML, shared layouts, the OG image generator).
@@ -22,8 +17,8 @@ Where a slot is listed in `product/surface-descriptors`, copy it. Do not compose
 
 **Site-local strings not covered globally:**
 
-- **`/plugin` `<title>`:** "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names do not fit a ≤60-char title, so the hosts live in the description instead.
-- **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents".
+- **`/plugin` `<title>`:** "Archcore Plugin for AI agents".
+- **`/cli` `<title>`:** "Archcore CLI".
 - **`/how-to-use` `<title>`:** "How to use Archcore".
 - **Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 - **Short tagline (footer):** "Git-native context for AI coding agents."
@@ -71,24 +66,32 @@ The pinned secondary phrase and meta description changed punctuation on 2026-08-
 
 **The `humanizer` bans reach the short strings too.** The 2026-08-31 rebuild drafted "No command, no paste, no reminder." (rule of three plus a tailing-negation fragment), "a verdict per finding, not a summary" (tailing negation), and "The work between them has none." (staccato reversal). All three were rewritten before translation. Russian dropped «а не просто X» in the same pass, which is a hard ban in `humanizer-ru`. Run the pass on new strings before extracting, not after: a rewritten English string orphans its Russian translation.
 
-## Entry-point framing
+## One product, component guides
 
-Decided 2026-07-06 (supersedes the earlier "Plugin is the recommended path" framing):
+The owner reaffirmed the single-product framing on 2026-09-09. This replaces the earlier equal-entry-points wording and the permission to emphasize the plugin as a more polished experience.
 
-- **Both entry points are equals.** No "(recommended)" labels anywhere on the site — including the static prerendered route bodies in `scripts/prerender-routes.mts`, which are crawler-visible copy and drifted on this exact point once (fixed 2026-07-30).
-- **Gentle plugin emphasis is allowed:** plugin copy may call itself "the most polished experience for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI". Never frame the CLI as a fallback.
-- **The home page shows one install path and no Plugin / CLI comparison.** Changed 2026-08-27 under `landing/home-install-single-path.adr.md`. The hero install block carries platform tabs only (macOS / Linux against Windows), `#install` is its single anchor, `cross-agent-section.tsx` states the cross-agent claim over one flat agent list instead of two cards, and the shared header provides How to use, Blog, Learn, Integrations, Docs, and Install. The prior decisions this replaces: the CLI-first hero (2026-07-06), the plugin-first tab order (2026-08-11), and the `#install-cli` / `#install-plugin` hashes.
-- **The install block stays in the hero.** Reaffirmed 2026-08-31 during the section reorder, when moving it below the loop was considered and rejected by the owner. `landing/home-install-single-path.adr.md` is unchanged.
-- **`/how-to-use` presents no surface choice either.** Changed 2026-08-27 under `landing/how-to-use-cases.adr.md`. Each stage of the loop leads with a slash command and the sentence that does the same thing in any agent. There is no Plugin / CLI toggle, and the page never asks which one the reader has.
-- **The equal-paths framing is unchanged by both.** What changed is where the reader meets the two entry points: `/plugin` and `/cli`, not the install step, not the header, not the walkthrough.
-- **Frame the choice by the user's agent, not by recommendation**, on the surfaces that still present one — `/plugin` and `/cli`: Plugin — for Claude Code / Cursor 2.5+ / Codex CLI 0.117+ / GitHub Copilot CLI; CLI — any MCP-aware agent (Gemini CLI, OpenCode, Roo Code, Cline), scriptable in CI.
-- **`/plugin` and `/cli` stay as pages, and left the header nav on 2026-08-27.** Both MUST stay in @src/components/SiteFooter.astro through @src/data/navigation.ts.
+1. Site copy MUST present Archcore as one product.
+2. Site copy MUST describe the CLI and plugin as components of Archcore.
+3. Site copy MUST NOT present the CLI and plugin as competing products or recommended alternatives.
+4. Component introductions MUST explain the component's role in Archcore.
+5. CLI copy MUST describe project setup and agent connections.
+6. Plugin copy MUST describe skills that use the CLI and the same project documents.
+7. Component pages MUST use descriptive headings instead of independent product slogans.
+8. Component pages MUST NOT claim a more polished, primary, or fallback product experience.
+9. Host-specific setup instructions MUST distinguish compatibility requirements from choosing a product.
+10. The home page MUST retain one installation path in the hero.
+11. The home page MUST NOT render Plugin / CLI comparison tabs or cards.
+12. The walkthrough MUST retain one init → plan → document → review loop.
+13. The shared header MUST omit component links.
+14. The footer MUST retain links to both component guides.
+
+The installation and walkthrough decisions remain in `landing/home-install-single-path.adr.md` and `landing/how-to-use-cases.adr.md`. The pages explain how the parts work together; the home page carries Archcore's category positioning.
 
 ## Copy hierarchy (home `/`)
 
-Every slot below takes its string from `product/surface-descriptors`, homepage table.
+The home H1 retains the category-led wording from `product/surface-descriptors`. The description uses @src/data/product-copy.ts. The two-level presentation below is a site-local override approved by the owner on 2026-09-09.
 
-- **Hero eyebrow → H1 → subhead → supporting promise**, in that order
+- **Hero H1 → product description**, in that order. The owner simplified the hero on 2026-09-09. The eyebrow and separate supporting-promise line are retired on the home page.
 - **Meta title (`<title>`) / OG title / Twitter title / og:image:alt:** the same category-led string, so the SERP entry, the social card, and the image alt all agree
 - **Meta description / OG description / Twitter description / SoftwareApplication JSON-LD description:** the homepage meta description; OG and Twitter may use the OG description variant
 - **Works-with strip:** directly under the install block
@@ -142,11 +145,11 @@ Backgrounds alternate page / band from section 4 on, so the page does not read a
 
 ## Per-page heroes (`/plugin`, `/cli`, `/how-to-use`)
 
-- **`/plugin` H1:** "Make your AI coding agent work like it already knows your repo." Same opener as the plugin README, so the page and the repository read as one surface.
-- **`/cli` H1:** "Git-native project context for every AI coding agent."
+- **`/plugin` H1:** "Archcore Plugin for AI agents".
+- **`/cli` H1:** "Archcore CLI".
 - **`/how-to-use` H1:** "How to use Archcore". The introduction MUST use `howToDescription` from @src/data/product-copy.ts. The page MUST NOT repeat the H1 as a metadata label.
-- **`/plugin` `<title>` is category-led**, not host-enumerated: "Archcore Plugin — Spec-Driven Development for Coding Agents". Four host names no longer fit a ≤60-char title, so the hosts live in the description instead. This mirrors the home title's rationale.
-- **`/cli` `<title>`:** "Archcore CLI — Git-Native Context for AI Coding Agents", matching the CLI README H1.
+- **Component metadata titles MUST match the component H1s.** Category positioning belongs to Archcore on the home page; component pages explain their roles.
+- **`/cli` `<title>`:** "Archcore CLI".
 
 Per-page OG cards (`scripts/generate-og-image.mts` `VARIANTS`) must mirror these page H1s and subheads. The `/how-to-use` card may shorten the heading to name the loop. The route-meta config in `scripts/prerender-routes.mts` `ROUTES` must mirror the page's `usePageMeta` arguments, and each route's static `body.paragraphs` must state the same claims as the page's visible sections — that body is what non-JS crawlers read.
 
@@ -167,25 +170,60 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 
 **Host support has one source on the landing site.** The host matrix in `plugin-hosts-section.tsx` (`/plugin`) is the single place that states which hosts the plugin runs in, and the agent grid in `cli-agents-section.tsx` (`/cli`) is the single place that states which agents the CLI supports. FAQ answers, hero copy, the home cross-agent sentence, the loop intro, and prerender bodies may summarize them but must not contradict them, and a status change updates the landing block, the docs page, and the repo tagline together.
 
-**Known gap on `/plugin`, accepted 2026-08-27.** The `/plugin` hero shows four host install tabs with no CLI prerequisite step (only Copilot names `archcore init`). A reader who lands there from search has to reach the page FAQ ("Do I need to install the CLI separately? Yes, one global install.") to learn that the CLI comes first. Left as is by explicit decision when the home block was simplified. Do not "fix" it silently; it is a scoped exception, not drift.
+**CLI prerequisite restored on `/plugin`, 2026-09-09.** The owner requested an update and simplification of both product pages. The installation section now states that Archcore CLI must be on `PATH` and links to `/cli/#install` before the host tabs. This resolves the scoped exception accepted on 2026-08-27.
 
-**Current matrix (v0.7.0, from the CLI's `agent-hooks-integration.guide.md` and shipped code):**
+**Host matrix (checked 2026-09-09 against CLI wiring and plugin installation documentation):**
 
 - **Plugin hosts (4):** Claude Code (production), Cursor 2.5+, Codex CLI 0.117+, GitHub Copilot CLI (all implemented).
 - **CLI over MCP (8):** Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline (manual setup).
-- **CLI session hooks (5):** Claude Code, Cursor, Gemini CLI, Codex CLI, GitHub Copilot. OpenCode is never wired — its hooks are JavaScript plugins that cannot be written declaratively. Codex hooks need its experimental flag (`codex --enable hooks`) and do not run on Windows. Copilot has no pre-write context injection.
+- **CLI session hooks (5):** Claude Code, Cursor, Gemini CLI, Codex CLI, GitHub Copilot. OpenCode is never wired — its hooks are JavaScript plugins that cannot be written declaratively. Codex hook availability depends on the installed version and its hooks setting; the CLI wiring still disables hooks on Windows. Do not label hooks experimental across all Codex versions. Copilot has no pre-write context injection.
 - **The home context-engineering section states pre-edit injection without naming a host.** Copilot has no pre-write context injection, so any copy that promises the behaviour "on every agent" is wrong. Keep the claim about what Archcore does, and leave the per-host truth to the two matrix sections.
 - **GitHub Copilot CLI resolved 2026-08-07.** The earlier "landing follows the docs, which say planned" carve-out is retired: plugin v0.7.0 ships Copilot support with tests. **Copilot needs two install steps** — `copilot plugin install archcore-ai/plugin:plugins/archcore` AND `archcore init --agent copilot --project "$PWD"`. The second is required, not optional: the plugin deliberately ships no MCP server to Copilot, so a project that skips it has no document tools. Any surface showing the Copilot install path must show both steps.
 - **`docs.archcore.ai` caught up on 2026-08-10.** The earlier warning here (host matrix said Copilot was planned, removed commands still documented) no longer holds: docs state Copilot as implemented with both install steps and the `github/copilot-cli#4234` rationale, carry only the four commands, list all four `/archcore:plan` tracks, and say 19 document types. The standing rule is unchanged: **where docs and shipped code disagree, the landing follows the code** — and this time the drift ran the other way, with this rule missing the `research` track the docs already had.
 
+## Compact product entry pages
+
+The owner requested these changes on 2026-09-09. This section governs `/cli/` and `/plugin/`.
+
+1. Product pages MUST NOT render the retired CLI-init or Cursor-plugin demonstration images.
+2. Product pages MUST use the article structure of `/how-to-use/` through @src/components/guide-page-layout.tsx.
+3. Product pages MUST render the shared Blog/Learn closing CTA after the article and FAQ.
+4. Product pages MUST NOT repeat the closing CTA between explanatory sections.
+5. The plugin installation section MUST state the CLI prerequisite before its host tabs.
+6. The Codex tab MUST show both marketplace registration and plugin installation commands.
+7. The Cursor tab MUST state the separate project MCP registration step.
+8. The Copilot tab MUST retain both plugin installation and project initialization.
+9. The plugin command list MUST retain the `init → plan → document → review` order.
+10. The plugin command introduction MUST present natural-language requests as an available interface.
+11. CLI setup copy MUST distinguish `archcore init` configuration from the plugin's `/archcore:init` repository analysis.
+12. Migration copy MUST describe agent-assisted conversion of selected existing content.
+13. Migration copy MUST NOT claim that CLI initialization automatically imports instruction files.
+14. Repository examples MUST identify illustrative document paths as examples.
+15. Repository examples MUST NOT place agent MCP configuration under `.archcore/`.
+16. Host copy MUST distinguish MCP registration, session hooks, and pre-write context delivery.
+17. GuidePageLayout MUST render one left-aligned H1 and introduction inside its article.
+18. Product pages MUST place installation in the first article section.
+19. Product pages MUST use the shared article typography and reading-column width.
+20. Product pages MUST provide a localized outline linking to each main article section.
+21. Product pages MUST NOT wrap article sections in landing-page SectionContainer components.
+22. Product pages MUST NOT render a centered marketing hero.
+23. Product pages MUST use LocalizedClosingCta from @src/components/closing-cta.tsx.
+24. Product closing CTAs MUST retain the Blog/Learn copy and two same-tab links to `/how-to-use/`.
+
+Implementation: @src/components/pages/cli.tsx, @src/components/pages/plugin.tsx, @src/components/sections/cli-pillars-section.tsx, @src/components/sections/plugin-pillars-section.tsx, @src/components/sections/plugin-hero-section.tsx, @src/components/sections/migration-section.tsx, and @src/styles/content.css.
+
+Source checks: CLI repository `cmd/init.go` and `internal/wiring/hooks_effective.go`; documentation repository `src/content/docs/plugin/install.mdx`, `src/content/docs/plugin/supported-hosts.mdx`, and `src/content/docs/cli/agent-integrations.mdx`. Check these sources again when install or host behavior changes.
+
 ## CTA vocabulary
 
 - **Home install anchor:** `#install` is the only one. All home install CTAs scroll to the hero install block, which renders the real copyable commands. `#install-cli` and `#install-plugin` were removed on 2026-08-27 with the tabs they pre-selected; do not reintroduce a hash that selects a product. Never link install CTAs to external destinations.
-- **Header:** two plain nav items, "How to use" (internal, `/how-to-use`) and "Docs" (external, `docs.archcore.ai`); a GitHub link showing the GitHub mark and the word "Star"; and the language switcher. **No accent-coloured button.** "How to use" was one until 2026-08-27; onboarding and reference are two reads of the same depth, and the button was the last element competing with the install block for the eye. The mobile menu carries the same two items in the same plain list, with no promoted card.
+- **Header:** Desktop and mobile navigation MUST follow the five-link order in @src/data/navigation.ts: How to use, Integrations, Docs, Blog, Learn. The header MUST retain the GitHub Star link, language selector, and Install action to `/how-to-use/`.
 - **No surface renders a star count.** The header pill and the bottom CTA button showed one until 2026-08-27. `github_star_clicked.stars` still carries the build-time number for analytics, and nothing displays it. Do not put the count back on a button: it reads as a scoreboard on a project whose number is still small.
 - **Star CTA block (bottom of home):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`; two repo links, unadorned.
-- **`/how-to-use` closing CTA:** The block MUST use the `.recipe-cta` presentation from the integration page. Its heading MUST be "Start with Archcore.". Its description MUST be "Keep your project decisions ready for the next task.". The primary link MUST read "Install Archcore →" and target `#install`. The secondary link MUST read "See how it works" and target `#cycle`.
-- **Dedicated page CTAs:** `/plugin` uses "Install plugin" (primary) and "View on GitHub" (secondary); `/cli` uses "Install CLI" (primary) and "View on GitHub" (secondary). Each anchors to the page's own `#install` section.
+- **`/how-to-use` closing CTA:** The block MUST retain `.recipe-cta` presentation. Its heading MUST be "Explore Archcore on GitHub.". Its description MUST be "Browse the CLI and plugin repositories.". Its only anchor MUST read "View on GitHub →" and target `LINKS.org` from @src/lib/links.ts in a new tab. The closing block MUST NOT repeat installation or walkthrough actions.
+- **Blog and Learn closing CTA:** Every article and listing MUST use the same closing component as `/integrations/superpowers/`, @src/components/ClosingCta.astro. Both links MUST target `/how-to-use/` in the current tab. This replaces the expanded-description article CTA. Listings retain their cross-links before the block.
+- **Shared navigation and footer:** @src/data/navigation.ts MUST order header links as How to use, Integrations, Docs, Blog, Learn. The footer MUST omit the five-link reference row. Header and footer MUST share @src/components/SiteBrand.astro; the footer uses its compact variant.
+- **Product guide closing CTAs:** `/plugin/` and `/cli/` MUST use the shared Blog/Learn CTA. Their local installation sections retain `#install`; the closing actions both target `/how-to-use/`.
 - Never pair these with different verbs — each page must read consistently.
 
 The `/plugin` page's Install section is a **4-tab** Radix Tabs widget: "Claude Code", "Cursor 2.5+", "Codex CLI 0.117+", "Copilot CLI". Copy for this widget stays host-specific and must not generalize across tabs.
@@ -202,7 +240,9 @@ The `/plugin` page's Install section is a **4-tab** Radix Tabs widget: "Claude C
 
 ## Rationale
 
-Consistent positioning across all touchpoints strengthens brand recognition. The equal-paths framing matches how users actually choose (by which agent they run, not by our preference) while the gentle plugin emphasis still guides users of the four plugin hosts to the richer experience. Keeping install CTAs in-page keeps the user in the funnel.
+Archcore is one product with a command-line tool and agent integrations. Independent slogans and comparisons made its component pages read as competing products. Simple names and role descriptions explain how the parts work together.
+
+The home hero previously repeated its positioning in an eyebrow, H1, description, and promise. The H1 now supplies the category terms; the description explains the stored documents and access during coding. Removing the two surrounding lines reduces visual load while retaining the H1, metadata, structured data, and category sections. This preserves the site's existing SEO signals; it does not predict search rankings.
 
 The home install block collapsed to one path on 2026-08-27 because the choice it offered had stopped being real and had never been safe. `archcore init` installs the plugin on every host the user checks, so the CLI path already delivered both; the Plugin tab, meanwhile, listed two marketplace commands and no CLI, and the plugin repository forbids fetching the CLI itself, so that tab shipped a path that fails on a clean machine. Two tabs asked the reader to compare two things before they knew what either was, and one of the two answers was wrong. The cross-agent cards went with them for the same reason: the page contradicted itself inside one scroll, offering one install above and two products to choose between below. The header followed, because it restated the split on every page of the site, including the ones written to retire it. The entry points did not merge, and neither did the pages. What moved is where the reader meets them: `/plugin` and `/cli` now, not the install step and not the header.
 
@@ -214,23 +254,23 @@ The home page reordered on 2026-08-31 for a defect the previous three revisions 
 
 The hero tab order went plugin-first on 2026-08-11 and is superseded by the above. Ordering was never ranking, and neither is the removal.
 
-The home H1 went category-led on 2026-08-10 under `product/two-discovery-categories`, which reverses the 2026-07-06 pain-first decision for the H1 slot specifically. The pain phrase did not disappear: it moved down one line as the supporting promise, where it still does the hook's job while the H1 states what Archcore is and what it competes for. The eyebrow ("Git-native context layer") keeps the product definition visible above the category line, so the reader gets the narrow answer before the broad one.
+The home H1 went category-led on 2026-08-10 under `product/two-discovery-categories`, which reverses the 2026-07-06 pain-first decision for the H1 slot specifically. That revision retained an eyebrow and supporting promise. Both were later removed by the owner on 2026-09-09; the current hero contract is the two-level structure above.
 
-The `<title>` no longer diverges from the H1. Both are category-led, so SERP entry, social card, OG image, and page all state the same claim. That removes the exception `landing/home-title-category-keyword.adr.md` was written to sanction, and the ADR is superseded.
+The home `<title>` no longer diverges from the home H1. Both are category-led, so SERP entry, social card, OG image, and page all state the same claim. That removes the exception `landing/home-title-category-keyword.adr.md` was written to sanction, and the ADR is superseded.
 
 Host support and structured data get their own invariants because both failed silently: a stale host claim or an inherited FAQ block produces no build error, ships to production, and is only visible in the rendered HTML or a rich-results test. The command set now gets the same treatment: `/archcore:context` survived on the landing for a full release after it was deleted, because nothing in the build knows which commands exist. Install mechanics belong on that list too: "installing the plugin gets you both" shipped in the home FAQ and in the `index.html` FAQPage block, and "The CLI is auto-installed on first use" shipped in the `/how-to-use` walkthrough, while `/plugin`'s own FAQ said the opposite on the same site. Section parity joins the list as of 2026-08-31: Before/After rendered only in the SPA for three weeks, and no check anywhere noticed that the crawler-visible page was one section short.
 
 ## Examples
 
-**Good (Hero):** eyebrow "Git-native context layer", H1 "Spec-Driven Development & Context Engineering for AI Coding Agents", subhead "Archcore keeps specs, architecture, decisions, rules, and plans in Git, and makes the right project context available to AI coding agents as they work.", then "Stop re-explaining your repo to every AI coding agent."
+**Good (Hero):** H1 "Spec-Driven Development & Context Engineering for AI Coding Agents", followed by the expanded product description from @src/data/product-copy.ts.
 
 **Good (home install block):** the platform install script, then `archcore init`, then the works-with strip.
 
 **Good (a loop stage):** `/archcore:document` in mono, then "Record the decision to use a token bucket in Redis." on the code surface, then the ADR it produces.
 
-**Good (entry-point choice, on `/plugin` and `/cli`):** "Both paths use the same `.archcore/` directory. The difference is the experience layer."
+**Good (component roles):** The CLI sets up Archcore and connects agents. The plugin adds skills that use the CLI and the same project documents.
 
-**Good (plugin emphasis):** "The most polished experience for Claude Code, Cursor, Codex CLI, and GitHub Copilot CLI."
+**Bad:** Calling the plugin "the most polished experience" or presenting the component pages as two product choices.
 
 **Good (context framing):** "Four slash commands — and the everyday context needs none of them."
 
@@ -248,7 +288,7 @@ Host support and structured data get their own invariants because both failed si
 
 **Bad:** "The Plugin is the recommended runtime for Claude Code, Cursor, and Codex CLI" — same violation, in the prerendered `/how-to-use` body; shipped for months because nobody reads the static bodies.
 
-**Bad:** "CLI is the main product; plugin is a nice-to-have" — the paths are equals.
+**Bad:** "CLI is the main product; plugin is a nice-to-have". The CLI and plugin are components of one product.
 
 **Bad:** A Plugin / CLI tab pair, a Plugin card beside a CLI card, a per-step Plugin / CLI toggle, or "Plugin" and "CLI" as header nav items. The home page installs one thing, the loop teaches one thing, and the header states one product.
 
@@ -292,18 +332,27 @@ Host support and structured data get their own invariants because both failed si
 2. React components MUST translate the shared message descriptors through Lingui.
 3. Astro layouts and Node scripts MUST read the English message from the same descriptors.
 4. Authors MUST preserve the existing descriptor IDs when editing their messages.
-5. General article CTAs MUST use the same expanded description as the home hero.
-6. Integration descriptions MAY state Archcore's contribution to the named pair without replacing the product definition.
-7. Host summaries MUST distinguish MCP access from automatic hook delivery.
-8. Copy MUST NOT promise pre-write injection to every MCP-aware agent.
-9. Copy MUST describe recording a decision as an explicit request to the agent.
-10. Copy MUST NOT promise that Archcore automatically records every decision.
-11. Shipping copy MUST NOT make an unqualified "No telemetry" claim.
-12. Analytics descriptions MUST distinguish local project-document storage from installation, update, and website analytics.
-13. Analytics details and opt-out instructions MUST remain consistent with @src/components/pages/privacy.tsx.
-14. References to the how-to page MUST describe the init → plan → document → review loop.
+5. Blog and Learn closing CTAs MUST use @src/components/ClosingCta.astro, including article and listing pages.
+6. Pillar CTAs MUST use the same expanded description as the home hero.
+7. Integration descriptions MAY state Archcore's contribution to the named pair without replacing the product definition.
+8. Host summaries MUST distinguish MCP access from automatic hook delivery.
+9. Copy MUST NOT promise pre-write injection to every MCP-aware agent.
+10. Copy MUST describe recording a decision as an explicit request to the agent.
+11. Copy MUST NOT promise that Archcore automatically records every decision.
+12. Shipping copy MUST NOT make an unqualified "No telemetry" claim.
+13. Analytics descriptions MUST distinguish local project-document storage from installation, update, and website analytics.
+14. Analytics details and opt-out instructions MUST remain consistent with @src/components/pages/privacy.tsx.
+15. References to the how-to page MUST describe the init → plan → document → review loop.
 
 The owner approved these corrections after the site-wide messaging audit on 2026-09-09. The trust strip now says "Open source · Local-first". This replaces its former telemetry claim. The article CTA no longer promises automatic pre-edit delivery to every host. The CLI hero, metadata, and OG image use one description. The plugin's generic description states project-context availability; host-specific sections describe automatic delivery.
+
+### Home hero simplicity
+
+1. @src/components/sections/hero-section.tsx MUST render one H1 followed by one product-description paragraph before installation.
+2. The home H1 MUST retain "Spec-Driven Development", "Context Engineering", and "AI Coding Agents".
+3. The description MUST use productCopy.expanded from @src/data/product-copy.ts.
+4. The home hero MUST NOT render a separate eyebrow or supporting-promise paragraph.
+5. Presentation-only hero edits MUST preserve home metadata, structured data, category headings, and installation actions.
 
 ## Enforcement
 
@@ -321,3 +370,5 @@ The Astro migration removed the hand-written crawler bodies and the second conte
 10. Migration baseline updates MUST correspond to an intentional content or SEO change.
 
 @scripts/verify-build.mts compares existing URL metadata and article content with @scripts/fixtures/seo-baseline.json. @tests/site.spec.ts checks rendered routes, localization, installation, and native navigation. Review @public/og-image*.png when its source copy changes.
+
+The component-title revision intentionally updates only the `/cli/` and `/plugin/` titles, H1s, and descriptions in @scripts/fixtures/seo-baseline.json. Their OG variants mirror the new titles and role descriptions. The home metadata and heading baseline are unchanged by the hero simplification.

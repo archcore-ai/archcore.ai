@@ -1,0 +1,12 @@
+---
+import { ClosingCta } from "./closing-cta";
+
+interface Props {
+  analyticsCta: "recipe_install" | "article_install" | "listing_install";
+  newTab?: boolean;
+}
+
+const { analyticsCta, newTab = false } = Astro.props;
+---
+
+<ClosingCta analyticsCta={analyticsCta} newTab={newTab} />
