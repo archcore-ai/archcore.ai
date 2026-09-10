@@ -83,12 +83,17 @@ test("integration tabs and install dialog support keyboard, mobile and deep link
     await install.click();
     await page.mouse.click(1, 1);
     await expect(dialog).toBeHidden();
+    // Overflow means the scrollable area is wider than the box, so compare with
+    // <=. The two are not equal on every platform: where a scrollbar takes
+    // layout space, the root scroller accounts for the gutter on one side only
+    // and scrollWidth comes out narrower.
+    const root = await page
+      .locator("html")
+      .evaluate((el) => ({ scroll: el.scrollWidth, client: el.clientWidth }));
     expect(
-      await page
-        .locator("html")
-        .evaluate((el) => el.scrollWidth - el.clientWidth),
-      `Horizontal overflow at ${width}px`
-    ).toBe(0);
+      root.scroll,
+      `Horizontal overflow at ${width}px (scrollWidth ${root.scroll}, clientWidth ${root.client})`
+    ).toBeLessThanOrEqual(root.client);
     await overview.click();
     await page.getByRole("link", { name: "See benefits and limits" }).click();
     await expect(benefits).toHaveAttribute("aria-selected", "true");
