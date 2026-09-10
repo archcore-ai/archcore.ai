@@ -24,8 +24,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       # A deploy must never ship a bundle that posts to a host which is not
       # PostHog. vars.POSTHOG_HOST once pointed at a deleted Vercel proxy and
@@ -151,13 +154,44 @@ jobs:
           PUBLIC_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
           PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
 
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "version=$(npx playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Chromium for browser checks
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      # A cache hit skips the browser download but the runner image can still
+      # be missing the OS-level libraries Chromium links against; this is fast
+      # because it never re-downloads the browser itself.
+      - name: Install Playwright OS dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       # Browser checks serve dist locally and block external requests, including
       # analytics. Verify the exact production build before archiving it.
       - name: Check the built site in Chromium
         run: npm run test:browser
+
+      # Without this the traces and screenshots the failure log points at are
+      # discarded with the runner, and a red deploy cannot be diagnosed.
+      - name: Upload the Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-deploy
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
 
       - name: Archive this release for rollback
         env:
@@ -195,3 +229,36 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Confirms the real, published URL is actually serving the new build —
+      # deploy-pages can report success while the CDN edge is still catching
+      # up, or while an unrelated Pages platform issue drops the content. A
+      # red run here is the signal to reach for rollback.yml immediately
+      # rather than finding out from a user report.
+      - name: Smoke-check the published site
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          # Pages can 404 or serve the previous build for a while after
+          # deploy-pages reports success, and curl treats a 404 as a completed
+          # request, so --retry would not cover it. Poll to a deadline instead:
+          # a slow CDN edge must not turn a good deploy red.
+          body_file="$(mktemp)"
+          deadline=$(( SECONDS + 180 ))
+          attempt=0
+          while :; do
+            attempt=$(( attempt + 1 ))
+            status="$(curl -sS --max-time 20 -o "$body_file" -w '%{http_code}' "$PAGE_URL")" || status=000
+            if [ "$status" = "200" ] && grep -q "Archcore" "$body_file"; then
+              echo "Smoke check passed on attempt ${attempt}: ${PAGE_URL} is live"
+              exit 0
+            fi
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              break
+            fi
+            echo "Attempt ${attempt}: HTTP ${status} without the expected content, retrying in 10s"
+            sleep 10
+          done
+          echo "::error::Smoke check failed after ${attempt} attempts: ${PAGE_URL} last returned HTTP ${status} without the expected content"
+          exit 1

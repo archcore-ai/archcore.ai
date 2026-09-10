@@ -30,14 +30,26 @@ test("integration tabs and install dialog support keyboard, mobile and deep link
     await install.click();
     await expect(dialog).toBeVisible();
     const offset = await dialog.evaluate((el) => {
+      // A modal centres inside the viewport box, which is narrower than
+      // innerWidth wherever scrollbars take layout space (`scrollbar-gutter:
+      // stable` on Linux CI). Probe that box instead of assuming its size.
+      const probe = document.createElement("div");
+      probe.style.cssText =
+        "position:fixed;inset:0;visibility:hidden;pointer-events:none";
+      document.body.append(probe);
+      const box = probe.getBoundingClientRect();
+      probe.remove();
       const r = el.getBoundingClientRect();
       return {
-        x: r.x + r.width / 2 - innerWidth / 2,
-        y: r.y + r.height / 2 - innerHeight / 2,
+        x: r.x + r.width / 2 - (box.x + box.width / 2),
+        y: r.y + r.height / 2 - (box.y + box.height / 2),
+        box: { width: box.width, height: box.height },
+        innerWidth: window.innerWidth,
       };
     });
-    expect(Math.abs(offset.x)).toBeLessThan(1);
-    expect(Math.abs(offset.y)).toBeLessThan(1);
+    const where = `Dialog centring at ${width}px (viewport box ${offset.box.width}x${offset.box.height}, innerWidth ${offset.innerWidth})`;
+    expect(Math.abs(offset.x), where).toBeLessThan(1);
+    expect(Math.abs(offset.y), where).toBeLessThan(1);
     await expect(
       page.getByRole("button", { name: "Close installation" })
     ).toBeFocused();
@@ -71,7 +83,12 @@ test("integration tabs and install dialog support keyboard, mobile and deep link
     await install.click();
     await page.mouse.click(1, 1);
     await expect(dialog).toBeHidden();
-    await expect(page.locator("html")).toHaveJSProperty("scrollWidth", width);
+    expect(
+      await page
+        .locator("html")
+        .evaluate((el) => el.scrollWidth - el.clientWidth),
+      `Horizontal overflow at ${width}px`
+    ).toBe(0);
     await overview.click();
     await page.getByRole("link", { name: "See benefits and limits" }).click();
     await expect(benefits).toHaveAttribute("aria-selected", "true");

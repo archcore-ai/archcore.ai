@@ -109,9 +109,8 @@ for (const route of routes) {
         ]
           .filter((el) => {
             const rect = el.getBoundingClientRect();
-            return (
-              rect.width > 0 && (rect.right > innerWidth + 1 || rect.left < -1)
-            );
+            const view = document.documentElement.clientWidth;
+            return rect.width > 0 && (rect.right > view + 1 || rect.left < -1);
           })
           .map((el) => `${el.tagName}.${el.className}`)
       );

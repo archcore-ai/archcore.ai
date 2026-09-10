@@ -5,6 +5,11 @@ export default defineConfig({
   fullyParallel: true,
   workers: 3,
   timeout: 30_000,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 1 : 0,
+  reporter: process.env.CI
+    ? [["github"], ["html", { open: "never" }]]
+    : [["list"]],
   use: {
     baseURL: "http://127.0.0.1:4322",
     locale: "en-US",

@@ -41,6 +41,7 @@ concurrency:
 jobs:
   report:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       # Public project key, same repository variable the site build uses.
       POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
@@ -60,6 +61,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       # Checks this job's own ingest host, which is the direct PostHog
       # endpoint. Replaces the key-shape check that used to live here: the

@@ -13,8 +13,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: 22
@@ -26,7 +29,35 @@ jobs:
         env:
           ALLOW_MISSING_ANALYTICS_KEY: "1"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "version=$(npx playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
       - name: Install Chromium for browser checks
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+      # A cache hit skips the browser download but the runner image can still
+      # be missing the OS-level libraries Chromium links against; this is fast
+      # because it never re-downloads the browser itself.
+      - name: Install Playwright OS dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
       - name: Check the built site in Chromium
         run: npm run test:browser
+
+      # Without this the traces and screenshots the failure log points at are
+      # discarded with the runner, and a red check cannot be diagnosed.
+      - name: Upload the Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-pr
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
