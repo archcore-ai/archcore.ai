@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/*", (route) => {
@@ -8,6 +10,44 @@ test.beforeEach(async ({ page }) => {
       : route.abort();
   });
 });
+
+for (const [slug, partner] of [["openspec", "OpenSpec"], ["spec-kit", "Spec Kit"]]) {
+  test(`${partner} setup uses its own instructions and reports the revision honestly`, async ({ page, context, request }) => {
+    const source = readFileSync(`src/recipes/${slug}/cooperation.md`, "utf8");
+    const digest = createHash("sha256").update(source).digest("hex");
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/integrations/");
+    await page.getByRole("link", { name: new RegExp(`${partner} \\+ Archcore`) }).click();
+    await expect(page).toHaveURL(new RegExp(`/integrations/${slug}/$`));
+    await expect(page.locator("[data-recipe-root]")).toHaveAttribute("data-digest", digest);
+    for (const width of [320, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.getByRole("button", { name: "Install", exact: true }).click();
+      const dialog = page.getByRole("dialog", { name: "Connect the two tools" });
+      await expect(dialog.locator("#install-check blockquote")).toContainText(`Confirm you can use Archcore and ${partner}`);
+      await expect(dialog.locator("#install-check blockquote")).not.toContainText("Superpowers");
+      expect(await dialog.locator("[data-recipe-text]").textContent()).toBe(source);
+      await dialog.getByRole("button", { name: "Copy instructions" }).click();
+      await expect(dialog.getByRole("button", { name: "Copied" })).toBeVisible();
+      expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(source);
+      const size = await dialog.evaluate((el) => ({ scroll: el.scrollWidth, client: el.clientWidth }));
+      expect(size.scroll).toBe(size.client);
+      await page.keyboard.press("Escape");
+      await expect(dialog).toBeHidden();
+    }
+    await page.getByRole("tab", { name: "Benefits & limits" }).click();
+    await expect(page.locator("#pilot-results")).toContainText("has not had a joint run");
+    await page.getByRole("button", { name: "Install", exact: true }).click();
+    await page.getByRole("link", { name: "Source & verification" }).click();
+    await expect(page.locator("#recipe-details")).toContainText("Landing repository");
+    await expect(page.locator("#recipe-details")).toContainText("No joint run has been recorded for this instruction revision.");
+    const download = await request.get(`/integrations/${slug}/cooperation.md`);
+    expect(download.ok()).toBe(true);
+    expect(await download.text()).toBe(source);
+    const markdown = await request.get(`/integrations/${slug}.md`);
+    expect(await markdown.text()).toContain(digest);
+  });
+}
 
 test("integration tabs and install dialog support keyboard, mobile and deep links", async ({
   page,

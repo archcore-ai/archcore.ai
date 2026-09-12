@@ -26,8 +26,11 @@ test("shared product descriptions render in English and Russian after hydration"
 }) => {
   const ru = setupI18n({ locale: "ru", messages: { ru: ruMessages } });
   for (const locale of ["en", "ru"] as const) {
+    // The home hero stopped using a shared descriptor on 2026-09-12: it now
+    // opens with two plain sentences of its own
+    // (.archcore/landing/home-plain-language-rail.adr.md). Its localisation is
+    // covered by the home hero assertion below.
     for (const [route, hero, description] of [
-      ["/", productCopy.expanded, null],
       ["/cli/", productCopy.cliDescription, productCopy.cliDescription],
       ["/plugin/", productCopy.pluginExpanded, productCopy.pluginDescription],
     ] as const) {
@@ -44,6 +47,20 @@ test("shared product descriptions render in English and Russian after hydration"
         );
       }
     }
+
+    // The home hero's own two sentences, in both languages.
+    await page.goto(`/?lang=${locale}`);
+    const lede =
+      locale === "en"
+        ? "Archcore keeps your project's decisions, specs, and rules in the repo."
+        : "Archcore хранит решения, спецификации и правила вашего проекта прямо в репозитории.";
+    await expect(
+      page.locator("main").getByText(lede, { exact: true })
+    ).toBeVisible();
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      productCopy.homeDescription.message
+    );
   }
 });
 

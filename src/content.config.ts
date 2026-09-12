@@ -72,9 +72,9 @@ const pillars = defineCollection({
  *
  *   - The body is ours. Presentation copy about the problem, the two tools'
  *     contributions, artifact ownership, and the limits.
- *   - `instructions` names a file that is NOT ours: a verbatim copy of the
- *     recipe source authored in the plugin repo. Nothing in this project may
- *     edit it. `digest` pins which revision this page is showing, and the
+ *   - `instructions` names either a verbatim imported recipe or a recipe
+ *     authored here. `source` identifies its owning repository and path.
+ *     Imported recipes must stay unchanged. `digest` pins the revision, and the
  *     route checks the file against it at build time, so a page whose visible
  *     instructions disagree with the file it hands out cannot be built.
  *   - The rest is the binding between them: where the source lives, which
@@ -152,6 +152,7 @@ const integrationSchema = z.object({
   digest: z.string().regex(/^[0-9a-f]{64}$/),
   source: z.object({
     repo: z.string().url(),
+    label: z.string().default("Plugin repository"),
     path: z.string(),
     /**
      * The immutable upstream revision. Null while the recipe source is still

@@ -1,7 +1,7 @@
 ---
-title: "Archcore + Superpowers Integration | Setup"
-heading: "Archcore + Superpowers"
-description: "Connect Archcore + Superpowers to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent."
+title: "Superpowers + Archcore Integration | Setup"
+heading: "Superpowers + Archcore"
+description: "Connect Superpowers + Archcore to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent."
 summary: "Give Superpowers your project’s decisions. Keep new decisions in Git with Archcore."
 category: "Workflow skills"
 updatedDate: 2026-09-09
@@ -90,7 +90,7 @@ limits:
 maintainer: "Archcore maintainers"
 ---
 
-## How Archcore + Superpowers work together
+## How Superpowers + Archcore work together
 
 Start with either tool. These instructions tell your agent to read existing
 project decisions before design work and save new decisions in Archcore.

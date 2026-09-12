@@ -1,6 +1,6 @@
 ---
-title: "Home page shows the loop before the two category sections, and those sections argue mechanism instead of definition"
-status: accepted
+title: "Home page shows the loop before the two category sections, and those sections argue mechanism instead of definition (superseded)"
+status: rejected
 ---
 
 ## Context

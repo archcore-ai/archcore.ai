@@ -6,11 +6,9 @@ import { createHash } from "node:crypto";
  *
  * The recipe page shows this text, the copy button copies it, and
  * /integrations/<recipe>/<file> hands it out as a download. All three read this
- * one function, so the three can never disagree with each other. The digest
- * check is what stops them disagreeing with the *plugin* source: the file here
- * is a copy, and a copy that has been edited — deliberately, or by an editor
- * rewriting line endings — is no longer the text this page claims to
- * distribute.
+ * one function, so the three cannot disagree with each other. The digest pins
+ * the bytes described by the catalog, whether authored here or imported.
+ * An imported recipe must also remain identical to its declared source.
  *
  * Failing the build is the point. The alternative is a page that quietly
  * attributes our wording to the upstream recipe, which is exactly the split
@@ -59,8 +57,7 @@ export function readRecipeSource(
   if (digest !== expectedDigest) {
     throw new Error(
       `recipe "${recipe}": ${instructions} has digest ${digest}, but the entry records ${expectedDigest}. ` +
-        `Either the imported file was edited in this repo — it must not be — or it was re-imported from ` +
-        `the plugin source without updating the entry. Re-import the file, then set digest to the new value.`
+        `Check the recipe against its declared source, then update the entry digest for an intentional revision.`
     );
   }
 

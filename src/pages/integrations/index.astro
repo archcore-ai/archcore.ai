@@ -1,13 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 import CatalogLayout from "../../layouts/CatalogLayout.astro";
+import { evidenceForDigest } from "../../lib/recipe-source.ts";
 
 const recipes = (
   await getCollection("integrations", ({ data }) => !data.draft)
 ).sort((a, b) => a.data.heading.localeCompare(b.data.heading));
 
 const items = recipes.map((entry) => {
-  const verified = entry.data.evidence.filter((e) => e.outcome === "passed");
+  const verified = evidenceForDigest(entry.data.evidence, entry.data.digest)
+    .filter((e) => e.outcome === "passed");
   return {
     href: `/integrations/${entry.id}/`,
     title: entry.data.heading,

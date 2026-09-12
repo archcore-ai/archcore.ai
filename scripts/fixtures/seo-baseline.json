@@ -7,13 +7,11 @@
     "ogImage": "https://archcore.ai/og-image.png",
     "headings": [
       "Spec-Driven Development & Context Engineering for AI Coding Agents",
-      "Your code is in Git. Your project understanding should be too.",
-      "Same prompt. Different agent.",
-      "How it works: the loop",
-      "Context engineering for the code being changed",
-      "Spec-driven development beyond the merge",
-      "Project context belongs in Git",
-      "One project context. Every coding agent."
+      "What you get",
+      "Decisions become files",
+      "Four things you say",
+      "Every agent reads the same folder",
+      "Frequently Asked Questions"
     ],
     "article": null,
     "schemas": [
@@ -1512,8 +1510,8 @@
   },
   {
     "route": "/integrations/superpowers/",
-    "title": "Archcore + Superpowers Integration | Setup",
-    "description": "Connect Archcore + Superpowers to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent.",
+    "title": "Superpowers + Archcore Integration | Setup",
+    "description": "Connect Superpowers + Archcore to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent.",
     "canonical": "https://archcore.ai/integrations/superpowers/",
     "ogImage": "https://archcore.ai/og-image.png",
     "headings": [

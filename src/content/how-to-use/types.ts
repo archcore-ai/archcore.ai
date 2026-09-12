@@ -17,4 +17,11 @@ export interface CycleStage {
   prompt: ReactNode;
   /** What lands, in one sentence. */
   result: ReactNode;
+  /**
+   * The same outcome compressed for the home page's loop tile, which shows the
+   * documents the stage leaves rather than a full sentence. `/how-to-use`
+   * renders `result`; both come from this one file so a release cannot update
+   * one surface and miss the other.
+   */
+  leaves: ReactNode;
 }

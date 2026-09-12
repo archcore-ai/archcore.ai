@@ -36,6 +36,7 @@ interface Props {
   downloadHref: string;
   markdownTwin: string;
   sourceRepo: string;
+  sourceLabel: string;
   sourcePath: string;
   sourceRevision: string | null;
   tools: Tool[];
@@ -73,6 +74,7 @@ const {
   downloadHref,
   markdownTwin,
   sourceRepo,
+  sourceLabel,
   sourcePath,
   sourceRevision,
   tools,
@@ -364,7 +366,7 @@ const breadcrumbSchema = {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Plugin repository
+                      {sourceLabel}
                     </a>{" "}
                     · <code>{sourcePath}</code> · This revision is not published
                     yet.

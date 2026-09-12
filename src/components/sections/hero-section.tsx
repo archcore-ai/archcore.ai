@@ -1,4 +1,3 @@
-import { productCopy } from "@/data/product-copy";
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
@@ -7,18 +6,23 @@ import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
 
 /**
- * The install block is one path, not a choice.
+ * H1, then two sentences beside the install commands.
  *
- * It carried a Plugin / CLI tab pair until 2026-08-27. Two tabs asked the
- * reader to decide between two things before they knew what either was, and
- * the Plugin tab was the incomplete one: the plugin invokes `archcore` from
- * PATH and never fetches it (the plugin repo forbids a plugin-side CLI
- * fetcher outright), so its commands do not work on a machine without the
- * CLI. Meanwhile `archcore init` installs the plugin for every host checked
- * in its picker. One path is both simpler and the accurate one.
+ * The two sentences are the point of this revision. The H1 is the category
+ * line, which is what a search engine needs and what a first-time reader
+ * cannot decode: "spec-driven development", "context engineering", and
+ * "git-native context layer" all describe the product to someone who already
+ * knows the category. A visitor read the shipped page and said he could not
+ * tell what it was or what it gave him. So the first sentence says what
+ * Archcore is in words that need no glossary, and the second says what changes
+ * because of it. See .archcore/landing/home-plain-language-rail.adr.md.
  *
- * The per-host plugin install still exists for readers who prefer their
- * host's own marketplace; it lives in the docs, under the block.
+ * The install block is one path, not a choice. It carried a Plugin / CLI tab
+ * pair until 2026-08-27: two tabs asked the reader to decide between two
+ * things before they knew what either was, and the Plugin tab was the
+ * incomplete one, since the plugin invokes `archcore` from PATH and never
+ * fetches it. `archcore init` installs the plugin for every host checked in
+ * its picker, so one path is both simpler and the accurate one.
  */
 export function HeroSection() {
   const { _ } = useLingui();
@@ -26,124 +30,102 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="hero-section relative page-hero pb-8 md:pb-10 site-gutters overflow-hidden"
+      className="hero-section relative page-hero site-gutters overflow-hidden pb-6 md:pb-8"
     >
-      <div className="relative z-10 max-w-[var(--container-max)] mx-auto">
-        <div className="space-y-8 text-center">
-          <div className="hero-copy space-y-5">
-            <h1 className="type-hero text-balance">
+      <div className="relative z-10 mx-auto grid max-w-[var(--container-max)] gap-7">
+        {/* Full container width. It was capped at 21ch, which wrapped the
+            line to three and left the right half of the hero empty. */}
+        <h1 className="type-hero text-balance">
+          <Trans>
+            Spec-Driven Development &amp; Context Engineering
+            <br />
+            for AI Coding Agents
+          </Trans>
+        </h1>
+
+        <div className="grid items-start gap-7 lg:grid-cols-2 lg:gap-x-14">
+          <div className="grid content-start gap-3.5">
+            <p className="text-xl font-medium leading-snug md:text-[23px]">
               <Trans>
-                Spec-Driven Development &amp; Context Engineering
-                <br />
-                for AI Coding Agents
+                Archcore keeps your project's decisions, specs, and rules in the
+                repo.
               </Trans>
-            </h1>
-            <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-[var(--container-narrow)] mx-auto">
-              {_(productCopy.expanded)}
+            </p>
+            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+              <Trans>
+                Your coding agent reads them before it writes, so it builds by
+                this repo's rules instead of the ones it happens to know.
+              </Trans>
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto text-left" id="install">
-            <div className="rounded-xl border border-border bg-card p-5 space-y-4">
-              <div className="space-y-2">
-                <InstallCommand variant="inline" surface="home_hero_install" />
-                <InstallCommand
-                  variant="inline"
-                  command="archcore init"
-                  surface="home_hero_install"
-                  installTarget="cli"
-                />
-              </div>
-
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                <Trans>
-                  <code className="font-mono text-[0.9em]">archcore init</code>{" "}
-                  scaffolds{" "}
-                  <code className="font-mono text-[0.9em]">.archcore/</code> and
-                  wires MCP and hooks for the coding agents you already run.
-                </Trans>
-              </p>
-
-              <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
-                <a
-                  href={LINKS.cliRepo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
-                  aria-label={_(msg`Star CLI on GitHub`)}
-                >
-                  <Github className="h-3 w-3" />
-                  archcore-ai/cli
-                </a>
-                <span className="text-muted-foreground/40">·</span>
-                <a
-                  href={LINKS.pluginRepo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
-                  aria-label={_(msg`Star plugin on GitHub`)}
-                >
-                  <Github className="h-3 w-3" />
-                  archcore-ai/plugin
-                </a>
-                <span className="text-muted-foreground/40">·</span>
-                <a
-                  href="https://docs.archcore.ai/cli/install/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-foreground transition-colors"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  <Trans>Install docs</Trans>
-                </a>
-              </p>
+          <div className="grid min-w-0 content-start gap-3" id="install">
+            {/* A command scrolls rather than wrapping: the default break-all
+                split `install.sh` across two lines on a phone. `min-w-0` keeps
+                the no-wrap line from widening the grid track past the viewport,
+                which it did at 768px, clipped by the section's overflow-hidden
+                and invisible to the build. */}
+            <div className="grid min-w-0 gap-2">
+              <InstallCommand
+                variant="inline"
+                surface="home_hero_install"
+                className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
+              />
+              <InstallCommand
+                variant="inline"
+                command="archcore init"
+                surface="home_hero_install"
+                installTarget="cli"
+                className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
+              />
             </div>
 
-            <div className="mt-4 space-y-1.5 text-center text-sm text-muted-foreground/70">
-              <p>
-                <Trans>
-                  Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini
-                  CLI · any MCP agent
-                </Trans>
-              </p>
-              <p>
-                <Trans>Open source · Local-first</Trans>
-              </p>
-            </div>
-
-            <p className="mt-3 text-center text-sm text-muted-foreground/70">
-              <a
-                href="https://docs.archcore.ai/plugin/install/#install-per-host"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-foreground transition-colors"
-              >
-                <Trans>
-                  Prefer to install from inside your agent? See the per-host
-                  plugin install
-                </Trans>
-              </a>
-            </p>
           </div>
+        </div>
 
-          <div className="max-w-3xl mx-auto pt-6">
-            {/* Exported from scripts/demo-export (see .archcore/animated-product-demo.task-type.md);
-                webm/mp4 re-encoded from the same animation — 20x lighter than the GIF. */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/demo-poster.jpg"
-              width={800}
-              height={500}
-              aria-label="Agent session: the agent searches .archcore/ context over MCP, follows the ADR and rules, then captures the new decision back"
-              className="w-full rounded-[16px]"
+        {/* Under both columns, not inside the install one. Kept there, the
+            right column ran 80px past the left and the two stopped reading as
+            one row. */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground/80">
+          {/* Shortened on 2026-09-12: the sentence form ran two lines in the
+              hero. The host list and the trust strip are the two canonical
+              pieces; the verb was the part carrying no information. */}
+          <p>
+            <Trans>
+              Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP
+              agent
+            </Trans>
+          </p>
+          <p className="text-muted-foreground/60">
+            <Trans>Open source · Local-first</Trans>
+          </p>
+          {/* One link, not two. The CLI and the plugin are components of one
+              product (.archcore/messaging-alignment.rule.md, "One product,
+              component guides"), and a pair of repository names in the hero
+              asks the reader to tell them apart before they know what either
+              is. The two repositories are reachable from the footer. */}
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <a
+              href={LINKS.org}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-mono underline underline-offset-4 transition-colors hover:text-foreground"
+              aria-label={_(msg`Archcore on GitHub`)}
             >
-              <source src="/demo.webm" type="video/webm" />
-              <source src="/demo.mp4" type="video/mp4" />
-            </video>
-          </div>
+              <Github className="h-3 w-3" />
+              archcore-ai
+            </a>
+            <span className="text-muted-foreground/40">·</span>
+            <a
+              href="https://docs.archcore.ai/plugin/install/#install-per-host"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 underline underline-offset-4 transition-colors hover:text-foreground"
+            >
+              <ExternalLink className="h-3 w-3" />
+              <Trans>Per-host install</Trans>
+            </a>
+          </p>
         </div>
       </div>
     </section>

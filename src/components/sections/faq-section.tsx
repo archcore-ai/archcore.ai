@@ -1,7 +1,7 @@
 import { msg } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { FaqList } from "@/components/faq-list";
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeader } from "@/components/section-header";
+import { RailSection } from "@/components/sections/rail-section";
 import { useLingui } from "@lingui/react";
 
 export function FAQSection() {
@@ -49,10 +49,11 @@ export function FAQSection() {
   ];
 
   return (
-    <SectionContainer id="faq">
-      <SectionHeader title={_(msg`Frequently Asked Questions`)} />
-
-      <FaqList faqs={faqs} surface="home_faq" />
-    </SectionContainer>
+    <RailSection
+      id="faq"
+      heading={<Trans>Frequently Asked Questions</Trans>}
+    >
+      <FaqList faqs={faqs} surface="home_faq" className="w-full" />
+    </RailSection>
   );
 }

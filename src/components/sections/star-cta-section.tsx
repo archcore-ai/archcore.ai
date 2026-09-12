@@ -1,8 +1,7 @@
 import { Trans } from "@lingui/react/macro";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { ArrowUp, Github, Star } from "lucide-react";
-import { SectionContainer } from "@/components/section-container";
+import { ArrowUp, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useGitHubStars } from "@/hooks/use-github-stars";
 import { LINKS } from "@/lib/links";
@@ -11,43 +10,49 @@ import { track } from "@/lib/analytics";
 const SURFACE = "star_cta_section";
 
 /**
- * Bottom-of-page conversion block built around the single lowest-friction
- * action for cold GitHub / social traffic: a star. Install stays the primary
- * action up top; this captures everyone who scrolled the whole page but isn't
- * ready to install yet.
+ * One row, not a block.
+ *
+ * This was a centred card with its own icon, heading, and paragraph, which is
+ * a lot of page for the lowest-stakes action on it. The star is worth asking
+ * for and it is worth one line: the sentence on the left, the actions on the
+ * right, a hairline above. The owner asked for it to be compact on
+ * 2026-09-12.
  */
 export function StarCtaSection() {
   const { _ } = useLingui();
-  const { cli, plugin } = useGitHubStars();
+  const { plugin } = useGitHubStars();
 
   return (
-    <SectionContainer narrow className="py-12 md:py-16">
+    <section className="site-gutters pb-4 pt-10 md:pt-12">
       <div
         className={cn(
-          "rounded-2xl border border-border bg-card/60 backdrop-blur-sm",
-          "px-6 md:px-10 py-10 md:py-12",
-          "flex flex-col items-center text-center space-y-5"
+          "mx-auto flex max-w-[var(--container-max)] flex-wrap items-center gap-x-7 gap-y-4",
+          "border-t border-border pt-7"
         )}
       >
-        <span
-          aria-hidden="true"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-action)]/10 text-[var(--color-action)]"
-        >
-          <Star className="h-5 w-5" fill="currentColor" />
-        </span>
-
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance max-w-2xl">
-          <Trans>Like where this is going? Star it on GitHub.</Trans>
-        </h2>
-
-        <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl">
+        <p className="text-base leading-relaxed">
           <Trans>
-            Archcore is open source and built in public. A star helps more
-            developers find it, and tells us which direction to push next.
+            <span className="font-semibold">Open source, built in public.</span>{" "}
+            A star helps more developers find it.
           </Trans>
         </p>
 
-        <div className="pt-2 flex flex-col items-center gap-3">
+        <div className="ms-auto flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a
+            href="#install"
+            onClick={() =>
+              track("cta_clicked", {
+                cta: "back_to_install",
+                destination: "#install",
+                surface: SURFACE,
+              })
+            }
+            className="inline-flex items-center gap-1.5 text-sm font-medium leading-relaxed text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+          >
+            <Trans>Install now</Trans>
+            <ArrowUp className="h-3.5 w-3.5" />
+          </a>
+
           <a
             href={LINKS.pluginRepo}
             target="_blank"
@@ -62,76 +67,18 @@ export function StarCtaSection() {
               })
             }
             className={cn(
-              "group inline-flex items-center justify-center gap-2.5 rounded-md min-h-12 px-4 sm:px-6 py-2 max-w-full",
+              "inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 py-2",
               "bg-[var(--color-action)] text-[var(--color-text-inverse)]",
-              "text-sm md:text-base font-semibold tracking-[-0.005em]",
-              "transition-[transform,background-color] duration-200",
-              "hover:bg-[var(--color-action-hover)] hover:-translate-y-[1px] active:translate-y-0",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-text)]"
+              "text-sm font-semibold tracking-[-0.005em]",
+              "transition-colors duration-200 hover:bg-[var(--color-action-hover)]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-text)] focus-visible:ring-offset-2"
             )}
           >
-            <Star
-              className="h-4 w-4 md:h-[18px] md:w-[18px] shrink-0"
-              fill="currentColor"
-            />
-            <span className="text-center leading-snug">
-              <Trans>Star on GitHub</Trans>
-            </span>
+            <Star className="h-4 w-4 shrink-0" fill="currentColor" />
+            <Trans>Star on GitHub</Trans>
           </a>
-
-          <a
-            href="#install"
-            onClick={() =>
-              track("cta_clicked", {
-                cta: "back_to_install",
-                destination: "#install",
-                surface: SURFACE,
-              })
-            }
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
-          >
-            <Trans>Ready to try? Install now</Trans>
-            <ArrowUp className="h-3.5 w-3.5" />
-          </a>
-
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            <a
-              href={LINKS.cliRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics-handled
-              onClick={() =>
-                track("github_star_clicked", {
-                  repo: "cli",
-                  stars: cli,
-                  surface: SURFACE,
-                })
-              }
-              className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
-            >
-              <Github className="h-3 w-3" />
-              archcore-ai/cli
-            </a>
-            <a
-              href={LINKS.pluginRepo}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics-handled
-              onClick={() =>
-                track("github_star_clicked", {
-                  repo: "plugin",
-                  stars: plugin,
-                  surface: SURFACE,
-                })
-              }
-              className="inline-flex items-center gap-1 font-mono underline underline-offset-4 hover:text-foreground transition-colors"
-            >
-              <Github className="h-3 w-3" />
-              archcore-ai/plugin
-            </a>
-          </div>
         </div>
       </div>
-    </SectionContainer>
+    </section>
   );
 }

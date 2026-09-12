@@ -1,12 +1,9 @@
 import {
   HeroSection,
-  ProblemSection,
-  BeforeAfterSection,
-  HowToUseCycleSection,
-  ContextEngineeringSection,
-  SpecDrivenSection,
-  GitNativeSection,
-  CrossAgentSection,
+  OutcomesSection,
+  DocumentsSection,
+  SkillsSection,
+  AgentsSection,
 } from "@/components/sections";
 
 import { FAQSection } from "@/components/sections/faq-section";
@@ -17,35 +14,27 @@ export function LandingPage() {
     <div className="min-h-screen text-foreground">
       <main id="main-content">
         {/*
-          The page releases meaning in this order: what breaks, what changes,
-          how you use it, why it works, why you can trust it. See
-          .archcore/landing/home-loop-before-categories.adr.md.
+          The page answers two questions before it explains anything: what this
+          is, and what it gives you. The hero carries both in two sentences, the
+          outcomes section backs the second one with the mechanism behind each
+          claim, and only then does the page show the folder, the four skills,
+          and the agents that read them.
 
-          This deviates from the canonical sequence in
-          product/surface-descriptors, deliberately and at the sequence level.
-          The loop used to sit last, so the first concrete use of the product
-          was six screens down, behind two sections that answered "what is
-          this" for the third and fourth time. It is now the fourth section,
-          and the two category sections argue mechanism behind it: context
-          engineering explains what reaches the agent during the edit the loop
-          just showed, spec-driven development explains where the spec lives
-          after that feature ships.
+          Two earlier revisions failed the same way. The eight-section version
+          released one claim per screen and a reader reached the first concrete
+          use six screens down; the tile grid packed the same claims so tightly
+          that the owner could not tell what the product was. The fix was not
+          another arrangement of the same jargon. It was writing the first two
+          sentences in words that need no glossary, and keeping every later
+          claim next to the file or the command that proves it.
 
-          The category H2s stay word for word. They are the two category
-          anchors on the highest-authority page, and the pillar pages own the
-          head queries (product/seo-information-architecture).
-
-          Backgrounds alternate page / band from section 4 on, so the page does
-          not read as one field of bordered cards.
+          See .archcore/landing/home-plain-language-rail.adr.md.
         */}
         <HeroSection />
-        <ProblemSection />
-        <BeforeAfterSection />
-        <HowToUseCycleSection variant="home" />
-        <ContextEngineeringSection />
-        <SpecDrivenSection />
-        <GitNativeSection />
-        <CrossAgentSection />
+        <OutcomesSection />
+        <DocumentsSection />
+        <SkillsSection />
+        <AgentsSection />
         <FAQSection />
         <StarCtaSection />
       </main>

@@ -31,6 +31,12 @@ export const CYCLE_STAGES: CycleStage[] = [
         Archcore saves it in .archcore/.
       </Trans>
     ),
+    leaves: (
+      <Trans>
+        Proposes documents for the architecture, rules, and key modules. You
+        approve before anything is saved.
+      </Trans>
+    ),
   },
   {
     id: "plan",
@@ -42,6 +48,12 @@ export const CYCLE_STAGES: CycleStage[] = [
         Your agent uses the project context to define how rate limiting should
         work in a spec and break the implementation into tasks. You can then use
         that plan to guide the coding work.
+      </Trans>
+    ),
+    leaves: (
+      <Trans>
+        Writes the spec that defines how rate limiting must behave, and a plan
+        that breaks the work into tasks.
       </Trans>
     ),
   },
@@ -57,6 +69,11 @@ export const CYCLE_STAGES: CycleStage[] = [
         rate limiting.
       </Trans>
     ),
+    leaves: (
+      <Trans>
+        Saves the choice and its reasoning as an architecture decision record.
+      </Trans>
+    ),
   },
   {
     id: "review",
@@ -68,6 +85,18 @@ export const CYCLE_STAGES: CycleStage[] = [
         Your agent checks the code changes against the spec from step 2 and the
         decision from step 3. It flags code that breaks a requirement and
         documents that no longer match the code.
+      </Trans>
+    ),
+    /* The three tokens are the ones the review skill emits and groups by
+       (plugin skills/review/SKILL.md). The home page has to name all three
+       (.archcore/messaging-alignment.rule.md), so they live here rather than
+       in the page, and a rename in that skill is caught in one file. */
+    leaves: (
+      <Trans>
+        Reads the spec from step 2 and the decision from step 3. Verdict per
+        finding: <code className="font-mono text-[0.9em]">spec-wrong</code>,{" "}
+        <code className="font-mono text-[0.9em]">code-wrong</code>, or{" "}
+        <code className="font-mono text-[0.9em]">ok</code>.
       </Trans>
     ),
   },

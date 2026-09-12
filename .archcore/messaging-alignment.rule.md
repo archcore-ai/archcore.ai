@@ -20,7 +20,7 @@ Where a slot is listed in `product/surface-descriptors`, copy it. Do not compose
 - **`/plugin` `<title>`:** "Archcore Plugin for AI agents".
 - **`/cli` `<title>`:** "Archcore CLI".
 - **`/how-to-use` `<title>`:** "How to use Archcore".
-- **Works-with strip (under the home install block):** "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
+- **Works-with strip (under the home hero, spanning both columns):** "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent", followed by the trust strip "Open source · Local-first". The leading "Works with" was cut on 2026-09-12: the sentence form ran two lines in the hero and the verb carried no information. Other surfaces that state the host list keep their own wording.
 - **Short tagline (footer):** "Git-native context for AI coding agents."
 
 The entry-point shorthand slot under the works-with strip is **empty as of 2026-08-27**. It held "Plugin = slash commands · CLI = one binary." until the hero tabs went, then "One install. On Claude Code, Cursor, Codex CLI, and Copilot the plugin comes with it." for one iteration. Both named the two parts on the one surface that had stopped distinguishing them, so the line was cut rather than reworded. The works-with strip and "Open source · Local-first" are the only lines under the install block now. Do not refill the slot with a sentence that names the plugin and the CLI as two things.
@@ -97,40 +97,45 @@ The home H1 retains the category-led wording from `product/surface-descriptors`.
 - **Works-with strip:** directly under the install block
 - **OG image subtitle (`og-image.png`):** the hero subhead verbatim
 
-### Section order (`landing.tsx`)
+### Page structure (`landing.tsx`)
 
-Fixed by `landing/home-loop-before-categories.adr.md` (2026-08-31). Component ids match the section anchors.
+Fixed by `landing/home-plain-language-rail.adr.md` (2026-09-12), which supersedes `landing/home-one-grid.adr.md` and, through it, `landing/home-loop-before-categories.adr.md`.
 
-| # | Section | Component | Background |
-|---|---------|-----------|------------|
-| 1 | Category and product | `hero-section` | page |
-| 2 | Problem | `problem-section` (`#problem`) | page |
-| 3 | Proof | `before-after-section` (`#before-after`) | page, cards |
-| 4 | How it works | `how-to-use-cycle-section` (`#how-it-works`) | band |
-| 5 | Context engineering | `context-engineering-section` (`#context-engineering`) | page |
-| 6 | Spec-driven development | `spec-driven-section` (`#spec-driven-development`) | band |
-| 7 | Git-native | `git-native-section` (`#git-native`) | page |
-| 8 | Cross-agent | `cross-agent-section` (`#cross-agent`) | band |
+| # | Block | Component | Anchors |
+|---|-------|-----------|---------|
+| 1 | H1, two plain sentences, one install path | `hero-section` | `#top`, `#install` |
+| 2 | What you get, three claims with their mechanism | `outcomes-section` | `#problem` |
+| 3 | The example `.archcore/` directory | `documents-section` | `#git-native` |
+| 4 | The four skills | `skills-section` | `#how-it-works` |
+| 5 | Cross-agent support | `agents-section` | `#cross-agent` |
+| 6 | FAQ | `faq-section` | `#faq` |
+| 7 | Closing row | `star-cta-section` | none |
 
-**This order overrides `product/surface-descriptors` at the sequence level, not at one slot.** The global descriptor runs hero, problem, spec-driven, context engineering, git-native, cross-agent, how-it-works. The landing deviates three times, and each deviation is recorded: Before/After is an addition (2026-08-10), the how-it-works slot became the loop itself rather than four abstract verbs (`landing/how-to-use-cases.adr.md`, 2026-08-27), and the loop moved ahead of the two category sections (`landing/home-loop-before-categories.adr.md`, 2026-08-31). Read those before "restoring" the global order.
+**The hero opens in plain language, and that is the point of this structure.** The H1 stays the category line. Under it, one sentence says what Archcore is with no term that needs a glossary, and a second says what changes because of it. The owner rejected two rebuilds that rearranged category vocabulary instead of replacing it, on the ground that the page did not say what the product was or what it gave him.
 
-**The loop sits at 4 because the page had no concrete use of the product above the sixth screen.** A visitor read the page and reported that he could not say what it would do for him. Problem and Before/After state and show the failure, the loop shows the four commands and the artifacts they leave, and the two category sections then argue why it works. Moving the loop back down re-creates the defect this order was written to fix.
+**The home hero no longer renders `productCopy.expanded`.** That descriptor is unchanged and still used by the pillar CTAs and `llms.txt`. The home hero is the one surface where a shared, category-led sentence cost the reader more than it bought. `tests/site.spec.ts` asserts the home hero's own sentence in both languages, and the `/cli` and `/plugin` heroes still assert their shared descriptors.
 
-**Before/After is an addition, and it is deliberate.** `product/jobs-to-be-done` keeps Job 1 (build by this repo's rules) as the primary product scenario, so the page needs its concrete demonstration early. It sits between the problem and the loop: problem stated, problem shown, product used.
+**Every claim keeps its mechanism beside it.** The outcomes section pairs each of the three claims with the document, the path, or the verdict that makes it true. A claim shipped without its mechanism is a slogan, and the owner reported exactly that reading twice.
 
-**Sections 5 and 6 carry the category terms in their eyebrows and H2s.** Those two headings are SEO-load-bearing. Do not soften them into a benefit phrase, and do not delete the sections on the grounds that the pillar pages cover the same ground. `product/seo-information-architecture` gives the head queries to `/spec-driven-development/` and `/context-engineering/` and gives the home page the combined brand-plus-category query, which needs both terms present here.
+**Every block uses `RailSection`**: the H2 in a 250 pixel left column, the content on the right, so a block fills the container without stretched prose. Sections do not invent their own layout. The rail collapses to a stack below 1024 pixels, because a 250 pixel rail at 768 left the prose about 410 pixels wide and made the page taller at 768 than at 640.
 
-**Sections 5 and 6 argue mechanism, not definition.** Context engineering leads with the pre-edit injection: the agent opens `src/api/rate-limit.ts` and the spec, ADR, and rule that constrain it arrive with no command. Spec-driven development leads with where the spec lives after the feature ships and carries the competitive framing line from `product/surface-descriptors`. Neither section defines its own term at length; the definitions belong to the pillar pages, which each section links with a descriptive anchor.
+**One framed object on the page**, the example `.archcore/` directory with a decision record open. It is the fastest answer to "what is this", and the owner asked for it in two consecutive rounds.
 
-**Harness engineering is named once on this page**, in the context-engineering section body, linking to `/learn/harness-engineering/`. That is the shape `product/seo-information-architecture` names as correct. It was a five-sentence paragraph until 2026-08-31. Do not expand it back.
+**The demo recording is hidden**, at the owner's request on 2026-09-12. `public/demo.webm`, `public/demo.mp4`, and `public/demo-poster.jpg` stay in the repository and stay generated by `scripts/demo-export`. Restoring it is a content decision, not a cleanup.
 
-**The problem section names three failures, not the five in `product/surface-descriptors`.** The three kept are the ones the rest of the page answers: decisions disappearing into chat history (the loop), specs becoming stale handoff artifacts (spec-driven), every agent seeing a different project (cross-agent). "Architecture and conventions get re-explained, every session" restated the hero's supporting promise one screen below it. "Instruction files grow into walls of text" is argued in the FAQ and on `/claude-md/` and `/agents-md/`; the CLAUDE.md and AGENTS.md sentence stays in the `index.html` static body so the terms keep a home on this page.
+**Neither category term is an H2 any more.** Spec-driven development and context engineering live in the H1, the meta title, the meta description, and as descriptive anchors in the agents section that point at the two pillar pages. `product/seo-information-architecture` gives the head queries to those pillars and this page the combined brand-plus-category query. This page's own ranking for the two category phrases is a measurable risk, accepted by the owner on 2026-09-12 and recorded in the ADR. Do not remove those two anchors.
 
-Backgrounds alternate page / band from section 4 on, so the page does not read as one field of bordered cards. A new section picks the background that continues the alternation. Moving a section moves its background: `git-native-section` and `cross-agent-section` swapped on 2026-08-31 for exactly this reason.
+**Harness engineering is not on the home page as of 2026-09-12.** The term and its link moved out with the section that carried them. `product/seo-information-architecture` names `/learn/harness-engineering/` as its owner, and the home page is not required to mention it. Do not reintroduce it without a decision.
 
-**Section 8 states the plugin-host set in prose, not in a card.** It reads: slash commands, skills, and guardrails run inside the four plugin hosts; every other agent reaches the same context over MCP, with hook delivery only where the host supports it. That sentence and the `index.html` static paragraph under the same H2 must change together, and both must agree with `plugin-hosts-section.tsx` and `cli-agents-section.tsx`.
+**Three blocks were removed across the two rebuilds and must not come back without a new decision.** Before/After argued from a hypothetical session what the skills section now shows with real commands. The standalone context-engineering section was removed on the owner's instruction. The centred star card became a single closing row, also on request.
 
-**Astro renders every home section directly from @src/components/pages/landing.tsx.** The generated HTML and hydrated page use the same component tree.
+**The loop keeps its content contract** in this rule's "The loop: content contract" section. The home section renders `leaves`, one compressed line per stage; `/how-to-use` renders `result`. Both fields live in @src/content/how-to-use/cycle.tsx, and the three review verdict tokens live in the `leaves` of the review stage, so a rename in that skill is caught in one file.
+
+**Type scale on this page:** 44 for the H1, 24 for an H2, 23 for the hero lede, 18 for the hero impact line, 16 for prose and claims, 15 for secondary prose, 14 for asides and links, 12 for captions. One size carries one leading. Check the rendered sizes after a change; nothing in the build enforces this.
+
+**Grid and flex children carry `min-w-0`, and the install commands scroll rather than wrap.** Without `min-w-0` a no-wrap command widened the hero track past the viewport at 768 pixels, clipped by the section's `overflow-hidden` and invisible to every build check. Without the scroll, `break-all` split `install.sh` across two lines on a phone. Re-check both at 390 and 768 pixels after any hero change.
+
+**Astro renders every home block directly from @src/components/pages/landing.tsx.** The generated HTML and hydrated page use the same component tree.
 - **Section copy about documents:** Use "decisions, rules, plans, and guides" (not "experience")
 - **Visible FAQ and FAQPage JSON-LD MUST use the same question and answer array.** @src/components/faq-list.tsx owns both representations.
 
@@ -163,7 +168,7 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 - **Each stage shows the skill and the prompt together.** The slash command in mono at the top, the sentence under it on the code surface. One without the other misrepresents the product.
 - **The list is vertical on every surface and every breakpoint.** A four-column grid wrapped each prompt to four or five lines and hid the sequence, which is the one thing the section exists to show.
 - **Every prompt in `cycle.tsx` is lifted from the trigger phrases in the plugin's own skills** (`plugins/archcore/skills/*/SKILL.md`, "When to use"). A reader who copies one must get the stage the card describes. Check content changes against that file, never against another landing page.
-- **All four stages run on one running example** (rate limiting for a public API), so step 4 visibly reads the documents steps 2 and 3 wrote. A stage that switches subject turns the loop back into a feature list. The home context-engineering section continues the same example with `src/api/rate-limit.ts`; keep the two aligned.
+- **All four stages run on one running example** (rate limiting for a public API), so step 4 visibly reads the documents steps 2 and 3 wrote. A stage that switches subject turns the loop back into a feature list. The hero's example `.archcore/` directory lists the documents those stages leave, and the Git tile diffs one of them; keep all three on the same example.
 - **The command-free part is stated after the loop, not as a fifth stage.** Hooks bring the applicable spec and ADR to the agent between the four steps.
 - **The home variant names the three review verdicts** (`spec-wrong`, `code-wrong`, `ok`) in its closing copy. The `/how-to-use` variant does not; it closes on the round-again claim instead.
 - **This content states product behavior in more detail than any other landing surface**, so it is the first thing a release falsifies. On any change to the four skills, re-read their "When to use" sections against `cycle.tsx`. Since 2026-08-31 the section sits higher on the home page, so a stale claim here is more visible, not less.
@@ -177,7 +182,7 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 - **Plugin hosts (4):** Claude Code (production), Cursor 2.5+, Codex CLI 0.117+, GitHub Copilot CLI (all implemented).
 - **CLI over MCP (8):** Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline (manual setup).
 - **CLI session hooks (5):** Claude Code, Cursor, Gemini CLI, Codex CLI, GitHub Copilot. OpenCode is never wired — its hooks are JavaScript plugins that cannot be written declaratively. Codex hook availability depends on the installed version and its hooks setting; the CLI wiring still disables hooks on Windows. Do not label hooks experimental across all Codex versions. Copilot has no pre-write context injection.
-- **The home context-engineering section states pre-edit injection without naming a host.** Copilot has no pre-write context injection, so any copy that promises the behaviour "on every agent" is wrong. Keep the claim about what Archcore does, and leave the per-host truth to the two matrix sections.
+- **The home cross-agent tile states pre-edit delivery without promising it everywhere.** Copilot has no pre-write context injection, so any copy that promises the behaviour "on every agent" is wrong. The tile says it happens where the host supports hooks; leave the per-host truth to the two matrix sections.
 - **GitHub Copilot CLI resolved 2026-08-07.** The earlier "landing follows the docs, which say planned" carve-out is retired: plugin v0.7.0 ships Copilot support with tests. **Copilot needs two install steps** — `copilot plugin install archcore-ai/plugin:plugins/archcore` AND `archcore init --agent copilot --project "$PWD"`. The second is required, not optional: the plugin deliberately ships no MCP server to Copilot, so a project that skips it has no document tools. Any surface showing the Copilot install path must show both steps.
 - **`docs.archcore.ai` caught up on 2026-08-10.** The earlier warning here (host matrix said Copilot was planned, removed commands still documented) no longer holds: docs state Copilot as implemented with both install steps and the `github/copilot-cli#4234` rationale, carry only the four commands, list all four `/archcore:plan` tracks, and say 19 document types. The standing rule is unchanged: **where docs and shipped code disagree, the landing follows the code** — and this time the drift ran the other way, with this rule missing the `research` track the docs already had.
 
@@ -219,7 +224,7 @@ Source checks: CLI repository `cmd/init.go` and `internal/wiring/hooks_effective
 - **Home install anchor:** `#install` is the only one. All home install CTAs scroll to the hero install block, which renders the real copyable commands. `#install-cli` and `#install-plugin` were removed on 2026-08-27 with the tabs they pre-selected; do not reintroduce a hash that selects a product. Never link install CTAs to external destinations.
 - **Header:** Desktop and mobile navigation MUST follow the five-link order in @src/data/navigation.ts: How to use, Integrations, Docs, Blog, Learn. The header MUST retain the GitHub Star link, language selector, and Install action to `/how-to-use/`.
 - **No surface renders a star count.** The header pill and the bottom CTA button showed one until 2026-08-27. `github_star_clicked.stars` still carries the build-time number for analytics, and nothing displays it. Do not put the count back on a button: it reads as a scoreboard on a project whose number is still small.
-- **Star CTA block (bottom of home):** primary action "Star on GitHub"; secondary link "Ready to try? Install now" → `#install`; two repo links, unadorned.
+- **Star CTA row (bottom of home):** one row above a hairline. Sentence on the left, then the secondary link "Install now" → `#install`, then the primary action "Star on GitHub". It carries no repository links; both repositories stay in the footer. It was a centred card with an icon, a heading, a paragraph, and two repo links until 2026-09-12.
 - **`/how-to-use` closing CTA:** The block MUST retain `.recipe-cta` presentation. Its heading MUST be "Explore Archcore on GitHub.". Its description MUST be "Browse the CLI and plugin repositories.". Its only anchor MUST read "View on GitHub →" and target `LINKS.org` from @src/lib/links.ts in a new tab. The closing block MUST NOT repeat installation or walkthrough actions.
 - **Blog and Learn closing CTA:** Every article and listing MUST use the same closing component as `/integrations/superpowers/`, @src/components/ClosingCta.astro. Both links MUST target `/how-to-use/` in the current tab. This replaces the expanded-description article CTA. Listings retain their cross-links before the block.
 - **Shared navigation and footer:** @src/data/navigation.ts MUST order header links as How to use, Integrations, Docs, Blog, Learn. The footer MUST omit the five-link reference row. Header and footer MUST share @src/components/SiteBrand.astro; the footer uses its compact variant.
@@ -252,6 +257,8 @@ The page then went through two more revisions the same day. From six independent
 
 The home page reordered on 2026-08-31 for a defect the previous three revisions did not reach. Each of them fixed a section; none fixed the sequence. The page proved the problem early, with Before/After at slot 3, and then spent two full sections defining spec-driven development and context engineering before it ever showed the reader what they would type. A visitor said he could not tell what the tool would do for him, and the page structure is a sufficient explanation: the first concrete use sat six screens down. The fix was not to cut the category sections, which are the only category anchors on the highest-authority page, but to put the loop in front of them and turn them from definitions into mechanism. `product/seo-information-architecture` makes that safe: the pillar pages own the head queries, the home page owns the combined brand-plus-category query, and the terms it needs are in the title, the H1, both eyebrows, both H2s, and the body either way.
 
+That order shipped and was read by the owner on 2026-09-12, who reported the defect it did not address: the page is too long for the job it does. Eight sections meant eight screens, and the answer to "what is this and what does it give me" arrived one claim at a time. Measured against the products a reader arrives from, the page was two to three times their length. It is now a two-column hero and one grid of four tiles, 823 words against 1081, and 3527 pixels against 7844. The claims did not change; the distance between them did. Before/After went because the loop tile makes the same argument with real commands, and the standalone context-engineering section went on the owner's instruction, with the term and its pillar link relocated to the cross-agent tile. `landing/home-one-grid.adr.md` records the trade and the ranking risk the owner accepted with it.
+
 The hero tab order went plugin-first on 2026-08-11 and is superseded by the above. Ordering was never ranking, and neither is the removal.
 
 The home H1 went category-led on 2026-08-10 under `product/two-discovery-categories`, which reverses the 2026-07-06 pain-first decision for the H1 slot specifically. That revision retained an eyebrow and supporting promise. Both were later removed by the owner on 2026-09-09; the current hero contract is the two-level structure above.
@@ -276,7 +283,7 @@ Host support and structured data get their own invariants because both failed si
 
 **Good (differentiation, in the spec-driven section):** "Methodology tools define a development process. Archcore keeps the resulting project knowledge alive, connected, versioned, and available to agents throughout implementation." — the competitive framing line from `product/surface-descriptors`. It states what Archcore does rather than what a named competitor fails to do, so a competitor's release cannot falsify it.
 
-**Good (mechanism over definition):** the context-engineering section opening on the agent opening `src/api/rate-limit.ts` and receiving the spec, the ADR, and the rule that constrain it, instead of opening on five properties of engineered context.
+**Good (mechanism over definition):** the cross-agent tile stating that the documents constraining a file arrive before the agent edits it, where the host supports hooks, instead of a section that opens on five properties of engineered context.
 
 **Bad:** "Turn your repository into structured, machine-readable context." — superseded primary phrase.
 
@@ -300,7 +307,11 @@ Host support and structured data get their own invariants because both failed si
 
 **Bad:** "More than a spec workflow" as a section heading. "Workflow" is banned in positioning copy by `product/messaging-and-voice`, and the differentiation is one sentence inside the spec-driven section, not a ninth section.
 
-**Bad:** Restoring the two category sections ahead of the loop to match `product/surface-descriptors`. The deviation is deliberate and recorded; reconcile by reading `landing/home-loop-before-categories.adr.md`, not by reverting.
+**Bad:** Restoring the standalone category sections to match `product/surface-descriptors`. The deviation is deliberate and recorded; reconcile by reading `landing/home-one-grid.adr.md`, not by reverting.
+
+**Bad:** A second `.archcore/` directory listing in the grid. The hero shows the tree; the Git tile shows a rule changing through a pull request, which a listing cannot show.
+
+**Bad:** An eyebrow above a grid tile. The tile H2 carries the term, and a label above every tile restores the templated rhythm the grid removed.
 
 **Bad:** A home section that renders only in the SPA. `index.html` carries the same H2s in the same order, and nothing in the build enforces it.
 
@@ -348,9 +359,9 @@ The owner approved these corrections after the site-wide messaging audit on 2026
 
 ### Home hero simplicity
 
-1. @src/components/sections/hero-section.tsx MUST render one H1 followed by one product-description paragraph before installation.
+1. @src/components/sections/hero-section.tsx MUST render one H1, then two paragraphs beside the install block: one naming what Archcore is in plain language, one naming what changes for the reader.
 2. The home H1 MUST retain "Spec-Driven Development", "Context Engineering", and "AI Coding Agents".
-3. The description MUST use productCopy.expanded from @src/data/product-copy.ts.
+3. The description MUST be the home hero's own plain sentence. It stopped using productCopy.expanded on 2026-09-12; see `landing/home-plain-language-rail.adr.md`.
 4. The home hero MUST NOT render a separate eyebrow or supporting-promise paragraph.
 5. Presentation-only hero edits MUST preserve home metadata, structured data, category headings, and installation actions.
 

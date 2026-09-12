@@ -141,7 +141,9 @@ function PlatformTabs({
     <Tabs
       value={platform}
       onValueChange={handleValueChange}
-      className={cn("w-full", variant === "hero" && "max-w-2xl mx-auto")}
+      /* min-w-0: the tab strip is a grid item, and a no-wrap command inside it
+         otherwise widens the track past the viewport. */
+      className={cn("w-full min-w-0", variant === "hero" && "max-w-2xl mx-auto")}
     >
       <TabsList className="mb-2">
         <TabsTrigger value="unix">
@@ -151,7 +153,7 @@ function PlatformTabs({
           <Trans>Windows</Trans>
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="unix">
+      <TabsContent value="unix" className="min-w-0">
         <SingleCommand
           command={BASH_COMMAND}
           platform="unix"
@@ -161,7 +163,7 @@ function PlatformTabs({
           installTarget={installTarget}
         />
       </TabsContent>
-      <TabsContent value="windows">
+      <TabsContent value="windows" className="min-w-0">
         <SingleCommand
           command={POWERSHELL_COMMAND}
           platform="windows"

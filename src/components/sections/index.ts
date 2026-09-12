@@ -1,10 +1,9 @@
 export { HeroSection } from "./hero-section";
-export { ProblemSection } from "./problem-section";
-export { BeforeAfterSection } from "./before-after-section";
-export { SpecDrivenSection } from "./spec-driven-section";
-export { ContextEngineeringSection } from "./context-engineering-section";
-export { GitNativeSection } from "./git-native-section";
-export { CrossAgentSection } from "./cross-agent-section";
+export { RailSection } from "./rail-section";
+export { OutcomesSection } from "./outcomes-section";
+export { DocumentsSection } from "./documents-section";
+export { SkillsSection } from "./skills-section";
+export { AgentsSection } from "./agents-section";
 export { FAQSection } from "./faq-section";
 export { StarCtaSection } from "./star-cta-section";
 export { MigrationSection } from "./migration-section";
@@ -19,6 +18,4 @@ export { PluginHeroSection } from "./plugin-hero-section";
 export { PluginPillarsSection } from "./plugin-pillars-section";
 export { PluginHostsSection } from "./plugin-hosts-section";
 export { PluginFAQSection } from "./plugin-faq-section";
-
-export { HowToUseCycleSection } from "./how-to-use-cycle-section";
 export { HowToUseCtaSection } from "./how-to-use-cta-section";

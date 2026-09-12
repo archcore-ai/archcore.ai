@@ -1,6 +1,6 @@
 ---
-title: "Home page rebuild — new section order, mechanism-first category sections, crawler parity"
-status: draft
+title: "Home page rebuild — new section order, mechanism-first category sections, crawler parity (superseded)"
+status: rejected
 ---
 
 

@@ -3,10 +3,12 @@ import { faqOpenHandler } from "@/lib/analytics";
 interface Props {
   faqs: { question: string; answer: string }[];
   surface: string;
+  /** Wrapper classes. The home page fills its column instead of centring. */
+  className?: string;
 }
 
 /** Native disclosures expose the same FAQ to readers and crawlers before hydration. */
-export function FaqList({ faqs, surface }: Props) {
+export function FaqList({ faqs, surface, className }: Props) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -17,7 +19,7 @@ export function FaqList({ faqs, surface }: Props) {
     })),
   };
   return (
-    <div className="w-full max-w-3xl mx-auto">
+    <div className={className ?? "w-full max-w-3xl mx-auto"}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

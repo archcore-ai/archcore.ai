@@ -336,6 +336,71 @@
       "source": "landing/page-cta-and-links.rule.md",
       "target": "landing/home-install-single-path.adr.md",
       "type": "related"
+    },
+    {
+      "source": "integration-page-writing.task-type.md",
+      "target": "landing/integration-page-authoring.rule.md",
+      "type": "implements"
+    },
+    {
+      "source": "integration-page-writing.task-type.md",
+      "target": "landing/author-and-check-content-pages.guide.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-one-grid.adr.md",
+      "target": "landing/home-loop-before-categories.adr.md",
+      "type": "supersedes"
+    },
+    {
+      "source": "landing/home-one-grid.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-one-grid.adr.md",
+      "target": "landing/how-to-use-cases.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/home-one-grid.adr.md",
+      "target": "landing/home-install-single-path.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/home-plain-language-rail.adr.md",
+      "target": "landing/home-one-grid.adr.md",
+      "type": "supersedes"
+    },
+    {
+      "source": "landing/home-plain-language-rail.adr.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-plain-language-rail.adr.md",
+      "target": "landing/how-to-use-cases.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/site-structure.spec.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/home-plain-language-rail.adr.md",
+      "target": "landing/site-structure.spec.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/site-structure.spec.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/site-structure.spec.md",
+      "target": "landing/page-cta-and-links.rule.md",
+      "type": "related"
     }
   ]
 }
