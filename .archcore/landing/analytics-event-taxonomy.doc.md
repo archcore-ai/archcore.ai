@@ -3,7 +3,6 @@ title: "PostHog analytics — event taxonomy and wiring across the three surface
 status: accepted
 ---
 
-
 ## Overview
 
 One PostHog project covers all three deployed surfaces. They are told apart by
@@ -46,8 +45,9 @@ can cross build systems:
 
 ### Configuration decisions
 
-- `defaults: "2025-11-30"` — history-based pageviews (SPA route changes need no
-  router wiring), pageleave, rageclick, `identified_only` person profiles.
+- `defaults: "2025-11-30"` — history-based pageviews (client-side route changes
+  need no router wiring), pageleave, rageclick, `identified_only` person
+  profiles.
 - `respect_dnt: true` — posthog-js defaults this to **false**, which made the
   Do Not Track promise on /privacy untrue. Do not remove.
 - `cross_subdomain_cookie: true` — currently the library default; pinned so a
@@ -55,8 +55,10 @@ can cross build systems:
 - Session replay is **off**. /privacy enumerates what is collected and replay is
   not on that list; turning it on requires updating that copy first.
 - posthog-js is loaded with a dynamic `import()` after the first interaction,
-  visibility change, or 2.5 s idle. This moved ~170 kB out of the SPA entry
-  bundle (496 kB → 328 kB).
+  visibility change, or 2.5 s idle. Measured on the pre-Astro Vite build, this
+  moved ~170 kB out of the entry bundle (496 kB → 328 kB). The deferral still
+  holds: posthog-js is a chunk of its own and is absent from every page's
+  first-load JS.
 
 ### Super properties
 
@@ -144,8 +146,12 @@ historical series stays readable.
 `github_star_clicked.stars` still carries the star count baked in by
 `scripts/fetch-github-stars.mts`, but **no surface renders the number any more**
 (removed 2026-08-27). The header and the bottom CTA show the GitHub mark and the
-word "Star". `useGitHubStars` is therefore an analytics-only dependency; treat
-`formatStars` as dead the moment nothing imports it.
+word "Star". `useGitHubStars` is therefore an analytics-only dependency — its
+two callers, `src/components/sections/star-cta-section.tsx` and
+`src/components/pages/how-to-use.tsx`, pass the count into events and render
+nothing. `formatStars` has no importer left and is dead code; the header comment
+in `src/hooks/use-github-stars.ts` still describes a rendered social-proof
+number and no longer matches either surface.
 
 ### Deliberate gaps
 

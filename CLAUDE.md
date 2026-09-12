@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Read and follow `AGENTS.md` before writing or editing any text that a reader or a crawler will see: landing copy, blog and learn articles, FAQ answers, meta descriptions, prerendered bodies, OG text, Russian translations, Archcore documents, and agent instructions.
+Read and follow `AGENTS.md` before writing or editing any text that a reader or a crawler will see: landing copy, blog and learn articles, integration pages, FAQ answers, meta descriptions, OG text, Russian translations, Archcore documents, and agent instructions.
 
 The writing policy in `AGENTS.md` uses:
 
@@ -55,28 +55,33 @@ npm run dev
 npm run i18n:extract
 npm run i18n:compile
 
-# Full production build (runs check, i18n:compile, OG generation, content sub-build)
+# Full production build (prebuild runs i18n:compile, og:generate, stars:fetch;
+# then check, astro build, verify:build)
 npm run build
 ```
 
-Inspect the built output under `dist/`, not the dev server. Prerendered route bodies, per-route JSON-LD, and the content-hub pages exist only after a build.
+Inspect the built output under `dist/`, not the dev server. Per-route static HTML, per-route JSON-LD, OG images, and the generated route checks exist only after a build.
 
 ## Architecture
 
-A Vite and React single-page app for the marketing site, plus an Astro sub-build for the content hub. The two are built separately and merged into one `dist/`.
+One static Astro site. A single `astro.config.mjs` build produces every route in `dist/`, deployed to GitHub Pages. Marketing pages are React islands; articles, pillars, and integration pages are Astro templates. See `.archcore/landing/single-astro-site.adr.md` and `.archcore/landing-tech-stack.doc.md`.
 
-- `src/pages/` — Astro routes: home, `/plugin/`, `/cli/`, `/how-to-use/`, `/privacy/`, content hubs, and integrations.
+- `src/pages/` — every route: home, `/plugin/`, `/cli/`, `/how-to-use/`, `/privacy/`, `/blog/`, `/learn/`, `/alternatives/`, `/integrations/`, the root pillars, the sitemap, and the OG image route.
 - `src/components/sections/` — page sections. Most user-facing copy lives here.
-- `src/content/how-to-use/` — the five branches of the interactive walkthrough.
+- `src/components/pages/` — the React page bodies, each hydrated by a `*-island.tsx` wrapper.
+- `src/content/` — the Astro collections (`blog`, `learn`, `alternatives`, `pillars`, `integrations`), defined in `src/content.config.ts`.
+- `src/recipes/` — upstream integration instruction files, imported verbatim and digest-checked.
+- `src/layouts/` — `SiteLayout` plus the per-genre layouts (marketing, article, pillar, listing, catalog, recipe).
 - `src/locales/` — Lingui catalogs for English and Russian.
-- `content-site/` — the Astro sub-build for `/blog/`, `/learn/`, and `/alternatives/`.
-- `scripts/prerender-routes.mts` — rewrites per-route static HTML for crawlers.
-- `scripts/generate-og-image.mts` — renders OG images at build time.
+- `scripts/generate-og-image.mts` — renders the marketing OG images at build time; `src/pages/og/[...slug].png.ts` renders the article ones.
+- `scripts/verify-build.mts` — checks `dist/` against `scripts/fixtures/seo-baseline.json`.
 - `.archcore/` — this repository's decisions, rules, and plans.
+
+`content-site/` is an untracked leftover of the old sub-build. Nothing reads it.
 
 ### Copy is duplicated by design
 
-The same claim appears in the component, `index.html`, the prerender route body, the OG variant, and sometimes an article. Crawlers without JavaScript read the prerendered body, and social scrapers read the meta tags, so each layer has to carry the claim on its own.
+The same claim appears in the component, the route's entry in `src/data/marketing-meta.json`, the OG variant, and sometimes an article. Crawlers without JavaScript and social scrapers read the static HTML Astro writes, so each layer has to carry the claim on its own.
 
 Nothing in the build detects a contradiction between layers. `AGENTS.md` §"Copy lives in more than one file" and `messaging-alignment.rule.md` §Enforcement list every layer to update together.
 

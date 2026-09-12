@@ -32,18 +32,19 @@ status: accepted
    ```bash
    npm run build
    ```
-   The `prebuild` script runs `i18n:compile && og:generate`, so `npm run build` is sufficient for a full check — it will also regenerate every OG image variant under `public/og-image*.png` (see `.archcore/landing/og-image-generation.guide.md`).
+   The `prebuild` script runs `i18n:compile`, `og:generate`, and `stars:fetch`, so `npm run build` is sufficient for a full check — it will also regenerate every OG image variant under `public/og-image*.png` (see `.archcore/landing/og-image-generation.guide.md`).
 
 ### Strings NOT in Lingui
 
-Some strings are raw HTML or build-time JS and bypass Lingui — they must be edited directly in source:
+Some strings are build-time JSON or JS and bypass Lingui — they must be edited directly in source:
 
-- `index.html` — `<title>`, `<meta>`, Open Graph, Twitter Card, JSON-LD structured data. These are the home-page defaults baked into the static shell and consumed by social scrapers when `/` is shared.
-- `src/pages/teams-getting-started.tsx` — `document.title` and meta description are set imperatively in a `useEffect`. This page predates the `usePageMeta` hook and still updates the title that way.
-- `scripts/prerender-routes.mts` — `ROUTES[].title` and `ROUTES[].description` are used to rewrite per-route static HTML (`dist/plugin/index.html`, `dist/cli/index.html`) for social scrapers. **Must mirror the page's hero copy** and stay in sync with the corresponding Lingui-translated `usePageMeta` arguments inside the page component (`src/pages/plugin.tsx`, `src/pages/cli.tsx`).
-- `scripts/generate-og-image.mts` — `VARIANTS[].headline` / `subtitle` / `bottomLabel` are the text rendered into each OG image PNG. Same sync requirement as the prerender routes.
+- `src/data/marketing-meta.json` — the per-route `<title>`, `ogImage`, and JSON-LD `schemas` for `/`, `/plugin/`, `/cli/`, `/how-to-use/`, and `/privacy/`. `src/layouts/MarketingLayout.astro` writes them into the static head, which is what social scrapers and non-JS crawlers read. Titles here are literal English; they are not extracted.
+- `scripts/generate-og-image.mts` — `VARIANTS[].headline` / `subtitle` / `bottomLabel`, the text rendered into each OG image PNG. **Must mirror the page's hero copy.**
+- Frontmatter in `src/content/**` — `title`, `heading`, `description`, and the integration entry fields. The Russian layer for integrations is a separate `ru` block, not a catalog entry (see below).
 
-For pages that DO use Lingui meta (`/plugin`, `/cli`), the title and description go through `msg\`...\`` → `_(msg\`...\`)` → `usePageMeta`, so they appear in `messages.po` and follow the standard extract → translate → compile flow.
+Meta descriptions are the exception on marketing routes: `descriptionKey` in `marketing-meta.json` names an entry in `src/data/product-copy.ts`, which holds Lingui `` msg`…` `` values, so the description text follows the standard extract → translate → compile flow even though the head renders its English source.
+
+`src/hooks/use-page-meta.ts` rewrites title, description, canonical, OG, and Twitter tags when a visitor switches language inside a hydrated page. It runs on `/plugin/`, `/cli/`, and `/how-to-use/`. It never runs for a crawler, which reads the static English head.
 
 ## Translating a static Astro page
 
@@ -51,7 +52,7 @@ Astro pages have no Lingui runtime. They read the same catalogs at build time an
 
 ### Where the strings come from
 
-`src/data/navigation.ts` exports `label(msg\`...\`)`, which resolves one message against both compiled catalogs and returns `{ en, ru }`. `labelWith` does the same for a sentence whose embedded value also differs by language (`1. Install Archcore and Serena` against «1. Установите Archcore и Serena»). Page chrome collects these pairs in a data module — `src/data/recipe-labels.ts` holds the integration catalog, the recipe page, and the install dialog — so the strings still go through extract → translate → compile.
+`src/data/navigation.ts` exports `label(msg`...`)`, which resolves one message against both compiled catalogs and returns `{ en, ru }`. `labelWith` does the same for a sentence whose embedded value also differs by language (`1. Install Archcore and Serena` against «1. Установите Archcore и Serena»). Page chrome collects these pairs in a data module — `src/data/recipe-labels.ts` holds the integration catalog, the recipe page, and the install dialog — so the strings still go through extract → translate → compile.
 
 ### Swapping one node's text
 
@@ -105,5 +106,5 @@ A script that writes text at runtime (a copy button, an expand toggle) reads its
 - **Forgetting to run extract** — New strings won't appear in .po files and will show as untranslated.
 - **Stale compiled files** — If translations don't appear, run `npm run i18n:compile` again.
 - **Lingui `<0/>` placeholders** — In .po files, `<0/>` represents JSX elements like `<br/>`. Keep these in the translated `msgstr` at the correct position.
-- **Per-route static HTML out of sync** — If you change a page's hero copy via Lingui but forget to update `scripts/prerender-routes.mts` `ROUTES[].title`/`description`, social scrapers will still see the old text on `/plugin` and `/cli`. (The runtime `usePageMeta` is correct because it reads the Lingui-compiled string.)
+- **Head out of sync with the page** — a hero rewritten through Lingui does not touch `src/data/marketing-meta.json` or the OG variant. Social scrapers then read the old title while the visible page shows the new one. `npm run build` catches only the baseline mismatch, not the contradiction.
 - **A swapped node that holds markup** — the swap deletes the link. Use a locale block instead.

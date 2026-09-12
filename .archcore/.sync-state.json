@@ -134,11 +134,6 @@
     },
     {
       "source": "landing/seo-growth.plan.md",
-      "target": "landing/content-hub-astro-subbuild.adr.md",
-      "type": "depends_on"
-    },
-    {
-      "source": "landing/seo-growth.plan.md",
       "target": "landing/seo-content-backlog.doc.md",
       "type": "related"
     },
@@ -166,11 +161,6 @@
       "source": "landing-tech-stack.doc.md",
       "target": "landing/og-image-generation.guide.md",
       "type": "related"
-    },
-    {
-      "source": "landing/analytics-event-taxonomy.doc.md",
-      "target": "landing/content-hub-astro-subbuild.adr.md",
-      "type": "depends_on"
     },
     {
       "source": "landing/analytics-event-taxonomy.doc.md",
@@ -251,11 +241,6 @@
       "source": "landing/integration-catalog-pilot.plan.md",
       "target": "landing/analytics-event-taxonomy.doc.md",
       "type": "related"
-    },
-    {
-      "source": "landing/integration-catalog-pilot.plan.md",
-      "target": "landing/content-hub-astro-subbuild.adr.md",
-      "type": "depends_on"
     },
     {
       "source": "landing/integration-catalog-pilot.plan.md",
@@ -411,6 +396,51 @@
       "source": "landing/integration-page-authoring.rule.md",
       "target": "landing/drop-ru-hreflang-until-ru-routes.adr.md",
       "type": "depends_on"
+    },
+    {
+      "source": "landing/analytics-event-taxonomy.doc.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/integration-catalog-pilot.plan.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/seo-growth.plan.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/og-image-generation.guide.md",
+      "target": "messaging-alignment.rule.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/astro-first-load-optimizations.adr.md",
+      "target": "landing/single-astro-site.adr.md",
+      "type": "extends"
+    },
+    {
+      "source": "landing/astro-first-load-optimizations.adr.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/astro-first-load-optimizations.adr.md",
+      "target": "landing/analytics-event-taxonomy.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "landing/astro-first-load-optimizations.adr.md",
+      "target": "landing-tech-stack.doc.md",
+      "type": "related"
+    },
+    {
+      "source": "i18n-workflow.guide.md",
+      "target": "landing/og-image-generation.guide.md",
+      "type": "related"
     }
   ]
 }
