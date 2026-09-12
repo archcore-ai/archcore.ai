@@ -83,7 +83,7 @@ Documents carry a type, a status, and named relations (`implements`, `extends`, 
 
 ## Spec-driven development
 
-`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/guides/commands/) describes the routes.
 
 For an explicit SDD path, use:
 
@@ -105,7 +105,7 @@ This is the host-specific part, and it is worth being precise rather than optimi
 
 What that means in practice: **MCP is the reliable path on Codex**, and hooks are an improvement on top when your platform and flags allow. Without hooks the agent still reaches every document, it just has to ask rather than being handed the applicable rules before an edit.
 
-Check the [current host instructions](https://docs.archcore.ai/plugin/supported-hosts/#codex-cli) for your version and platform. Use `/archcore:review` before merge to check the change against the documents, whether or not hooks ran during the edit.
+Check the [current host instructions](https://docs.archcore.ai/guides/connect-your-agent/#codex-cli) for your version and platform. Use `/archcore:review` before merge to check the change against the documents, whether or not hooks ran during the edit.
 
 ## MCP
 

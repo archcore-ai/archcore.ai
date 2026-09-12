@@ -48,7 +48,7 @@ export function CLIHeroSection() {
           </a>
           <span className="text-muted-foreground/40">·</span>
           <a
-            href="https://docs.archcore.ai/cli/install/"
+            href="https://docs.archcore.ai/start/install/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-foreground transition-colors"

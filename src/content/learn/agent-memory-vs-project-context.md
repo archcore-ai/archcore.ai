@@ -102,7 +102,7 @@ That is [project context](/project-context/), and the practice of building it is
 
 [Archcore](https://archcore.ai/) is a git-native context layer for AI coding agents, and yes, it is our tool. Specs, architecture, decisions, rules, and plans live as typed Markdown in a `.archcore/` directory inside the repository, versioned with the code and reviewed like it.
 
-Archcore serves the documents through MCP. On hosts with pre-write context injection, hooks also deliver applicable rules before an edit. The [host matrix](https://docs.archcore.ai/plugin/supported-hosts/) describes the delivery available in Claude Code, Cursor, Codex CLI, Copilot, and other agents.
+Archcore serves the documents through MCP. On hosts with pre-write context injection, hooks also deliver applicable rules before an edit. The [host matrix](https://docs.archcore.ai/guides/connect-your-agent/#supported-hosts) describes the delivery available in Claude Code, Cursor, Codex CLI, Copilot, and other agents.
 
 ```bash
 curl -fsSL https://archcore.ai/install.sh | bash

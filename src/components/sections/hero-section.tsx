@@ -117,7 +117,7 @@ export function HeroSection() {
             </a>
             <span className="text-muted-foreground/40">·</span>
             <a
-              href="https://docs.archcore.ai/plugin/install/#install-per-host"
+              href="https://docs.archcore.ai/guides/connect-your-agent/#install-per-host"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 underline underline-offset-4 transition-colors hover:text-foreground"

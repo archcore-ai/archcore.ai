@@ -111,7 +111,7 @@ Ask the agent to plan the work in plain language. It checks what is already reco
 /archcore:plan sdd auth redesign
 ```
 
-The expert paths are `sdd`, `sources`, `iso`, and `research`. Use `sources` for market discovery, `iso` for the ISO requirements workflow, and `research` for an investigation. See the [planning reference](https://docs.archcore.ai/plugin/skills/) for their scope.
+The expert paths are `sdd`, `sources`, `iso`, and `research`. Use `sources` for market discovery, `iso` for the ISO requirements workflow, and `research` for an investigation. See the [planning reference](https://docs.archcore.ai/guides/commands/) for their scope.
 
 ## Keeping specs connected after the merge
 

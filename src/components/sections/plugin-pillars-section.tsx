@@ -60,7 +60,7 @@ export function PluginPillarsSection() {
       </section>
       <div className="product-resource-links">
         <a
-          href="https://docs.archcore.ai/plugin/install/"
+          href="https://docs.archcore.ai/start/install/"
           target="_blank"
           rel="noopener noreferrer"
         >

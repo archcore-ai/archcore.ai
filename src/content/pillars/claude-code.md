@@ -80,7 +80,7 @@ Each document has a type, a status, and named relations (`implements`, `extends`
 
 ## Spec-driven development
 
-`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/plugin/skills/) describes the routes.
+`/archcore:plan` reads the request and existing project documents, then chooses the document package. A small fix can need no new documents. One capability usually needs a spec and a plan; a larger initiative can need an umbrella PRD and a spec per capability. The [planning reference](https://docs.archcore.ai/guides/commands/) describes the routes.
 
 For an explicit SDD path, use:
 

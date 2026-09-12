@@ -89,7 +89,7 @@ This distinction is easy to miss and decides how much the setup does for you.
 
 **MCP is pull.** The agent asks: search, read, create, link. It happens because the agent decided it needed something.
 
-**Hooks provide context at host events.** Session-start hooks deliver a recap. On hosts that support pre-write context injection, rules and specs can arrive before an edit. See the [host matrix](https://docs.archcore.ai/plugin/supported-hosts/) for the differences.
+**Hooks provide context at host events.** Session-start hooks deliver a recap. On hosts that support pre-write context injection, rules and specs can arrive before an edit. See the [host matrix](https://docs.archcore.ai/guides/connect-your-agent/#supported-hosts) for the differences.
 
 Pull alone means the agent has to know that context exists before it can use it, which is exactly the thing a fresh session does not know. Push alone cannot answer a question that arises mid-task. Both together are what makes the everyday case require no command at all.
 

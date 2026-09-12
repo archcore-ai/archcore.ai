@@ -44,12 +44,11 @@
 ## Documentation
 
 - [Docs home](https://docs.archcore.ai/): full documentation
-- [Start here](https://docs.archcore.ai/start/): install and first steps
-- [Concepts](https://docs.archcore.ai/concepts/): document types, relations, and the context model
-- [CLI reference](https://docs.archcore.ai/cli/): commands, MCP server, hooks
-- [Plugin](https://docs.archcore.ai/plugin/): slash commands and supported hosts
-- [Reference](https://docs.archcore.ai/reference/): configuration and integration details
-- [Changelog](https://docs.archcore.ai/changelog/): release notes
+- [Start here](https://docs.archcore.ai/start/install/): install and first steps
+- [Project context](https://docs.archcore.ai/concepts/project-context/): document types, relations, and the context model
+- [CLI reference](https://docs.archcore.ai/cli/commands/): command syntax and options
+- [Commands and examples](https://docs.archcore.ai/guides/commands/): use Archcore in your agent
+- [Connect your agent](https://docs.archcore.ai/guides/connect-your-agent/): MCP, lifecycle hooks, and instructions
 
 ## Source
 
