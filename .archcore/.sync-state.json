@@ -401,6 +401,16 @@
       "source": "landing/site-structure.spec.md",
       "target": "landing/page-cta-and-links.rule.md",
       "type": "related"
+    },
+    {
+      "source": "landing/integration-page-authoring.rule.md",
+      "target": "i18n-workflow.guide.md",
+      "type": "depends_on"
+    },
+    {
+      "source": "landing/integration-page-authoring.rule.md",
+      "target": "landing/drop-ru-hreflang-until-ru-routes.adr.md",
+      "type": "depends_on"
     }
   ]
 }

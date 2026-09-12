@@ -2,11 +2,26 @@
 interface Props {
   title: string;
   description: string;
+  /** Russian variants. Swapped client-side by the site locale switch. */
+  titleRu?: string | undefined;
+  descriptionRu?: string | undefined;
 }
-const { title, description } = Astro.props;
+const { title, description, titleRu, descriptionRu } = Astro.props;
 ---
 
 <header class="page-intro">
-  <h1 class="page-title">{title}</h1>
-  <p class="page-intro__description">{description}</p>
+  <h1
+    class="page-title"
+    data-en={titleRu ? title : undefined}
+    data-ru={titleRu}
+  >
+    {title}
+  </h1>
+  <p
+    class="page-intro__description"
+    data-en={descriptionRu ? description : undefined}
+    data-ru={descriptionRu}
+  >
+    {description}
+  </p>
 </header>

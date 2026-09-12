@@ -2,34 +2,67 @@
 import { getCollection } from "astro:content";
 import CatalogLayout from "../../layouts/CatalogLayout.astro";
 import { evidenceForDigest } from "../../lib/recipe-source.ts";
+import { catalogLabels, recipeLabels } from "../../data/recipe-labels";
 
 const recipes = (
   await getCollection("integrations", ({ data }) => !data.draft)
 ).sort((a, b) => a.data.heading.localeCompare(b.data.heading));
 
 const items = recipes.map((entry) => {
-  const verified = evidenceForDigest(entry.data.evidence, entry.data.digest)
-    .filter((e) => e.outcome === "passed");
+  const verified = evidenceForDigest(
+    entry.data.evidence,
+    entry.data.digest
+  ).filter((e) => e.outcome === "passed");
+  const isVerified = verified.length > 0;
+  const status = isVerified
+    ? recipeLabels.statusVerified
+    : recipeLabels.statusExperimental;
   return {
     href: `/integrations/${entry.id}/`,
     title: entry.data.heading,
     summary: entry.data.summary,
     category: entry.data.category,
-    status: verified.length > 0 ? "Verified in part" : "Experimental",
+    status: status.en,
+    titleRu: entry.data.ru?.heading,
+    summaryRu: entry.data.ru?.summary,
+    categoryRu: entry.data.ru?.category,
+    statusRu: status.ru,
     tools: entry.data.tools,
   };
 });
 ---
 
 <CatalogLayout
-  title="Archcore Integrations — Recipes for Existing Agent Setups"
-  description="Connect Archcore with your agent’s tools. Explore integrations and copy the setup instructions for your project."
-  h1="Integrations"
-  intro="Bring your project context to the tools you already use."
+  title="Archcore Integrations — Use It With Your Existing Tools"
+  description="Use Archcore with the tools your agent already runs, or make it part of your own setup over MCP. Copy the setup instructions for your project."
+  h1={catalogLabels.heading.en}
+  intro={catalogLabels.intro.en}
+  h1Ru={catalogLabels.heading.ru}
+  introRu={catalogLabels.intro.ru}
   items={items}
 >
-  <p class="catalog-foot">
-    Experimental integrations have setup instructions available. Joint runs have
-    not been verified yet.
-  </p>
+  <section class="catalog-foot">
+    <h2
+      data-en={catalogLabels.footHeading.en}
+      data-ru={catalogLabels.footHeading.ru}
+    >
+      {catalogLabels.footHeading.en}
+    </h2>
+    <p data-locale-block="en">
+      Every recipe here pairs Archcore with one tool you already run. If yours
+      is not listed, the same documents are reachable over MCP from any agent,
+      so you can wire them into your own setup — start from <a
+        href="/how-to-use/">how to use Archcore</a
+      >.
+    </p>
+    <p lang="ru" data-locale-block="ru" hidden>
+      Каждый рецепт здесь соединяет Archcore с одним из инструментов, которыми
+      вы уже работаете. Если вашего в списке нет, те же документы доступны по
+      MCP из любого агента, поэтому их можно подключить к своей оболочке —
+      начните с <a href="/how-to-use/">того, как пользоваться Archcore</a>.
+    </p>
+    <p data-en={catalogLabels.footNote.en} data-ru={catalogLabels.footNote.ru}>
+      {catalogLabels.footNote.en}
+    </p>
+  </section>
 </CatalogLayout>

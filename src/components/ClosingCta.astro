@@ -1,12 +1,19 @@
 ---
 import { ClosingCta } from "./closing-cta";
+import { closingCtaLabels } from "../data/navigation";
 
 interface Props {
   analyticsCta: "recipe_install" | "article_install" | "listing_install";
   newTab?: boolean;
+  /** Emit the Russian variants too, for pages that are fully translated. */
+  localized?: boolean;
 }
 
-const { analyticsCta, newTab = false } = Astro.props;
+const { analyticsCta, newTab = false, localized = false } = Astro.props;
 ---
 
-<ClosingCta analyticsCta={analyticsCta} newTab={newTab} />
+<ClosingCta
+  analyticsCta={analyticsCta}
+  newTab={newTab}
+  pairs={localized ? closingCtaLabels : undefined}
+/>

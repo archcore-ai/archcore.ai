@@ -84,6 +84,24 @@ Scope: @src/content/integrations/, @src/recipes/, @src/pages/integrations/, @src
 58. Recipe maintainers MUST retain source and verification details outside the primary explanation.
 59. Recipe maintainers MUST retain the compact closing CTA from RecipeLayout.
 
+### Catalog framing
+
+Set on 2026-09-12 at the owner's request: the catalog offers two ways in, not one list of partnerships.
+
+60. The catalog intro MUST state both paths: use Archcore with the tools the reader already runs, or make it part of their own agent setup.
+61. The catalog MUST close with the own-setup path, linking to /how-to-use/, followed by the experimental-status note.
+62. The own-setup path MUST describe document access over MCP from any agent. It MUST NOT promise automatic hook delivery outside the supported hosts, per @.archcore/messaging-alignment.rule.md.
+63. Catalog copy MUST NOT frame a recipe as an endorsement or a partnership. A recipe is instructions for a pair of tools.
+
+### Russian layer
+
+64. Russian card and page copy for a recipe MUST live in the optional `ru` block of its entry; Russian prose bodies MUST live in @src/content/integrations/ru/ as the integrationsRu collection.
+65. Page chrome strings MUST go through Lingui via @src/data/recipe-labels.ts rather than literal Russian in the markup.
+66. The imported instruction text under @src/recipes/ MUST stay untranslated. It is what the agent reads.
+67. The head, the markdown twin, and the JSON-LD MUST stay English while there are no /ru/ routes, per @.archcore/landing/drop-ru-hreflang-until-ru-routes.adr.md.
+68. Positional Russian fields (workflow.steps, pilot.findings, limits) MUST match the English ones one for one; @src/content.config.ts fails the build otherwise.
+69. Authors MUST follow @.archcore/i18n-workflow.guide.md for the swap mechanisms and the extract → translate → compile flow.
+
 ## Rationale
 
 The owner requested a short explanation with installation immediately accessible, compact copyable instructions, and hidden branding/status. Separating presentation from upstream Markdown prevents a copy edit from changing agent instructions.
@@ -91,6 +109,10 @@ The owner requested a short explanation with installation immediately accessible
 The catalog held one card per row while it listed a single integration. With three entries, a single column left most of the page width unused, so the owner asked for two columns.
 
 The owner also asked for partner-first names. A reader who looks for OpenSpec or Spec Kit sees their tool at the start of the card title, the H1, and the search result.
+
+The framing rules follow from what the catalog can honestly promise. Four recipes cannot cover the tools a reader actually runs, and a reader whose tool is absent previously left with nothing. Archcore's documents are reachable over MCP from any agent, so the second path is real and needs saying on the page. The former intro ("Bring your project context to the tools you already use") named only the first path.
+
+The Russian layer keeps the English page as the indexed document. The page ships both languages and swaps them client-side, so no route, canonical, or digest changes.
 
 ## Examples
 
@@ -104,10 +126,12 @@ The source pointer for this snapshot is @src/content/integrations/superpowers.md
 
 A page presents a pilot timeline as its main explanation, marks every host verified after one run, edits the imported instructions to shorten their prose, or renames the heading inside @src/recipes/ to match the page title.
 
+A Russian translation edited straight into the markup, a Russian `<title>`, or a translated copy of an imported instruction file.
+
 ## Enforcement
 
 Manual review checks the reading sequence, tool roles, ownership, claims, hidden branding, and retained source access.
 
-@src/pages/integrations/[slug].astro validates instruction bytes and filters evidence against the current digest. @scripts/verify-build.mts compares published titles and descriptions against @scripts/fixtures/seo-baseline.json. @tests/integration-tabs.spec.ts and @tests/site.spec.ts cover existing integration behavior. Verify modal position, focus, expansion, full-text copying, the two-column and stacked catalog layouts, dark mode, and the no-JavaScript fallback against dist/ after UI changes.
+@src/pages/integrations/[slug].astro validates instruction bytes and filters evidence against the current digest. @scripts/verify-build.mts compares published titles and descriptions against @scripts/fixtures/seo-baseline.json. @tests/integration-tabs.spec.ts and @tests/site.spec.ts cover existing integration behavior, including the two translation tests ("integration catalog switches its heading and cards to Russian", "an integration page translates its prose, workflow and install steps"). Verify modal position, focus, expansion, full-text copying, the two-column and stacked catalog layouts, dark mode, and the no-JavaScript fallback against dist/ after UI changes.
 
 The field name pilot and the #pilot-results fragment remain implementation identifiers. Their presence is not permission to reintroduce pilot-oriented presentation copy.

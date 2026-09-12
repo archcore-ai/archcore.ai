@@ -1473,8 +1473,8 @@
   },
   {
     "route": "/integrations/",
-    "title": "Archcore Integrations — Recipes for Existing Agent Setups",
-    "description": "Connect Archcore with your agent’s tools. Explore integrations and copy the setup instructions for your project.",
+    "title": "Archcore Integrations — Use It With Your Existing Tools",
+    "description": "Use Archcore with the tools your agent already runs, or make it part of your own setup over MCP. Copy the setup instructions for your project.",
     "canonical": "https://archcore.ai/integrations/",
     "ogImage": "https://archcore.ai/og-image.png",
     "headings": [

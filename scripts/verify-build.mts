@@ -208,8 +208,8 @@ for (const [route, $] of pages) {
       `${route}: shared ${surface} wordmark`
     );
     check(
-      brand.find('img.logo-light[src="/logo.png"]').length === 1 &&
-        brand.find('img.logo-dark[src="/logo-dark.png"]').length === 1,
+      brand.find('img.logo-light[src="/logo-mark.png"]').length === 1 &&
+        brand.find('img.logo-dark[src="/logo-dark-mark.png"]').length === 1,
       `${route}: shared ${surface} logo variants`
     );
   }

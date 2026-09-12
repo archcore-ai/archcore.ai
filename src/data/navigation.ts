@@ -11,6 +11,14 @@ export const label = (message: MessageDescriptor) => ({
   en: en._(message),
   ru: ru._(message),
 });
+/**
+ * A label whose sentence embeds a value that itself differs by language —
+ * "Archcore and Serena" against «Archcore и Serena», say.
+ */
+export const labelWith = (
+  message: (value: string) => MessageDescriptor,
+  values: { en: string; ru: string }
+) => ({ en: en._(message(values.en)), ru: ru._(message(values.ru)) });
 const link = (href: string, message: MessageDescriptor) => ({
   href,
   ...label(message),
@@ -36,4 +44,16 @@ export const chromeLabels = {
   install: label(msg`Install`),
   menu: label(msg`Menu`),
   tagline: label(msg`Git-native context for AI coding agents.`),
+};
+
+/**
+ * The closing CTA, for the static pages that render it without a Lingui
+ * runtime. The messages mirror src/components/closing-cta.tsx, so both resolve
+ * to the same catalog entries.
+ */
+export const closingCtaLabels = {
+  title: label(msg`Start with Archcore.`),
+  description: label(msg`Keep your project decisions ready for the next task.`),
+  primary: label(msg`Install Archcore →`),
+  secondary: label(msg`See how it works`),
 };

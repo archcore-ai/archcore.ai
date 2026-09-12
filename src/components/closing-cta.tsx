@@ -10,6 +10,15 @@ const copy = {
   secondary: /* i18n */ { id: "ELciF6", message: "See how it works" },
 };
 
+type LocalePair = { en: string; ru: string };
+
+/**
+ * Rendered as `data-en` / `data-ru`, which src/lib/site-locale.ts swaps. Used
+ * by the static Astro pages, which have no Lingui runtime.
+ */
+const swap = (pair?: LocalePair) =>
+  pair ? { "data-en": pair.en, "data-ru": pair.ru } : {};
+
 interface ClosingCtaProps {
   analyticsCta:
     | "recipe_install"
@@ -19,12 +28,14 @@ interface ClosingCtaProps {
     | "plugin_install";
   newTab?: boolean;
   labels?: Record<keyof typeof copy, string>;
+  pairs?: Record<keyof typeof copy, LocalePair>;
 }
 
 export function ClosingCta({
   analyticsCta,
   newTab = false,
   labels,
+  pairs,
 }: ClosingCtaProps) {
   const text = labels ?? {
     title: copy.title.message,
@@ -37,8 +48,8 @@ export function ClosingCta({
   return (
     <section className="recipe-cta" data-analytics-cta={analyticsCta}>
       <div>
-        <h2>{text.title}</h2>
-        <p>{text.description}</p>
+        <h2 {...swap(pairs?.title)}>{text.title}</h2>
+        <p {...swap(pairs?.description)}>{text.description}</p>
       </div>
       <div className="recipe-cta__actions">
         <a
@@ -46,10 +57,16 @@ export function ClosingCta({
           href="/how-to-use/"
           target={target}
           rel={rel}
+          {...swap(pairs?.primary)}
         >
           {text.primary}
         </a>
-        <a href="/how-to-use/" target={target} rel={rel}>
+        <a
+          href="/how-to-use/"
+          target={target}
+          rel={rel}
+          {...swap(pairs?.secondary)}
+        >
           {text.secondary}
         </a>
       </div>

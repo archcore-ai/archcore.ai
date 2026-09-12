@@ -1,12 +1,26 @@
 ---
+import {
+  setupLabels as L,
+  setupRuntimeLabels,
+  installStepLabel,
+  checkPromptLabel,
+} from "../data/recipe-labels";
+
 interface Props {
   downloadHref: string;
   instructions: string;
-  verificationNote: string;
+  /** Whether a joint run has been recorded, which the footer note reports. */
+  verified: boolean;
   tools: { name: string; url: string }[];
 }
-const { downloadHref, instructions, tools, verificationNote } = Astro.props;
-const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}`;
+const { downloadHref, instructions, tools, verified } = Astro.props;
+const names = tools.map((tool) => tool.name);
+const toolNames = { en: names.join(" and "), ru: names.join(" и ") };
+const installTitle = installStepLabel(toolNames);
+const checkPrompt = checkPromptLabel(toolNames);
+const verificationNote = verified ? L.verifiedNote : L.experimentalNote;
+const toolHref = (tool: { name: string; url: string }) =>
+  tool.name === "Archcore" ? "/how-to-use/" : tool.url;
 ---
 
 <dialog
@@ -16,11 +30,15 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
   open
 >
   <header class="recipe-dialog__header">
-    <h2 id="setup-heading">Connect the two tools</h2>
+    <h2 id="setup-heading" data-en={L.connect.en} data-ru={L.connect.ru}>
+      {L.connect.en}
+    </h2>
     <form method="dialog" data-install-close hidden>
       <button
         class="recipe-dialog__close"
-        aria-label="Close installation"
+        aria-label={L.closeInstall.en}
+        data-en-label={L.closeInstall.en}
+        data-ru-label={L.closeInstall.ru}
         autofocus>✕</button
       >
     </form>
@@ -29,14 +47,16 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
     <span id="connect" class="recipe-anchor" aria-hidden="true"></span>
     <article class="article how-to-guide recipe-install-guide">
       <section id="install-agent">
-        <h3>{installTitle}</h3>
-        <p>
+        <h3 data-en={installTitle.en} data-ru={installTitle.ru}>
+          {installTitle.en}
+        </h3>
+        <p data-locale-block="en">
           Install {
             tools.map((tool, i) => (
               <>
                 {i > 0 && " and "}
                 <a
-                  href={tool.name === "Archcore" ? "/how-to-use/" : tool.url}
+                  href={toolHref(tool)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -46,10 +66,28 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
             ))
           } in the agent you use for this project.
         </p>
+        <p lang="ru" data-locale-block="ru" hidden>
+          Установите {
+            tools.map((tool, i) => (
+              <>
+                {i > 0 && " и "}
+                <a
+                  href={toolHref(tool)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {tool.name}
+                </a>
+              </>
+            ))
+          } в том агенте, которым работаете над этим проектом.
+        </p>
       </section>
 
       <section id="install-instructions">
-        <h3>2. Add instructions</h3>
+        <h3 data-en={L.addInstructions.en} data-ru={L.addInstructions.ru}>
+          {L.addInstructions.en}
+        </h3>
         <figure class="recipe-instructions" data-analytics-recipe>
           <figcaption>
             <span>CLAUDE.md / AGENTS.md / GEMINI.md</span>
@@ -75,21 +113,27 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
                   d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
                 ></path>
               </svg>
-              <span data-copy-label>Copy instructions</span>
+              <span data-copy-label data-en={L.copy.en} data-ru={L.copy.ru}
+                >{L.copy.en}</span
+              >
             </button>
           </figcaption>
           <pre
             id="recipe-instruction-text"
             data-recipe-text
             tabindex="0"
-            aria-label="Integration instructions">{instructions}</pre>
+            aria-label={L.instructionsAria.en}
+            data-en-label={L.instructionsAria.en}
+            data-ru-label={L.instructionsAria.ru}>{instructions}</pre>
           <button
             type="button"
             class="recipe-instructions__toggle"
             data-recipe-expand
             aria-expanded="false"
             aria-controls="recipe-instruction-text"
-            hidden>Show full instructions ↓</button
+            data-en={L.showFull.en}
+            data-ru={L.showFull.ru}
+            hidden>{L.showFull.en}</button
           >
         </figure>
         <p
@@ -102,30 +146,61 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
       </section>
 
       <section id="install-check">
-        <h3>3. Check in a new session</h3>
-        <p>Start a new session in this project and ask your agent:</p>
+        <h3 data-en={L.checkHeading.en} data-ru={L.checkHeading.ru}>
+          {L.checkHeading.en}
+        </h3>
+        <p data-en={L.checkIntro.en} data-ru={L.checkIntro.ru}>
+          {L.checkIntro.en}
+        </p>
         <blockquote>
-          <p>
-            Confirm you can use {tools.map((tool) => tool.name).join(" and ")}, and have read this
-            project’s cooperation instructions.
+          <p data-en={checkPrompt.en} data-ru={checkPrompt.ru}>
+            {checkPrompt.en}
           </p>
         </blockquote>
-        <p>
-          If the agent reports a missing tool or instruction file, finish that
-          setup before starting work.
+        <p data-en={L.checkOutro.en} data-ru={L.checkOutro.ru}>
+          {L.checkOutro.en}
         </p>
       </section>
     </article>
 
     <footer class="recipe-install-source">
-      <a href={downloadHref} data-recipe-details>Source &amp; verification ↗</a>
-      <p class="recipe-verification-note" hidden>{verificationNote}</p>
+      <a
+        href={downloadHref}
+        data-recipe-details
+        data-en={L.sourceLink.en}
+        data-ru={L.sourceLink.ru}>{L.sourceLink.en}</a
+      >
+      <p
+        class="recipe-verification-note"
+        data-en={verificationNote.en}
+        data-ru={verificationNote.ru}
+        hidden
+      >
+        {verificationNote.en}
+      </p>
     </footer>
   </div>
 </dialog>
 
+<script
+  is:inline
+  type="application/json"
+  id="recipe-setup-labels"
+  set:html={JSON.stringify(setupRuntimeLabels)}
+/>
+
 <script>
   import { track } from "../lib/analytics/core";
+  import { getSiteLocale, SITE_LOCALE_EVENT } from "../lib/site-locale";
+
+  type RuntimeLabels = Record<
+    "copy" | "copied" | "copyHint" | "copyManual" | "showFull" | "collapse",
+    string
+  >;
+  const labelSets = JSON.parse(
+    document.getElementById("recipe-setup-labels")!.textContent!
+  ) as Record<"en" | "ru", RuntimeLabels>;
+  const t = (key: keyof RuntimeLabels) => labelSets[getSiteLocale()][key];
 
   const installDialog = document.querySelector<HTMLDialogElement>("#install");
   const installButton = document.querySelector<HTMLButtonElement>(
@@ -196,9 +271,7 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
     expandBtn.addEventListener("click", () => {
       const expanded = expandBtn.getAttribute("aria-expanded") !== "true";
       expandBtn.setAttribute("aria-expanded", String(expanded));
-      expandBtn.textContent = expanded
-        ? "Collapse instructions ↑"
-        : "Show full instructions ↓";
+      expandBtn.textContent = expanded ? t("collapse") : t("showFull");
       pre.classList.toggle("is-expanded", expanded);
       if (!expanded) {
         pre.scrollTop = 0;
@@ -236,10 +309,11 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
       clearTimeout(reset);
       try {
         await navigator.clipboard.writeText(pre?.textContent ?? "");
-        copyLabel.textContent = "Copied ✓";
-        if (feedback)
-          feedback.textContent =
-            "Paste into your project instruction file, then start a new session.";
+        copyLabel.textContent = t("copied");
+        if (feedback) {
+          feedback.dataset.messageKey = "copyHint";
+          feedback.textContent = t("copyHint");
+        }
         track("recipe_instructions_copied", {
           recipe,
           digest,
@@ -247,16 +321,35 @@ const installTitle = `1. Install ${tools.map((tool) => tool.name).join(" and ")}
           via: "button",
         });
         reset = setTimeout(() => {
-          copyLabel.textContent = "Copy instructions";
+          copyLabel.textContent = t("copy");
         }, 2200);
       } catch {
         pre?.focus();
         if (pre) window.getSelection()?.selectAllChildren(pre);
-        if (feedback)
-          feedback.textContent = "Copy the selected instruction text manually.";
+        if (feedback) {
+          feedback.dataset.messageKey = "copyManual";
+          feedback.textContent = t("copyManual");
+        }
       }
     });
   }
+
+  // A language switch re-renders the two strings this script owns: the
+  // expand button keeps its state, and the status line keeps its message.
+  window.addEventListener(SITE_LOCALE_EVENT, () => {
+    if (expandBtn)
+      expandBtn.textContent =
+        expandBtn.getAttribute("aria-expanded") === "true"
+          ? t("collapse")
+          : t("showFull");
+    if (feedback?.textContent?.trim()) {
+      const previous = feedback.dataset.messageKey as
+        | "copyHint"
+        | "copyManual"
+        | undefined;
+      if (previous) feedback.textContent = t(previous);
+    }
+  });
 
   pre?.addEventListener("copy", () => {
     track("recipe_instructions_copied", {

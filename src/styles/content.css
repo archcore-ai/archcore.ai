@@ -733,6 +733,11 @@ html.dark .recipe-mark__tile .logo-dark {
   color: var(--color-text-secondary);
   margin: 0;
 }
+/* The explanation runs to several paragraphs; they need a gap between them. */
+.recipe-prose p + p,
+.catalog-foot p + p {
+  margin-top: 0.85rem;
+}
 .recipe-tools {
   margin: 24px 0 0;
 }

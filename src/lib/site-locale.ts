@@ -18,6 +18,9 @@ function updateChrome(locale: SupportedLocale) {
       node.textContent =
         (locale === "ru" ? node.dataset.ru : node.dataset.en) ??
         node.textContent;
+      // A swapped node declares its own language, so assistive technology and
+      // hyphenation follow the text rather than html[lang].
+      node.lang = locale;
     });
   document
     .querySelectorAll<HTMLElement>("[data-en-label][data-ru-label]")
@@ -26,8 +29,17 @@ function updateChrome(locale: SupportedLocale) {
         locale === "ru" ? node.dataset.ruLabel : node.dataset.enLabel;
       if (label) {
         node.setAttribute("aria-label", label);
-        node.title = label;
+        // Only a node that already carries a tooltip keeps one: setting
+        // `title` on a landmark would invent a tooltip for it.
+        if (node.title) node.title = label;
       }
+    });
+  // Whole blocks that exist in both languages: the Russian variant ships
+  // hidden, so a crawler and a visitor without JavaScript read English.
+  document
+    .querySelectorAll<HTMLElement>("[data-locale-block]")
+    .forEach((node) => {
+      node.hidden = node.dataset.localeBlock !== locale;
     });
   // English-only content keeps html[lang=en]; chrome declares its own language.
   document
@@ -35,6 +47,11 @@ function updateChrome(locale: SupportedLocale) {
     .forEach((node) => {
       node.lang = locale;
     });
+}
+
+/** The locale in effect, for scripts that build their own strings. */
+export function getSiteLocale(): SupportedLocale {
+  return current ?? "en";
 }
 
 export function setSiteLocale(locale: SupportedLocale) {

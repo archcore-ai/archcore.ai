@@ -3,6 +3,7 @@ import SiteLayout from "./SiteLayout.astro";
 import RecipeMark from "../components/RecipeMark.astro";
 import RecipeSetup from "../components/RecipeSetup.astro";
 import ClosingCta from "../components/ClosingCta.astro";
+import { recipeLabels as L } from "../data/recipe-labels";
 
 // Static recipe page. Evidence and source details remain available on demand.
 interface Tool {
@@ -21,6 +22,30 @@ interface EvidenceRecord {
   scenario: string;
   outcome: "passed" | "failed" | "unexecuted";
   notes?: string | undefined;
+}
+
+/** Russian copy for this recipe. Absent fields stay English. */
+interface RussianCopy {
+  heading?: string | undefined;
+  summary?: string | undefined;
+  category?: string | undefined;
+  toolRoles: Record<string, string>;
+  workflow?:
+    | {
+        heading: string;
+        steps: { title: string; description: string }[];
+        note: string;
+      }
+    | undefined;
+  pilot?:
+    | {
+        heading: string;
+        summary: string;
+        limitation: string;
+        findings: { scenario: string; result: string; caveat: string }[];
+      }
+    | undefined;
+  limits: string[];
 }
 
 interface Props {
@@ -58,6 +83,9 @@ interface Props {
         findings: { scenario: string; result: string; caveat: string }[];
       }
     | undefined;
+  ru?: RussianCopy | undefined;
+  /** True when the page also carries a Russian prose body in the `ru` slot. */
+  hasRussianBody?: boolean | undefined;
 }
 
 const SITE_URL = "https://archcore.ai";
@@ -83,23 +111,32 @@ const {
   maintainer,
   pilot,
   workflow,
+  ru,
+  hasRussianBody = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 const image = `${SITE_URL}/og-image.png`;
 const shortDigest = digest.slice(0, 12);
 
-const fmt = (d: Date) =>
-  d.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+const DATE_OPTIONS = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+} as const;
+const fmt = (d: Date) => d.toLocaleDateString("en-US", DATE_OPTIONS);
+const fmtRu = (d: Date) => d.toLocaleDateString("ru-RU", DATE_OPTIONS);
+
+const outcomeLabel = {
+  passed: L.outcomePassed,
+  failed: L.outcomeFailed,
+  unexecuted: L.outcomeUnexecuted,
+};
 
 // Status is derived, never authored. No evidence means experimental, and no
 // amount of editing this page can make it say otherwise.
 const verified = evidence.filter((e) => e.outcome === "passed");
-const status = verified.length > 0 ? "Verified in part" : "Experimental";
+const status = verified.length > 0 ? L.statusVerified : L.statusExperimental;
 
 const pageSchema = {
   "@context": "https://schema.org",
@@ -172,17 +209,31 @@ const breadcrumbSchema = {
     data-digest={digest}
   >
     <nav class="recipe-crumb" aria-label="Breadcrumb">
-      <a href="/integrations/">← All integrations</a>
+      <a
+        href="/integrations/"
+        data-en={L.allIntegrations.en}
+        data-ru={L.allIntegrations.ru}>{L.allIntegrations.en}</a
+      >
     </nav>
 
     <header class="recipe-head">
       <div class="recipe-head__identity">
         <RecipeMark tools={tools} />
-        <span class="badge">{status}</span>
+        <span class="badge" data-en={status.en} data-ru={status.ru}
+          >{status.en}</span
+        >
       </div>
       <div class="recipe-head__content">
-        <h1>{heading}</h1>
-        <p class="recipe-head__summary">{summary}</p>
+        <h1 data-en={ru?.heading ? heading : undefined} data-ru={ru?.heading}>
+          {heading}
+        </h1>
+        <p
+          class="recipe-head__summary"
+          data-en={ru?.summary ? summary : undefined}
+          data-ru={ru?.summary}
+        >
+          {summary}
+        </p>
       </div>
       <button
         type="button"
@@ -190,19 +241,34 @@ const breadcrumbSchema = {
         data-recipe-install
         aria-haspopup="dialog"
         aria-controls="install"
-        hidden>Install</button
+        data-en={L.install.en}
+        data-ru={L.install.ru}
+        hidden>{L.install.en}</button
       >
       <noscript
-        ><a class="btn btn--primary" href="#install">Install</a></noscript
+        ><a
+          class="btn btn--primary"
+          href="#install"
+          data-en={L.install.en}
+          data-ru={L.install.ru}>{L.install.en}</a
+        ></noscript
       >
     </header>
 
     <div class="recipe-toolbar">
-      <nav class="recipe-tabs" aria-label="Integration guide" data-recipe-tabs>
+      <nav
+        class="recipe-tabs"
+        aria-label={L.integrationGuide.en}
+        data-en-label={L.integrationGuide.en}
+        data-ru-label={L.integrationGuide.ru}
+        data-recipe-tabs
+      >
         <a
           id="recipe-tab-overview"
           href="#how-it-works"
-          data-recipe-tab="how-it-works">How it works</a
+          data-recipe-tab="how-it-works"
+          data-en={L.tabOverview.en}
+          data-ru={L.tabOverview.ru}>{L.tabOverview.en}</a
         >
         {
           pilot && (
@@ -210,8 +276,10 @@ const breadcrumbSchema = {
               id="recipe-tab-pilot"
               href="#pilot-results"
               data-recipe-tab="pilot-results"
+              data-en={L.tabBenefits.en}
+              data-ru={L.tabBenefits.ru}
             >
-              Benefits &amp; limits
+              {L.tabBenefits.en}
             </a>
           )
         }
@@ -221,11 +289,25 @@ const breadcrumbSchema = {
     <section
       id="how-it-works"
       class="recipe-overview"
-      aria-label="About this integration"
+      aria-label={L.aboutIntegration.en}
+      data-en-label={L.aboutIntegration.en}
+      data-ru-label={L.aboutIntegration.ru}
       data-recipe-tab-panel
     >
       <div>
-        <div class="recipe-prose"><slot /></div>
+        <div
+          class="recipe-prose"
+          data-locale-block={hasRussianBody ? "en" : undefined}
+        >
+          <slot />
+        </div>
+        {
+          hasRussianBody && (
+            <div class="recipe-prose" lang="ru" data-locale-block="ru" hidden>
+              <slot name="ru" />
+            </div>
+          )
+        }
         <dl class="recipe-tools">
           {
             tools.map((tool) => (
@@ -235,7 +317,12 @@ const breadcrumbSchema = {
                     {tool.name} ↗
                   </a>
                 </dt>
-                <dd>{tool.role}</dd>
+                <dd
+                  data-en={ru?.toolRoles[tool.name] ? tool.role : undefined}
+                  data-ru={ru?.toolRoles[tool.name]}
+                >
+                  {tool.role}
+                </dd>
               </div>
             ))
           }
@@ -247,9 +334,19 @@ const breadcrumbSchema = {
             class="recipe-workflow"
             aria-labelledby="recipe-workflow-heading"
           >
-            <h2 id="recipe-workflow-heading">{workflow.heading}</h2>
-            <p class="recipe-workflow-intro">
-              The instructions ask your agent to:
+            <h2
+              id="recipe-workflow-heading"
+              data-en={ru?.workflow ? workflow.heading : undefined}
+              data-ru={ru?.workflow?.heading}
+            >
+              {workflow.heading}
+            </h2>
+            <p
+              class="recipe-workflow-intro"
+              data-en={L.workflowIntro.en}
+              data-ru={L.workflowIntro.ru}
+            >
+              {L.workflowIntro.en}
             </p>
             <ol>
               {workflow.steps.map((step, index) => (
@@ -258,20 +355,42 @@ const breadcrumbSchema = {
                     0{index + 1}
                   </span>
                   <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
+                    <h3
+                      data-en={ru?.workflow ? step.title : undefined}
+                      data-ru={ru?.workflow?.steps[index]?.title}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      data-en={ru?.workflow ? step.description : undefined}
+                      data-ru={ru?.workflow?.steps[index]?.description}
+                    >
+                      {step.description}
+                    </p>
                   </div>
                 </li>
               ))}
             </ol>
-            <p class="recipe-workflow-note">{workflow.note}</p>
+            <p
+              class="recipe-workflow-note"
+              data-en={ru?.workflow ? workflow.note : undefined}
+              data-ru={ru?.workflow?.note}
+            >
+              {workflow.note}
+            </p>
           </section>
         )
       }
       {
         pilot && (
           <div class="recipe-overview-result">
-            <a href="#pilot-results">See benefits and limits →</a>
+            <a
+              href="#pilot-results"
+              data-en={L.seeBenefits.en}
+              data-ru={L.seeBenefits.ru}
+            >
+              {L.seeBenefits.en}
+            </a>
           </div>
         )
       }
@@ -280,9 +399,7 @@ const breadcrumbSchema = {
       tools={tools}
       downloadHref={downloadHref}
       instructions={instructions}
-      verificationNote={verified.length > 0
-        ? "Verification covers recorded runs only"
-        : "Experimental · Not yet verified"}
+      verified={verified.length > 0}
     />
 
     {
@@ -295,31 +412,76 @@ const breadcrumbSchema = {
         >
           <header class="recipe-pilot-heading">
             <div>
-              <p class="recipe-eyebrow">Benefits &amp; limits</p>
-              <h2 id="recipe-impact-heading">{pilot.heading}</h2>
+              <p
+                class="recipe-eyebrow"
+                data-en={L.tabBenefits.en}
+                data-ru={L.tabBenefits.ru}
+              >
+                {L.tabBenefits.en}
+              </p>
+              <h2
+                id="recipe-impact-heading"
+                data-en={ru?.pilot ? pilot.heading : undefined}
+                data-ru={ru?.pilot?.heading}
+              >
+                {pilot.heading}
+              </h2>
             </div>
-            <p>{pilot.summary}</p>
+            <p
+              data-en={ru?.pilot ? pilot.summary : undefined}
+              data-ru={ru?.pilot?.summary}
+            >
+              {pilot.summary}
+            </p>
           </header>
           <dl class="recipe-findings">
-            {pilot.findings.map((finding) => (
+            {pilot.findings.map((finding, index) => (
               <div>
-                <dt>{finding.scenario}</dt>
+                <dt
+                  data-en={ru?.pilot ? finding.scenario : undefined}
+                  data-ru={ru?.pilot?.findings[index]?.scenario}
+                >
+                  {finding.scenario}
+                </dt>
                 <dd>
-                  <p>{finding.result}</p>
-                  <p class="recipe-finding-caveat">{finding.caveat}</p>
+                  <p
+                    data-en={ru?.pilot ? finding.result : undefined}
+                    data-ru={ru?.pilot?.findings[index]?.result}
+                  >
+                    {finding.result}
+                  </p>
+                  <p
+                    class="recipe-finding-caveat"
+                    data-en={ru?.pilot ? finding.caveat : undefined}
+                    data-ru={ru?.pilot?.findings[index]?.caveat}
+                  >
+                    {finding.caveat}
+                  </p>
                 </dd>
               </div>
             ))}
           </dl>
-          <aside class="recipe-pilot-limit" aria-label="Limits">
-            <h3>Limits</h3>
-            <p>{pilot.limitation}</p>
+          <aside
+            class="recipe-pilot-limit"
+            aria-label={L.limits.en}
+            data-en-label={L.limits.en}
+            data-ru-label={L.limits.ru}
+          >
+            <h3 data-en={L.limits.en} data-ru={L.limits.ru}>
+              {L.limits.en}
+            </h3>
+            <p
+              data-en={ru?.pilot ? pilot.limitation : undefined}
+              data-ru={ru?.pilot?.limitation}
+            >
+              {pilot.limitation}
+            </p>
           </aside>
         </section>
       )
     }
 
-    <ClosingCta analyticsCta="recipe_install" newTab />
+    <ClosingCta analyticsCta="recipe_install" newTab localized />
 
     <dialog
       class="recipe-dialog"
@@ -328,28 +490,47 @@ const breadcrumbSchema = {
     >
       <div class="recipe-dialog__header">
         <div>
-          <p class="recipe-eyebrow">{heading}</p><h2 id="recipe-dialog-title">
-            Source &amp; verification
+          <p class="recipe-eyebrow">{heading}</p><h2
+            id="recipe-dialog-title"
+            data-en={L.sourceAndVerification.en}
+            data-ru={L.sourceAndVerification.ru}
+          >
+            {L.sourceAndVerification.en}
           </h2>
         </div>
         <form method="dialog">
           <button
             class="recipe-dialog__close"
-            aria-label="Close details"
+            aria-label={L.closeDetails.en}
+            data-en-label={L.closeDetails.en}
+            data-ru-label={L.closeDetails.ru}
             autofocus>✕</button
           >
         </form>
       </div>
       <div class="recipe-dialog__body">
         <dl class="recipe-facts">
-          <div><dt>Category</dt><dd>{category}</dd></div>
           <div>
-            <dt>Instruction revision</dt><dd>
+            <dt data-en={L.factCategory.en} data-ru={L.factCategory.ru}>
+              {L.factCategory.en}
+            </dt><dd
+              data-en={ru?.category ? category : undefined}
+              data-ru={ru?.category}
+            >
+              {category}
+            </dd>
+          </div>
+          <div>
+            <dt data-en={L.factRevision.en} data-ru={L.factRevision.ru}>
+              {L.factRevision.en}
+            </dt><dd>
               <code title={digest}>{shortDigest}</code>
             </dd>
           </div>
           <div>
-            <dt>Source</dt><dd>
+            <dt data-en={L.factSource.en} data-ru={L.factSource.ru}>
+              {L.factSource.en}
+            </dt><dd>
               {
                 sourceRevision ? (
                   <a
@@ -368,47 +549,84 @@ const breadcrumbSchema = {
                     >
                       {sourceLabel}
                     </a>{" "}
-                    · <code>{sourcePath}</code> · This revision is not published
-                    yet.
+                    · <code>{sourcePath}</code> ·{" "}
+                    <span
+                      data-en={L.revisionUnpublished.en}
+                      data-ru={L.revisionUnpublished.ru}
+                    >
+                      {L.revisionUnpublished.en}
+                    </span>
                   </>
                 )
               }
             </dd>
           </div>
-          <div><dt>Maintainer</dt><dd>{maintainer}</dd></div>
-          <div><dt>Page updated</dt><dd>{fmt(updatedDate)}</dd></div>
+          <div>
+            <dt data-en={L.factMaintainer.en} data-ru={L.factMaintainer.ru}>
+              {L.factMaintainer.en}
+            </dt><dd>{maintainer}</dd>
+          </div>
+          <div>
+            <dt data-en={L.factUpdated.en} data-ru={L.factUpdated.ru}>
+              {L.factUpdated.en}
+            </dt><dd data-en={fmt(updatedDate)} data-ru={fmtRu(updatedDate)}>
+              {fmt(updatedDate)}
+            </dd>
+          </div>
         </dl>
-        <h2>Verification</h2>
+        <h2 data-en={L.verification.en} data-ru={L.verification.ru}>
+          {L.verification.en}
+        </h2>
         {
           evidence.length === 0 ? (
-            <p>No joint run has been recorded for this instruction revision.</p>
+            <p data-en={L.noRuns.en} data-ru={L.noRuns.ru}>
+              {L.noRuns.en}
+            </p>
           ) : (
             <div
               class="recipe-evidence-scroll"
               tabindex="0"
               role="region"
-              aria-label="Verification records"
+              aria-label={L.verificationRecords.en}
+              data-en-label={L.verificationRecords.en}
+              data-ru-label={L.verificationRecords.ru}
             >
               <table>
                 <thead>
                   <tr>
                     <>
-                      <th>Date</th>
-                      <th>Agent</th>
-                      <th>Model</th>
-                      <th>Scenario</th>
-                      <th>Outcome</th>
+                      {[
+                        L.colDate,
+                        L.colAgent,
+                        L.colModel,
+                        L.colScenario,
+                        L.colOutcome,
+                      ].map((column) => (
+                        <th data-en={column.en} data-ru={column.ru}>
+                          {column.en}
+                        </th>
+                      ))}
                     </>
                   </tr>
                 </thead>
                 <tbody>
                   {evidence.map((record) => (
                     <tr>
-                      <td>{fmt(record.date)}</td>
+                      <td
+                        data-en={fmt(record.date)}
+                        data-ru={fmtRu(record.date)}
+                      >
+                        {fmt(record.date)}
+                      </td>
                       <td>{record.host}</td>
                       <td>{record.model}</td>
                       <td>{record.scenario}</td>
-                      <td>{record.outcome}</td>
+                      <td
+                        data-en={outcomeLabel[record.outcome].en}
+                        data-ru={outcomeLabel[record.outcome].ru}
+                      >
+                        {outcomeLabel[record.outcome].en}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -419,17 +637,22 @@ const breadcrumbSchema = {
         {
           limits.length > 0 && (
             <ul>
-              {limits.map((limit) => (
-                <li>{limit}</li>
+              {limits.map((limit, index) => (
+                <li
+                  data-en={ru?.limits[index] ? limit : undefined}
+                  data-ru={ru?.limits[index]}
+                >
+                  {limit}
+                </li>
               ))}
             </ul>
           )
         }
-        <h2>Update or disconnect</h2>
-        <p>
-          To update, review changes to the instructions before replacing your
-          copy. To disconnect, remove the added instructions from your project
-          file. Both tools and their documents stay in place.
+        <h2 data-en={L.updateHeading.en} data-ru={L.updateHeading.ru}>
+          {L.updateHeading.en}
+        </h2>
+        <p data-en={L.updateBody.en} data-ru={L.updateBody.ru}>
+          {L.updateBody.en}
         </p>
       </div>
     </dialog>

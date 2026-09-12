@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import RecipeLayout from "../../layouts/RecipeLayout.astro";
 import {
   readRecipeSource,
@@ -37,6 +37,11 @@ export async function getStaticPaths() {
 const { entry, source, evidence } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
+
+// The Russian prose lives in its own file, so the English body stays the
+// document the markdown twin and the crawlers read.
+const russian = await getEntry("integrationsRu", entry.id);
+const RussianContent = russian ? (await render(russian)).Content : null;
 ---
 
 <RecipeLayout
@@ -61,6 +66,9 @@ const { data } = entry;
   maintainer={data.maintainer}
   pilot={data.pilot}
   workflow={data.workflow}
+  ru={data.ru}
+  hasRussianBody={RussianContent !== null}
 >
   <Content />
+  {RussianContent && <RussianContent slot="ru" />}
 </RecipeLayout>

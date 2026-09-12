@@ -400,6 +400,153 @@ test("hub headings and collections stay aligned between pages", async ({
   }
 });
 
+test("integration catalog switches its heading and cards to Russian", async ({
+  page,
+}) => {
+  await page.goto("/integrations/?lang=ru");
+  await expect(page.locator("h1")).toHaveText("Интеграции");
+  await expect(page.locator(".page-intro__description")).toContainText(
+    "Используйте Archcore вместе с инструментами"
+  );
+  const card = page.locator(".catalog-card", { hasText: "Serena" });
+  await expect(card.locator(".catalog-card__title")).toHaveText(
+    "Serena + Archcore"
+  );
+  await expect(card.locator(".catalog-card__summary")).toContainText(
+    "Проверяйте изменения кода"
+  );
+  await expect(card.locator(".badge").first()).toHaveText("Навигация по коду");
+  await expect(card.locator(".badge--quiet")).toHaveText("Экспериментальная");
+  await expect(page.locator(".catalog-foot h2")).toHaveText(
+    "Или сделайте Archcore частью своей оболочки"
+  );
+  await expect(page.locator(".catalog-foot p:visible")).toHaveCount(2);
+  await expect(page.locator(".catalog-foot")).toContainText(
+    "те же документы доступны по MCP"
+  );
+  await expect(page.locator(".catalog-foot")).toContainText(
+    "Совместные прогоны пока не проверены"
+  );
+  // The page itself stays English: only the swapped nodes declare Russian.
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.locator("h1")).toHaveAttribute("lang", "ru");
+
+  await page.getByRole("combobox", { name: "Language" }).selectOption("en");
+  await expect(page.locator("h1")).toHaveText("Integrations");
+  await expect(card.locator(".badge--quiet")).toHaveText("Experimental");
+});
+
+test("an integration page translates its prose, workflow and install steps", async ({
+  page,
+}) => {
+  await page.goto("/integrations/serena/?lang=ru");
+  await expect(page.locator(".recipe-crumb a")).toHaveText("← Все интеграции");
+  await expect(page.locator(".recipe-head .badge")).toHaveText(
+    "Экспериментальная"
+  );
+  await expect(page.locator(".recipe-head__summary")).toContainText(
+    "Проверяйте изменения кода"
+  );
+  await expect(page.locator("[data-recipe-install]")).toHaveText("Установить");
+  await expect(page.locator("[data-recipe-tab='how-it-works']")).toHaveText(
+    "Как это работает"
+  );
+
+  // Only one prose body is on screen, and it is the Russian one.
+  const prose = page.locator(".recipe-prose:visible");
+  await expect(prose).toHaveCount(1);
+  await expect(prose).toHaveAttribute("lang", "ru");
+  await expect(prose.locator("h2")).toHaveText(
+    "Как Serena и Archcore работают вместе"
+  );
+
+  await expect(page.locator("#recipe-workflow-heading")).toHaveText(
+    "От запроса на изменение кода до записанного решения"
+  );
+  await expect(page.locator(".recipe-workflow-intro")).toHaveText(
+    "Инструкции просят агента:"
+  );
+  await expect(page.locator(".recipe-workflow ol li h3").first()).toHaveText(
+    "Сначала прочитать решения"
+  );
+  await expect(page.locator(".recipe-tools dd").first()).toContainText(
+    "Хранит решения, правила и спецификации"
+  );
+
+  await page.locator("[data-recipe-install]").click();
+  const install = page.locator("#install");
+  await expect(install.locator("#setup-heading")).toHaveText(
+    "Соедините два инструмента"
+  );
+  await expect(install.locator("#install-agent h3")).toHaveText(
+    "1. Установите Archcore и Serena"
+  );
+  await expect(install.locator("#install-agent p:visible")).toHaveCount(1);
+  await expect(install.locator("#install-agent p:visible")).toContainText(
+    "в том агенте, которым работаете"
+  );
+  await expect(install.locator("[data-copy-label]")).toHaveText(
+    "Скопировать инструкции"
+  );
+  await expect(install.locator("[data-recipe-expand]")).toHaveText(
+    "Показать инструкции целиком ↓"
+  );
+  await install.locator("[data-recipe-expand]").click();
+  await expect(install.locator("[data-recipe-expand]")).toHaveText(
+    "Свернуть инструкции ↑"
+  );
+  // The instruction text itself is the recipe file, which stays English.
+  await expect(install.locator("[data-recipe-text]")).toContainText("Archcore");
+
+  await install.locator("[data-recipe-details]").click();
+  const details = page.locator("#recipe-details");
+  await expect(details.locator("#recipe-dialog-title")).toHaveText(
+    "Источник и проверка"
+  );
+  await expect(details.locator(".recipe-facts dt").first()).toHaveText(
+    "Категория"
+  );
+  await expect(details.locator(".recipe-facts dd").first()).toHaveText(
+    "Навигация по коду"
+  );
+  await expect(details.locator(".recipe-dialog__body p").first()).toContainText(
+    "совместных прогонов не записано"
+  );
+  await expect(details.locator("li").first()).toContainText(
+    "нет связанной записи о проверке"
+  );
+  await page.keyboard.press("Escape");
+
+  await expect(page.locator(".recipe-cta h2")).toHaveText(
+    "Начните с Archcore."
+  );
+
+  await page.getByRole("combobox", { name: "Language" }).selectOption("en");
+  await expect(install.locator("#setup-heading")).toHaveText(
+    "Connect the two tools"
+  );
+  await expect(install.locator("[data-recipe-expand]")).toHaveText(
+    "Collapse instructions ↑"
+  );
+  await expect(page.locator(".recipe-prose:visible")).toHaveCount(1);
+  await expect(page.locator(".recipe-prose:visible h2")).toHaveText(
+    "How Serena + Archcore work together"
+  );
+
+  // The benefits tab carries per-recipe copy too.
+  await page.goto("/integrations/superpowers/?lang=ru");
+  await page.locator("[data-recipe-tab='pilot-results']").click();
+  await expect(page.locator("#recipe-impact-heading")).toHaveText(
+    "Замечайте противоречия до написания кода."
+  );
+  await expect(page.locator(".recipe-findings dt").first()).toHaveText(
+    "Проектирование с контекстом проекта"
+  );
+  await expect(page.locator(".recipe-pilot-limit h3")).toHaveText(
+    "Ограничения"
+  );
+});
+
 test("desktop navigation stays in place across page types", async ({
   page,
 }) => {

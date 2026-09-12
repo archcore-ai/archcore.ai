@@ -189,14 +189,97 @@ const integrationSchema = z.object({
     .optional(),
   limits: z.array(z.string()).default([]),
   maintainer: z.string(),
+  /**
+   * Russian copy for the catalog card and the recipe page. The head stays
+   * English — crawlers read it, and there are no /ru/ routes, per
+   * landing/drop-ru-hreflang-until-ru-routes. Omit a field to keep English.
+   *
+   * The prose body lives in src/content/integrations/ru/<slug>.md, not here.
+   * `workflow.steps` and `pilot.findings` are matched to the English ones by
+   * position, so their lengths have to agree; `toolRoles` is keyed by tool
+   * name instead, because a card reorders its tools and prose does not.
+   */
+  ru: z
+    .object({
+      heading: z.string().optional(),
+      summary: z.string().max(110).optional(),
+      category: z.string().optional(),
+      toolRoles: z.record(z.string(), z.string()).default({}),
+      workflow: z
+        .object({
+          heading: z.string(),
+          steps: z.array(
+            z.object({ title: z.string(), description: z.string() })
+          ),
+          note: z.string(),
+        })
+        .optional(),
+      pilot: z
+        .object({
+          heading: z.string(),
+          summary: z.string(),
+          limitation: z.string(),
+          findings: z
+            .array(
+              z.object({
+                scenario: z.string(),
+                result: z.string(),
+                caveat: z.string(),
+              })
+            )
+            .default([]),
+        })
+        .optional(),
+      limits: z.array(z.string()).default([]),
+    })
+    .optional(),
   draft: z.boolean().default(false),
+});
+
+const integrationsChecked = integrationSchema.superRefine((entry, ctx) => {
+  const ru = entry.ru;
+  if (!ru) return;
+  const mismatch = (path: (string | number)[], message: string) =>
+    ctx.addIssue({ code: "custom", path: ["ru", ...path], message });
+  for (const name of Object.keys(ru.toolRoles)) {
+    if (!entry.tools.some((tool) => tool.name === name))
+      mismatch(["toolRoles", name], `No tool named "${name}" in this entry.`);
+  }
+  if (ru.workflow && ru.workflow.steps.length !== entry.workflow?.steps.length)
+    mismatch(
+      ["workflow", "steps"],
+      "Russian workflow steps must match the English ones one for one."
+    );
+  if (ru.pilot && ru.pilot.findings.length !== entry.pilot?.findings.length)
+    mismatch(
+      ["pilot", "findings"],
+      "Russian pilot findings must match the English ones one for one."
+    );
+  if (ru.limits.length > 0 && ru.limits.length !== entry.limits.length)
+    mismatch(
+      ["limits"],
+      "Russian limits must match the English ones one for one."
+    );
+});
+
+/** Russian prose bodies. One file per recipe id; frontmatter is not used. */
+const integrationsRu = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/integrations/ru" }),
+  schema: z.object({}),
 });
 
 const integrations = defineCollection({
   // Top-level only: src/recipes/ holds the imported instruction files, and a
   // recursive pattern here would try to load them as catalog entries.
   loader: glob({ pattern: "*.md", base: "./src/content/integrations" }),
-  schema: integrationSchema,
+  schema: integrationsChecked,
 });
 
-export const collections = { blog, learn, alternatives, pillars, integrations };
+export const collections = {
+  blog,
+  learn,
+  alternatives,
+  pillars,
+  integrations,
+  integrationsRu,
+};

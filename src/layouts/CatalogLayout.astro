@@ -9,6 +9,14 @@ interface CatalogItem {
   summary: string;
   category: string;
   status: string;
+  /**
+   * Russian card copy. Present when the entry carries a `ru` block; the site
+   * locale switch swaps the text client-side, as it does for the chrome.
+   */
+  titleRu?: string | undefined;
+  summaryRu?: string | undefined;
+  categoryRu?: string | undefined;
+  statusRu?: string | undefined;
   tools: {
     name: string;
     icon?: string | undefined;
@@ -21,11 +29,14 @@ interface Props {
   description: string;
   h1: string;
   intro: string;
+  /** Russian heading and intro. The head stays English — crawlers read it. */
+  h1Ru?: string | undefined;
+  introRu?: string | undefined;
   items: CatalogItem[];
 }
 
 const SITE_URL = "https://archcore.ai";
-const { title, description, h1, intro, items } = Astro.props;
+const { title, description, h1, intro, h1Ru, introRu, items } = Astro.props;
 const canonical = `${SITE_URL}/integrations/`;
 
 const listingSchema = {
@@ -72,7 +83,12 @@ const listingSchema = {
     class="page page--listing"
     data-hide-integration-branding
   >
-    <PageIntro title={h1} description={intro} />
+    <PageIntro
+      title={h1}
+      description={intro}
+      titleRu={h1Ru}
+      descriptionRu={introRu}
+    />
 
     <ul class="catalog-grid">
       {
@@ -80,11 +96,35 @@ const listingSchema = {
           <li class="catalog-card">
             <a href={item.href} class="catalog-card__link">
               <RecipeMark tools={item.tools} />
-              <h2 class="catalog-card__title">{item.title}</h2>
-              <p class="catalog-card__summary">{item.summary}</p>
+              <h2
+                class="catalog-card__title"
+                data-en={item.titleRu ? item.title : undefined}
+                data-ru={item.titleRu}
+              >
+                {item.title}
+              </h2>
+              <p
+                class="catalog-card__summary"
+                data-en={item.summaryRu ? item.summary : undefined}
+                data-ru={item.summaryRu}
+              >
+                {item.summary}
+              </p>
               <p class="catalog-card__foot">
-                <span class="badge">{item.category}</span>
-                <span class="badge badge--quiet">{item.status}</span>
+                <span
+                  class="badge"
+                  data-en={item.categoryRu ? item.category : undefined}
+                  data-ru={item.categoryRu}
+                >
+                  {item.category}
+                </span>
+                <span
+                  class="badge badge--quiet"
+                  data-en={item.statusRu ? item.status : undefined}
+                  data-ru={item.statusRu}
+                >
+                  {item.status}
+                </span>
               </p>
               <span class="catalog-card__arrow" aria-hidden="true">
                 ↗
