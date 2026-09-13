@@ -52,6 +52,19 @@ pilot:
     - scenario: "Picking up work in another session"
       result: "The recorded recall answers recovered the coupon behavior and distinguished accepted from draft decisions. They also identified disagreements in the saved documents."
       caveat: "This was a scripted recall step in the same working tree. It does not prove that every later session will recover all context."
+example:
+  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Use the installed OpenSpec propose, apply, sync and archive workflow. Check existing project decisions and report any conflict before implementing."
+  steps:
+    - tool: "Archcore"
+      text: "Before any design work, the agent searches the project records and finds the accepted decision: money is integer cents. It reports the conflict with the float request and stops. No file has changed."
+    - tool: "OpenSpec"
+      text: "You keep integer cents and withdraw the float request. The agent writes the proposal, design, specs and tasks in OpenSpec's own folders, then stops at the saved design for your review."
+    - tool: "Archcore"
+      text: "You approve the design. The decisions it settles become draft ADRs, each linked to the OpenSpec files by path. The money decision stays as it was."
+    - tool: "OpenSpec"
+      text: "You ask for the implementation. The agent works through the tasks, runs the tests (half-up rounding, delivery excluded, empty and unknown coupons), syncs the specs and archives the change. The new ADRs stay draft."
+    - text: "A new session reads the archived change and the decision records and answers from them: the coupon contract, 13 cents off and 612 cents total for one tea with SAVE10, and which decisions are still draft."
+  note: "This is what the instructions ask for, not a recorded run. An earlier revision completed this scenario twice in Claude Code; see the pilot note. This revision has not had a joint run."
 limits:
   - "The published instructions are a revision of the measured recipe. They remain experimental until this exact text is tested."
   - "The pilot used Claude Code 2.1.268, model identifier claude-opus-5[1m], Archcore 0.8.3 and an OpenSpec 1.13.0 snapshot. Other hosts and tool revisions were not tested."
@@ -92,6 +105,15 @@ ru:
       - scenario: "Продолжение работы в другой сессии"
         result: "Записанные ответы о прошлой работе восстановили поведение купона и отличили принятые решения от черновых. Они же указали на расхождения в сохранённых документах."
         caveat: "Это был заранее заданный шаг проверки в том же рабочем каталоге. Он не доказывает, что любая следующая сессия восстановит весь контекст."
+  example:
+    request: "Добавь скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используй числа с плавающей точкой. Работай через установленный процесс OpenSpec: propose, apply, sync, archive. Проверь принятые решения проекта и сообщи о противоречии до реализации."
+    steps:
+      - "До проектирования агент ищет в записях проекта и находит принятое решение: деньги хранятся в целых центах. Он сообщает, что запрос с плавающей точкой ему противоречит, и останавливается. Ни один файл не изменён."
+      - "Вы оставляете целые центы и снимаете просьбу про плавающую точку. Агент пишет предложение, проектное решение, спецификации и задачи в папках OpenSpec и останавливается на сохранённом проектном решении, чтобы вы его посмотрели."
+      - "Вы одобряете проектное решение. Решения, которые оно закрепило, становятся черновыми ADR со ссылкой на файлы OpenSpec по пути. Решение о деньгах не тронуто."
+      - "Вы просите реализовать. Агент проходит задачи, запускает тесты (округление половины вверх, доставка без скидки, пустые и неизвестные купоны), синхронизирует спецификации и архивирует изменение. Новые ADR остаются черновиками."
+      - "Новая сессия читает заархивированное изменение и записи решений и отвечает по ним: контракт купонов, скидка 13 центов и итог 612 центов за один чай с SAVE10, какие решения ещё черновики."
+    note: "Так описывают инструкции, это не запись прогона. Прежняя редакция дважды прошла этот сценарий в Claude Code, см. заметку о пилоте. У этой редакции совместных прогонов не было."
   limits:
     - "Опубликованные инструкции — исправленная версия того рецепта, который измеряли. Они остаются экспериментальными, пока не проверен именно этот текст."
     - "В пилоте использовались Claude Code 2.1.268, модель claude-opus-5[1m], Archcore 0.8.3 и снимок OpenSpec 1.13.0. Другие среды и версии инструментов не проверялись."

@@ -70,6 +70,52 @@ reviews. The agent is "the agent" and acts: reads, reports, records. Never say
 - `pilot.findings[]` — `result` is observed behavior, `caveat` is the reason it
   does not generalize. Every finding needs both.
 
+## The Examples tab
+
+`example` is the one place on the page where the reader sees the instructions
+change what the agent does. The prose says the agent "checks decisions first";
+the example shows one request and the steps that follow it, through to the next
+session. One path, no comparison column: the owner turned down a "with and
+without" table as unfamiliar.
+
+Start from the measured scenario, not from an invented one. The maintainers'
+`integration-bench` repository runs the same coupon workflow against every pair:
+`scenarios/protocol.py` holds the owner's scripted messages (a float request that
+contradicts the accepted integer-money decision, then the design, plan,
+implementation and fresh-session prompts), and `scenarios/README.md` says what a
+run must show. The example retells that protocol in the recipe's own terms.
+
+- `request` — the first owner message, shortened to the sentences that matter,
+  plus the one-line tool hint the bench gives that partner ("Use
+  superpowers:brainstorming for the design"). Keep the float clause and the
+  "report any conflict" clause; they are what the first step answers.
+- `steps[]` — five steps, one per stage: conflict, design, approval and draft
+  ADRs, implementation, new session. Each names the tool that acts through
+  `tool`, which must be one of the entry's `tools`; the last step usually has
+  no `tool` because the agent reads the saved records itself. Alternate the
+  tools where the instructions do. Two or three short sentences per step.
+- A number or a path is allowed only when a published evidence note records it
+  (the 13-cent discount and 612-cent total for OpenSpec and Spec Kit) or the
+  instruction text names it (`docs/superpowers/specs/`). No note for the recipe
+  means no number.
+- `note` — the verification status in this recipe's own words. Open with "This
+  is what the instructions ask for, not a recorded run." and follow with the
+  same fact `pilot.limitation` states. A recipe with an earlier measured
+  revision says so; one with none says so.
+
+The steps describe requested behavior. Nothing in `steps[]` may read as an
+observed result, a timing, or a quote from a real session.
+
+Russian goes in `ru.example` with the same number of steps; the tool tags come
+from the English steps by position. Keep the terminology the rest of the Russian
+layer already uses: «проектное решение» for a design, «обсуждение» for
+brainstorming, «противоречие» for a conflict.
+
+Run the English through the `humanizer` skill and the Russian through
+`humanizer-ru` before publishing. In practice that means: no em dashes in either
+language, no «данный» or «является», verbs over nominalizations, and nothing
+added that the protocol or the instructions do not say.
+
 ## Recipe file
 
 Imported instruction files are copied verbatim and never edited for style. When
@@ -103,6 +149,11 @@ could say otherwise.
 
 - **A pilot timeline as the main explanation.** The reader wants present-tense
   mechanism. The chronology belongs in the evidence file.
+- **An example that reads as a transcript.** Terminal output, timestamps, or
+  "the agent replied:" turn an illustration into a fabricated run. The Examples
+  tab shows requested behavior and its `note` says so.
+- **An example from an invented request.** A rename, a rate limiter, anything the
+  bench never ran, promises behavior nobody measured. Use the coupon protocol.
 - **Editing imported instructions for readability.** The route validates bytes
   against `digest` at build time and the build fails. Recompute the digest only
   after a genuine upstream update. Renaming a section heading there to match a

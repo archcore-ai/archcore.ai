@@ -52,6 +52,19 @@ pilot:
     - scenario: "A later session reviews the result"
       result: "The recorded recall answers recovered the coupon behavior, draft ADR status and document disagreements from the saved feature work."
       caveat: "Some assumptions had been described as settled decisions. The revised instructions explicitly separate assumptions from owner approval."
+example:
+  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Use the installed Spec Kit specify, plan, tasks and implement workflow. Check existing project decisions and report any conflict before implementing."
+  steps:
+    - tool: "Archcore"
+      text: "Before planning, the agent searches the project records and compares them with the request. It finds the accepted decision on integer cents, reports the conflict with the float request and stops. No file has changed."
+    - tool: "Spec Kit"
+      text: "You keep integer cents. The agent writes the specification and plan where Spec Kit expects them, marks open points as assumptions, and stops at the saved design for your review."
+    - tool: "Archcore"
+      text: "You approve the design. The decisions it settles become draft ADRs linked to the feature files by path. The money decision stays as it was."
+    - tool: "Spec Kit"
+      text: "You ask for the implementation. The agent works through the task list, runs the tests, and brings the status lines in the plan and research up to date with the records that now exist."
+    - text: "A new session reads the feature files and the decision records and answers from them: the coupon contract, 13 cents off and 612 cents total for one tea with SAVE10, and where the documents disagree with the code."
+  note: "This is what the instructions ask for, not a recorded run. An earlier revision completed this scenario twice in Claude Code with a blank constitution; see the pilot note. This revision has not had a joint run."
 limits:
   - "The published instructions are a revision of the measured recipe. They remain experimental until this exact text is tested."
   - "The pilot used Claude Code 2.1.268, model identifier claude-opus-5[1m], Archcore 0.8.3 and a pinned Spec Kit runtime snapshot documented in the pilot note."
@@ -92,6 +105,15 @@ ru:
       - scenario: "Более поздняя сессия разбирает результат"
         result: "Записанные ответы восстановили поведение купона, состояние черновых ADR и расхождения в документах по сохранённой работе над функцией."
         caveat: "Часть допущений была описана как принятые решения. Исправленные инструкции прямо отделяют допущения от одобрения владельцем."
+  example:
+    request: "Добавь скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используй числа с плавающей точкой. Работай через установленный процесс Spec Kit: specify, plan, tasks, implement. Проверь принятые решения проекта и сообщи о противоречии до реализации."
+    steps:
+      - "До планирования агент ищет в записях проекта и сверяет их с запросом. Находит принятое решение о целых центах, сообщает о противоречии с плавающей точкой и останавливается. Ни один файл не изменён."
+      - "Вы оставляете целые центы. Агент пишет спецификацию и план там, где их ждёт Spec Kit, помечает открытые вопросы как допущения и останавливается на сохранённом проектном решении, чтобы вы его посмотрели."
+      - "Вы одобряете проектное решение. Закреплённые им решения становятся черновыми ADR со ссылкой на файлы функции по пути. Решение о деньгах не тронуто."
+      - "Вы просите реализовать. Агент проходит список задач, запускает тесты и приводит строки о статусе в плане и исследовании в соответствие с записями, которые теперь есть."
+      - "Новая сессия читает файлы функции и записи решений и отвечает по ним: контракт купонов, скидка 13 центов и итог 612 центов за один чай с SAVE10, где документы расходятся с кодом."
+    note: "Так описывают инструкции, это не запись прогона. Прежняя редакция дважды прошла этот сценарий в Claude Code с пустой конституцией, см. заметку о пилоте. У этой редакции совместных прогонов не было."
   limits:
     - "Опубликованные инструкции — исправленная версия того рецепта, который измеряли. Они остаются экспериментальными, пока не проверен именно этот текст."
     - "В пилоте использовались Claude Code 2.1.268, модель claude-opus-5[1m], Archcore 0.8.3 и закреплённый снимок Spec Kit, описанный в заметке о пилоте."

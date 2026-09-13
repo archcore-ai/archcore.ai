@@ -42,6 +42,19 @@ pilot:
   heading: "Change code with its constraints in view."
   summary: "The agent brings accepted decisions into a code change before it starts, and works from real symbol references instead of matched strings. Decisions worth keeping end up in the repository."
   limitation: "These instructions have not had a joint run. They rely on the agent following them, and nothing in the pair enforces the order of the steps."
+example:
+  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Use Serena's symbol-aware navigation and edits for the code changes. Check existing project decisions and report any conflict before implementing."
+  steps:
+    - tool: "Archcore"
+      text: "Before touching code, the agent searches the project records and finds the accepted decision: money is integer cents. It reports the conflict with the float request and stops. No file has changed."
+    - tool: "Serena"
+      text: "You keep integer cents. The agent activates the project in Serena and reads shop.api.quote and everything that calls it before the change spreads across files."
+    - tool: "Serena"
+      text: "Code changes go through Serena's symbol-level edits; prose and configuration take ordinary edits. The tests run after, with Serena's diagnostics as extra evidence, not a substitute."
+    - tool: "Archcore"
+      text: "Decisions settled on the way are written as draft records linked to the change. Serena memory holds code notes only, never the project's decisions."
+    - text: "A new session reads the saved records before it asks you anything the repository already answers."
+  note: "This is what the instructions ask for, not a recorded run. This instruction revision has not had a joint run."
 limits:
   - "This instruction text has no linked verification record, so the pairing is experimental."
   - "Serena is not installed by this recipe. It has to be present and its project activated already."
@@ -73,6 +86,15 @@ ru:
     heading: "Меняйте код, видя его ограничения."
     summary: "Агент берёт принятые решения в работу до начала изменения и опирается на реальные ссылки на символы, а не на совпадения строк. Решения, которые стоит сохранить, остаются в репозитории."
     limitation: "Совместных прогонов по этим инструкциям не было. Они полагаются на то, что агент им следует, и ничто в этой паре не заставляет соблюдать порядок шагов."
+  example:
+    request: "Добавь скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используй числа с плавающей точкой. Правки кода делай через навигацию и редактирование по символам в Serena. Проверь принятые решения проекта и сообщи о противоречии до реализации."
+    steps:
+      - "До правок кода агент ищет в записях проекта и находит принятое решение: деньги хранятся в целых центах. Он сообщает, что запрос с плавающей точкой ему противоречит, и останавливается. Ни один файл не изменён."
+      - "Вы оставляете целые центы. Агент активирует проект в Serena и читает shop.api.quote и всё, что её вызывает, прежде чем изменение разойдётся по файлам."
+      - "Правки кода идут через редактирование по символам в Serena; текст и настройки правятся обычным способом. После этого запускаются тесты, а диагностика Serena идёт как дополнительное свидетельство, не как замена."
+      - "Решения, принятые по ходу, записываются черновыми записями со ссылкой на изменение. В памяти Serena остаются только заметки по коду, решения проекта там не хранятся."
+      - "Новая сессия читает сохранённые записи, прежде чем спросить у вас то, на что репозиторий уже отвечает."
+    note: "Так описывают инструкции, это не запись прогона. У этой редакции инструкций совместных прогонов не было."
   limits:
     - "У этого текста инструкций нет связанной записи о проверке, поэтому пара считается экспериментальной."
     - "Serena этим рецептом не устанавливается. Она должна быть уже установлена, а проект в ней активирован."

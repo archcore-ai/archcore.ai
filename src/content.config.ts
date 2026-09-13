@@ -131,6 +131,38 @@ const recipeEvidenceSchema = z.object({
   notes: z.string().optional(),
 });
 
+/**
+ * The Examples tab: one request, and the steps the agent takes with the two
+ * tools from that request to the next session. It exists because a block of
+ * prose in AGENTS.md does not show a reader how two tools' behaviour changes;
+ * a worked request does.
+ *
+ * A step names the tool that acts. A step with no tool is the agent's own
+ * move — reporting a conflict, stopping, reading the saved records. The steps
+ * describe what the instructions ask for, never a recorded run: `note` says so
+ * on the page, in the recipe's own words, because the honest caveat differs
+ * per recipe.
+ */
+const exampleStepSchema = z.object({
+  /** Must name one of the entry's `tools`. Omit for the agent's own action. */
+  tool: z.string().optional(),
+  text: z.string(),
+});
+
+const exampleSchema = z.object({
+  /** The user's request, quoted on the page. */
+  request: z.string(),
+  steps: z.array(exampleStepSchema).min(1),
+  note: z.string(),
+});
+
+/** Russian twin. Tools come from the English steps by position. */
+const exampleRuSchema = z.object({
+  request: z.string(),
+  steps: z.array(z.string()).min(1),
+  note: z.string(),
+});
+
 const integrationSchema = z.object({
   title: z.string().max(60),
   /** Visible H1. Differs from `title` where the SERP intent differs. */
@@ -187,6 +219,7 @@ const integrationSchema = z.object({
         .default([]),
     })
     .optional(),
+  example: exampleSchema.optional(),
   limits: z.array(z.string()).default([]),
   maintainer: z.string(),
   /**
@@ -230,6 +263,7 @@ const integrationSchema = z.object({
             .default([]),
         })
         .optional(),
+      example: exampleRuSchema.optional(),
       limits: z.array(z.string()).default([]),
     })
     .optional(),
@@ -237,6 +271,16 @@ const integrationSchema = z.object({
 });
 
 const integrationsChecked = integrationSchema.superRefine((entry, ctx) => {
+  // A step attributed to a tool the page does not list would read as a third
+  // participant. The tag has to be one of the two on the card.
+  entry.example?.steps.forEach((step, index) => {
+    if (step.tool && !entry.tools.some((tool) => tool.name === step.tool))
+      ctx.addIssue({
+        code: "custom",
+        path: ["example", "steps", index, "tool"],
+        message: `No tool named "${step.tool}" in this entry.`,
+      });
+  });
   const ru = entry.ru;
   if (!ru) return;
   const mismatch = (path: (string | number)[], message: string) =>
@@ -260,6 +304,15 @@ const integrationsChecked = integrationSchema.superRefine((entry, ctx) => {
       ["limits"],
       "Russian limits must match the English ones one for one."
     );
+  if (ru.example) {
+    if (!entry.example)
+      mismatch(["example"], "A Russian example needs an English one.");
+    if (ru.example.steps.length !== entry.example?.steps.length)
+      mismatch(
+        ["example", "steps"],
+        "Russian example steps must match the English ones one for one."
+      );
+  }
 });
 
 /** Russian prose bodies. One file per recipe id; frontmatter is not used. */

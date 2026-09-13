@@ -46,7 +46,26 @@ interface RussianCopy {
         findings: { scenario: string; result: string; caveat: string }[];
       }
     | undefined;
+  example?: ExampleRu | undefined;
   limits: string[];
+}
+
+interface ExampleStep {
+  tool?: string | undefined;
+  text: string;
+}
+
+interface Example {
+  request: string;
+  steps: ExampleStep[];
+  note: string;
+}
+
+/** Russian steps are matched to the English ones by position. */
+interface ExampleRu {
+  request: string;
+  steps: string[];
+  note: string;
 }
 
 interface Props {
@@ -84,6 +103,7 @@ interface Props {
         findings: { scenario: string; result: string; caveat: string }[];
       }
     | undefined;
+  example?: Example | undefined;
   ru?: RussianCopy | undefined;
   /** True when the page also carries a Russian prose body in the `ru` slot. */
   hasRussianBody?: boolean | undefined;
@@ -112,6 +132,7 @@ const {
   maintainer,
   pilot,
   workflow,
+  example,
   ru,
   hasRussianBody = false,
 } = Astro.props;
@@ -267,6 +288,19 @@ const breadcrumbSchema = {
           data-ru={L.tabOverview.ru}>{L.tabOverview.en}</a
         >
         {
+          example && (
+            <a
+              id="recipe-tab-examples"
+              href="#examples"
+              data-recipe-tab="examples"
+              data-en={L.tabExamples.en}
+              data-ru={L.tabExamples.ru}
+            >
+              {L.tabExamples.en}
+            </a>
+          )
+        }
+        {
           pilot && (
             <a
               id="recipe-tab-pilot"
@@ -378,19 +412,96 @@ const breadcrumbSchema = {
         )
       }
       {
-        pilot && (
+        (example || pilot) && (
           <div class="recipe-overview-result">
-            <a
-              href="#pilot-results"
-              data-en={L.seeBenefits.en}
-              data-ru={L.seeBenefits.ru}
-            >
-              {L.seeBenefits.en}
-            </a>
+            {example && (
+              <a
+                href="#examples"
+                data-en={L.seeExample.en}
+                data-ru={L.seeExample.ru}
+              >
+                {L.seeExample.en}
+              </a>
+            )}
+            {pilot && (
+              <a
+                href="#pilot-results"
+                data-en={L.seeBenefits.en}
+                data-ru={L.seeBenefits.ru}
+              >
+                {L.seeBenefits.en}
+              </a>
+            )}
           </div>
         )
       }
     </section>
+    {
+      example && (
+        <section
+          id="examples"
+          class="recipe-example"
+          data-recipe-tab-panel
+          aria-labelledby="recipe-example-heading"
+        >
+          <header class="recipe-example-heading">
+            <h2
+              id="recipe-example-heading"
+              data-en={L.exampleHeading.en}
+              data-ru={L.exampleHeading.ru}
+            >
+              {L.exampleHeading.en}
+            </h2>
+          </header>
+          <p class="recipe-example-request">
+            <span data-en={L.exampleRequest.en} data-ru={L.exampleRequest.ru}>
+              {L.exampleRequest.en}
+            </span>
+            <q
+              data-en={ru?.example ? example.request : undefined}
+              data-ru={ru?.example?.request}
+            >
+              {example.request}
+            </q>
+          </p>
+          <ol class="recipe-example-steps">
+            {example.steps.map((step, index) => (
+              <li>
+                <span class="recipe-example-number" aria-hidden="true">
+                  0{index + 1}
+                </span>
+                <p>
+                  {step.tool ? (
+                    <strong class="recipe-example-tool">{step.tool}:</strong>
+                  ) : (
+                    <strong
+                      class="recipe-example-tool"
+                      data-en={`${L.exampleAgent.en}:`}
+                      data-ru={`${L.exampleAgent.ru}:`}
+                    >
+                      {L.exampleAgent.en}:
+                    </strong>
+                  )}{" "}
+                  <span
+                    data-en={ru?.example ? step.text : undefined}
+                    data-ru={ru?.example?.steps[index]}
+                  >
+                    {step.text}
+                  </span>
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p
+            class="recipe-example-note"
+            data-en={ru?.example ? example.note : undefined}
+            data-ru={ru?.example?.note}
+          >
+            {example.note}
+          </p>
+        </section>
+      )
+    }
     <RecipeSetup
       tools={tools}
       downloadHref={downloadHref}

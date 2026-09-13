@@ -97,15 +97,15 @@ msgstr "<0>Открытый исходный код, разработка на �
 #~ msgid "<0>Why project context belongs in Git</0> works through each claim, including what the alternatives give up."
 #~ msgstr "<0>Почему контексту проекта место в Git</0> разбирает каждое утверждение, включая то, чем жертвуют альтернативы."
 
-#: src/data/recipe-labels.ts:109
+#: src/data/recipe-labels.ts:115
 msgid "1. Install {names}"
 msgstr "1. Установите {names}"
 
-#: src/data/recipe-labels.ts:65
+#: src/data/recipe-labels.ts:71
 msgid "2. Add instructions"
 msgstr "2. Добавьте инструкции"
 
-#: src/data/recipe-labels.ts:75
+#: src/data/recipe-labels.ts:81
 msgid "3. Check in a new session"
 msgstr "3. Проверьте в новой сессии"
 
@@ -197,7 +197,7 @@ msgstr "Скилл задаёт порядок действий агента д�
 #~ msgid "A sweep of the whole knowledge base, with <0>--deep</0>."
 #~ msgstr "Проход по всей базе знаний, если добавить <0>--deep</0>."
 
-#: src/data/recipe-labels.ts:17
+#: src/data/recipe-labels.ts:18
 msgid "About this integration"
 msgstr "Об этой интеграции"
 
@@ -238,7 +238,8 @@ msgstr "Подключите плагин, если агент его подде
 msgid "After launch, open <0>http://localhost</0> in your browser."
 msgstr "После запуска откройте <0>http://localhost</0> в браузере."
 
-#: src/data/recipe-labels.ts:36
+#: src/data/recipe-labels.ts:26
+#: src/data/recipe-labels.ts:42
 msgid "Agent"
 msgstr "Агент"
 
@@ -585,7 +586,7 @@ msgstr "Обратитесь к агенту с запросом из приме
 #~ msgid "Behavior that spans folders works too. \"Capture how webhook delivery works\" pulls in every part of it."
 #~ msgstr "Поведение, размазанное по папкам, тоже годится. «Опишите, как устроена доставка вебхуков» соберёт все его части."
 
-#: src/data/recipe-labels.ts:16
+#: src/data/recipe-labels.ts:17
 msgid "Benefits & limits"
 msgstr "Польза и ограничения"
 
@@ -653,7 +654,7 @@ msgstr "Можно ли использовать свою установку CLI
 #~ msgid "Catch drift before you merge"
 #~ msgstr "Ловите расхождения до мержа"
 
-#: src/data/recipe-labels.ts:24
+#: src/data/recipe-labels.ts:30
 msgid "Category"
 msgstr "Категория"
 
@@ -771,11 +772,11 @@ msgstr "FAQ по CLI"
 #~ msgid "CLI in action"
 #~ msgstr "CLI в действии"
 
-#: src/data/recipe-labels.ts:23
+#: src/data/recipe-labels.ts:29
 msgid "Close details"
 msgstr "Закрыть подробности"
 
-#: src/data/recipe-labels.ts:64
+#: src/data/recipe-labels.ts:70
 msgid "Close installation"
 msgstr "Закрыть установку"
 
@@ -803,7 +804,7 @@ msgstr "Codex CLI 0.117+"
 #~ msgid "codex plugin marketplace add"
 #~ msgstr "codex plugin marketplace add"
 
-#: src/data/recipe-labels.ts:74
+#: src/data/recipe-labels.ts:80
 msgid "Collapse instructions ↑"
 msgstr "Свернуть инструкции ↑"
 
@@ -819,7 +820,7 @@ msgstr "Свернуть инструкции ↑"
 #~ msgid "Confirm the context layer holds what you expect before you start editing real code with it loaded."
 #~ msgstr "Убедитесь, что слой контекста содержит ровно то, что вы ждёте, прежде чем начнёте править код с этим контекстом."
 
-#: src/data/recipe-labels.ts:115
+#: src/data/recipe-labels.ts:121
 msgid "Confirm you can use {names}, and have read this project’s cooperation instructions."
 msgstr "Подтвердите, что можете использовать {names} и прочитали инструкции по совместной работе в этом проекте."
 
@@ -832,7 +833,7 @@ msgstr "Подтвердите, что можете использовать {na
 msgid "Connect the agents your team uses"
 msgstr "Подключите агентов, которыми пользуется ваша команда"
 
-#: src/data/recipe-labels.ts:63
+#: src/data/recipe-labels.ts:69
 msgid "Connect the two tools"
 msgstr "Соедините два инструмента"
 
@@ -892,7 +893,7 @@ msgstr "Контекстная инженерия для AI-агентов ра�
 #~ msgid "Continue the cascade:"
 #~ msgstr "Продолжите каскад:"
 
-#: src/data/recipe-labels.ts:68
+#: src/data/recipe-labels.ts:74
 msgid "Copied ✓"
 msgstr "Скопировано ✓"
 
@@ -915,11 +916,11 @@ msgstr "Копировать"
 msgid "Copy command"
 msgstr "Скопировать команду"
 
-#: src/data/recipe-labels.ts:67
+#: src/data/recipe-labels.ts:73
 msgid "Copy instructions"
 msgstr "Скопировать инструкции"
 
-#: src/data/recipe-labels.ts:72
+#: src/data/recipe-labels.ts:78
 msgid "Copy the selected instruction text manually."
 msgstr "Скопируйте выделенный текст инструкций вручную."
 
@@ -957,7 +958,7 @@ msgstr "Cursor 2.5+"
 #~ msgid "Daily, before editing"
 #~ msgstr "Каждый день, перед правками"
 
-#: src/data/recipe-labels.ts:35
+#: src/data/recipe-labels.ts:41
 msgid "Date"
 msgstr "Дата"
 
@@ -1263,15 +1264,19 @@ msgstr "пример"
 msgid "Example project documents"
 msgstr "Пример документов проекта"
 
+#: src/data/recipe-labels.ts:16
+msgid "Examples"
+msgstr "Примеры"
+
 #: src/data/recipe-labels.ts:13
 msgid "Experimental"
 msgstr "Экспериментальная"
 
-#: src/data/recipe-labels.ts:84
+#: src/data/recipe-labels.ts:90
 msgid "Experimental · Not yet verified"
 msgstr "Экспериментальная · Пока не проверена"
 
-#: src/data/recipe-labels.ts:57
+#: src/data/recipe-labels.ts:63
 msgid "Experimental integrations have setup instructions available. Joint runs have not been verified yet."
 msgstr "У экспериментальных интеграций есть инструкции по настройке. Совместные прогоны пока не проверены."
 
@@ -1283,7 +1288,7 @@ msgstr "У экспериментальных интеграций есть ин
 msgid "Explore Archcore on GitHub."
 msgstr "Archcore на GitHub."
 
-#: src/data/recipe-labels.ts:41
+#: src/data/recipe-labels.ts:47
 msgid "failed"
 msgstr "не пройдено"
 
@@ -1500,7 +1505,7 @@ msgstr "У меня уже есть CLAUDE.md или .cursor/rules. Начина
 #~ msgid "I have an idea, no context yet"
 #~ msgstr "Есть идея, контекста ещё нет"
 
-#: src/data/recipe-labels.ts:80
+#: src/data/recipe-labels.ts:86
 msgid "If the agent reports a missing tool or instruction file, finish that setup before starting work."
 msgstr "Если агент сообщает, что инструмента или файла инструкций нет, завершите эту настройку до начала работы."
 
@@ -1649,20 +1654,20 @@ msgstr "Файлы инструкций дают плоскую память: о
 #~ msgid "Instruction files grow into walls of text."
 #~ msgstr "Файлы с инструкциями разрастаются в стену текста."
 
-#: src/data/recipe-labels.ts:25
+#: src/data/recipe-labels.ts:31
 msgid "Instruction revision"
 msgstr "Версия инструкций"
 
-#: src/data/recipe-labels.ts:18
+#: src/data/recipe-labels.ts:19
 msgid "Integration guide"
 msgstr "Руководство по интеграции"
 
-#: src/data/recipe-labels.ts:66
+#: src/data/recipe-labels.ts:72
 msgid "Integration instructions"
 msgstr "Инструкции интеграции"
 
 #: src/data/navigation.ts:29
-#: src/data/recipe-labels.ts:51
+#: src/data/recipe-labels.ts:57
 msgid "Integrations"
 msgstr "Интеграции"
 
@@ -1733,7 +1738,7 @@ msgstr "Материалы"
 #~ msgid "Like where this is going? Star it on GitHub."
 #~ msgstr "Нравится, куда это движется? Поставьте звезду на GitHub."
 
-#: src/data/recipe-labels.ts:21
+#: src/data/recipe-labels.ts:27
 msgid "Limits"
 msgstr "Ограничения"
 
@@ -1781,7 +1786,7 @@ msgstr "Ограничения"
 msgid "macOS / Linux"
 msgstr "macOS / Linux"
 
-#: src/data/recipe-labels.ts:27
+#: src/data/recipe-labels.ts:33
 msgid "Maintainer"
 msgstr "Кто поддерживает"
 
@@ -1910,7 +1915,7 @@ msgstr "Гайд по миграции"
 #~ msgid "Migration resources"
 #~ msgstr "Материалы по миграции"
 
-#: src/data/recipe-labels.ts:37
+#: src/data/recipe-labels.ts:43
 msgid "Model"
 msgstr "Модель"
 
@@ -1963,7 +1968,7 @@ msgstr "Модель"
 #~ msgid "No install needed. See exactly what you'd run."
 #~ msgstr "Без установки. Посмотри, что именно запустишь."
 
-#: src/data/recipe-labels.ts:33
+#: src/data/recipe-labels.ts:39
 msgid "No joint run has been recorded for this instruction revision."
 msgstr "Для этой версии инструкций совместных прогонов не записано."
 
@@ -2190,6 +2195,10 @@ msgstr "Один цикл Archcore на живой фиче, от init до revi
 #~ msgid "One project context. Every coding agent."
 #~ msgstr "Один контекст проекта. Любой агент разработки."
 
+#: src/data/recipe-labels.ts:23
+msgid "One request, start to finish"
+msgstr "Один запрос от начала до конца"
+
 #: src/components/sections/context-engineering-section.tsx:34
 #~ msgid "One setup serves every MCP-aware coding agent."
 #~ msgstr "Одна настройка обслуживает любого агента, который умеет в MCP."
@@ -2250,23 +2259,23 @@ msgstr "Открытый код · Локальное хранение"
 #~ msgid "Or invoke the MCP <0>product_track</0> prompt directly for the full cascade."
 #~ msgstr "Или вызовите MCP-промпт <0>product_track</0> напрямую — он отработает весь каскад."
 
-#: src/data/recipe-labels.ts:55
+#: src/data/recipe-labels.ts:61
 msgid "Or make Archcore part of your own setup"
 msgstr "Или сделайте Archcore частью своей оболочки"
 
-#: src/data/recipe-labels.ts:39
+#: src/data/recipe-labels.ts:45
 msgid "Outcome"
 msgstr "Результат"
 
-#: src/data/recipe-labels.ts:28
+#: src/data/recipe-labels.ts:34
 msgid "Page updated"
 msgstr "Страница обновлена"
 
-#: src/data/recipe-labels.ts:40
+#: src/data/recipe-labels.ts:46
 msgid "passed"
 msgstr "пройдено"
 
-#: src/data/recipe-labels.ts:70
+#: src/data/recipe-labels.ts:76
 msgid "Paste into your project instruction file, then start a new session."
 msgstr "Вставьте текст в файл инструкций проекта и откройте новую сессию."
 
@@ -2599,6 +2608,10 @@ msgstr "Зафиксируйте решение: берём token bucket в Redi
 #~ msgid "Reports missing relations, orphaned documents, and decisions whose target code paths have moved."
 #~ msgstr "Покажет недостающие связи, осиротевшие документы и решения, чьи целевые пути в коде уехали."
 
+#: src/data/recipe-labels.ts:24
+msgid "Request"
+msgstr "Запрос"
+
 #: src/components/sections/how-to-use-wizard-section.tsx:240
 #~ msgid "Restart"
 #~ msgstr "Сначала"
@@ -2763,7 +2776,7 @@ msgstr "Сохраняет выбор и его обоснование как з
 #~ msgid "Say what you want. Archcore writes it down."
 #~ msgstr "Скажите, что вам нужно. Archcore это запишет."
 
-#: src/data/recipe-labels.ts:38
+#: src/data/recipe-labels.ts:44
 msgid "Scenario"
 msgstr "Сценарий"
 
@@ -2779,7 +2792,11 @@ msgstr "Определите объём новой функции или реф�
 #~ msgid "Scoped rules"
 #~ msgstr "Правила с областью действия"
 
-#: src/data/recipe-labels.ts:20
+#: src/data/recipe-labels.ts:21
+msgid "See an example →"
+msgstr "Смотреть пример →"
+
+#: src/data/recipe-labels.ts:22
 msgid "See benefits and limits →"
 msgstr "Смотреть пользу и ограничения →"
 
@@ -2875,7 +2892,7 @@ msgstr "Настраиваете конкретного агента?"
 #~ msgid "Should I install the plugin instead?"
 #~ msgstr "Не лучше ли установить плагин?"
 
-#: src/data/recipe-labels.ts:73
+#: src/data/recipe-labels.ts:79
 msgid "Show full instructions ↓"
 msgstr "Показать инструкции целиком ↓"
 
@@ -2936,15 +2953,15 @@ msgstr "Показать инструкции целиком ↓"
 msgid "Something went wrong. Please try again."
 msgstr "Что-то пошло не так. Попробуйте ещё раз."
 
-#: src/data/recipe-labels.ts:26
+#: src/data/recipe-labels.ts:32
 msgid "Source"
 msgstr "Источник"
 
-#: src/data/recipe-labels.ts:22
+#: src/data/recipe-labels.ts:28
 msgid "Source & verification"
 msgstr "Источник и проверка"
 
-#: src/data/recipe-labels.ts:82
+#: src/data/recipe-labels.ts:88
 msgid "Source & verification ↗"
 msgstr "Источник и проверка ↗"
 
@@ -3037,7 +3054,7 @@ msgstr "Поставить звезду плагину на GitHub"
 #~ msgid "Star the plugin on GitHub"
 #~ msgstr "Поставить звезду плагину на GitHub"
 
-#: src/data/recipe-labels.ts:77
+#: src/data/recipe-labels.ts:83
 msgid "Start a new session in this project and ask your agent:"
 msgstr "Откройте новую сессию в этом проекте и попросите агента:"
 
@@ -3308,7 +3325,7 @@ msgstr "Решение, которое уже выбрало Redis, и прав�
 #~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 #~ msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
 
-#: src/data/recipe-labels.ts:19
+#: src/data/recipe-labels.ts:20
 msgid "The instructions ask your agent to:"
 msgstr "Инструкции просят агента:"
 
@@ -3446,6 +3463,10 @@ msgstr "Плагин работает в Claude Code, Cursor 2.5+, Codex CLI 0.1
 #~ msgid "The right rules and ADRs arrive before your edit, then review the branch."
 #~ msgstr "Нужные правила и ADR приходят до вашей правки, а потом вы проверяете ветку."
 
+#: src/data/recipe-labels.ts:24
+#~ msgid "The same request, with and without the instructions"
+#~ msgstr "Один и тот же запрос — без инструкций и с ними"
+
 #: src/components/sections/plugin-hero-section.tsx:115
 msgid "The second command connects MCP to this project. Restart Copilot afterwards. This integration is for Copilot CLI."
 msgstr "Вторая команда подключает MCP к этому проекту. После неё перезапустите Copilot. Интеграция предназначена для Copilot CLI."
@@ -3495,7 +3516,7 @@ msgstr "Затем выполните archcore mcp install --agent cursor в п�
 #~ msgid "There is no command for this one. It runs on whatever you have already written down, which is what makes the rest of this list worth doing."
 #~ msgstr "Здесь команды нет вообще. Она работает на том, что вы уже записали, и потому весь остальной список имеет смысл."
 
-#: src/data/recipe-labels.ts:29
+#: src/data/recipe-labels.ts:35
 msgid "This revision is not published yet."
 msgstr "Эта версия пока не опубликована."
 
@@ -3515,7 +3536,7 @@ msgstr "Эта версия пока не опубликована."
 #~ msgid "Three install commands give Claude Code, Cursor, and Codex CLI a memory that lives next to the code — and slash commands to capture new decisions as they happen."
 #~ msgstr "Три команды установки дают Claude Code, Cursor и Codex CLI память, которая живёт рядом с кодом — и slash-команды, чтобы фиксировать новые решения по ходу работы."
 
-#: src/data/recipe-labels.ts:45
+#: src/data/recipe-labels.ts:51
 msgid "To update, review changes to the instructions before replacing your copy. To disconnect, remove the added instructions from your project file. Both tools and their documents stay in place."
 msgstr "Чтобы обновить, сначала посмотрите, что изменилось в инструкциях, и только потом заменяйте свою копию. Чтобы отключить, удалите добавленные инструкции из файла проекта. Оба инструмента и их документы остаются на месте."
 
@@ -3579,15 +3600,15 @@ msgstr "Чтобы обновить, сначала посмотрите, что
 #~ msgid "Typed documents with relations, not one growing file."
 #~ msgstr "Типизированные документы со связями, а не один разрастающийся файл."
 
-#: src/data/recipe-labels.ts:42
+#: src/data/recipe-labels.ts:48
 msgid "unexecuted"
 msgstr "не выполнено"
 
-#: src/data/recipe-labels.ts:43
+#: src/data/recipe-labels.ts:49
 msgid "Update or disconnect"
 msgstr "Обновление и отключение"
 
-#: src/data/recipe-labels.ts:53
+#: src/data/recipe-labels.ts:59
 msgid "Use Archcore with the tools you already run, or make it part of your own agent setup."
 msgstr "Используйте Archcore вместе с инструментами, которые у вас уже есть, или сделайте его частью своей оболочки агента."
 
@@ -3624,15 +3645,15 @@ msgstr "Другой MCP-агент? Перейдите к CLI"
 #~ msgid "Using Cursor or Codex CLI? See all install paths"
 #~ msgstr "Используешь Cursor или Codex CLI? Все способы установки"
 
-#: src/data/recipe-labels.ts:30
+#: src/data/recipe-labels.ts:36
 msgid "Verification"
 msgstr "Проверка"
 
-#: src/data/recipe-labels.ts:83
+#: src/data/recipe-labels.ts:89
 msgid "Verification covers recorded runs only"
 msgstr "Проверка охватывает только записанные прогоны"
 
-#: src/data/recipe-labels.ts:31
+#: src/data/recipe-labels.ts:37
 msgid "Verification records"
 msgstr "Записи о проверках"
 
@@ -3962,9 +3983,13 @@ msgstr "Windows"
 #~ msgid "With Archcore"
 #~ msgstr "С Archcore"
 
+#: src/data/recipe-labels.ts:28
+
 #: src/components/sections/before-after-section.tsx:22
 #~ msgid "Without Archcore"
 #~ msgstr "Без Archcore"
+
+#: src/data/recipe-labels.ts:27
 
 #: src/components/sections/hero-section.tsx:180
 #~ msgid "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"

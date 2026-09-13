@@ -62,6 +62,19 @@ ${data.workflow.note}
     : ""
 }
 ${
+  data.example
+    ? `
+## Example
+
+Request: “${data.example.request}”
+
+${data.example.steps.map((step, index) => `${index + 1}. **${step.tool ?? "Agent"}:** ${step.text}`).join("\n")}
+
+${data.example.note}
+`
+    : ""
+}
+${
   data.pilot
     ? `
 ## Benefits & limits

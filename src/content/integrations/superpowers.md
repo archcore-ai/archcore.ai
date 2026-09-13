@@ -80,6 +80,19 @@ pilot:
     - scenario: "Starting with /archcore:plan"
       result: "The command finishes before brainstorming begins."
       caveat: "Superpowers can take on design or execution work the command leaves open."
+example:
+  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Use superpowers:brainstorming for the design and superpowers:writing-plans for the plan. Check existing project decisions and report any conflict before implementing."
+  steps:
+    - tool: "Archcore"
+      text: "Brainstorming opens with a search of the project records, before the agent reads any repository file. It finds the accepted decision on integer cents, reports the conflict with the float request and stops. No file has changed."
+    - tool: "Superpowers"
+      text: "You keep integer cents. Brainstorming produces a design file under docs/superpowers/specs/. Until you approve that file, the agent writes no code, no tests and no records."
+    - tool: "Archcore"
+      text: "You approve the design file. The decisions it settles become draft ADRs. Accepting them is a separate step, and the money decision stays as it was."
+    - tool: "Superpowers"
+      text: "Writing-plans puts the execution plan in docs/superpowers/plans/. You ask for the implementation, the plan runs, the tests pass, and the new ADRs stay draft."
+    - text: "A new session finds the design, the plan and the decision records and works from them, with draft decisions kept apart from accepted ones."
+  note: "This is what the instructions ask for, not a recorded run. No verification record is attached to this instruction revision yet."
 limits:
   - "Instructions are copied from the Archcore + Superpowers section of AGENTS.md. CLAUDE.md imports that file."
   - "This instruction revision has no linked verification record."
@@ -125,6 +138,15 @@ ru:
       - scenario: "Начало с /archcore:plan"
         result: "Команда доходит до конца прежде, чем начнётся обсуждение."
         caveat: "Superpowers может взять на себя проектирование или выполнение, которое команда оставила открытым."
+  example:
+    request: "Добавь скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используй числа с плавающей точкой. Проектируй через superpowers:brainstorming, планируй через superpowers:writing-plans. Проверь принятые решения проекта и сообщи о противоречии до реализации."
+    steps:
+      - "Обсуждение начинается с поиска по записям проекта, раньше, чем агент откроет хоть один файл репозитория. Он находит принятое решение о целых центах, сообщает о противоречии с плавающей точкой и останавливается. Ни один файл не изменён."
+      - "Вы оставляете целые центы. Обсуждение даёт файл проектного решения в docs/superpowers/specs/. Пока вы его не одобрите, агент не пишет ни код, ни тесты, ни записи."
+      - "Вы одобряете файл. Закреплённые им решения становятся черновыми ADR. Их принятие остаётся отдельным шагом, а решение о деньгах не тронуто."
+      - "writing-plans кладёт план выполнения в docs/superpowers/plans/. Вы просите реализовать, план выполняется, тесты проходят, новые ADR остаются черновиками."
+      - "Новая сессия находит проектное решение, план и записи решений и работает по ним, отделяя черновые решения от принятых."
+    note: "Так описывают инструкции, это не запись прогона. К этой редакции инструкций пока не привязана ни одна запись о проверке."
   limits:
     - "Инструкции скопированы из раздела «Archcore + Superpowers» файла AGENTS.md. CLAUDE.md подключает этот файл."
     - "У этой версии инструкций нет связанной записи о проверке."
