@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "./SiteLayout.astro";
+import SeoMeta from "../components/SeoMeta.astro";
 import RecipeMark from "../components/RecipeMark.astro";
 import RecipeSetup from "../components/RecipeSetup.astro";
 import ClosingCta from "../components/ClosingCta.astro";
@@ -116,7 +117,9 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
-const image = `${SITE_URL}/og-image.png`;
+// One card per recipe, built from the entry's own heading and summary:
+// a share of "Serena + Archcore" should not preview as the home page.
+const image = `${SITE_URL}/og/integrations/${recipe}.png`;
 const shortDigest = digest.slice(0, 12);
 
 const DATE_OPTIONS = {
@@ -173,22 +176,15 @@ const breadcrumbSchema = {
 
 <SiteLayout>
   <Fragment slot="head">
-    <meta name="robots" content="index, follow" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="text/markdown" href={markdownTwin} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Archcore" />
-    <meta property="og:image" content={image} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@archcore_ai" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <SeoMeta
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={heading}
+      markdownTwin={markdownTwin}
+      modifiedTime={updatedDate.toISOString()}
+    />
     <script
       is:inline
       type="application/ld+json"

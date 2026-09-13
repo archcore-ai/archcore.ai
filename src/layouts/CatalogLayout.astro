@@ -1,6 +1,7 @@
 ---
 import PageIntro from "../components/PageIntro.astro";
 import SiteLayout from "./SiteLayout.astro";
+import SeoMeta from "../components/SeoMeta.astro";
 import RecipeMark from "../components/RecipeMark.astro";
 
 interface CatalogItem {
@@ -38,6 +39,7 @@ interface Props {
 const SITE_URL = "https://archcore.ai";
 const { title, description, h1, intro, h1Ru, introRu, items } = Astro.props;
 const canonical = `${SITE_URL}/integrations/`;
+const image = `${SITE_URL}/og/integrations.png`;
 
 const listingSchema = {
   "@context": "https://schema.org",
@@ -60,18 +62,13 @@ const listingSchema = {
 
 <SiteLayout>
   <Fragment slot="head">
-    <meta name="robots" content="index, follow" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Archcore" />
-    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@archcore_ai" />
+    <SeoMeta
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={h1}
+    />
     <script
       is:inline
       type="application/ld+json"

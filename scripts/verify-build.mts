@@ -27,6 +27,14 @@ function check(condition: unknown, message: string) {
   if (!condition) errors.push(message);
 }
 const pages = new Map(routes.map((route) => [route, readPage(route)]));
+// Pillars are the only root-level content routes, so they cannot be told from
+// a marketing route by their path alone. The collection is the list.
+const pillarRoutes = new Set(
+  fs
+    .readdirSync("src/content/pillars")
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => `/${file.replace(/\.md$/, "")}/`)
+);
 const retiredClaims = [
   "a memory that lives next to the code",
   "captures every new decision back into Git",
@@ -62,15 +70,63 @@ const descriptions = new Set<string>();
 for (const [route, $] of pages) {
   const title = $("title").text();
   const description = $("meta[name=description]").attr("content") ?? "";
-  check($("title").length === 1 && title.length > 0 && title.length <= 60, `${route}: title must have 1–60 characters`);
-  check($("meta[name=description]").length === 1 && description.length > 0 && description.length <= 160, `${route}: description must have 1–160 characters`);
+  check(
+    $("title").length === 1 && title.length > 0 && title.length <= 60,
+    `${route}: title must have 1–60 characters`
+  );
+  check(
+    $("meta[name=description]").length === 1 &&
+      description.length > 0 &&
+      description.length <= 160,
+    `${route}: description must have 1–160 characters`
+  );
   check(!titles.has(title), `${route}: unique title`);
   check(!descriptions.has(description), `${route}: unique description`);
   titles.add(title);
   descriptions.add(description);
   const ogImage = $('meta[property="og:image"]').attr("content");
   if (ogImage?.startsWith("https://archcore.ai/")) {
-    check(fs.existsSync(path.join(root, new URL(ogImage).pathname)), `${route}: OG image exists`);
+    check(
+      fs.existsSync(path.join(root, new URL(ogImage).pathname)),
+      `${route}: OG image exists`
+    );
+  }
+
+  // Every indexable route ships a complete social card. A scraper reads this
+  // block and nothing else, so a page missing one tag previews as a bare link.
+  for (const [property, expected] of [
+    ['meta[property="og:type"]', undefined],
+    ['meta[property="og:title"]', title],
+    ['meta[property="og:description"]', description],
+    ['meta[property="og:url"]', `https://archcore.ai${route}`],
+    ['meta[property="og:site_name"]', "Archcore"],
+    ['meta[property="og:image"]', undefined],
+    ['meta[property="og:image:width"]', "1200"],
+    ['meta[property="og:image:height"]', "630"],
+    ['meta[property="og:image:alt"]', undefined],
+    ['meta[name="twitter:card"]', "summary_large_image"],
+    ['meta[name="twitter:title"]', title],
+    ['meta[name="twitter:description"]', description],
+    ['meta[name="twitter:image"]', ogImage],
+  ] as const) {
+    const tag = $(property);
+    check(tag.length === 1, `${route}: exactly one ${property}`);
+    const content = tag.attr("content");
+    check(!!content, `${route}: ${property} has content`);
+    if (expected !== undefined)
+      check(content === expected, `${route}: ${property} matches the page`);
+  }
+  // A shared card is right for the marketing routes and wrong everywhere else:
+  // a collection page describes one article, pillar, or recipe, and its preview
+  // has to say which one.
+  if (
+    /^\/(blog|learn|integrations)\/.+/.test(route) ||
+    pillarRoutes.has(route)
+  ) {
+    check(
+      ogImage?.startsWith("https://archcore.ai/og/"),
+      `${route}: own OG card rather than the site-wide one`
+    );
   }
 
   const prose = normalize(
@@ -259,17 +315,35 @@ for (const [route, $] of pages) {
     const schema = JSON.parse($(script).text());
     if (schema["@type"] === "Article" || schema["@type"] === "WebPage") {
       if (schema.dateModified) {
-        const lastmod = sitemap("url").filter((_, el) => sitemap(el).find("loc").text() === `https://archcore.ai${route}`).find("lastmod").text();
-        check(lastmod === schema.dateModified.slice(0, 10), `${route}: sitemap and schema modification dates agree`);
+        const lastmod = sitemap("url")
+          .filter(
+            (_, el) =>
+              sitemap(el).find("loc").text() === `https://archcore.ai${route}`
+          )
+          .find("lastmod")
+          .text();
+        check(
+          lastmod === schema.dateModified.slice(0, 10),
+          `${route}: sitemap and schema modification dates agree`
+        );
       }
     }
     if (schema["@type"] === "Article") {
-      check($("nav[aria-label=Breadcrumb]").length === 1, `${route}: visible article breadcrumbs`);
-      check(new Date(schema.dateModified) >= new Date(schema.datePublished), `${route}: updated date follows publication`);
+      check(
+        $("nav[aria-label=Breadcrumb]").length === 1,
+        `${route}: visible article breadcrumbs`
+      );
+      check(
+        new Date(schema.dateModified) >= new Date(schema.datePublished),
+        `${route}: updated date follows publication`
+      );
     }
     if (schema["@type"] === "BreadcrumbList") {
       for (const item of schema.itemListElement.slice(0, -1)) {
-        check($(`nav a[href="${new URL(item.item).pathname}"]`).length > 0, `${route}: breadcrumb link matches schema`);
+        check(
+          $(`nav a[href="${new URL(item.item).pathname}"]`).length > 0,
+          `${route}: breadcrumb link matches schema`
+        );
       }
     }
     if (schema["@type"] === "FAQPage") {
@@ -395,8 +469,16 @@ check(
   "Removed team setup route must not be published"
 );
 for (const slug of ["agents-md", "claude-md"]) {
-  check(!routes.includes(`/${slug}/`) && !fs.existsSync(path.join(root, slug, "index.html")) && !fs.existsSync(path.join(root, `${slug}.md`)), `${slug}: retired HTML and Markdown routes stay unpublished`);
-  check(!llms.includes(`https://archcore.ai/${slug}/`), `${slug}: retired route absent from llms.txt`);
+  check(
+    !routes.includes(`/${slug}/`) &&
+      !fs.existsSync(path.join(root, slug, "index.html")) &&
+      !fs.existsSync(path.join(root, `${slug}.md`)),
+    `${slug}: retired HTML and Markdown routes stay unpublished`
+  );
+  check(
+    !llms.includes(`https://archcore.ai/${slug}/`),
+    `${slug}: retired route absent from llms.txt`
+  );
 }
 const reached = new Set<string>(["/"]);
 const pending = ["/"];
@@ -405,13 +487,42 @@ while (pending.length) {
   const $ = pages.get(route)!;
   for (const a of $("a[href]")) {
     const url = new URL($(a).attr("href")!, `https://archcore.ai${route}`);
-    if (url.origin === "https://archcore.ai" && pages.has(url.pathname) && !reached.has(url.pathname)) {
+    if (
+      url.origin === "https://archcore.ai" &&
+      pages.has(url.pathname) &&
+      !reached.has(url.pathname)
+    ) {
       reached.add(url.pathname);
       pending.push(url.pathname);
     }
   }
 }
-for (const route of routes) check(reached.has(route), `${route}: reachable from home through HTML links`);
+for (const route of routes)
+  check(reached.has(route), `${route}: reachable from home through HTML links`);
+
+// Every page the build publishes is either in the sitemap or deliberately kept
+// out of the index. Anything else is a route no crawler will ever be told about.
+const published: string[] = [];
+const walk = (dir: string) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(full);
+    else if (entry.name === "index.html")
+      published.push(
+        `/${path.relative(root, dir).split(path.sep).filter(Boolean).join("/")}${path.relative(root, dir) ? "/" : ""}`
+      );
+  }
+};
+walk(root);
+for (const route of published) {
+  if (routes.includes(route)) continue;
+  const $ = load(fs.readFileSync(path.join(root, route, "index.html"), "utf8"));
+  check(
+    $("meta[name=robots]").attr("content")?.includes("noindex"),
+    `${route}: published route is missing from the sitemap and is not noindex`
+  );
+}
+
 if (errors.length)
   throw new Error(`Build verification failed:\n${errors.join("\n")}`);
 console.log(

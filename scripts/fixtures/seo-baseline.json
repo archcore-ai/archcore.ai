@@ -184,7 +184,7 @@
     "title": "Archcore Blog — Context Engineering for AI Coding Agents",
     "description": "Guides and comparisons on context engineering, spec-driven development, project context, and agent tooling from the team behind Archcore.",
     "canonical": "https://archcore.ai/blog/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/blog.png",
     "headings": [
       "Blog"
     ],
@@ -655,7 +655,7 @@
     "title": "Learn — Project Context for AI Coding Agents",
     "description": "Learn how project context, context engineering, and harness engineering fit together, with comparisons and examples for AI coding agents.",
     "canonical": "https://archcore.ai/learn/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/learn.png",
     "headings": [
       "Learn"
     ],
@@ -1476,7 +1476,7 @@
     "title": "Archcore Integrations — Use It With Your Existing Tools",
     "description": "Use Archcore with the tools your agent already runs, or make it part of your own setup over MCP. Copy the setup instructions for your project.",
     "canonical": "https://archcore.ai/integrations/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/integrations.png",
     "headings": [
       "Integrations",
       "Archcore + Superpowers"
@@ -1513,7 +1513,7 @@
     "title": "Superpowers + Archcore Integration | Setup",
     "description": "Connect Superpowers + Archcore to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent.",
     "canonical": "https://archcore.ai/integrations/superpowers/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/integrations/superpowers.png",
     "headings": [
       "Archcore + Superpowers",
       "How Archcore + Superpowers work together",
@@ -1534,7 +1534,7 @@
         "description": "Connect Archcore + Superpowers to bring project decisions into your agent’s work. Copy the integration instructions and set up your agent.",
         "dateModified": "2026-09-08T00:00:00.000Z",
         "url": "https://archcore.ai/integrations/superpowers/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/integrations/superpowers.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -1575,7 +1575,7 @@
     "title": "Context Engineering for Claude Code — Archcore",
     "description": "Give Claude Code structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
     "canonical": "https://archcore.ai/claude-code/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/claude-code.png",
     "headings": [
       "Persistent Project Context for Claude Code",
       "What Archcore adds to Claude Code",
@@ -1600,7 +1600,7 @@
         "description": "Give Claude Code structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/claude-code/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/claude-code.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -1753,7 +1753,7 @@
     "title": "Project Context for Codex CLI — Archcore",
     "description": "Give Codex CLI structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
     "canonical": "https://archcore.ai/codex/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/codex.png",
     "headings": [
       "Context Engineering for Codex CLI",
       "What Archcore adds to Codex CLI",
@@ -1777,7 +1777,7 @@
         "description": "Give Codex CLI structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/codex/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/codex.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -1906,7 +1906,7 @@
     "title": "Context Engineering for AI Coding Agents — Archcore",
     "description": "Learn how context engineering gives AI coding agents structured, relevant project knowledge: specs, architecture, decisions, rules, plans, and more.",
     "canonical": "https://archcore.ai/context-engineering/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/context-engineering.png",
     "headings": [
       "Context Engineering for AI Coding Agents",
       "Why use context engineering for coding agents?",
@@ -1928,7 +1928,7 @@
         "description": "Learn how context engineering gives AI coding agents structured, relevant project knowledge: specs, architecture, decisions, rules, plans, and more.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/context-engineering/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/context-engineering.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2071,7 +2071,7 @@
     "title": "Spec-Driven Development & Context for Cursor — Archcore",
     "description": "Give Cursor structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
     "canonical": "https://archcore.ai/cursor/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/cursor.png",
     "headings": [
       "Project Context for Cursor",
       "What Archcore adds to Cursor",
@@ -2095,7 +2095,7 @@
         "description": "Give Cursor structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/cursor/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/cursor.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2218,7 +2218,7 @@
     "title": "Project Context for Gemini CLI — Archcore",
     "description": "Give Gemini CLI structured project context from Git: specs, architecture decisions, rules, and plans, over a local MCP server and session hooks.",
     "canonical": "https://archcore.ai/gemini-cli/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/gemini-cli.png",
     "headings": [
       "Context Engineering for Gemini CLI",
       "What Archcore adds to Gemini CLI",
@@ -2242,7 +2242,7 @@
         "description": "Give Gemini CLI structured project context from Git: specs, architecture decisions, rules, and plans, over a local MCP server and session hooks.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/gemini-cli/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/gemini-cli.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2374,7 +2374,7 @@
     "title": "Git-Native Context Engineering — Archcore",
     "description": "Keep AI coding agent context reviewable, portable, and versioned with code. Learn why specs, decisions, rules, and plans belong in Git.",
     "canonical": "https://archcore.ai/git-native-context/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/git-native-context.png",
     "headings": [
       "Why Project Context Belongs in Git",
       "The problem storage choice actually solves",
@@ -2396,7 +2396,7 @@
         "description": "Keep AI coding agent context reviewable, portable, and versioned with code. Learn why specs, decisions, rules, and plans belong in Git.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/git-native-context/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/git-native-context.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2522,7 +2522,7 @@
     "title": "Project Context for GitHub Copilot — Archcore",
     "description": "Give GitHub Copilot CLI structured project context from Git: specs, architecture decisions, rules, and plans, served over a local MCP server.",
     "canonical": "https://archcore.ai/github-copilot/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/github-copilot.png",
     "headings": [
       "Context Engineering for GitHub Copilot",
       "What Archcore adds to GitHub Copilot",
@@ -2546,7 +2546,7 @@
         "description": "Give GitHub Copilot CLI structured project context from Git: specs, architecture decisions, rules, and plans, served over a local MCP server.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/github-copilot/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/github-copilot.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2670,7 +2670,7 @@
     "title": "MCP Server for AI Coding Agent Context — Archcore",
     "description": "Expose structured project context to AI coding agents through MCP, including specs, ADRs, rules, plans, and project knowledge.",
     "canonical": "https://archcore.ai/mcp/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/mcp.png",
     "headings": [
       "MCP for AI Coding Agent Context",
       "Why a protocol and not a file",
@@ -2692,7 +2692,7 @@
         "description": "Expose structured project context to AI coding agents through MCP, including specs, ADRs, rules, plans, and project knowledge.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/mcp/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/mcp.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2792,7 +2792,7 @@
     "title": "Project Context for AI Coding Agents — Archcore",
     "description": "Give AI coding agents persistent project context that lives in Git: specs, architecture decisions, rules, plans, and project knowledge.",
     "canonical": "https://archcore.ai/project-context/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/project-context.png",
     "headings": [
       "Project Context for AI Coding Agents",
       "The gap project context fills",
@@ -2814,7 +2814,7 @@
         "description": "Give AI coding agents persistent project context that lives in Git: specs, architecture decisions, rules, plans, and project knowledge.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/project-context/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/project-context.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",
@@ -2958,7 +2958,7 @@
     "title": "Spec-Driven Development for AI Coding Agents — Archcore",
     "description": "Use spec-driven development with AI coding agents while keeping specs connected to architecture, decisions, rules, plans, and implementation context.",
     "canonical": "https://archcore.ai/spec-driven-development/",
-    "ogImage": "https://archcore.ai/og-image.png",
+    "ogImage": "https://archcore.ai/og/pillars/spec-driven-development.png",
     "headings": [
       "Spec-Driven Development for AI Coding Agents",
       "Why use spec-driven development with coding agents?",
@@ -2982,7 +2982,7 @@
         "description": "Use spec-driven development with AI coding agents while keeping specs connected to architecture, decisions, rules, plans, and implementation context.",
         "dateModified": "2026-09-09T00:00:00.000Z",
         "url": "https://archcore.ai/spec-driven-development/",
-        "primaryImageOfPage": "https://archcore.ai/og-image.png",
+        "primaryImageOfPage": "https://archcore.ai/og/pillars/spec-driven-development.png",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Archcore",

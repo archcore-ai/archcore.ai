@@ -2,6 +2,7 @@
 import PageIntro from "../components/PageIntro.astro";
 import ClosingCta from "../components/ClosingCta.astro";
 import SiteLayout from "./SiteLayout.astro";
+import SeoMeta from "../components/SeoMeta.astro";
 
 interface ListingItem {
   /** Absolute site path, e.g. "/blog/repo-memory/". */
@@ -28,6 +29,9 @@ const SITE_URL = "https://archcore.ai";
 const { title, description, sectionPath, h1, intro, items } = Astro.props;
 
 const canonical = `${SITE_URL}${sectionPath}`;
+// "/blog/" → "/og/blog.png". Each hub has a card of its own, built at
+// `src/pages/og/[...slug].png.ts`.
+const image = `${SITE_URL}/og${sectionPath.replace(/\/$/, "")}.png`;
 
 const listingSchema = {
   "@context": "https://schema.org",
@@ -61,18 +65,13 @@ const fmt = (d: Date) =>
 
 <SiteLayout>
   <Fragment slot="head">
-    <meta name="robots" content="index, follow" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Archcore" />
-    <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@archcore_ai" />
+    <SeoMeta
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={h1}
+    />
     <script
       is:inline
       type="application/ld+json"

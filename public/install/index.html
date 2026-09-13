@@ -7,6 +7,11 @@
     <!-- Keep the legacy install URL working on static hosting. -->
     <title>Install Archcore — redirecting</title>
 
+    <!-- A redirect stub is not a page anyone should land on from a search
+         result. The canonical hands the signals to /cli/; this keeps the hop
+         itself out of the index. -->
+    <meta name="robots" content="noindex, follow" />
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href="https://archcore.ai/cli/" />
 
@@ -44,7 +49,11 @@
         align-items: center;
         justify-content: center;
         font-family:
-          ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
         line-height: 1.6;
         text-align: center;
         padding: 1.5rem;
