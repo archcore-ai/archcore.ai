@@ -7,7 +7,7 @@ category: "Spec-driven development"
 updatedDate: 2026-09-12
 recipe: "spec-kit"
 instructions: "spec-kit/cooperation.md"
-digest: "3f4e27d4ecd122d2e16aad223ca85e248381598640a1da505775a737a59c9f89"
+digest: "e69205d09d50508c8a79e5d35bd376eb90de0e8535f6226f3a9d2615e78fac83"
 source:
   repo: "https://github.com/archcore-ai/landing"
   label: "Landing repository"

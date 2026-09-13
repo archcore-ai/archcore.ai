@@ -7,7 +7,7 @@ category: "Workflow skills"
 updatedDate: 2026-09-09
 recipe: "superpowers"
 instructions: "superpowers/cooperation.md"
-digest: "6a803fd329569ae313d1d8cf5330c03fb1971918cf61565f045a5aabbf1d8466"
+digest: "1c1dd4f05e87a49e3136650e0f00fe4fa6a189bd8c3692adb3fd7c979d0de7df"
 source:
   repo: "https://github.com/archcore-ai/plugin"
   path: "AGENTS.md"

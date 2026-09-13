@@ -7,7 +7,7 @@ category: "Spec-driven development"
 updatedDate: 2026-09-12
 recipe: "openspec"
 instructions: "openspec/cooperation.md"
-digest: "aaeec535cc719a655f00493b3dd92faa15eb434fc50302def967ec9e0ff3e95c"
+digest: "c0f36be31f87b066eb69fae786831a6193a3586a6ae5082da74259834fa3143c"
 source:
   repo: "https://github.com/archcore-ai/landing"
   label: "Landing repository"
