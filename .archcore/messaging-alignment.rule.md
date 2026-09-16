@@ -27,17 +27,19 @@ The entry-point shorthand slot under the works-with strip is **empty as of 2026-
 
 **"Repo memory" is retired as of 2026-08-10.** It was the home and `/plugin` category term under `landing/home-title-category-keyword.adr.md`, now superseded by `product/two-discovery-categories`. The term survives only in `/learn/repo-memory/` and the two memory-cluster blog posts, where it names the topic the reader searched for and is never asserted as what Archcore is.
 
-## Product surface (plugin v0.7.0)
+## Product surface (plugin v0.9.0, CLI v0.8.4)
 
-Updated 2026-08-07 for the v0.7.0 release. These counts and names are load-bearing — every surface that states them must match.
+Updated 2026-09-16 for plugin v0.9.0 and CLI v0.8.4 (first written 2026-08-07 for v0.7.0). These counts and names are load-bearing — every surface that states them must match.
 
-- **The plugin has FOUR slash commands**, not seven: `/archcore:init`, `/archcore:plan`, `/archcore:document`, `/archcore:review`. The v0.6-era `context`, `capture`, `decide`, `audit`, and `help` commands were removed. `capture` and `decide` folded into `document`; `audit` folded into `review` (`--drift`, `--deep`); `context` became automatic; `help` was dropped.
+- **The plugin has FOUR slash commands**, not seven: `/archcore:init`, `/archcore:plan`, `/archcore:document`, `/archcore:review`. The v0.6-era `context`, `capture`, `decide`, `audit`, and `help` commands were removed. `capture` and `decide` folded into `document`; `audit` folded into `review`; `context` became automatic; `help` was dropped.
 - **The four are a loop, not a menu.** `init` makes the repo legible, `plan` scopes the work, `document` records what was settled, `review` reads the branch against both. Copy that presents them as four independent features loses the argument that makes the product cohere, and copy that presents them out of order breaks it outright.
 - **Plain English is the primary interface, and the slash command is a shortcut.** The plugin's skills route on natural-language triggers ("Record the decision to use PostgreSQL", "Document the auth module", "Plan the auth redesign", "Review my branch"), and the same instruments are reachable over MCP from any agent. Copy MAY show a slash command as a shortcut; it MUST NOT present the command as the only way in.
 - **Everyday context needs no command.** Hooks inject the applicable rules and specs when the agent edits a file, and each session opens with a recap of what is decided and in progress. Copy MUST NOT tell users to run a command to load context.
-- **`/archcore:plan` computes its route** rather than running one fixed cascade. A small fix takes the null route and produces no documents; one capability gets a spec and a plan; a large initiative gets an umbrella PRD with one spec per capability. Expert paths named positionally: `sdd` (default), `sources`, `iso`, `research`. Source of truth: `plugins/archcore/skills/plan/SKILL.md`. Copy that calls `plan` a fixed idea → PRD → spec → plan cascade is describing v0.7.
+- **Commands take a mode as the first word, not a flag (plugin v0.9.0).** `/archcore:init refresh|domain <slug>` (settings `--depth`, `--scale`; `--mode` became `--scale`), `/archcore:plan sdd|sources|iso|research <topic>`, `/archcore:document decision|code|research <subject>`, `/archcore:review drift|deep|closeout|experience`. The former flags `--drift`, `--deep`, `--refresh`, and `--domain=` are now read as topic text, so copy that shows them shows a command that no longer does what it says. `document evidence` is gone: one external material is filed through `document research`. Source of truth: `plugins/archcore/commands/*.md` and `skills/*/SKILL.md` argument hints. The `/spec-driven-development/` pillar was corrected on 2026-09-16.
+- **`/archcore:plan` computes its route** rather than running one fixed cascade. A small fix takes the null route and produces no documents; one capability gets a spec and a plan; a large initiative gets an umbrella PRD with one spec per capability. The modes `sdd` (default), `sources` (market research), `iso` (regulated work), and `research` (technical investigation) run a path directly. Source of truth: `plugins/archcore/skills/plan/SKILL.md`. Copy that calls `plan` a fixed idea → PRD → spec → plan cascade is describing v0.7.
 - **MCP prompts no longer exist.** The `product_track` / `architecture_track` / `standard_track` / `sources_track` / `iso_track` prompt cascades were removed from the CLI in v0.7.0. The MCP surface is tool-only: 10 document tools.
-- **Document-type count:** the product exposes **21** typed document types — 12 vision, 7 knowledge, 2 experience. The number is owned by `concepts/core-concepts` in the shared context, not here. `research` (vision) and `evidence` (knowledge) shipped in CLI and plugin v0.8.3 on 2026-09-07. Every count mention on any surface says 21. Site copy and `docs.archcore.ai` both still said 19 on 2026-09-12, which is drift against shipped code; the two surfaces change together, and the standing rule below applies — where docs and shipped code disagree, the landing follows the code.
+- **Document-type count:** the product exposes **23** typed document types — 13 vision, 8 knowledge, 2 experience. The number is owned by `concepts/core-concepts` in the shared context, not here. `research` (vision) and `evidence` (knowledge) shipped in CLI and plugin v0.8.3 on 2026-09-07; `journey` (vision) and `scenario` (knowledge) shipped in CLI v0.8.4 and plugin v0.9.0 on 2026-09-16. The plugin produces them only on CLI ≥ 0.8.4. A `scenario` illustrates one existing spec with actor-subject flows and Given/When/Then examples; a `journey` is the intended path of one user type before a spec exists, and only `/archcore:plan` produces it. Every count mention on any surface says 23. Site copy said 19 until 2026-09-16; `docs.archcore.ai` still said 21 on that date, which is drift against shipped code. The standing rule applies — where docs and shipped code disagree, the landing follows the code.
+- **Relation count:** **7** relation types — structural `related`, `implements`, `extends`, `depends_on`; evidential `supports`, `contradicts`; temporal `supersedes`. Source of truth: CLI `internal/sync/manifest.go`. A bullet that lists only the four structural relations reads as the full set; name all seven or say "including". The `git-native-context` and `spec-driven-development` pillars list all seven as of 2026-09-16.
 - **`/archcore:review` ends in a verdict per finding:** `spec-wrong` (the document is stale), `code-wrong` (the code violates a decision), `ok`. Source of truth: `plugins/archcore/skills/review/SKILL.md`. The home loop section and the `index.html` loop paragraph both name the three tokens as of 2026-08-31, so a rename in that skill falsifies two surfaces at once.
 
 ## Install delivery
@@ -47,7 +49,7 @@ Added 2026-08-27 with `landing/home-install-single-path.adr.md`. These facts gov
 - **The plugin never installs the CLI.** It invokes `archcore` from `PATH`. The plugin repository forbids a plugin-side CLI fetcher (`stack-and-tooling.rule.md` item 13). No surface may say or imply that installing the plugin delivers the CLI.
 - **`archcore init` installs the plugin.** Its agent picker marks each selectable host "also installs the Archcore plugin", and a checked host is the consent to install it there. Nothing is installed for an unchecked host. Under `--yes` without `--agent`, and in CI, `init` prints the per-host commands and runs none.
 - **CLI v0.8.0 added `archcore plugin install`, `update`, and `status`**, and `archcore update` refreshes the plugin on every host that already carries it.
-- **The home page and `/how-to-use` both show one install path**, `curl` (or `irm`) then `archcore init`, and no Plugin / CLI tabs. The per-host plugin install lives behind one link to `https://docs.archcore.ai/plugin/install/#install-per-host`.
+- **The home page and `/how-to-use` both show one install path**, `curl` (or `irm`) then `archcore init`, and no Plugin / CLI tabs. The per-host plugin install lives behind one link to `https://docs.archcore.ai/guides/connect-your-agent/#install-per-host`.
 - **`#install` is the anchor on every page that renders an install block**, because the shared star CTA links there from all of them.
 
 ## Writing style
@@ -171,7 +173,7 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 - **All four stages run on one running example** (rate limiting for a public API), so step 4 visibly reads the documents steps 2 and 3 wrote. A stage that switches subject turns the loop back into a feature list. The hero's example `.archcore/` directory lists the documents those stages leave, and the Git tile diffs one of them; keep all three on the same example.
 - **The command-free part is stated after the loop, not as a fifth stage.** Hooks bring the applicable spec and ADR to the agent between the four steps.
 - **The home variant names the three review verdicts** (`spec-wrong`, `code-wrong`, `ok`) in its closing copy. The `/how-to-use` variant does not; it closes on the round-again claim instead.
-- **This content states product behavior in more detail than any other landing surface**, so it is the first thing a release falsifies. On any change to the four skills, re-read their "When to use" sections against `cycle.tsx`. Since 2026-08-31 the section sits higher on the home page, so a stale claim here is more visible, not less.
+- **This content states product behavior in more detail than any other landing surface**, so it is the first thing a release falsifies. On any change to the four skills, re-read their "When to use" sections against `cycle.tsx`. Since 2026-08-31 the section sits higher on the home page, so a stale claim here is more visible, not less. Checked against plugin v0.9.0 on 2026-09-16: all four prompts still route to their stage.
 
 **Host support has one source on the landing site.** The host matrix in `plugin-hosts-section.tsx` (`/plugin`) is the single place that states which hosts the plugin runs in, and the agent grid in `cli-agents-section.tsx` (`/cli`) is the single place that states which agents the CLI supports. FAQ answers, hero copy, the home cross-agent sentence, the loop intro, and prerender bodies may summarize them but must not contradict them, and a status change updates the landing block, the docs page, and the repo tagline together.
 
@@ -217,7 +219,7 @@ The owner requested these changes on 2026-09-09. This section governs `/cli/` an
 
 Implementation: @src/components/pages/cli.tsx, @src/components/pages/plugin.tsx, @src/components/sections/cli-pillars-section.tsx, @src/components/sections/plugin-pillars-section.tsx, @src/components/sections/plugin-hero-section.tsx, @src/components/sections/migration-section.tsx, and @src/styles/content.css.
 
-Source checks: CLI repository `cmd/init.go` and `internal/wiring/hooks_effective.go`; documentation repository `src/content/docs/plugin/install.mdx`, `src/content/docs/plugin/supported-hosts.mdx`, and `src/content/docs/cli/agent-integrations.mdx`. Check these sources again when install or host behavior changes.
+Source checks: CLI repository `cmd/init.go` and `internal/wiring/hooks_effective.go`; documentation repository `src/content/docs/start/install.mdx` and `src/content/docs/guides/connect-your-agent.mdx` (the docs restructure moved the former `plugin/install`, `plugin/supported-hosts`, and `cli/agent-integrations` pages there). Check these sources again when install or host behavior changes.
 
 ## CTA vocabulary
 
@@ -239,7 +241,7 @@ The `/plugin` page's Install section is a **4-tab** Radix Tabs widget: "Claude C
 
 `/learn/` holds definitional reference pieces, `/blog/` holds dated guides and vendor changes. Keep that split in the intro copy of each index so the two hubs do not read as duplicates.
 
-**Published articles state product facts too.** A release that changes the command set or the MCP surface can falsify an article — `blog/mcp-server-project-context.md` described the removed MCP prompts for a full release cycle. Sweep `content-site/src/content/` on every release that changes the product surface.
+**Published articles state product facts too.** A release that changes the command set or the MCP surface can falsify an article — `blog/mcp-server-project-context.md` described the removed MCP prompts for a full release cycle. Sweep `src/content/` (blog, learn, pillars, integrations) on every release that changes the product surface. The pillars carry the document-type count, the relation list, and command examples; the 2026-09-16 sweep found all three stale there. A pillar text change also changes `scripts/fixtures/seo-baseline.json` (`articleBlocks`, and `dateModified` plus the visible "Updated" line when `updatedDate` moves), or `verify:build` fails.
 
 **`/alternatives/` is empty and the home page now creates demand for it.** The spec-driven section carries a differentiation sentence as of 2026-08-31, and `landing/seo-content-backlog.doc.md` rates "spec kit alternative" and "openspec alternative" as high chance. The `/alternatives/` index stays deferred until it has one entry (`landing/seo-growth.plan.md` A8), but the gap is now load-bearing rather than optional.
 
@@ -280,6 +282,10 @@ Host support and structured data get their own invariants because both failed si
 **Bad:** Calling the plugin "the most polished experience" or presenting the component pages as two product choices.
 
 **Good (context framing):** "Four slash commands — and the everyday context needs none of them."
+
+**Good (a command with a mode):** `/archcore:review drift` looks for documents the code moved away from.
+
+**Bad:** `/archcore:review --drift` — the flag form was removed in plugin v0.9.0 and is now read as topic text.
 
 **Good (differentiation, in the spec-driven section):** "Methodology tools define a development process. Archcore keeps the resulting project knowledge alive, connected, versioned, and available to agents throughout implementation." — the competitive framing line from `product/surface-descriptors`. It states what Archcore does rather than what a named competitor fails to do, so a competitor's release cannot falsify it.
 

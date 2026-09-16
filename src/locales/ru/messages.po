@@ -468,8 +468,12 @@ msgstr "Archcore хранит документы проекта локально
 #~ msgstr "Архитектуру и договорённости приходится объяснять заново каждую сессию."
 
 #: src/components/sections/documents-section.tsx:166
-msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
-msgstr "Архитектура, спецификации, требования, решения, правила, планы и руководства лежат в <0>.archcore/</0> обычным Markdown и версионируются вместе с кодом, который описывают. Archcore поддерживает 19 типов документов, и изменение любого приходит диффом, который кто-то утверждает."
+#~ msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
+#~ msgstr "Архитектура, спецификации, требования, решения, правила, планы и руководства лежат в <0>.archcore/</0> обычным Markdown и версионируются вместе с кодом, который описывают. Archcore поддерживает 19 типов документов, и изменение любого приходит диффом, который кто-то утверждает."
+
+#: src/components/sections/documents-section.tsx:166
+msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 23 document types, and a change to any of them is a diff someone approves."
+msgstr "Архитектура, спецификации, требования, решения, правила, планы и руководства лежат в <0>.archcore/</0> обычным Markdown и версионируются вместе с кодом, который описывают. Archcore поддерживает 23 типа документов, и изменение любого приходит диффом, который кто-то утверждает."
 
 #: src/content/how-to-use/idea-no-context.tsx:67
 #~ msgid "Ask for the next document when you're ready — you drive the cascade one call at a time."
@@ -3984,13 +3988,11 @@ msgstr "Windows"
 #~ msgstr "С Archcore"
 
 #: src/data/recipe-labels.ts:28
-
 #: src/components/sections/before-after-section.tsx:22
 #~ msgid "Without Archcore"
 #~ msgstr "Без Archcore"
 
 #: src/data/recipe-labels.ts:27
-
 #: src/components/sections/hero-section.tsx:180
 #~ msgid "Works with Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 #~ msgstr "Работает с Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · любым MCP-агентом"

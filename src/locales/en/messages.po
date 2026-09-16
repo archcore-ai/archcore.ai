@@ -468,8 +468,12 @@ msgstr "Archcore stores project documents locally in .archcore/. Your coding age
 #~ msgstr "Architecture and conventions get re-explained, every session."
 
 #: src/components/sections/documents-section.tsx:166
-msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
-msgstr "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
+#~ msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
+#~ msgstr "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 19 document types, and a change to any of them is a diff someone approves."
+
+#: src/components/sections/documents-section.tsx:166
+msgid "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 23 document types, and a change to any of them is a diff someone approves."
+msgstr "Architecture, specs, requirements, decisions, rules, plans, and guides live in <0>.archcore/</0> as plain Markdown, versioned with the code they describe. Archcore ships 23 document types, and a change to any of them is a diff someone approves."
 
 #: src/content/how-to-use/idea-no-context.tsx:67
 #~ msgid "Ask for the next document when you're ready — you drive the cascade one call at a time."

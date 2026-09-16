@@ -8,7 +8,7 @@ import { INTERNAL_LINKS } from "@/lib/links";
  * Eight document types across five areas, because the range is the point. A
  * tree of nothing but `adr` files reads as a decision log, and a tree of
  * nothing but `api/` reads as a place for API notes. `doc`, `rule`, `spec`,
- * `plan`, `adr`, `rfc`, `prd`, and `guide` are eight of the 19 types the
+ * `plan`, `adr`, `rfc`, `prd`, and `guide` are eight of the 23 types the
  * product ships, and the folders are parts of an ordinary application rather
  * than a taxonomy.
  *
@@ -45,7 +45,7 @@ const TREE: { name: string; depth: 0 | 1; dir?: boolean; open?: boolean }[] = [
  * not need the phrase "git-native context layer" explained.
  *
  * The heading says project knowledge rather than decisions. It read "Decisions
- * become files" until 2026-09-12, which named one of the 19 document types and
+ * become files" until 2026-09-12, which named one of the 23 document types and
  * left the reader thinking Archcore is a decision log.
  *
  * The prose sits under the window rather than above it, on the owner's
@@ -167,7 +167,7 @@ export function DocumentsSection() {
           Architecture, specs, requirements, decisions, rules, plans, and guides
           live in <code className="font-mono text-[0.9em]">.archcore/</code> as
           plain Markdown, versioned with the code they describe. Archcore ships
-          19 document types, and a change to any of them is a diff someone
+          23 document types, and a change to any of them is a diff someone
           approves.
         </Trans>
       </p>

@@ -2,7 +2,7 @@
 title: "Spec-Driven Development for AI Coding Agents — Archcore"
 heading: "Spec-Driven Development for AI Coding Agents"
 description: "Use spec-driven development with AI coding agents while keeping specs connected to architecture, decisions, rules, plans, and implementation context."
-updatedDate: 2026-09-09
+updatedDate: 2026-09-16
 related:
   - context-engineering
   - project-context
@@ -111,7 +111,7 @@ Ask the agent to plan the work in plain language. It checks what is already reco
 /archcore:plan sdd auth redesign
 ```
 
-The expert paths are `sdd`, `sources`, `iso`, and `research`. Use `sources` for market discovery, `iso` for the ISO requirements workflow, and `research` for an investigation. See the [planning reference](https://docs.archcore.ai/guides/commands/) for their scope.
+The first word after the command can name a mode: `sdd`, `sources`, `iso`, or `research`. Use `sources` for market research, `iso` for the ISO requirements workflow, and `research` for a technical investigation. See the [planning reference](https://docs.archcore.ai/guides/commands/) for their scope.
 
 ## Keeping specs connected after the merge
 
@@ -121,7 +121,7 @@ This is the part that separates a spec practice that survives from one that beco
 
 **The spec is loaded when the boundary is edited.** On hosts with pre-write context injection, hooks deliver the applicable spec before an edit, so the contract arrives when it is relevant rather than at the top of a long prompt.
 
-**The spec is checked against the diff.** Before merge, `/archcore:review` compares the branch against the documents that claim it, and `--drift` looks for the case where the code moved and the spec did not.
+**The spec is checked against the diff.** Before merge, `/archcore:review` compares the branch against the documents that claim it, and `/archcore:review drift` looks for the case where the code moved and the spec did not.
 
 **The spec is one document among several.** It sits beside the architecture the boundary belongs to, the decisions that shaped it, and the rules the implementation must follow. That relation is the whole argument of the next section.
 
@@ -143,8 +143,8 @@ Getting this relation wrong produces a predictable outcome: a precise spec, impl
 
 [Archcore](/) keeps specs and the rest of the context in the same place, in Git.
 
-- **19 typed document types**, including `spec` for boundary contracts, `prd` for requirements, `plan` for implementation, and `adr` for the decisions behind them.
-- **Named relations** (`implements`, `extends`, `depends_on`, `related`) so a plan points at the PRD it fulfils and a spec points at the decision that shaped it.
+- **23 typed document types**, including `spec` for boundary contracts, `scenario` for examples that illustrate a spec, `prd` for requirements, `plan` for implementation, and `adr` for the decisions behind them.
+- **Seven named relations** (`related`, `implements`, `extends`, `depends_on`, `supports`, `contradicts`, `supersedes`) so a plan points at the PRD it fulfils and a spec points at the decision that shaped it.
 - **A lifecycle** (`draft → accepted → rejected`) so a superseded spec is visibly superseded rather than quietly wrong.
 - **Automatic delivery**: the applicable spec reaches the agent when it edits the boundary, without a command.
 

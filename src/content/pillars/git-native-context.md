@@ -2,7 +2,7 @@
 title: "Git-Native Context Engineering — Archcore"
 heading: "Why Project Context Belongs in Git"
 description: "Keep AI coding agent context reviewable, portable, and versioned with code. Learn why specs, decisions, rules, and plans belong in Git."
-updatedDate: 2026-09-09
+updatedDate: 2026-09-16
 related:
   - project-context
   - context-engineering
@@ -127,8 +127,8 @@ A reviewer sees the scope widen, in the same pull request as the code that made 
 
 [Archcore](/) keeps [project context](/project-context/) as typed Markdown in a `.archcore/` directory and adds the structure the filesystem lacks.
 
-- **19 typed document types** across three categories, each with a template and validated frontmatter.
-- **Named relations** (`implements`, `extends`, `depends_on`, `related`) recorded as data, so agents can walk the graph.
+- **23 typed document types** across three categories, each with a template and validated frontmatter.
+- **Seven named relations** (`related`, `implements`, `extends`, `depends_on`, `supports`, `contradicts`, `supersedes`) recorded as data, so agents can walk the graph.
 - **Status and history** in frontmatter, so a directory listing shows what is accepted, draft, or rejected.
 - **No database and no service.** The [CLI](/cli/) is a single binary that reads the directory and serves it over [MCP](/mcp/); document access is local. The [privacy policy](/privacy/) covers installation and update analytics.
 
