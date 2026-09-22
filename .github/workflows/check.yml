@@ -23,11 +23,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # PRs use the committed installer copies and no PostHog key. This also
-      # works for forks without repository variables or deployment permissions.
+      # PRs use the committed installer copies, so they need no repository
+      # variables or deployment permissions and also work for forks.
+      # PUBLIC_POSTHOG_KEY is a placeholder, not a real project key: the
+      # analytics client only loads the PostHog SDK when a key is set, and the
+      # browser checks assert that load. The tests stub the SDK request, so
+      # nothing reaches PostHog. ALLOW_MISSING_ANALYTICS_KEY stays so a run with
+      # the placeholder removed still builds.
       - run: npm run build
         env:
           ALLOW_MISSING_ANALYTICS_KEY: "1"
+          PUBLIC_POSTHOG_KEY: phc_ci_placeholder_not_a_real_key
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get installed Playwright version
         id: playwright-version

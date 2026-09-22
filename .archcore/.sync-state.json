@@ -416,6 +416,11 @@
       "source": "i18n-workflow.guide.md",
       "target": "landing/og-image-generation.guide.md",
       "type": "related"
+    },
+    {
+      "source": "infrastructure/pr-check-required-on-main.adr.md",
+      "target": "landing/analytics-event-taxonomy.doc.md",
+      "type": "related"
     }
   ]
 }
