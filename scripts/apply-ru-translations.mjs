@@ -24,8 +24,8 @@ const translations = {
   "Codex CLI 0.117+": "Codex CLI 0.117+",
   "Install in Codex:": "Установите в Codex:",
   "Codex CLI 0.117+ supported": "Codex CLI 0.117+ поддерживается",
-  "Add the plugin via `codex plugin marketplace add archcore-ai/plugin`. Hooks gated by Codex feature flag (`codex features enable plugin_hooks`).":
-    "Добавьте плагин командой `codex plugin marketplace add archcore-ai/plugin`. Хуки активируются Codex feature flag (`codex features enable plugin_hooks`).",
+  "Add the plugin via `codex plugin marketplace add archcore-ai/archcore`. Hooks gated by Codex feature flag (`codex features enable plugin_hooks`).":
+    "Добавьте плагин командой `codex plugin marketplace add archcore-ai/archcore`. Хуки активируются Codex feature flag (`codex features enable plugin_hooks`).",
   "Give Claude Code, Cursor & Codex CLI<0/>a brain for your codebase.":
     "Дайте Claude Code, Cursor и Codex CLI<0/>понимание вашей кодовой базы.",
   "The Archcore plugin loads your architecture, rules, and decisions into Claude Code, Cursor, and Codex CLI — so the agent stops guessing and starts following your team's truth.":

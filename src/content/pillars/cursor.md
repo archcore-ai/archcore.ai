@@ -50,9 +50,9 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 cd your-project && archcore init
 ```
 
-Then add the plugin in Cursor: open **Plugins**, paste `https://github.com/archcore-ai/plugin` into **Search or paste link**, and click **Add Plugin**.
+Then add the plugin in Cursor: open **Plugins**, paste `https://github.com/archcore-ai/archcore` into **Search or paste link**, and click **Add Plugin**.
 
-If you added the plugin through the marketplace without running `archcore init`, there is a one-time MCP setup. Copy [`docs/cursor.mcp.example.json`](https://github.com/archcore-ai/plugin/blob/main/docs/cursor.mcp.example.json) into `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` for one.
+If you added the plugin through the marketplace without running `archcore init`, there is a one-time MCP setup. Copy [`docs/cursor.mcp.example.json`](https://github.com/archcore-ai/archcore/blob/dev/plugin/docs/cursor.mcp.example.json) into `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` for one.
 
 **On Cursor below 2.5**, skip the plugin and use the CLI directly. You still get MCP tools and session hooks against the same directory.
 

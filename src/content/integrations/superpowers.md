@@ -9,7 +9,7 @@ recipe: "superpowers"
 instructions: "superpowers/cooperation.md"
 digest: "1c1dd4f05e87a49e3136650e0f00fe4fa6a189bd8c3692adb3fd7c979d0de7df"
 source:
-  repo: "https://github.com/archcore-ai/plugin"
+  repo: "https://github.com/archcore-ai/archcore"
   path: "AGENTS.md"
   revision: null
 tools:

@@ -3,8 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # Lets the CLI repo trigger a redeploy after an installer change, and lets a
-  # human refresh the star counts baked in at build time.
+  # Lets the archcore-ai/archcore monorepo trigger a redeploy after an
+  # installer change, and lets a human refresh the star counts baked in at
+  # build time.
   workflow_dispatch:
   repository_dispatch:
     types: [installer-updated]
@@ -50,12 +51,13 @@ jobs:
       # of raw.githubusercontent.com from every user's install to one CI run.
       # The copies in public/ are committed so local builds and previews work;
       # this step refreshes them so a deploy always ships the current script.
-      - name: Sync installers from the CLI repo
+      - name: Sync installers from the archcore-ai/archcore monorepo
         env:
           # The same public project key the site bundle ships. The installers
-          # carry a `__POSTHOG_KEY__` placeholder in the CLI repo, so the key
-          # never lands in git there and any copy run straight from that repo —
-          # a local test, install-smoke.yml, a fork — reports nothing at all.
+          # carry a `__POSTHOG_KEY__` placeholder in the archcore-ai/archcore
+          # monorepo (cli/), so the key never lands in git there and any copy
+          # run straight from that repo — a local test, cli-install-smoke.yml,
+          # a fork — reports nothing at all.
           # archcore.ai is therefore the only place that turns install analytics
           # on, which is why the substitution lives in this step.
           POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
@@ -76,7 +78,9 @@ jobs:
               ;;
           esac
 
-          base=https://raw.githubusercontent.com/archcore-ai/cli/refs/heads/main
+          # The CLI lives under cli/ on the monorepo's dev branch; the archived
+          # archcore-ai/cli receives no further changes.
+          base=https://raw.githubusercontent.com/archcore-ai/archcore/refs/heads/dev/cli
           for f in install.sh install.ps1; do
             tmp=$(mktemp)
             curl -fsSL --retry 3 --retry-delay 2 "$base/$f" -o "$tmp"
@@ -84,7 +88,7 @@ jobs:
             # loudly rather than silently replace a working installer.
             test -s "$tmp"
             head -1 "$tmp" | grep -qE '^#!|^#Requires' || {
-              echo "::error::$f from the CLI repo does not look like an installer"
+              echo "::error::$f from the monorepo does not look like an installer"
               exit 1
             }
             # Compared before the substitution below, so this keeps comparing
@@ -93,11 +97,11 @@ jobs:
             if cmp -s "$tmp" "public/$f"; then
               echo "public/$f already current"
             else
-              echo "::notice::public/$f refreshed from the CLI repo"
+              echo "::notice::public/$f refreshed from the monorepo"
             fi
 
             # Exactly one occurrence is expected: the assignment. A rename in
-            # the CLI repo, or a second copy of the token, must fail the deploy
+            # the monorepo, or a second copy of the token, must fail the deploy
             # rather than publish an installer that quietly reports nothing —
             # that failure mode looks identical to "nobody is installing".
             occurrences=$(grep -c '__POSTHOG_KEY__' "$tmp" || true)
@@ -114,20 +118,21 @@ jobs:
           # git would leak it, so this must stay the last mutation of these two
           # files.
 
-      # The installers carry their own host, baked into the CLI repo rather
+      # The installers carry their own host, baked into the monorepo rather
       # than read from vars.POSTHOG_HOST, so this is checked separately from
       # the site host above. It runs after the sync step on purpose: what is
       # checked is the copy this deploy is about to publish, not the one
       # committed here.
       #
       # This gates the deploy. It spent one day at MODE=warn while the CLI repo
-      # still carried the dead ph.archcore.ai, since blocking the whole site on
-      # a host owned by another repository would have been the wrong trade —
-      # see .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
+      # (then archcore-ai/cli) still carried the dead ph.archcore.ai, since
+      # blocking the whole site on a host owned by another repository would
+      # have been the wrong trade — see
+      # .archcore/infrastructure/analytics-host-must-reach-posthog.adr.md.
       - name: Check the analytics host the installers will ship
         env:
           POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
-          LABEL: install.sh and install.ps1 (baked into the CLI repo)
+          LABEL: install.sh and install.ps1 (baked into the archcore-ai/archcore monorepo, cli/)
         run: |
           set -euo pipefail
           POSTHOG_HOST="$(sed -n 's/^POSTHOG_HOST="\(.*\)"$/\1/p' public/install.sh)"

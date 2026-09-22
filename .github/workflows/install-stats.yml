@@ -57,7 +57,12 @@ jobs:
       # src/lib/analytics/core.ts.
       POSTHOG_HOST: ${{ vars.POSTHOG_INGEST_HOST || 'https://us.i.posthog.com' }}
       MODE: ${{ inputs.mode || 'snapshot' }}
-      CLI_REPO: archcore-ai/cli
+      # The archcore-ai/archcore monorepo publishes the CLI archives and
+      # checksums.txt from v0.10.1 on. CLI releases before v0.10.1 live in the
+      # archived archcore-ai/cli and are not counted here, in snapshot or
+      # backfill mode. The monorepo tags before v0.10.1 are plugin releases
+      # with no assets: they add zero downloads but do count in releases_count.
+      CLI_REPO: archcore-ai/archcore
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v6

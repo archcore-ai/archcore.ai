@@ -157,7 +157,7 @@ export function HowToUsePage() {
             })
           }
         >
-          archcore-ai/cli
+          archcore-ai/archcore
         </a>
         <span aria-hidden="true"> · </span>
         <a
@@ -173,7 +173,7 @@ export function HowToUsePage() {
             })
           }
         >
-          archcore-ai/plugin
+          archcore-ai/archcore
         </a>
       </p>
     </GuidePageLayout>

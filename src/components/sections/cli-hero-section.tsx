@@ -44,7 +44,7 @@ export function CLIHeroSection() {
             aria-label={_(msg`Star CLI on GitHub`)}
           >
             <Github className="h-3 w-3" />
-            archcore-ai/cli
+            archcore-ai/archcore
           </a>
           <span className="text-muted-foreground/40">·</span>
           <a

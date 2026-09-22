@@ -191,22 +191,22 @@ test("plugin installation retains and copies every required host step in both la
     [
       "Claude Code",
       [
-        "/plugin marketplace add archcore-ai/plugin",
+        "/plugin marketplace add archcore-ai/archcore",
         "/plugin install archcore@archcore-plugins",
       ],
     ],
-    ["Cursor 2.5+", ["https://github.com/archcore-ai/plugin"]],
+    ["Cursor 2.5+", ["https://github.com/archcore-ai/archcore"]],
     [
       "Codex CLI 0.117+",
       [
-        "codex plugin marketplace add archcore-ai/plugin",
+        "codex plugin marketplace add archcore-ai/archcore",
         "codex plugin add archcore@archcore-plugins",
       ],
     ],
     [
       "Copilot CLI",
       [
-        "copilot plugin install archcore-ai/plugin:plugins/archcore",
+        "copilot plugin install archcore-ai/archcore:plugins/archcore",
         'archcore init --agent copilot --project "$PWD"',
       ],
     ],
@@ -608,7 +608,7 @@ test("header Star, Install, language and menu fit; Docs opens a new tab", async 
     await expect(star).toBeVisible();
     await expect(star).toHaveAttribute(
       "href",
-      "https://github.com/archcore-ai/plugin"
+      "https://github.com/archcore-ai/archcore"
     );
     await expect(star).toHaveAttribute("target", "_blank");
     for (const docs of await page

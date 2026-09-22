@@ -302,8 +302,9 @@ export interface ExternalAnalyticsEventMap {
    * key into, and never when DO_NOT_TRACK or ARCHCORE_TELEMETRY_OPTOUT is set.
    *
    * Normative contract: .archcore/telemetry/cli-update-telemetry.spec.md in
-   * archcore-ai/cli. Renaming any of the three names below empties a dashboard
-   * without failing a build on either side.
+   * the archcore-ai/archcore monorepo, which ships the CLI under cli/.
+   * Renaming any of the three names below empties a dashboard without
+   * failing a build on either side.
    */
   cli_updated: {
     source: "cli";

@@ -53,7 +53,7 @@ cd your-project && archcore init
 When you select Codex in `archcore init`, Archcore installs the plugin for that host. For a separate manual installation:
 
 ```bash
-codex plugin marketplace add archcore-ai/plugin
+codex plugin marketplace add archcore-ai/archcore
 codex
 # then run /plugins, open Archcore, select Install plugin
 ```

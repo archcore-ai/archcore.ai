@@ -1,6 +1,6 @@
 export const LINKS = {
-  pluginRepo: "https://github.com/archcore-ai/plugin",
-  cliRepo: "https://github.com/archcore-ai/cli",
+  pluginRepo: "https://github.com/archcore-ai/archcore",
+  cliRepo: "https://github.com/archcore-ai/archcore",
   org: "https://github.com/archcore-ai",
   docs: "https://docs.archcore.ai/",
   docsQuickstart: "https://docs.archcore.ai/start/quick-start/",
@@ -8,7 +8,7 @@ export const LINKS = {
   docsSupportedHosts: "https://docs.archcore.ai/guides/connect-your-agent/#supported-hosts",
   docsAgentIntegrations: "https://docs.archcore.ai/guides/connect-your-agent/",
   supportedAgents:
-    "https://github.com/archcore-ai/cli/tree/main?tab=readme-ov-file#supported-agents",
+    "https://github.com/archcore-ai/archcore/blob/dev/cli/README.md",
   cursorDirectory: "https://cursor.directory/plugins/archcore",
   discord: "https://discord.gg/5YC8pdjD",
   x: "https://x.com/archcore_ai",

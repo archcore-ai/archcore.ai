@@ -4,9 +4,9 @@ GitHub Pages serves the static files built by the root Astro project. The deploy
 
 ## Publish a release
 
-[deploy.yml](../.github/workflows/deploy.yml) runs after a push to `main`, a manual workflow dispatch, or the CLI repository's `installer-updated` event. It installs dependencies with `npm ci`, runs `npm run build`, and checks the built site in Chromium before archiving or uploading it.
+[deploy.yml](../.github/workflows/deploy.yml) runs after a push to `main`, a manual workflow dispatch, or the `installer-updated` repository dispatch event sent by the `archcore-ai/archcore` monorepo. It installs dependencies with `npm ci`, runs `npm run build`, and checks the built site in Chromium before archiving or uploading it.
 
-Before building, the workflow fetches the current `install.sh` and `install.ps1` from the CLI repository, injects the public PostHog project key, and checks both the site's and the installers' analytics hosts. Keep these steps when changing the build command: the site also distributes the CLI installers.
+Before building, the workflow fetches the current `install.sh` and `install.ps1` from the `cli/` directory on the `dev` branch of the `archcore-ai/archcore` monorepo, injects the public PostHog project key, and checks both the site's and the installers' analytics hosts. Keep these steps when changing the build command: the site also distributes the CLI installers.
 
 Configure these repository variables:
 
@@ -47,6 +47,6 @@ Restoring the archive also restores its original installer scripts and analytics
 
 The artifact must come from a deployment made after release archival was added. Older runs without `site-release`, expired artifacts, and artifacts manually deleted from Actions cannot be restored with this workflow. Rerunning a deployment replaces that run's archive with the new run attempt; use a separate successful run to retain a distinct rollback target.
 
-Rebuilding an old commit is a fallback, but it does not reproduce the original output exactly. Installer scripts are fetched from the CLI repository's current `main`, star counts are fetched at build time, and repository variables can change. Before a large migration, preserve and verify a release artifact while the previous site is still available. The first deployment of this workflow cannot retroactively archive an expired production release.
+Rebuilding an old commit is a fallback, but it does not reproduce the original output exactly. Installer scripts are fetched from the current `dev` branch of the `archcore-ai/archcore` monorepo, star counts are fetched at build time, and repository variables can change. Before a large migration, preserve and verify a release artifact while the previous site is still available. The first deployment of this workflow cannot retroactively archive an expired production release.
 
 Pages publication takes time, so a restore is not an instant traffic switch. The current workflows provide no percentage-based canary or preview hosting. Use a separate preview environment or local static server to review a candidate; prevent a public preview from being indexed. GitHub's [deploy-pages action](https://github.com/actions/deploy-pages) documents its preview feature as unavailable to the public.

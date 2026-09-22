@@ -65,7 +65,7 @@ export function PluginHeroSection() {
             <HostPanel
               hint={<Trans>Run inside Claude Code:</Trans>}
               commands={[
-                "/plugin marketplace add archcore-ai/plugin",
+                "/plugin marketplace add archcore-ai/archcore",
                 "/plugin install archcore@archcore-plugins",
               ]}
               repoLabel={_(msg`Star plugin on GitHub`)}
@@ -75,7 +75,7 @@ export function PluginHeroSection() {
           <TabsContent value="cursor" className="mt-5">
             <HostPanel
               hint={<Trans>Open Plugins → Add and paste URL:</Trans>}
-              commands={["https://github.com/archcore-ai/plugin"]}
+              commands={["https://github.com/archcore-ai/archcore"]}
               repoLabel={_(msg`Star plugin on GitHub`)}
               note={
                 <Trans>
@@ -90,7 +90,7 @@ export function PluginHeroSection() {
             <HostPanel
               hint={<Trans>Install in Codex:</Trans>}
               commands={[
-                "codex plugin marketplace add archcore-ai/plugin",
+                "codex plugin marketplace add archcore-ai/archcore",
                 "codex plugin add archcore@archcore-plugins",
               ]}
               repoLabel={_(msg`Star plugin on GitHub`)}
@@ -107,7 +107,7 @@ export function PluginHeroSection() {
             <HostPanel
               hint={<Trans>Both steps are required:</Trans>}
               commands={[
-                "copilot plugin install archcore-ai/plugin:plugins/archcore",
+                "copilot plugin install archcore-ai/archcore:plugins/archcore",
                 'archcore init --agent copilot --project "$PWD"',
               ]}
               repoLabel={_(msg`Star plugin on GitHub`)}
@@ -161,7 +161,7 @@ function HostPanel({ hint, commands, repoLabel, note }: HostPanelProps) {
           aria-label={repoLabel}
         >
           <Github className="h-3 w-3" />
-          archcore-ai/plugin
+          archcore-ai/archcore
         </a>
         <span className="text-muted-foreground/40">·</span>
         <a

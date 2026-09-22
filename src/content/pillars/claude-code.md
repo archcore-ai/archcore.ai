@@ -53,7 +53,7 @@ cd your-project && archcore init
 When you select Claude Code in `archcore init`, Archcore installs the plugin for that host. If you need to install the plugin separately, run these commands inside Claude Code:
 
 ```
-/plugin marketplace add archcore-ai/plugin
+/plugin marketplace add archcore-ai/archcore
 /plugin install archcore@archcore-plugins
 ```
 

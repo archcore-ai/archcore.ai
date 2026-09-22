@@ -44,7 +44,7 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 # Windows: irm https://archcore.ai/install.ps1 | iex
 
 # 1. Install the plugin from this repository's plugin subdirectory
-copilot plugin install archcore-ai/plugin:plugins/archcore
+copilot plugin install archcore-ai/archcore:plugins/archcore
 
 # 2. Wire your project. Run once per repository, and commit the result.
 archcore init --agent copilot --project "$PWD"
