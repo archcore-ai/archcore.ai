@@ -165,7 +165,7 @@ msgstr "A broken decision caught before merge"
 #~ msgid "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps."
 #~ msgstr "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps."
 
-#: src/components/pages/how-to-use.tsx:103
+#: src/components/pages/how-to-use.tsx:105
 msgid "A skill is a workflow your agent follows for a specific job. Here, four skills help you add rate limiting to a public API: a cap on how often clients can call it."
 msgstr "A skill is a workflow your agent follows for a specific job. Here, four skills help you add rate limiting to a public API: a cap on how often clients can call it."
 
@@ -507,7 +507,7 @@ msgstr "Ask in plain language, or use these four shortcuts in order: init, plan,
 #~ msgid "Ask your agent to record a decision as an ADR in Git."
 #~ msgstr "Ask your agent to record a decision as an ADR in Git."
 
-#: src/components/pages/how-to-use.tsx:110
+#: src/components/pages/how-to-use.tsx:112
 msgid "Ask your agent using the example prompt, or run the slash command shown below. The commands work in Claude Code, Cursor, Codex CLI, and Copilot. Other agents access Archcore through MCP."
 msgstr "Ask your agent using the example prompt, or run the slash command shown below. The commands work in Claude Code, Cursor, Codex CLI, and Copilot. Other agents access Archcore through MCP."
 
@@ -1141,8 +1141,12 @@ msgstr "Does this eat my agent's context window?"
 #~ msgstr "Drafts the spec from the PRD; you accept and move to the plan step."
 
 #: src/components/pages/how-to-use.tsx:91
-msgid "During setup, choose the agents you use. Archcore configures their connection to the project."
-msgstr "During setup, choose the agents you use. Archcore configures their connection to the project."
+#~ msgid "During setup, choose the agents you use. Archcore configures their connection to the project."
+#~ msgstr "During setup, choose the agents you use. Archcore configures their connection to the project."
+
+#: src/components/pages/how-to-use.tsx:92
+msgid "During setup, choose the agents you use. Archcore connects them to the project through MCP and hooks. Cursor needs plugin setup in its Plugins panel."
+msgstr "During setup, choose the agents you use. Archcore connects them to the project through MCP and hooks. Cursor needs plugin setup in its Plugins panel."
 
 #: src/content/how-to-use/install.tsx:87
 #~ msgid "Each host installs the plugin a little differently. We'll show the one-line install for yours."
@@ -2740,8 +2744,8 @@ msgstr "Run in your terminal:"
 #~ msgstr "Run on the shell, then ask:"
 
 #: src/components/pages/how-to-use.tsx:74
-msgid "Run these commands in your project folder to install Archcore and connect your coding agent."
-msgstr "Run these commands in your project folder to install Archcore and connect your coding agent."
+#~ msgid "Run these commands in your project folder to install Archcore and connect your coding agent."
+#~ msgstr "Run these commands in your project folder to install Archcore and connect your coding agent."
 
 #: src/content/how-to-use/use-context.tsx:110
 #~ msgid "Run this before merging anything that touches code under captured documents — three seconds, one report."
@@ -3337,6 +3341,10 @@ msgstr "The decision that already chose Redis, and the rule for error shapes in 
 #~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 #~ msgstr "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 
+#: src/components/pages/how-to-use.tsx:74
+msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+msgstr "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+
 #: src/components/sections/cli-hero-section.tsx:25
 msgid "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
 msgstr "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
@@ -3386,7 +3394,7 @@ msgstr "The instructions ask your agent to:"
 #~ msgid "The new file lands in <0>.archcore/</0> with frontmatter already filled."
 #~ msgstr "The new file lands in <0>.archcore/</0> with frontmatter already filled."
 
-#: src/components/pages/how-to-use.tsx:139
+#: src/components/pages/how-to-use.tsx:141
 msgid "The next feature starts with the context you have already saved. Your specs and decisions stay in Git alongside the code."
 msgstr "The next feature starts with the context you have already saved. Your specs and decisions stay in Git alongside the code."
 
@@ -3645,7 +3653,7 @@ msgid "Use Archcore with the tools you already run, or make it part of your own 
 msgstr "Use Archcore with the tools you already run, or make it part of your own agent setup."
 
 #: src/components/pages/how-to-use.tsx:30
-#: src/components/pages/how-to-use.tsx:100
+#: src/components/pages/how-to-use.tsx:102
 msgid "Use Archcore’s four skills in order"
 msgstr "Use Archcore’s four skills in order"
 
@@ -3851,7 +3859,7 @@ msgstr "Which AI agents does the CLI support?"
 #~ msgid "Which platform?"
 #~ msgstr "Which platform?"
 
-#: src/components/pages/how-to-use.tsx:131
+#: src/components/pages/how-to-use.tsx:133
 msgid "While you code, supported hooks bring relevant specs and decisions to your agent. At the start of a session, they provide a recap of decisions and work in progress. Other agents can read the same documents through MCP."
 msgstr "While you code, supported hooks bring relevant specs and decisions to your agent. At the start of a session, they provide a recap of decisions and work in progress. Other agents can read the same documents through MCP."
 

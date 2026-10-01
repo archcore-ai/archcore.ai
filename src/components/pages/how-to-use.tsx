@@ -72,8 +72,9 @@ export function HowToUsePage() {
         </h2>
         <p>
           <Trans>
-            Run these commands in your project folder to install Archcore and
-            connect your coding agent.
+            The install script adds the Archcore CLI and the plugin for Claude
+            Code, Codex CLI, and GitHub Copilot CLI when their commands are on
+            PATH. Then run archcore init in your project folder.
           </Trans>
         </p>
         <div className="guide-install">
@@ -89,8 +90,9 @@ export function HowToUsePage() {
         </div>
         <p>
           <Trans>
-            During setup, choose the agents you use. Archcore configures their
-            connection to the project.
+            During setup, choose the agents you use. Archcore connects them to
+            the project through MCP and hooks. Cursor needs plugin setup in its
+            Plugins panel.
           </Trans>
         </p>
       </section>

@@ -165,7 +165,7 @@ msgstr "Нарушенное решение находится до слияни
 #~ msgid "A short interactive walkthrough that shows when to use the plugin, when to use the CLI, and how to wire context into your AI coding agent, in 3-5 steps."
 #~ msgstr "Короткий интерактивный разбор: когда брать плагин, когда CLI и как подключить контекст к вашему AI-агенту, за 3-5 шагов."
 
-#: src/components/pages/how-to-use.tsx:103
+#: src/components/pages/how-to-use.tsx:105
 msgid "A skill is a workflow your agent follows for a specific job. Here, four skills help you add rate limiting to a public API: a cap on how often clients can call it."
 msgstr "Скилл задаёт порядок действий агента для конкретной задачи. Здесь четыре скилла помогают добавить ограничение частоты запросов к публичному API: сколько раз клиент может к нему обратиться."
 
@@ -507,7 +507,7 @@ msgstr "Обратитесь к агенту обычными словами и�
 #~ msgid "Ask your agent to record a decision as an ADR in Git."
 #~ msgstr "Попросите агента записать решение как ADR в Git."
 
-#: src/components/pages/how-to-use.tsx:110
+#: src/components/pages/how-to-use.tsx:112
 msgid "Ask your agent using the example prompt, or run the slash command shown below. The commands work in Claude Code, Cursor, Codex CLI, and Copilot. Other agents access Archcore through MCP."
 msgstr "Обратитесь к агенту с запросом из примера или вызовите указанную slash-команду. Команды доступны в Claude Code, Cursor, Codex CLI и Copilot. Другие агенты работают с Archcore через MCP."
 
@@ -1141,8 +1141,12 @@ msgstr "Это раздует контекстное окно агента?"
 #~ msgstr "Готовит спеку на основе PRD; вы принимаете и переходите к шагу плана."
 
 #: src/components/pages/how-to-use.tsx:91
-msgid "During setup, choose the agents you use. Archcore configures their connection to the project."
-msgstr "При настройке выберите агентов, которыми вы пользуетесь. Archcore настроит их подключение к проекту."
+#~ msgid "During setup, choose the agents you use. Archcore configures their connection to the project."
+#~ msgstr "При настройке выберите агентов, которыми вы пользуетесь. Archcore настроит их подключение к проекту."
+
+#: src/components/pages/how-to-use.tsx:92
+msgid "During setup, choose the agents you use. Archcore connects them to the project through MCP and hooks. Cursor needs plugin setup in its Plugins panel."
+msgstr "При настройке выберите агентов, которыми вы пользуетесь. Archcore подключит их к проекту через MCP и хуки. Для Cursor добавьте плагин через панель Plugins."
 
 #: src/content/how-to-use/install.tsx:87
 #~ msgid "Each host installs the plugin a little differently. We'll show the one-line install for yours."
@@ -2740,8 +2744,8 @@ msgstr "Запустите в терминале:"
 #~ msgstr "Запустите в шелле, затем спросите:"
 
 #: src/components/pages/how-to-use.tsx:74
-msgid "Run these commands in your project folder to install Archcore and connect your coding agent."
-msgstr "Выполните эти команды в папке проекта, чтобы установить Archcore и подключить агента."
+#~ msgid "Run these commands in your project folder to install Archcore and connect your coding agent."
+#~ msgstr "Выполните эти команды в папке проекта, чтобы установить Archcore и подключить агента."
 
 #: src/content/how-to-use/use-context.tsx:110
 #~ msgid "Run this before merging anything that touches code under captured documents — three seconds, one report."
@@ -3345,6 +3349,10 @@ msgstr "Решение, которое уже выбрало Redis, и прав�
 #~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 #~ msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
 
+#: src/components/pages/how-to-use.tsx:74
+msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+msgstr "Скрипт установки ставит Archcore CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Затем запустите archcore init в папке проекта."
+
 #: src/components/sections/cli-hero-section.tsx:25
 msgid "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
 msgstr "Скрипт установки ставит CLI и доступные плагины. Позже запустите archcore init в каждом проекте, который хотите подключить."
@@ -3390,7 +3398,7 @@ msgstr "Инструкции просят агента:"
 #~ msgid "The new file lands in <0>.archcore/</0> with frontmatter already filled."
 #~ msgstr "Новый файл окажется в <0>.archcore/</0> с уже заполненным frontmatter."
 
-#: src/components/pages/how-to-use.tsx:139
+#: src/components/pages/how-to-use.tsx:141
 msgid "The next feature starts with the context you have already saved. Your specs and decisions stay in Git alongside the code."
 msgstr "Следующая задача начнётся с уже сохранённого контекста. Спецификации и решения остаются в Git рядом с кодом."
 
@@ -3649,7 +3657,7 @@ msgid "Use Archcore with the tools you already run, or make it part of your own 
 msgstr "Используйте Archcore вместе с инструментами, которые у вас уже есть, или сделайте его частью своей оболочки агента."
 
 #: src/components/pages/how-to-use.tsx:30
-#: src/components/pages/how-to-use.tsx:100
+#: src/components/pages/how-to-use.tsx:102
 msgid "Use Archcore’s four skills in order"
 msgstr "Четыре скилла Archcore по порядку"
 
@@ -3855,7 +3863,7 @@ msgstr "Каких AI-агентов поддерживает CLI?"
 #~ msgid "Which platform?"
 #~ msgstr "Какая платформа?"
 
-#: src/components/pages/how-to-use.tsx:131
+#: src/components/pages/how-to-use.tsx:133
 msgid "While you code, supported hooks bring relevant specs and decisions to your agent. At the start of a session, they provide a recap of decisions and work in progress. Other agents can read the same documents through MCP."
 msgstr "Во время работы над кодом хуки передают агенту нужные спецификации и решения, если он поддерживает хуки. В начале сессии они дают сводку решений и текущих задач. Другие агенты могут читать те же документы через MCP."
 
