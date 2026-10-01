@@ -2,7 +2,7 @@
 title: "Context Engineering for Claude Code — Archcore"
 heading: "Persistent Project Context for Claude Code"
 description: "Give Claude Code structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks."
-updatedDate: 2026-09-09
+updatedDate: 2026-10-01
 related:
   - context-engineering
   - project-context
@@ -13,7 +13,7 @@ faq:
   - question: "Does this fill up Claude Code's context window?"
     answer: "No. The session opens with a compact index of available documents rather than their contents. Full documents are pulled on demand over MCP through search, relations, and single reads, and the pre-write hook injects only the rules and specs that apply to the file being edited."
   - question: "Do I need the plugin, or is the CLI enough?"
-    answer: "The CLI handles project setup, MCP tools, and hooks. The plugin adds skills for planning, documentation, and review using that CLI and the same project documents. Select Claude Code during archcore init to install and configure the supported components."
+    answer: "The CLI handles project setup, MCP tools, and hooks. The plugin adds skills for planning, documentation, and review using that CLI and the same project documents. The install script adds the plugin when Claude Code is on PATH. Run archcore init in the project for MCP tools and hooks."
   - question: "Does anything leave my machine?"
     answer: "Archcore reads project documents locally through its stdio MCP server. Installation and updates send limited analytics unless you opt out, as described in the privacy policy. The coding agent has its own data-handling settings, which are separate from Archcore."
   - question: "What happens in a fresh session?"
@@ -22,7 +22,7 @@ faq:
 
 Archcore gives Claude Code structured project context from Git: specs, architecture decisions, rules, plans, and project knowledge. Documents are read locally. The [privacy policy](/privacy/) explains installation and update analytics.
 
-*Updated September 9, 2026: Clarified the comparison, linked supporting references, and reviewed current Archcore behavior.*
+*Updated October 1, 2026: The install script now adds the plugin when the Claude Code CLI is on PATH.*
 
 Claude Code is Archcore's **production plugin host**. It gets the full surface: slash commands, skills, gated tracks, guardrails, MCP tools, and session hooks.
 
@@ -42,7 +42,7 @@ Archcore closes that specific gap:
 Archcore's plugin needs the CLI on your `PATH`, because the CLI is what serves the MCP server the plugin talks to.
 
 ```bash
-# 1. Install the CLI
+# 1. Install the CLI and plugin
 curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 # Windows: irm https://archcore.ai/install.ps1 | iex
 
@@ -50,11 +50,10 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 cd your-project && archcore init
 ```
 
-When you select Claude Code in `archcore init`, Archcore installs the plugin for that host. If you need to install the plugin separately, run these commands inside Claude Code:
+The install script adds the plugin when `claude` is on `PATH`. If you install Claude Code later, run:
 
 ```
-/plugin marketplace add archcore-ai/archcore
-/plugin install archcore@archcore-plugins
+archcore plugin install --agent claude-code
 ```
 
 `archcore init` scaffolds `.archcore/`, registers the MCP server, installs the session hooks, and imports the `CLAUDE.md` you already wrote.

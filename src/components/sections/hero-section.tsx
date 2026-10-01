@@ -21,8 +21,8 @@ import { LINKS } from "@/lib/links";
  * pair until 2026-08-27: two tabs asked the reader to decide between two
  * things before they knew what either was, and the Plugin tab was the
  * incomplete one, since the plugin invokes `archcore` from PATH and never
- * fetches it. `archcore init` installs the plugin for every host checked in
- * its picker, so one path is both simpler and the accurate one.
+ * fetches it. The platform installer now adds plugins for supported host
+ * CLIs already on PATH. `archcore init` sets up a repository later.
  */
 export function HeroSection() {
   const { _ } = useLingui();
@@ -65,20 +65,11 @@ export function HeroSection() {
                 the no-wrap line from widening the grid track past the viewport,
                 which it did at 768px, clipped by the section's overflow-hidden
                 and invisible to the build. */}
-            <div className="grid min-w-0 gap-2">
-              <InstallCommand
-                variant="inline"
-                surface="home_hero_install"
-                className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
-              />
-              <InstallCommand
-                variant="inline"
-                command="archcore init"
-                surface="home_hero_install"
-                installTarget="cli"
-                className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
-              />
-            </div>
+            <InstallCommand
+              variant="inline"
+              surface="home_hero_install"
+              className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
+            />
 
           </div>
         </div>

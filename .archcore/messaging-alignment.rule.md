@@ -47,9 +47,10 @@ Updated 2026-09-16 for plugin v0.9.0 and CLI v0.8.4 (first written 2026-08-07 fo
 Added 2026-08-27 with `landing/home-install-single-path.adr.md`. These facts govern every install surface on the site.
 
 - **The plugin never installs the CLI.** It invokes `archcore` from `PATH`. The plugin repository forbids a plugin-side CLI fetcher (`stack-and-tooling.rule.md` item 13). No surface may say or imply that installing the plugin delivers the CLI.
-- **`archcore init` installs the plugin.** Its agent picker marks each selectable host "also installs the Archcore plugin", and a checked host is the consent to install it there. Nothing is installed for an unchecked host. Under `--yes` without `--agent`, and in CI, `init` prints the per-host commands and runs none.
+- **The platform installer installs supported plugins.** After placing the CLI binary, it calls `archcore plugin install` for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on `PATH`. It skips plugin setup in CI or when `ARCHCORE_SKIP_PLUGIN_INSTALL` is nonzero. Cursor still uses its Plugins panel.
+- **`archcore init` configures a project.** Its picker wires MCP and hooks for checked hosts and can install a plugin that is still missing. Under `--yes` without `--agent`, and in CI, `init` prints the per-host plugin commands and runs none.
 - **CLI v0.8.0 added `archcore plugin install`, `update`, and `status`**, and `archcore update` refreshes the plugin on every host that already carries it.
-- **The home page and `/how-to-use` both show one install path**, `curl` (or `irm`) then `archcore init`, and no Plugin / CLI tabs. The per-host plugin install lives behind one link to `https://docs.archcore.ai/guides/connect-your-agent/#install-per-host`.
+- **The home page shows one install command**, `curl` or `irm`, and no Plugin / CLI tabs. `archcore init` is the later project setup step in `/how-to-use`. The per-host plugin retry lives behind one link to `https://docs.archcore.ai/guides/connect-your-agent/#install-per-host`.
 - **`#install` is the anchor on every page that renders an install block**, because the shared star CTA links there from all of them.
 
 ## Writing style
@@ -185,7 +186,7 @@ Governed by `landing/how-to-use-cases.adr.md`. The loop appears twice: as the wh
 - **CLI over MCP (8):** Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Codex CLI, Roo Code, Cline (manual setup).
 - **CLI session hooks (5):** Claude Code, Cursor, Gemini CLI, Codex CLI, GitHub Copilot. OpenCode is never wired — its hooks are JavaScript plugins that cannot be written declaratively. Codex hook availability depends on the installed version and its hooks setting; the CLI wiring still disables hooks on Windows. Do not label hooks experimental across all Codex versions. Copilot has no pre-write context injection.
 - **The home cross-agent tile states pre-edit delivery without promising it everywhere.** Copilot has no pre-write context injection, so any copy that promises the behaviour "on every agent" is wrong. The tile says it happens where the host supports hooks; leave the per-host truth to the two matrix sections.
-- **GitHub Copilot CLI resolved 2026-08-07.** The earlier "landing follows the docs, which say planned" carve-out is retired: plugin v0.7.0 ships Copilot support with tests. **Copilot needs two install steps** — `copilot plugin install archcore-ai/plugin:plugins/archcore` AND `archcore init --agent copilot --project "$PWD"`. The second is required, not optional: the plugin deliberately ships no MCP server to Copilot, so a project that skips it has no document tools. Any surface showing the Copilot install path must show both steps.
+- **GitHub Copilot CLI requires project setup after machine installation.** The platform installer adds its plugin when `copilot` is on `PATH`. `archcore init --agent copilot --project "$PWD"` is still required in each repository: the plugin ships no MCP server to Copilot, so a project that skips it has no document tools. Any surface showing the Copilot path must state both actions.
 - **`docs.archcore.ai` caught up on 2026-08-10.** The earlier warning here (host matrix said Copilot was planned, removed commands still documented) no longer holds: docs state Copilot as implemented with both install steps and the `github/copilot-cli#4234` rationale, carry only the four commands, list all four `/archcore:plan` tracks, and say 19 document types. The standing rule is unchanged: **where docs and shipped code disagree, the landing follows the code** — and this time the drift ran the other way, with this rule missing the `research` track the docs already had.
 
 ## Compact product entry pages
@@ -273,7 +274,7 @@ Host support and structured data get their own invariants because both failed si
 
 **Good (Hero):** H1 "Spec-Driven Development & Context Engineering for AI Coding Agents", followed by the expanded product description from @src/data/product-copy.ts.
 
-**Good (home install block):** the platform install script, then `archcore init`, then the works-with strip.
+**Good (home install block):** the platform install script, then the works-with strip. Project setup with `archcore init` belongs in the next-step guide.
 
 **Good (a loop stage):** `/archcore:document` in mono, then "Record the decision to use a token bucket in Redis." on the code surface, then the ADR it produces.
 

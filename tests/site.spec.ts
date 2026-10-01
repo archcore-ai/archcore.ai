@@ -181,32 +181,20 @@ test("installation switches platform and copies the selected command", async ({
   );
 });
 
-test("plugin installation retains and copies every required host step in both languages", async ({
+test("plugin installation offers the platform installer and each host retry in both languages", async ({
   page,
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.setViewportSize({ width: 320, height: 900 });
   const hostCommands = [
-    [
-      "Claude Code",
-      [
-        "/plugin marketplace add archcore-ai/archcore",
-        "/plugin install archcore@archcore-plugins",
-      ],
-    ],
+    ["Claude Code", ["archcore plugin install --agent claude-code"]],
     ["Cursor 2.5+", ["https://github.com/archcore-ai/archcore"]],
-    [
-      "Codex CLI 0.117+",
-      [
-        "codex plugin marketplace add archcore-ai/archcore",
-        "codex plugin add archcore@archcore-plugins",
-      ],
-    ],
+    ["Codex CLI 0.117+", ["archcore plugin install --agent codex-cli"]],
     [
       "Copilot CLI",
       [
-        "copilot plugin install archcore-ai/archcore:plugins/archcore",
+        "archcore plugin install --agent copilot",
         'archcore init --agent copilot --project "$PWD"',
       ],
     ],
@@ -214,8 +202,8 @@ test("plugin installation retains and copies every required host step in both la
   for (const locale of ["en", "ru"]) {
     await page.goto(`/plugin/?lang=${locale}`);
     await expect(
-      page.locator('#install a[href="/cli/#install"]')
-    ).toBeVisible();
+      page.locator("#install [data-analytics-install]").first()
+    ).toContainText("curl -fsSL https://archcore.ai/install.sh | bash");
     for (const tab of await page.getByRole("tab").all()) {
       const bounds = await tab.boundingBox();
       expect(bounds!.x).toBeGreaterThanOrEqual(0);

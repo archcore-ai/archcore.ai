@@ -2,7 +2,7 @@
 title: "Project Context for Codex CLI — Archcore"
 heading: "Context Engineering for Codex CLI"
 description: "Give Codex CLI structured project context from Git: specs, architecture decisions, rules, and plans, loaded through MCP and session hooks."
-updatedDate: 2026-09-09
+updatedDate: 2026-10-01
 related:
   - context-engineering
   - project-context
@@ -24,7 +24,7 @@ Archcore gives Codex CLI structured project context from Git, including specs, a
 
 Codex CLI 0.117 and later is a **plugin host**. It also has one host-specific caveat worth knowing before you set it up, covered under hooks below.
 
-*Updated September 9, 2026: Reviewed product behavior and comparisons against the linked sources. Clarified that local document access does not require a hosted backend. Installation and update analytics are described in the [privacy policy](/privacy/).*
+*Updated October 1, 2026: The install script now adds the plugin when Codex CLI is on PATH. The [privacy policy](/privacy/) covers installation and update analytics.*
 
 ## What Archcore adds to Codex CLI
 
@@ -42,7 +42,7 @@ Archcore supplies that and delivers it:
 The plugin needs the Archcore CLI on your `PATH`.
 
 ```bash
-# 1. Install the CLI
+# 1. Install the CLI and plugin
 curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 # Windows: irm https://archcore.ai/install.ps1 | iex
 
@@ -50,12 +50,10 @@ curl -fsSL https://archcore.ai/install.sh | bash    # macOS / Linux
 cd your-project && archcore init
 ```
 
-When you select Codex in `archcore init`, Archcore installs the plugin for that host. For a separate manual installation:
+The install script adds the plugin when `codex` is on `PATH`. If you install Codex CLI later, run:
 
 ```bash
-codex plugin marketplace add archcore-ai/archcore
-codex
-# then run /plugins, open Archcore, select Install plugin
+archcore plugin install --agent codex-cli
 ```
 
 If hooks are disabled in your Codex installation, enable them explicitly:

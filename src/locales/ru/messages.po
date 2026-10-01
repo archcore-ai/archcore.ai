@@ -223,8 +223,8 @@ msgstr "Об этой интеграции"
 #~ msgstr "Добавьте spec-driven разработку и автоматический контекст проекта в Claude Code, Cursor, Codex CLI и GitHub Copilot CLI с помощью Archcore."
 
 #: src/components/sections/cli-pillars-section.tsx:21
-msgid "Add the plugin where available"
-msgstr "Подключите плагин, если агент его поддерживает"
+#~ msgid "Add the plugin where available"
+#~ msgstr "Подключите плагин, если агент его поддерживает"
 
 #: src/content/how-to-use/quick-start.tsx:93
 #~ msgid "ADRs are the smallest useful unit of repo context. Cascade one into a rule and a migration guide so the agent enforces it, not just remembers it."
@@ -421,7 +421,7 @@ msgstr "Archcore хранит спецификации, архитектуру, 
 msgid "Archcore keeps your project's decisions, specs, and rules in the repo."
 msgstr "Archcore хранит решения, спецификации и правила вашего проекта прямо в репозитории."
 
-#: src/components/sections/hero-section.tsx:113
+#: src/components/sections/hero-section.tsx:104
 msgid "Archcore on GitHub"
 msgstr "Archcore на GitHub"
 
@@ -615,8 +615,8 @@ msgstr "Блог"
 #~ msgstr "Оба пути работают с одной и той же папкой <0>.archcore/</0>. Разница — в слое опыта."
 
 #: src/components/sections/plugin-hero-section.tsx:108
-msgid "Both steps are required:"
-msgstr "Нужны оба шага:"
+#~ msgid "Both steps are required:"
+#~ msgstr "Нужны оба шага:"
 
 #: src/data/recipe-labels.ts:52
 #~ msgid "Bring your project context to the tools you already use."
@@ -674,7 +674,7 @@ msgstr "Сверьте ветку с записанными решениями �
 #~ msgid "Check the branch before you merge it"
 #~ msgstr "Проверить ветку до мержа"
 
-#: src/components/sections/plugin-hero-section.tsx:98
+#: src/components/sections/plugin-hero-section.tsx:99
 msgid "Check the hooks feature in your Codex settings. MCP and skills work independently of hooks."
 msgstr "Проверьте параметр hooks в настройках Codex. MCP и навыки работают независимо от хуков."
 
@@ -695,11 +695,11 @@ msgstr "Проверьте, что нужно для настройки ваше
 msgid "Choose the agents to configure. The CLI writes their MCP configuration and installs hooks where supported."
 msgstr "Выберите агентов для настройки. CLI запишет их конфигурацию MCP и установит хуки там, где они поддерживаются."
 
-#: src/components/sections/plugin-hero-section.tsx:51
+#: src/components/sections/plugin-hero-section.tsx:58
 msgid "Claude Code"
 msgstr "Claude Code"
 
-#: src/components/sections/hero-section.tsx:94
+#: src/components/sections/hero-section.tsx:85
 msgid "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 msgstr "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · любой MCP-агент"
 
@@ -763,7 +763,7 @@ msgstr "CLI"
 #~ msgid "CLI = one binary · Plugin = slash commands."
 #~ msgstr "CLI — один бинарь · Plugin — слэш-команды."
 
-#: src/components/sections/cli-hero-section.tsx:57
+#: src/components/sections/cli-hero-section.tsx:52
 msgid "CLI docs"
 msgstr "Документация CLI"
 
@@ -800,7 +800,7 @@ msgstr "Код, подходящий этому репозиторию с пер
 #~ msgid "Code that matches your architecture on the first try."
 #~ msgstr "Код, соответствующий вашей архитектуре с первого раза."
 
-#: src/components/sections/plugin-hero-section.tsx:57
+#: src/components/sections/plugin-hero-section.tsx:64
 msgid "Codex CLI 0.117+"
 msgstr "Codex CLI 0.117+"
 
@@ -901,7 +901,7 @@ msgstr "Контекстная инженерия для AI-агентов ра�
 msgid "Copied ✓"
 msgstr "Скопировано ✓"
 
-#: src/components/sections/plugin-hero-section.tsx:60
+#: src/components/sections/plugin-hero-section.tsx:67
 msgid "Copilot CLI"
 msgstr "Copilot CLI"
 
@@ -954,7 +954,7 @@ msgstr "Создайте каталог для контекста"
 #~ msgid "Cross-agent"
 #~ msgstr "Любой агент"
 
-#: src/components/sections/plugin-hero-section.tsx:54
+#: src/components/sections/plugin-hero-section.tsx:61
 msgid "Cursor 2.5+"
 msgstr "Cursor 2.5+"
 
@@ -1325,8 +1325,8 @@ msgstr "не пройдено"
 #~ msgstr "Плоская память работает для одного разработчика. Не для команды, не для нескольких агентов, не через полгода."
 
 #: src/components/sections/cli-pillars-section.tsx:23
-msgid "For selected plugin hosts, init also installs the plugin. Cursor requires installation through its Plugins panel."
-msgstr "Для выбранных агентов с поддержкой плагина init также установит плагин. В Cursor его нужно добавить через панель Plugins."
+#~ msgid "For selected plugin hosts, init also installs the plugin. Cursor requires installation through its Plugins panel."
+#~ msgstr "Для выбранных агентов с поддержкой плагина init также установит плагин. В Cursor его нужно добавить через панель Plugins."
 
 #: src/content/how-to-use/idea-no-context.tsx:147
 #~ msgid "Formalize the contract with a spec."
@@ -1521,6 +1521,10 @@ msgstr "Если агент сообщает, что инструмента ил
 #~ msgid "If you already keep a CLAUDE.md, you know the idea. Archcore adds typed documents, relations, and history, and <0>archcore init</0> imports the instruction files you have already written. <1>Why project context belongs in Git</1>."
 #~ msgstr "Если вы уже ведёте CLAUDE.md, идея вам знакома. Archcore добавляет типизированные документы, связи и историю, а <0>archcore init</0> импортирует уже написанные вами файлы инструкций. <1>Почему контексту проекта место в Git</1>."
 
+#: src/components/sections/plugin-hero-section.tsx:53
+msgid "If you installed your host later, use its setup step below."
+msgstr "Если вы установили хост позже, настройте его командой ниже."
+
 #: src/components/sections/cli-faq-section.tsx:37
 #~ msgid "If you use Claude Code or Cursor, yes — the plugin uses the CLI under the hood and gives you intent-based slash commands. Install the CLI on its own when you want the raw context layer or work with another MCP-capable agent."
 #~ msgstr "Если вы пользуетесь Claude Code или Cursor — да: плагин использует CLI под капотом и добавляет intent-based слэш-команды. Ставьте CLI отдельно, если нужен базовый слой контекста или вы работаете с другим MCP-совместимым агентом."
@@ -1597,9 +1601,17 @@ msgstr "Установить CLI"
 #~ msgid "Install docs"
 #~ msgstr "Документация по установке"
 
+#: src/components/sections/plugin-hero-section.tsx:73
+msgid "Install for Claude Code:"
+msgstr "Установить для Claude Code:"
+
+#: src/components/sections/plugin-hero-section.tsx:95
+msgid "Install for Codex CLI:"
+msgstr "Установить для Codex CLI:"
+
 #: src/components/sections/plugin-hero-section.tsx:91
-msgid "Install in Codex:"
-msgstr "Установите в Codex:"
+#~ msgid "Install in Codex:"
+#~ msgstr "Установите в Codex:"
 
 #: src/components/sections/plugin-hosts-section.tsx:16
 msgid "Install in the Plugins panel, then register MCP for your project."
@@ -1619,12 +1631,16 @@ msgid "Install plugin"
 msgstr "Установить плагин"
 
 #: src/components/sections/plugin-hero-section.tsx:45
-msgid "Install the CLI first"
-msgstr "Сначала установите CLI"
+#~ msgid "Install the CLI first"
+#~ msgstr "Сначала установите CLI"
 
 #: src/components/sections/cli-hero-section.tsx:25
-msgid "Install the CLI, then run archcore init in your project folder."
-msgstr "Установите CLI, затем выполните archcore init в папке проекта."
+#~ msgid "Install the CLI, then run archcore init in your project folder."
+#~ msgstr "Установите CLI, затем выполните archcore init в папке проекта."
+
+#: src/components/sections/plugin-hero-section.tsx:109
+msgid "Install the plugin, then connect your project:"
+msgstr "Установите плагин, затем подключите проект:"
 
 #: src/components/sections/how-to-use-cta-section.tsx:32
 #~ msgid "Install, quick start, capture, or use context — pick a path."
@@ -2231,11 +2247,11 @@ msgstr "открыт"
 #~ msgid "Open menu"
 #~ msgstr "Открыть меню"
 
-#: src/components/sections/plugin-hero-section.tsx:77
+#: src/components/sections/plugin-hero-section.tsx:81
 msgid "Open Plugins → Add and paste URL:"
 msgstr "Откройте Plugins → Add и вставьте URL:"
 
-#: src/components/sections/hero-section.tsx:100
+#: src/components/sections/hero-section.tsx:91
 msgid "Open source · Local-first"
 msgstr "Открытый код · Локальное хранение"
 
@@ -2295,7 +2311,7 @@ msgstr "Вставьте текст в файл инструкций проек�
 msgid "Per-agent setup"
 msgstr "Настройка по каждому агенту"
 
-#: src/components/sections/hero-section.tsx:126
+#: src/components/sections/hero-section.tsx:117
 msgid "Per-host install"
 msgstr "Установка под конкретную среду"
 
@@ -2371,7 +2387,7 @@ msgstr "Плагин"
 #~ msgid "Plugin = slash commands · CLI = one binary."
 #~ msgstr "Plugin — слэш-команды · CLI — один бинарь."
 
-#: src/components/sections/plugin-hero-section.tsx:174
+#: src/components/sections/plugin-hero-section.tsx:175
 #: src/components/sections/plugin-pillars-section.tsx:67
 msgid "Plugin docs"
 msgstr "Документация плагина"
@@ -2699,8 +2715,8 @@ msgid "Run in your terminal:"
 msgstr "Запустите в терминале:"
 
 #: src/components/sections/plugin-hero-section.tsx:66
-msgid "Run inside Claude Code:"
-msgstr "Запустите внутри Claude Code:"
+#~ msgid "Run inside Claude Code:"
+#~ msgstr "Запустите внутри Claude Code:"
 
 #: src/content/how-to-use/capture-existing.tsx:33
 #: src/content/how-to-use/capture-existing.tsx:156
@@ -3035,7 +3051,7 @@ msgstr "Star"
 msgid "Star Archcore on GitHub"
 msgstr "Поставить звезду Archcore на GitHub"
 
-#: src/components/sections/cli-hero-section.tsx:44
+#: src/components/sections/cli-hero-section.tsx:39
 msgid "Star CLI on GitHub"
 msgstr "Поставить звезду CLI на GitHub"
 
@@ -3043,10 +3059,10 @@ msgstr "Поставить звезду CLI на GitHub"
 msgid "Star on GitHub"
 msgstr "Поставить звезду на GitHub"
 
-#: src/components/sections/plugin-hero-section.tsx:71
-#: src/components/sections/plugin-hero-section.tsx:79
-#: src/components/sections/plugin-hero-section.tsx:96
-#: src/components/sections/plugin-hero-section.tsx:113
+#: src/components/sections/plugin-hero-section.tsx:75
+#: src/components/sections/plugin-hero-section.tsx:83
+#: src/components/sections/plugin-hero-section.tsx:97
+#: src/components/sections/plugin-hero-section.tsx:114
 msgid "Star plugin on GitHub"
 msgstr "Поставить звезду плагину на GitHub"
 
@@ -3329,6 +3345,22 @@ msgstr "Решение, которое уже выбрало Redis, и прав�
 #~ msgid "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 #~ msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
 
+#: src/components/sections/cli-hero-section.tsx:25
+msgid "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
+msgstr "Скрипт установки ставит CLI и доступные плагины. Позже запустите archcore init в каждом проекте, который хотите подключить."
+
+#: src/components/sections/faq-section.tsx:46
+msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+msgstr "Скрипт установки ставит CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Запустите archcore init в каждом проекте, где нужны MCP-инструменты и хуки. Плагин Cursor нужно добавить через его интерфейс."
+
+#: src/components/sections/plugin-hero-section.tsx:43
+msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
+msgstr "Скрипт установки ставит CLI и плагин, если команда вашего хоста есть в PATH. Для Cursor добавьте плагин через панель Plugins."
+
+#: src/components/sections/cli-pillars-section.tsx:23
+msgid "The install script adds the plugin to supported host CLIs already on PATH. Cursor requires installation through its Plugins panel."
+msgstr "Скрипт установки добавляет плагин в поддерживаемые хосты, команды которых уже есть в PATH. Для Cursor используйте панель Plugins."
+
 #: src/data/recipe-labels.ts:20
 msgid "The instructions ask your agent to:"
 msgstr "Инструкции просят агента:"
@@ -3404,8 +3436,8 @@ msgid "The plugin registers MCP automatically."
 msgstr "Плагин регистрирует MCP автоматически."
 
 #: src/components/sections/plugin-hero-section.tsx:43
-msgid "The plugin requires the Archcore CLI on your PATH."
-msgstr "Для работы плагина Archcore CLI должен быть доступен через PATH."
+#~ msgid "The plugin requires the Archcore CLI on your PATH."
+#~ msgstr "Для работы плагина Archcore CLI должен быть доступен через PATH."
 
 #: src/components/sections/plugin-hosts-section.tsx:38
 msgid "The plugin runs in four hosts. MCP registration and hooks differ between them."
@@ -3471,7 +3503,7 @@ msgstr "Плагин работает в Claude Code, Cursor 2.5+, Codex CLI 0.1
 #~ msgid "The same request, with and without the instructions"
 #~ msgstr "Один и тот же запрос — без инструкций и с ними"
 
-#: src/components/sections/plugin-hero-section.tsx:115
+#: src/components/sections/plugin-hero-section.tsx:116
 msgid "The second command connects MCP to this project. Restart Copilot afterwards. This integration is for Copilot CLI."
 msgstr "Вторая команда подключает MCP к этому проекту. После неё перезапустите Copilot. Интеграция предназначена для Copilot CLI."
 
@@ -3512,7 +3544,7 @@ msgstr "Вторая команда подключает MCP к этому пр�
 #~ msgid "Then round again. The next plan starts from everything the last three steps wrote down."
 #~ msgstr "Дальше по кругу. Следующий план стартует уже со всем, что записали три предыдущих шага."
 
-#: src/components/sections/plugin-hero-section.tsx:81
+#: src/components/sections/plugin-hero-section.tsx:85
 msgid "Then run archcore mcp install --agent cursor in your project folder to connect the document tools."
 msgstr "Затем выполните archcore mcp install --agent cursor в папке проекта, чтобы подключить инструменты работы с документами."
 
@@ -3628,6 +3660,10 @@ msgstr "Четыре скилла Archcore по порядку"
 #: src/components/sections/plugin-hosts-section.tsx:48
 #~ msgid "Use the CLI path for now"
 #~ msgstr "Пока используйте путь через CLI"
+
+#: src/components/sections/cli-pillars-section.tsx:21
+msgid "Use the plugin where available"
+msgstr "Используйте плагин в поддерживаемых хостах"
 
 #: src/content/how-to-use/capture-existing.tsx:229
 #: src/content/how-to-use/idea-no-context.tsx:289
@@ -4070,8 +4106,8 @@ msgstr "Да. Плагин вызывает archcore из PATH и не скач�
 #~ msgstr "Спорите один раз, записываете, к чему пришли, и через три месяца не начинаете заново."
 
 #: src/components/sections/faq-section.tsx:46
-msgid "You install one thing. The plugin runs on the CLI, so the CLI comes first: archcore init wires your agents and installs the plugin on the hosts you pick (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). On any other MCP-aware agent the CLI is all there is to install."
-msgstr "Ставите вы одно. Плагин работает поверх CLI, поэтому CLI идёт первым: archcore init настраивает ваших агентов и ставит плагин на выбранные хосты (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). Для любого другого MCP-агента ставить нужно только CLI."
+#~ msgid "You install one thing. The plugin runs on the CLI, so the CLI comes first: archcore init wires your agents and installs the plugin on the hosts you pick (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). On any other MCP-aware agent the CLI is all there is to install."
+#~ msgstr "Ставите вы одно. Плагин работает поверх CLI, поэтому CLI идёт первым: archcore init настраивает ваших агентов и ставит плагин на выбранные хосты (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). Для любого другого MCP-агента ставить нужно только CLI."
 
 #: src/components/sections/plugin-problem-section.tsx:31
 #~ msgid "You make a real call inside the agent — and a week later nobody, including the agent, remembers why."

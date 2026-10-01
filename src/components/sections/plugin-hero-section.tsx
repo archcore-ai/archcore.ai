@@ -40,10 +40,17 @@ export function PluginHeroSection() {
           <Trans>Install plugin</Trans>
         </h2>
         <p className="guide-prerequisite">
-          <Trans>The plugin requires the Archcore CLI on your PATH.</Trans>{" "}
-          <a href="/cli/#install" className="underline underline-offset-4">
-            <Trans>Install the CLI first</Trans> →
-          </a>
+          <Trans>
+            The install script adds the CLI and the plugin when your host CLI is
+            on PATH. Cursor needs plugin setup in its Plugins panel.
+          </Trans>
+        </p>
+        <InstallCommand
+          variant="inline"
+          surface="plugin_hero_install"
+        />
+        <p className="guide-prerequisite">
+          <Trans>If you installed your host later, use its setup step below.</Trans>
         </p>
         <Tabs value={host} onValueChange={handleHostChange}>
           <TabsList className="grid h-auto w-full grid-cols-2 sm:flex">
@@ -63,11 +70,8 @@ export function PluginHeroSection() {
 
           <TabsContent value="claude" className="mt-5">
             <HostPanel
-              hint={<Trans>Run inside Claude Code:</Trans>}
-              commands={[
-                "/plugin marketplace add archcore-ai/archcore",
-                "/plugin install archcore@archcore-plugins",
-              ]}
+              hint={<Trans>Install for Claude Code:</Trans>}
+              commands={["archcore plugin install --agent claude-code"]}
               repoLabel={_(msg`Star plugin on GitHub`)}
             />
           </TabsContent>
@@ -88,11 +92,8 @@ export function PluginHeroSection() {
 
           <TabsContent value="codex" className="mt-5">
             <HostPanel
-              hint={<Trans>Install in Codex:</Trans>}
-              commands={[
-                "codex plugin marketplace add archcore-ai/archcore",
-                "codex plugin add archcore@archcore-plugins",
-              ]}
+              hint={<Trans>Install for Codex CLI:</Trans>}
+              commands={["archcore plugin install --agent codex-cli"]}
               repoLabel={_(msg`Star plugin on GitHub`)}
               note={
                 <Trans>
@@ -105,9 +106,9 @@ export function PluginHeroSection() {
 
           <TabsContent value="copilot" className="mt-5">
             <HostPanel
-              hint={<Trans>Both steps are required:</Trans>}
+              hint={<Trans>Install the plugin, then connect your project:</Trans>}
               commands={[
-                "copilot plugin install archcore-ai/archcore:plugins/archcore",
+                "archcore plugin install --agent copilot",
                 'archcore init --agent copilot --project "$PWD"',
               ]}
               repoLabel={_(msg`Star plugin on GitHub`)}

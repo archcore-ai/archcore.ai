@@ -43,7 +43,7 @@ export function FAQSection() {
     {
       question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`You install one thing. The plugin runs on the CLI, so the CLI comes first: archcore init wires your agents and installs the plugin on the hosts you pick (Claude Code, Cursor, Codex CLI, GitHub Copilot CLI). On any other MCP-aware agent the CLI is all there is to install.`
+        msg`The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI.`
       ),
     },
   ];

@@ -18,9 +18,9 @@ export function CLIPillarsSection() {
       ),
     },
     {
-      title: _(msg`Add the plugin where available`),
+      title: _(msg`Use the plugin where available`),
       description: _(
-        msg`For selected plugin hosts, init also installs the plugin. Cursor requires installation through its Plugins panel.`
+        msg`The install script adds the plugin to supported host CLIs already on PATH. Cursor requires installation through its Plugins panel.`
       ),
     },
   ];

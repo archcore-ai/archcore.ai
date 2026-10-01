@@ -23,17 +23,12 @@ export function CLIHeroSection() {
         </h2>
         <p>
           <Trans>
-            Install the CLI, then run archcore init in your project folder.
+            The install script adds the CLI and available plugins. Run archcore
+            init later in each project you want to connect.
           </Trans>
         </p>
         <div className="guide-install">
           <InstallCommand variant="inline" surface="cli_hero" />
-          <InstallCommand
-            variant="inline"
-            command="archcore init"
-            surface="cli_hero"
-            installTarget="cli"
-          />
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border flex flex-wrap items-center gap-x-3 gap-y-1">
           <a
