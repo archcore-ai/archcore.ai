@@ -12,11 +12,11 @@
 import { Trans } from "@lingui/react/macro";
 import type { CycleStage } from "./types";
 
-/** Literal, never translated. Same pair the home hero shows. */
-export const INSTALL_COMMANDS = [
-  "curl -fsSL https://archcore.ai/install.sh | bash",
-  "archcore init",
-];
+/**
+ * Literal, never translated. The page renders it after the platform installer,
+ * which switches between the curl and irm commands like the home hero.
+ */
+export const INIT_COMMAND = "archcore init";
 
 export const CYCLE_STAGES: CycleStage[] = [
   {
@@ -45,15 +45,91 @@ export const CYCLE_STAGES: CycleStage[] = [
     prompt: <Trans>Plan rate limiting for the public API.</Trans>,
     result: (
       <Trans>
-        Your agent uses the project context to define how rate limiting should
-        work in a spec and break the implementation into tasks. You can then use
-        that plan to guide the coding work.
+        Your agent reads the repository and the existing documents first, then
+        asks you only what it cannot find there. It writes a spec for how rate
+        limiting must behave and a plan with tasks mapped to files. A
+        user-facing change also gets examples of the cases that matter.
       </Trans>
+    ),
+    /* The rows are the route table in the plugin's
+       skills/_shared/delta-routing.md, one row per route. Re-read that file on
+       any release that touches plan. */
+    details: (
+      <>
+        <p>
+          <Trans>
+            Archcore sizes the change from S to XL and picks the documents. You
+            do not choose a template or a size.
+          </Trans>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <Trans>The change</Trans>
+              </th>
+              <th>
+                <Trans>What plan prepares</Trans>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Trans>A small fix</Trans>
+              </td>
+              <td>
+                <Trans>No documents</Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Trans>A settled choice</Trans>
+              </td>
+              <td>
+                <Trans>A decision record</Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Trans>A change to existing behavior</Trans>
+              </td>
+              <td>
+                <Trans>
+                  A check of the covering spec: update the spec, or fix the code
+                </Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Trans>One new capability</Trans>
+              </td>
+              <td>
+                <Trans>A spec and a plan</Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Trans>Several capabilities</Trans>
+              </td>
+              <td>
+                <Trans>A PRD, one spec per capability, and a plan</Trans>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <Trans>
+            Risk raises the size. A security requirement adds a formal
+            requirements chain, and a data migration adds a migration runbook.
+          </Trans>
+        </p>
+      </>
     ),
     leaves: (
       <Trans>
-        Writes the spec that defines how rate limiting must behave, and a plan
-        that breaks the work into tasks.
+        Sizes the change first. Here that means a spec for how rate limiting
+        must behave and a plan that breaks the work into tasks.
       </Trans>
     ),
   },
@@ -62,11 +138,14 @@ export const CYCLE_STAGES: CycleStage[] = [
     skill: "/archcore:document",
     title: <Trans>Save the decision</Trans>,
     prompt: <Trans>Record the decision to use a token bucket in Redis.</Trans>,
+    altPrompt: <Trans>Document the rate limiting module.</Trans>,
     result: (
       <Trans>
         Your agent saves the choice and its reasoning in an architecture
-        decision record (ADR). Future tasks can look up why you chose Redis for
-        rate limiting.
+        decision record (ADR) and links it to the spec. Future tasks can look up
+        why you chose Redis for rate limiting. Ask it to document a module
+        instead, and it reads the code and writes a spec or a reference
+        document.
       </Trans>
     ),
     leaves: (
@@ -83,8 +162,11 @@ export const CYCLE_STAGES: CycleStage[] = [
     result: (
       <Trans>
         Your agent checks the code changes against the spec from step 2 and the
-        decision from step 3. It flags code that breaks a requirement and
-        documents that no longer match the code.
+        decision from step 3. Each finding gets one verdict:{" "}
+        <code>code-wrong</code> when the code breaks a requirement,{" "}
+        <code>spec-wrong</code> when the document is out of date, and{" "}
+        <code>ok</code> when they match. A change with no document still gets
+        checked against the project’s decisions and rules.
       </Trans>
     ),
     /* The three tokens are the ones the review skill emits and groups by

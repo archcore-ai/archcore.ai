@@ -1,5 +1,6 @@
 export { HeroSection } from "./hero-section";
 export { RailSection } from "./rail-section";
+export { PromoSection } from "./promo-section";
 export { OutcomesSection } from "./outcomes-section";
 export { DocumentsSection } from "./documents-section";
 export { SkillsSection } from "./skills-section";

@@ -15,8 +15,15 @@ export interface CycleStage {
   title: ReactNode;
   /** The sentence the reader types. Lifted from the skill's own triggers. */
   prompt: ReactNode;
+  /**
+   * A second sentence for the same skill in another mode, shown on
+   * `/how-to-use` only. Lifted from the skill's own triggers like `prompt`.
+   */
+  altPrompt?: ReactNode;
   /** What lands, in one sentence. */
   result: ReactNode;
+  /** Extra detail under `result`, shown on `/how-to-use` only. */
+  details?: ReactNode;
   /**
    * The same outcome compressed for the home page's loop tile, which shows the
    * documents the stage leaves rather than a full sentence. `/how-to-use`

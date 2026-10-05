@@ -1,5 +1,6 @@
 import {
   HeroSection,
+  PromoSection,
   OutcomesSection,
   DocumentsSection,
   SkillsSection,
@@ -29,8 +30,13 @@ export function LandingPage() {
           claim next to the file or the command that proves it.
 
           See .archcore/landing/home-plain-language-rail.adr.md.
+
+          The recording sits between the hero and the outcomes since
+          2026-10-05: it shows plan, code, and review on one feature before
+          the page names what each gives you.
         */}
         <HeroSection />
+        <PromoSection />
         <OutcomesSection />
         <DocumentsSection />
         <SkillsSection />

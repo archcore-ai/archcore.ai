@@ -4,7 +4,8 @@ import { msg } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useLingui } from "@lingui/react";
 import { InstallCommand } from "@/components/cta/install-command";
-import { CYCLE_STAGES, INSTALL_COMMANDS } from "@/content/how-to-use";
+import { PromoVideo } from "@/components/promo-video";
+import { CYCLE_STAGES, INIT_COMMAND } from "@/content/how-to-use";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useGitHubStars } from "@/hooks/use-github-stars";
 import { LINKS } from "@/lib/links";
@@ -12,7 +13,7 @@ import { track } from "@/lib/analytics";
 
 export function HowToUsePage() {
   const { _ } = useLingui();
-  const { cli, plugin } = useGitHubStars();
+  const { plugin } = useGitHubStars();
 
   usePageMeta({
     title: _(msg`How to use Archcore`),
@@ -45,7 +46,7 @@ export function HowToUsePage() {
               <Trans>Explore Archcore on GitHub.</Trans>
             </h2>
             <p>
-              <Trans>Browse the CLI and plugin repositories.</Trans>
+              <Trans>The CLI and the plugin live in one repository.</Trans>
             </p>
           </div>
           <div className="recipe-cta__actions">
@@ -78,21 +79,30 @@ export function HowToUsePage() {
           </Trans>
         </p>
         <div className="guide-install">
-          {INSTALL_COMMANDS.map((command) => (
-            <InstallCommand
-              key={command}
-              variant="inline"
-              command={command}
-              surface="how_to_use_install"
-              installTarget="cli"
-            />
-          ))}
+          <InstallCommand
+            variant="inline"
+            surface="how_to_use_install"
+            installTarget="cli"
+          />
+          <InstallCommand
+            variant="inline"
+            command={INIT_COMMAND}
+            surface="how_to_use_install"
+            installTarget="cli"
+          />
         </div>
         <p>
           <Trans>
             During setup, choose the agents you use. Archcore connects them to
             the project through MCP and hooks. Cursor needs plugin setup in its
             Plugins panel.
+          </Trans>
+        </p>
+        <p>
+          <Trans>
+            Already have a CLAUDE.md, AGENTS.md, or rule files? Run{" "}
+            <code>/archcore:init import</code> in your agent to turn them into
+            project documents.
           </Trans>
         </p>
       </section>
@@ -103,11 +113,20 @@ export function HowToUsePage() {
         </h2>
         <p>
           <Trans>
-            A skill is a workflow your agent follows for a specific job. Here,
-            four skills help you add rate limiting to a public API: a cap on how
-            often clients can call it.
+            A skill is a set of instructions your agent follows for one job.
+            Here, four skills help you add rate limiting to a public API: a cap
+            on how often clients can call it.
           </Trans>
         </p>
+        <figure className="my-6 grid gap-2">
+          <PromoVideo />
+          <figcaption className="text-sm leading-relaxed text-muted-foreground">
+            <Trans>
+              The recording runs the same plan, build, and review steps on a
+              different feature: rescheduling a delivery.
+            </Trans>
+          </figcaption>
+        </figure>
         <p>
           <Trans>
             Ask your agent using the example prompt, or run the slash command
@@ -125,10 +144,19 @@ export function HowToUsePage() {
             </p>
             <blockquote>
               <p>{stage.prompt}</p>
+              {stage.altPrompt && <p>{stage.altPrompt}</p>}
             </blockquote>
             <p>{stage.result}</p>
+            {stage.details}
           </section>
         ))}
+        <p>
+          <Trans>
+            You do not need all four on every change. Each command also works
+            alone: record a decision while you code, or review a branch that had
+            no plan.
+          </Trans>
+        </p>
         <p>
           <Trans>
             While you code, supported hooks bring relevant specs and decisions
@@ -145,23 +173,9 @@ export function HowToUsePage() {
         </p>
       </section>
 
+      {/* One link: the CLI and the plugin share archcore-ai/archcore since the
+          2026-09-22 rename, so LINKS.cliRepo and LINKS.pluginRepo are equal. */}
       <p className="guide-repos">
-        <a
-          href={LINKS.cliRepo}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-analytics-handled
-          onClick={() =>
-            track("github_star_clicked", {
-              repo: "cli",
-              stars: cli,
-              surface: "star_cta_section",
-            })
-          }
-        >
-          archcore-ai/archcore
-        </a>
-        <span aria-hidden="true"> · </span>
         <a
           href={LINKS.pluginRepo}
           target="_blank"
