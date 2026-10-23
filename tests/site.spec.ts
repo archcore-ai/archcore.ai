@@ -501,7 +501,7 @@ test("an integration page translates its prose, workflow and install steps", asy
     "совместных прогонов не записано"
   );
   await expect(details.locator("li").first()).toContainText(
-    "нет связанной записи о проверке"
+    "не привязана запись о проверке"
   );
   await page.keyboard.press("Escape");
 

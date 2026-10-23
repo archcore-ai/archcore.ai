@@ -584,13 +584,19 @@ html.dark .recipe-mark__tile .logo-dark {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 16px;
+  gap: 12px;
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
   .catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .catalog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -604,7 +610,7 @@ html.dark .recipe-mark__tile .logo-dark {
 .catalog-card__link {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 18px 20px;
   height: 100%;
   text-decoration: none;
   color: inherit;
@@ -628,17 +634,17 @@ html.dark .recipe-mark__tile .logo-dark {
 }
 
 .catalog-card__title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 650;
   letter-spacing: -0.02em;
   margin: 16px 0 0.4rem;
 }
 
 .catalog-card__summary {
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--color-text-secondary);
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.8rem;
 }
 
 .catalog-card__foot {
@@ -718,7 +724,6 @@ html.dark .recipe-mark__tile .logo-dark {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 32px;
-  max-width: 760px;
   padding-top: 28px;
 }
 .recipe-prose h2 {
@@ -861,9 +866,6 @@ html.dark .recipe-instructions figcaption {
 .recipe-page [data-recipe-tab-panel]:focus-visible {
   outline: none;
 }
-.recipe-overview-result {
-  max-width: 64ch;
-}
 .recipe-overview-result > a {
   display: inline-block;
   padding-block: 8px;
@@ -918,7 +920,6 @@ html.dark .recipe-instructions figcaption {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 12px;
-  max-width: 760px;
   align-items: start;
 }
 .recipe-pilot-heading h2 {
@@ -974,9 +975,6 @@ html.dark .recipe-instructions figcaption {
 /* Examples tab: one request, its steps, a note on what was verified. */
 .recipe-example {
   padding-top: 28px;
-}
-.recipe-example-heading {
-  max-width: 760px;
 }
 .recipe-example-heading h2 {
   margin: 0;
@@ -1572,8 +1570,8 @@ body:has(.recipe-dialog:modal) {
   .catalog-card__link {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
-    column-gap: 32px;
-    padding: 32px;
+    column-gap: 16px;
+    padding: 20px;
   }
   .catalog-card__link > .recipe-mark {
     grid-column: 1;
@@ -1595,8 +1593,8 @@ body:has(.recipe-dialog:modal) {
     display: block;
     grid-column: 3;
     grid-row: 1 / span 3;
-    align-self: center;
-    font-size: 24px;
+    align-self: start;
+    font-size: 18px;
   }
 }
 

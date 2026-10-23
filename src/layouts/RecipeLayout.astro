@@ -142,6 +142,12 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 // a share of "Serena + Archcore" should not preview as the home page.
 const image = `${SITE_URL}/og/integrations/${recipe}.png`;
 const shortDigest = digest.slice(0, 12);
+// A tool role may carry Markdown links: "[FPF Library](https://…)".
+const roleParts = (role: string) =>
+  role.split(/(\[[^\]]+\]\([^)\s]+\))/).map((part) => {
+    const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+    return link ? { text: link[1], href: link[2] } : { text: part };
+  });
 
 const DATE_OPTIONS = {
   year: "numeric",
@@ -347,11 +353,28 @@ const breadcrumbSchema = {
                     {tool.name} ↗
                   </a>
                 </dt>
-                <dd
-                  data-en={ru?.toolRoles[tool.name] ? tool.role : undefined}
-                  data-ru={ru?.toolRoles[tool.name]}
-                >
-                  {tool.role}
+                <dd>
+                  {(ru?.toolRoles[tool.name]
+                    ? [
+                        ["en", tool.role],
+                        ["ru", ru.toolRoles[tool.name]],
+                      ]
+                    : [[undefined, tool.role]]
+                  ).map(([locale, role]) => (
+                    <span
+                      data-locale-block={locale}
+                      lang={locale}
+                      hidden={locale === "ru"}
+                    >
+                      {roleParts(role!).map((part) =>
+                        part.href ? (
+                          <a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+                        ) : (
+                          part.text
+                        )
+                      )}
+                    </span>
+                  ))}
                 </dd>
               </div>
             ))

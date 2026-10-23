@@ -16,126 +16,105 @@ source:
 tools:
   - name: "Archcore"
     url: "https://archcore.ai/"
-    role: "Keeps project decisions and rules in Git so your agent can check feature plans against them."
+    role: "Keeps project decisions and rules [in Git](https://docs.archcore.ai/) so your agent can check feature plans against them."
     icon: "/logo.png"
     iconDark: "/logo-dark.png"
   - name: "Spec Kit"
     url: "https://github.com/github/spec-kit"
-    role: "Guides work from project principles through a feature specification, implementation plan, tasks and code."
+    role: "Guides work from [project principles](https://github.com/github/spec-kit) through a feature specification, implementation plan, tasks and code."
 hosts: []
 evidence: []
 workflow:
   heading: "From a feature specification to checked implementation"
   steps:
     - title: "Read the principles and decisions"
-      description: "The agent checks the feature specification and Spec Kit constitution against relevant Archcore decisions. The constitution is the project's agreed set of principles. A missing or blank one is reported for your decision."
-    - title: "Review the feature plan"
-      description: "Spec Kit keeps the specification, plan and supporting design files. You review them before implementation, with conflicts and open assumptions made explicit."
-    - title: "Link the new decisions"
-      description: "After design approval, the agent checks for existing decisions before creating draft ADRs in Archcore. Each architecture decision record links to the native feature files and distinguishes approved choices from assumptions."
-    - title: "Implement from the native tasks"
-      description: "The agent follows Spec Kit's task list, checks code against the approved specification and contracts, and updates current status statements in the plan and research."
-    - title: "Resume with the saved feature context"
-      description: "A later session reads the feature files and decision records before repeating requirements questions. It reports unfinished work and separates draft decisions from accepted ones."
-  note: "Spec Kit keeps the feature specification, plan and tasks. The integration asks Archcore to reference those files when recording decisions."
+      description: "The agent checks the feature spec and the Spec Kit constitution (the project's agreed principles) against Archcore decisions. If the constitution is missing or blank, it tells you."
+    - title: "Review the plan, then link decisions"
+      description: "Spec Kit keeps the spec, plan and design files, and you review them before any code. After you approve, the agent saves new decisions as draft ADRs (architecture decision records) linked to those files."
+    - title: "Build and pick up later"
+      description: "The agent follows Spec Kit's task list and keeps the plan's status lines current. A later session reads the feature files and records before it asks you anything again."
+  note: "Spec Kit keeps the spec, plan and tasks; Archcore records point to those files."
 pilot:
   heading: "Keep feature plans connected to project decisions."
-  summary: "You can review the proposed implementation alongside existing decisions, then keep the reasons for new choices linked to the feature files as work proceeds."
-  limitation: "The earlier recipe completed one coupon-feature scenario twice in Claude Code. The constitution stayed an unfilled template in both runs, so compatibility with a populated constitution remains untested. This revised instruction text has not had a joint run."
+  summary: "You review a feature plan next to the decisions it must respect, and the reasons for new choices stay linked to the feature files."
+  limitation: "An earlier revision ran one coupon scenario twice in Claude Code with a blank constitution; this text has not had a joint run."
   findings:
     - scenario: "A feature conflicts with an accepted decision"
-      result: "In both pilot runs with the earlier recipe, the agent reported the conflict before planning or implementation and preserved the accepted decision after the owner's resolution."
-      caveat: "The benchmark explicitly requested the conflict check. Both runs used project instructions and the accepted ADR because the constitution was blank."
+      result: "In both runs, the agent reported the conflict before planning and kept the accepted decision after the owner settled it."
+      caveat: "The benchmark asked for the conflict check, and a filled-in constitution was not tested."
     - scenario: "Specifications, tasks and decisions stay connected"
-      result: "Both runs kept feature files in Spec Kit's native locations and created linked draft ADRs in Archcore. Code passed the benchmark's six primary and four additional contract checks."
-      caveat: "Plan and research sections still contained stale claims about which records existed. Passing code tests did not make those documents consistent."
-    - scenario: "A later session reviews the result"
-      result: "The recorded recall answers recovered the coupon behavior, draft ADR status and document disagreements from the saved feature work."
-      caveat: "Some assumptions had been described as settled decisions. The revised instructions explicitly separate assumptions from owner approval."
+      result: "Both runs kept the files where Spec Kit expects them and created linked draft ADRs, and the code passed all ten checks."
+      caveat: "The plan still held stale claims about which records existed, which the revised text now checks."
 example:
-  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Use the installed Spec Kit specify, plan, tasks and implement workflow. Check existing project decisions and report any conflict before implementing."
+  request: "Introduce coupon discounts in this quotation library. Use floating-point arithmetic for the monetary intermediate values. Check existing project decisions and report any conflict before implementing."
   steps:
     - tool: "Archcore"
-      text: "Before planning, the agent searches the project records and compares them with the request. It finds the accepted decision on integer cents, reports the conflict with the float request and stops. No file has changed."
+      text: "The agent finds the accepted integer-cents decision, reports the conflict with the float request and stops before changing any file."
     - tool: "Spec Kit"
-      text: "You keep integer cents. The agent writes the specification and plan where Spec Kit expects them, marks open points as assumptions, and stops at the saved design for your review."
+      text: "You keep integer cents, and the agent writes the spec and plan where Spec Kit expects them, marks open points as assumptions and waits for your review."
     - tool: "Archcore"
-      text: "You approve the design. The decisions it settles become draft ADRs linked to the feature files by path. The money decision stays as it was."
+      text: "After you approve the design, its decisions become draft ADRs linked to the feature files."
     - tool: "Spec Kit"
-      text: "You ask for the implementation. The agent works through the task list, runs the tests, and brings the status lines in the plan and research up to date with the records that now exist."
-    - text: "A new session reads the feature files and the decision records and answers from them: the coupon contract, 13 cents off and 612 cents total for one tea with SAVE10, and where the documents disagree with the code."
-  note: "This is what the instructions ask for, not a recorded run. An earlier revision completed this scenario twice in Claude Code with a blank constitution; see the pilot note. This revision has not had a joint run."
+      text: "The agent works through the task list, runs the tests and updates the status lines in the plan."
+    - text: "A new session answers from the saved files: 13 cents off and 612 cents total for one tea with SAVE10, plus where the documents disagree with the code."
+  note: "This is what the instructions ask for, not a recorded run. An earlier revision completed this scenario twice; this one has not run yet."
 limits:
-  - "The published instructions are a revision of the measured recipe. They remain experimental until this exact text is tested."
-  - "The pilot used Claude Code 2.1.268, model identifier claude-opus-5[1m], Archcore 0.8.3 and a pinned Spec Kit runtime snapshot documented in the pilot note."
-  - "Two repetitions of one scripted feature do not establish better code, lower cost or compatibility across repositories and agents."
-  - "A populated constitution, extensions, multi-feature work and additional planning tools were not covered by this pilot."
-  - "The instructions rely on the agent following them. Review remains necessary for tests, document consistency and decision approval."
+  - "Experimental until this exact text is tested. The pilot used Claude Code 2.1.268, claude-opus-5[1m], Archcore 0.8.3 and a pinned Spec Kit snapshot."
+  - "A filled-in constitution, extensions and multi-feature work were not covered."
+  - "Nothing enforces the instructions. Review the tests, the documents and the draft ADRs yourself."
 ru:
   summary: "Планируйте функции с учётом принятых решений. Спецификации и задачи Spec Kit связаны с записями Archcore."
   category: "Разработка от спецификации"
   toolRoles:
-    Archcore: "Хранит решения и правила проекта в Git, чтобы агент сверял с ними планы функций."
-    Spec Kit: "Ведёт работу от принципов проекта через спецификацию функции, план реализации и задачи к коду."
+    Archcore: "Хранит решения и правила проекта [в Git](https://docs.archcore.ai/), чтобы агент сверял с ними планы функций."
+    Spec Kit: "Ведёт работу от [принципов проекта](https://github.com/github/spec-kit) через спецификацию функции, план реализации и задачи к коду."
   workflow:
     heading: "От спецификации функции до проверенной реализации"
     steps:
       - title: "Прочитать принципы и решения"
-        description: "Агент сверяет спецификацию функции и конституцию Spec Kit с подходящими решениями Archcore. Конституция — это согласованный набор принципов проекта. Если её нет или она пустая, агент сообщает об этом вам."
-      - title: "Разобрать план функции"
-        description: "Spec Kit хранит спецификацию, план и вспомогательные файлы проектирования. Вы разбираете их до реализации, а противоречия и открытые допущения называются прямо."
-      - title: "Связать новые решения"
-        description: "После согласования агент проверяет, нет ли уже таких решений, и создаёт черновые ADR в Archcore. Каждая запись об архитектурном решении ссылается на файлы функции и отделяет одобренный выбор от допущений."
-      - title: "Реализовать по задачам Spec Kit"
-        description: "Агент идёт по списку задач Spec Kit, сверяет код с одобренной спецификацией и договорённостями и обновляет утверждения о текущем состоянии в плане и материалах исследования."
-      - title: "Вернуться к сохранённому контексту функции"
-        description: "Более поздняя сессия читает файлы функции и записи решений, прежде чем снова задавать вопросы о требованиях. Она сообщает о незавершённой работе и отделяет черновые решения от принятых."
-    note: "Spec Kit хранит спецификацию функции, план и задачи. Интеграция просит Archcore ссылаться на эти файлы в записях решений."
+        description: "Агент сверяет спецификацию функции и конституцию Spec Kit (согласованные принципы проекта) с решениями Archcore. Если конституции нет или она пустая, он скажет вам об этом."
+      - title: "Посмотреть план и связать решения"
+        description: "Spec Kit хранит спецификацию, план и файлы проектирования, и вы смотрите их до написания кода. После вашего согласия агент сохраняет новые решения черновыми ADR (записями об архитектурных решениях) со ссылками на эти файлы."
+      - title: "Сделать и вернуться позже"
+        description: "Агент идёт по списку задач Spec Kit и обновляет строки о статусе в плане. Следующая сессия сначала читает файлы функции и записи, а уже потом задаёт вопросы."
+    note: "Spec Kit хранит спецификацию, план и задачи, записи Archcore ссылаются на эти файлы."
   pilot:
     heading: "Держите планы функций связанными с решениями проекта."
-    summary: "Предлагаемую реализацию можно разобрать вместе с принятыми решениями, а причины новых решений остаются связанными с файлами функции по ходу работы."
-    limitation: "Предыдущий рецепт дважды прошёл один сценарий с функцией купона в Claude Code. В оба прогона конституция оставалась незаполненным шаблоном, поэтому совместимость с заполненной конституцией не проверена. По этой исправленной версии инструкций совместных прогонов не было."
+    summary: "Вы смотрите план функции рядом с решениями, которые он обязан соблюдать, а причины новых решений остаются привязанными к файлам функции."
+    limitation: "Прежняя редакция дважды прошла один сценарий с купонами в Claude Code с пустой конституцией; этот текст вместе ещё не запускали."
     findings:
       - scenario: "Функция противоречит принятому решению"
-        result: "В оба прогона пилота с предыдущим рецептом агент сообщил о противоречии до планирования и реализации и сохранил принятое решение после того, как владелец его разобрал."
-        caveat: "Тест прямо просил проверить противоречие. Оба прогона опирались на инструкции проекта и принятый ADR, потому что конституция была пустой."
+        result: "В обоих прогонах агент сообщил о противоречии до планирования и сохранил принятое решение, когда владелец сделал выбор."
+        caveat: "Тест сам просил проверить противоречия, а заполненную конституцию не проверяли."
       - scenario: "Спецификации, задачи и решения остаются связанными"
-        result: "Оба прогона держали файлы функции в обычных местах Spec Kit и создали связанные черновые ADR в Archcore. Код прошёл шесть основных и четыре дополнительные проверки договорённостей."
-        caveat: "В разделах плана и материалов исследования остались устаревшие утверждения о том, какие записи есть. Пройденные тесты кода не сделали эти документы согласованными."
-      - scenario: "Более поздняя сессия разбирает результат"
-        result: "Записанные ответы восстановили поведение купона, состояние черновых ADR и расхождения в документах по сохранённой работе над функцией."
-        caveat: "Часть допущений была описана как принятые решения. Исправленные инструкции прямо отделяют допущения от одобрения владельцем."
+        result: "Оба прогона держали файлы там, где их ждёт Spec Kit, создали связанные черновые ADR, а код прошёл все десять проверок."
+        caveat: "В плане остались устаревшие утверждения о том, какие записи есть; исправленный текст теперь это проверяет."
   example:
-    request: "Добавь скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используй числа с плавающей точкой. Работай через установленный процесс Spec Kit: specify, plan, tasks, implement. Проверь принятые решения проекта и сообщи о противоречии до реализации."
+    request: "Добавьте скидки по купонам в эту библиотеку расчёта стоимости. Для промежуточных денежных значений используйте числа с плавающей точкой. Проверьте принятые решения проекта и сообщите о противоречии до реализации."
     steps:
-      - "До планирования агент ищет в записях проекта и сверяет их с запросом. Находит принятое решение о целых центах, сообщает о противоречии с плавающей точкой и останавливается. Ни один файл не изменён."
-      - "Вы оставляете целые центы. Агент пишет спецификацию и план там, где их ждёт Spec Kit, помечает открытые вопросы как допущения и останавливается на сохранённом проектном решении, чтобы вы его посмотрели."
-      - "Вы одобряете проектное решение. Закреплённые им решения становятся черновыми ADR со ссылкой на файлы функции по пути. Решение о деньгах не тронуто."
-      - "Вы просите реализовать. Агент проходит список задач, запускает тесты и приводит строки о статусе в плане и исследовании в соответствие с записями, которые теперь есть."
-      - "Новая сессия читает файлы функции и записи решений и отвечает по ним: контракт купонов, скидка 13 центов и итог 612 центов за один чай с SAVE10, где документы расходятся с кодом."
-    note: "Так описывают инструкции, это не запись прогона. Прежняя редакция дважды прошла этот сценарий в Claude Code с пустой конституцией, см. заметку о пилоте. У этой редакции совместных прогонов не было."
+      - "Агент находит принятое решение о целых центах, сообщает о противоречии с плавающей точкой и останавливается, ничего не меняя."
+      - "Вы оставляете целые центы, и агент пишет спецификацию и план там, где их ждёт Spec Kit, помечает открытые вопросы как допущения и ждёт вашего просмотра."
+      - "Когда вы одобряете проектное решение, его решения становятся черновыми ADR со ссылками на файлы функции."
+      - "Агент проходит список задач, запускает тесты и обновляет строки о статусе в плане."
+      - "Новая сессия отвечает по сохранённым файлам: скидка 13 центов и итог 612 центов за один чай с SAVE10, а ещё где документы расходятся с кодом."
+    note: "Так работают инструкции на бумаге, это не запись прогона. Прежняя редакция дважды прошла этот сценарий, эту ещё не запускали."
   limits:
-    - "Опубликованные инструкции — исправленная версия того рецепта, который измеряли. Они остаются экспериментальными, пока не проверен именно этот текст."
-    - "В пилоте использовались Claude Code 2.1.268, модель claude-opus-5[1m], Archcore 0.8.3 и закреплённый снимок Spec Kit, описанный в заметке о пилоте."
-    - "Два повтора одного заранее заданного сценария не доказывают, что код становится лучше, расходы ниже и что рецепт совместим с другими репозиториями и агентами."
-    - "Заполненная конституция, расширения, работа над несколькими функциями и дополнительные инструменты планирования в пилот не входили."
-    - "Инструкции полагаются на то, что агент им следует. Тесты, согласованность документов и одобрение решений всё равно нужно проверять."
+    - "Экспериментально, пока именно этот текст не проверен. В пилоте были Claude Code 2.1.268, claude-opus-5[1m], Archcore 0.8.3 и закреплённый снимок Spec Kit."
+    - "Заполненная конституция, расширения и работа над несколькими функциями в пилот не входили."
+    - "Выполнение инструкций зависит только от агента. Тесты, документы и черновые ADR проверяйте сами."
 maintainer: "Archcore maintainers"
 ---
 
 ## How Spec Kit + Archcore work together
 
-Spec Kit + Archcore connects a feature's specification and implementation plan to
-the decisions already made in your project. Spec Kit organizes the feature work.
-Archcore supplies relevant decisions and keeps new decision records linked to
-the feature files.
+Spec Kit + Archcore connects a feature's spec and plan to the decisions your
+project already made. Spec Kit organizes the feature work. Archcore supplies the
+relevant decisions and keeps new decision records linked to the feature files.
 
-For example, a feature plan may introduce a calculation method that contradicts
-an accepted project decision. The instructions ask the agent to surface the
-conflict while you can still change the plan. Once you approve the design, new
-architectural decisions are recorded as drafts for separate acceptance.
+Say a feature plan brings in a calculation method that contradicts an accepted
+decision. The agent shows you the conflict while the plan can still change, and
+records new decisions as drafts once you approve the design.
 
-The instructions also address stale status statements found in the pilot's plans
-and research. Read the [pilot findings and instruction changes](/integration-evidence/2026-09-11-spec-workflows.md)
-for the measured scope. For native commands and installation, see the
-[Spec Kit project](https://github.com/github/spec-kit).
+The [pilot findings and instruction changes](/integration-evidence/2026-09-11-spec-workflows.md)
+describe what was measured. Commands and installation are on the
+[Spec Kit project](https://github.com/github/spec-kit) page.

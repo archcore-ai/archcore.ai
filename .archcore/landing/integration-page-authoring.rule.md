@@ -15,7 +15,7 @@ Scope: @src/content/integrations/, @src/recipes/, @src/pages/integrations/, @src
 1. Catalog maintainers MUST render published integrations through CatalogLayout.
 2. Catalog maintainers MUST order entries by heading.
 3. Catalog entries MUST show the integration name, outcome summary, category, and detail-page link.
-4. From 768 px, catalog maintainers MUST lay out the cards in two equal columns.
+4. From 768 px, catalog maintainers MUST lay out the cards in two equal columns. From 1024 px, catalog maintainers MUST lay out the cards in three equal columns.
 5. Below 768 px, catalog maintainers MUST stack the cards in one column.
 6. Catalog maintainers MUST NOT add empty placeholder cells. An odd last card keeps one column.
 7. Integration maintainers MUST retain the hidden logo and status data.
@@ -28,7 +28,7 @@ Scope: @src/content/integrations/, @src/recipes/, @src/pages/integrations/, @src
 14. With example content present, recipe maintainers MUST label its tab Examples and place it between How it works and Benefits & limits.
 15. With benefits content present, recipe maintainers MUST label its tab Benefits & limits.
 16. Recipe maintainers MUST preserve existing tab fragments, including #examples and #pilot-results.
-17. Recipe maintainers MUST display explanation content in one reading column.
+17. Recipe maintainers MUST display explanation content in one reading column that spans the full width of the tab bar.
 18. Recipe maintainers MUST present installation through RecipeSetup rather than a tab of its own.
 
 ### Naming an integration
@@ -45,7 +45,7 @@ Scope: @src/content/integrations/, @src/recipes/, @src/pages/integrations/, @src
 ### How the explanation is written
 
 27. Recipe authors MUST name the joint outcome before the supporting mechanism.
-28. Recipe authors MUST state each tool's contribution in the tools role field.
+28. Recipe authors MUST state each tool's contribution in the tools role field. The role field MAY carry Markdown links (`[text](url)`) to the tool's repository or documentation; @src/layouts/RecipeLayout.astro renders them as links in both languages.
 29. Recipe authors MUST describe agent actions in execution order through workflow.steps.
 30. Recipe authors MUST identify where designs, execution plans, and durable decisions are stored.
 31. Recipe authors MUST distinguish requested agent behavior from verified behavior.
@@ -114,7 +114,7 @@ Set on 2026-09-12 at the owner's request: the catalog offers two ways in, not on
 
 The owner requested a short explanation with installation immediately accessible, compact copyable instructions, and hidden branding/status. Separating presentation from upstream Markdown prevents a copy edit from changing agent instructions.
 
-The catalog held one card per row while it listed a single integration. With three entries, a single column left most of the page width unused, so the owner asked for two columns.
+The catalog held one card per row while it listed a single integration. With three entries, a single column left most of the page width unused, so the owner asked for two columns. On 2026-10-23, with seven entries and more planned, the owner asked for compact cards and three columns on desktop, and for the explanation column to use the full page width.
 
 The owner also asked for partner-first names. A reader who looks for OpenSpec or Spec Kit sees their tool at the start of the card title, the H1, and the search result.
 
