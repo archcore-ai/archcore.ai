@@ -6,6 +6,8 @@ export const LINKS = {
   docsQuickstart: "https://docs.archcore.ai/start/quick-start/",
   docsMigrate: "https://docs.archcore.ai/guides/commands/#import-existing-instructions",
   docsSupportedHosts: "https://docs.archcore.ai/guides/connect-your-agent/#supported-hosts",
+  // The anchor lives on the install page; connect-your-agent has no #install-per-host.
+  docsInstallPerHost: "https://docs.archcore.ai/start/install/#install-per-host",
   docsAgentIntegrations: "https://docs.archcore.ai/guides/connect-your-agent/",
   supportedAgents:
     "https://github.com/archcore-ai/archcore/blob/dev/cli/README.md",

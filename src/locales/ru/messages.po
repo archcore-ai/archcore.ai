@@ -469,13 +469,13 @@ msgstr "Archcore хранит спецификации, архитектуру, 
 #~ msgid "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
 #~ msgstr "Archcore держит ваши решения, правила и архитектуру структурированными документами в репозитории и отдаёт их агенту через MCP до того, как он начнёт править код."
 
-#: src/components/sections/hero-section.tsx:49
+#: src/components/sections/hero-section.tsx:44
 msgid "Archcore keeps your project's decisions, specs, and rules in the repo."
 msgstr "Archcore хранит решения, спецификации и правила вашего проекта прямо в репозитории."
 
 #: src/components/sections/hero-section.tsx:104
-msgid "Archcore on GitHub"
-msgstr "Archcore на GitHub"
+#~ msgid "Archcore on GitHub"
+#~ msgstr "Archcore на GitHub"
 
 #: src/pages/plugin.tsx:24
 #~ msgid "Archcore Plugin — repo memory for AI coding agents"
@@ -759,7 +759,7 @@ msgstr "Выберите агентов для настройки. CLI запи�
 msgid "Claude Code"
 msgstr "Claude Code"
 
-#: src/components/sections/hero-section.tsx:85
+#: src/components/sections/hero-section.tsx:90
 msgid "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 msgstr "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · любой MCP-агент"
 
@@ -2339,7 +2339,7 @@ msgstr "открыт"
 msgid "Open Plugins → Add and paste URL:"
 msgstr "Откройте Plugins → Add и вставьте URL:"
 
-#: src/components/sections/hero-section.tsx:91
+#: src/components/sections/hero-section.tsx:100
 msgid "Open source · Local-first"
 msgstr "Открытый код · Локальное хранение"
 
@@ -2362,6 +2362,10 @@ msgstr "Открытый код · Локальное хранение"
 #: src/content/how-to-use/install.tsx:254
 #~ msgid "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
 #~ msgstr "Откройте кодинг-агента в корне проекта и задайте вопрос, для которого нужен MCP. Если агент отвечает, значит, MCP подключён."
+
+#: src/components/sections/hero-section.tsx:76
+msgid "Or install from your AI agent"
+msgstr "Или установите через своего ИИ-агента"
 
 #: src/content/how-to-use/idea-no-context.tsx:66
 #~ msgid "Or invoke the MCP <0>product_track</0> prompt directly for the full cascade."
@@ -2399,9 +2403,9 @@ msgstr "Вставьте текст в файл инструкций проек�
 msgid "Per-agent setup"
 msgstr "Настройка по каждому агенту"
 
-#: src/components/sections/hero-section.tsx:117
-msgid "Per-host install"
-msgstr "Установка под конкретную среду"
+#: src/components/sections/hero-section.tsx:96
+#~ msgid "Per-host install"
+#~ msgstr "Установка под конкретную среду"
 
 #: src/content/how-to-use/capture-existing.tsx:23
 #~ msgid "Pick a module to capture."
@@ -3093,7 +3097,7 @@ msgstr "Источник и проверка ↗"
 #~ msgid "Spec-Driven Development"
 #~ msgstr "Spec-Driven Development"
 
-#: src/components/sections/hero-section.tsx:39
+#: src/components/sections/hero-section.tsx:34
 msgid "Spec-Driven Development & Context Engineering<0/>for AI Coding Agents"
 msgstr "Spec-Driven Development и контекстная инженерия<0/>для AI-агентов разработки"
 
@@ -4345,7 +4349,7 @@ msgstr "Агент сохраняет выбор и его обосновани�
 #~ msgid "Your code is in Git. Your project understanding should be too."
 #~ msgstr "Ваш код лежит в Git. Понимание проекта должно лежать там же."
 
-#: src/components/sections/hero-section.tsx:55
+#: src/components/sections/hero-section.tsx:50
 msgid "Your coding agent reads them before it writes, so it builds by this repo's rules instead of the ones it happens to know."
 msgstr "Агент читает их до того, как писать код, и делает по правилам этого репозитория, а не по тем, которые знает откуда-то ещё."
 

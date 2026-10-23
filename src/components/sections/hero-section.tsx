@@ -1,7 +1,4 @@
 import { Trans } from "@lingui/react/macro";
-import { msg } from "@lingui/core/macro";
-import { useLingui } from "@lingui/react";
-import { ExternalLink, Github } from "lucide-react";
 import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
 
@@ -25,8 +22,6 @@ import { LINKS } from "@/lib/links";
  * CLIs already on PATH. `archcore init` sets up a repository later.
  */
 export function HeroSection() {
-  const { _ } = useLingui();
-
   return (
     <section
       id="top"
@@ -70,6 +65,16 @@ export function HeroSection() {
               surface="home_hero_install"
               className="min-w-0 overflow-x-auto whitespace-nowrap break-normal"
             />
+            {/* The per-host plugin path, the one link the rule allows under
+                the install command. Same wording as the docs install page. */}
+            <a
+              href={LINKS.docsInstallPerHost}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="justify-self-start text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+            >
+              <Trans>Or install from your AI agent</Trans> ↗
+            </a>
 
           </div>
         </div>
@@ -77,7 +82,7 @@ export function HeroSection() {
         {/* Under both columns, not inside the install one. Kept there, the
             right column ran 80px past the left and the two stopped reading as
             one row. */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground/80">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground">
           {/* Shortened on 2026-09-12: the sentence form ran two lines in the
               hero. The host list and the trust strip are the two canonical
               pieces; the verb was the part carrying no information. */}
@@ -87,35 +92,12 @@ export function HeroSection() {
               agent
             </Trans>
           </p>
-          <p className="text-muted-foreground/60">
+          {/* One style for the whole row: four groups in three styles read as
+              a pile of facts. The GitHub link left on 2026-10-23; the header
+              star button and the footer already carry it. The per-host link
+              moved under the install command. */}
+          <p className="text-muted-foreground/70">
             <Trans>Open source · Local-first</Trans>
-          </p>
-          {/* One link, not two. The CLI and the plugin are components of one
-              product (.archcore/messaging-alignment.rule.md, "One product,
-              component guides"), and a pair of repository names in the hero
-              asks the reader to tell them apart before they know what either
-              is. The two repositories are reachable from the footer. */}
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <a
-              href={LINKS.org}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-mono underline underline-offset-4 transition-colors hover:text-foreground"
-              aria-label={_(msg`Archcore on GitHub`)}
-            >
-              <Github className="h-3 w-3" />
-              archcore-ai
-            </a>
-            <span className="text-muted-foreground/40">·</span>
-            <a
-              href="https://docs.archcore.ai/guides/connect-your-agent/#install-per-host"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 underline underline-offset-4 transition-colors hover:text-foreground"
-            >
-              <ExternalLink className="h-3 w-3" />
-              <Trans>Per-host install</Trans>
-            </a>
           </p>
         </div>
       </div>

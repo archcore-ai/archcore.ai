@@ -469,13 +469,13 @@ msgstr "Archcore keeps specs, architecture, decisions, rules, and plans in Git, 
 #~ msgid "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
 #~ msgstr "Archcore keeps your decisions, rules, and architecture as structured docs in your repo, loaded into your agent over MCP before it edits."
 
-#: src/components/sections/hero-section.tsx:49
+#: src/components/sections/hero-section.tsx:44
 msgid "Archcore keeps your project's decisions, specs, and rules in the repo."
 msgstr "Archcore keeps your project's decisions, specs, and rules in the repo."
 
 #: src/components/sections/hero-section.tsx:104
-msgid "Archcore on GitHub"
-msgstr "Archcore on GitHub"
+#~ msgid "Archcore on GitHub"
+#~ msgstr "Archcore on GitHub"
 
 #: src/pages/plugin.tsx:24
 #~ msgid "Archcore Plugin — repo memory for AI coding agents"
@@ -759,7 +759,7 @@ msgstr "Choose the agents to configure. The CLI writes their MCP configuration a
 msgid "Claude Code"
 msgstr "Claude Code"
 
-#: src/components/sections/hero-section.tsx:85
+#: src/components/sections/hero-section.tsx:90
 msgid "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 msgstr "Claude Code · Cursor · Codex CLI · Copilot · Gemini CLI · any MCP agent"
 
@@ -2343,7 +2343,7 @@ msgstr "open"
 msgid "Open Plugins → Add and paste URL:"
 msgstr "Open Plugins → Add and paste URL:"
 
-#: src/components/sections/hero-section.tsx:91
+#: src/components/sections/hero-section.tsx:100
 msgid "Open source · Local-first"
 msgstr "Open source · Local-first"
 
@@ -2366,6 +2366,10 @@ msgstr "Open source · Local-first"
 #: src/content/how-to-use/install.tsx:254
 #~ msgid "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
 #~ msgstr "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
+
+#: src/components/sections/hero-section.tsx:76
+msgid "Or install from your AI agent"
+msgstr "Or install from your AI agent"
 
 #: src/content/how-to-use/idea-no-context.tsx:66
 #~ msgid "Or invoke the MCP <0>product_track</0> prompt directly for the full cascade."
@@ -2403,9 +2407,9 @@ msgstr "Paste into your project instruction file, then start a new session."
 msgid "Per-agent setup"
 msgstr "Per-agent setup"
 
-#: src/components/sections/hero-section.tsx:117
-msgid "Per-host install"
-msgstr "Per-host install"
+#: src/components/sections/hero-section.tsx:96
+#~ msgid "Per-host install"
+#~ msgstr "Per-host install"
 
 #: src/content/how-to-use/capture-existing.tsx:23
 #~ msgid "Pick a module to capture."
@@ -3085,7 +3089,7 @@ msgstr "Source & verification ↗"
 #~ msgid "Spec-Driven Development"
 #~ msgstr "Spec-Driven Development"
 
-#: src/components/sections/hero-section.tsx:39
+#: src/components/sections/hero-section.tsx:34
 msgid "Spec-Driven Development & Context Engineering<0/>for AI Coding Agents"
 msgstr "Spec-Driven Development & Context Engineering<0/>for AI Coding Agents"
 
@@ -4347,7 +4351,7 @@ msgstr "Your agent saves the choice and its reasoning in an architecture decisio
 #~ msgid "Your code is in Git. Your project understanding should be too."
 #~ msgstr "Your code is in Git. Your project understanding should be too."
 
-#: src/components/sections/hero-section.tsx:55
+#: src/components/sections/hero-section.tsx:50
 msgid "Your coding agent reads them before it writes, so it builds by this repo's rules instead of the ones it happens to know."
 msgstr "Your coding agent reads them before it writes, so it builds by this repo's rules instead of the ones it happens to know."
 
