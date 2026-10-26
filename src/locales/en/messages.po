@@ -359,7 +359,7 @@ msgstr "Agents access project context through MCP. Supported hosts also receive 
 #~ msgid "All 7 commands at a glance"
 #~ msgstr "All 7 commands at a glance"
 
-#: src/components/sections/cli-agents-section.tsx:37
+#: src/components/sections/cli-agents-section.tsx:41
 msgid "All eight agents below can read the same project documents through MCP. Hook support varies by host."
 msgstr "All eight agents below can read the same project documents through MCP. Hook support varies by host."
 
@@ -490,7 +490,7 @@ msgstr "Archcore keeps your project's decisions, specs, and rules in the repo."
 #~ msgstr "Archcore Plugin — Spec-Driven Development for Coding Agents"
 
 #: src/components/pages/plugin.tsx:19
-#: src/components/sections/plugin-hero-section.tsx:33
+#: src/components/sections/plugin-hero-section.tsx:34
 msgid "Archcore Plugin for AI agents"
 msgstr "Archcore Plugin for AI agents"
 
@@ -734,7 +734,7 @@ msgstr "Check the branch against recorded decisions and rules. Flag stale docume
 #~ msgid "Check the branch before you merge it"
 #~ msgstr "Check the branch before you merge it"
 
-#: src/components/sections/plugin-hero-section.tsx:99
+#: src/components/sections/plugin-hero-section.tsx:103
 msgid "Check the hooks feature in your Codex settings. MCP and skills work independently of hooks."
 msgstr "Check the hooks feature in your Codex settings. MCP and skills work independently of hooks."
 
@@ -743,7 +743,7 @@ msgstr "Check the hooks feature in your Codex settings. MCP and skills work inde
 #~ msgstr "Check what was created."
 
 #: src/components/pages/plugin.tsx:33
-#: src/components/sections/plugin-hosts-section.tsx:35
+#: src/components/sections/plugin-hosts-section.tsx:41
 msgid "Check your agent’s setup requirements"
 msgstr "Check your agent’s setup requirements"
 
@@ -755,7 +755,7 @@ msgstr "Check your agent’s setup requirements"
 msgid "Choose the agents to configure. The CLI writes their MCP configuration and installs hooks where supported."
 msgstr "Choose the agents to configure. The CLI writes their MCP configuration and installs hooks where supported."
 
-#: src/components/sections/plugin-hero-section.tsx:58
+#: src/components/sections/plugin-hero-section.tsx:59
 msgid "Claude Code"
 msgstr "Claude Code"
 
@@ -792,8 +792,12 @@ msgid "Claude Code, Cursor, Codex CLI, GitHub Copilot CLI, Gemini CLI, OpenCode,
 msgstr "Claude Code, Cursor, Codex CLI, GitHub Copilot CLI, Gemini CLI, OpenCode, Roo Code, and Cline. Cline needs manual MCP setup. Hook support differs by host; see the agent list above."
 
 #: src/components/sections/agents-section.tsx:42
-msgid "Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first four; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
-msgstr "Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first four; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
+#~ msgid "Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first four; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
+#~ msgstr "Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first four; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
+
+#: src/components/sections/agents-section.tsx:42
+msgid "Claude Code, Cursor, Codex CLI, GitHub Copilot, OpenCode, Gemini CLI, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first five; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
+msgstr "Claude Code, Cursor, Codex CLI, GitHub Copilot, OpenCode, Gemini CLI, Roo Code, and Cline. Slash commands, skills, and guardrails run inside the first five; the rest reach the same documents over MCP. Where the host supports hooks, they arrive before the edit with no command from you."
 
 #: src/components/sections/plugin-problem-section.tsx:26
 #~ msgid "Claude Code, Cursor, Codex, and Copilot produce code that ignores your conventions, your ADRs, and your prior decisions."
@@ -860,7 +864,7 @@ msgstr "Close installation"
 #~ msgid "Code that matches your architecture on the first try."
 #~ msgstr "Code that matches your architecture on the first try."
 
-#: src/components/sections/plugin-hero-section.tsx:64
+#: src/components/sections/plugin-hero-section.tsx:65
 msgid "Codex CLI 0.117+"
 msgstr "Codex CLI 0.117+"
 
@@ -893,7 +897,7 @@ msgstr "Confirm you can use {names}, and have read this project’s cooperation 
 #~ msgstr "Connect"
 
 #: src/components/pages/cli.tsx:34
-#: src/components/sections/cli-agents-section.tsx:34
+#: src/components/sections/cli-agents-section.tsx:38
 msgid "Connect the agents your team uses"
 msgstr "Connect the agents your team uses"
 
@@ -961,7 +965,7 @@ msgstr "Context engineering for AI coding agents"
 msgid "Copied ✓"
 msgstr "Copied ✓"
 
-#: src/components/sections/plugin-hero-section.tsx:67
+#: src/components/sections/plugin-hero-section.tsx:68
 msgid "Copilot CLI"
 msgstr "Copilot CLI"
 
@@ -1014,7 +1018,7 @@ msgstr "Create the context directory"
 #~ msgid "Cross-agent"
 #~ msgstr "Cross-agent"
 
-#: src/components/sections/plugin-hero-section.tsx:61
+#: src/components/sections/plugin-hero-section.tsx:62
 msgid "Cursor 2.5+"
 msgstr "Cursor 2.5+"
 
@@ -1452,7 +1456,7 @@ msgstr "Frequently Asked Questions"
 msgid "From idea to reviewed code"
 msgstr "From idea to reviewed code"
 
-#: src/components/sections/plugin-hosts-section.tsx:60
+#: src/components/sections/plugin-hosts-section.tsx:66
 msgid "Full host matrix"
 msgstr "Full host matrix"
 
@@ -1597,7 +1601,7 @@ msgstr "If the agent reports a missing tool or instruction file, finish that set
 #~ msgid "If you already keep a CLAUDE.md, you know the idea. Archcore adds typed documents, relations, and history, and <0>archcore init</0> imports the instruction files you have already written. <1>Why project context belongs in Git</1>."
 #~ msgstr "If you already keep a CLAUDE.md, you know the idea. Archcore adds typed documents, relations, and history, and <0>archcore init</0> imports the instruction files you have already written. <1>Why project context belongs in Git</1>."
 
-#: src/components/sections/plugin-hero-section.tsx:53
+#: src/components/sections/plugin-hero-section.tsx:54
 msgid "If you installed your host later, use its setup step below."
 msgstr "If you installed your host later, use its setup step below."
 
@@ -1677,11 +1681,11 @@ msgstr "Install CLI"
 #~ msgid "Install docs"
 #~ msgstr "Install docs"
 
-#: src/components/sections/plugin-hero-section.tsx:73
+#: src/components/sections/plugin-hero-section.tsx:77
 msgid "Install for Claude Code:"
 msgstr "Install for Claude Code:"
 
-#: src/components/sections/plugin-hero-section.tsx:95
+#: src/components/sections/plugin-hero-section.tsx:99
 msgid "Install for Codex CLI:"
 msgstr "Install for Codex CLI:"
 
@@ -1701,8 +1705,12 @@ msgstr "Install in the Plugins panel, then register MCP for your project."
 msgid "Install now"
 msgstr "Install now"
 
+#: src/components/sections/plugin-hero-section.tsx:130
+msgid "Install once for all your projects:"
+msgstr "Install once for all your projects:"
+
 #: src/components/pages/plugin.tsx:28
-#: src/components/sections/plugin-hero-section.tsx:40
+#: src/components/sections/plugin-hero-section.tsx:41
 msgid "Install plugin"
 msgstr "Install plugin"
 
@@ -1714,7 +1722,7 @@ msgstr "Install plugin"
 #~ msgid "Install the CLI, then run archcore init in your project folder."
 #~ msgstr "Install the CLI, then run archcore init in your project folder."
 
-#: src/components/sections/plugin-hero-section.tsx:109
+#: src/components/sections/plugin-hero-section.tsx:113
 msgid "Install the plugin, then connect your project:"
 msgstr "Install the plugin, then connect your project:"
 
@@ -1906,7 +1914,7 @@ msgstr "Maintainer"
 #~ msgid "Managed when your team needs it"
 #~ msgstr "Managed when your team needs it"
 
-#: src/components/sections/cli-agents-section.tsx:29
+#: src/components/sections/cli-agents-section.tsx:33
 msgid "Manual MCP configuration."
 msgstr "Manual MCP configuration."
 
@@ -1951,6 +1959,10 @@ msgstr "Manual MCP configuration."
 msgid "MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them."
 msgstr "MCP and hooks. Check your Codex version, trust the project, and approve hooks before relying on them."
 
+#: src/components/sections/cli-agents-section.tsx:27
+msgid "MCP and session hooks through the Archcore plugin."
+msgstr "MCP and session hooks through the Archcore plugin."
+
 #: src/components/sections/cli-agents-section.tsx:11
 msgid "MCP and session hooks."
 msgstr "MCP and session hooks."
@@ -1959,7 +1971,7 @@ msgstr "MCP and session hooks."
 msgid "MCP and session hooks. Pre-write context injection is not available."
 msgstr "MCP and session hooks. Pre-write context injection is not available."
 
-#: src/components/sections/cli-agents-section.tsx:27
+#: src/components/sections/cli-agents-section.tsx:31
 msgid "MCP configuration through the CLI."
 msgstr "MCP configuration through the CLI."
 
@@ -2208,6 +2220,10 @@ msgstr "Not sure where to start?"
 #~ msgid "On hosts with pre-write hooks, Archcore delivers the documents that constrain a file before the agent edits it. Other MCP agents can search and read the same documents during the task."
 #~ msgstr "On hosts with pre-write hooks, Archcore delivers the documents that constrain a file before the agent edits it. Other MCP agents can search and read the same documents during the task."
 
+#: src/components/sections/plugin-hero-section.tsx:134
+msgid "On OpenCode 1.x, run opencode plugin -g @archcore/opencode-plugin instead. Restart OpenCode. The commands start with /archcore-, for example /archcore-plan."
+msgstr "On OpenCode 1.x, run opencode plugin -g @archcore/opencode-plugin instead. Restart OpenCode. The commands start with /archcore-, for example /archcore-plan."
+
 #: src/components/guide-page-layout.tsx:23
 #: src/components/guide-page-layout.tsx:25
 msgid "On this page"
@@ -2266,6 +2282,10 @@ msgstr "One feature in 50 seconds."
 #: src/components/sections/migration-section.tsx:35
 #~ msgid "One flat file for one tool becomes typed documents every agent can read: conventions as rules, the reasoning behind them as ADRs."
 #~ msgstr "One flat file for one tool becomes typed documents every agent can read: conventions as rules, the reasoning behind them as ADRs."
+
+#: src/components/sections/plugin-hosts-section.tsx:34
+msgid "One global install covers every project. The plugin registers MCP itself, unless your OpenCode config already has an archcore MCP entry."
+msgstr "One global install covers every project. The plugin registers MCP itself, unless your OpenCode config already has an archcore MCP entry."
 
 #: src/components/sections/plugin-problem-section.tsx:55
 #~ msgid "One install gives Claude Code, Cursor, Codex, and Copilot a memory that lives next to the code — injected automatically as the agent edits, with slash commands to capture new decisions as they happen."
@@ -2339,7 +2359,7 @@ msgstr "open"
 #~ msgid "Open menu"
 #~ msgstr "Open menu"
 
-#: src/components/sections/plugin-hero-section.tsx:81
+#: src/components/sections/plugin-hero-section.tsx:85
 msgid "Open Plugins → Add and paste URL:"
 msgstr "Open Plugins → Add and paste URL:"
 
@@ -2366,6 +2386,10 @@ msgstr "Open source · Local-first"
 #: src/content/how-to-use/install.tsx:254
 #~ msgid "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
 #~ msgstr "Open your coding agent in the project root and ask a question that requires MCP. If the agent can answer, MCP is wired up."
+
+#: src/components/sections/plugin-hero-section.tsx:71
+msgid "OpenCode"
+msgstr "OpenCode"
 
 #: src/components/sections/hero-section.tsx:76
 msgid "Or install from your AI agent"
@@ -2403,7 +2427,7 @@ msgstr "Paste into your project instruction file, then start a new session."
 #~ msgid "Path-scoped instruction files keep their scope, but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded."
 #~ msgstr "Path-scoped instruction files keep their scope, but gain status, timestamps, and relations, so you can see what is still accepted and what a later decision superseded."
 
-#: src/components/sections/cli-agents-section.tsx:56
+#: src/components/sections/cli-agents-section.tsx:60
 msgid "Per-agent setup"
 msgstr "Per-agent setup"
 
@@ -2479,7 +2503,7 @@ msgstr "Plugin"
 #~ msgid "Plugin = slash commands · CLI = one binary."
 #~ msgstr "Plugin = slash commands · CLI = one binary."
 
-#: src/components/sections/plugin-hero-section.tsx:175
+#: src/components/sections/plugin-hero-section.tsx:194
 #: src/components/sections/plugin-pillars-section.tsx:67
 msgid "Plugin docs"
 msgstr "Plugin docs"
@@ -2963,7 +2987,7 @@ msgstr "See the skills in action"
 msgid "See what it looks like before you install it."
 msgstr "See what it looks like before you install it."
 
-#: src/components/sections/cli-agents-section.tsx:59
+#: src/components/sections/cli-agents-section.tsx:63
 msgid "See what the plugin adds"
 msgstr "See what the plugin adds"
 
@@ -3155,10 +3179,11 @@ msgstr "Star CLI on GitHub"
 msgid "Star on GitHub"
 msgstr "Star on GitHub"
 
-#: src/components/sections/plugin-hero-section.tsx:75
-#: src/components/sections/plugin-hero-section.tsx:83
-#: src/components/sections/plugin-hero-section.tsx:97
-#: src/components/sections/plugin-hero-section.tsx:114
+#: src/components/sections/plugin-hero-section.tsx:79
+#: src/components/sections/plugin-hero-section.tsx:87
+#: src/components/sections/plugin-hero-section.tsx:101
+#: src/components/sections/plugin-hero-section.tsx:118
+#: src/components/sections/plugin-hero-section.tsx:132
 msgid "Star plugin on GitHub"
 msgstr "Star plugin on GitHub"
 
@@ -3465,9 +3490,13 @@ msgstr "The install script adds the CLI and available plugins. Run archcore init
 msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
 msgstr "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
 
+#: src/components/sections/plugin-hero-section.tsx:44
+msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
+msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
+
 #: src/components/sections/plugin-hero-section.tsx:43
-msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
-msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
+#~ msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
+#~ msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
 
 #: src/components/sections/cli-pillars-section.tsx:23
 msgid "The install script adds the plugin to supported host CLIs already on PATH. Cursor requires installation through its Plugins panel."
@@ -3555,9 +3584,13 @@ msgstr "The plugin registers MCP automatically."
 #~ msgid "The plugin requires the Archcore CLI on your PATH."
 #~ msgstr "The plugin requires the Archcore CLI on your PATH."
 
+#: src/components/sections/plugin-hosts-section.tsx:44
+msgid "The plugin runs in five hosts. MCP registration and hooks differ between them."
+msgstr "The plugin runs in five hosts. MCP registration and hooks differ between them."
+
 #: src/components/sections/plugin-hosts-section.tsx:38
-msgid "The plugin runs in four hosts. MCP registration and hooks differ between them."
-msgstr "The plugin runs in four hosts. MCP registration and hooks differ between them."
+#~ msgid "The plugin runs in four hosts. MCP registration and hooks differ between them."
+#~ msgstr "The plugin runs in four hosts. MCP registration and hooks differ between them."
 
 #: src/components/sections/faq-section.tsx:31
 #~ msgid "The plugin runs inside Claude Code, Cursor 2.5+, and Codex CLI 0.117+. The CLI works with any MCP-aware agent — GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
@@ -3568,8 +3601,12 @@ msgstr "The plugin runs in four hosts. MCP registration and hooks differ between
 #~ msgstr "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent — those four plus Gemini CLI, OpenCode, Roo Code, Cline — and is scriptable in CI."
 
 #: src/components/sections/faq-section.tsx:28
-msgid "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI."
-msgstr "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI."
+#~ msgid "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI."
+#~ msgstr "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI."
+
+#: src/components/sections/faq-section.tsx:28
+msgid "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, GitHub Copilot CLI, and OpenCode 1.18.34+. The CLI works with any MCP-aware agent: those five plus Gemini CLI, Roo Code, and Cline. It is also scriptable in CI."
+msgstr "The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, GitHub Copilot CLI, and OpenCode 1.18.34+. The CLI works with any MCP-aware agent: those five plus Gemini CLI, Roo Code, and Cline. It is also scriptable in CI."
 
 #: src/content/how-to-use/capture-existing.tsx:111
 #~ msgid "The plugin treats the topic as a search query first, then writes the spec. Works just as well for \"auth flow\", \"billing\", \"the report export job\"."
@@ -3623,7 +3660,7 @@ msgstr "The recording runs the same plan, build, and review steps on a different
 #~ msgid "The same request, with and without the instructions"
 #~ msgstr "The same request, with and without the instructions"
 
-#: src/components/sections/plugin-hero-section.tsx:116
+#: src/components/sections/plugin-hero-section.tsx:120
 msgid "The second command connects MCP to this project. Restart Copilot afterwards. This integration is for Copilot CLI."
 msgstr "The second command connects MCP to this project. Restart Copilot afterwards. This integration is for Copilot CLI."
 
@@ -3664,7 +3701,7 @@ msgstr "The second command connects MCP to this project. Restart Copilot afterwa
 #~ msgid "Then round again. The next plan starts from everything the last three steps wrote down."
 #~ msgstr "Then round again. The next plan starts from everything the last three steps wrote down."
 
-#: src/components/sections/plugin-hero-section.tsx:85
+#: src/components/sections/plugin-hero-section.tsx:89
 msgid "Then run archcore mcp install --agent cursor in your project folder to connect the document tools."
 msgstr "Then run archcore mcp install --agent cursor in your project folder to connect the document tools."
 
@@ -3797,7 +3834,7 @@ msgstr "Use the plugin where available"
 #~ msgid "Useful follow-ups:"
 #~ msgstr "Useful follow-ups:"
 
-#: src/components/sections/plugin-hosts-section.tsx:53
+#: src/components/sections/plugin-hosts-section.tsx:59
 msgid "Using another MCP agent? See the CLI"
 msgstr "Using another MCP agent? See the CLI"
 

@@ -25,7 +25,7 @@ export function FAQSection() {
     {
       question: _(msg`Which AI agents are supported?`),
       answer: _(
-        msg`The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, and GitHub Copilot CLI. The CLI works with any MCP-aware agent: those four plus Gemini CLI, OpenCode, Roo Code, and Cline. It is also scriptable in CI.`
+        msg`The plugin runs inside Claude Code, Cursor 2.5+, Codex CLI 0.117+, GitHub Copilot CLI, and OpenCode 1.18.34+. The CLI works with any MCP-aware agent: those five plus Gemini CLI, Roo Code, and Cline. It is also scriptable in CI.`
       ),
     },
     {

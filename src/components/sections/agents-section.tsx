@@ -40,9 +40,9 @@ export function AgentsSection() {
     >
       <p className="max-w-[70ch] text-base leading-relaxed text-muted-foreground">
         <Trans>
-          Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode,
+          Claude Code, Cursor, Codex CLI, GitHub Copilot, OpenCode, Gemini CLI,
           Roo Code, and Cline. Slash commands, skills, and guardrails run inside
-          the first four; the rest reach the same documents over MCP. Where the
+          the first five; the rest reach the same documents over MCP. Where the
           host supports hooks, they arrive before the edit with no command from
           you.
         </Trans>

@@ -81,7 +81,7 @@ To run the server directly, which is what the host does under the hood:
 archcore mcp
 ```
 
-**Coverage today:** eight agents over MCP (Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline), with session hooks on five of them. Anything else that speaks MCP works the same way, because the server is a protocol implementation rather than a per-vendor integration.
+**Coverage today:** eight agents over MCP (Claude Code, Cursor, Codex CLI, GitHub Copilot, Gemini CLI, OpenCode, Roo Code, Cline), with session hooks on six of them. Anything else that speaks MCP works the same way, because the server is a protocol implementation rather than a per-vendor integration.
 
 ## MCP and hooks do different jobs
 

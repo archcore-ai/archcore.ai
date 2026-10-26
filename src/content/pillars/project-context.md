@@ -117,7 +117,7 @@ Delivery is the half that makes it context rather than documentation:
 
 - **Session hooks** inject the applicable documents when the agent edits a file, so guidance arrives at the moment of the edit.
 - **[MCP](/mcp/) tools** let the agent search, read, and write documents during real work, pulling what it needs rather than receiving everything at session start.
-- **One store, every agent.** The [CLI](/cli/) serves the same directory to eight MCP-aware agents; the [plugin](/plugin/) adds slash commands and guardrails on the four hosts that support plugins.
+- **One store, every agent.** The [CLI](/cli/) serves the same directory to eight MCP-aware agents; the [plugin](/plugin/) adds slash commands and guardrails on the five hosts that support plugins.
 
 ```bash
 curl -fsSL https://archcore.ai/install.sh | bash

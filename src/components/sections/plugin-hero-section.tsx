@@ -8,13 +8,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InstallCommand } from "@/components/cta/install-command";
 import { LINKS } from "@/lib/links";
 
-type PluginHost = "claude" | "cursor" | "codex" | "copilot";
+type PluginHost = "claude" | "cursor" | "codex" | "copilot" | "opencode";
 
 const PLUGIN_HOSTS: readonly PluginHost[] = [
   "claude",
   "cursor",
   "codex",
   "copilot",
+  "opencode",
 ];
 
 export function PluginHeroSection() {
@@ -42,7 +43,7 @@ export function PluginHeroSection() {
         <p className="guide-prerequisite">
           <Trans>
             The install script adds the CLI and the plugin when your host CLI is
-            on PATH. Cursor needs plugin setup in its Plugins panel.
+            on PATH. Cursor and OpenCode need the setup step below.
           </Trans>
         </p>
         <InstallCommand
@@ -65,6 +66,9 @@ export function PluginHeroSection() {
             </TabsTrigger>
             <TabsTrigger value="copilot" className="flex-1 py-2">
               <Trans>Copilot CLI</Trans>
+            </TabsTrigger>
+            <TabsTrigger value="opencode" className="flex-1 py-2">
+              <Trans>OpenCode</Trans>
             </TabsTrigger>
           </TabsList>
 
@@ -116,6 +120,21 @@ export function PluginHeroSection() {
                 <Trans>
                   The second command connects MCP to this project. Restart
                   Copilot afterwards. This integration is for Copilot CLI.
+                </Trans>
+              }
+            />
+          </TabsContent>
+
+          <TabsContent value="opencode" className="mt-5">
+            <HostPanel
+              hint={<Trans>Install once for all your projects:</Trans>}
+              commands={["opencode plugin add @archcore/opencode-plugin"]}
+              repoLabel={_(msg`Star plugin on GitHub`)}
+              note={
+                <Trans>
+                  On OpenCode 1.x, run opencode plugin -g
+                  @archcore/opencode-plugin instead. Restart OpenCode. The
+                  commands start with /archcore-, for example /archcore-plan.
                 </Trans>
               }
             />

@@ -23,7 +23,11 @@ export function CLIAgentsSection() {
       ),
     },
     {
-      name: "OpenCode · Roo Code",
+      name: "OpenCode",
+      detail: _(msg`MCP and session hooks through the Archcore plugin.`),
+    },
+    {
+      name: "Roo Code",
       detail: _(msg`MCP configuration through the CLI.`),
     },
     { name: "Cline", detail: _(msg`Manual MCP configuration.`) },

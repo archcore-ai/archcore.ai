@@ -28,6 +28,12 @@ export function PluginHostsSection() {
         msg`Run archcore init --agent copilot in each project to connect MCP. VS Code agent mode does not load this plugin.`
       ),
     },
+    {
+      name: "OpenCode 1.18.34+",
+      detail: _(
+        msg`One global install covers every project. The plugin registers MCP itself, unless your OpenCode config already has an archcore MCP entry.`
+      ),
+    },
   ];
   return (
     <section id="hosts">
@@ -36,7 +42,7 @@ export function PluginHostsSection() {
       </h2>
       <p>
         <Trans>
-          The plugin runs in four hosts. MCP registration and hooks differ
+          The plugin runs in five hosts. MCP registration and hooks differ
           between them.
         </Trans>
       </p>
