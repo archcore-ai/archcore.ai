@@ -43,7 +43,7 @@ export function FAQSection() {
     {
       question: _(msg`Do I need both the plugin and the CLI?`),
       answer: _(
-        msg`The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI.`
+        msg`The install script adds the CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI.`
       ),
     },
   ];

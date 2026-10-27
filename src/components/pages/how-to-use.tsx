@@ -74,8 +74,8 @@ export function HowToUsePage() {
         <p>
           <Trans>
             The install script adds the Archcore CLI and the plugin for Claude
-            Code, Codex CLI, and GitHub Copilot CLI when their commands are on
-            PATH. Then run archcore init in your project folder.
+            Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their
+            commands are on PATH. Then run archcore init in your project folder.
           </Trans>
         </p>
         <div className="guide-install">

@@ -43,7 +43,7 @@ export function PluginHeroSection() {
         <p className="guide-prerequisite">
           <Trans>
             The install script adds the CLI and the plugin when your host CLI is
-            on PATH. Cursor and OpenCode need the setup step below.
+            on PATH. Cursor needs the setup step below.
           </Trans>
         </p>
         <InstallCommand

@@ -3487,24 +3487,36 @@ msgstr "Инструмент командной строки Archcore. Наст�
 #~ msgstr "Четыре команды выше — это то, что вы набираете. Остальное происходит само: когда агент открывает файл, Archcore отдаёт ему документы, которые этот файл ограничивают, ещё до правки."
 
 #: src/components/pages/how-to-use.tsx:75
-msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
-msgstr "Скрипт установки ставит Archcore CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Затем запустите archcore init в папке проекта."
+#~ msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+#~ msgstr "Скрипт установки ставит Archcore CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Затем запустите archcore init в папке проекта."
+
+#: src/components/pages/how-to-use.tsx:75
+msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Then run archcore init in your project folder."
+msgstr "Скрипт установки ставит Archcore CLI и плагин для Claude Code, Codex CLI, GitHub Copilot CLI и OpenCode, если их команды есть в PATH. Затем запустите archcore init в папке проекта."
 
 #: src/components/sections/cli-hero-section.tsx:25
 msgid "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
 msgstr "Скрипт установки ставит CLI и доступные плагины. Позже запустите archcore init в каждом проекте, который хотите подключить."
 
 #: src/components/sections/faq-section.tsx:46
-msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
-msgstr "Скрипт установки ставит CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Запустите archcore init в каждом проекте, где нужны MCP-инструменты и хуки. Плагин Cursor нужно добавить через его интерфейс."
+#~ msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+#~ msgstr "Скрипт установки ставит CLI и плагин для Claude Code, Codex CLI и GitHub Copilot CLI, если их команды есть в PATH. Запустите archcore init в каждом проекте, где нужны MCP-инструменты и хуки. Плагин Cursor нужно добавить через его интерфейс."
+
+#: src/components/sections/faq-section.tsx:46
+msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+msgstr "Скрипт установки ставит CLI и плагин для Claude Code, Codex CLI, GitHub Copilot CLI и OpenCode, если их команды есть в PATH. Запустите archcore init в каждом проекте, где нужны MCP-инструменты и хуки. Плагин Cursor нужно добавить через его интерфейс."
 
 #: src/components/sections/plugin-hero-section.tsx:44
-msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
-msgstr "Скрипт установки ставит CLI и плагин, если команда вашего хоста есть в PATH. Для Cursor и OpenCode выполните шаг настройки ниже."
+#~ msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
+#~ msgstr "Скрипт установки ставит CLI и плагин, если команда вашего хоста есть в PATH. Для Cursor и OpenCode выполните шаг настройки ниже."
 
 #: src/components/sections/plugin-hero-section.tsx:43
 #~ msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
 #~ msgstr "Скрипт установки ставит CLI и плагин, если команда вашего хоста есть в PATH. Для Cursor добавьте плагин через панель Plugins."
+
+#: src/components/sections/plugin-hero-section.tsx:44
+msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs the setup step below."
+msgstr "Скрипт установки ставит CLI и плагин, если команда вашего хоста есть в PATH. Для Cursor выполните шаг настройки ниже."
 
 #: src/components/sections/cli-pillars-section.tsx:23
 msgid "The install script adds the plugin to supported host CLIs already on PATH. Cursor requires installation through its Plugins panel."

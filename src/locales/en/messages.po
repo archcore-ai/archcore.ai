@@ -3479,24 +3479,36 @@ msgstr "The command-line tool for Archcore. It sets up project context and conne
 #~ msgstr "The four commands above are the part you type. The rest happens on its own: when the agent opens a file, Archcore gives it the documents that constrain that file, before the edit."
 
 #: src/components/pages/how-to-use.tsx:75
-msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
-msgstr "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+#~ msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+#~ msgstr "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Then run archcore init in your project folder."
+
+#: src/components/pages/how-to-use.tsx:75
+msgid "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Then run archcore init in your project folder."
+msgstr "The install script adds the Archcore CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Then run archcore init in your project folder."
 
 #: src/components/sections/cli-hero-section.tsx:25
 msgid "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
 msgstr "The install script adds the CLI and available plugins. Run archcore init later in each project you want to connect."
 
 #: src/components/sections/faq-section.tsx:46
-msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
-msgstr "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+#~ msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+#~ msgstr "The install script adds the CLI and the plugin for Claude Code, Codex CLI, and GitHub Copilot CLI when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+
+#: src/components/sections/faq-section.tsx:46
+msgid "The install script adds the CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
+msgstr "The install script adds the CLI and the plugin for Claude Code, Codex CLI, GitHub Copilot CLI, and OpenCode when their commands are on PATH. Run archcore init in each project where you want MCP tools and hooks. Cursor still needs plugin setup in its UI."
 
 #: src/components/sections/plugin-hero-section.tsx:44
-msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
-msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
+#~ msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
+#~ msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor and OpenCode need the setup step below."
 
 #: src/components/sections/plugin-hero-section.tsx:43
 #~ msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
 #~ msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs plugin setup in its Plugins panel."
+
+#: src/components/sections/plugin-hero-section.tsx:44
+msgid "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs the setup step below."
+msgstr "The install script adds the CLI and the plugin when your host CLI is on PATH. Cursor needs the setup step below."
 
 #: src/components/sections/cli-pillars-section.tsx:23
 msgid "The install script adds the plugin to supported host CLIs already on PATH. Cursor requires installation through its Plugins panel."
